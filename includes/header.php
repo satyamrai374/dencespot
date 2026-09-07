@@ -84,7 +84,7 @@ $schemaHtml  = schema_render($medicalNode === null ? $page['schema'] : array_mer
 
 <meta name="theme-color" content="#F5F4F7">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-
+<meta name="google-site-verification" content="lY4q2j4iJeavvMLFbV79PMyxrUoZwh-sV1bhIt4CNSU" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
