@@ -37,10 +37,11 @@ if (file_exists($phpFile)) {
     exit;
 }
 
-// 4. Nothing matched. Serve the real 404 with the real status code.
-//    This used to `require index.php`, so every typo, every dead link and every
-//    stale URL returned the homepage under HTTP 200 — a soft 404. Locally that
-//    made broken links invisible to testing; the production .htaccess already
-//    points ErrorDocument at 404.php.
+// 4. Nothing matched. Redirect to /404
+if ($uri !== '/404') {
+    header("Location: /404", true, 302);
+    exit;
+}
+
 http_response_code(404);
 require __DIR__ . '/404.php';

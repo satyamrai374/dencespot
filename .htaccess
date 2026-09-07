@@ -108,6 +108,16 @@ RewriteRule ^(.+?)/?$ $1.php [L]
 # and a full HTML report naming unconfirmed pricing and launch blockers. It is
 # git-tracked, so it deploys; without this rule it was publicly readable.
 RewriteRule ^(includes|storage|_design|_ds|dencespot\.com-audit|\.claude|\.git)(/|$) - [F,L]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 9. Recover 404s by explicitly redirecting to the /404 URL
+# ─────────────────────────────────────────────────────────────────────────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/404$
+RewriteCond %{REQUEST_URI} !^/404\.php$
+RewriteRule ^ /404 [R=302,L]
+
 </IfModule>
 
 
@@ -135,12 +145,7 @@ RewriteRule ^(includes|storage|_design|_ds|dencespot\.com-audit|\.claude|\.git)(
 </FilesMatch>
 
 
-# Custom 404. Enable once /404 exists — the tracker still lists it as not built,
-# and pointing ErrorDocument at a missing page produces a confusing double error.
-# ErrorDocument 404 /404
 
-# Recover 404s instead of dead-ending them.
-ErrorDocument 404 /404.php
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 9. Security headers
