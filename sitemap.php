@@ -82,6 +82,21 @@ function sitemap_pages(): array
         $out[$slug] = filemtime($file);
     }
 
+    /**
+     * Directory-based sections, which the two globs above cannot see: they only
+     * look at the site root and /blog. /patient-stories/ is a real indexable
+     * page served from patient-stories/index.php, and without this it would be
+     * the one published page missing from the sitemap.
+     *
+     * Add a line here for any future section that lives in its own directory.
+     */
+    foreach (['patient-stories'] as $dir) {
+        $index = $root . '/' . $dir . '/index.php';
+        if (file_exists($index)) {
+            $out[$dir . '/'] = filemtime($index);
+        }
+    }
+
     ksort($out);
     return $out;
 }

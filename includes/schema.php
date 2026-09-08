@@ -325,6 +325,42 @@ const MEDICAL_PAGES = [
     '/hair-transplant-results-gurgaon',
     '/gallery',
     '/faqs',
+
+    /*
+     * Sep 2026 — the URL-plan build out. Every page below renders the dated
+     * byline through doctor_block(), so by the rule above each one earns a
+     * MedicalWebPage node. They shipped without one: the pages were written and
+     * this list was not updated, which left 22 pages asserting a review date in
+     * visible text that the structured data did not corroborate. On a YMYL
+     * medical site that is the wrong half to leave out.
+     *
+     * Adding a page that calls doctor_block()? Add its URL here in the same
+     * commit.
+     */
+    '/eyebrow-transplant-in-gurgaon',
+    '/hairline-transplant-in-gurgaon',
+    '/crown-hair-transplant-in-gurgaon',
+    '/hair-transplant-for-women-in-gurgaon',
+    '/hair-transplant-repair-in-gurgaon',
+    '/unshaven-hair-transplant-in-gurgaon',
+    '/beard-transplant-cost-gurgaon',
+    '/gfc-treatment-in-gurgaon',
+    '/hair-mesotherapy-in-gurgaon',
+    '/face-prp-treatment-in-gurgaon',
+    '/womens-hair-loss-treatment-in-gurgaon',
+    '/alopecia-areata-treatment-in-gurgaon',
+    '/scalp-micropigmentation-in-gurgaon',
+    '/dandruff-treatment-in-gurgaon',
+    '/hair-microneedling-in-gurgaon',
+    '/hair-led-therapy-in-gurgaon',
+    '/prp-hair-treatment-cost-in-gurgaon',
+    '/best-hair-transplant-clinic-in-gurgaon',
+    '/how-to-choose-hair-transplant-clinic',
+    '/hair-transplant-graft-calculator',
+    '/hair-loss-assessment',
+    // schema_medical_webpage() rtrims the trailing slash before matching, so
+    // the directory section is listed without one.
+    '/patient-stories',
 ];
 
 /** Site-level entity, homepage only. */

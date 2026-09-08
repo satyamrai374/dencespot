@@ -34,6 +34,26 @@ RewriteRule ^ https://dencespot.com%{REQUEST_URI} [R=301,L]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 1b. Comparison URLs → the articles that already cover them
+#
+#     These five root URLs were requested as part of the site's URL plan, and
+#     each already has a near-identical article under /blog/. Publishing a
+#     second copy at the root would put two pages of ours in competition for
+#     the same query — the cannibalisation SEO-STRATEGY-dencespot.md §5 flags
+#     as the old site's central failure.
+#
+#     So the URL resolves and the reader lands on the real article. If any of
+#     these is later wanted as a standalone commercial page, delete its line
+#     here AND 301 the blog post to the new root URL — never run both.
+# ─────────────────────────────────────────────────────────────────────────────
+RewriteRule ^fue-vs-dhi-hair-transplant/?$          /blog/fue-vs-dhi-hair-transplant [R=301,L]
+RewriteRule ^fue-vs-fut-hair-transplant/?$          /blog/fue-vs-fut-hair-transplant [R=301,L]
+RewriteRule ^prp-vs-hair-transplant/?$              /blog/prp-or-hair-transplant [R=301,L]
+RewriteRule ^prp-vs-gfc-treatment/?$                /blog/prp-vs-gfc-vs-exosomes [R=301,L]
+RewriteRule ^hair-transplant-risks-and-side-effects/?$ /blog/hair-transplant-side-effects-and-risks [R=301,L]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # 2. sitemap.php is served as /sitemap.xml
 #    robots.txt advertises https://dencespot.com/sitemap.xml and sitemap.php
 #    expects that mapping. Both /sitemap.php and /sitemap fold into the .xml URL

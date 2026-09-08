@@ -21,6 +21,24 @@ if ($uri === '/sitemap.xml') {
     exit;
 }
 
+// 1c. Comparison URLs that 301 to the article covering them.
+//     Mirrors .htaccess §1b. Without this the redirects only exist in
+//     production, so a local click-through 404s and the mismatch is not found
+//     until after deploy — the same reason /sitemap.xml is handled above.
+const COMPARISON_REDIRECTS = [
+    '/fue-vs-dhi-hair-transplant'            => '/blog/fue-vs-dhi-hair-transplant',
+    '/fue-vs-fut-hair-transplant'            => '/blog/fue-vs-fut-hair-transplant',
+    '/prp-vs-hair-transplant'                => '/blog/prp-or-hair-transplant',
+    '/prp-vs-gfc-treatment'                  => '/blog/prp-vs-gfc-vs-exosomes',
+    '/hair-transplant-risks-and-side-effects' => '/blog/hair-transplant-side-effects-and-risks',
+];
+
+$trimmed = rtrim($uri, '/');
+if ($trimmed !== '' && isset(COMPARISON_REDIRECTS[$trimmed])) {
+    header('Location: ' . COMPARISON_REDIRECTS[$trimmed], true, 301);
+    exit;
+}
+
 // 2. Directory with index.php exists? (e.g. /blog/)
 if (is_dir($file)) {
     $dirIndex = rtrim($file, '/') . '/index.php';

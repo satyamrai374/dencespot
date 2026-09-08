@@ -243,3 +243,100 @@ already linked from `/hair-transplant-in-gurgaon`:
    available, and balanced sources are preferentially cited in AI Overviews.
 3. Real per-graft rates into `hair-transplant-cost-in-gurgaon.php` — only one of the six
    publishes a cost table at all.
+
+---
+
+## ▶ Resumed — URL-plan build out (Sep 2026)
+
+Built the 21 root pages and one directory section from the supplied URL list. Every page
+follows the conventions above: `$page` array, `schema_*` nodes, `faq_list($faqs)` fed the
+same array as `schema_faq()`, `doctor_block()`, `local_block()`, `cta_band()`.
+
+### Built this iteration (22 pages)
+
+**Surgical spokes (7)** — `eyebrow-transplant-in-gurgaon` · `hairline-transplant-in-gurgaon` ·
+`crown-hair-transplant-in-gurgaon` · `hair-transplant-for-women-in-gurgaon` ·
+`hair-transplant-repair-in-gurgaon` · `unshaven-hair-transplant-in-gurgaon` ·
+`beard-transplant-cost-gurgaon`
+
+**Non-surgical (10)** — `gfc-treatment-in-gurgaon` · `hair-mesotherapy-in-gurgaon` ·
+`face-prp-treatment-in-gurgaon` · `womens-hair-loss-treatment-in-gurgaon` ·
+`alopecia-areata-treatment-in-gurgaon` · `scalp-micropigmentation-in-gurgaon` ·
+`dandruff-treatment-in-gurgaon` · `hair-microneedling-in-gurgaon` ·
+`hair-led-therapy-in-gurgaon` · `prp-hair-treatment-cost-in-gurgaon`
+
+**Decision guides (2)** — `best-hair-transplant-clinic-in-gurgaon` (deliberately does *not*
+claim to be the best; publishes verifiable criteria and an honest "what we are not" list) ·
+`how-to-choose-hair-transplant-clinic`
+
+**Tools + section (3)** — `hair-transplant-graft-calculator` · `hair-loss-assessment` ·
+`patient-stories/index.php`
+
+Both tools are vanilla JS, no dependencies, nothing transmitted, and both are written to
+reinforce the site's existing position rather than undercut it: the calculator returns a
+deliberately wide range and leads its output panel with what it cannot know (donor density),
+and the assessment routes several answer combinations to "do not book a procedure yet".
+
+### Broken internal links: 15 → 0 (root), 10 remaining (all blog)
+
+Every one of the 15 contextual links listed in the previous section now resolves. The 10 that
+remain are pre-existing and all point at **unwritten blog posts**, none of which were in the
+supplied URL plan:
+
+`/blog/blood-tests-for-hair-fall` (4 sources) · `/blog/telogen-effluvium-vs-pattern-hair-loss` (4) ·
+`/blog/female-pattern-hair-loss-in-women` (4) · `/blog/minoxidil-and-finasteride-in-india` (4) ·
+`/blog/hair-transplant-repair-options` (4) · `/blog/what-to-ask-before-prp-in-gurgaon` (3) ·
+`/blog/beard-transplant-what-to-expect` · `/blog/hard-water-pollution-and-hair-fall-in-gurgaon` ·
+`/blog/patchy-beard-wait-or-transplant` · `/blog/beard-transplant-recovery-timeline`
+
+### Five comparison URLs resolved by 301, not by a second page
+
+`fue-vs-dhi-hair-transplant`, `fue-vs-fut-hair-transplant`, `prp-vs-hair-transplant`,
+`prp-vs-gfc-treatment` and `hair-transplant-risks-and-side-effects` were all in the URL plan
+and all already had near-identical articles under `/blog/`. Publishing root copies would put
+two of our own pages against each other for one query — strategy §5's central failure.
+
+They now 301 to the existing articles. Rules live in `.htaccess` §1b, mirrored in `router.php`
+§1c so local and production behave identically. Neither URL set is in the sitemap twice.
+
+> ⚠ **Open decision.** The "Next — Phase 2" section above wants
+> `/hair-transplant-risks-and-side-effects` as a *root* page, on the grounds that competitors
+> avoid the topic and publishing it honestly is the sharpest differentiator available. That
+> conflicts with the 301 now in place. To flip it: delete that line from `.htaccess` §1b and
+> `router.php` §1c, build the root page, **and** 301 `/blog/hair-transplant-side-effects-and-risks`
+> to it. Never run both. Same procedure applies to the other four.
+
+### Awaiting clinic confirmation — do not launch these two without it
+
+- **`/dr-rahul` was NOT built.** `config.php` names Dr. Nyra as the sole doctor and carries an
+  explicit instruction not to publish unevidenced credentials. Building a second doctor's
+  profile would mean inventing a person and their qualifications on a YMYL medical page.
+  Confirm who Dr. Rahul is, their qualification and council registration, then add them to
+  `DOCTORS` in `config.php` before the page is written.
+- **`scalp-micropigmentation-in-gurgaon.php` describes SMP generically** and does not assert
+  that it is performed in-house. Confirm whether the clinic offers it, refers for it, or
+  neither — and mark the page accordingly before launch.
+
+### Also touched
+
+- `includes/schema.php` — **caught on review, before commit.** All 22 new pages render the
+  dated "medically reviewed by … last reviewed August 2026" byline via `doctor_block()`, but
+  none were added to `MEDICAL_PAGES`, so none emitted a `MedicalWebPage` node. That left 22
+  pages asserting a review date in visible text with no structured data behind it — the wrong
+  half to omit on a YMYL medical site. All 22 added. Byline and schema now agree on every
+  page, new and existing. **Any new page calling `doctor_block()` must be added to that list
+  in the same commit.**
+- `sitemap.php` — the two globs only saw the site root and `/blog`, so a directory section
+  was invisible to it. Added a small directory-index pass; `/patient-stories/` is now listed.
+  Add future directory sections to that array.
+- `patient-stories/index.php` duplicates the consented-case array from
+  `before_after_slider_section()` in `includes/components.php`. Deliberate for now. Lift it
+  into a shared include when a third case is added, and keep the `result` flag — it is what
+  stops the procedure-day photograph being badged as an outcome.
+
+### Verified
+
+`php -l` clean on all 22. Rendered through `php -S` with `router.php`: HTTP 200 on every new
+page, exactly one `<h1>`, JSON-LD parses, no PHP notices, meta descriptions inside 165 chars,
+canonical matching `$page['url']`. All five 301s return 301 and their targets return 200.
+Both inline scripts pass `node --check`. Full-site sweep: 68 URLs, zero regressions.
