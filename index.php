@@ -302,12 +302,19 @@ require __DIR__ . '/includes/header.php';
 <?= awards_certificates_section() ?>
 
 
-<!-- Testimonials (Live Google Feed Full Width) -->
-<section class="pt-[20px] pb-4 bg-white overflow-hidden w-full">
-<!-- Elfsight Google Reviews Widget -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-d4976df7-93b9-45ec-899d-7d3934036fc5" data-elfsight-app-lazy></div>
-</section>
+<?php
+/**
+ * Live Google reviews.
+ *
+ * The widget id was inline here and is now ELFSIGHT_REVIEWS_APP in config, so
+ * the homepage and the treatment pages cannot drift onto two different
+ * listings. The wrapper markup was carrying Tailwind utility classes
+ * (pt-[20px] bg-white w-full) that this stylesheet has never defined, so the
+ * section had no styling at all and the widget sat flush against the block
+ * above it.
+ */
+?>
+<?= google_reviews_block() ?>
 
 <?= cta_band(
     'Book Your Hair Assessment',

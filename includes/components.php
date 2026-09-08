@@ -120,6 +120,327 @@ function ticks(array $items, bool $twoCol = true): string
 }
 
 /* -------------------------------------------------------------------------
+ * Trust stat strip
+ *
+ * Competitor clinics in this market all run one of these, and they run it on
+ * invented numbers — patient counts nobody audits, success rates nobody
+ * measures. The format is worth having; the contents are not. So this renders
+ * only figures that are already evidenced elsewhere on the site, and drops
+ * any tile whose value is null rather than filling it with something
+ * plausible. See the STAT_* constants in config.php.
+ * ---------------------------------------------------------------------- */
+
+/**
+ * A row of figures.
+ *
+ * Each $stats entry is ['value' => …, 'label' => …, 'note' => …]. A tile whose
+ * value is null is removed before rendering, so a figure the clinic has not
+ * supplied leaves no gap and no placeholder; if nothing survives, the whole
+ * section disappears instead of rendering an empty strip.
+ *
+ * 'note' says where the figure comes from and is required, not decorative. A
+ * number with no provenance under it is exactly what the rest of this site
+ * tells patients not to trust, and the rule has to apply to us too.
+ */
+function stat_strip(array $stats, ?string $footnote = null): string
+{
+    $stats = array_values(array_filter(
+        $stats,
+        static fn (array $s): bool => ($s['value'] ?? null) !== null && $s['value'] !== ''
+    ));
+
+    if ($stats === []) {
+        return '';
+    }
+
+    ob_start(); ?>
+<div class="stat-strip">
+  <?php foreach ($stats as $s): ?>
+    <div class="stat">
+      <p class="stat__value"><?= e((string) $s['value']) ?></p>
+      <p class="stat__label"><?= e($s['label']) ?></p>
+      <p class="stat__note"><?= e($s['note']) ?></p>
+    </div>
+  <?php endforeach; ?>
+</div>
+<?php if ($footnote !== null): ?>
+<p class="fine mt-3" style="max-width:70ch"><?= e($footnote) ?></p>
+<?php endif; ?>
+<?php
+    return (string) ob_get_clean();
+}
+
+/**
+ * The strip as it appears on the treatment pages.
+ *
+ * The four constant tiles are all statements the site already makes in prose
+ * and can stand behind: the qualification is in config, the three German years
+ * are in doctor_block(), the three techniques each have their own page, and
+ * the twelve-month review schedule is described on every treatment page and in
+ * the aftercare guide.
+ *
+ * The two clinic-supplied tiles — cases treated and years in practice — sit
+ * first when they exist, because they are the figures a patient actually
+ * scans for, and vanish entirely until STAT_CASES_TREATED and
+ * STAT_YEARS_ACTIVE are filled in.
+ *
+ * Deliberately absent: any graft survival or success percentage. The clinic
+ * does not track one, and a survival rate published without a measurement
+ * protocol behind it is a number invented at a keyboard.
+ */
+function clinic_stat_strip(): string
+{
+    $asOf = STAT_FIGURES_AS_OF !== null
+        ? 'Clinic records, ' . STAT_FIGURES_AS_OF
+        : 'Clinic records';
+
+    return stat_strip([
+        [
+            'value' => STAT_CASES_TREATED !== null ? number_format(STAT_CASES_TREATED) : null,
+            'label' => 'Patient cases treated',
+            'note'  => $asOf,
+        ],
+        [
+            'value' => STAT_YEARS_ACTIVE !== null ? STAT_YEARS_ACTIVE . ' yrs' : null,
+            'label' => 'Dr. Nyra in practice',
+            'note'  => 'Germany and Gurugram combined',
+        ],
+        [
+            'value' => '3 yrs',
+            'label' => 'Clinical training in Germany',
+            'note'  => 'Bio Hair Clinic and St. Georg Klinikum Eisenach',
+        ],
+        [
+            'value' => '1',
+            'label' => 'Doctor plans and performs',
+            'note'  => 'The same doctor from assessment to review',
+        ],
+        [
+            'value' => '3',
+            'label' => 'Techniques performed here',
+            'note'  => 'FUE, DHI and FUT — chosen, not defaulted',
+        ],
+        [
+            'value' => '12 mo',
+            'label' => 'Follow-up reviews scheduled',
+            'note'  => 'Photographed at set intervals through the first year',
+        ],
+    ], 'Figures describe the clinic and the doctor, not your outcome. No density, timeline or success rate is guaranteed — suitability and results are decided case by case after examination.');
+}
+
+/* -------------------------------------------------------------------------
+ * FUE / DHI / FUT comparison
+ *
+ * Every cell condenses a claim already made on the technique's own page. No
+ * row asserts anything those pages do not, and nothing here ranks one
+ * technique above another — the note underneath exists to stop the table
+ * being read that way, which is the failure mode of every comparison table in
+ * this sector.
+ *
+ * Sources, cell by cell:
+ *   FUE  — fue-hair-transplant-in-gurgaon.php: FAQ "Does FUE leave scars?",
+ *          the lead paragraph, and the Week 1 recovery card.
+ *   DHI  — dhi-hair-transplant-in-gurgaon.php: FAQ on FUE-vs-DHI placement,
+ *          the "No linear scar" card, the implanter comparison table, and the
+ *          recovery note stating DHI does not shorten recovery.
+ *   FUT  — fut-hair-transplant-in-gurgaon.php: FAQ "Does FUT leave a visible
+ *          scar?", FAQ "How long does FUT recovery take?", and the Days 1–14
+ *          donor-line card.
+ *   "Typically suited to" — the $rates table on
+ *          hair-transplant-cost-in-gurgaon.php, verbatim.
+ * ---------------------------------------------------------------------- */
+
+function technique_comparison_table(): string
+{
+    $rows = [
+        [
+            'technique' => 'FUE',
+            'url'       => '/fue-hair-transplant-in-gurgaon',
+            'extraction'=> 'Follicular units removed one at a time with a fine punch, typically well under a millimetre. No strip of skin is taken.',
+            'scarring'  => 'Many tiny round scars rather than one line — pale dots spread across the donor area. Difficult to see at short hair lengths when spread properly.',
+            'recovery'  => 'Small crusts around each graft and pinpoint scabbing across the donor in week one. Most people return to desk work within a few days.',
+            'best_for'  => 'Larger areas — crown, mid-scalp, broad coverage. Also the technique for anyone who shaves or wears the sides very short.',
+        ],
+        [
+            'technique' => 'DHI',
+            'url'       => '/dhi-hair-transplant-in-gurgaon',
+            'extraction'=> 'Essentially identical to FUE. DHI describes the placement stage, not the extraction: each graft is loaded into a fine implanter that makes the site and sets the graft in one action.',
+            'scarring'  => 'The same as FUE — dot healing across the donor, not a line. The donor is treated identically.',
+            'recovery'  => 'The same as FUE, because the donor and the biology are the same. DHI does not shorten recovery or speed up growth, whatever the advertising says.',
+            'best_for'  => 'Hairline and detail zones needing precise angle control. Slower per graft, so large multi-zone sessions are usually better served by FUE placement.',
+        ],
+        [
+            'technique' => 'FUT',
+            'url'       => '/fut-hair-transplant-in-gurgaon',
+            'extraction'=> 'A strip of donor scalp is removed and dissected under microscopes into individual grafts. The donor edge is then closed.',
+            'scarring'  => 'One permanent linear scar at the back of the scalp. Trichophytic closure usually keeps it a fine line that hair grows through, but it cannot be removed and it shows on a shaved head.',
+            'recovery'  => 'Sutures or staples out at around ten to fourteen days. Desk work within a few days, but gym, heavy lifting and stretching the neck back are restricted considerably longer than after FUE.',
+            'best_for'  => 'High graft numbers in a single session, where suitable — and only for patients who keep the hair at the back long enough to cover a line.',
+        ],
+    ];
+
+    ob_start(); ?>
+<div class="card mt-6" style="padding:0;overflow:hidden">
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">FUE, DHI and FUT hair transplant techniques at DenceSpot Clinic, Gurgaon, compared by extraction method, scarring, recovery and the cases each typically suits</caption>
+      <thead>
+        <tr>
+          <th scope="col">Technique</th>
+          <th scope="col">Extraction method</th>
+          <th scope="col">Scarring</th>
+          <th scope="col">Recovery</th>
+          <th scope="col">Typically suited to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($rows as $r): ?>
+        <tr>
+          <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">
+            <a href="<?= e($r['url']) ?>"><?= e($r['technique']) ?></a>
+          </th>
+          <td><?= e($r['extraction']) ?></td>
+          <td><?= e($r['scarring']) ?></td>
+          <td><?= e($r['recovery']) ?></td>
+          <td><?= e($r['best_for']) ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<?php
+    return (string) ob_get_clean();
+}
+
+/* -------------------------------------------------------------------------
+ * Live Google reviews
+ * ---------------------------------------------------------------------- */
+
+/**
+ * The Elfsight widget reading the live Google Business Profile.
+ *
+ * Live rather than typed in, for two reasons. A rating pasted into a template
+ * is wrong the day after it is pasted, and — the part that matters more — a
+ * rating this site cannot evidence is exactly what /patient-reviews refuses to
+ * publish. Reading it from the listing means the number on the page is the
+ * number on Google, and neither the clinic nor this template can move it.
+ *
+ * ⚠ The rating is therefore NOT marked up. AggregateRating stays gated behind
+ * $rating on /patient-reviews, because Google requires a marked-up rating to
+ * be visible in the page it ships with, and this one arrives from a third-party
+ * script after the HTML does. See the header of includes/schema.php.
+ *
+ * The link below the widget is always rendered, never conditional. A widget
+ * that fails to load — blocked script, ad blocker, CDN outage — would
+ * otherwise leave a heading with nothing under it, which is the exact defect
+ * this section was added to clear elsewhere on the page.
+ */
+function google_reviews_block(string $heading = 'What Patients Say on Google'): string
+{
+    ob_start(); ?>
+<section class="section section--canvas" id="reviews">
+  <div class="wrap">
+    <div class="measure" style="text-align:center;margin-inline:auto">
+      <span class="pill pill--dot">Patient reviews</span>
+      <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+      <p class="body mt-3">Reviews load directly from our Google Business Profile, unedited and in the reviewer's own words. We ask every patient once at the ten-day follow-up, we do not screen who gets asked, and we do not offer anything in exchange.</p>
+    </div>
+
+    <div class="mt-6">
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-<?= e(ELFSIGHT_REVIEWS_APP) ?>" data-elfsight-app-lazy></div>
+    </div>
+
+    <div class="btn-row mt-5" style="justify-content:center">
+      <a class="btn btn--ink" href="<?= e(MAPS_URL) ?>" rel="noopener"><?= icon('star', 18) ?> Read every review on Google</a>
+      <a class="btn btn--outline" href="/patient-reviews">How we collect reviews</a>
+    </div>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}
+
+/* -------------------------------------------------------------------------
+ * Cost band
+ * ---------------------------------------------------------------------- */
+
+/**
+ * One indicative line for the cost section, or nothing.
+ *
+ * Returns '' unless BOTH ends of the band are set in config, so a half-filled
+ * constant cannot produce a "from ₹X" — the pricing tactic this site's cost
+ * page explicitly warns patients about. Whatever calls this must keep its own
+ * "quoted in writing after assessment" sentence immediately afterwards; the
+ * band is a orientation figure, not a quote, and the two belong together.
+ */
+function cost_band_line(): string
+{
+    if (COST_BAND_LOW === null || COST_BAND_HIGH === null) {
+        return '';
+    }
+
+    return sprintf(
+        '<p class="body mt-3 measure"><b>Indicative range.</b> Most hair transplants at DenceSpot fall between ₹%s and ₹%s all in, depending on graft count and technique. Where your own plan sits inside that band is decided by the assessment, not by the band.</p>',
+        e(number_format(COST_BAND_LOW)),
+        e(number_format(COST_BAND_HIGH))
+    );
+}
+
+/* -------------------------------------------------------------------------
+ * Latest blog posts
+ * ---------------------------------------------------------------------- */
+
+/**
+ * A freshness strip reading the BLOG_POSTS registry directly, so it re-sorts
+ * itself the moment a post is added and never needs editing here. blog_posts()
+ * already returns newest first.
+ *
+ * $hub narrows it to one topic — a hair transplant page should surface hair
+ * transplant reading, not PRP. Falls back to every post when the requested hub
+ * is empty, and renders nothing at all when the blog is.
+ */
+function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading = 'Latest From the Blog'): string
+{
+    require_once __DIR__ . '/blog.php';
+
+    $posts = blog_posts($hub);
+    if ($posts === [] && $hub !== null) {
+        $posts = blog_posts();
+    }
+    if ($posts === []) {
+        return '';
+    }
+
+    $posts = array_slice($posts, 0, max(1, $limit));
+
+    ob_start(); ?>
+<section class="section section--white" id="latest-reading">
+  <div class="wrap">
+    <div class="split split--top" style="align-items:end">
+      <div>
+        <p class="eyebrow">Further reading</p>
+        <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+        <p class="body mt-3 measure">Patient education, written and medically reviewed by <?= e(REVIEWED_BY) ?> before publication.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--outline" href="/blog/">All articles</a>
+      </div>
+    </div>
+
+    <div class="grid grid--3 mt-6">
+      <?php foreach ($posts as $post): ?>
+        <?= blog_card($post) ?>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}
+
+/* -------------------------------------------------------------------------
  * FAQ accordion
  *
  * Pass the SAME array to schema_faq() so the markup and the visible text can
@@ -430,6 +751,24 @@ function before_after_slider_section(): string
         ],
     ];
 
+    /**
+     * The video lightbox at the foot of this function is markup for a feature
+     * nothing currently uses: no entry in $results carries type => 'video',
+     * because no consented patient video exists yet.
+     *
+     * It shipped unconditionally, and although display:none hid it from
+     * sighted users, the <h3> inside it stayed in the DOM — so every text
+     * extractor that reads this page, Google's included and the AI answer
+     * engines especially, saw a "Patient Video Testimonial" heading with
+     * nothing whatsoever beneath it. An empty section reads as an unfinished
+     * clinic, which costs more trust than never having claimed the section.
+     *
+     * So the modal now renders only when something can open it. Add a video
+     * case to $results and it returns by itself — same gate as $rates, $rating
+     * and the STAT_* constants.
+     */
+    $hasVideo = array_filter($results, static fn (array $r): bool => ($r['type'] ?? '') === 'video') !== [];
+
     ob_start(); ?>
 <section class="section section--white" id="results-gallery">
   <div class="wrap">
@@ -508,7 +847,8 @@ function before_after_slider_section(): string
   </div>
 </section>
 
-<!-- Video Player Lightbox Modal -->
+<?php if ($hasVideo): ?>
+<!-- Video Player Lightbox Modal — rendered only when a case can open it. -->
 <div id="video-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.88); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px;" onclick="closeVideoModal(event)">
   <div style="position:relative; max-width:900px; width:100%; background:#100d28; border-radius:16px; overflow:hidden; box-shadow:0 25px 50px -12px rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.15);">
     <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.1); color:#fff;">
@@ -520,6 +860,7 @@ function before_after_slider_section(): string
     </div>
   </div>
 </div>
+<?php endif; ?>
 <?php
     return (string) ob_get_clean();
 }

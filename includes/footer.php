@@ -179,12 +179,21 @@ declare(strict_types=1);
   };
 
   // Video Lightbox Modal Logic
+  //
+  // The modal markup only ships on a page that has a video case to open, so
+  // this exits quietly everywhere else rather than throwing.
+  //
+  // There is no default src. It used to fall back to a hard-coded YouTube id
+  // when videoUrl was empty — and that id was the Rick Astley video, so a case
+  // added without a URL would have opened a music video inside a frame
+  // captioned "Patient Video Testimonial" on a medical clinic's page. A
+  // missing URL now opens nothing at all.
   window.openVideoModal = function (videoUrl, title) {
     var modal = document.getElementById('video-modal');
     var iframe = document.getElementById('video-modal-iframe');
     var modalTitle = document.getElementById('video-modal-title');
-    if (!modal || !iframe) return;
-    iframe.src = videoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+    if (!modal || !iframe || !videoUrl) return;
+    iframe.src = videoUrl;
     if (modalTitle) modalTitle.textContent = title || 'Patient Video Testimonial';
     modal.style.display = 'flex';
   };

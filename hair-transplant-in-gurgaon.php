@@ -116,7 +116,20 @@ require __DIR__ . '/includes/header.php';
 
 <section class="trust">
   <div class="wrap">
-    <div class="grid grid--5">
+    <?php
+    /**
+     * The figures, before the adjectives.
+     *
+     * Every tile is either a fact this page already states in prose or a
+     * clinic-supplied figure that renders only once it exists — see
+     * clinic_stat_strip() and the STAT_* constants. There is deliberately no
+     * patient count and no success rate here today, because neither is
+     * evidenced; both appear by themselves the moment they are.
+     */
+    ?>
+    <?= clinic_stat_strip() ?>
+
+    <div class="grid grid--5 mt-6">
       <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Doctor-led consultation</p><p class="meta mt-1">Assessed and planned by the treating doctor.</p></div>
       <div class="card"><?= icon('list', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Personalized plan</p><p class="meta mt-1">Graft count and technique follow your scalp.</p></div>
       <div class="card"><?= icon('hairline', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Natural hairline planning</p><p class="meta mt-1">Drawn to your face proportions and age.</p></div>
@@ -210,8 +223,18 @@ require __DIR__ . '/includes/header.php';
       </div>
     </div>
 
+    <?php
+    /**
+     * Side by side. Every cell condenses a claim from the technique's own page
+     * — nothing in the table is asserted here for the first time. See the
+     * source list above technique_comparison_table() in components.php.
+     */
+    ?>
+    <h3 class="h3 mt-6">FUE vs DHI vs FUT, Compared</h3>
+    <?= technique_comparison_table() ?>
+
     <div class="note mt-5">
-      <p class="body-s"><b>Neither FUE nor DHI is universally better.</b> A clinic that sells one technique as the answer for every scalp is selling equipment, not a plan. The reasoning behind your recommendation is explained at the consultation and written into the estimate — compare them yourself in our FUE vs DHI and FUE vs FUT guides.</p>
+      <p class="body-s"><b>Neither FUE nor DHI is universally better.</b> A clinic that sells one technique as the answer for every scalp is selling equipment, not a plan. The table above compares them; it does not rank them, because the ranking only exists once someone has examined your donor area. The reasoning behind your recommendation is explained at the consultation and written into the estimate — compare them yourself in our <a href="/blog/fue-vs-dhi-hair-transplant">FUE vs DHI</a> and <a href="/blog/fue-vs-fut-hair-transplant">FUE vs FUT</a> guides.</p>
     </div>
   </div>
 </section>
@@ -311,6 +334,26 @@ require __DIR__ . '/includes/header.php';
       <div>
         <p class="eyebrow">Cost guidance</p>
         <h2 class="h2 mt-2">Hair Transplant Cost in Gurgaon</h2>
+
+        <?php
+        /**
+         * The orientation figure, then the safeguard — in that order, because
+         * a reader who has to scroll past three paragraphs to find any number
+         * leaves for a clinic that printed one.
+         *
+         * cost_band_line() emits the rupee band and renders nothing until both
+         * ends are set in config; it is empty today, because
+         * /hair-transplant-cost-in-gurgaon publishes no rupee figure to source
+         * it from. The graft band below is real and already published: it is
+         * the Norwood table on that page, condensed to its outer bounds.
+         *
+         * ⚠ The safeguard paragraph that follows must stay immediately after
+         * whichever of these renders. A range without it is a price list.
+         */
+        ?>
+        <?= cost_band_line() ?>
+        <p class="body mt-3 measure"><b>The number that moves the bill is graft count.</b> Across the Norwood stages, plans generally run from around 800 grafts for early temple recession to 4,500 or more for extensive loss, usually staged across sessions — the <a href="/hair-transplant-cost-in-gurgaon">full band-by-band breakdown is on the cost page</a>. Two people at the same stage can still need very different numbers, because donor density and hair calibre differ.</p>
+
         <p class="body mt-3 measure">There is no single price for a hair transplant, in Gurgaon or anywhere else. Cost follows the plan, and the plan follows the assessment. We publish the factors instead of a headline figure, and you receive an itemised estimate in writing with nothing added afterwards.</p>
         <div class="grid grid--2 mt-5">
           <div class="card"><p class="h4">Number of grafts</p><p class="meta mt-1">Counted from the mapped plan, not estimated</p></div>
@@ -372,7 +415,32 @@ require __DIR__ . '/includes/header.php';
 
 <?= before_after_slider_section() ?>
 
+<?php
+/**
+ * Returns '' — the accreditation is withheld until it can be evidenced. See
+ * the note above awards_certificates_section() in components.php. Left in
+ * place so the section reappears everywhere at once when it is.
+ */
+?>
 <?= awards_certificates_section() ?>
+
+<?php
+/**
+ * Live from the Google Business Profile, not typed in. A rating pasted into a
+ * template is stale the next day, and — the reason that matters more — a
+ * rating this site cannot evidence is precisely what /patient-reviews refuses
+ * to print. It is NOT marked up: see the note in google_reviews_block().
+ */
+?>
+<?= google_reviews_block() ?>
+
+<?php
+/**
+ * Reads the BLOG_POSTS registry, newest first, narrowed to the hair-transplant
+ * hub. Adding a post re-sorts this strip with no edit here.
+ */
+?>
+<?= latest_posts_strip('hair-transplant', 3) ?>
 
 <?= local_block(
     'Hair Transplant Clinic Serving Gurgaon',

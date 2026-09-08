@@ -182,6 +182,58 @@ const REVIEWED_DATE = 'August 2026';
 const REVIEWED_DATE_ISO = '2026-08-31';
 
 /* -------------------------------------------------------------------------
+ * Clinic figures
+ *
+ * The numbers a trust strip is built from. Each one is null until the clinic
+ * supplies it with a record behind it, and a null figure renders no tile at
+ * all — the same gate as $rates on /hair-transplant-cost-in-gurgaon and
+ * $rating on /patient-reviews. Publish a number or publish nothing; never
+ * publish a placeholder where a number belongs.
+ *
+ * ⚠ Do NOT reinstate the old live site's "5,000+ procedures" or "98% success
+ * rate" from memory. Both were withheld for want of evidence (see DOCTORS
+ * above). A procedure count and a success rate are the two claims on a clinic
+ * page a regulator, a competitor or a patient is most likely to ask for proof
+ * of, and the NMC code treats an unsubstantiated one as a misleading
+ * advertisement.
+ *
+ * STAT_CASES_TREATED — total patient cases at DenceSpot, counted from the
+ *                      clinic's own records.
+ * STAT_YEARS_ACTIVE  — years Dr. Nyra has practised, Germany and Gurugram
+ *                      combined. The three German years are already published
+ *                      in doctor_block(); this is the total.
+ * STAT_FIGURES_AS_OF — when the two above were counted. A figure with no date
+ *                      on it goes stale silently.
+ * ---------------------------------------------------------------------- */
+
+const STAT_CASES_TREATED = null;   // ⚠ integer, e.g. 1200
+const STAT_YEARS_ACTIVE  = null;   // ⚠ integer, e.g. 9
+const STAT_FIGURES_AS_OF = null;   // ⚠ e.g. 'September 2026'
+
+/**
+ * Indicative all-in cost band for a hair transplant, in whole rupees, as the
+ * clinic would actually quote it. Both ends must be set or neither renders:
+ * a one-sided "from ₹X" is the "starting from" tactic this site tells patients
+ * to distrust, and publishing it here would contradict the page it sits on.
+ *
+ * ⚠ NOT YET SUPPLIED. /hair-transplant-cost-in-gurgaon publishes no rupee
+ * figure of its own — $rates there is null in every slot — so there is no
+ * internal source to derive this from. It must come from the clinic.
+ */
+const COST_BAND_LOW  = null;   // ⚠ integer rupees, e.g. 55000
+const COST_BAND_HIGH = null;   // ⚠ integer rupees, e.g. 180000
+
+/**
+ * Elfsight Google Reviews widget. Reads the live Google Business Profile, so
+ * the rating and count on the page are whatever the listing says today rather
+ * than a number typed in once and left to rot.
+ *
+ * Defined here because index.php had the id inline and the treatment pages
+ * now need it too — one id, one place, per the note at the top of this file.
+ */
+const ELFSIGHT_REVIEWS_APP = 'd4976df7-93b9-45ec-899d-7d3934036fc5';
+
+/* -------------------------------------------------------------------------
  * Navigation
  * ---------------------------------------------------------------------- */
 
