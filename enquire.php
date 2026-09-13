@@ -31,6 +31,18 @@ $treatment = $field('treatment');
 $message   = $field('message');
 $source    = $field('source');
 
+/**
+ * Optional preferred appointment date (/new-designe form). Accepted only as a
+ * real calendar date in Y-m-d, so free text can never reach the log, the
+ * email or the WhatsApp notification through this field. Anything else is
+ * dropped rather than rejected: it is a request, not a required field.
+ */
+$preferredDate = $field('preferred_date');
+$dateCheck     = DateTimeImmutable::createFromFormat('!Y-m-d', $preferredDate);
+if ($dateCheck === false || $dateCheck->format('Y-m-d') !== $preferredDate) {
+    $preferredDate = '';
+}
+
 // Honeypot: real people leave this empty. Accept silently so bots learn nothing.
 if ($field('website') !== '') {
     header('Location: /thank-you', true, 303);
@@ -63,6 +75,7 @@ $enquiry = [
     'name'      => $name,
     'phone'     => $phone,
     'treatment' => $treatment,
+    'preferred_date' => $preferredDate,
     'message'   => $message,
     'source'    => $source,
     'ip'        => $_SERVER['REMOTE_ADDR'] ?? '',
@@ -83,6 +96,7 @@ $body = "New consultation enquiry\n\n"
       . "Name:      {$name}\n"
       . "Phone:     {$phone}\n"
       . "Treatment: {$treatment}\n"
+      . "Preferred: " . ($preferredDate !== '' ? $preferredDate : '—') . "\n"
       . "Page:      {$source}\n\n"
       . "Message:\n{$message}\n";
 
@@ -104,6 +118,7 @@ if (defined('OPENWA_API_URL') && OPENWA_API_URL !== '') {
                       . "Name:      {$name}\n"
                       . "Phone:     {$phone}\n"
                       . "Treatment: {$treatment}\n"
+                      . "Preferred: " . ($preferredDate !== '' ? $preferredDate : '—') . "\n"
                       . "Page:      {$source}\n\n"
                       . "Message:\n{$message}\n"
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

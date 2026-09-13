@@ -34,7 +34,12 @@ header('Content-Type: application/xml; charset=utf-8');
  * .php file in the site root, so the glob below picked it up and published
  * https://dencespot.com/router as an indexable URL.
  */
-const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon'];
+/**
+ * 'new-designe' is a noindex build of a homepage design comp. The root glob
+ * would otherwise publish it as an indexable URL competing with / for the
+ * brand query — and list a noindex page, which is a contradictory signal.
+ */
+const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe'];
 
 /** Priority and change frequency by page role. Money pages rank highest. */
 function sitemap_weight(string $slug): array
