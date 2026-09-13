@@ -87,7 +87,7 @@ const PHONE_DISPLAY = '+91 81783 30800';
 /** E.164, byte-identical to every tel: href on the site. */
 const PHONE_SCHEMA  = PHONE_E164;
 const EMAIL         = 'dencespot@gmail.com';
-const WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B918178330800';
+const WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B918178330800&text=Hi%2C%20please%20share%20me%20more%20information%20about%20your%20services';
 /**
  * Canonical listing, addressed by CID. The previous value was a text search,
  * which re-runs a query on every click and can resolve to one of the duplicate

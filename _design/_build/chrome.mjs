@@ -4,7 +4,7 @@
 // the per-page spec so no two pages read alike.
 
 const PHONE = '+918178330800';
-const WA = 'https://api.whatsapp.com/send/?phone=%2B918178330800';
+const WA = 'https://api.whatsapp.com/send/?phone=%2B918178330800&text=Hi%2C%20please%20share%20me%20more%20information%20about%20your%20services';
 const MAPS = 'https://www.google.com/maps?q=Dencespot+Clinic+Sector+39+Gurgaon';
 
 export const ICONS = {
