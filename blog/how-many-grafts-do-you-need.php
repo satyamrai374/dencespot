@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'how-many-grafts-do-you-need';
-$postDescription = 'What a graft actually is, how recipient area and donor density are measured, and why any graft number quoted before a scalp examination is an estimate rather than a surgical plan.';
+$postDescription = 'What a graft is, how recipient area and donor density are measured, and why a graft number quoted before a scalp examination is a guess, not a plan.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -31,16 +31,18 @@ $postFaqs = [
     ['q' => 'How can I check how many grafts I actually received?',
      'a' => 'Ask before you book how grafts are counted and recorded — most clinics count in batches during extraction and log the total in the operative note. Ask for that note, and for the breakdown by area, in writing afterwards. A clinic unwilling to put the delivered figure in your record has told you something useful.'],
 ];
+$postFaqId = 'graft-count-faqs';
+$postFaqHeading = 'Graft count FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>Send a photograph of your scalp to several clinics in Gurgaon and you will often have several graft figures back before the afternoon is out. The speed is the problem. Every input that produces an honest graft number has to be measured on your head, under magnification, with your donor area trimmed enough to see. None of that survives a phone camera.</p>
+<p>A photograph of your scalp sent to a clinic can bring a graft figure back within hours. The speed is the problem. Every input that produces an honest graft number has to be measured on your head, under magnification, with your donor area trimmed enough to see. None of that survives a phone camera.</p>
 
 <p>So this article does not give you a number. It gives you the method, so that when a clinic states a figure you can ask what it was derived from — and recognise the answer that means nothing was derived at all.</p>
 
 <h2 id="what-a-graft-actually-is">What a graft actually is</h2>
 
-<p>Hair does not grow out of the scalp one strand at a time. It grows in follicular units: natural clusters of one to four hairs that share a sebaceous gland, a small muscle and a common opening. A graft is one of those units, removed intact. That is the whole reason modern surgery looks natural — the hair is replanted in the grouping it grew in.</p>
+<p>Hair does not grow out of the scalp one strand at a time. It grows in follicular units: natural clusters of one to four hairs that share a sebaceous gland, a small muscle and a common opening. A graft is one of those units, removed intact. That is why modern surgery moves follicular units rather than single hairs — the hair is replanted in the grouping it grew in.</p>
 
 <p>The practical consequence is that <strong>one graft is not one hair</strong>. Depending on how your hair is grouped, a plan of 2,000 grafts might carry somewhere near 4,000 hairs, or noticeably fewer if your units skew towards singles and doubles. Two people quoted the same graft number can therefore receive quite different amounts of hair.</p>
 
@@ -85,11 +87,11 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <?= blog_cta(
     'What does your own donor area actually support?',
-    'Area, density, calibre and contrast are measured on your scalp, not estimated from a photograph. An examination with Dr Nyra establishes what your donor can fund now and what should be held back for later.'
+    'Area, density, calibre and contrast are measured on your scalp, not estimated from a photograph. An examination establishes what your donor can fund now and what should be held back for later.'
 ) ?>
 <h2 id="what-a-graft-calculator-cannot-see">What an online graft calculator structurally cannot see</h2>
 
-<p>A calculator asks your age, your Norwood stage and perhaps your hair colour, then returns a figure. It is a lead form with arithmetic attached. Three things it cannot observe are precisely the three that decide the plan.</p>
+<p>A calculator asks your age, your Norwood stage and perhaps your hair colour, then returns a figure. It can only give a rough bracket. Three things it cannot observe are precisely the three that decide the plan.</p>
 
 <ul>
   <li><strong>Miniaturisation.</strong> The progressive thinning of individual hairs precedes any visible bald patch, and it is only visible under magnification (<a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet on androgenetic alopecia</a>). It tells you whether loss is active right now, which determines both the reserve and whether to operate at all.</li>
@@ -122,7 +124,3 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>If someone has given you a graft number without measuring your scalp, treat it as a bracket, not a plan. Bring it to an examination and ask what it becomes once area, density, calibre and contrast are on paper. It may go up. It may go down. Sometimes the honest answer is that the operation should wait, and no number applies yet. The full picture of what surgery involves is set out under <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a>.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="graft-count-faqs">Graft count FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

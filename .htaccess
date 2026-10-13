@@ -52,6 +52,24 @@ RewriteRule ^prp-vs-hair-transplant/?$              /blog/prp-or-hair-transplant
 RewriteRule ^prp-vs-gfc-treatment/?$                /blog/prp-vs-gfc-vs-exosomes [R=301,L]
 RewriteRule ^hair-transplant-risks-and-side-effects/?$ /blog/hair-transplant-side-effects-and-risks [R=301,L]
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 1c. Pages withdrawn under the NMC Guidelines on Ethical Advertising and Public
+#     Communication (06.10.2026). Each was built around content the Guidelines
+#     prohibit — before-and-after photographs and patient cases (cl. 8.1(v), 6.2),
+#     patient reviews and the request for them (Explanation V), or a "best"
+#     superiority claim in the title (cl. 8.1(ix)). The URLs answer with a 301 to
+#     the closest compliant page so existing links and rankings are not stranded.
+#     Mirrored in router.php (WITHDRAWN_REDIRECTS) for the local server.
+# ─────────────────────────────────────────────────────────────────────────────
+RewriteRule ^best-hair-transplant-clinic-in-gurgaon/?$ /how-to-choose-hair-transplant-clinic [R=301,L]
+RewriteRule ^hair-transplant-results-gurgaon/?$     /blog/hair-transplant-growth-timeline-month-by-month [R=301,L]
+RewriteRule ^gallery/?$                             /about-us [R=301,L]
+RewriteRule ^patient-reviews/?$                     /about-us [R=301,L]
+RewriteRule ^patient-stories(/.*)?$                 /blog/ [R=301,L]
+RewriteRule ^new-designe/?$                         / [R=301,L]
+# Renamed Oct 2026 so no URL on the site carries the word "guarantees".
+RewriteRule ^blog/hair-transplant-guarantees-and-success-rates/?$ /blog/hair-transplant-promises-and-success-rates [R=301,L]
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. sitemap.php is served as /sitemap.xml
@@ -144,7 +162,7 @@ RewriteRule ^ /404 [R=302,L]
 # Working documents and build tooling are served as plain text by default —
 # BUILD-PROGRESS.md and the strategy files contain internal notes, unconfirmed
 # pricing and launch blockers. Never publicly readable.
-<FilesMatch "\.(md|mjs|lock|log|bak|sql|sh|ini|dist|json)$">
+<FilesMatch "\.(md|mjs|lock|log|bak|sql|sh|ini|dist|json|ndjson)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>

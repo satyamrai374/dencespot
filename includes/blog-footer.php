@@ -9,6 +9,24 @@ $related = blog_posts($post['hub'], $post['slug']);
 ?>
     </div><!-- /.prose -->
 
+    <?php
+    /**
+     * The post's FAQ accordion, from the same $postFaqs array blog-header.php
+     * marks up as FAQPage.
+     *
+     * Every post used to call faq_list() itself, AFTER requiring this file — so
+     * the questions rendered below </body></html>, outside <main>, beneath the
+     * site footer. The FAQPage schema was describing text that sat outside the
+     * document. Rendering it here keeps it inside the article, above the
+     * disclaimer. Posts set $postFaqHeading (and optionally $postFaqId); they
+     * must not call faq_list() themselves.
+     */
+    ?>
+    <?php if (!empty($postFaqs)): ?>
+    <h2 id="<?= e($postFaqId ?? 'faqs') ?>" class="h2 mt-6"><?= e($postFaqHeading ?? 'Frequently Asked Questions') ?></h2>
+    <div class="mt-4"><?= faq_list($postFaqs) ?></div>
+    <?php endif; ?>
+
     <div class="note mt-6">
       <p class="body-s"><b>Medical disclaimer.</b> <?= e(MEDICAL_DISCLAIMER) ?></p>
     </div>
@@ -20,7 +38,7 @@ $related = blog_posts($post['hub'], $post['slug']);
       <p class="body-s mt-2">This article is patient education. What applies to your own case is decided after an examination — the treatment page sets out how that works, what it costs and what to expect.</p>
       <div class="btn-row mt-4">
         <a class="btn btn--ink" href="<?= e($hub['url']) ?>"><?= e($hub['label']) ?> in Gurgaon</a>
-        <a class="btn btn--outline" href="/book-consultation">Book a consultation</a>
+        <a class="btn btn--outline" href="/book-consultation" data-book data-track="book">Book a consultation</a>
       </div>
     </div>
     <?php endif; ?>

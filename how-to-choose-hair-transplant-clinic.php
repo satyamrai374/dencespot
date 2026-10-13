@@ -2,15 +2,15 @@
 /**
  * /how-to-choose-hair-transplant-clinic
  *
- * Informational counterpart to /best-hair-transplant-clinic-in-gurgaon.
+ * Oct 2026: /best-hair-transplant-clinic-in-gurgaon was withdrawn (a "best"
+ * claim is barred by the NMC Guidelines of 06.10.2026, cl. 8.1(ix)) and now
+ * 301s here. This page stays neutral consumer guidance: it must never suggest
+ * that DenceSpot is the best, or a better, choice.
  *
- * Cannibalisation split, since these two could easily collide:
- *   - the "best in Gurgaon" page owns the local commercial query, the criteria,
- *     and the honest self-description of this clinic.
- *   - THIS page owns the portable PROCESS: a stage-by-stage decision guide from
- *     first enquiry through consultation to signing, with the actual questions
- *     to ask at each point. It is deliberately non-geographic and reads as a
- *     tool rather than a pitch, which is also what makes it linkable.
+ * It owns the portable PROCESS: a stage-by-stage decision guide from first
+ * enquiry through consultation to signing, with the actual questions to ask
+ * at each point. It is deliberately non-geographic and reads as a tool rather
+ * than a pitch, which is also what makes it linkable.
  *
  * It is written to be useful to someone who then chooses a different clinic.
  * That is intentional: a checklist that only validates the clinic hosting it is
@@ -28,7 +28,7 @@ $faqs = [
     ['q' => 'How many clinics should I see?',
      'a' => 'At least two, and there is no prize for efficiency here. The procedure is irreversible and spends a resource you cannot replace. Where two clinics propose very different graft numbers for the same head, understanding that difference is worth more than either individual quote.'],
     ['q' => 'How do I check a doctor is properly qualified?',
-     'a' => 'Ask for the qualification and the medical council registration number, and verify it independently. This is a routine request. Be cautious of words like "expert", "specialist" or "renowned" used where a qualification should be, since none of them are credentials.'],
+     'a' => 'Ask for the qualification and the medical council registration number, and verify it independently. This is a routine request. Be cautious of praise words used where a qualification should be: a flattering title or adjective is not a credential.'],
     ['q' => 'Should the doctor perform the whole procedure themselves?',
      'a' => 'Practice varies legitimately, and what matters is that you are told clearly. Ask specifically who makes the recipient sites, who performs extraction and who places the grafts, by name and role. A clinic that answers immediately and specifically is giving you real information.'],
     ['q' => 'What should a written quote contain?',
@@ -40,7 +40,7 @@ $faqs = [
     ['q' => 'What questions should I ask about risks?',
      'a' => 'What happens if growth is poor. What the shedding phase involves and when it happens. When the result can actually be judged. Whether a second session is likely. What the donor area will look like afterwards. If a consultation covered none of these, it was a sales meeting.'],
     ['q' => 'What are the clearest warning signs?',
-     'a' => 'A graft number quoted without examination. A discount that expires. A guaranteed result or a success percentage. Evasiveness about who performs the surgery. Surgery offered despite an active scalp condition or unstable hair loss. Any one of these is reason to slow down.'],
+     'a' => 'A graft number quoted without examination. A discount that expires. A promised result or a success percentage. Evasiveness about who performs the surgery. Surgery offered despite an active scalp condition or unstable hair loss. Any one of these is reason to slow down.'],
     ['q' => 'Should I worry if a clinic tells me not to have surgery?',
      'a' => 'That is usually a good sign rather than a bad one. Unstable hair loss, active scalp disease and very early loss in a young patient are all real reasons to wait, and saying so costs the clinic the sale. A clinic that has no circumstances in which it declines is worth asking about.'],
     ['q' => 'Does the clinic need to be close to me?',
@@ -84,7 +84,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A stage-by-stage guide to a decision you cannot undo. What to establish before you enquire, exactly what to ask in the consultation room, how to read the quote afterwards, and when to walk away. Written to be useful even if you choose someone else.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask a Question</a>
         </div>
 
@@ -97,11 +97,11 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Consultation room where hair transplant assessments are carried out at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Written &amp; reviewed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="h4 mt-2"><?= doctor_name() ?></p>
+          <p class="body-s mt-1"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><p class="h4">Rule out a treatable cause</p><p class="body-s mt-2">Especially important for women. Iron, thyroid and hormonal causes are common and treatable, and they need investigating before surgery is even a sensible conversation.</p></div>
       <div class="card"><p class="h4">Gather your medical history</p><p class="body-s mt-2">Every medicine and supplement, any conditions, any previous scalp problems. Bring the list rather than trying to recall it in the room.</p></div>
       <div class="card"><p class="h4">Set a realistic budget</p><p class="body-s mt-2">Including the possibility of a second session and ongoing medical treatment. A plan you cannot complete is worse than a smaller plan you can.</p></div>
-      <div class="card"><p class="h4">Decide what you will not accept</p><p class="body-s mt-2">Being pressured, an unexplained graft number, or an outcome guarantee. Deciding your limits beforehand is far easier than deciding them under persuasion.</p></div>
+      <div class="card"><p class="h4">Decide what you will not accept</p><p class="body-s mt-2">Being pressured, an unexplained graft number, or a promised outcome. Deciding your limits beforehand is far easier than deciding them under persuasion.</p></div>
     </div>
   </div>
 </section>
@@ -210,16 +210,16 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink" id="stage-3">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--accent)">Stage three</p>
-    <h2 class="h2 mt-2" style="color:#fff">Reading the Quote, Away From the Clinic</h2>
-    <p class="body-l mt-3" style="color:rgba(255,255,255,.72);max-width:62ch">Leave without booking. Read the estimate the next day somewhere neutral. Anything persuasive in the room that does not survive that is persuasion, not information.</p>
+    <p class="eyebrow">Stage three</p>
+    <h2 class="h2 mt-2">Reading the Quote, Away From the Clinic</h2>
+    <p class="body-l mt-3 measure">Leave without booking. Read the estimate the next day somewhere neutral. Anything persuasive in the room that does not survive that is persuasion, not information.</p>
     <div class="grid grid--3 mt-6">
-      <div class="card card--ink"><p class="h4" style="color:#fff">Check what is excluded</p><p class="body-s mt-2">Quotes diverge far more in exclusions than in headline rate. Anaesthesia, medication, dressings, follow-up reviews and any second session all belong in the comparison.</p></div>
-      <div class="card card--ink"><p class="h4" style="color:#fff">Compare plans, not rates</p><p class="body-s mt-2">Per-graft rates are only comparable when the graft numbers were derived the same way. If the counts differ substantially, compare how each was justified instead.</p></div>
-      <div class="card card--ink"><p class="h4" style="color:#fff">Watch for expiry</p><p class="body-s mt-2">A discount that lapses if you do not book today exists to stop you doing exactly what you are doing now. Treat it as information about the clinic.</p></div>
-      <div class="card card--ink"><p class="h4" style="color:#fff">Look for the risks in writing</p><p class="body-s mt-2">Shedding, the twelve-month timeline, the possibility of a further session. If none of it appears in your paperwork, note what that says about the consultation.</p></div>
-      <div class="card card--ink"><p class="h4" style="color:#fff">Add the ongoing costs</p><p class="body-s mt-2">Medical treatment usually continues after surgery to protect native hair. It is a real recurring cost and it belongs in your budget.</p></div>
-      <div class="card card--ink"><p class="h4" style="color:#fff">Check the graft number twice</p><p class="body-s mt-2">It is the number every rupee rests on. If you cannot explain to a friend how it was reached, you do not yet have enough to decide.</p></div>
+      <div class="card card--ink"><p class="h4">Check what is excluded</p><p class="body-s mt-2">Quotes diverge far more in exclusions than in headline rate. Anaesthesia, medication, dressings, follow-up reviews and any second session all belong in the comparison.</p></div>
+      <div class="card card--ink"><p class="h4">Compare plans, not rates</p><p class="body-s mt-2">Per-graft rates are only comparable when the graft numbers were derived the same way. If the counts differ substantially, compare how each was justified instead.</p></div>
+      <div class="card card--ink"><p class="h4">Watch for expiry</p><p class="body-s mt-2">A discount that lapses if you do not book today exists to stop you doing exactly what you are doing now. Treat it as information about the clinic.</p></div>
+      <div class="card card--ink"><p class="h4">Look for the risks in writing</p><p class="body-s mt-2">Shedding, the twelve-month timeline, the possibility of a further session. If none of it appears in your paperwork, note what that says about the consultation.</p></div>
+      <div class="card card--ink"><p class="h4">Add the ongoing costs</p><p class="body-s mt-2">Medical treatment usually continues after surgery to protect native hair. It is a real recurring cost and it belongs in your budget.</p></div>
+      <div class="card card--ink"><p class="h4">Check the graft number twice</p><p class="body-s mt-2">It is the number every rupee rests on. If you cannot explain to a friend how it was reached, you do not yet have enough to decide.</p></div>
     </div>
   </div>
 </section>
@@ -235,8 +235,8 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-2">Donor density cannot be assessed from a photograph. A number produced that way has no clinical basis, and it is the foundation of everything else you are being told.</p>
       </div>
       <div class="card card--pad-lg">
-        <p class="h4">A guaranteed result</p>
-        <p class="body-s mt-2">No clinic can guarantee density, coverage or a permanent outcome. Biology does not allow it. An offered guarantee is a statement about the business, not the surgery.</p>
+        <p class="h4">A promised result</p>
+        <p class="body-s mt-2">No clinic can promise density, coverage or how long a result will last. Biology does not allow it. A promise of that kind is a statement about the business, not the surgery.</p>
       </div>
       <div class="card card--pad-lg">
         <p class="h4">Pressure to decide today</p>
@@ -259,7 +259,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why a clinic publishes a guide that might send you elsewhere: the most common regret in this field is not choosing the wrong clinic, it is choosing quickly. Patients arrive at repair consultations having booked on the day of a first consultation, under a discount that expired that evening, with a graft number nobody could explain. A checklist is only worth something if it can be used against the clinic that wrote it, so apply every question here to us as well, and treat vagueness from anyone as the finding it is.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic. Apply every question in this guide to us as well.'
 ) ?>
 
 <section class="section section--canvas" id="second-opinion">
@@ -287,7 +287,7 @@ require __DIR__ . '/includes/header.php';
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Related reading</p>
-          <p class="body-s mt-2"><a href="/best-hair-transplant-clinic-in-gurgaon">Judging clinics in Gurgaon</a> — the criteria, applied to us too.</p>
+          <p class="body-s mt-2"><a href="/blog/who-can-legally-perform-a-hair-transplant-in-india">Who can legally perform a hair transplant in India</a> — what the qualification should be.</p>
           <p class="body-s mt-3"><a href="/hair-transplant-cost-in-gurgaon">Hair transplant cost</a> — how pricing works.</p>
           <p class="body-s mt-3"><a href="/blog/why-hair-transplant-quotes-vary">Why quotes vary</a> — the mechanics behind the differences.</p>
           <p class="body-s mt-3"><a href="/blog/questions-to-ask-hair-transplant-consultation">Consultation questions</a> — a longer list to take with you.</p>
@@ -313,7 +313,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'If You Would Like to Apply This to Us',
-    'Consultation, surgery and every follow-up happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Bring the questions on this page. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Consultations are available at both of our clinics, Sector 39, Gurugram and Rohini, Delhi, with registered medical practitioners. Bring the questions on this page.'
 ) ?>
 
 <?= cta_band(

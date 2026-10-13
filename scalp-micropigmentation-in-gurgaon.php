@@ -42,7 +42,7 @@ $faqs = [
     ['q' => 'Does it look real?',
      'a' => 'It depends almost entirely on the skill of the person doing it. Dot size, depth, spacing, pigment colour and the design of the hairline all have to be right, and errors in any of them are visible. Work that is too dark, too uniform, too large in dot size or placed at too low a hairline is recognisable, and it is difficult to undo.'],
     ['q' => 'How permanent is it?',
-     'a' => 'It is long-lasting but not permanent in appearance. Pigment fades over years and can shift in tone, so touch-up sessions are part of the commitment rather than a sign something went wrong. Anyone selling it as a one-off permanent solution is understating the maintenance.'],
+     'a' => 'Pigment usually lasts for years, but its appearance is not permanent. It fades and can shift in tone, so touch-up sessions are part of the commitment rather than a sign something went wrong. Describing it as a one-off treatment that never needs attention again understates the maintenance.'],
     ['q' => 'Can it be removed if I do not like it?',
      'a' => 'With difficulty. Removal is possible with laser treatment over multiple sessions, but it is slow, incomplete in some cases, and not something to rely on as a safety net. Treat the decision as close to permanent, and be certain about the hairline design before you start.'],
     ['q' => 'Do I have to keep my hair short?',
@@ -50,11 +50,11 @@ $faqs = [
     ['q' => 'How many sessions does it take?',
      'a' => 'It is normally built across several sessions spaced some days or weeks apart, layering the density gradually rather than achieving it in one sitting. That is deliberate — going too dark too early is far harder to correct than adding more later.'],
     ['q' => 'Does it hurt?',
-     'a' => 'Most people describe it as uncomfortable rather than painful, and it varies across the scalp. Sessions are long, which is often the harder part.'],
+     'a' => 'It is usually described as uncomfortable, and sensitivity varies across the scalp and between people. Sessions are long, which is often the harder part.'],
     ['q' => 'Is it safe?',
      'a' => 'It is a tattooing procedure, so the relevant considerations are hygiene, single-use needles, pigment quality and operator competence. Reactions to pigment are uncommon but possible. It is not appropriate over active scalp infection or inflammation, and conditions affecting healing or scarring, including a tendency to keloid, need discussing beforehand.'],
     ['q' => 'Will it work on scars?',
-     'a' => 'Often, and it is one of its better uses. Reducing the contrast between a pale scar and the surrounding scalp makes a linear donor scar or dot scarring much less noticeable. Pigment can behave differently in scar tissue than in normal skin, so it is approached carefully and usually tested.'],
+     'a' => 'Often, and it is one of its more common uses. Reducing the contrast between a pale scar and the surrounding scalp can make a linear donor scar or dot scarring less noticeable. Pigment can behave differently in scar tissue than in normal skin, so it is approached carefully and usually tested.'],
     ['q' => 'How much does scalp micropigmentation cost in Gurgaon?',
      'a' => 'It depends on the area being treated and the number of sessions required, so it is quoted after assessment. Whether it is the right option for you at all is the more important question, and that is settled first.'],
 ];
@@ -67,7 +67,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Scalp Micropigmentation in Gurgaon | DenceSpot',
-    'description' => 'Scalp micropigmentation in Gurgaon explained honestly. A cosmetic tattoo that adds apparent density and hides scarring without spending any donor hair.',
+    'description' => 'Scalp micropigmentation in Gurgaon explained: a cosmetic tattoo that reduces scalp contrast and can camouflage scars without using donor hair, plus fading, touch-ups and risks.',
     'url'         => '/scalp-micropigmentation-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -81,7 +81,7 @@ $page = [
             'howPerformed'  => 'Fine deposits of pigment are placed into the scalp to replicate the appearance of short hair follicles or to reduce the contrast between scalp and surrounding hair. Treatment is built across several sessions spaced days to weeks apart, layering density gradually. It is used to create the appearance of a closely shaved head, to add apparent density to thinning hair, and to camouflage linear or dot scarring from previous surgery.',
             'preparation'   => 'Assessment of the scalp and pattern of hair loss, discussion of hairline design and how it will age, review of skin conditions affecting healing or scarring including any tendency to keloid, exclusion of active scalp infection or inflammation, and agreement on tone and density before the first session.',
             'followup'      => 'Review between sessions as density is layered, and periodic touch-up sessions as pigment fades over time.',
-            'expectedPrognosis' => 'Scalp micropigmentation adds no hair and does not treat or halt hair loss, which continues beneath the pigment. The appearance is long-lasting but not permanent: pigment fades and may shift in tone over years, and touch-up sessions are required. Removal is difficult, slow and may be incomplete. Results depend substantially on operator technique and are not guaranteed.',
+            'expectedPrognosis' => 'Scalp micropigmentation adds no hair and does not treat or halt hair loss, which continues beneath the pigment. The pigment usually lasts for years but is not permanent in appearance: it fades and may shift in tone over years, and touch-up sessions are required. Removal is difficult, slow and may be incomplete. Results depend substantially on operator technique and cannot be promised.',
         ]),
         schema_faq('/scalp-micropigmentation-in-gurgaon', $faqs),
     ],
@@ -96,10 +96,10 @@ require __DIR__ . '/includes/header.php';
       <div>
         <span class="pill pill--dot">Scalp micropigmentation in Gurgaon</span>
         <h1 class="h1 mt-3">Scalp Micropigmentation Adds No Hair, and That Is the Point</h1>
-        <p class="lead mt-3 measure">It is a cosmetic tattoo. Tiny dots of pigment reduce the contrast between your scalp and your hair, so thinning reads as denser and scars stop catching the eye. It spends no donor supply, which is exactly why it belongs in plans where grafts are the scarce resource.</p>
+        <p class="lead mt-3 measure">It is a cosmetic tattoo. Tiny dots of pigment reduce the contrast between your scalp and your hair, so thinning can read as denser and scars can become less noticeable. It spends no donor supply, which is exactly why it belongs in plans where grafts are the scarce resource.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -107,16 +107,16 @@ require __DIR__ . '/includes/header.php';
             'Costs no donor hair at all',
             'Density built gradually across sessions',
             'Hairline design agreed before the first session',
-            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
+            'Consultations in Sector 39, Gurugram and Rohini, Delhi',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Precision pigment application equipment used for scalp treatments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Treatment trolley with motorised handpieces and foot pedals at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Assessed &amp; planned by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -135,7 +135,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
+<section class="section section--white" id="what-is">
   <div class="wrap">
     <div class="split">
       <div>
@@ -157,14 +157,14 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="uses">
+<section class="section section--canvas" id="uses">
   <div class="wrap">
     <p class="eyebrow">Applications</p>
     <h2 class="h2 mt-2">The Three Things It Is Genuinely Good At</h2>
     <div class="grid grid--3 mt-5">
-      <div class="card"><p class="h4">The shaved-head look</p><p class="body-s mt-2">Across established baldness, pigment can replicate the appearance of closely cropped hair. It is the most transformative use and the one with the biggest commitment attached: the surrounding hair has to stay short for the illusion to hold.</p></div>
+      <div class="card"><p class="h4">The shaved-head look</p><p class="body-s mt-2">Across established baldness, pigment can replicate the appearance of closely cropped hair. It is the most visible change and the one with the biggest commitment attached: the surrounding hair has to stay short for the illusion to hold.</p></div>
       <div class="card"><p class="h4">Density under thinning hair</p><p class="body-s mt-2">Where hair is thinning but present, darkening the scalp beneath removes the contrast that makes it look sparse. Subtle, low-commitment, and frequently the most useful application for people not ready for surgery.</p></div>
-      <div class="card"><p class="h4">Scar camouflage</p><p class="body-s mt-2">Linear donor scars from strip surgery and dot scarring from over-aggressive extraction both stand out because they are paler than the scalp around them. Reducing that contrast makes them substantially less noticeable.</p></div>
+      <div class="card"><p class="h4">Scar camouflage</p><p class="body-s mt-2">Linear donor scars from strip surgery and dot scarring from over-aggressive extraction both stand out because they are paler than the scalp around them. Reducing that contrast can make them less noticeable.</p></div>
     </div>
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">Where it fits with surgery</p>
@@ -175,10 +175,10 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="honest">
+<section class="section section--white" id="honest">
   <div class="wrap">
     <p class="eyebrow">Before you commit</p>
-    <h2 class="h2 mt-2">The Parts Marketing Pages Leave Out</h2>
+    <h2 class="h2 mt-2">Limitations and Commitments to Know First</h2>
     <p class="body-l mt-3 measure">None of these are reasons not to have it. They are reasons to go in with your eyes open, because the decision is close to irreversible.</p>
     <div class="grid grid--2 mt-5">
       <div class="card card--pad-lg">
@@ -211,13 +211,13 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink" id="journey">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--accent)">The process</p>
-    <h2 class="h2 mt-2" style="color:#fff">How Treatment Is Built</h2>
+    <p class="eyebrow">The process</p>
+    <h2 class="h2 mt-2">How Treatment Is Built</h2>
     <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 01</p><p class="h4 mt-2" style="color:#fff">Assessment</p><p class="body-s mt-2">Pattern of loss, skin and scalp condition, healing and scarring history, and an honest discussion of whether pigment, grafts or both suit your case.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 02</p><p class="h4 mt-2" style="color:#fff">Design and tone</p><p class="body-s mt-2">Hairline position, density and pigment tone agreed before anything begins — because this is the part that is hard to undo.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 03</p><p class="h4 mt-2" style="color:#fff">Layered sessions</p><p class="body-s mt-2">Density built gradually across several sessions spaced days to weeks apart. Deliberately conservative early, because adding is easy and removing is not.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 04</p><p class="h4 mt-2" style="color:#fff">Maintenance</p><p class="body-s mt-2">Review as it settles, then periodic touch-ups over the years as the pigment fades. Planned from the start rather than raised later.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Pattern of loss, skin and scalp condition, healing and scarring history, and an honest discussion of whether pigment, grafts or both suit your case.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">Design and tone</p><p class="body-s mt-2">Hairline position, density and pigment tone agreed before anything begins — because this is the part that is hard to undo.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Layered sessions</p><p class="body-s mt-2">Density built gradually across several sessions spaced days to weeks apart. Deliberately conservative early, because adding is easy and removing is not.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Maintenance</p><p class="body-s mt-2">Review as it settles, then periodic touch-ups over the years as the pigment fades. Planned from the start rather than raised later.</p></div>
     </div>
   </div>
 </section>
@@ -236,21 +236,21 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Tell us about</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Any keloid or abnormal scarring history',
               'Skin conditions affecting the scalp',
               'Previous reactions to tattoo pigment',
               'Medication affecting healing or bleeding',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Aftercare basics</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Keep the scalp dry as instructed',
               'No sun exposure on the treated area',
               'No swimming, saunas or heavy sweating',
               'Do not pick or scratch as it settles',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -258,10 +258,10 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why pigment gets discussed in surgical consultations here: donor hair is the scarce resource in every hair restoration plan, and the crown in particular can consume an enormous number of grafts for a result that pigment could partly deliver at no donor cost. Treating micropigmentation as a serious option rather than a lesser alternative usually produces a better plan — grafts spent where hair has to be real and stylable, pigment used where the area only needs to stop reading as bald.'
+    'Consultations are carried out by registered medical practitioners at the clinic. Where pigment is being considered, it is discussed alongside the surgical options, so that donor supply can be planned as a whole.'
 ) ?>
 
-<section class="section section--canvas" id="cost">
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -277,11 +277,11 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4 measure">Compare on healed results rather than price. Photographs taken immediately after a session look darker and sharper than the same work does months later, and the difference between competent and poor pigmentation is not visible on day one.</p>
         <p class="body mt-3 measure">See <a href="/cost-and-emi-options">cost and payment options</a>.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Find Out If It Suits Your Case</h3>
         <p class="body mt-3">Send photos of the area concerned in daylight — including any scarring — and tell us how you currently wear your hair and how you would like to.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Book an assessment</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-track="book">Book an assessment</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
@@ -304,7 +304,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Scalp Pigmentation Planning at Our Gurgaon Clinic',
-    'Assessment and planning happen at our Sector 39 clinic in Gurugram, alongside the surgical options, so the two can be considered together. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Assessment and planning happen at our Sector 39 clinic in Gurugram, alongside the surgical options, so the two can be considered together. Consultations are carried out by registered medical practitioners, and are also available at our Rohini, Delhi clinic.'
 ) ?>
 
 <?= cta_band(

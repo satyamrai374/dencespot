@@ -24,10 +24,12 @@ $postFaqs = [
     ['q' => 'How often should my scalp be reviewed after a transplant?',
      'a' => 'A reasonable habit is a photographed review at around twelve months, when the result can first be judged fairly, and then every year or two afterwards. The point is not the appointment but the comparison: fixed-angle photographs taken years apart show native thinning long before you notice it in a mirror, which is when your options are widest.'],
 ];
+$postFaqId = 'hair-transplant-longevity-faqs';
+$postFaqHeading = 'Longevity FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>Ask most clinics whether a hair transplant lasts and you get one word back. Permanent. Lifetime. Never falls out. That answer is accurate about the follicles that were moved, and quietly incomplete about everything else on your head.</p>
+<p>The usual one-word answer to whether a hair transplant lasts is "permanent". Lifetime. Never falls out. That answer is accurate about the follicles that were moved, and quietly incomplete about everything else on your head.</p>
 
 <p>The full answer has two parts. Relocated follicles usually go on growing where they are put, for as long as they would have grown where they came from. Meanwhile the hair you were born with in and around the thinning areas carries on doing what it was already doing. Surgery redistributes hair; it does not switch off the process that made you lose it.</p>
 
@@ -39,7 +41,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>The extraction method changes none of that biology. Technique affects scarring, harvesting and healing rather than how long a graft survives, which is why <a href="/blog/fue-vs-dhi-hair-transplant">the differences between FUE and DHI placement</a> matter for reasons unconnected to longevity. An <a href="/fue-hair-transplant-in-gurgaon">FUE procedure in Gurgaon</a> and a DHI one move the same follicles out of the same safe zone.</p>
 
-<h3>The donor zone is usually resistant, not guaranteed to be</h3>
+<h3>The donor zone is usually resistant, not certain to be</h3>
 
 <p>Usually is doing work in that sentence. In a minority of people the donor area itself thins over time, most often where loss is diffuse and unpatterned rather than following the familiar pattern. Looking for that is part of what an examination is for, and it is a recognised reason to advise against surgery — <a href="/blog/who-should-not-have-a-hair-transplant">the cases where a transplant is the wrong answer</a> covers it in more detail.</p>
 
@@ -61,7 +63,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Picture a man who had a dense frontal restoration in his late twenties and was delighted at twelve months. By his late thirties the mid-scalp and crown behind that hairline have thinned considerably. The transplanted band is still there, still growing, still the density it always was. It now reads as a strip of hair with bare scalp behind it, which is not a shape hair loss produces on its own, so it looks constructed.</p>
 
-<p>Two decisions usually lie behind it. The first is operating while loss was still actively progressing, so the plan was drawn around a scalp that no longer exists. The second is a low, aggressive hairline that made sense at twenty-six and does not at forty-two, which is one reason <a href="/blog/natural-hairline-design-explained">hairline placement matters more than graft count</a>. Both are planning failures rather than surgical ones, and both are avoidable at the consultation stage. When you look at long-term cases in any <a href="/hair-transplant-results-gurgaon">before and after gallery</a>, the year each photograph was taken is the first thing to check.</p>
+<p>Two decisions usually lie behind it. The first is operating while loss was still actively progressing, so the plan was drawn around a scalp that no longer exists. The second is a low, aggressive hairline that made sense at twenty-six and does not at forty-two, which is one reason <a href="/blog/natural-hairline-design-explained">hairline placement matters more than graft count</a>. Both are planning failures rather than surgical ones, and both are avoidable at the consultation stage. When you look at photographs of anyone's transplant, check when each was taken: a result judged at one year, the point the <a href="/blog/hair-transplant-growth-timeline-month-by-month">month-by-month growth timeline</a> works towards, says little about year ten.</p>
 
 <h2 id="where-ongoing-medical-treatment-fits">Where ongoing medical treatment fits</h2>
 
@@ -106,14 +108,10 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Not defensible.</strong> A promise that you will never thin again, a survival percentage quoted before anyone has operated, or an assurance of how one head will look in 2040.</li>
 </ul>
 
-<p>Anyone offering the last of those is describing a wish rather than a prognosis, and the reasoning is set out in <a href="/blog/hair-transplant-guarantees-and-success-rates">what guarantees and success-rate claims really mean</a>. Individual outcomes vary, and a clinic unwilling to say so in the consultation is unlikely to say so afterwards.</p>
+<p>Anyone offering the last of those is describing a wish rather than a prognosis, and the reasoning is set out in <a href="/blog/hair-transplant-promises-and-success-rates">what promises and success-rate claims really mean</a>. Individual outcomes vary, and a clinic unwilling to say so in the consultation is unlikely to say so afterwards.</p>
 
-<blockquote>The grafts are permanent. The result is not fixed, because it sits inside a scalp that keeps changing. A transplant is best understood as one intervention in the ongoing management of a lifelong condition, not as a cure for it.</blockquote>
+<blockquote>The grafts usually stay. The result is not fixed, because it sits inside a scalp that keeps changing. A transplant is more accurately understood as one intervention in the ongoing management of a lifelong condition, not as a cure for it.</blockquote>
 
-<p>None of this argues against surgery. It argues for going in with the right expectation: a substantial and durable improvement, not an exemption from genetics. The people still content a decade later are usually those who were told this plainly at the start.</p>
+<p>None of this argues against surgery. It argues for going in with the right expectation: a lasting redistribution of hair whose effect varies from person to person, not an exemption from genetics. The people still content a decade later are usually those who were told this plainly at the start.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="hair-transplant-longevity-faqs">Longevity FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

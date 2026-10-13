@@ -27,7 +27,7 @@ require_once __DIR__ . '/includes/schema.php';
 
 $faqs = [
     ['q' => 'Can women have a hair transplant?',
-     'a' => 'Yes, but selectively. The technique is identical to the male procedure; what differs is who it suits. Female hair loss is more often diffuse and more often has a reversible cause, so a proper workup comes before any surgical discussion. Many women do better on medical treatment, and a good clinic will tell you that rather than book you in.'],
+     'a' => 'Yes, but selectively. The technique is identical to the male procedure; what differs is who it suits. Female hair loss is more often diffuse and more often has a reversible cause, so a proper workup comes before any surgical discussion. Many women do better on medical treatment.'],
     ['q' => 'Why are fewer women suitable for hair transplants?',
      'a' => 'Because a transplant only moves hair — it does not create it. It relies on a donor area at the back and sides that is genuinely stable. In female pattern loss the thinning is often diffuse and involves the donor zone as well, which means the hair being moved is itself vulnerable. Moving unstable hair produces a result that thins along with everything else.'],
     ['q' => 'What is diffuse thinning and why does it rule out surgery?',
@@ -79,7 +79,7 @@ $page = [
             'howPerformed'  => 'Following investigation and exclusion of reversible causes of hair loss, and confirmation that the occipital donor area is stable, follicular units are extracted from the donor area and placed into recipient sites across the affected region at the angle and direction of surrounding hair. Unshaven or partially trimmed approaches are commonly used. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Full medical, medication and hormonal history; scalp and donor examination with density measurement; investigation of reversible causes including iron status and thyroid function where indicated; and assessment of whether the pattern of loss is diffuse or localised before surgery is considered.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows, with continued medical treatment of any underlying cause.',
-            'expectedPrognosis' => 'Where surgery is appropriate, transplanted hairs commonly shed within the first weeks, with new growth typically beginning around three to four months and a fuller result at approximately ten to twelve months. Surgery does not halt ongoing diffuse hair loss and medical treatment usually continues alongside. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Where surgery is appropriate, transplanted hairs commonly shed within the first weeks, with new growth typically beginning around three to four months and a fuller result at approximately ten to twelve months. Surgery does not halt ongoing diffuse hair loss and medical treatment usually continues alongside. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/hair-transplant-for-women-in-gurgaon', $faqs),
     ],
@@ -97,7 +97,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Women can have hair transplants, and many women who want one should not have one. Female hair loss is more often diffuse, more often has a cause that can be treated, and more often involves the donor area itself. This page explains which cases surgery genuinely suits, and what we look for before saying yes.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -110,11 +110,11 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Consultation and scalp assessment setup at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Assessed &amp; performed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -126,7 +126,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--5">
       <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Workup before surgery</p><p class="body-s mt-2">Iron, thyroid and hormonal causes are looked for.</p></div>
       <div class="card"><?= icon('search', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Donor examined</p><p class="body-s mt-2">Diffuse thinning in the donor changes the answer.</p></div>
-      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Seen by a doctor</p><p class="body-s mt-2">A dermatologist assesses you, start to finish.</p></div>
+      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Seen by a doctor</p><p class="body-s mt-2">Assessed by a registered medical practitioner.</p></div>
       <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Unshaven where possible</p><p class="body-s mt-2">Discussed openly, with its limits explained.</p></div>
       <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Told when not to operate</p><p class="body-s mt-2">Most women are better served medically.</p></div>
     </div>
@@ -139,7 +139,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <p class="eyebrow">The honest starting point</p>
         <h2 class="h2 mt-2">Why Female Hair Loss Is a Different Problem</h2>
-        <p class="body-l mt-3 measure">A hair transplant does not create hair. It moves hair from one part of your scalp to another, and the entire operation rests on one assumption: that the hair at the back and sides is permanent. In typical male pattern loss that assumption usually holds, which is why the surgery works so predictably.</p>
+        <p class="body-l mt-3 measure">A hair transplant does not create hair. It moves hair from one part of your scalp to another, and the entire operation rests on one assumption: that the hair at the back and sides is permanent. In typical male pattern loss that assumption usually holds, which is why surgery is more often an option for men.</p>
         <p class="body-l mt-3 measure">In women it frequently does not hold. Female pattern loss tends to be diffuse — a general thinning across the top and often the whole scalp, rather than a defined bald area with a safe zone behind it. When the donor region is thinning too, grafts taken from it carry that vulnerability with them. The hair is moved, and then it thins in its new position along with everything else.</p>
         <p class="body-l mt-3 measure">The second difference is that reversible causes are far more common. Iron deficiency, thyroid disease, post-partum shedding, PCOS, certain medications and periods of significant physical or emotional stress all cause hair loss in women, and all of them respond better to treatment than to surgery.</p>
         <p class="body-l mt-3 measure">This is why the assessment comes first and is not a formality. Operating on hair loss that had a treatable cause is the expensive mistake in this field, and it is not reversible — the donor hair is spent.</p>
@@ -209,21 +209,21 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">What to bring</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'A list of every medicine and supplement',
               'Any recent blood test results you have',
               'Photographs showing how your hair looked before',
               'Dates — when it started, what else was happening',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">What you leave with</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'A working diagnosis, or the tests to reach one',
               'An honest answer on surgical candidacy',
               'A treatment plan, medical or surgical',
               'A written estimate if surgery is appropriate',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -259,10 +259,10 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why the assessment carries more weight here than the surgery does: a woman presenting with thinning hair has a wide differential — iron, thyroid, hormonal, post-partum, traction, medication, autoimmune, or genuine pattern loss. Several of those are fully treatable, and one of them is the only one surgery helps. Getting that distinction right is the entire job. Operating on a woman whose hair loss had a treatable cause spends donor supply she may need later and does not fix the problem she came in with.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
-<section class="section section--canvas" id="cost">
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -280,18 +280,18 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4 measure">If your assessment finds a treatable medical cause, the recommendation will be treatment. That is a much smaller cost than surgery, and it is the right one.</p>
         <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">full cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Start With an Assessment, Not a Quote</h3>
         <p class="body mt-3">Send photos of the parting, the hairline and the back of the head on WhatsApp, along with anything you know about when the loss started. You will get an appointment for a proper assessment.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Book a consultation</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book">Book a consultation</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="faqs">
+<section class="section section--canvas" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -309,7 +309,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Female Hair Restoration at Our Gurgaon Clinic',
-    'Assessment, investigation, treatment and any surgery all happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
 ) ?>
 
 <?= cta_band(

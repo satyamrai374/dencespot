@@ -16,7 +16,7 @@ $postFaqs = [
     ['q' => 'What should I take with me to a hair transplant consultation?',
      'a' => 'Take any photographs of your hairline from five and ten years ago, a list of every medicine and supplement you take, and any recent blood reports. Old photographs are the single most useful thing you can bring, because they show whether the loss is still moving. A note of past scalp conditions and of family history helps as well.'],
     ['q' => 'Can I record the consultation or bring someone with me?',
-     'a' => 'Ask first, and most clinics will agree to notes or to a companion sitting in. A second person hears things you will not, because you will be listening for reassurance. If a clinic refuses to let you take written notes of the plan and the estimate, treat that as an answer in itself and take the plan elsewhere.'],
+     'a' => 'Ask first; taking notes or bringing a companion is usually agreed to. A second person hears things you will not, because you will be listening for reassurance. If a clinic refuses to let you take written notes of the plan and the estimate, treat that as an answer in itself and take the plan elsewhere.'],
     ['q' => 'Is an online or WhatsApp consultation enough to plan surgery?',
      'a' => 'It is enough to decide whether an appointment is worth making. It is not enough to plan an operation, because donor density and miniaturisation cannot be assessed from a photograph. A video call can sensibly cover history, expectations and logistics, but the measurement that produces a graft number has to happen in person.'],
     ['q' => 'Should I get a second opinion before booking?',
@@ -26,6 +26,8 @@ $postFaqs = [
     ['q' => 'Does paying a consultation fee oblige me to book?',
      'a' => 'No. A fee buys an assessment and an opinion, nothing more, and you are free to take the written plan away and think about it. Ask when booking whether a fee applies and whether it is adjusted against surgery, so that the answer is settled before you arrive rather than at the desk afterwards.'],
 ];
+$postFaqId = 'consultation-faqs';
+$postFaqHeading = 'Consultation FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -35,11 +37,11 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="what-a-consultation-is-really-for">What a consultation is really for</h2>
 
-<p>A consultation runs two purposes at once. For the clinic it is a clinical assessment and a sales meeting, and in Gurgaon those jobs are often done by two different people. For you it is the only chance to inspect what you are buying before money changes hands. Take notes, and ask for what matters — the operating doctor's name, the plan, the estimate — on paper. If you are not sure surgery is the right answer at all, read <a href="/blog/who-should-not-have-a-hair-transplant">when a transplant is the wrong answer</a> first.</p>
+<p>A consultation can run two purposes at once. For a clinic it may be both a clinical assessment and a sales meeting, sometimes handled by two different people. For you it is the only chance to inspect what you are buying before money changes hands. Take notes, and ask for what matters — the operating doctor's name, the plan, the estimate — on paper. If you are not sure surgery is the right answer at all, read <a href="/blog/who-should-not-have-a-hair-transplant">when a transplant is the wrong answer</a> first.</p>
 
 <h2 id="who-actually-does-the-surgery">Who actually does the surgery</h2>
 
-<p>This is the question most clinic-selection guides leave out, including those published by the largest chains, and it is the one with the greatest effect on your result.</p>
+<p>This question is often left out of clinic-selection guides, and it has a large bearing on how the operation is carried out.</p>
 
 <h3>1. Who makes the extractions?</h3>
 
@@ -61,7 +63,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>5. May I have the registration number in writing?</h3>
 
-<p>Every practising doctor in India holds a registration with a state medical council or on the national register, and that number is public record. Asking for it is not an accusation; it is the diligence you would apply to any large purchase, and a clinic with nothing to manage hands it over without a pause. Ours sits on <a href="/dr-nyra">the profile of the doctor who operates here</a>.</p>
+<p>Every practising doctor in India holds a registration with a state medical council or on the national register, and that number is public record. Asking for it is not an accusation; it is the diligence you would apply to any large purchase, and a clinic with nothing to manage hands it over without a pause. The registration details of this clinic's doctors are listed in <a href="/medical-disclaimer#doctors">the doctors and registration section</a>.</p>
 
 <h2 id="whether-your-donor-area-was-measured">Whether your donor area was actually measured</h2>
 
@@ -79,13 +81,13 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Replay the consultation afterwards and look for the limits. Were any named at all? A genuine assessment produces constraints, and they sound like this: the crown can be improved but not filled, the hairline will sit higher than in your college photograph, a second session is likely, medication first because the loss is still moving.</p>
 
-<p>If every wish you expressed was met with agreement, you were sold to rather than assessed. Hairline position in particular is a clinical decision constrained by age and donor supply, not a preference to be accommodated. Where a clinic offers assurance instead of constraints, weigh it against <a href="/blog/hair-transplant-guarantees-and-success-rates">what guaranteed results and success-rate claims mean</a>.</p>
+<p>If every wish you expressed was met with agreement, you were sold to rather than assessed. Hairline position in particular is a clinical decision constrained by age and donor supply, not a preference to be accommodated. Where a clinic offers assurance instead of constraints, weigh it against <a href="/blog/hair-transplant-promises-and-success-rates">what promised results and success-rate claims mean</a>.</p>
 
 <h2 id="the-consent-form-and-when-you-see-it">The consent form, and when you are given it</h2>
 
 <h3>9. What does the consent cover, and when do I get to read it?</h3>
 
-<p>A form handed to you on the morning of surgery, on a trolley, with a cannula already sited, produces a signature rather than consent. Ask for it in advance — a week is reasonable — and read it somewhere you are not being watched.</p>
+<p>A form handed to you on the morning of surgery, on a trolley, with a cannula already sited, produces a signature rather than consent. Ask for it beforehand — a week is reasonable — and read it somewhere you are not being watched.</p>
 
 <p>A consent form worth signing names the procedure and approximate graft number, the areas treated, the anaesthetic, and the risks in their real categories: expected, uncommon and permanent. Those are separated in <a href="/blog/hair-transplant-side-effects-and-risks">the article on side effects and risks</a>. If it is one page of general wording, ask what happens if the graft count changes on the day.</p>
 
@@ -135,7 +137,3 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>This is not about catching anyone out. Most of these questions get good answers at any competent clinic, and asking is how you find out which sort you are standing in before you have paid. Bring your old photographs, your medicines list and the questions on your phone. A clinic uncomfortable with an informed patient now will not be easier to talk to at month six.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="consultation-faqs">Consultation FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'prp-vs-gfc-vs-exosomes';
-$postDescription = 'PRP, GFC and exosomes compared by what is actually in the syringe, where the material comes from, what regulatory status it holds and how much published evidence stands behind it.';
+$postDescription = 'PRP, GFC and exosomes compared by what is in the syringe, where it comes from, its regulatory status and how much published evidence stands behind it.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -26,6 +26,8 @@ $postFaqs = [
     ['q' => 'Is there anything to do or avoid on the day of a session?',
      'a' => 'Come hydrated and having eaten, since blood is being drawn. Tell the clinic about aspirin, anti-inflammatory painkillers or any blood thinner beforehand rather than on the day. Expect to leave with an unwashed scalp, so plan around that, and avoid heavy exercise, swimming and alcohol for the rest of the day.'],
 ];
+$postFaqId = 'injectable-hair-treatment-faqs';
+$postFaqHeading = 'Injectable hair treatment FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -35,7 +37,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="what-prp-actually-is">What PRP actually is</h2>
 
-<p>Platelet-rich plasma is made from your own blood. A sample is drawn, spun in a centrifuge so the plasma and platelet layer separates from the red cells, and that fraction is injected across the thinning scalp. It is autologous — nothing foreign enters your body — which is why its safety profile is reassuring.</p>
+<p>Platelet-rich plasma is made from your own blood. A sample is drawn, spun in a centrifuge so the plasma and platelet layer separates from the red cells, and that fraction is injected across the thinning scalp. It is autologous — nothing foreign enters your body — which avoids the concerns that come with donor material, though the ordinary risks of scalp injection still apply.</p>
 
 <p>The rationale is that platelets carry granules of growth factors, and that releasing those signals around miniaturising follicles supports the growth phase. The mechanism is inferred rather than mapped, and it only makes sense where living follicles remain. In androgenetic alopecia follicles shrink progressively before they disappear (<a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet on male pattern hair loss</a>), so the window for any injectable is early and moderate thinning.</p>
 
@@ -45,7 +47,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Growth factor concentrate starts in the same place: your own blood, spun down. The extra step is that the platelets are deliberately activated inside the tube, releasing their growth factors into the plasma, and the platelet bodies and cellular debris are then separated out. What is injected is a largely cell-free concentrate.</p>
 
-<p>The argument for it is coherent. Removing debris and white cells may reduce the inflammatory sting, and a controlled release step is more predictable than relying on platelets to activate in the scalp. Patients often report GFC as the more comfortable of the two.</p>
+<p>The argument for it is coherent. Removing debris and white cells may reduce the inflammatory sting, and a controlled release step is more predictable than relying on platelets to activate in the scalp. Those are arguments from the preparation method, not demonstrated differences in hair growth.</p>
 
 <p>What GFC is not is a different class of medicine. It is a processing variant of the same autologous material, made with a proprietary kit and a longer laboratory step. Calling it a generational leap overstates the distance, and the head-to-head work needed to show one outperforms the other is limited.</p>
 
@@ -65,10 +67,11 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p><strong>Exosomes</strong> have the thinnest evidence of the three for hair. What exists is early, small and often linked to the companies producing the material, and long-term safety data for repeated scalp injection is absent. That is not a claim that exosomes fail; it is a statement that nobody yet knows how well they work.</p>
 
-<p>Rank the three by depth of evidence and you get, in most clinics, the reverse of the price list.</p>
+<p>Rank the three by depth of evidence and the order is usually the reverse of how they are priced.</p>
 
+<div class="table-scroll">
 <table class="data">
-  <caption>Source material and evidence, compared</caption>
+  <caption style="text-align:left;padding:0 0 10px;font-size:14px;font-weight:600;color:var(--ink)">Source material and evidence, compared</caption>
   <thead>
     <tr><th scope="col">Preparation</th><th scope="col">Source</th><th scope="col">Published evidence in hair loss</th></tr>
   </thead>
@@ -78,6 +81,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Exosomes</td><td>Cultured donor or non-human cells</td><td>Thinnest; long-term scalp data absent</td></tr>
   </tbody>
 </table>
+</div>
 
 <h2 id="session-schedules-and-maintenance">Session schedules and maintenance intervals</h2>
 
@@ -105,9 +109,9 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>The three are presented as tiers, and the tiering is real — but it reflects what the clinic pays for consumables and how new the name is, not how well the product works. A preparation made in ordinary tubes costs the clinic very little. A proprietary kit costs more. An imported vial costs more again, with a novelty premium on top.</p>
 
-<p>The mechanism is easy to see once you look for it. PRP is offered widely enough that it competes on price, so a higher tier becomes commercially necessary. GFC filled that slot; exosomes now sit above GFC. Each arrives described as what serious clinics have moved to. What moved is the price point.</p>
+<p>The mechanism is easy to see once you look for it. PRP is offered widely enough that it competes on price, so a higher tier becomes commercially necessary. GFC filled that slot; exosomes now sit above GFC. Each arrives described as the newer standard. What moved is the price point.</p>
 
-<p>Treat a bundle of all three with particular care: when three things are given at once, no response can be attributed to any of them. Figures belong on the pages that carry them — <a href="/hair-prp-treatment-in-gurgaon">how PRP is run at this clinic</a> covers the treatment, <a href="/cost-and-emi-options">the cost and payment options page</a> handles the money, and injections against surgery is a separate calculation under <a href="/hair-transplant-cost-in-gurgaon">what a hair transplant costs in Gurgaon</a>.</p>
+<p>Treat a bundle of all three with particular care: when three things are given at once, no response can be attributed to any of them. Figures belong on the pages that carry them — <a href="/hair-prp-treatment-in-gurgaon">the PRP treatment page</a> covers the treatment, <a href="/cost-and-emi-options">the cost and payment options page</a> handles the money, and injections against surgery is a separate calculation under <a href="/hair-transplant-cost-in-gurgaon">what a hair transplant costs in Gurgaon</a>.</p>
 
 <h2 id="questions-before-buying-a-package">Questions to ask before buying a multi-session package</h2>
 
@@ -123,12 +127,8 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Has a diagnosis been made?</strong> If nobody has examined your scalp under magnification or asked about your thyroid and iron status, you are buying treatment before anyone established what you have.</li>
 </ul>
 
-<p>A clinic that answers all seven plainly is one you can compare against another. One that answers by calling the newest product the most advanced has not answered — the scepticism <a href="/blog/hair-transplant-guarantees-and-success-rates">guarantees and quoted success rates</a> deserve in surgery applies here too.</p>
+<p>A clinic that answers all seven plainly is one you can compare against another. One that answers by calling the newest product the most effective has not answered — the scepticism <a href="/blog/hair-transplant-promises-and-success-rates">promises and quoted success rates</a> deserve in surgery applies here too.</p>
 
-<p>If you would rather start with the cause of the shedding than with which injection to buy, the <a href="/hair-fall-treatment-in-gurgaon">hair fall assessment</a> is the entry point, and <a href="/dr-nyra">the dermatologist who runs the clinic</a> is the person who examines you.</p>
+<p>If you would rather start with the cause of the shedding than with which injection to buy, the <a href="/hair-fall-treatment-in-gurgaon">hair fall assessment</a> is the entry point, and <a href="/medical-disclaimer#doctors">the clinic's doctors and their registration details</a> are listed separately.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="injectable-hair-treatment-faqs">Injectable hair treatment FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

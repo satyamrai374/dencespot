@@ -26,6 +26,8 @@ $postFaqs = [
     ['q' => 'When can I get a proper haircut or shave the donor area short again?',
      'a' => 'Scissors over the recipient area are usually allowed well before clippers are, because a machine head presses and drags. Many clinics permit a careful scissor trim after about a month and clipper work on the donor area a little later. The exact dates belong to the surgeon who did the extraction and saw how the donor healed.'],
 ];
+$postFaqId = 'gurgaon-recovery-faqs';
+$postFaqHeading = 'Recovery in Gurgaon: further questions';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -72,8 +74,10 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Patients want a single date for the diary, and activity does not work that way. Sweat, straining, direct impact and immersion are four separate problems with four separate timelines.</p>
 
+<p class="meta">Typical staging, subject to your surgeon's review:</p>
+<div class="table-scroll" style="margin-top:10px">
 <table class="data">
-  <caption>Typical staging, subject to your surgeon's review</caption>
+  <caption class="sr-only">Typical staging, subject to your surgeon's review</caption>
   <thead>
     <tr><th scope="col">Activity</th><th scope="col">Usually earliest</th><th scope="col">The reason</th></tr>
   </thead>
@@ -86,6 +90,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Contact sport, or sport in a helmet</td><td>Later, and reviewed</td><td>Trauma and pressure together</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Those are bands, not promises, and an examination can move any of them either way. A cricket helmet carries the motorcycle helmet problem with impact added, so anyone whose sport involves headgear should raise it at the consultation, not at the first follow-up.</p>
 
@@ -93,7 +98,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>How soon you return depends less on healing than on who has to look at you. Redness lasts a couple of weeks and fades gradually, crusting is visible for the first ten days or so, and the donor area is trimmed short. None of that is dangerous, and all of it is noticeable at conversational distance.</p>
 
-<p>At a desk, with your own diary, many patients are functional within a week and accept some pinkness. Client-facing, presenting or on camera, two to three weeks is more comfortable. On a site or in the field in summer, with hard hats, heat, dust and long hours away from anywhere clean, three to four weeks or a reassignment agreed in advance is the usual answer. Nobody can promise you will look unremarkable by a named date; a clinic can only describe the ordinary range. The same impatience distorts how people judge results later, which is why <a href="/blog/how-to-read-before-and-after-photos">reading a before-and-after photograph properly</a> matters.</p>
+<p>At a desk, with your own diary, many patients are functional within a week and accept some pinkness. Client-facing, presenting or on camera, two to three weeks is more comfortable. On a site or in the field in summer, with hard hats, heat, dust and long hours away from anywhere clean, three to four weeks or a reassignment agreed beforehand is the usual answer. Nobody can promise you will look unremarkable by a named date; a clinic can only describe the ordinary range. The same impatience distorts how people judge results later, which is why <a href="/blog/how-to-read-before-and-after-photos">reading a before-and-after photograph properly</a> matters.</p>
 
 <?= blog_cta(
     'Your commute, your job and the month you pick change this plan',
@@ -119,10 +124,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Then there is the lead time before surgery, which people underestimate. A consultation, blood work and often a period of medical treatment to stabilise ongoing loss come first, and for some people the answer at that stage is not surgery at all, as set out in <a href="/blog/who-should-not-have-a-hair-transplant">the cases where a transplant is the wrong answer</a>. Then a date, then the recovery window: think in months. That stage is also where the practical questions belong, whether that is <a href="/hair-transplant-cost-in-gurgaon">what a hair transplant costs in Gurgaon</a>, the available <a href="/cost-and-emi-options">payment and EMI arrangements</a>, or the technique, since <a href="/dhi-hair-transplant-in-gurgaon">placement with an implanter pen</a> changes nothing about heat or helmets.</p>
 
-<p>Bring your calendar to the consultation along with your questions. The <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking before you commit</a> cover the clinical side; the date is the part only you can supply. You can read <a href="/dr-nyra">Dr. Nyra's qualifications and registration</a> beforehand, and the overview of <a href="/hair-transplant-in-gurgaon">hair transplant surgery at the Sector 39 clinic</a> sets out the day itself.</p>
+<p>Bring your calendar to the consultation along with your questions; consultations are available at both our clinics, in Sector 39, Gurugram and in Rohini, Delhi. The <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking before you commit</a> cover the clinical side; the date is the part only you can supply. You can read <a href="/dr-nyra">Dr. Nyra's qualifications</a> beforehand, and the overview of <a href="/hair-transplant-in-gurgaon">hair transplant surgery at the Sector 39 clinic</a> sets out the day itself.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="gurgaon-recovery-faqs">Recovery in Gurgaon: further questions</h2>
-
-<?= faq_list($postFaqs) ?>

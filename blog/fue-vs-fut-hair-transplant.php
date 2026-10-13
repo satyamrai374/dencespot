@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'fue-vs-fut-hair-transplant';
-$postDescription = 'FUE and FUT both scar, differently. An honest comparison of donor yield, healing, hair length and the specific cases in which a strip is still the better engineering choice.';
+$postDescription = 'FUE and FUT both scar, differently. An honest comparison of donor yield, healing, hair length and the cases where a strip is still the better choice.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -26,12 +26,14 @@ $postFaqs = [
     ['q' => 'When can I wear a motorcycle helmet again after donor harvesting?',
      'a' => 'Not in the first days, and the timing is judged case by case, because a helmet presses on both the recipient grafts and the healing donor site. A sutured closure and open punch wounds are also assessed differently. Gurgaon commuting makes this a practical planning question, covered in <a href="/blog/hair-transplant-recovery-in-gurgaon">recovering from surgery in Gurgaon heat and traffic</a>.'],
 ];
+$postFaqId = 'fue-vs-fut-faqs';
+$postFaqHeading = 'FUE and FUT FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>Ask several clinics in Gurgaon which method they use and most give the same answer in the same words: FUE, because the strip method is outdated. That is a marketing position, not a clinical one. Follicular unit transplantation is still taught, still practised by experienced surgeons, and for a small, identifiable group of patients it remains the better engineering choice.</p>
+<p>FUE is often presented as the only current method, with the strip method described as outdated. That is a simplification, not a clinical conclusion. Follicular unit transplantation is still taught, still practised by experienced surgeons, and for a small, identifiable group of patients it remains the better engineering choice.</p>
 
-<p>The opposite claim is no better. Punch extraction is routinely sold as scarless. It is not. It replaces one line with hundreds or thousands of small round wounds, each healing with a pale mark and a permanently absent follicle. Both methods draw on a finite donor area and both alter it. The real question is which kind of scar, and at what cost in yield, healing and hairstyle.</p>
+<p>The opposite claim is no better. Punch extraction is routinely sold as though it left nothing behind. It does not. It replaces one line with hundreds or thousands of small round wounds, each healing with a pale mark and a permanently absent follicle. Both methods draw on a finite donor area and both alter it. The real question is which kind of scar, and at what cost in yield, healing and hairstyle.</p>
 
 <h2 id="how-each-harvest-works">How each harvest actually works</h2>
 
@@ -39,7 +41,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>The strip</h3>
 
-<p>A horizontal ellipse of scalp is excised from the permanent zone at the back, roughly a centimetre tall and as long as the graft number demands, and the edges are closed with sutures or staples. The strip goes to a bench, where technicians working under stereomicroscopes slice it into individual follicular units, the natural clusters of one to four hairs in which scalp hair grows.</p>
+<p>A horizontal ellipse of scalp is excised from the safe donor zone at the back, roughly a centimetre tall and as long as the graft number demands, and the edges are closed with sutures or staples. The strip goes to a bench, where technicians working under stereomicroscopes slice it into individual follicular units, the natural clusters of one to four hairs in which scalp hair grows.</p>
 
 <p>That microscopic dissection is the point of the method. The follicle is seen throughout, so tissue is trimmed deliberately rather than guessed at, and grafts arrive with a predictable cuff around the bulb.</p>
 
@@ -55,13 +57,13 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Punch extraction leaves diffuse punctate scarring: many small round marks across the donor zone. Individually they are hard to see. Collectively they matter twice over. At very short clipper lengths a heavily harvested area can look moth-eaten. More importantly, every extracted unit thins the area it came from, so taking too many, too closely, leaves a donor zone that reads as sparse even at ordinary lengths, and nothing reverses that. It is the failure mode <a href="/blog/donor-area-limits-hair-transplant">treating the donor area as a one-time budget</a> exists to prevent.</p>
 
-<blockquote>Neither method is scarless. One concentrates the scarring into a line you can cover with hair; the other spreads it across an area you cannot uncover if you later decide to shave.</blockquote>
+<blockquote>Both methods leave scars. One concentrates the scarring into a line you can cover with hair; the other spreads it across an area you cannot uncover if you later decide to shave.</blockquote>
 
 <h2 id="hair-length-before-and-after">Hair length, and going back to work</h2>
 
 <p>This is the practical difference patients underestimate. A punch harvest normally needs the donor area clipped very short, and for larger sessions the whole back and sides are shaved, which stays visible while the extraction points settle. For a strip, only a narrow band is trimmed and the hair above falls over the closure, so many patients look unremarkable within days.</p>
 
-<p>The method with the smaller long-term footprint therefore often demands the more conspicuous short-term one. Keep your hair long and a strip may be invisible from the first day. Keep it at a grade 2 and the shave costs you nothing, while the line would have been the thing on show.</p>
+<p>The method with the smaller long-term footprint therefore often demands the more conspicuous short-term one. Keep your hair long and a strip may be invisible from the first day. Keep it at a grade 2 and the shave makes little difference, while the line would have been the thing on show.</p>
 
 <h2 id="donor-yield-and-graft-quality">Donor yield, transection and graft quality</h2>
 
@@ -81,25 +83,31 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Both share the same recipient-side course: crusting, then shedding, then months of waiting, none of which cares how the grafts were obtained. See <a href="/blog/first-14-days-after-a-hair-transplant">what the first fortnight actually looks like</a> and the full <a href="/hair-transplant-aftercare">aftercare protocol</a>.</p>
 
+<div class="table-scroll">
 <table class="data">
-  <tr><th>Consideration</th><th>Strip harvest</th><th>Punch harvest</th></tr>
-  <tr><th>Donor scar</th><td>One linear scar</td><td>Many small marks plus diffuse thinning</td></tr>
-  <tr><th>Shaving needed</th><td>A narrow band only</td><td>Usually the whole donor zone</td></tr>
-  <tr><th>Closure</th><td>Sutures or staples, removed later</td><td>None; wounds heal open</td></tr>
-  <tr><th>Numbness</th><td>More common above the scar</td><td>Usually less pronounced</td></tr>
-  <tr><th>Very large single sessions</th><td>Generally easier</td><td>Often staged</td></tr>
-  <tr><th>Very short hairstyles</th><td>Scar may show</td><td>Usually more forgiving</td></tr>
+  <thead>
+    <tr><th scope="col">Consideration</th><th scope="col">Strip harvest</th><th scope="col">Punch harvest</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Donor scar</th><td>One linear scar</td><td>Many small marks plus diffuse thinning</td></tr>
+    <tr><th scope="row">Shaving needed</th><td>A narrow band only</td><td>Usually the whole donor zone</td></tr>
+    <tr><th scope="row">Closure</th><td>Sutures or staples, removed later</td><td>None; wounds heal open</td></tr>
+    <tr><th scope="row">Numbness</th><td>More common above the scar</td><td>Usually less pronounced</td></tr>
+    <tr><th scope="row" style="white-space:normal">Very large single sessions</th><td>Generally easier</td><td>Often staged</td></tr>
+    <tr><th scope="row" style="white-space:normal">Very short hairstyles</th><td>Scar may show</td><td>Usually more forgiving</td></tr>
+  </tbody>
 </table>
+</div>
 
 <h2 id="when-a-strip-still-makes-sense">When a strip still makes sense</h2>
 
 <p>Three situations, none of them rare.</p>
 
-<p><strong>Very large sessions in advanced loss.</strong> Where a substantial area needs covering in as few sittings as possible, yielding many well-dissected grafts at once is a genuine advantage. Whether that applies to you depends on measured supply, not a stage number, so <a href="/blog/norwood-scale-explained">what your Norwood stage does and does not decide</a> is worth reading alongside this.</p>
+<p><strong>Very large sessions in extensive loss.</strong> Where a substantial area needs covering in as few sittings as possible, yielding many well-dissected grafts at once is a genuine advantage. Whether that applies to you depends on measured supply, not a stage number, so <a href="/blog/norwood-scale-explained">what your Norwood stage does and does not decide</a> is worth reading alongside this.</p>
 
-<p><strong>A narrow safe donor zone.</strong> The permanent zone is not the whole back of the head, and in some men it is a slim band. Punch extraction needs width to spread the harvest; without it, units come from outside the safe zone, which means grafting hair that will itself be lost later. A strip taken within the band avoids that trap.</p>
+<p><strong>A narrow safe donor zone.</strong> The safe donor zone is not the whole back of the head, and in some men it is a slim band. Punch extraction needs width to spread the harvest; without it, units come from outside the safe zone, which means grafting hair that will itself be lost later. A strip taken within the band avoids that trap.</p>
 
-<p><strong>Hair worn long, permanently.</strong> If you have never worn a clipper cut and do not intend to, a concealed line costs you nothing, while widespread donor thinning would show in the styles you actually wear.</p>
+<p><strong>Hair worn long, permanently.</strong> If you have never worn a clipper cut and do not intend to, a concealed line matters little, while widespread donor thinning would show in the styles you actually wear.</p>
 
 <?= blog_cta(
     'Does your donor area actually favour one of these methods?',
@@ -129,10 +137,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Not from an article, and not from a photograph. The variables are measured: donor density, safe-zone width, hair calibre and curl, scalp laxity, previous scarring, and the total area that will eventually need covering rather than the part bothering you today. Set against how you intend to wear your hair, those measurements decide the method. Sometimes either would work, and the choice comes down to your tolerance for a line against a shave.</p>
 
-<p>What should worry you is a clinic that names the method before examining you, or dismisses one outright. Both answer different problems honestly, and the risks of each deserve setting out before you consent, which is what <a href="/blog/hair-transplant-side-effects-and-risks">the expected, uncommon and permanent risks</a> covers. To know who is making the call, <a href="/dr-nyra">the doctor's qualifications and training</a> are a fair place to start, and the <a href="/hair-transplant-in-gurgaon">hair transplant assessment in Gurgaon</a> sets out what a consultation involves. If the graft number is your real question, <a href="/blog/how-many-grafts-do-you-need">how a graft count is arrived at</a> is the companion piece to this one.</p>
+<p>What should worry you is a clinic that names the method before examining you, or dismisses one outright. Both answer different problems honestly, and the risks of each deserve setting out before you consent, which is what <a href="/blog/hair-transplant-side-effects-and-risks">the expected, uncommon and permanent risks</a> covers. To know who is making the call, <a href="/dr-nyra">the doctor's qualifications</a> are a fair place to start, and the <a href="/hair-transplant-in-gurgaon">hair transplant assessment in Gurgaon</a> sets out what a consultation involves. If the graft number is your real question, <a href="/blog/how-many-grafts-do-you-need">how a graft count is arrived at</a> is the companion piece to this one.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="fue-vs-fut-faqs">FUE and FUT FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

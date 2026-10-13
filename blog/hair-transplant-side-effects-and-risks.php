@@ -16,7 +16,7 @@ $postFaqs = [
     ['q' => 'How much time should I take off work after a hair transplant?',
      'a' => 'Most people are physically able to work the next day, but appearance decides the honest answer. Crusting stays visible for roughly a week to ten days, and forehead swelling tends to peak in the first few days. If you cannot wear a loose cap at work, plan for about a week away rather than two days.'],
     ['q' => 'Can I smoke or drink alcohol after the procedure?',
-     'a' => 'Both are best avoided while healing. Alcohol thins the blood and worsens swelling in the first days, and nicotine narrows the small vessels that newly placed grafts depend on. Your surgeon will give you a specific window. The sensible approach is to treat the early weeks as a clean break rather than negotiating day by day.'],
+     'a' => 'Both should be avoided while healing. Alcohol thins the blood and worsens swelling in the first days, and nicotine narrows the small vessels that newly placed grafts depend on. Your surgeon will give you a specific window. The sensible approach is to treat the early weeks as a clean break rather than negotiating day by day.'],
     ['q' => 'Are the risks different for a beard transplant?',
      'a' => 'The categories are the same, but the recipient site behaves differently. Facial skin is more mobile and more prone to ingrown hairs and small pustules during regrowth, and angle errors show more obviously than on the scalp. Donor risk is identical, because the grafts still come from your scalp. See <a href="/beard-transplant-gurgaon">beard transplant in Gurgaon</a>.'],
     ['q' => 'If the grafts do not grow well, is that a complication?',
@@ -26,17 +26,20 @@ $postFaqs = [
     ['q' => 'Can I fly home shortly after surgery?',
      'a' => 'Short flights a day or two afterwards are usually tolerated, but confirm it before booking. The practical difficulties are swelling in the first few days, keeping pressure and rubbing off the recipient area in a crowded cabin, and being far from the operating team if something needs looking at during the first week.'],
 ];
+$postFaqId = 'side-effects-faqs';
+$postFaqHeading = 'Side effects and risks: further questions';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>Most clinic pages handle this subject defensively. Side effects arrive in one undifferentiated paragraph, wedged between "minimally invasive" and "walk in, walk out", so that a bruise and a permanently thinned donor area seem to belong to the same conversation. They do not. The useful question is not what can go wrong, but which of those things settle on their own, which need treating, and which you will still see in ten years.</p>
+<p>Side effects are often listed in one undifferentiated paragraph, so that a bruise and a permanently thinned donor area seem to belong to the same conversation. They do not. The useful question is not what can go wrong, but which of those things settle on their own, which need treating, and which you will still see in ten years.</p>
 
-<p>This article sorts them that way. Frequencies are given in words rather than figures, because published rates vary with technique, operator and how a complication is defined, and a precise-looking percentage on a clinic website is usually borrowed from nowhere. If you want the operation explained first, start with <a href="/hair-transplant-in-gurgaon">how a hair transplant is actually performed</a>.</p>
+<p>This article sorts them that way. Frequencies are given in words rather than figures, because published rates vary with technique, operator and how a complication is defined, and a precise-looking percentage without a stated source cannot be checked. If you want the operation explained first, start with <a href="/hair-transplant-in-gurgaon">how a hair transplant is actually performed</a>.</p>
 
 <h2 id="sorting-risk-by-permanence">Sorting risk by permanence, not by frequency</h2>
 
 <p>Three questions separate the categories. Does it happen to nearly everyone, does it resolve, and can it be corrected if it does not.</p>
 
+<div class="table-scroll">
 <table class="data">
   <thead>
     <tr><th scope="col">Category</th><th scope="col">Examples</th><th scope="col">Where it ends</th></tr>
@@ -44,9 +47,10 @@ require __DIR__ . '/../includes/blog-header.php';
   <tbody>
     <tr><th scope="row">Expected</th><td>Swelling, crusting, itching, numbness, shedding</td><td>Resolves without intervention</td></tr>
     <tr><th scope="row">Uncommon</th><td>Folliculitis, cysts, haematoma, infection, delayed healing</td><td>Resolves with treatment</td></tr>
-    <tr><th scope="row">Permanent</th><td>Overharvested donor, badly designed hairline, widened scar</td><td>Improved at best, never undone</td></tr>
+    <tr><th scope="row">Permanent</th><td>Overharvested donor, badly designed hairline, widened scar</td><td>Can be improved, never undone</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Notice that the third row contains no accidents. An overharvested donor area and a hairline placed too low are not complications in the way an infection is. They are decisions, taken by whoever planned the case.</p>
 
@@ -92,7 +96,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>The procedure is done under local anaesthetic. The injections are the most uncomfortable part of the day; after that the field is numb. The safety issue is total dose, which has a maximum calculated against your body weight, and the adrenaline mixed with it carries its own considerations for anyone with cardiac disease, uncontrolled hypertension or certain thyroid conditions. That is a medical calculation, not a technician's decision.</p>
 
-<p>Session length is where this becomes practical. A very large graft count crammed into one day means more anaesthetic and more top-up dosing, longer outside the body for the grafts, and a tired team making thousands of fine judgements late in the afternoon. Clinics advertise these megasessions as efficiency. Splitting the work across two days is often the more careful answer, whether placement uses forceps or <a href="/dhi-hair-transplant-in-gurgaon">an implanter pen</a>.</p>
+<p>Session length is where this becomes practical. A very large graft count crammed into one day means more anaesthetic and more top-up dosing, longer outside the body for the grafts, and a tired team making thousands of fine judgements late in the afternoon. Megasessions are sometimes presented as efficiency. Splitting the work across two days is often the more careful answer, whether placement uses forceps or <a href="/dhi-hair-transplant-in-gurgaon">an implanter pen</a>.</p>
 
 <h2 id="the-permanent-problems">The permanent problems</h2>
 
@@ -130,7 +134,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Consent is not a signature collected at the door on the morning of surgery, while you are gowned and committed. It is a document you should have days beforehand, read at home, and bring back with questions.</p>
 
-<p>A form worth signing names the surgeon who will operate and states what each member of the team will do. It specifies the planned graft number and the areas treated, names the harvesting method, sets out the expected recovery, and lists the uncommon complications individually rather than as "minor risks". It states that growth is judged at ten to twelve months, that no outcome is guaranteed, and what happens if growth disappoints.</p>
+<p>A form worth signing names the surgeon who will operate and states what each member of the team will do. It specifies the planned graft number and the areas treated, names the harvesting method, sets out the expected recovery, and lists the uncommon complications individually rather than as "minor risks". It states that growth is judged at ten to twelve months, that no outcome can be promised, and what happens if growth disappoints.</p>
 
 <blockquote>If the form is generic, undated, unsigned by a named doctor, or handed to you minutes before the anaesthetic, that is information about the clinic rather than paperwork to be rushed through.</blockquote>
 
@@ -151,10 +155,6 @@ require __DIR__ . '/../includes/blog-header.php';
   <li>Any new weakness or change in vision, which needs urgent assessment whatever the cause.</li>
 </ol>
 
-<p>A clinic that answers these calls promptly is doing the part of the job that happens after you have paid. If nobody picks up, or the only route back is a sales number, that is worth knowing before you book. The <a href="/contact">clinic's direct contact details</a> belong in your hand before the day of surgery.</p>
+<p>A clinic that answers these calls promptly is doing the part of the job that happens after you have paid. If nobody picks up, or the only route back is a sales number, that is worth knowing before you book. The <a href="/contact">clinic's direct contact details</a> belong in your hand before the day of surgery; ours, for both clinics in Sector 39, Gurugram and Rohini, Delhi, are on the contact page.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="side-effects-faqs">Side effects and risks: further questions</h2>
-
-<?= faq_list($postFaqs) ?>

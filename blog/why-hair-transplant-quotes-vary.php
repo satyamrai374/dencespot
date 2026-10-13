@@ -14,18 +14,20 @@ $postDescription = 'Why two Gurgaon hair transplant quotes for the same head can
  */
 $postFaqs = [
     ['q' => 'What happens if fewer grafts are placed on the day than the estimate said?',
-     'a' => 'Ask before you pay anything. A count is an estimate made from a plan, and the surgeon may place fewer once the donor area is opened and assessed. Some clinics reconcile the difference, some do not. Whichever it is, it should be written down in advance rather than discussed after you are bandaged and on your way home.'],
+     'a' => 'Ask before you pay anything. A count is an estimate made from a plan, and the surgeon may place fewer once the donor area is opened and assessed. Some clinics reconcile the difference, some do not. Whichever it is, it should be written down beforehand rather than discussed after you are bandaged and on your way home.'],
     ['q' => 'Is it worth travelling to another city for a cheaper procedure?',
      'a' => 'It can be, but price is rarely the whole comparison. Consider who will operate, whether you can be reviewed in person at three, six and twelve months, and who manages a complication once you have flown home. Follow-up is where distance costs you, and complications do not respect travel plans. Weigh that before the fare.'],
     ['q' => 'Does health insurance in India cover a hair transplant?',
      'a' => 'Almost never. Pattern hair loss surgery is treated as a cosmetic procedure by Indian insurers, so it is normally excluded from a standard policy. Reconstruction after a burn, scar or trauma is occasionally considered case by case with documentation. Assume you are paying yourself, and read your own policy wording rather than relying on a clinic to interpret it for you.'],
-    ['q' => 'Should I be suspicious of a free consultation?',
-     'a' => 'Not automatically. Plenty of legitimate clinics do not charge for a first conversation. What matters is what happens inside it: whether a doctor examines your scalp, whether the donor area is measured, and whether anyone is willing to tell you that surgery is the wrong answer. A free consultation that ends in a same-day discount offer is a sales meeting.'],
+    ['q' => 'Should I be suspicious of a consultation that charges no fee?',
+     'a' => 'Not automatically; the fee, or its absence, says little on its own. What matters is what happens inside it: whether a doctor examines your scalp, whether the donor area is measured, and whether anyone is willing to tell you that surgery is the wrong answer. A no-fee consultation that ends in a same-day discount offer is a sales meeting.'],
     ['q' => 'Why does a price drop when I say I am comparing clinics?',
      'a' => 'Because a rate that can be negotiated downwards on the phone was never a costed figure. Something real has to change for a genuine price to move: a smaller area, fewer grafts, a staged plan. If the work described is identical and only the number falls, ask what was being charged for before you rang, and what has actually been removed from the plan now.'],
     ['q' => 'How long should a written estimate stay valid?',
      'a' => 'Long enough for you to think, and the paper should say so. A deadline of a few days, or a discount that expires this evening, exists to stop you comparing. Hair loss is not an emergency and no clinical decision is made worse by a fortnight of consideration. If a plan is sound today it will still be sound in three weeks.'],
 ];
+$postFaqId = 'hair-transplant-quote-faqs';
+$postFaqHeading = 'Questions about quotes and estimates';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -66,7 +68,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Strip away the marketing and a hair transplant is mostly labour. A session occupies a room and a team for most of a working day. The dominant cost is how many trained people are in that room, how skilled they are, and how much of the day the operating doctor spends on you rather than on patients in adjacent rooms.</p>
 
-<p>This is where the honest differences live. A clinic where a dermatologist performs the critical steps, one patient at a time, has a higher cost base than one running parallel rooms on technician labour. Those are different products at the same nominal rate. Across <a href="/hair-transplant-in-gurgaon">what a hair transplant in Gurgaon involves</a>, staffing separates two identical-sounding offers, which is why <a href="/dr-nyra">knowing which doctor will perform your procedure</a> is not a courtesy question.</p>
+<p>This is where the honest differences live. A clinic where a dermatologist performs the critical steps, one patient at a time, has a higher cost base than one running parallel rooms on technician labour. Those are different products at the same nominal rate. Across <a href="/hair-transplant-in-gurgaon">what a hair transplant in Gurgaon involves</a>, staffing separates two identical-sounding offers, which is why knowing which doctor will perform your procedure is not a courtesy question.</p>
 
 <h2 id="anaesthesia-theatre-time-and-session-length">Anaesthesia, theatre time and why very long sittings are not a bargain</h2>
 
@@ -117,18 +119,14 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="a-number-published-before-assessment">Why a number published before assessment is a marketing device</h2>
 
-<p>A price advertised before anyone has examined your scalp cannot be a quote, because none of the inputs are known. Donor density has not been measured, miniaturisation has not been looked for, and nobody has established whether your loss has stabilised. A figure produced without those belongs to an average patient who does not exist. It is a lead magnet, which is why it is everywhere in this city.</p>
+<p>A price advertised before anyone has examined your scalp cannot be a quote, because none of the inputs are known. Donor density has not been measured, miniaturisation has not been looked for, and nobody has established whether your loss has stabilised. A figure produced without those belongs to an average patient who does not exist. It is a lead magnet rather than a quote.</p>
 
-<p>The same objection applies to a graft count offered from a photograph sent over WhatsApp, and to <a href="/blog/norwood-scale-explained">a Norwood stage read off a mirror selfie</a>. It applies with more force to numbers promising an outcome, because <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and quoted success rates</a> are claims no clinic can verify for your head in advance. Galleries deserve the same scepticism, which is why <a href="/blog/how-to-read-before-and-after-photos">reading a before-and-after photograph properly</a> is worth learning first.</p>
+<p>The same objection applies to a graft count offered from a photograph sent over WhatsApp, and to <a href="/blog/norwood-scale-explained">a Norwood stage read off a mirror selfie</a>. It applies with more force to numbers about an outcome, because <a href="/blog/hair-transplant-promises-and-success-rates">promised results and quoted success rates</a> are claims no clinic can verify for your head beforehand. Galleries deserve the same scepticism, which is why <a href="/blog/how-to-read-before-and-after-photos">reading a before-and-after photograph properly</a> is worth learning first.</p>
 
-<blockquote>This is why there are no prices on this site. A number written before an examination is a guess dressed as a commitment, and you would have no way of telling which you had been handed.</blockquote>
+<blockquote>A number written before an examination is a guess dressed as a commitment, and you would have no way of telling which you had been handed.</blockquote>
 
 <h2 id="what-to-do-with-two-quotes">What to do with two quotes that disagree</h2>
 
 <p>Do not begin with which is cheaper. Begin by establishing whether they describe the same operation: same unit, same areas, same density, same person operating, same inclusions, same tax treatment. Once both are normalised, the remaining gap is usually staffing or surgeon time, which is a decision about what you are buying rather than something to haggle over. Anything left unclear is often covered in <a href="/faqs">the clinic's general questions and answers</a>.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="hair-transplant-quote-faqs">Questions about quotes and estimates</h2>
-
-<?= faq_list($postFaqs) ?>

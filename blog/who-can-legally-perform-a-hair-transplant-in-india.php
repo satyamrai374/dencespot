@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'who-can-legally-perform-a-hair-transplant-in-india';
-$postDescription = 'What India\'s medical regulator requires of anyone performing a hair transplant, how to verify a doctor on the Indian Medical Register in two minutes, and what that register cannot tell you.';
+$postDescription = 'What India\'s medical regulator requires of anyone performing a hair transplant, how to check a doctor on the Indian Medical Register, and its limits.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -18,7 +18,7 @@ $postFaqs = [
     ['q' => 'Can a dentist, homeopath or Ayurvedic practitioner perform a hair transplant?',
      'a' => 'A practitioner registered under a different system of medicine is not registered to practise modern medicine and surgery, and cross-system practice has repeatedly been held to be improper. If the person holding the punch appears on a dental or AYUSH register rather than the Indian Medical Register, that is a serious problem however the clinic describes their experience.'],
     ['q' => 'What if the clinic is a chain and the doctor is named only on the website?',
-     'a' => 'Ask which registered doctor will be present on your date, by name, and get it written on the consent form. A brand name carries no registration. Chains rotate doctors between branches, so the surgeon who consulted you in Gurgaon may be rostered elsewhere on the day you are operated on.'],
+     'a' => 'Ask which registered doctor will be present on your date, by name, and get it written on the consent form. A brand name carries no registration. Where a clinic has more than one branch, doctors may divide their time between them, so the doctor who consulted you may not be the one rostered on the day you are operated on.'],
     ['q' => 'Does a foreign medical qualification count in India?',
      'a' => 'A foreign degree does not permit practice here on its own. The holder still has to be registered with a state medical council or the National Medical Commission before practising in India. So if a clinic advertises an internationally trained surgeon, the same verification applies: ask for the Indian registration number, not the foreign diploma.'],
     ['q' => 'Should I ask for the registration number in person or in writing?',
@@ -26,6 +26,8 @@ $postFaqs = [
     ['q' => 'Can the public register be out of date?',
      'a' => 'It can be. Entries are maintained by state councils and updates are not instantaneous, so a recently qualified or recently relocated doctor may appear with older details. A puzzling entry is a reason to ask a specific question, not to assume the worst. What should concern you is a clinic that will not give you a number to check at all.'],
 ];
+$postFaqId = 'registration-and-regulation-faqs';
+$postFaqHeading = 'Registration and regulation FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -37,7 +39,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>A hair transplant is surgery. It involves anaesthesia, incisions, removal of tissue and a sterile field, which places it inside medical practice rather than cosmetic services. The National Medical Commission, which replaced the Medical Council of India as the regulator of modern medicine, has issued guidance covering aesthetic and hair transplant procedures. Its position is narrow: such procedures are to be performed by a registered medical practitioner holding an appropriate postgraduate qualification, in practice dermatology or plastic surgery, in premises equipped for the work.</p>
 
-<p>Two consequences follow, and they are the ones clinics rarely volunteer.</p>
+<p>Two consequences follow, and they are rarely spelled out.</p>
 
 <p>First, a basic MBBS was never intended as the qualification for independent aesthetic surgical practice. Second, anyone not on the medical register at all — a technician, an assistant, a manager, someone registered under a different system of medicine — cannot perform the operative steps, however many they have assisted with. No regulator treats seniority as a qualification.</p>
 
@@ -69,11 +71,11 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="what-ghost-surgery-means">Ghost surgery, and why the model persists</h2>
 
-<p>Ghost surgery is one doctor consulting, consenting and being advertised while somebody else operates. In hair restoration the usual form is not a substitute doctor. It is unregistered technicians performing extraction or site creation while the named doctor is elsewhere in the building, or at another branch.</p>
+<p>Ghost surgery is one doctor consulting, consenting and being advertised while somebody else operates. In hair restoration the form most often described is not a substitute doctor. It is unregistered technicians performing extraction or site creation while the named doctor is elsewhere in the building, or at another branch.</p>
 
 <p>It persists for a plain commercial reason. Surgeon time is the binding constraint on how many procedures a clinic can sell in a week. Delegate the operative steps to salaried technicians and one doctor's name covers several theatres. That arithmetic is part of <a href="/blog/why-hair-transplant-quotes-vary">why two quotes for the same head differ so widely</a>.</p>
 
-<p>The clinical cost lands years later. Extraction angle and depth determine how much donor supply is wasted; recipient site angle determines the direction hair grows. Both are learned skills, and both are irreversible. Much of the work described in <a href="/blog/hair-transplant-repair-options">what corrective surgery can and cannot fix</a> traces back to procedures where those decisions fell to whoever was free.</p>
+<p>The clinical cost lands years later. Extraction angle and depth determine how much donor supply is wasted; recipient site angle determines the direction hair grows. Both are learned skills, and both are irreversible. Some of the work described in <a href="/blog/hair-transplant-repair-options">what corrective surgery can and cannot fix</a> traces back to procedures where those decisions fell to whoever was free.</p>
 
 <blockquote>You are not being difficult by asking who will hold the instruments. It is the most consequential fact about your operation, and it is the one detail a brochure never contains.</blockquote>
 
@@ -96,7 +98,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>Reading the result</h3>
 
-<p>A record shows the name, the registration number, the registering state council, the year, and the qualification recorded against the entry. Check that the name matches the person you actually met, that the recorded qualification is the one advertised, and that the registering body is a genuine state council. The qualifications and registration for this clinic's doctor are set out on <a href="/dr-nyra">the profile page for Dr. Nyra</a>, and are there to be verified rather than taken on trust.</p>
+<p>A record shows the name, the registration number, the registering state council, the year, and the qualification recorded against the entry. Check that the name matches the person you actually met, that the recorded qualification is the one advertised, and that the registering body is a genuine state council. The names, qualifications and registration details of this clinic's doctors are listed in <a href="/medical-disclaimer#doctors">the doctors and registration section</a>, to be verified rather than taken on trust.</p>
 
 <h2 id="what-registration-cannot-tell-you">What registration does not tell you</h2>
 
@@ -104,7 +106,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>It does not record surgical volume. It cannot tell you whether a dermatologist has performed four hundred transplants or four. It does not record technique, so it will not separate a surgeon who does <a href="/dhi-hair-transplant-in-gurgaon">implanter-pen placement</a> most weeks from one who last did it in training. It holds no complication history and nothing about outcomes.</p>
 
-<p>Most importantly, it says nothing about who will be in the theatre on your date. A properly registered doctor delegating your extraction to a technician is entirely consistent with the register. It verifies a credential; only a written commitment verifies attendance. That is why the <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking at a consultation</a> matter alongside the check, and why claims about <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and quoted success rates</a> deserve the same scepticism.</p>
+<p>Most importantly, it says nothing about who will be in the theatre on your date. A properly registered doctor delegating your extraction to a technician is entirely consistent with the register. It verifies a credential; only a written commitment verifies attendance. That is why the <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking at a consultation</a> matter alongside the check, and why claims about <a href="/blog/hair-transplant-promises-and-success-rates">promised results and quoted success rates</a> deserve the same scepticism.</p>
 
 <?= blog_cta(
     'Want to check who would actually be operating on you here?',
@@ -137,7 +139,3 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>None of this is exotic diligence, and an elective operation does not lower the standard. If you are still deciding whether surgery is right for you, <a href="/blog/who-should-not-have-a-hair-transplant">the cases where a transplant is the wrong answer</a> is the better place to begin, and <a href="/hair-transplant-in-gurgaon">the overview of what the procedure involves</a> is worth reading before you check who would perform it.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="registration-and-regulation-faqs">Registration and regulation FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

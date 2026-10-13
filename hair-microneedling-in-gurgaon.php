@@ -29,7 +29,7 @@ $faqs = [
     ['q' => 'What is microneedling for hair?',
      'a' => 'A technique in which very fine needles create controlled micro-injuries in the scalp. The intent is twofold: to provoke a wound-healing response in the tissue around the follicles, and to create temporary channels that allow topical treatment to reach deeper than it otherwise would.'],
     ['q' => 'Does it work?',
-     'a' => 'The more interesting evidence is for microneedling used together with topical treatment rather than on its own, and that distinction matters. It is best understood as something that may improve how well an existing topical therapy performs, rather than as a treatment that regrows hair by itself.'],
+     'a' => 'The more interesting evidence is for microneedling used together with topical treatment rather than on its own, and that distinction matters. Those studies are mostly small and short, and needle depth and frequency vary between them, so it has not been established as a treatment that reverses or cures hair loss. It is more accurately described as something that may improve how well an existing topical therapy performs, rather than as a treatment that regrows hair by itself.'],
     ['q' => 'So it is not a standalone treatment?',
      'a' => 'That is our position, and it is why we will not sell it as one. If you have not been diagnosed, or you are not on treatment with evidence behind it, adding microneedling to nothing is unlikely to be the intervention that changes your outcome.'],
     ['q' => 'How is it different from mesotherapy?',
@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Microneedling in Gurgaon | DenceSpot Clinic',
-    'description' => 'Scalp microneedling in Gurgaon, positioned honestly as an adjunct to topical treatment rather than a standalone cure, with the home dermaroller risks explained.',
+    'description' => 'Scalp microneedling in Gurgaon, positioned honestly as an adjunct to topical treatment with limited evidence, not a standalone treatment, and home dermaroller risks explained.',
     'url'         => '/hair-microneedling-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -78,7 +78,7 @@ $page = [
             'howPerformed'  => 'Fine needles create controlled micro-injuries in the scalp across the treatment area, provoking a wound-healing response and creating temporary channels through which topical treatment can penetrate more deeply. It is delivered as a course of sessions spaced some weeks apart, generally alongside established topical therapy, and is sometimes combined with application of platelet-rich plasma immediately afterwards.',
             'preparation'   => 'Clinical assessment and scalp examination, establishment of the underlying diagnosis and investigation of reversible causes, exclusion of active scalp infection, inflammation or autoimmune scalp disease, review of any tendency to keloid or abnormal scarring, and review of medication affecting bleeding or healing.',
             'followup'      => 'Baseline and interval photography, review of response over several months, and continuation of the underlying medical treatment alongside.',
-            'expectedPrognosis' => 'Evidence is more supportive of microneedling used in combination with topical treatment than of microneedling alone, and it is best regarded as an adjunct rather than a standalone treatment for hair loss. Where benefit occurs, reduced shedding is commonly the earliest change and density is assessed over months. It does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
+            'expectedPrognosis' => 'Evidence, drawn mostly from small and short studies with varying protocols, is more supportive of microneedling used in combination with topical treatment than of microneedling alone, and it is regarded as an adjunct rather than a standalone treatment for hair loss. Where benefit occurs, reduced shedding is commonly the earliest change and density is assessed over months. It does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
         ]),
         schema_faq('/hair-microneedling-in-gurgaon', $faqs),
     ],
@@ -92,28 +92,28 @@ require __DIR__ . '/includes/header.php';
     <div class="split">
       <div>
         <span class="pill pill--dot">Hair microneedling in Gurgaon</span>
-        <h1 class="h1 mt-3">Microneedling Works Best as a Partner, Not a Treatment on Its Own</h1>
-        <p class="lead mt-3 measure">The evidence that makes microneedling interesting is about using it alongside topical treatment, not instead of it. That distinction gets flattened in most marketing and it is the whole point. Added to a proper treatment plan it may help. Added to nothing, it is unlikely to be what changes your outcome.</p>
+        <h1 class="h1 mt-3">Hair Microneedling: an Add-On to Treatment, Not a Treatment on Its Own</h1>
+        <p class="lead mt-3 measure">The evidence that makes microneedling interesting is about using it alongside topical treatment, not instead of it — and even that evidence is limited. That distinction gets flattened in most marketing and it is the whole point. Added to a proper treatment plan it may help some people. Added to nothing, it is unlikely to be what changes your outcome.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
         <?= ticks([
-            'Offered as an adjunct, not a standalone cure',
+            'Offered as an adjunct, not a standalone treatment',
             'Diagnosis established before any course',
             'Response measured against baseline photographs',
-            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
+            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Microneedling and scalp treatment equipment at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Assessed &amp; performed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -123,16 +123,16 @@ require __DIR__ . '/includes/header.php';
 <section class="trust">
   <div class="wrap">
     <div class="grid grid--5">
-      <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Diagnosis first</p><p class="body-s mt-2">Treatable causes found before needling anything.</p></div>
-      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Positioned honestly</p><p class="body-s mt-2">An adjunct, and we say so.</p></div>
-      <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Done sterilely</p><p class="body-s mt-2">The skin is being broken, so hygiene is not optional.</p></div>
-      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Photographed</p><p class="body-s mt-2">Measured against a baseline, not impressions.</p></div>
-      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Home use advised on</p><p class="body-s mt-2">Told what is safe, rather than left to guess.</p></div>
+      <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Diagnosis first</p><p class="meta mt-1">Treatable causes found before needling anything.</p></div>
+      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Positioned honestly</p><p class="meta mt-1">An adjunct, and we say so.</p></div>
+      <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Done sterilely</p><p class="meta mt-1">The skin is being broken, so hygiene is not optional.</p></div>
+      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Photographed</p><p class="meta mt-1">Measured against a baseline, not impressions.</p></div>
+      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Home use advised on</p><p class="meta mt-1">Told what is safe, rather than left to guess.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
+<section class="section section--white" id="what-is">
   <div class="wrap">
     <div class="split">
       <div>
@@ -140,7 +140,7 @@ require __DIR__ . '/includes/header.php';
         <h2 class="h2 mt-2">What Microneedling Does to a Scalp</h2>
         <p class="body-l mt-3 measure">Very fine needles create a large number of tiny, controlled injuries across the treatment area. Two things are meant to follow from that.</p>
         <p class="body-l mt-3 measure">The first is biological. Controlled injury provokes a wound-healing response in the surrounding tissue, and the interest in hair medicine is in what that response might do around the follicles. This is the mechanism most often described in marketing, and it is also the one with the least direct evidence attached when microneedling is used alone.</p>
-        <p class="body-l mt-3 measure">The second is more straightforward and probably more important. The needles create temporary channels through the outer layer of skin, and a topical treatment applied to that scalp can reach deeper than it would through intact skin. Better delivery of a treatment that already works is a plausible and modest claim.</p>
+        <p class="body-l mt-3 measure">The second is more straightforward and probably more important. The needles create temporary channels through the outer layer of skin, and a topical treatment applied to that scalp can reach deeper than it would through intact skin. Better delivery of a topical treatment that has its own evidence is a plausible and modest claim, though it is still being studied.</p>
         <p class="body-l mt-3 measure">That second mechanism is the reason this page positions microneedling the way it does. It is a way of making something else work better, and it needs that something else to exist.</p>
       </div>
       <div class="card card--pad-lg">
@@ -154,7 +154,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="home-use">
+<section class="section section--canvas" id="home-use">
   <div class="wrap">
     <p class="eyebrow">Safety</p>
     <h2 class="h2 mt-2">About Home Dermarollers</h2>
@@ -181,34 +181,34 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="candidacy">
+<section class="section section--white" id="candidacy">
   <div class="wrap">
     <div class="split">
       <div>
         <p class="eyebrow">Suitability</p>
         <h2 class="h2 mt-2">Where It Fits in a Plan</h2>
-        <p class="body-l mt-3 measure">It fits where there is already a diagnosis and an established treatment for it, and the question is whether anything can reasonably be added. That is a legitimate question and microneedling is a legitimate answer to it.</p>
+        <p class="body-l mt-3 measure">It fits where there is already a diagnosis and an established treatment for it, and the question is whether anything can reasonably be added. Microneedling is one option that may be discussed then, with modest expectations and the limits of its evidence explained.</p>
         <p class="body-l mt-3 measure">It does not fit as a first move for someone whose hair loss has not been investigated, or as a substitute for treatment that has evidence behind it. It is also not the treatment for an autoimmune condition such as <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata</a>, and it should not be performed over inflamed or infected skin.</p>
         <p class="body-l mt-3 measure">Where there is a tendency to keloid or abnormal scarring, it needs particular caution, and medication affecting bleeding or healing is reviewed before any session.</p>
       </div>
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Reasonable to consider</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Alongside established topical treatment',
               'Where the diagnosis is already clear',
               'Combined with PRP where that suits the plan',
               'As an addition, with modest expectations',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Not appropriate</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Active scalp infection or inflammation',
               'Autoimmune or inflammatory scalp disease',
               'A tendency to keloid or abnormal scarring',
               'Undiagnosed hair loss, as a first step',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -217,13 +217,13 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink" id="journey">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--accent)">The process</p>
-    <h2 class="h2 mt-2" style="color:#fff">How a Course Runs</h2>
-    <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 01</p><p class="h4 mt-2" style="color:#fff">Assessment</p><p class="body-s mt-2">Diagnosis established, reversible causes investigated, scalp examined, and the existing treatment plan reviewed before anything is added to it.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 02</p><p class="h4 mt-2" style="color:#fff">Baseline photographs</p><p class="body-s mt-2">Standardised images first, because a slow adjunct treatment cannot be judged without something to compare against.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 03</p><p class="h4 mt-2" style="color:#fff">Sessions</p><p class="body-s mt-2">A course spaced weeks apart to allow recovery between, with what is applied afterwards planned rather than improvised.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 04</p><p class="h4 mt-2" style="color:#fff">Review</p><p class="body-s mt-2">Compared against baseline. If nothing is changing, the adjunct is stopped rather than repeated indefinitely.</p></div>
+    <p class="eyebrow">The process</p>
+    <h2 class="h2 mt-2">How a Course Runs</h2>
+    <div class="journey mt-6" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Diagnosis established, reversible causes investigated, scalp examined, and the existing treatment plan reviewed before anything is added to it.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">Baseline photographs</p><p class="body-s mt-2">Standardised images first, because a slow adjunct treatment cannot be judged without something to compare against.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Sessions</p><p class="body-s mt-2">A course spaced weeks apart to allow recovery between, with what is applied afterwards planned rather than improvised.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Review</p><p class="body-s mt-2">Compared against baseline. If nothing is changing, the adjunct is stopped rather than repeated indefinitely.</p></div>
     </div>
   </div>
 </section>
@@ -241,21 +241,21 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Usual and expected</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Redness for a day or so',
               'Tenderness of the scalp',
               'Pinpoint bleeding during the session',
               'Mild tightness afterwards',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Briefly avoid</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Heavy sweating and the gym',
               'Swimming pools, saunas and steam',
               'Direct sun on the scalp',
               'Any product not on your instructions',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why this is offered as an addition rather than a headline treatment: microneedling is cheap to deliver, easy to sell as a course, and the evidence people cite for it is largely evidence for using it together with a topical treatment. Presenting it as a standalone answer to hair loss takes a modest, plausible adjunct and turns it into a substitute for a diagnosis. The clinically useful version is to establish why the hair is falling, treat that properly, and then decide whether needling adds anything worth paying for.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
 <section class="section section--canvas" id="cost">
@@ -282,11 +282,11 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4 measure">Avoid prepaid packages bought before an assessment. An adjunct treatment should be reviewable and stoppable, and you should not be committed to a year of it before anyone has looked at your scalp.</p>
         <p class="body mt-3 measure">See <a href="/cost-and-emi-options">cost and payment options</a>.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Start With the Diagnosis</h3>
         <p class="body mt-3">Send photos of the parting, crown and hairline in daylight, and tell us what treatment you are currently on, including anything you are doing at home.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Book an assessment</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book">Book an assessment</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
@@ -309,7 +309,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Scalp Treatments at Our Gurgaon Clinic',
-    'Assessment, treatment and every review happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Assessment, treatment and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic. Treatment is also available at our Rohini, Delhi clinic.'
 ) ?>
 
 <?= cta_band(

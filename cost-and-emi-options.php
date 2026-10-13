@@ -80,15 +80,15 @@ $faqs = [
     ],
     [
         'q' => 'Can I pay in stages if my treatment is staged?',
-        'a' => 'Where extensive loss is planned across more than one session, the sessions are separated by months and are quoted and paid for separately. You are not asked to pay for a second session before it has been assessed and agreed — and whether a second session is needed is a clinical judgement made at your review, not a commitment made in advance.',
+        'a' => 'Where extensive loss is planned across more than one session, the sessions are separated by months and are quoted and paid for separately. You are not asked to pay for a second session before it has been assessed and agreed — and whether a second session is needed is a clinical judgement made at your review, not a commitment made beforehand.',
     ],
     [
         'q' => 'Are there any costs added on the day of the procedure?',
         'a' => 'No. The estimate is itemised before you book a date, and anything not included in it is named in the document rather than discovered afterwards. If your plan changes clinically between the assessment and the procedure, that is discussed and re-quoted before anything proceeds.',
     ],
     [
-        'q' => 'Is a cheaper quote elsewhere worth taking?',
-        'a' => 'Possibly — but compare the right things. Ask who physically performs the extraction and placement and whether they are a doctor, how the graft number was arrived at, and what the price includes. A low per-graft rate applied to an inflated graft count costs more than an honest quote at a higher rate. See <a href="/hair-transplant-cost-in-gurgaon">how a hair transplant is priced</a>.',
+        'q' => 'Is a cheaper quote worth taking?',
+        'a' => 'Possibly — but compare the right things. Ask who physically performs the extraction and placement and whether they are a doctor, how the graft number was arrived at, and what the price includes. A low per-graft rate applied to a higher graft count can cost more in total than a higher rate on a smaller one. See <a href="/hair-transplant-cost-in-gurgaon">how a hair transplant is priced</a>.',
     ],
     [
         'q' => 'What if I want to cancel?',
@@ -132,7 +132,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body mt-3 measure">What a procedure costs, and why, is covered separately on <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost in Gurgaon</a>. This page is about how it is paid for.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask About Payment</a>
         </div>
 
@@ -145,9 +145,9 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Quoted &amp; reviewed by</p>
+          <p class="eyebrow">Medically reviewed by</p>
           <p class="h4 mt-1"><?= doctor_name() ?></p>
           <p class="meta"><?= doctor_credit() ?></p>
         </div>
@@ -161,7 +161,7 @@ require __DIR__ . '/includes/header.php';
     <div style="max-width:62ch">
       <p class="eyebrow">Before anything is paid</p>
       <h2 id="you-get-the-figure-in-writing-first" class="h2 mt-2">You Get the Figure in Writing First</h2>
-      <p class="body mt-3">No payment discussion happens before there is an estimate to discuss. The estimate is produced after clinical assessment, it is itemised, and it names anything that falls outside it. The number on that document is the number payable.</p>
+      <p class="body mt-3">No payment discussion happens before there is an estimate to discuss. The estimate is produced after clinical assessment, it is itemised, and it names anything that falls outside it. The number on that document is the number payable. Consultations are available at both our clinics, in Sector 39, Gurugram and Rohini, Delhi.</p>
     </div>
 
     <div class="grid grid--3 mt-6">
@@ -228,7 +228,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body mt-3 measure">None of this is a reason to avoid EMI. It is a reason to read whose name is on the document before signing it.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--ink" href="/book-consultation"><?= icon('calendar', 17) ?> Discuss Options at Consultation</a>
+          <a class="btn btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 17) ?> Discuss Options at Consultation</a>
         </div>
       </div>
 
@@ -241,10 +241,10 @@ require __DIR__ . '/includes/header.php';
           <p class="meta mt-4">Which is available to you depends on your own eligibility, not on the clinic.</p>
         </div>
 
-        <div class="card card--pad-lg mt-4" style="background:var(--canvas);box-shadow:none">
+        <div class="card card--dashed card--pad-lg mt-4">
           <?= icon('info', 24, 'var(--accent-deep)') ?>
           <p class="h3 mt-2">On "50% off" offers</p>
-          <p class="body-s mt-2">Discount-led promotion is common in this market. A procedure priced to be halved was not priced honestly to begin with, and a per-graft rate discounted against an inflated graft count is not a saving. Compare the total payable, not the percentage removed from a number you were never shown.</p>
+          <p class="body-s mt-2">Discount-led promotion is common in this market. A percentage off says little unless you know the figure it was taken from and the graft count it applies to. Compare the total payable, not the percentage removed from a number you were never shown.</p>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@ require __DIR__ . '/includes/header.php';
       <?php foreach ($checks as $i => $c): ?>
       <div class="card card--ink">
         <span class="journey__num"><?= str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) ?></span>
-        <p class="h4 mt-2" style="color:#fff"><?= e($c['q']) ?></p>
+        <p class="h4 mt-2"><?= e($c['q']) ?></p>
         <p class="meta mt-2"><?= e($c['why']) ?></p>
       </div>
       <?php endforeach; ?>

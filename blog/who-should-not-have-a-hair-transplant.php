@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'who-should-not-have-a-hair-transplant';
-$postDescription = 'The clinical reasons a hair transplant should be declined — unstable donor zones, diffuse thinning, untreated medical causes, active scalp disease — and what a clinic should offer instead.';
+$postDescription = 'When a hair transplant should be declined: unstable donor, diffuse thinning, untreated medical causes, active scalp disease, and what to offer instead.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -24,12 +24,14 @@ $postFaqs = [
     ['q' => 'What if a clinic has already accepted me and another has said no?',
      'a' => 'Ask both to explain their reasoning in clinical terms, in writing. A yes that rests on your enthusiasm and a no that rests on donor measurements are not equally weighted. If the accepting clinic cannot describe your donor density, your medical workup and your likely progression, that is the answer.'],
     ['q' => 'Will medication alone be enough if surgery is ruled out?',
-     'a' => 'It depends on what is driving the loss and how far it has gone. Medical therapy is aimed at holding ground rather than restoring an area that is already bare, so it works best early. Where it is not enough, cosmetic options such as concealers, a different cut or scalp micropigmentation can carry more weight than people expect.'],
+     'a' => 'It depends on what is driving the loss and how far it has gone. Medical therapy is aimed at holding ground rather than restoring an area that is already bare, so it works most reliably when started early. Where it is not enough, cosmetic options such as concealers, a different cut or scalp micropigmentation can carry more weight than people expect.'],
 ];
+$postFaqId = 'candidacy-faqs';
+$postFaqHeading = 'Candidacy and contraindication FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>Almost every clinic page answers "am I a candidate?" with a version of yes. The consultation is often the sales appointment, and the commercial pressure runs in one direction only. So a page setting out the reasons you might be turned away is unusual, and worth reading with that in mind.</p>
+<p>"Am I a candidate?" is usually asked in the hope of a yes, and the commercial pressure around elective surgery runs in one direction only. This page sets out the clinical reasons the answer may be no, or not yet.</p>
 
 <p>None of what follows is a policy invented in an office. Each item is a clinical finding that changes what surgery can do, and in several cases makes it actively harmful. The useful framing is not who gets rejected, but which diagnosis sits underneath the hair loss and whether moving hair around solves it.</p>
 
@@ -37,7 +39,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>A transplant moves existing hair from the back and sides of the scalp to the top. It does not create hair, it does not stop the process that took the hair away, and it cannot increase your total number of follicles. Every reason for declining someone follows from those three facts.</p>
 
-<p>If the donor supply is itself diseased, there is nothing safe to move. If the loss is still advancing quickly, transplanted hair is left stranded as the area around it thins. If the cause is a treatable illness, surgery addresses the symptom and ignores the disease. And if the distress is not really about density, no surgical result settles it.</p>
+<p>If the donor supply is itself diseased, there is nothing safe to move. If the loss is still progressing quickly, transplanted hair is left stranded as the area around it thins. If the cause is a treatable illness, surgery addresses the symptom and ignores the disease. And if the distress is not really about density, no surgical result settles it.</p>
 
 <h2 id="diffuse-unpatterned-alopecia">Diffuse unpatterned alopecia, and why it rules surgery out</h2>
 
@@ -82,7 +84,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Two versions come up often. The first is the fixed image: a photograph from school, a teenage hairline, a density the donor supply cannot fund. That is usually solvable by an honest conversation, drawings on the actual scalp, and a clear statement of what the outcome will and will not look like at ten to twelve months.</p>
 
-<p>The second is harder. Where distress is disproportionate to the visible loss, or the hair has become the explanation for problems that sit elsewhere in a life, surgery reliably fails to help. Body dysmorphic concerns are a recognised reason to decline cosmetic surgery of any kind, and the response is a referral rather than a scalpel. Any clinic promising a result will fix how you feel has stopped practising medicine, which is also why <a href="/blog/hair-transplant-guarantees-and-success-rates">guarantees and quoted success rates should raise your guard</a>.</p>
+<p>The second is harder. Where distress is disproportionate to the visible loss, or the hair has become the explanation for problems that sit elsewhere in a life, surgery reliably fails to help. Body dysmorphic concerns are a recognised reason to decline cosmetic surgery of any kind, and the response is a referral rather than a scalpel. Any clinic promising a result will fix how you feel has stopped practising medicine, which is also why <a href="/blog/hair-transplant-promises-and-success-rates">promised results and quoted success rates should raise your guard</a>.</p>
 
 <?= blog_cta(
     'Not sure which of these describes you?',
@@ -92,7 +94,8 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>A decline that ends the conversation is a poor decline. Each of the situations above has a next step, and a clinic that has genuinely assessed you can name yours.</p>
 
-<table class="data">
+<div class="table-scroll">
+<table class="data" style="min-width:0">
   <thead>
     <tr><th scope="col">Finding</th><th scope="col">Reasonable next step</th></tr>
   </thead>
@@ -105,6 +108,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Expectation mismatch</td><td>Second consultation, or referral where appropriate</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Medical and in-clinic options overlap here. Platelet-rich plasma helps only where there is still hair to support, which is a different question from whether it substitutes for surgery — <a href="/blog/prp-or-hair-transplant">the comparison between PRP and a transplant</a> covers where each fits. For loss that is still active, <a href="/hair-fall-treatment-in-gurgaon">a structured hair fall assessment</a> is where the useful work happens.</p>
 
@@ -129,10 +133,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Then ask the second clinic to examine the donor area under magnification and tell you what they measure. <a href="/blog/questions-to-ask-hair-transplant-consultation">The questions worth asking at a consultation</a> are largely about what was measured and who does the work — <a href="/blog/who-can-legally-perform-a-hair-transplant-in-india">the law on who may operate in India</a> is clearer than most patients expect.</p>
 
-<p>Cost should not be introduced into a suitability decision at all; it belongs on the <a href="/hair-transplant-cost-in-gurgaon">page explaining how graft numbers and cost relate</a>. Suitability is a clinical judgement made by <a href="/dr-nyra">the doctor who would perform the procedure</a>, after examination, and it is the one part of this process that should never be negotiable.</p>
+<p>Cost should not be introduced into a suitability decision at all; it belongs on the <a href="/hair-transplant-cost-in-gurgaon">page explaining how graft numbers and cost relate</a>. Suitability is a clinical judgement made by the doctor who would perform the procedure, after examination, and it is the one part of this process that should never be negotiable.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="candidacy-faqs">Candidacy and contraindication FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

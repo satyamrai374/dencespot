@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'prp-or-hair-transplant';
-$postDescription = 'PRP supports follicles that still exist; a transplant moves follicles into skin where they have gone. How to tell which problem you have, and when the answer is neither yet.';
+$postDescription = 'PRP supports follicles that still exist; a transplant moves follicles to where they have gone. How to tell which problem you have, or if it is neither yet.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -26,6 +26,8 @@ $postFaqs = [
     ['q' => 'How long before you can tell whether PRP is doing anything for you?',
      'a' => 'Not from one session, and not from how the scalp feels. Standardised photographs taken before the first session and again at four to six months are the only honest comparison, because day-to-day shedding varies too much to read. What a realistic response looks like is covered in <a href="/blog/does-prp-work-for-hair-loss">the evidence on PRP for hair loss</a>.'],
 ];
+$postFaqId = 'prp-and-transplant-faqs';
+$postFaqHeading = 'PRP and hair transplant FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -87,7 +89,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Those are reasonable hopes. They are not established facts. The published work is small in scale, preparation methods differ between clinics so results are hard to compare, and no standard protocol exists for dose or timing. If PRP around surgery is presented to you as something that improves graft survival by a stated amount, that number has been invented.</p>
 
-<p>The honest framing is that it may help, it is unlikely to do harm, and it is an optional addition rather than part of the operation. It is worth separating it from the shedding that is expected anyway — <a href="/blog/shedding-and-shock-loss-after-hair-transplant">what normal post-transplant shedding looks like</a> is a useful baseline, because otherwise any shedding gets read as PRP having failed.</p>
+<p>The honest framing is that it may help, the evidence for it is limited, and it is an optional addition rather than part of the operation. It is worth separating it from the shedding that is expected anyway — <a href="/blog/shedding-and-shock-loss-after-hair-transplant">what normal post-transplant shedding looks like</a> is a useful baseline, because otherwise any shedding gets read as PRP having failed.</p>
 
 <h2 id="who-needs-neither-yet">The people who need neither procedure yet</h2>
 
@@ -104,12 +106,8 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="where-medical-treatment-sits">Where medicines sit alongside either choice</h2>
 
-<p>Both procedures work better inside a plan that includes medical treatment, because medical treatment is the only part of the plan that acts on the process itself. That does not make it right for everyone. These are prescription medicines with side effects worth discussing properly, some of them relevant to fertility and pregnancy, and the decision belongs in a conversation with a doctor who has examined you and taken a history — not in a checkout flow. <a href="/blog/minoxidil-and-finasteride-in-india">How minoxidil and finasteride are regulated in India</a> covers what that conversation should include.</p>
+<p>Both procedures are usually planned alongside medical treatment, because medical treatment is the only part of the plan that acts on the process itself. That does not make it right for everyone. These are prescription medicines with side effects worth discussing properly, some of them relevant to fertility and pregnancy, and the decision belongs in a conversation with a doctor who has examined you and taken a history — not in a checkout flow. <a href="/blog/minoxidil-and-finasteride-in-india">How minoxidil and finasteride are regulated in India</a> covers what that conversation should include.</p>
 
-<p>If you want the short version: find out what your scalp is doing before you choose between two treatments for different problems. An <a href="/hair-fall-treatment-in-gurgaon">assessment of what is causing your hair fall</a> answers that, and you can read <a href="/dr-nyra">about the dermatologist who carries out the examination</a> before you book.</p>
+<p>If you want the short version: find out what your scalp is doing before you choose between two treatments for different problems. An <a href="/hair-fall-treatment-in-gurgaon">assessment of what is causing your hair fall</a> answers that, and <a href="/medical-disclaimer#doctors">the clinic's doctors and their registration details</a> are listed if you want to check them before you book.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="prp-and-transplant-faqs">PRP and hair transplant FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

@@ -49,14 +49,15 @@ function schema_clinic(): array
     }
 
     $node['hasMap'] = MAPS_URL;
-    $node['image']  = abs_url(CLINIC_IMAGE);
+    // Only a real photograph of the premises may stand for the clinic — see
+    // CLINIC_IMAGE in config.php for why there is none at the moment.
+    if (CLINIC_IMAGE !== null) {
+        $node['image'] = abs_url(CLINIC_IMAGE);
+    }
 
-    /**
-     * A coarse band, not a figure. The clinic publishes no per-graft price
-     * because quotes are issued in writing after assessment, and priceRange
-     * accepts exactly this kind of indication without committing to a number.
-     */
-    $node['priceRange'] = '₹₹';
+    // No priceRange: the clinic publishes no charges (quotes are written after
+    // assessment), and a fee indication must be factual (NMC Guidelines
+    // 06.10.2026, cl. 8.1(x)).
 
     /**
      * ⚠ NO hasCredential node. The three NABH certificate images could not be
@@ -79,6 +80,47 @@ function schema_clinic(): array
     return $node;
 }
 
+/** The Delhi (Rohini) clinic entity. */
+function schema_delhi_clinic(): array
+{
+    return [
+        '@type'     => 'MedicalClinic',
+        '@id'       => SITE_ORIGIN . '/delhi-clinic#clinic',
+        'name'      => LOC_DELHI_NAME,
+        'url'       => SITE_ORIGIN . '/delhi-clinic',
+        'telephone' => LOC_DELHI_PHONE_E164,
+        'email'     => EMAIL,
+        'address'   => [
+            '@type'           => 'PostalAddress',
+            'streetAddress'   => LOC_DELHI_ADDRESS,
+            'addressLocality' => 'Delhi',
+            'addressRegion'   => 'Delhi',
+            'postalCode'      => '110085',
+            'addressCountry'  => 'IN',
+        ],
+        'medicalSpecialty' => 'Dermatology',
+        'openingHoursSpecification' => [[
+            '@type'     => 'OpeningHoursSpecification',
+            'dayOfWeek' => HOURS_DAYS,
+            'opens'     => HOURS_OPEN,
+            'closes'    => HOURS_CLOSE,
+        ]],
+        'geo' => [
+            '@type'     => 'GeoCoordinates',
+            'latitude'  => 28.7111119,
+            'longitude' => 77.107037,
+        ],
+        'hasMap'     => LOC_DELHI_MAPS_URL,
+        'areaServed' => [
+            ['@type' => 'City', 'name' => 'Delhi'],
+            ['@type' => 'AdministrativeArea', 'name' => 'North-West Delhi'],
+            ['@type' => 'AdministrativeArea', 'name' => 'Rohini'],
+            ['@type' => 'AdministrativeArea', 'name' => 'Pitampura'],
+            ['@type' => 'AdministrativeArea', 'name' => 'Delhi NCR'],
+        ],
+    ];
+}
+
 /** A treating doctor. */
 function schema_physician(string $key = 'dr-nyra'): ?array
 {
@@ -88,16 +130,24 @@ function schema_physician(string $key = 'dr-nyra'): ?array
     }
 
     $node = [
-        '@type'    => 'Physician',
+        // schema.org's Physician is an Organization type, on which jobTitle,
+        // worksFor and alumniOf are invalid; the person is typed as both.
+        '@type'    => ['Person', 'IndividualPhysician'],
         '@id'      => abs_url($doc['url']) . '#physician',
         'name'     => $doc['name'],
-        'jobTitle' => $doc['role'],
         'url'      => abs_url($doc['url']),
         'worksFor' => ['@id' => SITE_ORIGIN . '/#clinic'],
     ];
 
-    $node['medicalSpecialty'] = 'Dermatology';
-    $node['image']            = abs_url('/assets/img/dr-nayra.webp');
+    if (!empty($doc['role'])) {
+        $node['jobTitle'] = $doc['role'];
+    }
+    // No default: a specialty is only marked up when config records one.
+    if (!empty($doc['specialty'])) {
+        $node['medicalSpecialty'] = $doc['specialty'];
+    }
+    // No image: a doctor's photograph used as publicity is barred (NMC Guidelines
+    // 06.10.2026, cl. 9.2), and the portrait on file may be AI-edited.
 
     // Range is EducationalOrganization, not Text — a bare string is a range violation.
     if (!empty($doc['alumni'])) {
@@ -150,7 +200,10 @@ function schema_procedure(string $pageUrl, array $fields): array
         'location' => ['@id' => SITE_ORIGIN . '/#clinic'],
     ], $fields);
 
-    return schema_fix_prognosis($node);
+    // A field passed as null is dropped — e.g. Rohini pages pass
+    // 'performer' => null (who performs it there is not on record) and a
+    // 'location' pointing at the Delhi clinic node.
+    return schema_fix_prognosis(array_filter($node, static fn ($v): bool => $v !== null));
 }
 
 /**
@@ -178,12 +231,12 @@ function schema_fix_prognosis(array $node): array
 /** Non-surgical therapy — PRP, GFC, mesotherapy, LLLT. */
 function schema_therapy(string $pageUrl, array $fields): array
 {
-    return schema_fix_prognosis(array_merge([
+    return schema_fix_prognosis(array_filter(array_merge([
         '@type'     => 'MedicalTherapy',
         '@id'       => abs_url($pageUrl) . '#therapy',
         'performer' => ['@id' => abs_url(DOCTORS['dr-nyra']['url']) . '#physician'],
         'location'  => ['@id' => SITE_ORIGIN . '/#clinic'],
-    ], $fields));
+    ], $fields), static fn ($v): bool => $v !== null));
 }
 
 /**
@@ -298,6 +351,22 @@ function schema_medical_webpage(string $pageUrl, string $title): ?array
         'lastReviewed' => REVIEWED_DATE_ISO,
     ];
 
+    /**
+     * Cluster relationships, from the same map footer.php renders visibly —
+     * every URL here is a link on the page. A cluster page declares its pillar
+     * as isPartOf; every cluster member lists the rest as relatedLink.
+     */
+    if (function_exists('cluster_for')) {
+        $related = cluster_related_urls($pageUrl);
+        if ($related !== []) {
+            $node['relatedLink'] = $related;
+        }
+        $found = cluster_for($pageUrl);
+        if ($found !== null && $found[1] === 'spoke') {
+            $node['isPartOf'] = ['@id' => abs_url(CLUSTERS[$found[0]]['pillar']['url']) . '#webpage'];
+        }
+    }
+
     return $node;
 }
 
@@ -322,8 +391,6 @@ const MEDICAL_PAGES = [
     '/hair-transplant-cost-in-gurgaon',
     '/cost-and-emi-options',
     '/hair-transplant-aftercare',
-    '/hair-transplant-results-gurgaon',
-    '/gallery',
     '/faqs',
 
     /*
@@ -354,13 +421,9 @@ const MEDICAL_PAGES = [
     '/hair-microneedling-in-gurgaon',
     '/hair-led-therapy-in-gurgaon',
     '/prp-hair-treatment-cost-in-gurgaon',
-    '/best-hair-transplant-clinic-in-gurgaon',
     '/how-to-choose-hair-transplant-clinic',
     '/hair-transplant-graft-calculator',
     '/hair-loss-assessment',
-    // schema_medical_webpage() rtrims the trailing slash before matching, so
-    // the directory section is listed without one.
-    '/patient-stories',
 ];
 
 /** Site-level entity, homepage only. */

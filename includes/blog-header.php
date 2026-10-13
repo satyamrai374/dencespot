@@ -38,7 +38,9 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => ($post['seo_title'] ?? $post['title']) . ' | DenceSpot Clinic',
+    // Short brand suffix: seo_title runs to ~50 characters, and " | DenceSpot
+    // Clinic" pushed 13 post titles past the ~60-character SERP truncation point.
+    'title'       => ($post['seo_title'] ?? $post['title']) . ' | DenceSpot',
     'description' => $postDescription ?? $post['excerpt'],
     'url'         => $url,
     'og_type'     => 'article',

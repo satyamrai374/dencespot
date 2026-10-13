@@ -34,7 +34,7 @@ $faqs = [
     ['q' => 'Why does it ask when the loss started?',
      'a' => 'Because timing is often the most useful diagnostic clue available. Shedding that began a few months after a birth, an illness, surgery, a crash diet or a period of severe stress points somewhere quite different from a hairline that has receded gradually over five years.'],
     ['q' => 'Why does it ask about patches?',
-     'a' => 'Because well-defined patches of complete hair loss suggest something other than pattern baldness, and the distinction changes everything that follows. It is also the presentation where being sold a hair transplant does real harm.'],
+     'a' => 'Because well-defined patches of complete hair loss suggest something other than pattern baldness, and the distinction changes everything that follows. It is also a presentation where a hair transplant is generally not appropriate until the cause is diagnosed and the condition is stable.'],
     ['q' => 'It told me to get blood tests. Which ones?',
      'a' => 'That depends on your history and examination, which is why the tool does not list them. Iron studies and thyroid function come up frequently, with hormonal and other tests where indicated. What is worth checking in your case is decided at the consultation.'],
     ['q' => 'It suggested my hair loss might recover on its own. Should I do nothing?',
@@ -79,29 +79,41 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <style>
-/* Scoped to the assessment tool. */
+/* Scoped to the assessment tool. Oct 2026: homepage palette and type — forest
+   green result panel, teal selection, ivory canvas, serif headings, 14–18px
+   radii. Buttons are the shared .btn (6px). Colours come from site/home tokens. */
 .hla { display: grid; gap: 28px; }
 @media (min-width: 900px) { .hla { grid-template-columns: 1.1fr .9fr; align-items: start; } }
-.hla fieldset { border: 0; padding: 0; margin: 0 0 24px; }
-.hla legend { padding: 0; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
-.hla__opts { display: grid; gap: 8px; }
+.hla fieldset { border: 0; padding: 0; margin: 0 0 28px; min-width: 0; }
+.hla legend { padding: 0; margin-bottom: 12px; font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.hla__opts { display: grid; gap: 10px; }
 .hla__opts--2 { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-.hla__opt { display: flex; gap: 10px; align-items: flex-start; padding: 11px 13px;
-  border: 1px solid rgba(0,0,0,.14); border-radius: 10px; cursor: pointer; background: #fff; }
-.hla__opt:hover { border-color: rgba(0,0,0,.3); }
-.hla__opt input { margin: 2px 0 0; flex: none; }
-.hla__opt b { display: block; font-size: 14px; font-weight: 650; }
-.hla__opt span span { display: block; font-size: 12.5px; opacity: .7; margin-top: 2px; line-height: 1.45; }
-.hla__opt:has(input:checked) { border-color: var(--accent-deep, #059669); box-shadow: 0 0 0 1px var(--accent-deep, #059669) inset; }
-.hla__out { position: sticky; top: 20px; }
-.hla__flag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .04em;
-  text-transform: uppercase; padding: 5px 10px; border-radius: 99px; background: var(--accent, #10B981); color: #06281c; }
-.hla__flag[data-tone="urgent"] { background: #FBBF24; color: #3b2600; }
+.hla__opt { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px;
+  border: 1px solid var(--line); border-radius: 14px; cursor: pointer; background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .2s var(--hp-ease), background-color .2s var(--hp-ease), box-shadow .2s var(--hp-ease); }
+.hla__opt:hover { border-color: var(--hp-teal-500); }
+.hla__opt input { margin: 3px 0 0; flex: none; width: 16px; height: 16px; accent-color: var(--hp-green-800); }
+.hla__opt > span { display: block; min-width: 0; }
+.hla__opt b { display: block; font-size: 14.5px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.hla__opt span span { display: block; font-size: 13px; color: var(--ink-muted); margin-top: 2px; line-height: 1.5; }
+.hla__opt:has(input:checked) { border-color: var(--hp-teal-600); background: var(--hp-teal-50); box-shadow: 0 0 0 1px var(--hp-teal-600) inset; }
+.hla__opt:has(input:focus-visible) { outline: 2px solid var(--hp-teal-600); outline-offset: 2px; }
+.hla__out { position: sticky; top: calc(var(--hp-header-h, 68px) + 20px); }
+.card.hla__panel { background-color: var(--hp-green-800); border-color: var(--hp-green-800); border-radius: 18px; box-shadow: var(--shadow-lg);
+  background-image: radial-gradient(600px 260px at 100% 0%, rgba(143, 217, 203, .12), transparent 60%); }
+.hla__panel .hla__title { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 27px); font-weight: 600; line-height: 1.25; color: #fff; }
+.hla__flag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; line-height: 1.5; padding: 5px 12px; border-radius: 99px;
+  background: var(--hp-teal-100); color: var(--hp-green-800); }
+.hla__flag[data-tone="urgent"] { background: #F4CF86; color: #3B2600; }
 .hla__list { margin-top: 16px; padding-left: 18px; list-style: disc; }
-.hla__list li { font-size: 13.5px; line-height: 1.6; margin-bottom: 9px; opacity: .85; }
-.hla__links { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.16); }
-.hla__links a { display: block; font-size: 13.5px; margin-bottom: 9px; color: var(--accent, #10B981); }
-.hla__noscript { padding: 16px; border: 1px dashed rgba(0,0,0,.25); border-radius: 10px; font-size: 14px; }
+.hla__list li { font-size: 14px; line-height: 1.6; margin-bottom: 9px; color: rgba(255, 255, 255, .82); }
+.hla__list li::marker { color: var(--accent-on-dark); }
+.hla__links { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .16); }
+.hla__links a { display: block; font-size: 14px; font-weight: 600; margin-bottom: 9px; color: var(--accent-on-dark); }
+.hla__links a:hover { color: #fff; }
+.hla__noscript { padding: 16px 18px; border: 1px dashed var(--line-dash); border-radius: 14px; background: #fff; font-size: 14px; color: var(--ink-soft); }
 </style>
 
 <section class="hero">
@@ -114,7 +126,7 @@ require __DIR__ . '/includes/header.php';
 
         <div class="btn-row mt-5">
           <a class="btn btn--lg btn--ink" href="#assessment" data-track="assessment"><?= icon('list', 18) ?> Start the Assessment</a>
-          <a class="btn btn--lg btn--accent" href="/book-consultation" data-track="book"><?= icon('calendar', 19) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--accent" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 19) ?> Book a Consultation</a>
         </div>
 
         <?= ticks([
@@ -126,11 +138,11 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Scalp examination setup used for hair loss assessment at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Treatment trolley with motorised handpieces and foot pedals at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Reviewed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -205,15 +217,15 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hla__out">
-        <div class="card card--ink card--pad-lg">
+        <div class="card card--ink hla__panel card--pad-lg">
           <span class="hla__flag" id="hlaFlag">Your next step</span>
-          <h3 class="h3 mt-3" style="color:#fff" id="hlaTitle" aria-live="polite">—</h3>
-          <p class="body-s mt-3" style="opacity:.85" id="hlaBody"></p>
+          <h3 class="h3 hla__title mt-3" id="hlaTitle" aria-live="polite">—</h3>
+          <p class="body-s mt-3" id="hlaBody"></p>
           <ul class="hla__list" id="hlaSteps"></ul>
           <div class="hla__links" id="hlaLinks"></div>
-          <a class="btn btn--block btn--accent mt-4" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book an assessment</a>
+          <a class="btn btn--block btn--accent mt-4" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book an assessment</a>
           <a class="btn btn--block btn--ghost mt-3" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
-          <p class="fine mt-4" style="opacity:.7">This tool is patient education and not a diagnosis. Suitability for any treatment is determined only after clinical assessment.</p>
+          <p class="fine mt-4">This tool is patient education and not a diagnosis. Suitability for any treatment is determined only after clinical assessment.</p>
         </div>
         <noscript><p class="hla__noscript mt-4">This tool needs JavaScript. You can <a href="/book-consultation">book an assessment</a>, or read <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a> and <a href="/womens-hair-loss-treatment-in-gurgaon">women's hair loss treatment</a> instead.</p></noscript>
       </div>
@@ -228,19 +240,19 @@ require __DIR__ . '/includes/header.php';
         <p class="eyebrow">Why this exists</p>
         <h2 class="h2 mt-2">Most Hair Loss Mistakes Happen Before the Diagnosis</h2>
         <p class="body-l mt-3 measure">People buy treatments before anyone establishes what is wrong. A course of injections for hair loss driven by iron deficiency. A transplant offered for an autoimmune condition. Months of shampoo while genuine pattern loss progresses quietly underneath.</p>
-        <p class="body-l mt-3 measure">None of those are exotic cases. They are the ordinary result of an industry that sells procedures and a patient who reasonably wants the problem fixed rather than investigated.</p>
-        <p class="body-l mt-3 measure">This tool exists to slow that down by one step. It cannot diagnose you, and it does not try to. What it can do is tell you when your answers point at something that needs investigating before anyone sells you anything, and give you the right questions to arrive with.</p>
+        <p class="body-l mt-3 measure">None of those are exotic cases. They happen when treatment starts before the cause is established, often because a patient reasonably wants the problem fixed rather than investigated.</p>
+        <p class="body-l mt-3 measure">This tool exists to slow that down by one step. It cannot diagnose you, and it does not try to. What it can do is tell you when your answers point at something that needs investigating before any treatment starts, and give you the right questions to arrive with.</p>
         <p class="body-l mt-3 measure">If it tells you not to book surgery yet, that is not the tool being cautious for its own sake. Those routes exist because operating in those situations wastes donor hair that cannot be replaced.</p>
       </div>
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Bring to your appointment</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Every medicine and supplement you take',
               'Any recent blood test results',
               'Photographs of your hair before the loss',
               'When it started, and what else happened then',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Read next</p>
@@ -255,10 +267,10 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why several of this tool\'s answers tell people not to book a procedure: the presentations that most need a doctor rather than a purchase are exactly the ones that look most alarming to the patient — patches appearing over weeks, sudden heavy shedding, a sore or scarring scalp. Those are the people most likely to be sold something quickly, and the ones for whom a wrong first step is most costly. A triage tool that only ever routed towards treatment would be a lead form with a quiz attached.'
+    'Consultations are carried out by registered medical practitioners at the clinic. Hair loss is diagnosed by examination, history and, where needed, investigations — which this tool cannot replace.'
 ) ?>
 
-<section class="section section--canvas" id="faqs">
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -274,7 +286,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Getting Assessed in Gurgaon',
-    'Assessment, investigation and treatment all happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, where assessment and any investigations your case calls for are arranged. Consultations are also available at our Rohini, Delhi clinic.'
 ) ?>
 
 <?= cta_band(
@@ -318,7 +330,7 @@ require __DIR__ . '/includes/header.php';
     patches: {
       tone: 'urgent', flag: 'Get diagnosed first',
       title: 'Patchy loss is a different problem from pattern baldness',
-      body: 'Smooth, well-defined patches of complete hair loss point to something other than ordinary pattern loss. This matters commercially as well as clinically: it is the presentation where people are most often sold a transplant that should not be performed.',
+      body: 'Smooth, well-defined patches of complete hair loss point to something other than ordinary pattern loss. It is also a presentation where a transplant is generally not appropriate until the cause is diagnosed and the condition is stable.',
       steps: [
         'Get a clinical diagnosis before considering any procedure.',
         'Decline any offer of surgery until the cause is established.',
@@ -327,7 +339,7 @@ require __DIR__ . '/includes/header.php';
       links: [['Alopecia areata treatment', '/alopecia-areata-treatment-in-gurgaon'], ['Book an assessment', '/book-consultation']]
     },
     partum: {
-      tone: 'ok', flag: 'Likely to recover',
+      tone: 'ok', flag: 'Often settles',
       title: 'Shedding after pregnancy usually settles on its own',
       body: 'Post-partum shedding typically begins some months after delivery and recovers over the following months. The useful work is confirming that is what is happening and checking for anything else contributing, rather than starting aggressive treatment for something that is resolving.',
       steps: [
@@ -351,7 +363,7 @@ require __DIR__ . '/includes/header.php';
     traction: {
       tone: 'ok', flag: 'Act early',
       title: 'Loss along the hairline may be tension-related',
-      body: 'Sustained pulling from tight braids, extensions, weaves or tightly pulled styles can damage follicles at the hairline and temples. Caught early it often improves once the tension stops. Left long enough it becomes permanent, and grafting is then the only option.',
+      body: 'Sustained pulling from tight braids, extensions, weaves or tightly pulled styles can damage follicles at the hairline and temples. Caught early it often improves once the tension stops. Left long enough it can become permanent, and grafting may then be considered.',
       steps: [
         'Remove the tension now, whatever else you decide.',
         'Get it assessed to see whether the follicles are recoverable.',
@@ -382,7 +394,7 @@ require __DIR__ . '/includes/header.php';
       links: [['Dandruff treatment', '/dandruff-treatment-in-gurgaon'], ['Hair fall treatment', '/hair-fall-treatment-in-gurgaon']]
     },
     pattern: {
-      tone: 'ok', flag: 'Act sooner rather than later',
+      tone: 'ok', flag: 'Get it confirmed',
       title: 'This pattern is consistent with genetic hair loss',
       body: 'A receding hairline or thinning crown developing gradually, particularly with a family history, is the typical picture of pattern hair loss. It should still be confirmed by examination, because other things can look similar. It is progressive, so the hair you still have is easier to keep than lost hair is to recover.',
       steps: [

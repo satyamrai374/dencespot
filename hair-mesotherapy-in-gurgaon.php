@@ -31,11 +31,11 @@ $faqs = [
     ['q' => 'What is actually injected?',
      'a' => 'This is the important question, and the answer varies between clinics. Preparations typically contain combinations of vitamins, minerals, amino acids and other agents. There is no single standardised formulation, which is why claims made about mesotherapy are so inconsistent from one place to another. You are entitled to be told exactly what is being injected into you, and you should ask.'],
     ['q' => 'Does hair mesotherapy work?',
-     'a' => 'The evidence is limited, and weaker than for the established medical treatments for pattern hair loss. Because formulations differ, evidence about one preparation does not necessarily transfer to another. We are willing to offer it as a supportive treatment alongside proven ones, and we are not willing to present it as a primary treatment for pattern hair loss.'],
+     'a' => 'Its effectiveness in hair loss has not been established. The evidence is limited, and weaker than for the established medical treatments for pattern hair loss, and because formulations differ, evidence about one preparation does not necessarily transfer to another. It is offered only as an optional addition alongside better-evidenced treatment, with that uncertainty explained — never as a primary treatment for pattern hair loss, and never as a cure.'],
     ['q' => 'How does it compare with PRP or GFC?',
      'a' => 'PRP and GFC use your own blood, and PRP in particular has a considerably more developed evidence base. Mesotherapy injects an externally prepared solution. If you are choosing between them, that difference in evidence maturity is a reasonable thing to weigh, and it is discussed at assessment.'],
     ['q' => 'Is it a replacement for medication?',
-     'a' => 'No. Where pattern hair loss is the diagnosis, the established medical treatments are the backbone of the plan. Mesotherapy is at most an addition to that, and it is not a way of avoiding a treatment that has actually been shown to work.'],
+     'a' => 'No. Where pattern hair loss is the diagnosis, the established medical treatments are the backbone of the plan. Mesotherapy is at most an addition to that, and it is not a way of avoiding a treatment with stronger evidence behind it.'],
     ['q' => 'How many sessions are needed?',
      'a' => 'It is given as a course, with sessions spaced some weeks apart and the response assessed with photographs. The number depends on your diagnosis and how you respond. A fixed package sold before an examination is a commercial arrangement rather than a treatment plan.'],
     ['q' => 'Does it hurt?',
@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Mesotherapy in Gurgaon | DenceSpot Clinic',
-    'description' => 'Hair mesotherapy in Gurgaon, assessed honestly. What is injected, why formulations are not standardised, and why it belongs alongside proven treatment, not instead.',
+    'description' => 'Hair mesotherapy in Gurgaon, assessed honestly. What is injected, why formulations are not standardised, and why its evidence is limited and it is only an add-on.',
     'url'         => '/hair-mesotherapy-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -96,7 +96,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Mesotherapy is not one treatment. It is a way of delivering something into the scalp, and what that something is varies from clinic to clinic with no standard formulation. That single fact explains most of the confusion around it, and it is where an honest conversation about it has to start.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -104,16 +104,16 @@ require __DIR__ . '/includes/header.php';
             'You are told exactly what is being injected',
             'Offered as an adjunct, not a primary treatment',
             'Diagnosis established before any course starts',
-            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
+            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Fine-needle injection equipment used for scalp treatments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Assessed &amp; performed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -123,16 +123,16 @@ require __DIR__ . '/includes/header.php';
 <section class="trust">
   <div class="wrap">
     <div class="grid grid--5">
-      <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Diagnosis first</p><p class="body-s mt-2">Treatable causes are ruled out before injecting.</p></div>
-      <div class="card"><?= icon('list', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Full disclosure</p><p class="body-s mt-2">You are told what the preparation contains.</p></div>
-      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Evidence stated honestly</p><p class="body-s mt-2">Limited, and we say so rather than imply otherwise.</p></div>
-      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Response measured</p><p class="body-s mt-2">Photographed against a baseline, not guessed.</p></div>
-      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Stoppable</p><p class="body-s mt-2">No response means the plan changes, not continues.</p></div>
+      <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Diagnosis first</p><p class="meta mt-1">Treatable causes are ruled out before injecting.</p></div>
+      <div class="card"><?= icon('list', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Full disclosure</p><p class="meta mt-1">You are told what the preparation contains.</p></div>
+      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Evidence stated honestly</p><p class="meta mt-1">Limited, and we say so rather than imply otherwise.</p></div>
+      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Response measured</p><p class="meta mt-1">Photographed against a baseline, not guessed.</p></div>
+      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Stoppable</p><p class="meta mt-1">No response means the plan changes, not continues.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
+<section class="section section--white" id="what-is">
   <div class="wrap">
     <div class="split">
       <div>
@@ -147,14 +147,14 @@ require __DIR__ . '/includes/header.php';
         <p class="eyebrow">Where we place it</p>
         <h3 class="h3 mt-2">Adjunct, not backbone</h3>
         <p class="body mt-3">For pattern hair loss, the established medical treatments are the backbone of a plan. That is where the evidence is.</p>
-        <p class="body mt-3">Mesotherapy is offered as something that may be added to that, for patients who want it, with the uncertainty stated.</p>
-        <p class="body mt-3">It is not offered as a way to avoid treatment that works, and it is not sold as a primary solution for pattern hair loss.</p>
+        <p class="body mt-3">Mesotherapy is offered as something that may be added to that, for patients who want it, with the uncertainty stated: its effectiveness in hair loss has not been established.</p>
+        <p class="body mt-3">It is not offered as a way to avoid better-evidenced treatment, and it is not sold as a primary solution for pattern hair loss.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="evidence">
+<section class="section section--canvas" id="evidence">
   <div class="wrap">
     <p class="eyebrow">The evidence question</p>
     <h2 class="h2 mt-2">Being Straight About How Well It Is Supported</h2>
@@ -162,18 +162,18 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--3 mt-5">
       <div class="card"><p class="h4">The evidence is limited</p><p class="body-s mt-2">It is weaker than for the established medical treatments for pattern hair loss, and weaker than for PRP. That is the current position and we state it rather than working around it.</p></div>
       <div class="card"><p class="h4">Formulations are not standardised</p><p class="body-s mt-2">Different clinics inject different mixtures. Evidence about one preparation does not automatically apply to another, which makes general claims about "mesotherapy" close to meaningless.</p></div>
-      <div class="card"><p class="h4">Response is not predictable</p><p class="body-s mt-2">We cannot tell you in advance whether you will respond, and neither can anyone else. What we can do is measure it properly and stop if there is nothing happening.</p></div>
+      <div class="card"><p class="h4">Response is not predictable</p><p class="body-s mt-2">We cannot tell you beforehand whether you will respond, and neither can anyone else. What we can do is measure it properly and stop if there is nothing happening.</p></div>
     </div>
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">What this means for you</p>
-      <h3 class="h3 mt-2">Reasonable to try, wrong to rely on</h3>
-      <p class="body mt-3 measure">If you have an established diagnosis, are already on treatment that has evidence behind it, and want to add something further, mesotherapy is a reasonable thing to consider with the uncertainty understood. Plenty of medicine is practised in that space.</p>
-      <p class="body mt-3 measure">If you are considering it instead of investigating why your hair is falling, or instead of a treatment that has been shown to work, that is the wrong decision and we will say so. Start at <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a> for how the diagnosis is actually made.</p>
+      <h3 class="h3 mt-2">Unproven, so never something to rely on</h3>
+      <p class="body mt-3 measure">If you have an established diagnosis, are already on treatment that has evidence behind it, and want to discuss adding something further, mesotherapy can be considered only with the uncertainty understood: it may do nothing for you.</p>
+      <p class="body mt-3 measure">If you are considering it instead of investigating why your hair is falling, or instead of a treatment with stronger evidence, that is the wrong decision and we will say so. Start at <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a> for how the diagnosis is actually made.</p>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas" id="alternatives">
+<section class="section section--white" id="alternatives">
   <div class="wrap">
     <div class="split">
       <div>
@@ -204,13 +204,13 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink" id="journey">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--accent)">The process</p>
-    <h2 class="h2 mt-2" style="color:#fff">How a Course Would Run</h2>
-    <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 01</p><p class="h4 mt-2" style="color:#fff">Assessment</p><p class="body-s mt-2">History, scalp examination, and investigation of reversible causes. Allergies and medication reviewed before anything is injected.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 02</p><p class="h4 mt-2" style="color:#fff">The conversation</p><p class="body-s mt-2">What the preparation contains, what the evidence does and does not support, and whether something better established should come first.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 03</p><p class="h4 mt-2" style="color:#fff">Sessions</p><p class="body-s mt-2">Baseline photographs, then a course of sessions spaced weeks apart. Each session is short and you return to normal activity the same day.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 04</p><p class="h4 mt-2" style="color:#fff">Honest review</p><p class="body-s mt-2">Compared against baseline images. If nothing is happening, you are told that and the plan changes rather than repeating.</p></div>
+    <p class="eyebrow">The process</p>
+    <h2 class="h2 mt-2">How a Course Would Run</h2>
+    <div class="journey mt-6" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">History, scalp examination, and investigation of reversible causes. Allergies and medication reviewed before anything is injected.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">The conversation</p><p class="body-s mt-2">What the preparation contains, what the evidence does and does not support, and whether something better established should come first.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Sessions</p><p class="body-s mt-2">Baseline photographs, then a course of sessions spaced weeks apart. Each session is short and you return to normal activity the same day.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Honest review</p><p class="body-s mt-2">Compared against baseline images. If nothing is happening, you are told that and the plan changes rather than repeating.</p></div>
     </div>
   </div>
 </section>
@@ -228,21 +228,21 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Usual and expected</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Tenderness for a day or so',
               'Redness across the treated area',
               'Small bumps at injection points',
               'Occasional bruising',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Tell us promptly about</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Spreading redness, heat or swelling',
               'Fever after a session',
               'A rash or any allergic-type reaction',
               'Pain that increases rather than settles',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -250,7 +250,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why this treatment is offered with caveats rather than enthusiasm: mesotherapy sits at the weak end of the evidence in hair medicine, and it is sold hardest to people who have not yet been told why their hair is falling. The clinically useful sequence is to establish the diagnosis, treat anything reversible, and start treatment that has been shown to work. Mesotherapy can reasonably be added to that. It is not a substitute for any part of it, and a patient who leaves with a course of injections and no diagnosis has been sold something rather than treated.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
 <section class="section section--canvas" id="cost">
@@ -269,11 +269,11 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4 measure">Be particularly careful with large prepaid packages here. Where the evidence is uncertain and response cannot be predicted, you want the ability to stop after review, not a commitment made before anyone examined you.</p>
         <p class="body mt-3 measure">See <a href="/cost-and-emi-options">cost and EMI options</a>.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Start With a Diagnosis</h3>
         <p class="body mt-3">Send photos of the parting, crown and hairline in daylight, with a note of when the shedding started and what you have already tried.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Book an assessment</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book">Book an assessment</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
@@ -296,7 +296,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Scalp Treatments at Our Gurgaon Clinic',
-    'Assessment, treatment and every review happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Assessment, treatment and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic. Treatment is also available at our Rohini, Delhi clinic.'
 ) ?>
 
 <?= cta_band(

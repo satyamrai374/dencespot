@@ -29,7 +29,7 @@ $faqs = [
     ['q' => 'How is the hairline position decided?',
      'a' => 'From your facial proportions, your age, your pattern of loss and how that pattern is likely to progress — then drawn on and agreed with you in a mirror before consent. It is a judgement made on your head, not a formula applied from a diagram, and it is the single most consequential decision in the whole procedure.'],
     ['q' => 'Can I have the hairline I had at eighteen?',
-     'a' => 'Almost always no, and any clinic that agrees without hesitation should worry you. A hairline placed at an adolescent position looks unremarkable at twenty-five and conspicuous at forty-five, when the hair behind it has thinned and the line has not moved. It also spends donor hair on the least defensible part of the scalp. We will show you where a mature hairline sits and explain why.'],
+     'a' => 'Almost always no. A hairline placed at an adolescent position looks unremarkable at twenty-five and conspicuous at forty-five, when the hair behind it has thinned and the line has not moved. It also spends donor hair on the least defensible part of the scalp. We will show you where a mature hairline sits and explain why.'],
     ['q' => 'Why does a straight hairline look artificial?',
      'a' => 'Because no natural hairline is straight. A real one is irregular, slightly broken, and has a soft transition rather than a hard edge. A ruler-straight line reads as constructed even to people who could not say why. The irregularity is designed in deliberately.'],
     ['q' => 'What is the transition zone?',
@@ -41,13 +41,13 @@ $faqs = [
     ['q' => 'I am in my twenties. Should I have this done now?',
      'a' => 'Often the honest answer is not yet. Early loss that is still actively progressing is usually treated medically first, because a hairline placed while the hair behind it is still receding leaves an island of transplanted hair with a gap opening up behind it. Stabilising the loss first is what protects the long-term result.'],
     ['q' => 'Is the hairline permanent?',
-     'a' => 'The transplanted follicles keep donor characteristics and generally persist. The native hair behind them can carry on thinning with age, which is why the design has to anticipate future loss and why medical treatment usually continues alongside. No clinic can guarantee a specific density or a permanent outcome.'],
+     'a' => 'The transplanted follicles keep donor characteristics and generally persist. The native hair behind them can carry on thinning with age, which is why the design has to anticipate future loss and why medical treatment usually continues alongside. No clinic can promise a specific density or a permanent outcome.'],
     ['q' => 'Will anyone be able to tell?',
-     'a' => 'That is what the design is for. Angle, direction, irregularity and restraint at the front are what decide it — far more than the technique used or the number of grafts. Work that is noticed is usually noticed because the line was placed too low, too straight, or too densely at the very edge.'],
+     'a' => 'That depends mainly on the design, and no outcome can be promised. Angle, direction, irregularity and restraint at the front are what decide it — far more than the technique used or the number of grafts. Work that is noticed is usually noticed because the line was placed too low, too straight, or too densely at the very edge.'],
     ['q' => 'How long before the hairline looks right?',
      'a' => 'Transplanted hairs commonly shed in the first weeks. New growth generally starts around three to four months, and the hairline usually looks like itself at roughly ten to twelve months. Early growth is uneven and thin, which is normal.'],
     ['q' => 'Can a badly placed hairline from another clinic be corrected?',
-     'a' => 'Sometimes, and it is one of the more common reasons people come to us. Options depend on what was done — softening a hard edge, adding single hairs at the front, and occasionally removing misplaced grafts. It is more constrained and more expensive than getting it right the first time. See our page on <a href="/hair-transplant-repair-in-gurgaon">hair transplant repair</a>.'],
+     'a' => 'Sometimes. Options depend on what was done — softening a hard edge, adding single hairs at the front, and occasionally removing misplaced grafts. It is more constrained and more expensive than getting it right the first time. See our page on <a href="/hair-transplant-repair-in-gurgaon">hair transplant repair</a>.'],
     ['q' => 'FUE or DHI for a hairline?',
      'a' => 'Both are used, and the choice matters less than the design. <a href="/dhi-hair-transplant-in-gurgaon">DHI</a> places each graft with an implanter in one action, which suits fine control at the front. <a href="/fue-hair-transplant-in-gurgaon">FUE</a> into pre-made sites is efficient across larger areas. A well-designed hairline can be built either way; a badly designed one fails with both.'],
     ['q' => 'How much does a hairline transplant cost in Gurgaon?',
@@ -74,10 +74,10 @@ $page = [
             'alternateName' => ['Hairline restoration', 'Frontal hairline hair transplant', 'Hairline lowering by grafting'],
             'procedureType' => 'https://schema.org/SurgicalProcedure',
             'bodyLocation'  => 'Frontal scalp and temporal region',
-            'howPerformed'  => 'A hairline position and shape are designed and agreed with the patient before surgery. Follicular units are extracted from the donor area of the scalp and sorted under magnification. Single-hair grafts are placed irregularly across a transition zone at the leading edge, with multi-hair grafts placed behind them to build density, each at the acute angle and forward direction of natural frontal hair. Performed as a day case under local anaesthetic.',
+            'howPerformed'  => 'A hairline position and shape are designed and agreed with the patient before surgery. Follicular units are extracted from the donor area of the scalp and sorted under magnification. Single-hair grafts are placed irregularly across a transition zone at the front edge, with multi-hair grafts placed behind them to build density, each at the acute angle and forward direction of natural frontal hair. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and likely progression, donor density measurement, review of medication, photographic mapping, and a hairline drawn on the patient and agreed in a mirror before consent.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows, alongside any ongoing medical treatment for the native hair behind the line.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a settled hairline at approximately ten to twelve months. Native hair behind the transplanted line may continue to thin with age. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a settled hairline at approximately ten to twelve months. Native hair behind the transplanted line may continue to thin with age. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/hairline-transplant-in-gurgaon', $faqs),
     ],
@@ -95,24 +95,24 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Every other decision in a hair transplant can be revisited. The hairline cannot. Put it in the wrong place and you carry that line for the rest of your life, through every stage of loss that follows. This page is about how the line is decided, and why we will sometimes tell you no.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
         <?= ticks([
             'Line drawn on you and agreed in a mirror',
-            'Single-hair transition zone at the leading edge',
+            'Single-hair transition zone at the front edge',
             'Designed around future loss, not just today',
             NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Hairline design and mapping instruments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Designed &amp; performed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -172,7 +172,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card card--pad-lg">
         <p class="eyebrow">Decision 03</p>
         <p class="h4 mt-2">How softly it begins</p>
-        <p class="body-s mt-2">The leading edge is built from single hairs, placed irregularly, with sentinel hairs scattered slightly ahead of the line. Behind that, grafts with more hairs build density. This transition is the difference between a hairline and a hedge.</p>
+        <p class="body-s mt-2">The front edge is built from single hairs, placed irregularly, with sentinel hairs scattered slightly ahead of the line. Behind that, grafts with more hairs build density. This transition is the difference between a hairline and a hedge.</p>
       </div>
       <div class="card card--pad-lg">
         <p class="eyebrow">Decision 04</p>
@@ -184,7 +184,7 @@ require __DIR__ . '/includes/header.php';
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">The classic regret</p>
       <h3 class="h3 mt-2">A low, straight, densely packed line</h3>
-      <p class="body mt-3 measure">It is what people ask for and what a clinic competing on volume will happily deliver. It looks impressive in a photograph taken at twelve months. It ages badly, spends donor hair on the least defensible part of the scalp, and leaves nothing in reserve for the crown when the loss reaches it. Every element of it is permanent.</p>
+      <p class="body mt-3 measure">It is what people often ask for. It looks impressive in a photograph taken at twelve months. It ages badly, spends donor hair on the least defensible part of the scalp, and leaves nothing in reserve for the crown when the loss reaches it. Every element of it is permanent.</p>
       <p class="body mt-3 measure">We would rather have the awkward conversation at consultation than build something you resent in fifteen years.</p>
     </div>
   </div>
@@ -196,28 +196,28 @@ require __DIR__ . '/includes/header.php';
       <div>
         <p class="eyebrow">Suitability</p>
         <h2 class="h2 mt-2">When a Hairline Transplant Makes Sense</h2>
-        <p class="body-l mt-3 measure">The best candidate has a pattern of loss that has settled, a donor area that can support the plan with something left over, and expectations that match what surgery can actually deliver.</p>
+        <p class="body-l mt-3 measure">A good candidate has a pattern of loss that has settled, a donor area that can support the plan with something left over, and expectations that match what surgery can actually deliver.</p>
         <p class="body-l mt-3 measure">Age matters, though not on its own. What matters is whether the loss is still moving. A hairline built while the hair behind it is still receding produces an island: a transplanted front row with a widening gap opening up behind it, and no good options left. Where loss is active, medical treatment comes first and surgery waits.</p>
         <p class="body-l mt-3 measure">Donor supply is the other constraint. The frontal hairline is expensive in grafts and the donor is finite. Spending it all at the front, then needing the crown covered a decade later, is a trade people make without realising they are making it.</p>
       </div>
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Generally a good candidate</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Loss that has been stable for some time',
               'Clear frontal recession with a healthy donor',
               'Realistic about a mature hairline position',
               'Willing to continue medical treatment',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Reasons we will ask you to wait</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Rapid loss that has not been stabilised',
               'Very early loss in the early twenties',
               'Limited donor with extensive loss expected',
               'A fixed demand for an adolescent hairline',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -226,13 +226,13 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink" id="journey">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--accent)">The process</p>
-    <h2 class="h2 mt-2" style="color:#fff">From First Consultation to a Settled Hairline</h2>
+    <p class="eyebrow">The process</p>
+    <h2 class="h2 mt-2">From First Consultation to a Settled Hairline</h2>
     <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 01</p><p class="h4 mt-2" style="color:#fff">Assessment</p><p class="body-s mt-2">Pattern staged, donor density measured, family history and progression considered, medication reviewed. Whether now is the right time is settled here.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 02</p><p class="h4 mt-2" style="color:#fff">The line is drawn</p><p class="body-s mt-2">Marked on your forehead, reviewed in a mirror, argued about if necessary, adjusted and agreed. The graft count follows from the agreed design.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 03</p><p class="h4 mt-2" style="color:#fff">Procedure day</p><p class="body-s mt-2">Extraction, sorting under magnification, then placement — single hairs across the transition zone, denser grafts behind. Day case, local anaesthetic.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 04</p><p class="h4 mt-2" style="color:#fff">Growth and review</p><p class="body-s mt-2">Shedding, regrowth from around three to four months, photographic reviews to roughly twelve months, with medical treatment continuing for the native hair.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Pattern staged, donor density measured, family history and progression considered, medication reviewed. Whether now is the right time is settled here.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">The line is drawn</p><p class="body-s mt-2">Marked on your forehead, reviewed in a mirror, argued about if necessary, adjusted and agreed. The graft count follows from the agreed design.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Procedure day</p><p class="body-s mt-2">Extraction, sorting under magnification, then placement — single hairs across the transition zone, denser grafts behind. Day case, local anaesthetic.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Growth and review</p><p class="body-s mt-2">Shedding, regrowth from around three to four months, photographic reviews to roughly twelve months, with medical treatment continuing for the native hair.</p></div>
     </div>
   </div>
 </section>
@@ -251,21 +251,21 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Plan for</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Visible crusting along the line for days',
               'Forehead swelling in the first few days',
               'Shedding of the new hair within weeks',
               'No real verdict before ten to twelve months',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Protect the result</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Follow the washing instructions exactly',
               'Keep the new line out of direct sun',
               'No caps or helmets until cleared',
               'Continue medical treatment as prescribed',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -273,7 +273,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why the hairline is the part of this job worth being stubborn about: the technique is teachable and the extraction is routine. Judging where a line belongs on a particular face, at a particular age, with a particular pattern of loss still to come, is not. It is also the only part of the procedure a patient cannot buy their way out of later, which is why the line is drawn, discussed and agreed before consent rather than decided on the table.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
 <section class="section section--white" id="cost">
@@ -294,11 +294,11 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4 measure">Be careful with quotes that get cheaper as the graft number rises. A hairline needs the right number of grafts placed well, not the largest number a donor can be pushed to give.</p>
         <p class="body mt-3 measure">See the full <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Get a Personalized Treatment Estimate</h3>
         <p class="body mt-3">Send photos of your hairline from the front, from above and from each side on WhatsApp, or request a call back. You will get an assessment appointment, not a sales pitch.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Request an estimate by form</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book">Request an estimate by form</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
@@ -325,7 +325,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Hairline Design and Surgery at Our Gurgaon Clinic',
-    'The consultation, the design, the procedure and every follow-up happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
 ) ?>
 
 <?= cta_band(

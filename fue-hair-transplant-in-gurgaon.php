@@ -35,7 +35,7 @@ $faqs = [
     ['q' => 'When will transplanted hair start growing?',
      'a' => 'Transplanted hairs commonly shed within the first weeks while the follicles remain in place. New growth usually begins around three to four months, with a fuller picture at roughly ten to twelve months. Growth is uneven early on, which is normal.'],
     ['q' => 'Is FUE permanent?',
-     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist. Surrounding non-transplanted hair can continue to thin with age, however, which is why a long-term plan and ongoing medical treatment matter. No clinic can guarantee a specific density or a permanent outcome.'],
+     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist. Surrounding non-transplanted hair can continue to thin with age, however, which is why a long-term plan and ongoing medical treatment matter. No clinic can promise a specific density or a permanent outcome.'],
     ['q' => 'What is over-harvesting, and why does it matter?',
      'a' => 'Taking more grafts from the donor than it can spare, or taking them from too concentrated an area. The donor thins visibly, extraction dots become obvious, and there is no way to reverse it — you cannot put donor hair back. It is the reason a graft number should never be inflated to win a quote.'],
     ['q' => 'FUE or DHI — which is better?',
@@ -58,7 +58,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'FUE Hair Transplant in Gurgaon | DenceSpot Clinic',
-    'description' => 'Doctor-performed FUE hair transplant in Gurgaon. Units extracted one at a time, no linear scar, and the donor area mapped before any graft count is quoted.',
+    'description' => 'FUE hair transplant in Gurgaon: follicular units extracted one at a time, healing as small dot scars rather than a line, with the donor area mapped before any graft count is quoted.',
     'url'         => '/fue-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -73,7 +73,7 @@ $page = [
             'howPerformed'  => 'Individual follicular units are extracted from the donor area of the scalp with a fine punch, sorted and trimmed under magnification, and placed into recipient sites prepared in the planned direction, angle and density across the thinning zones. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and donor density, review of medication and blood-thinning agents, blood investigations, photographic mapping and a hairline design agreed with the patient before the procedure date.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/fue-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -91,7 +91,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">FUE takes follicular units out of the donor area one at a time with a fine punch, so there is no strip and no linear scar. It is the technique most pattern hair loss is treated with. What decides whether it works for you is not the technique — it is how much your donor area can safely give.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -106,9 +106,9 @@ require __DIR__ . '/includes/header.php';
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Performed &amp; reviewed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -139,15 +139,15 @@ require __DIR__ . '/includes/header.php';
         <p class="body-l mt-3 measure">This is why nothing sensible can be quoted from a photograph. Two people with identical-looking recession can have completely different donor density, and the plans that follow are not comparable.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--ghost" href="/hair-transplant-in-gurgaon">Hair transplant overview</a>
-          <a class="btn btn--ghost" href="/dhi-hair-transplant-in-gurgaon">How DHI differs</a>
+          <a class="btn btn--outline" href="/hair-transplant-in-gurgaon">Hair transplant overview</a>
+          <a class="btn btn--outline" href="/dhi-hair-transplant-in-gurgaon">How DHI differs</a>
         </div>
       </div>
       <div>
         <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
         <div class="card card--tint mt-4">
           <p class="eyebrow">In one line</p>
-          <p class="body mt-2">FUE moves your own permanent hair; it does not create new hair. Donor supply, not technique, sets the ceiling on what is achievable.</p>
+          <p class="body mt-2">FUE moves your own donor hair; it does not create new hair. Donor supply, not technique, sets the ceiling on what is achievable.</p>
         </div>
       </div>
     </div>
@@ -189,7 +189,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body mt-3">A single strand. Two thousand grafts might carry anywhere from roughly 4,000 to 5,000 hairs depending on the donor — which is why some clinics quote hair counts instead. The number looks bigger. The transplant is the same size.</p>
       </div>
     </div>
-    <div class="card card--ink mt-4">
+    <div class="cta-band mt-4" style="display:block">
       <h3 class="h3">Three questions that make quotes comparable</h3>
       <div class="grid grid--3 mt-4">
         <div>
@@ -213,16 +213,16 @@ require __DIR__ . '/includes/header.php';
 <section class="section section--white" id="why">
   <div class="wrap">
     <div class="measure">
-      <p class="eyebrow">Why here</p>
-      <h2 class="h2 mt-2">Why Have FUE Done Here?</h2>
+      <p class="eyebrow">Our approach</p>
+      <h2 class="h2 mt-2">How FUE Is Planned at DenceSpot</h2>
     </div>
     <div class="grid grid--3 mt-6">
       <div class="card card--tint"><?= icon('chart', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Donor budget, not a sales figure</h3><p class="body-s mt-2">Your donor is measured and mapped, and the graft number follows from it. If what you want is not supportable by what you have, you are told at the consultation, not on the day.</p></div>
       <div class="card card--tint"><?= icon('hairline', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Hairline drawn on your face</h3><p class="body-s mt-2">Position, shape and deliberate irregularity judged against your features, your forehead and your age — not a template traced onto everyone.</p></div>
       <div class="card card--tint"><?= icon('search', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Extraction judged graft by graft</h3><p class="body-s mt-2">Punch size and depth adapted to your hair calibre and skin as the session goes on, to keep transection down and the donor looking even.</p></div>
-      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Doctor-performed, not delegated</h3><p class="body-s mt-2">The doctor who assessed you does the extraction and site creation. You are told in advance exactly who does what.</p></div>
+      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Registered medical practitioners</h3><p class="body-s mt-2">Consultations and procedures are carried out by registered medical practitioners at the clinic. You are told beforehand exactly who does what.</p></div>
       <div class="card card--tint"><?= icon('list', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Written, itemised estimate</h3><p class="body-s mt-2">The graft number, the technique, what is included and what is not — in writing, before you book a date. Nothing is added afterwards.</p></div>
-      <div class="card card--tint"><?= icon('star', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Reviews that are scheduled</h3><p class="body-s mt-2">Follow-up at fixed points with standardised photographs, so growth is judged against a record rather than memory.</p></div>
+      <div class="card card--tint"><?= icon('calendar', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Reviews that are scheduled</h3><p class="body-s mt-2">Follow-up at fixed points with standardised photographs, so growth is judged against a record rather than memory.</p></div>
     </div>
   </div>
 </section>
@@ -235,13 +235,13 @@ require __DIR__ . '/includes/header.php';
       <p class="body mt-3">Seven stages, in the order you will experience them.</p>
     </div>
     <div class="journey mt-6">
-      <div class="card card--ink"><span class="journey__num">1</span><h3 class="h4 mt-2">Consultation</h3><p class="body-s mt-2">History, medication review, and what you actually want the result to do.</p></div>
-      <div class="card card--ink"><span class="journey__num">2</span><h3 class="h4 mt-2">Scalp &amp; donor exam</h3><p class="body-s mt-2">Density, calibre and laxity measured; pattern staged; baseline photographs.</p></div>
-      <div class="card card--ink"><span class="journey__num">3</span><h3 class="h4 mt-2">Graft mapping</h3><p class="body-s mt-2">Zone-by-zone count and a hairline drawn on your face for you to approve.</p></div>
-      <div class="card card--ink"><span class="journey__num">4</span><h3 class="h4 mt-2">Written plan</h3><p class="body-s mt-2">Technique, graft number, timeline, cost and what is left in reserve.</p></div>
-      <div class="card card--ink"><span class="journey__num">5</span><h3 class="h4 mt-2">Procedure day</h3><p class="body-s mt-2">Local anaesthetic, extraction, site creation and placement, with breaks.</p></div>
-      <div class="card card--ink"><span class="journey__num">6</span><h3 class="h4 mt-2">First-week care</h3><p class="body-s mt-2">Washing taught in person, crusting settles, review before normal life resumes.</p></div>
-      <div class="card card--ink"><span class="journey__num">7</span><h3 class="h4 mt-2">Growth reviews</h3><p class="body-s mt-2">Shedding, regrowth and density tracked photographically to twelve months.</p></div>
+      <div class="card card--ink"><span class="journey__num">01</span><h3 class="h4 mt-2">Consultation</h3><p class="body-s mt-2">History, medication review, and what you actually want the result to do.</p></div>
+      <div class="card card--ink"><span class="journey__num">02</span><h3 class="h4 mt-2">Scalp &amp; donor exam</h3><p class="body-s mt-2">Density, calibre and laxity measured; pattern staged; baseline photographs.</p></div>
+      <div class="card card--ink"><span class="journey__num">03</span><h3 class="h4 mt-2">Graft mapping</h3><p class="body-s mt-2">Zone-by-zone count and a hairline drawn on your face for you to approve.</p></div>
+      <div class="card card--ink"><span class="journey__num">04</span><h3 class="h4 mt-2">Written plan</h3><p class="body-s mt-2">Technique, graft number, timeline, cost and what is left in reserve.</p></div>
+      <div class="card card--ink"><span class="journey__num">05</span><h3 class="h4 mt-2">Procedure day</h3><p class="body-s mt-2">Local anaesthetic, extraction, site creation and placement, with breaks.</p></div>
+      <div class="card card--ink"><span class="journey__num">06</span><h3 class="h4 mt-2">First-week care</h3><p class="body-s mt-2">Washing taught in person, crusting settles, review before normal life resumes.</p></div>
+      <div class="card card--ink"><span class="journey__num">07</span><h3 class="h4 mt-2">Growth reviews</h3><p class="body-s mt-2">Shedding, regrowth and density tracked photographically to twelve months.</p></div>
     </div>
   </div>
 </section>
@@ -263,16 +263,15 @@ require __DIR__ . '/includes/header.php';
         <div class="step"><span class="step-num">6</span><div><h3 class="h3">Placement and discharge</h3><p class="body-s mt-2">Grafts are placed into the prepared sites, the donor is dressed, medication and written aftercare are issued, and you go home the same day.</p></div></div>
       </div>
       <div>
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/case-uttam-gurgaon.jpg" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — hairline and temple restoration, 2,400 grafts by FUE" width="800" height="600" loading="lazy"></div>
-        <div class="card card--tint mt-4">
+        <div class="card card--tint">
           <p class="eyebrow">Before the day</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Bring your full medication list, including supplements.',
               'Stop alcohol and avoid blood thinners as instructed.',
               'Eat a proper breakfast — it is a long day.',
               'Wear a shirt that buttons, not something pulled over the head.',
               'Arrange a lift home if you would rather not drive.',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -293,15 +292,15 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><span class="pill">Months 5–9</span><h3 class="h4 mt-3">Density builds</h3><p class="body-s mt-2">Coverage thickens and hair coarsens. This is the stretch where progress is easiest to see between photographs and hardest to judge in the mirror.</p></div>
       <div class="card"><span class="pill">Months 10–12</span><h3 class="h4 mt-3">The real result</h3><p class="body-s mt-2">A fair assessment of what the procedure achieved. Non-transplanted hair keeps thinning on its own schedule, so medical treatment often continues alongside.</p></div>
     </div>
-    <div class="note mt-5">
-      <?= icon('info', 20, 'var(--accent-deep)') ?>
-      <p class="body">Individual recovery and growth vary. Transection, healing, donor characteristics and how closely aftercare is followed all affect the outcome. Timelines here are general patient education, not a promise of results, and no clinic can guarantee a specific density.</p>
+    <div class="note mt-5" style="display:flex;gap:16px;align-items:flex-start">
+      <?= icon('info', 20, 'var(--accent-deep)', 1.8) ?>
+      <p class="body">Individual recovery and growth vary. Transection, healing, donor characteristics and how closely aftercare is followed all affect the outcome. Timelines here are general patient education, not a promise of results, and no clinic can promise a specific density.</p>
     </div>
   </div>
 </section>
 
 <?= doctor_block(
-    'Why the donor assessment matters more than the technique: FUE is often sold on the fact that it leaves no linear scar, which is true and largely beside the point. What determines whether you are happy in ten years is whether the donor was read correctly and spent sensibly. Over-harvesting is the one complication that cannot be revised.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic. The donor assessment matters more than the technique: over-harvesting is the one complication that cannot be revised.'
 ) ?>
 
 <section class="section section--white" id="cost">
@@ -322,11 +321,11 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4 measure">A word of caution about &ldquo;per graft, starting from&rdquo; pricing: a low rate applied to an inflated graft count costs more than an honest quote, and the currency you overspend is donor hair. Ask any clinic how the graft number was arrived at, and what the price includes.</p>
         <p class="body mt-3 measure">Working through the numbers first? See our full <a href="/hair-transplant-cost-in-gurgaon">breakdown of hair transplant cost in Gurgaon</a>, including what changes the per-graft rate.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Get a Personalized Treatment Estimate</h3>
         <p class="body mt-3">Send photos of the front, crown and donor area on WhatsApp, or request a call back. You will get an assessment appointment — not a sales pitch.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Request an estimate by form</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book">Request an estimate by form</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
@@ -353,7 +352,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'FUE Hair Transplant at Our Gurgaon Clinic',
-    'Consultation, procedure and every follow-up happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Consultations, procedures and follow-up reviews are carried out by registered medical practitioners at our Sector 39 clinic in Gurugram. Treatment is also available at our clinic in Rohini, Delhi.'
 ) ?>
 
 <?= cta_band(

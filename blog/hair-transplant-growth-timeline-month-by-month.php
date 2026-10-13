@@ -24,18 +24,20 @@ $postFaqs = [
     ['q' => 'When can a second session be planned if I want more density?',
      'a' => 'Not before the first result can be judged, which for most people means at least ten to twelve months, and longer if the crown was treated. Operating earlier risks placing grafts into an area that was going to fill anyway, and spends donor supply you cannot replace — see <a href="/blog/donor-area-limits-hair-transplant">what your donor area can realistically cover</a>.'],
 ];
+$postFaqId = 'growth-timeline-faqs';
+$postFaqHeading = 'Growth timeline FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
 <p>A transplant is finished in a day. The result is not. What is bought on the operating day is a set of follicular units moved into a planned pattern; what is seen a year later depends on how those units then behave, and that runs to its own clock rather than to your calendar.</p>
 
-<p>Almost every clinic publishes a growth timeline, and most read like a delivery schedule: month four, first growth; month twelve, final result. That presents an average as a commitment. What follows is the same sequence as ranges, with the variability left in.</p>
+<p>Growth timelines are often written like a delivery schedule: month four, first growth; month twelve, final result. That presents an average as a commitment. What follows is the same sequence as ranges, with the variability left in.</p>
 
 <h2 id="why-a-timeline-is-a-range-not-a-promise">Why a timeline is a range, not a promise</h2>
 
 <p>Transplanted follicles re-enter the hair cycle individually, not as a batch. Each one is a small organ with its own resting and growing phases, and the phases of scalp hair are measured in months and years rather than weeks (<a href="https://dermnetnz.org/topics/hair-loss" rel="noopener nofollow" target="_blank">DermNet: hair loss</a>). That is why the process is slow, and why no clinic can tell you the month your own change will become obvious.</p>
 
-<p>It is also why published timelines look so uniform. Their photographs were taken months apart under whatever lighting the clinic had that day, at different hair lengths and often in different styles, which can exaggerate a change or hide it. That is why <a href="/blog/how-to-read-before-and-after-photos">reading a before-and-after photograph properly</a> matters as much as the caption beneath it, and why any month-by-month gallery, including one on a clinic's own <a href="/hair-transplant-results-gurgaon">results page</a>, is illustration rather than prediction.</p>
+<p>It is also why published timelines can look more uniform than real recoveries are. Photographs in them may be taken months apart under different lighting, at different hair lengths and often in different styles, which can exaggerate a change or hide it. That is why <a href="/blog/how-to-read-before-and-after-photos">reading a before-and-after photograph properly</a> matters as much as the caption beneath it, and why any month-by-month photo series is illustration rather than prediction.</p>
 
 <h2 id="weeks-0-2-crusting-redness-and-what-others-see">Weeks 0 to 2: crusting, redness and what other people see</h2>
 
@@ -67,13 +69,13 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Two things now happen together. The hairs already through the skin thicken and take on their proper colour, so the same number of hairs reads as more hair. And follicles that had not yet cycled back in begin to produce shafts, so the count itself rises.</p>
 
-<p>The result is genuine density, arriving unevenly. Patches fill before their neighbours. The hairline may look reasonable while the area behind it is still sparse, or the reverse. Hair grows at different rates within the same square centimetre, so texture looks irregular until length evens out. Many find months six and seven the most frustrating, because there is finally enough there to compare against what they hoped for.</p>
+<p>Density, where it comes, arrives unevenly. Patches fill before their neighbours. The hairline may look reasonable while the area behind it is still sparse, or the reverse. Hair grows at different rates within the same square centimetre, so texture looks irregular until length evens out. Many find months six and seven the most frustrating, because there is finally enough there to compare against what they hoped for.</p>
 
 <p>Little needs doing. Keep any prescribed medical treatment going, since it protects the native hair the grafts sit among rather than the grafts themselves, and remember that surgery does not stop pattern loss elsewhere on the scalp — the reasoning is in <a href="/blog/is-a-hair-transplant-permanent">whether a transplant is permanent</a>.</p>
 
 <h2 id="months-9-12-styling-becomes-possible">Months 9 to 12: styling becomes possible</h2>
 
-<p>By around nine months most people can style the area rather than work around it. There is length enough to comb, part and cover, and the transplanted hair behaves like the hair it came from, because it is that hair: it grows continuously and needs cutting.</p>
+<p>By around nine months many people can style the area rather than work around it. There is length enough to comb, part and cover, and the transplanted hair behaves like the hair it came from, because it is that hair: it grows continuously and needs cutting.</p>
 
 <p>Twelve months is the conventional point at which a frontal result is assessed, and it is a reasonable one. Change after that is real but incremental — a little more calibre, a few late follicles — so fifteen months is usually slightly better than twelve rather than transformed. If density at twelve months falls well short of the plan, that is a conversation to have then rather than a reason to wait indefinitely, and <a href="/blog/hair-transplant-repair-options">what corrective surgery can and cannot fix</a> covers where it goes.</p>
 
@@ -98,7 +100,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Interval.</strong> Monthly is enough. Weekly photographs show noise and invite anxiety.</li>
 </ul>
 
-<p>Done properly, that is the only honest comparison available to you. It is also the discipline that exposes marketing photography, and the reason claims about <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and quoted success rates</a> deserve scepticism.</p>
+<p>Done properly, that is the only honest comparison available to you. It is also the discipline that exposes marketing photography, and the reason claims about <a href="/blog/hair-transplant-promises-and-success-rates">promised results and quoted success rates</a> deserve scepticism.</p>
 
 <h2 id="why-individual-timelines-vary">Why individual timelines vary</h2>
 
@@ -110,10 +112,10 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Previous surgery or scar tissue.</strong> A recipient bed that has been operated on before is less forgiving, and growth in it is often slower and patchier.</li>
   <li><strong>Uncontrolled medical conditions.</strong> Thyroid disorder, anaemia and poorly controlled diabetes all affect the hair cycle, which is why the <a href="/blog/blood-tests-for-hair-fall">blood work worth doing for hair loss</a> belongs before surgery rather than after.</li>
   <li><strong>Crown rather than hairline.</strong> The single most common reason a timeline feels late.</li>
-  <li><strong>Ongoing native loss.</strong> If pattern loss is still progressing around the grafts, they can grow perfectly well while the overall picture barely improves.</li>
+  <li><strong>Ongoing native loss.</strong> If pattern loss is still progressing around the grafts, they can grow well while the overall picture barely improves.</li>
 </ul>
 
-<p>None of this is a reason to be talked out of surgery. It is a reason to have the timeline given to you as a range before you consent, and a reason placement matters as much as graft numbers — developed in <a href="/blog/natural-hairline-design-explained">what makes a transplanted hairline look natural</a>.</p>
+<p>None of this decides whether surgery is right for you. It is a reason to have the timeline given to you as a range before you consent, and a reason placement matters as much as graft numbers — developed in <a href="/blog/natural-hairline-design-explained">what makes a transplanted hairline look natural</a>.</p>
 
 <h2 id="when-slow-is-worth-a-phone-call">When slow is worth a phone call</h2>
 
@@ -122,7 +124,3 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>Otherwise the honest instruction is unsatisfying: photograph it monthly, keep the medical treatment going, and bring the photographs to your review rather than your impressions. Whether your case is running normally depends on what was planned and what your donor area supplied — examination, not a chart. What surgery involves is set out under <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a>, and if you have not had it yet, <a href="/blog/questions-to-ask-hair-transplant-consultation">the questions worth asking at a consultation</a> include asking for the timeline in ranges before you sign anything.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
-
-<h2 id="growth-timeline-faqs">Growth timeline FAQs</h2>
-
-<?= faq_list($postFaqs) ?>

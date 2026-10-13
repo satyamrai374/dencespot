@@ -1,30 +1,53 @@
 <?php
 /**
- * /hair-prp-treatment-in-gurgaon — page #29, PRP hub.
+ * /hair-prp-treatment-in-gurgaon — page #29, PRP pillar.
  *
  * Ported from the design build. The two design exports disagreed on the
  * doctor's qualifications; that was resolved with the clinic and the answer
  * now lives in config.php alone. No page restates a credential.
+ *
+ * Sep 2026 — rebuilt against the live SERP (competitor research, 13 Sep 2026:
+ * Paras, DHI India, AK Clinics, Cult Aesthetics, Pristyn, Uncover). The
+ * "prp treatment in gurgaon" SERP mixes hair and face intent, so the page now
+ * signposts face PRP explicitly. Gaps no ranking page fills, now covered: who
+ * PRP will not help and which tests come first; a session plan with an explicit
+ * stop rule; a results timeline; PRP with medication and after a transplant;
+ * cited evidence; dated market price context (never presented as ours).
+ * The PRP cluster navigation is appended by footer.php.
  */
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
+// $faqs quotes market constants, which header.php would otherwise load too late.
+require_once __DIR__ . '/includes/market-prices.php';
 
 $comparison = [
     ['name' => 'Hair PRP', 'what' => 'Your own platelet-rich plasma, spun from your blood on the day.', 'for' => 'Early to moderate pattern loss, diffuse thinning, support around a transplant.', 'note' => 'Autologous, so no donor material. Results depend heavily on the preparation protocol and need maintenance.'],
     ['name' => 'GFC', 'what' => 'Growth factor concentrate — platelets are broken down so the growth factors are released, then the cells are removed.', 'for' => 'The same indications as PRP; marketed as a more refined version of it.', 'note' => 'Also made from your blood, using a kit. The published evidence base is smaller and newer than for PRP.'],
+    ['name' => 'Exosomes', 'what' => 'Cell-derived vesicles, usually a manufactured product rather than something made from your own blood.', 'for' => 'Marketed for thinning hair, often as the newest upgrade.', 'note' => 'Evidence in hair loss is early, and products differ widely in source and quality. Ask exactly what the product is.'],
     ['name' => 'Mesotherapy', 'what' => 'A manufactured cocktail of vitamins, peptides or medication — not made from your blood.', 'for' => 'Scalp nourishment protocols, often sold bundled with other treatments.', 'note' => 'Formulations vary widely between clinics, so ask exactly what is in the syringe.'],
-    ['name' => 'Medical therapy', 'what' => 'Prescribed topical or oral hair-loss medication, taken daily at home.', 'for' => 'The long-term backbone of treating pattern hair loss at any stage.', 'note' => 'Best-established evidence of the four. PRP usually runs alongside it rather than instead of it.'],
+    ['name' => 'Medical therapy', 'what' => 'Prescribed topical or oral hair-loss medication, taken daily at home.', 'for' => 'The usual first-line treatment for pattern hair loss, prescribed after assessment.', 'note' => 'The most studied option here, but not a cure: benefit lasts only while it is taken. PRP usually runs alongside it rather than instead of it.'],
     ['name' => 'Hair transplant', 'what' => 'Your own follicles, moved surgically from the donor area into thinning zones.', 'for' => 'Areas where follicles are already lost and no injection can bring them back.', 'note' => 'A different category of treatment entirely.'],
+];
+
+/** The course, as it is actually run and reviewed. */
+$timeline = [
+    ['when' => 'Before session one', 'what' => 'Examination, blood tests where indicated, baseline photographs at fixed settings.', 'decision' => 'Is PRP the right treatment at all, or does a reversible cause come first?'],
+    ['when' => 'Sessions 1–3 or 4', 'what' => 'One session about every four weeks, same preparation protocol each time.', 'decision' => 'Nothing meaningful can be judged yet; do not stop or extend on impressions.'],
+    ['when' => 'Around 6–10 weeks', 'what' => 'Reduced shedding is usually the first change people notice.', 'decision' => 'Useful early signal, not yet a result.'],
+    ['when' => 'Review at 3–6 months', 'what' => 'Photographs compared against baseline: density, texture, visible scalp.', 'decision' => 'Responding → plan maintenance. No change → stop and change the plan.'],
+    ['when' => 'Maintenance', 'what' => 'Commonly every three to six months, alongside medical treatment.', 'decision' => 'Re-reviewed at intervals; continued only while the photographs justify it.'],
 ];
 
 $faqs = [
     ['q' => 'What is hair PRP treatment?',
      'a' => 'A treatment in which a small volume of your own blood is spun in a centrifuge to concentrate the platelets, and that platelet-rich plasma is injected into the thinning areas of your scalp. The aim is to support follicles that are miniaturising, using growth factors your own platelets carry.'],
     ['q' => 'Does PRP actually work for hair loss?',
-     'a' => 'For the right case — early to moderate pattern loss with follicles still present — there is reasonable evidence that PRP can reduce shedding and improve density. The evidence is not uniform, because protocols differ so much between clinics, and a proportion of patients do not respond — which is why the <a href="https://www.nhs.uk/symptoms/hair-loss/" rel="noopener nofollow" target="_blank">NHS guidance on hair loss treatments</a> is worth reading alongside anything a clinic tells you. It works best as part of a plan alongside medical treatment, not as a substitute for one.'],
+     'a' => 'For the right case — early to moderate pattern loss with follicles still present — published trials suggest PRP can reduce shedding and improve density in some patients. Most of those trials are small and short, protocols differ so much between clinics that results are not uniform, and a proportion of patients do not respond — which is why the <a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS guidance on hair loss</a> is worth reading alongside anything a clinic tells you. PRP does not cure or reverse pattern hair loss. It is used as part of a plan alongside medical treatment, not as a substitute for one. More in <a href="/blog/does-prp-work-for-hair-loss">does PRP actually work for hair loss</a>.'],
+    ['q' => 'Is hair PRP the same as a PRP facial?',
+     'a' => 'The principle is the same — your own platelet-rich plasma — but it is a different treatment with a different aim, technique and review. Hair PRP is injected at follicle depth across the thinning scalp; face PRP targets skin texture and is often combined with microneedling. See <a href="/face-prp-treatment-in-gurgaon">face PRP treatment in Gurgaon</a>.'],
     ['q' => 'How many PRP sessions will I need?',
      'a' => 'Most initial courses are planned as three or four sessions about four weeks apart, sometimes more where a larger area is being treated. Maintenance sessions are then commonly spaced every three to six months. Your own number is set after the assessment and confirmed in writing before the first session.'],
     ['q' => 'Is PRP painful?',
@@ -33,10 +56,16 @@ $faqs = [
      'a' => 'Roughly 30 to 60 minutes from arrival to leaving. Most of that is the blood draw, the spin and preparing the scalp; the injections themselves usually take ten to fifteen minutes. It is a walk-in, walk-out appointment.'],
     ['q' => 'When will I see results from PRP?',
      'a' => 'Reduced shedding is usually the first change people notice, often around six to ten weeks. Changes in texture and density, where they occur, are generally assessed from three to six months against your baseline photographs. Nothing meaningful can be judged after a single session.'],
+    ['q' => 'How do I know whether PRP is working for me?',
+     'a' => 'Not from the mirror, which mostly measures lighting. Progress is judged against baseline photographs taken at fixed angles and settings, compared at a scheduled review, alongside how much hair you are shedding. That comparison — not how you feel about it on a given day — decides whether to continue.'],
+    ['q' => 'When should PRP be stopped?',
+     'a' => 'When the review after the initial course shows no meaningful change against your baseline photographs. A proportion of people do not respond, and continuing past that point spends money without a reason. That is why we do not sell large prepaid packages: you should be free to stop when the evidence says so.'],
     ['q' => 'Is PRP permanent, or do I need to keep going?',
      'a' => 'It is not permanent. PRP does not stop the underlying process causing pattern hair loss, so a result is held with maintenance sessions and, in most cases, ongoing medical treatment. If you stop everything, thinning resumes from where it had reached.'],
     ['q' => 'What is the difference between PRP and GFC?',
-     'a' => 'Both start from your own blood. PRP injects the platelet-rich plasma itself. GFC breaks the platelets down first so the growth factors are released, then removes the cells, leaving an acellular concentrate. GFC is marketed as a refinement of PRP; its published evidence base is smaller and newer. Neither is automatically the better choice for a given scalp. See our PRP vs GFC comparison.'],
+     'a' => 'Both start from your own blood. PRP injects the platelet-rich plasma itself. GFC breaks the platelets down first so the growth factors are released, then removes the cells, leaving an acellular concentrate. GFC is marketed as a refinement of PRP; its published evidence base is smaller and newer. Neither is automatically the better choice for a given scalp. See <a href="/gfc-treatment-in-gurgaon">GFC treatment in Gurgaon</a> and our <a href="/blog/prp-vs-gfc-vs-exosomes">PRP vs GFC vs exosomes comparison</a>.'],
+    ['q' => 'Can PRP be combined with minoxidil or finasteride?',
+     'a' => 'Commonly, yes. Prescribed medical therapy acts on the process driving pattern hair loss; PRP is a supportive treatment, so the two are usually run together rather than chosen between. Neither medicine is a cure: any benefit lasts only while it is taken, and not everyone responds. Medication is prescribed only after assessment and is not started or stopped on the strength of a PRP course. See <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride in India</a>.'],
     ['q' => 'Can PRP regrow hair on a completely bald area?',
      'a' => 'No. PRP acts on follicles that still exist. Where the scalp is fully bald and smooth, or scarred, the follicles are gone and there is nothing for the treatment to support. Those areas are a <a href="/hair-transplant-in-gurgaon">hair transplant</a> question, not a PRP question.'],
     ['q' => 'Is PRP safe? What are the side effects?',
@@ -46,22 +75,23 @@ $faqs = [
     ['q' => 'Can PRP be done after a hair transplant?',
      'a' => 'It is commonly used to support the native hair around a transplanted area, which keeps thinning on its own timetable after surgery. Timing relative to the procedure is decided by the treating doctor, since the scalp needs to have healed first.'],
     ['q' => 'Can women have PRP for hair loss?',
-     'a' => 'Yes, and female pattern thinning is one of the more common reasons patients come for it. The order matters, though: thyroid function, iron stores, vitamin D and hormonal causes are checked and treated first, because a proportion of female shedding improves once those are corrected without any injections at all. See <a href="/hair-fall-treatment-in-gurgaon">women’s hair loss treatment</a>.'],
+     'a' => 'Yes, and female pattern thinning is one of the more common reasons patients come for it. The order matters, though: thyroid function, iron stores, vitamin D and hormonal causes are checked and treated first, because a proportion of female shedding improves once those are corrected without any injections at all. See <a href="/womens-hair-loss-treatment-in-gurgaon">women’s hair loss treatment</a>.'],
     ['q' => 'Do I need to stop my hair-loss medication during PRP?',
      'a' => 'Usually not — prescribed medical therapy generally continues alongside a PRP course, because the two do different jobs. What does need reviewing before a session is anything affecting clotting, including blood thinners and regular anti-inflammatory painkillers. Bring your full medication list.'],
     ['q' => 'How much does hair PRP treatment cost in Gurgaon?',
-     'a' => 'Advertised prices in Gurgaon range widely, because a session is not a standard unit — the volume drawn, the preparation method, the area treated and the number of sessions included all differ. Compare on the course, not the session, and ask what happens if you do not respond. Our pricing is confirmed in writing after the assessment, and our <a href="/hair-transplant-cost-in-gurgaon">guide to how treatment is priced</a> explains what moves the number.'],
+     'a' => 'Gurgaon clinics we reviewed in ' . MARKET_PRICES_AS_OF . ' mostly advertised PRP at ' . rupees(MARKET_PRP_SESSION_LOW) . '–' . rupees(MARKET_PRP_SESSION_HIGH) . ' per session, with prepaid courses of ₹20,000–₹60,000. A session is not a standard unit — volume, preparation and area all differ — so compare the course, not the session, and ask what happens if you do not respond. Ours is quoted in writing after assessment; see the <a href="/prp-hair-treatment-cost-in-gurgaon">PRP hair treatment cost guide</a>.'],
+    ['q' => 'Where is DenceSpot’s PRP clinic in Gurgaon?',
+     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations and sessions are carried out by registered medical practitioners at the clinic, and PRP is also available at our Rohini, Delhi clinic. Hours are ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . ').'],
 ];
 
 $crumbs = [
     ['name' => 'Home', 'url' => '/'],
-    ['name' => 'Treatments', 'url' => '/hair-transplant-in-gurgaon'],
     ['name' => 'Hair PRP treatment in Gurgaon'],
 ];
 
 $page = [
-    'title'       => 'Hair PRP Treatment in Gurgaon | DenceSpot Clinic',
-    'description' => 'Hair PRP treatment in Gurgaon by Dr. Nyra. A planned course of sessions for early thinning, or alongside a transplant. Sector 39, Gurugram.',
+    'title'       => 'PRP Hair Treatment in Gurgaon: Sessions & Cost | DenceSpot',
+    'description' => 'PRP treatment for hair in Gurgaon, Sector 39 near Medanta. Who it may help, its evidence limits, a session plan with a stop rule, timeline and typical costs.',
     'url'         => '/hair-prp-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -70,12 +100,12 @@ $page = [
         schema_breadcrumbs($crumbs),
         schema_therapy('/hair-prp-treatment-in-gurgaon', [
             'name'          => 'Hair PRP Treatment',
-            'alternateName' => ['Platelet-rich plasma therapy for hair', 'PRP hair treatment'],
+            'alternateName' => ['Platelet-rich plasma therapy for hair', 'PRP hair treatment', 'PRP treatment for hair loss in Gurugram'],
             'bodyLocation'  => 'Scalp',
             'howPerformed'  => 'A small volume of the patient\'s blood is drawn and centrifuged to concentrate the platelet fraction. The resulting platelet-rich plasma is injected into the scalp at follicular depth across the thinning areas, typically as a course of three to four sessions about four weeks apart.',
             'preparation'   => 'Clinical assessment and scalp examination, review of medical history and medication including anticoagulants, and blood investigations where indicated to identify reversible causes of hair loss before treatment begins.',
             'followup'      => 'Baseline and interval photography, review of response at three to six months, and maintenance sessions where appropriate alongside ongoing medical therapy.',
-            'expectedPrognosis' => 'Reduced shedding is commonly the first observed change, often around six to ten weeks. Density and texture changes, where they occur, are assessed from three to six months. PRP does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
+            'expectedPrognosis' => 'Reduced shedding is commonly the first observed change, often around six to ten weeks. Density and texture changes, where they occur, are assessed from three to six months. PRP does not halt the underlying process of pattern hair loss and results require maintenance. Published trials are mostly small and short, preparation methods vary, and a proportion of patients do not respond.',
         ]),
         schema_faq('/hair-prp-treatment-in-gurgaon', $faqs),
     ],
@@ -89,11 +119,12 @@ require __DIR__ . '/includes/header.php';
     <div class="split">
       <div>
         <span class="pill pill--dot">Hair PRP in Gurgaon</span>
-        <h1 class="h1 mt-3">Hair PRP Treatment in Gurgaon for Early Thinning and Increased Shedding</h1>
-        <p class="lead mt-3 measure">PRP concentrates the platelets from your own blood and injects them into thinning areas of the scalp, to support follicles that are shrinking but still alive. It is one part of a plan, not the whole plan — which is why the cause of your hair loss is investigated before a single session is booked.</p>
+        <h1 class="h1 mt-3">PRP Treatment for Hair in Gurgaon for Early Thinning and Increased Shedding</h1>
+        <p class="lead mt-3 measure">PRP concentrates the platelets from your own blood and injects them into thinning areas of the scalp, to support follicles that are shrinking but still alive. It is one part of a plan, not the whole plan — which is why the cause of your hair loss is investigated before a single session is booked, at our Gurugram clinic in Sector 39, <?= e(NAP_LANDMARK) ?>.</p>
+        <?= medical_review_line() ?>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -101,14 +132,14 @@ require __DIR__ . '/includes/header.php';
             'Cause investigated before the first session',
             'One consistent preparation protocol',
             'The whole course quoted, not per session',
-            'Performed by the doctor, not delegated',
+            'Carried out by registered medical practitioners',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager" fetchpriority="high"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Performed &amp; reviewed by</p>
+          <p class="eyebrow">Medically reviewed by</p>
           <p class="h4 mt-1"><?= doctor_name() ?></p>
           <p class="meta"><?= doctor_credit() ?></p>
         </div>
@@ -124,7 +155,33 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('settings', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">One protocol</p><p class="meta mt-1">Same spin, same volume, every session.</p></div>
       <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Course quoted upfront</p><p class="meta mt-1">You know the full cost before session one.</p></div>
       <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Photographs, not impressions</p><p class="meta mt-1">Baseline and interval images at fixed settings.</p></div>
-      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Doctor-performed</p><p class="meta mt-1">Not handed to a technician after consultation.</p></div>
+      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Registered doctors</p><p class="meta mt-1">Treatment by registered medical practitioners.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="at-a-glance">
+  <div class="wrap">
+    <div class="split split--top" style="align-items:start">
+      <div>
+        <p class="eyebrow">The short answer</p>
+        <h2 class="h2 mt-2">PRP Hair Treatment at a Glance</h2>
+        <p class="body-l mt-3 measure">Hair PRP injects a concentrate of your own platelets into thinning areas of the scalp to support follicles that are still alive. It suits early to moderate thinning, runs as a course of about three or four monthly sessions, and is judged against photographs at three to six months. It does not regrow hair on bald skin, and it needs maintenance.</p>
+        <div class="note mt-4">
+          <p class="h4">Looking for PRP for your face or skin?</p>
+          <p class="body-s mt-2">That is a different treatment with a different aim and technique. See <a href="/face-prp-treatment-in-gurgaon">face PRP treatment in Gurgaon</a>. Everything on this page is about PRP for hair.</p>
+        </div>
+      </div>
+      <div class="grid grid--2">
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Carried out by</p><p class="h4 mt-1">Registered medical practitioners</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Usually considered for</p><p class="h4 mt-1">Early to moderate thinning</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Initial course</p><p class="h4 mt-1">3–4 sessions, ~4 weeks apart</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Each session</p><p class="h4 mt-1">30–60 minutes, walk in, walk out</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">First change</p><p class="h4 mt-1">Less shedding, ~6–10 weeks</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Judged at</p><p class="h4 mt-1">3–6 months, on photographs</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Advertised in Gurgaon</p><p class="h4 mt-1"><?= e(rupees(MARKET_PRP_SESSION_LOW)) ?> – <?= e(rupees(MARKET_PRP_SESSION_HIGH)) ?> per session</p></div>
+        <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Where</p><p class="h4 mt-1">Sector 39, <?= e(NAP_LANDMARK) ?></p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -143,10 +200,9 @@ require __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="600" loading="lazy"></div>
         <div class="card">
           <p class="eyebrow" style="color:var(--ink-muted)">In one line</p>
-          <p class="body mt-2">PRP supports follicles that are thinning but still alive. It does not create follicles where they no longer exist — which is the line between a PRP case and a transplant case.</p>
+          <p class="body mt-2">PRP supports follicles that are thinning but still alive. It does not create follicles where they no longer exist — which is the line between a PRP case and a transplant case. More in <a href="/blog/prp-or-hair-transplant">PRP or a hair transplant</a>.</p>
         </div>
       </div>
     </div>
@@ -160,11 +216,11 @@ require __DIR__ . '/includes/header.php';
         <p class="eyebrow">Suitability</p>
         <h2 class="h2 mt-2">Who May Consider Hair PRP?</h2>
         <p class="body mt-3">PRP suits scalps where follicles are still present and struggling. Suitability, and whether anything else should be treated first, is decided after examination.</p>
-        <a class="btn btn--ink mt-4" href="/book-consultation">Book an assessment</a>
+        <a class="btn btn--ink mt-4" href="/book-consultation" data-book data-treatment="Hair PRP / GFC" data-track="book">Book an assessment</a>
       </div>
       <div class="grid grid--2">
         <div class="card"><?= icon('hairline', 22, 'var(--accent-deep)') ?><h3 class="h3 mt-3">Early pattern hair loss</h3><p class="body-s mt-2">Thinning that has started but where follicles are still visibly present — the stage at which supporting them is most likely to be worth doing.</p></div>
-        <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><h3 class="h3 mt-3">Diffuse thinning in women</h3><p class="body-s mt-2">A widening parting or overall loss of volume, once thyroid, iron, vitamin D and hormonal causes have been checked and treated.</p></div>
+        <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><h3 class="h3 mt-3">Diffuse thinning in women</h3><p class="body-s mt-2">A widening parting or overall loss of volume, once thyroid, iron, vitamin D and hormonal causes have been checked and treated — see <a href="/blog/female-pattern-hair-loss-in-women">female pattern hair loss</a>.</p></div>
         <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><h3 class="h3 mt-3">Increased shedding</h3><p class="body-s mt-2">Noticeably more hair coming out than usual, where the cause has been identified and shedding needs settling.</p></div>
         <div class="card"><?= icon('settings', 22, 'var(--accent-deep)') ?><h3 class="h3 mt-3">Alongside a transplant</h3><p class="body-s mt-2">Supporting the native hair around a grafted area, which continues thinning on its own timetable after surgery.</p></div>
         <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><h3 class="h3 mt-3">When medication is not an option</h3><p class="body-s mt-2">Where standard medical therapy is not tolerated, is contraindicated, or is being avoided for a specific reason.</p></div>
@@ -174,18 +230,40 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="compare">
+<section class="section section--canvas" id="wont-help">
+  <div class="wrap">
+    <div style="max-width:62ch">
+      <p class="eyebrow">Before you pay for a course</p>
+      <h2 class="h2 mt-2">When PRP Will Not Help — and the Tests That Come First</h2>
+      <p class="body mt-3">PRP often fails because the wrong problem is being injected. These are the situations where the honest recommendation is something else.</p>
+    </div>
+    <div class="grid grid--3 mt-6">
+      <div class="card card--tint"><h3 class="h4">Bald, smooth scalp</h3><p class="body-s mt-2">No follicles, nothing to support. That is a <a href="/hair-transplant-in-gurgaon">transplant</a> or cosmetic question, however the PRP is prepared.</p></div>
+      <div class="card card--tint"><h3 class="h4">An untreated medical cause</h3><p class="body-s mt-2">Low iron, thyroid disease or vitamin deficiency drive shedding that injections do nothing for. Correcting them is cheaper and works better.</p></div>
+      <div class="card card--tint"><h3 class="h4">Telogen effluvium</h3><p class="body-s mt-2">Heavy shedding after illness, surgery, childbirth or stress usually settles once the trigger passes. See <a href="/blog/telogen-effluvium-vs-pattern-hair-loss">telogen effluvium vs pattern loss</a>.</p></div>
+      <div class="card card--tint"><h3 class="h4">Active alopecia areata</h3><p class="body-s mt-2">An autoimmune condition with its own treatment. See <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata treatment</a>.</p></div>
+      <div class="card card--tint"><h3 class="h4">Scarring alopecia</h3><p class="body-s mt-2">Follicles destroyed and replaced by scar tissue. The aim is to stop progression, not to inject.</p></div>
+      <div class="card card--tint"><h3 class="h4">Extensive pattern loss alone</h3><p class="body-s mt-2">Where only a thin fringe of miniaturised hair remains, the realistic benefit is small. You are told that before paying.</p></div>
+    </div>
+    <div class="card card--pad-lg mt-5">
+      <p class="h4">Tests commonly checked first, where the history points to them</p>
+      <p class="body-s mt-2">Complete blood count, ferritin and iron studies, thyroid function (TSH), vitamin D and vitamin B12 — and hormonal tests in selected women. Not a fixed panel for everyone: which tests matter is decided from your history. See <a href="/blog/blood-tests-for-hair-fall">which blood tests actually matter for hair fall</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="compare">
   <div class="wrap">
     <div style="max-width:62ch">
       <p class="eyebrow">Straight comparison</p>
-      <h2 class="h2 mt-2">PRP, GFC, Mesotherapy and Medication — What Is Actually Different</h2>
-      <p class="body mt-3">These four get sold interchangeably, and they are not interchangeable. This is what is in each syringe and what each is realistically for.</p>
+      <h2 class="h2 mt-2">PRP, GFC, Exosomes, Mesotherapy and Medication — What Is Actually Different</h2>
+      <p class="body mt-3">These get sold interchangeably, and they are not interchangeable. This is what is in each syringe and what each is realistically for.</p>
     </div>
 
     <div class="card mt-5" style="padding:0;overflow:hidden">
       <div class="table-scroll">
         <table class="data" style="min-width:840px">
-          <caption class="sr-only">Comparison of PRP, GFC, mesotherapy, medical therapy and hair transplant</caption>
+          <caption class="sr-only">Comparison of hair PRP, GFC, exosomes, mesotherapy, medical therapy and hair transplant</caption>
           <thead>
             <tr><th scope="col">Treatment</th><th scope="col">What is injected or used</th><th scope="col">Typically used for</th><th scope="col">Worth knowing</th></tr>
           </thead>
@@ -204,8 +282,8 @@ require __DIR__ . '/includes/header.php';
     </div>
 
     <div class="grid grid--2 mt-4">
-      <div class="note"><p class="h4">Compare the course, not the session</p><p class="body-s mt-2">A cheap single session inside an expensive course is not a saving. Ask how many sessions the plan calls for, what each includes, and what happens if you do not respond.</p></div>
-      <div class="note"><p class="h4">Ask what is in the syringe</p><p class="body-s mt-2">“Mesotherapy” describes a route of delivery, not a formulation. Two clinics using the word can be injecting entirely different things.</p></div>
+      <div class="note"><p class="h4">Compare the course, not the session</p><p class="body-s mt-2">A cheap single session inside an expensive course is not a saving. Ask how many sessions the plan calls for, what each includes, and what happens if you do not respond — the questions in <a href="/blog/what-to-ask-before-prp-in-gurgaon">what to ask before paying for PRP in Gurgaon</a>.</p></div>
+      <div class="note"><p class="h4">Ask what is in the syringe</p><p class="body-s mt-2">“Mesotherapy” describes a route of delivery, not a formulation, and “exosomes” covers products of very different origin. Two clinics using the same word can be injecting entirely different things. See <a href="/hair-mesotherapy-in-gurgaon">hair mesotherapy</a>.</p></div>
     </div>
   </div>
 </section>
@@ -218,12 +296,12 @@ require __DIR__ . '/includes/header.php';
       <p class="body-l mt-3">Six stages, in this order. The investigations come before the injections, not after them.</p>
     </div>
     <div class="journey mt-6" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-1" style="color:#fff">Consultation</p><p class="meta mt-2">History, medication, and what has already been tried.</p></div>
-      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-1" style="color:#fff">Scalp examination</p><p class="meta mt-2">Pattern, density and miniaturisation assessed under magnification.</p></div>
-      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-1" style="color:#fff">Blood investigations</p><p class="meta mt-2">Thyroid, iron, vitamin D and platelet count where indicated.</p></div>
-      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-1" style="color:#fff">Plan and consent</p><p class="meta mt-2">Session count, intervals and full course cost, in writing.</p></div>
-      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-1" style="color:#fff">Session series</p><p class="meta mt-2">The agreed course, at the agreed intervals, same protocol each time.</p></div>
-      <div class="card card--ink"><span class="journey__num">06</span><p class="h4 mt-1" style="color:#fff">Review and maintenance</p><p class="meta mt-2">Response judged against baseline photographs before anything is repeated.</p></div>
+      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-1">Consultation</p><p class="meta mt-2">History, medication, and what has already been tried.</p></div>
+      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-1">Scalp examination</p><p class="meta mt-2">Pattern, density and miniaturisation assessed under magnification.</p></div>
+      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-1">Blood investigations</p><p class="meta mt-2">Thyroid, iron, vitamin D and platelet count where indicated.</p></div>
+      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-1">Plan and consent</p><p class="meta mt-2">Session count, intervals and full course cost, in writing.</p></div>
+      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-1">Session series</p><p class="meta mt-2">The agreed course, at the agreed intervals, same protocol each time.</p></div>
+      <div class="card card--ink"><span class="journey__num">06</span><p class="h4 mt-1">Review and maintenance</p><p class="meta mt-2">Response judged against baseline photographs before anything is repeated.</p></div>
     </div>
   </div>
 </section>
@@ -245,10 +323,19 @@ require __DIR__ . '/includes/header.php';
         <div class="step"><span class="step-num">6</span><div><h3 class="h3">Aftercare and next date</h3><p class="body-s mt-2">Washing and activity instructions, and your next session booked before you leave.</p></div></div>
       </div>
       <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
         <div class="card">
           <p class="eyebrow" style="color:var(--ink-muted)">Commonly reported afterwards</p>
           <p class="body-s mt-2">Scalp tenderness for a day or so, redness, pinpoint marks, mild swelling, occasional headache, and bruising where the blood was drawn. Infection at an injection site is uncommon but possible — which is why the aftercare instructions matter.</p>
+        </div>
+        <div class="card card--pad-lg">
+          <p class="eyebrow" style="color:var(--ink-muted)">Questions worth asking any clinic about its protocol</p>
+          <div class="mt-3"><?= ticks([
+              'Who draws, prepares and injects — by name?',
+              'Is the preparation the same at every session?',
+              'How much area is treated, and how is it mapped?',
+              'Are baseline photographs taken before session one?',
+              'When is the review, and what happens if nothing changed?',
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -258,15 +345,31 @@ require __DIR__ . '/includes/header.php';
 <section class="section section--white" id="results">
   <div class="wrap">
     <div style="max-width:62ch">
-      <p class="eyebrow">Timeline</p>
-      <h2 class="h2 mt-2">How Many Sessions, and When Results Show</h2>
-      <p class="body mt-3">General guidance. Your own course is set after the assessment and reviewed against your baseline photographs rather than against a schedule.</p>
+      <p class="eyebrow">Timeline and the stop rule</p>
+      <h2 class="h2 mt-2">How Many Sessions, When Results Show, and When to Stop</h2>
+      <p class="body mt-3">General guidance. Your own course is set after the assessment and reviewed against your baseline photographs rather than against a schedule. The last column — the decision at each point — matters most.</p>
     </div>
-    <div class="grid grid--4 mt-6">
-      <div class="card"><span class="pill">Stage 1</span><h3 class="h4 mt-3">The initial course</h3><p class="body-s mt-2">Commonly three or four sessions about four weeks apart, sometimes more where a larger area is treated.</p></div>
-      <div class="card"><span class="pill">Stage 2</span><h3 class="h4 mt-3">Shedding settles first</h3><p class="body-s mt-2">Reduced shedding is usually the first change noticed, often around six to ten weeks. Nothing meaningful can be judged after one session.</p></div>
-      <div class="card"><span class="pill">Stage 3</span><h3 class="h4 mt-3">Texture and density</h3><p class="body-s mt-2">Where they change, these are assessed from three to six months against baseline photographs — not from memory.</p></div>
-      <div class="card"><span class="pill pill--ink">Stage 4</span><h3 class="h4 mt-3">Maintenance</h3><p class="body-s mt-2">Commonly every three to six months. PRP does not stop the underlying process, so a result is held rather than banked.</p></div>
+
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data" style="min-width:760px">
+          <caption class="sr-only">Hair PRP course timeline: when each stage happens, what to expect and the decision made at each point</caption>
+          <thead><tr><th scope="col">When</th><th scope="col">What happens</th><th scope="col">The decision at this point</th></tr></thead>
+          <tbody>
+            <?php foreach ($timeline as $t): ?>
+            <tr>
+              <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0;white-space:nowrap"><?= e($t['when']) ?></th>
+              <td><?= e($t['what']) ?></td>
+              <td style="font-weight:600;color:var(--ink)"><?= e($t['decision']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note mt-4">
+      <p class="body-s"><b>The stop rule.</b> If the review after the initial course shows no meaningful change against your baseline photographs, we stop and change the plan rather than sell you more sessions. That is only possible because we do not sell large prepaid packages — see why on the <a href="/prp-hair-treatment-cost-in-gurgaon">PRP cost page</a>.</p>
     </div>
 
     <div class="split split--sidebar mt-6">
@@ -286,7 +389,45 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= doctor_block('Why the investigation comes first: a proportion of shedding — particularly in women — improves once thyroid function, iron stores or vitamin D are corrected, with no injections at all. A clinic that books a PRP course before checking those is selling sessions, not treating hair loss.') ?>
+<section class="section section--canvas" id="combinations">
+  <div class="wrap">
+    <div style="max-width:62ch">
+      <p class="eyebrow">PRP is rarely the whole plan</p>
+      <h2 class="h2 mt-2">PRP With Medication, and PRP After a Hair Transplant</h2>
+    </div>
+    <div class="grid grid--2 mt-5">
+      <div class="card card--pad-lg">
+        <h3 class="h3">Alongside minoxidil or finasteride</h3>
+        <p class="body-s mt-3">Prescribed medical therapy acts on the process that drives pattern hair loss and is the most studied option available, though it is not a cure: benefit lasts only while it is taken, and not everyone responds. PRP is supportive. In practice the two are usually run together, not chosen between — and a PRP course is never a reason to start or stop medication without the prescribing doctor.</p>
+        <p class="body-s mt-3">Both medicines have side-effect profiles worth discussing properly before you start; see <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride in India</a>.</p>
+      </div>
+      <div class="card card--pad-lg">
+        <h3 class="h3">After a hair transplant</h3>
+        <p class="body-s mt-3">Transplanted follicles keep their donor characteristics; the native hair around them does not. PRP is commonly used to support that surrounding hair, which keeps thinning on its own timetable after surgery.</p>
+        <p class="body-s mt-3">Timing is decided by the treating doctor once the scalp has healed. Ask which hair a post-transplant course is meant to help, and how that will be measured over the first year — see <a href="/blog/is-a-hair-transplant-permanent">is a hair transplant permanent</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="evidence">
+  <div class="wrap">
+    <div class="split split--sidebar">
+      <div>
+        <p class="eyebrow">What the research says</p>
+        <h2 class="h2 mt-2">The Evidence for PRP, Stated Plainly</h2>
+        <p class="meta mt-3">Reviewed by <?= e(REVIEWED_BY) ?> · <?= e(REVIEWED_DATE) ?></p>
+      </div>
+      <div class="stack">
+        <p class="body">Reviews of PRP in androgenetic alopecia generally report improvement in hair density or count against baseline or placebo, and consistently flag the same limitations: small trials, short follow-up, and no standard way of preparing PRP. A widely cited <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6374694/" rel="noopener nofollow" target="_blank">review of PRP for hair loss</a> describes exactly that — promising results, with preparation methods, activation and session schedules varying from study to study.</p>
+        <p class="body">Reference sources place PRP alongside, not above, the established medical treatments: <a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet’s overview of male pattern hair loss</a> and the <a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS hair loss guidance</a> are neutral summaries worth reading before any clinic’s brochure.</p>
+        <p class="body">What that means in practice: PRP may be considered as an adjunct for the right scalp, it does not cure pattern hair loss, a proportion of people do not respond, and the only reliable way to know which group you are in is to measure. Our longer read, <a href="/blog/does-prp-work-for-hair-loss">does PRP actually work for hair loss</a>, goes through it in detail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<?= doctor_block('Consultations and procedures are carried out by registered medical practitioners at the clinic.') ?>
 
 <section class="section section--white" id="cost">
   <div class="wrap">
@@ -295,23 +436,30 @@ require __DIR__ . '/includes/header.php';
         <p class="eyebrow">Cost guidance</p>
         <h2 class="h2 mt-2">Hair PRP Treatment Cost in Gurgaon</h2>
         <p class="body mt-3 measure">Advertised prices range widely because a PRP session is not a standard unit. The volume drawn, the preparation method, the area treated and how many sessions are included all differ between clinics — so a per-session price tells you almost nothing on its own.</p>
+        <p class="body mt-3 measure">At the typical advertised rate of <?= e(rupees(MARKET_PRP_SESSION_LOW)) ?>–<?= e(rupees(MARKET_PRP_SESSION_HIGH)) ?> a session, a four-session course comes to <?= e(rupees(4 * MARKET_PRP_SESSION_LOW)) ?>–<?= e(rupees(4 * MARKET_PRP_SESSION_HIGH)) ?> before any maintenance. We quote your own course in writing after the assessment.</p>
         <div class="grid grid--2 mt-5">
           <div class="card"><p class="h4">Sessions in the course</p><p class="meta mt-1">Quoted as a course, not drip-fed per visit</p></div>
           <div class="card"><p class="h4">Area treated</p><p class="meta mt-1">A crown patch and a whole scalp are not the same</p></div>
           <div class="card"><p class="h4">Preparation method</p><p class="meta mt-1">Spin protocol and resulting concentration</p></div>
           <div class="card"><p class="h4">Supporting therapy</p><p class="meta mt-1">Medical treatment planned alongside</p></div>
         </div>
-        <a class="btn btn--ink mt-4" href="/hair-transplant-cost-in-gurgaon"><?= icon('rupee', 18) ?> How our pricing works</a>
+        <a class="btn btn--ink mt-4" href="/prp-hair-treatment-cost-in-gurgaon"><?= icon('rupee', 18) ?> PRP cost breakdown</a>
       </div>
       <div class="cta-band" style="display:block">
-        <h3 class="h3" style="color:#fff">Get a Personalized Treatment Estimate</h3>
-        <p class="body-s mt-2" style="color:rgba(255,255,255,.7)">Send photos of the parting, crown and hairline on WhatsApp, or request a call back. You will get an assessment — not a package sale.</p>
+        <h3 class="h3">Get a Personalized Treatment Estimate</h3>
+        <p class="body-s mt-2">Send photos of the parting, crown and hairline on WhatsApp, or request a call back. You will get an assessment — not a package sale.</p>
         <div class="stack-sm mt-4">
           <a class="btn btn--block btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-          <a class="btn btn--block btn--ghost" href="/book-consultation">Request an estimate by form</a>
+          <a class="btn btn--block btn--ghost" href="/book-consultation" data-book data-treatment="Hair PRP / GFC" data-track="book">Request a call back</a>
         </div>
       </div>
     </div>
+
+    <div class="mt-6" style="max-width:62ch">
+      <h3 class="h3">What Gurgaon Clinics Advertise</h3>
+      <p class="body-s mt-2">Orientation only — and a reminder to compare what each figure includes.</p>
+    </div>
+    <?= market_price_table('PRP and related hair treatment prices advertised in Gurgaon, ' . MARKET_PRICES_AS_OF, market_rows('prp'), MARKET_PRICES_AS_OF) ?>
   </div>
 </section>
 
@@ -320,7 +468,7 @@ require __DIR__ . '/includes/header.php';
     <div class="split split--sidebar">
       <div>
         <p class="eyebrow">FAQs</p>
-        <h2 class="h2 mt-2">Hair PRP FAQs</h2>
+        <h2 class="h2 mt-2">PRP Treatment in Gurgaon: FAQs</h2>
         <p class="body-s mt-3">General patient education. Anything specific to your scalp or medical history is answered at the assessment.</p>
         <a class="btn btn--accent mt-4" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
       </div>
@@ -334,8 +482,8 @@ require __DIR__ . '/includes/header.php';
 <?= awards_certificates_section() ?>
 
 <?= local_block(
-    'Hair PRP Clinic Serving Gurgaon',
-    'Sessions take place at our Sector 39 clinic in Gurugram, performed by the doctor who assessed you. Because a PRP course runs over months, keeping every session and review with the same clinician is what makes the response readable at all.'
+    'Hair PRP Clinic Near Medanta, Sector 39 Gurugram',
+    'Sessions take place at our Sector 39 clinic in Gurugram, ' . NAP_LANDMARK . ', and are carried out by registered medical practitioners. Because a PRP course runs over months, each review compares your photographs against the same baseline. Treatment is also available at our Rohini, Delhi clinic.'
 ) ?>
 
 <?= cta_band(

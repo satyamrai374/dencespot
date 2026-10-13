@@ -96,6 +96,62 @@ const WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B918178330800&text
 const GBP_CID  = '11368265669812057318';
 const MAPS_URL = 'https://maps.google.com/?cid=' . GBP_CID;
 
+/**
+ * Social profiles shown as footer links. A null entry renders nothing, so an
+ * unconfirmed profile never becomes a dead icon.
+ *
+ * Instagram and the Facebook vanity page are the two profiles inventoried in
+ * MAPS-ANALYSIS-dencespot.com.md §8. ⚠ Facebook has duplicate pages awaiting
+ * consolidation (§9 C1): when one is retired, point this at the survivor.
+ * These are footer links only — CLINIC_SAME_AS (schema) stays as it is.
+ */
+const SOCIAL_LINKS = [
+    'Instagram' => 'https://www.instagram.com/dencespot/',
+    'Facebook'  => 'https://www.facebook.com/DenceSpot/',
+    'YouTube'   => null,   // ⚠ add the channel URL if the clinic has one
+];
+
+/* -------------------------------------------------------------------------
+ * Clinic Locations (Gurugram & Delhi)
+ * ---------------------------------------------------------------------- */
+
+const LOC_GURGAON_NAME      = 'DenceSpot Clinic — Gurugram';
+const LOC_GURGAON_STREET    = NAP_STREET;
+const LOC_GURGAON_LOCALITY  = NAP_LOCALITY;
+const LOC_GURGAON_REGION    = NAP_REGION;
+const LOC_GURGAON_POSTCODE  = NAP_POSTCODE;
+const LOC_GURGAON_LANDMARK  = NAP_LANDMARK;
+const LOC_GURGAON_MAP_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.3229126883884!2d77.0438613!3d28.439680699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5e4f6f45491%3A0x9dc43165216a74e6!2sDencespot%20Clinic!5e0!3m2!1sen!2sus!4v1787587082143!5m2!1sen!2sus';
+const LOC_GURGAON_MAPS_URL  = MAPS_URL;
+
+const LOC_DELHI_NAME          = 'DenceSpot Clinic — Delhi (Rohini)';
+const LOC_DELHI_ADDRESS       = 'Dencespot Clinic, Delhi (Rohini)';
+const LOC_DELHI_LANDMARK      = 'North-West Delhi (Near Outer Ring Road / Rohini)';
+const LOC_DELHI_PHONE_E164    = '+919540699152';
+const LOC_DELHI_PHONE_DISPLAY = '+91 95406 99152';
+const LOC_DELHI_WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B919540699152&text=Hi%2C%20please%20share%20me%20more%20information%20about%20your%20services';
+const LOC_DELHI_MAP_EMBED     = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.2821792980394!2d77.10703699999999!3d28.7111119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0181b16393d1%3A0x3f3d24fc9fc00d93!2sDencespot%20Clinic!5e0!3m2!1sen!2sin!4v1791815111651!5m2!1sen!2sin';
+const LOC_DELHI_MAPS_URL      = 'https://maps.google.com/?cid=4556839352136011155';
+
+/**
+ * Treatments carried out at the Rohini (Delhi) clinic, each with its own page
+ * (confirmed by the agency, 13 Oct 2026: all services are performed in
+ * Rohini). 'gurgaon' is the matching Gurugram page, so the two can link to
+ * each other; 'img' names assets/img/services/svc-<img>-{512,768}.webp, an
+ * AI-generated illustration.
+ */
+const ROHINI_SERVICES = [
+    ['url' => '/hair-transplant-in-rohini',     'label' => 'Hair Transplant',     'gurgaon' => '/hair-transplant-in-gurgaon',     'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.'],
+    ['url' => '/fue-hair-transplant-in-rohini', 'label' => 'FUE Hair Transplant', 'gurgaon' => '/fue-hair-transplant-in-gurgaon', 'img' => 'hair-transplant', 'note' => 'Follicles extracted one by one from the donor area.'],
+    ['url' => '/dhi-hair-transplant-in-rohini', 'label' => 'DHI Hair Transplant', 'gurgaon' => '/dhi-hair-transplant-in-gurgaon', 'img' => 'hair-transplant', 'note' => 'Grafts placed with an implanter pen.'],
+    ['url' => '/beard-transplant-in-rohini',    'label' => 'Beard Transplant',    'gurgaon' => '/beard-transplant-gurgaon',       'img' => 'beard',           'note' => 'Patchy cheeks, jawline, moustache and scars.'],
+    ['url' => '/eyebrow-transplant-in-rohini',  'label' => 'Eyebrow Transplant',  'gurgaon' => '/eyebrow-transplant-in-gurgaon',  'img' => 'eyebrow',         'note' => 'Thin, over-plucked or scarred brows.'],
+    ['url' => '/hair-prp-treatment-in-rohini',  'label' => 'Hair PRP & GFC',      'gurgaon' => '/hair-prp-treatment-in-gurgaon',  'img' => 'prp',             'note' => 'For thinning where follicles are still present.'],
+    ['url' => '/hair-fall-treatment-in-rohini', 'label' => 'Hair Fall Treatment', 'gurgaon' => '/hair-fall-treatment-in-gurgaon', 'img' => 'hair-fall',       'note' => 'The cause is investigated before treatment.'],
+    ['url' => '/laser-hair-removal-in-rohini',  'label' => 'Laser Hair Removal',  'gurgaon' => '/laser-hair-removal-in-gurgaon',  'img' => 'laser',           'note' => 'A course of sessions to reduce unwanted hair.'],
+    ['url' => '/skin-treatment-in-rohini',      'label' => 'Skin Treatment',      'gurgaon' => '/skin-treatment-in-gurgaon',      'img' => 'skin',            'note' => 'Acne, pigmentation and other skin concerns.'],
+];
+
 /* -------------------------------------------------------------------------
  * WhatsApp Lead API (OpenWA Gateway)
  * ---------------------------------------------------------------------- */
@@ -107,13 +163,23 @@ const OPENWA_NOTIFY_NUM = PHONE_E164;
 
 
 /**
- * Clinic photography used as an entity image and as the default social
- * preview. og-default.jpg is a 1200x630 centre-crop of the same photograph —
- * Open Graph's expected ratio, and JPEG rather than WebP because WhatsApp and
- * several link unfurlers still handle WebP previews inconsistently.
+ * Entity image (schema MedicalClinic.image) and default social preview.
+ *
+ * ⚠ CHANGED Oct 2026. These pointed at clinic-front.webp / og-default.jpg — an
+ * AI-generated render of a glass building signed "DENCESPOT CLINIC" that is not
+ * the clinic's premises. Presenting it as the clinic, on every page's share
+ * card and in schema, is what NMC cl. 7.2(a)-(b) and ASCI's synthetic-content
+ * guidelines prohibit (non-existent facilities shown as real), so:
+ *  - CLINIC_IMAGE is null and schema_clinic() omits `image` until a real,
+ *    compliant photograph exists (the real shopfront photos show signage with
+ *    "No Pain | No Scar" and "Permanent" claims, so they are not usable either);
+ *  - OG_IMAGE is the homepage share card: an AI-generated illustration of hair
+ *    follicles that carries its own "AI-generated illustration" mark.
+ * JPEG rather than WebP because WhatsApp and several link unfurlers still
+ * handle WebP previews inconsistently.
  */
-const CLINIC_IMAGE = '/assets/img/clinic-front.webp';
-const OG_IMAGE     = '/assets/img/og-default.jpg';
+const CLINIC_IMAGE = null;   // ⚠ e.g. '/assets/img/clinic-reception.jpg' — a real photograph
+const OG_IMAGE     = '/assets/img/home/og-home.jpg';
 
 /**
  * Listings that are unambiguously this clinic, for schema sameAs. This is how
@@ -163,6 +229,16 @@ const AREA_SERVED = ['Gurugram', 'New Delhi', 'Delhi NCR'];
  * board, so the verifiable substitute is the council registration number below.
  *
  * ⚠ STILL REQUIRED: reg_number, the MD institution and year, and same_as URLs.
+ *
+ * REGISTRATION DISCLOSURE (Oct 2026). The NMC Guidelines on Ethical
+ * Advertising and Public Communication (Public Notice R-13014/01/2024-Ethics,
+ * 06.10.2026), Explanation IV, require a clinic's website to show each
+ * doctor's name, qualifications, registration status and State/National
+ * Medical Register number; IMC Regulations 2002 r.1.4.1 and the Telemedicine
+ * Practice Guidelines 2020 require the number on the website too. The
+ * homepage directory prints a visible placeholder until reg_number,
+ * reg_council and reg_status are filled in — verify each on the council's
+ * register before publishing.
  */
 const DOCTORS = [
     'dr-nyra' => [
@@ -171,8 +247,37 @@ const DOCTORS = [
         'role'        => 'Owner & Chief Consultant, DenceSpot Clinic',
         'alumni'      => 'Dr. D. Y. Patil Medical College',
         'url'         => '/dr-nyra',
+        'image'       => '/assets/img/dr-nayra.webp',
+        'specialty'   => 'Dermatology',
         'reg_number'  => null,   // ⚠ add medical registration number
+        'reg_council' => null,   // ⚠ e.g. 'Haryana Medical Council' — the council that issued reg_number
+        'reg_status'  => null,   // ⚠ e.g. 'Registered, active' — as shown on the council register
+        'clinics'     => 'Gurugram',
         'same_as'     => [],     // ⚠ add Practo / LinkedIn profile URLs
+    ],
+    'dr-rahul' => [
+        'name'        => 'Dr. Rahul',
+        /*
+         * ⚠ WITHHELD — Oct 2026. This read 'Hair Restoration Surgeon &
+         * Aesthetic Specialist', which is a job description, not a recognised
+         * medical qualification. IMC Regulations 2002 r.1.4.2 allow only
+         * recognised degrees as a suffix and r.7.20 bars claiming to be a
+         * specialist without a qualification in that branch. Enter his
+         * recognised degree(s) exactly as registered, e.g. 'MBBS, MS (General
+         * Surgery)'. 'role' and 'specialty' below need the same check before
+         * /dr-rahul is next published.
+         */
+        'quals'       => null,
+        'role'        => null,   // ⚠ his role at the clinic, once his qualification is confirmed
+        'alumni'      => null,
+        'url'         => '/dr-rahul',
+        'image'       => '/assets/img/dr-rahul.webp',
+        'specialty'   => null,   // ⚠ only a branch he holds a recognised qualification in (IMC r.7.20)
+        'reg_number'  => null,   // ⚠ add medical registration number
+        'reg_council' => null,   // ⚠ issuing council
+        'reg_status'  => null,   // ⚠ as shown on the council register
+        'clinics'     => null,   // ⚠ which clinic(s) he consults at
+        'same_as'     => [],
     ],
 ];
 
@@ -239,14 +344,25 @@ const ELFSIGHT_REVIEWS_APP = 'd4976df7-93b9-45ec-899d-7d3934036fc5';
 
 const NAV_PRIMARY = [
     ['label' => 'About',           'url' => '/about-us'],
-    ['label' => 'Gallery',         'url' => '/gallery'],
+    /* Oct 2026: "Gallery", "Results" and "Patient reviews" are gone from both
+       menus — those pages were before/after and review collections, which the
+       NMC Guidelines of 06.10.2026 prohibit (cl. 8.1(v), Explanation V). Their
+       URLs now 301 to compliant pages (.htaccess §1c, router.php). */
+    /*
+     * Sep 2026: the technique and cost pages were two clicks deep and linked
+     * only from their pillars. The ranking competitors carry their FUE, DHI
+     * and cost pages in sitewide navigation; so does this dropdown now.
+     */
     ['label' => 'Treatments', 'url' => '#', 'children' => [
-        ['label' => 'Hair Transplant', 'url' => '/hair-transplant-in-gurgaon'],
-        ['label' => 'Beard Transplant','url' => '/beard-transplant-gurgaon'],
-        ['label' => 'Hair PRP',        'url' => '/hair-prp-treatment-in-gurgaon'],
-        ['label' => 'Hair Fall',       'url' => '/hair-fall-treatment-in-gurgaon'],
-        ['label' => 'Results',         'url' => '/hair-transplant-results-gurgaon'],
+        ['label' => 'Hair Transplant',      'url' => '/hair-transplant-in-gurgaon'],
+        ['label' => 'FUE Hair Transplant',  'url' => '/fue-hair-transplant-in-gurgaon'],
+        ['label' => 'DHI Hair Transplant',  'url' => '/dhi-hair-transplant-in-gurgaon'],
+        ['label' => 'Hair Transplant Cost', 'url' => '/hair-transplant-cost-in-gurgaon'],
+        ['label' => 'Beard Transplant',     'url' => '/beard-transplant-gurgaon'],
+        ['label' => 'Hair PRP & GFC',       'url' => '/hair-prp-treatment-in-gurgaon'],
+        ['label' => 'Hair Fall',            'url' => '/hair-fall-treatment-in-gurgaon'],
     ]],
+    ['label' => 'FAQs',            'url' => '/faqs'],
     ['label' => 'Blog',            'url' => '/blog/'],
 ];
 
@@ -254,10 +370,8 @@ const NAV_FOOTER = [
     'Clinic' => [
         ['label' => 'Home',            'url' => '/'],
         ['label' => 'About the clinic','url' => '/about-us'],
-        ['label' => 'Dr. Nyra',        'url' => '/dr-nyra'],
-        ['label' => 'Photo Gallery',   'url' => '/gallery'],
-        ['label' => 'Results',         'url' => '/hair-transplant-results-gurgaon'],
-        ['label' => 'Patient reviews', 'url' => '/patient-reviews'],
+        ['label' => 'Our doctors',     'url' => '/medical-disclaimer#doctors'],
+        ['label' => 'Delhi Clinic',    'url' => '/delhi-clinic'],
         ['label' => 'Contact',         'url' => '/contact'],
     ],
     'Treatments' => [
@@ -270,6 +384,9 @@ const NAV_FOOTER = [
     ],
     'Resources' => [
         ['label' => 'Hair transplant cost', 'url' => '/hair-transplant-cost-in-gurgaon'],
+        ['label' => 'PRP treatment cost',   'url' => '/prp-hair-treatment-cost-in-gurgaon'],
+        ['label' => 'Beard transplant cost','url' => '/beard-transplant-cost-gurgaon'],
+        ['label' => 'Graft calculator',     'url' => '/hair-transplant-graft-calculator'],
         ['label' => 'Cost, EMI & payment',  'url' => '/cost-and-emi-options'],
         ['label' => 'FAQs',                 'url' => '/faqs'],
         ['label' => 'Recovery & aftercare', 'url' => '/hair-transplant-aftercare'],
@@ -278,10 +395,71 @@ const NAV_FOOTER = [
 ];
 
 /* -------------------------------------------------------------------------
- * Shared copy
+ * Compliance & Grievance Redressal (DPDP Act 2023 & NMC Guidelines)
  * ---------------------------------------------------------------------- */
 
-const MEDICAL_DISCLAIMER = 'The information on this page is general patient education and is not a substitute for a consultation. Results vary between patients; individual treatment plans differ, and suitability for any procedure is determined only after clinical assessment by a qualified doctor. No outcome, density or timeline is guaranteed.';
+const DPDP_OFFICER_TITLE   = 'Grievance Officer (privacy and personal data)';
+/**
+ * ⚠ REQUIRED — a real person's name. The SPDI Rules 2011 r.5(9), in force
+ * now, require the Grievance Officer's NAME and contact details on the
+ * website; a job title alone does not satisfy it. The DPDP Rules 2025 r.9
+ * (from May 2027) require the same contact to be published prominently. While
+ * null, the privacy policy shows a visible placeholder.
+ */
+const DPDP_OFFICER_NAME    = null;
+const DPDP_OFFICER_EMAIL   = EMAIL;
+const DPDP_OFFICER_PHONE   = PHONE_DISPLAY;
+const DPDP_OFFICER_ADDRESS = NAP_STREET . ', ' . NAP_LOCALITY . ', ' . NAP_REGION . ' ' . NAP_POSTCODE;
+
+/**
+ * ⚠ REQUIRED — who legally runs the clinic(s): the exact registered name of
+ * the proprietorship, partnership, LLP or company, and whether the Rohini
+ * clinic is the same entity. The privacy policy and terms name it as the
+ * party responsible for personal data and for the website. While null, both
+ * pages show a visible placeholder.
+ */
+const LEGAL_ENTITY_NAME = null;   // ⚠ e.g. 'DenceSpot Clinic, a proprietorship of Dr. …'
+
+/** Date shown as "Last updated" on the three legal pages. */
+const LEGAL_UPDATED = '12 October 2026';
+
+/**
+ * When the DPDP Act's main duties (notice, consent, rights, Board complaints)
+ * commence: eighteen months after the DPDP Rules, G.S.R. 846(E), gazetted
+ * 13.11.2025. ⚠ MeitY proposed (Jan 2026) cutting this to twelve months,
+ * which would make it about 13 November 2026 — not notified as of Oct 2026.
+ * Re-check the eGazette before publishing and whenever the policy is reviewed.
+ */
+const DPDP_MAIN_DATE = '13 May 2027';
+
+/* -------------------------------------------------------------------------
+ * Shared copy — NMC & DPDP Compliant
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Footer disclaimer, sitewide. It deliberately does not claim that the site
+ * follows the NMC Guidelines of 06.10.2026: only the homepage and the legal
+ * pages have been reviewed against them so far, and a compliance claim the
+ * other pages do not yet meet would itself be misleading. The instruments are
+ * cited on /medical-disclaimer instead.
+ */
+const MEDICAL_DISCLAIMER = 'Information on this website is general patient education. It is not medical advice and does not create a doctor-patient relationship. Suitability, graft numbers and treatment plans are decided only after an in-person examination by a registered medical practitioner. Outcomes differ from person to person, and no particular outcome, density or timeline can be promised.';
+
+/**
+ * AI-generated imagery notice, sitewide; expanded on /medical-disclaimer.
+ *
+ * This supplements — it does not replace — the per-image mark. The NMC
+ * Guidelines of 06.10.2026 (cl. 7.2) require every AI-generated image used in
+ * promotional content to carry its own source mark stating it is AI, so each
+ * one on the homepage is labelled where it appears.
+ *
+ * The wording is deliberately not absolute. It shows in the sitewide footer,
+ * and pages not yet reviewed may still carry unlabelled AI images (the
+ * CLINIC_IMAGE render of a building, possibly the doctor portraits), so it
+ * must not claim that every AI image is labelled until every page has been
+ * through the same review as the homepage.
+ */
+const AI_IMAGE_NOTICE = 'Some images on this website are AI-generated illustrations. They are used for illustration only and are not photographs of actual patients or treatment outcomes.';
 
 /* -------------------------------------------------------------------------
  * mbstring fallback
@@ -321,6 +499,20 @@ if (!function_exists('mb_substr')) {
 function e(?string $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+/**
+ * Doctors who may be named in the public directory (homepage band and
+ * /medical-disclaimer#doctors): only those whose recognised qualification is
+ * on record. NMC Explanation IV requires a named doctor's qualifications and
+ * registration to be disclosed with the name, and IMC r.1.4.2 allows only
+ * recognised degrees — so a doctor with 'quals' => null is left out rather
+ * than listed with a job title in place of a degree. ⚠ Dr. Rahul reappears as
+ * soon as his recognised degree is entered in DOCTORS.
+ */
+function listed_doctors(): array
+{
+    return array_filter(DOCTORS, static fn (array $d): bool => !empty($d['quals']));
 }
 
 /** Full canonical address on one line. */

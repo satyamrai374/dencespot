@@ -37,8 +37,8 @@ $faqs = [
     ['q' => 'Is the result any different?',
      'a' => 'The grafts behave the same way — the shedding and regrowth timeline is unchanged. What differs is the surgical conditions, not the biology. The relevant question is whether the case can be done well unshaven, not whether unshaven grafts grow differently.'],
     ['q' => 'Is it more expensive?',
-     'a' => 'Usually. It takes considerably longer for the same graft count, and time is the main cost in this procedure. Clinics that price it identically to a shaven session are either absorbing that or not really doing it.'],
-    ['q' => 'Who is it best suited to?',
+     'a' => 'Usually. It takes considerably longer for the same graft count, and time is the main cost in this procedure. If a quote is identical to a shaven session of the same size, it is reasonable to ask why.'],
+    ['q' => 'Who is it most suitable for?',
      'a' => 'People needing a smaller number of grafts, people who genuinely cannot take visible downtime, and women, who very often will not accept trimming and for whom the sessions tend to be smaller anyway. It also suits touch-up work and refinement of an earlier procedure.'],
     ['q' => 'Who is it not suitable for?',
      'a' => 'Anyone needing a large session to cover extensive loss, and anyone whose donor requires careful, spread-out harvesting across a wide area. It is also less suitable where the hair is very fine or very dense, both of which make working between existing shafts harder.'],
@@ -77,7 +77,7 @@ $page = [
             'howPerformed'  => 'Follicular units are extracted from an untrimmed or partially trimmed donor area, with the punch positioned between existing long hairs, then separated and placed into recipient sites made among the existing hair of the thinning area. Extraction is slower than in a shaven procedure and the practical graft count per session is lower. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and donor density, review of medication, photographic mapping, and a discussion of whether the required graft number can realistically be achieved without trimming or whether a partial-shave or staged plan is more appropriate.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. The growth timeline is the same as for a shaven procedure. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. The growth timeline is the same as for a shaven procedure. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/unshaven-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -95,7 +95,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A transplant without shaving your head is real, and it is not simply a better version of the same operation. It is slower, it caps how many grafts can sensibly be done in a day, and it suits some cases far better than others. Here is the honest version, so you can decide with the trade-offs in front of you.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -108,11 +108,11 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Fine extraction punch and magnification used for unshaven graft harvesting at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Performed &amp; reviewed by</p>
-          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
-          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
+          <p class="eyebrow">Medically reviewed by</p>
+          <p class="h4 mt-1"><?= doctor_name() ?></p>
+          <p class="meta"><?= doctor_credit() ?></p>
         </div>
       </div>
     </div>
@@ -125,7 +125,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Discreet from day one</p><p class="body-s mt-2">Existing hair covers the work as it heals.</p></div>
       <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Partial shave offered</p><p class="body-s mt-2">A hidden donor window, hair down over it.</p></div>
       <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Longer day, planned for</p><p class="body-s mt-2">Slower extraction is scheduled, not rushed.</p></div>
-      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Realistic graft ceiling</p><p class="body-s mt-2">You are told the practical limit in advance.</p></div>
+      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Realistic graft ceiling</p><p class="body-s mt-2">You are told the practical limit beforehand.</p></div>
       <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Told when to shave</p><p class="body-s mt-2">Large cases are better served trimmed.</p></div>
     </div>
   </div>
@@ -157,33 +157,33 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap">
     <p class="eyebrow">The trade-offs</p>
     <h2 class="h2 mt-2">What You Gain and What You Give Up</h2>
-    <p class="body-l mt-3 measure">This is the section most pages on this subject leave out. Both columns are true at the same time.</p>
+    <p class="body-l mt-3 measure">Both columns are true at the same time.</p>
     <div class="grid grid--2 mt-5">
       <div class="card card--pad-lg">
         <p class="h4">What you gain</p>
-        <?= ticks([
+        <div class="mt-3"><?= ticks([
             'No visible shave, so no obvious downtime',
             'Existing hair conceals healing from day one',
             'Return to work and social life much sooner',
             'No period of explaining a shaved head',
-        ], false) ?>
+        ], false) ?></div>
         <p class="body-s mt-4">For someone who cannot disappear for two weeks, this is not a vanity concern. It is often the difference between having the procedure and postponing it indefinitely.</p>
       </div>
       <div class="card card--pad-lg">
         <p class="h4">What you give up</p>
-        <?= ticks([
+        <div class="mt-3"><?= ticks([
             'A lower practical graft count per session',
             'A longer day in the chair for the same result',
             'Higher cost for the same number of grafts',
             'Fewer options if extensive coverage is needed',
-        ], false) ?>
+        ], false) ?></div>
         <p class="body-s mt-4">If your loss needs a large session, insisting on no trimming can mean either a compromised plan or several sessions. Neither is hidden from you at consultation.</p>
       </div>
     </div>
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">A claim worth treating carefully</p>
-      <h3 class="h3 mt-2">No-shave is not a superior technique</h3>
-      <p class="body mt-3 measure">It is marketed that way, with names that suggest an advance on ordinary FUE. It is not. It is the same operation performed under harder conditions, chosen because the patient values discretion. That is a perfectly good reason to choose it. It is not a reason to expect better growth, better density or a better hairline, and any clinic implying otherwise is selling the label rather than the surgery.</p>
+      <h3 class="h3 mt-2">No-shave is not a better technique</h3>
+      <p class="body mt-3 measure">It is marketed that way, with names that suggest an improvement on ordinary FUE. It is not. It is the same operation performed under harder conditions, chosen because the patient values discretion. That is a good reason to choose it. It is not a reason to expect better growth, better density or a better hairline.</p>
     </div>
   </div>
 </section>
@@ -201,22 +201,22 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Generally a good fit</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'A modest graft requirement',
               'Enough surrounding hair to give cover',
               'A genuine need to avoid visible downtime',
               'Refinement of an earlier procedure',
               'Women, where surgery is otherwise appropriate',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Better served by trimming</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Extensive loss needing a large session',
               'A donor needing wide, spread-out harvesting',
               'Very fine or very dense surrounding hair',
               'Cases where donor safety is already marginal',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -225,13 +225,13 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink" id="journey">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--accent)">The process</p>
-    <h2 class="h2 mt-2" style="color:#fff">How an Unshaven Case Runs</h2>
+    <p class="eyebrow">The process</p>
+    <h2 class="h2 mt-2">How an Unshaven Case Runs</h2>
     <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 01</p><p class="h4 mt-2" style="color:#fff">Assessment</p><p class="body-s mt-2">Pattern staged, donor density measured, and the graft number your plan needs established before the shaving question is settled.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 02</p><p class="h4 mt-2" style="color:#fff">The honest answer</p><p class="body-s mt-2">Whether that number can be done unshaven, whether a partial shave serves you better, or whether the case needs trimming. Said before you book.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 03</p><p class="h4 mt-2" style="color:#fff">Procedure day</p><p class="body-s mt-2">A longer day than a shaven session of the same size, scheduled as such, with breaks. Local anaesthetic, home the same evening.</p></div>
-      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 04</p><p class="h4 mt-2" style="color:#fff">Growth and review</p><p class="body-s mt-2">The usual timeline: shedding, regrowth from around three to four months, fuller at roughly ten to twelve months.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Pattern staged, donor density measured, and the graft number your plan needs established before the shaving question is settled.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">The honest answer</p><p class="body-s mt-2">Whether that number can be done unshaven, whether a partial shave serves you better, or whether the case needs trimming. Said before you book.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Procedure day</p><p class="body-s mt-2">A longer day than a shaven session of the same size, scheduled as such, with breaks. Local anaesthetic, home the same evening.</p></div>
+      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Growth and review</p><p class="body-s mt-2">The usual timeline: shedding, regrowth from around three to four months, fuller at roughly ten to twelve months.</p></div>
     </div>
   </div>
 </section>
@@ -250,21 +250,21 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="card card--pad-lg">
           <p class="h4">Still true, even unshaven</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Crusting around grafts for several days',
               'Shedding of the new hair within weeks',
               'Growth from around three to four months',
               'No verdict before ten to twelve months',
-          ], false) ?>
+          ], false) ?></div>
         </div>
         <div class="card card--pad-lg mt-4">
           <p class="h4">Extra care needed</p>
-          <?= ticks([
+          <div class="mt-3"><?= ticks([
               'Washing carefully around long hair',
               'No brushing or combing over the grafts',
               'No styling products until cleared',
               'No tying hair back tightly',
-          ], false) ?>
+          ], false) ?></div>
         </div>
       </div>
     </div>
@@ -272,10 +272,10 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Why the shaving question is settled after the graft number, not before it: patients often arrive having already decided they will not shave, and the risk is that the plan gets bent to fit that decision. The right order is to establish what the loss actually needs, then ask whether it can be delivered unshaven. Where it can, it is a good option and a genuinely useful one. Where it cannot, saying so is more useful than quietly reducing the graft count to make the marketing claim work.'
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
-<section class="section section--canvas" id="cost">
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -288,21 +288,21 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Hair characteristics</p><p class="body-s mt-2">Fine or very dense hair makes the work slower</p></div>
           <div class="card"><p class="h4">Session structure</p><p class="body-s mt-2">Whether the plan needs staging across two days</p></div>
         </div>
-        <p class="body-s mt-4 measure">If a clinic quotes the identical price for shaven and unshaven work of the same size, ask how. The time difference is real, and one of the two numbers is not.</p>
+        <p class="body-s mt-4 measure">If a clinic quotes the identical price for shaven and unshaven work of the same size, it is reasonable to ask how, because the time difference is real.</p>
         <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">full cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
       </div>
-      <div class="card card--ink card--pad-lg">
+      <div class="cta-band" style="display:block">
         <h3 class="h3">Get a Personalized Treatment Estimate</h3>
         <p class="body mt-3">Send photos of the thinning area and the donor at the back, and tell us how much downtime you can realistically take. You will get an assessment appointment, not a sales pitch.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Request an estimate by form</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book">Request an estimate by form</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="faqs">
+<section class="section section--canvas" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -320,7 +320,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Unshaven Procedures at Our Gurgaon Clinic',
-    'Assessment, surgery and every follow-up happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
 ) ?>
 
 <?= cta_band(

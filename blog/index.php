@@ -53,56 +53,97 @@ $page = [
 ];
 
 require __DIR__ . '/../includes/header.php';
+
+$hubCounts = [];
+foreach (BLOG_HUBS as $key => $hub) {
+    $hubCounts[$key] = count(blog_posts($key));
+}
+$allCount = count(blog_posts());
 ?>
+
+<style>
+/* Scoped to the blog index: topic filter pills and treatment-page links. */
+.blog-topics { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.blog-topic {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 18px;
+  border: 1px solid var(--line); border-radius: 999px; background: #fff;
+  color: var(--hp-green-800); font-size: 14px; font-weight: 600; line-height: 1.2; text-decoration: none;
+  transition: background-color .2s var(--hp-ease), border-color .2s var(--hp-ease), color .2s var(--hp-ease);
+}
+.blog-topic:hover { border-color: var(--hp-teal-500); background: var(--hp-teal-50); color: var(--hp-green-800); text-decoration: none; }
+.blog-topic__n {
+  min-width: 22px; padding: 1px 7px; border-radius: 999px; background: var(--accent-tint);
+  color: var(--hp-teal-600); font-size: 12px; font-weight: 700; text-align: center;
+}
+.blog-topic[aria-current="page"] { background: var(--hp-green-800); border-color: var(--hp-green-800); color: #fff; }
+.blog-topic[aria-current="page"] .blog-topic__n { background: rgba(255, 255, 255, .16); color: #fff; }
+.blog-hubs { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px)  { .blog-hubs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .blog-hubs { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
+.blog-hub {
+  display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit;
+  transition: border-color .2s var(--hp-ease), transform .2s var(--hp-ease);
+}
+.blog-hub:hover { border-color: var(--hp-teal-500); transform: translateY(-2px); text-decoration: none; color: inherit; }
+.blog-hub__icon {
+  flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--accent-tint); color: var(--hp-green-800);
+}
+</style>
 
 <section class="section section--canvas">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <span class="pill pill--dot">Patient education</span>
-      <h1 class="h1 mt-3">Hair Loss, Explained Properly</h1>
-      <p class="lead mt-3">Articles on hair loss, transplants, PRP and beard restoration — written for patients, medically reviewed before publication, and honest about what treatment can and cannot do. No miracle cures, no guaranteed results, no borrowed photographs.</p>
+    <div class="hp-head hp-head--center">
+      <p class="eyebrow">Patient education</p>
+      <h1 class="h1" style="margin-top:10px">Hair Loss, Explained Properly</h1>
+      <p class="lead mt-3">Articles on hair loss, transplants, PRP and beard restoration — written for patients, medically reviewed before publication, and clear about what treatment can and cannot do, including its risks and limits.</p>
     </div>
 
-    <nav class="btn-row mt-6" aria-label="Filter by topic">
-      <a class="btn btn--sm <?= $activeHub === null ? 'btn--ink' : 'btn--outline' ?>" href="/blog/">All topics</a>
+    <nav class="blog-topics" aria-label="Filter articles by topic">
+      <a class="blog-topic" href="/blog/"<?= $activeHub === null ? ' aria-current="page"' : '' ?>>All topics <span class="blog-topic__n"><?= $allCount ?></span></a>
       <?php foreach (BLOG_HUBS as $key => $hub): ?>
-        <a class="btn btn--sm <?= $activeHub === $key ? 'btn--ink' : 'btn--outline' ?>" href="/blog/?topic=<?= e($key) ?>"><?= e($hub['label']) ?></a>
+        <a class="blog-topic" href="/blog/?topic=<?= e($key) ?>"<?= $activeHub === $key ? ' aria-current="page"' : '' ?>><?= e($hub['label']) ?> <span class="blog-topic__n"><?= $hubCounts[$key] ?></span></a>
       <?php endforeach; ?>
     </nav>
 
     <?php if ($posts === []): ?>
-      <div class="card card--pad-lg mt-6">
+      <div class="card card--pad-lg mt-6" style="max-width:640px;margin-inline:auto;text-align:center">
         <h2 class="h3">Nothing here yet under this topic</h2>
         <p class="body-s mt-2">Try <a href="/blog/">all topics</a>, or go straight to the treatment pages — they carry the detail most people are looking for.</p>
       </div>
     <?php else: ?>
-      <div class="grid grid--3 mt-6">
+      <p class="meta mt-4" style="text-align:center">
+        <?= count($posts) ?> article<?= count($posts) === 1 ? '' : 's' ?><?= $activeHub !== null ? ' on ' . e(strtolower(BLOG_HUBS[$activeHub]['label'])) : '' ?> · newest first
+      </p>
+      <div class="grid grid--3 mt-5">
         <?php foreach ($posts as $post): ?>
           <?= blog_card($post) ?>
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
 
-    <div class="card card--dashed mt-6">
-      <p class="h4">Why this blog starts small</p>
-      <p class="body-s mt-2">There are around 370 articles on the old site. Rather than carry them across untouched, each one is being checked against twelve months of Search Console data and bucketed: keep and refresh, merge into a stronger article, or remove. Roughly half of any large blog estate typically merges or prunes — and a smaller set of genuinely useful articles outperforms a large set of thin ones. New posts appear here as that audit completes.</p>
+    <div class="note mt-6" style="max-width:860px;margin-inline:auto">
+      <p class="h4">About these articles</p>
+      <p class="body-s mt-1">Each article answers one common question in plain language. It is general information, not advice for your own case: that comes from an examination by a doctor at one of our clinics in Gurugram or Delhi.</p>
     </div>
   </div>
 </section>
 
 <section class="section section--white">
   <div class="wrap">
-    <div style="max-width:62ch">
+    <div class="hp-head hp-head--center">
       <p class="eyebrow">Start here instead</p>
-      <h2 class="h2 mt-2">If You Want the Practical Detail</h2>
+      <h2 class="h2" style="margin-top:10px">If You Want the Practical Detail</h2>
       <p class="body mt-3">The treatment pages carry the procedure detail, recovery timelines, risks and costs. The blog is for the background reading around them.</p>
     </div>
-    <div class="grid grid--4 mt-6">
+    <div class="blog-hubs">
       <?php foreach (BLOG_HUBS as $hub): ?>
-        <a class="card" href="<?= e($hub['url']) ?>" style="text-decoration:none;color:inherit">
-          <?= icon('arrow', 22, 'var(--accent-deep)') ?>
-          <h3 class="h4 mt-2"><?= e($hub['label']) ?></h3>
-          <p class="meta mt-1">Treatment detail, recovery and cost.</p>
+        <a class="card blog-hub" href="<?= e($hub['url']) ?>">
+          <span class="blog-hub__icon"><?= icon('arrow', 20) ?></span>
+          <div>
+            <h3 class="h4"><?= e($hub['label']) ?></h3>
+            <p class="meta" style="margin-top:4px">Treatment detail, recovery and cost.</p>
+          </div>
         </a>
       <?php endforeach; ?>
     </div>

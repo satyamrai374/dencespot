@@ -112,7 +112,7 @@ $faqs = [
     ],
     [
         'q' => 'Why is my transplanted hair falling out?',
-        'a' => 'Because it is supposed to. Between roughly week two and week six, the transplanted shafts shed while the follicle remains in place and enters a resting phase before regrowth. This is called shedding or effluvium and it is an expected part of the process, not a failed transplant. It is the single most common reason patients contact the clinic in a panic, and in almost every case the answer is that recovery is proceeding normally.',
+        'a' => 'Because it is supposed to. Between roughly week two and week six, the transplanted shafts shed while the follicle remains in place and enters a resting phase before regrowth. This is called shedding or effluvium and it is an expected part of the process, not a failed transplant. It is one of the commonest reasons patients contact the clinic, and at this stage it is usually part of normal recovery.',
     ],
     [
         'q' => 'What is shock loss?',
@@ -208,7 +208,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/case-shukri-europe.jpg" alt="Micro-FUE hair transplant at DenceSpot Clinic, Gurugram — hairline design and 2,800 grafts photographed on the day of surgery" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Medically reviewed by</p>
           <p class="h4 mt-1"><?= doctor_name() ?></p>
@@ -221,7 +221,7 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--canvas">
   <div class="wrap">
-    <div style="max-width:62ch">
+    <div class="measure">
       <p class="eyebrow">The first 48 hours</p>
       <h2 id="the-only-part-that-is-genuinely-fragile" class="h2 mt-2">The Only Part That Is Genuinely Fragile</h2>
       <p class="body mt-3">For the first two days, transplanted grafts are held in place by nothing more than early clot formation. They can be dislodged — by a pillow, a towel, a hat pulled off carelessly, or scratching in your sleep. After roughly ten days they are secure and effectively cannot be knocked out. Everything restrictive about early aftercare exists to cover that first window.</p>
@@ -253,7 +253,7 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--white" id="timeline">
   <div class="wrap">
-    <div style="max-width:62ch">
+    <div class="measure">
       <p class="eyebrow">Week by week</p>
       <h2 id="the-recovery-timeline" class="h2 mt-2">The Recovery Timeline</h2>
       <p class="body mt-3">Hair transplant recovery runs over roughly twelve months. The grafts are fragile for the first two to five days; crusting settles across the first one to two weeks; most desk workers are back at work within three to five days; the transplanted hairs shed between weeks two and six, which is expected and not a failure; there is little visible change between months two and four; new growth becomes obvious from months four to six; and the result is judged at ten to twelve months. The detail for each phase is below.</p><p class="body mt-3">General patient education. Your own instructions take priority over anything on this page — protocols legitimately differ between clinics, and yours is written for your procedure.</p>
@@ -274,7 +274,7 @@ require __DIR__ . '/includes/header.php';
           <tbody>
             <?php foreach ($phases as $row): ?>
             <tr>
-              <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0;white-space:nowrap"><?= e($row['when']) ?></th>
+              <th scope="row"><?= e($row['when']) ?></th>
               <td style="font-weight:600;color:var(--ink)"><?= e($row['title']) ?></td>
               <td><?= e($row['what']) ?></td>
               <td><?= e($row['avoid']) ?></td>
@@ -286,7 +286,7 @@ require __DIR__ . '/includes/header.php';
     </div>
 
     <div class="note note--tint mt-4">
-      <p class="body-s"><b>Month three is where people give up hope.</b> There is genuinely almost nothing to see between roughly month two and month four — the follicles are resting before they regrow. Nearly every patient who contacts us convinced the procedure has failed does so in this window, and in nearly every case the answer is that it is proceeding exactly as expected. Judge the result at twelve months, from photographs, not in a mirror at week fourteen. That is the interval the <a href="/hair-transplant-results-gurgaon">published patient cases</a> should be read against too.</p>
+      <p class="body-s"><b>Month three is where people give up hope.</b> There is genuinely almost nothing to see between roughly month two and month four — the follicles are resting before they regrow. This is the window in which patients most often worry that the procedure has failed, and little visible growth is expected yet. Judge the result at twelve months, from photographs, not in a mirror at week fourteen. The <a href="/blog/hair-transplant-growth-timeline-month-by-month">month-by-month growth timeline</a> sets out what is typical at each stage.</p>
     </div>
   </div>
 </section>
@@ -328,7 +328,7 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--white">
   <div class="wrap">
-    <div style="max-width:62ch">
+    <div class="measure">
       <p class="eyebrow">Restrictions</p>
       <h2 id="what-to-avoid-and-for-how-long" class="h2 mt-2">What to Avoid, and For How Long</h2>
       <p class="body mt-3">Realistic timings for the questions patients actually ask. These are general ranges — your own clearance comes at your follow-up reviews, and depends on how your healing has gone.</p>
@@ -344,7 +344,7 @@ require __DIR__ . '/includes/header.php';
           <tbody>
             <?php foreach ($restrictions as $row): ?>
             <tr>
-              <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0"><?= e($row['item']) ?></th>
+              <th scope="row" style="white-space:normal"><?= e($row['item']) ?></th>
               <td><?= e($row['when']) ?></td>
             </tr>
             <?php endforeach; ?>
@@ -361,31 +361,31 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--ink">
   <div class="wrap">
-    <div style="max-width:62ch">
+    <div class="measure">
       <p class="eyebrow">Shedding</p>
       <h2 id="why-your-transplanted-hair-falls-out" class="h2 mt-2">Why Your Transplanted Hair Falls Out</h2>
-      <p class="body-l mt-3">Somewhere between week two and week six, the hair that was transplanted sheds. Nearly every patient finds this alarming, and nearly every patient is fine.</p>
+      <p class="body-l mt-3">Somewhere between week two and week six, the hair that was transplanted sheds. Nearly every patient finds this alarming. It is an expected stage of recovery, not a sign of failure.</p>
     </div>
 
     <div class="grid grid--3 mt-6">
       <div class="card card--ink">
         <span class="journey__num">01</span>
-        <p class="h4 mt-2" style="color:#fff">The shaft goes, the follicle stays</p>
+        <p class="h4 mt-2">The shaft goes, the follicle stays</p>
         <p class="meta mt-2">What sheds is the visible hair shaft. The follicle that was transplanted remains in place and enters a resting phase before producing new hair.</p>
       </div>
       <div class="card card--ink">
         <span class="journey__num">02</span>
-        <p class="h4 mt-2" style="color:#fff">It is expected, not a failure</p>
+        <p class="h4 mt-2">It is expected, not a failure</p>
         <p class="meta mt-2">This is a normal part of the transplant cycle and happens to the overwhelming majority of patients. Its absence is not better; its presence is not worse.</p>
       </div>
       <div class="card card--ink">
         <span class="journey__num">03</span>
-        <p class="h4 mt-2" style="color:#fff">Shock loss is separate</p>
+        <p class="h4 mt-2">Shock loss is separate</p>
         <p class="meta mt-2">Surrounding native hair can also shed temporarily from the trauma of surgery. It typically recovers over the following months, and is more noticeable where native coverage was still good.</p>
       </div>
     </div>
 
-    <p class="body mt-6" style="color:rgba(255,255,255,.72);max-width:62ch">If you are in week three, looking at hair on your pillow and wondering whether you have wasted your money: this is the expected part. The useful thing to do is photograph it at the same angle each month and bring the photographs to your review, which is the same comparison the <a href="/hair-transplant-results-gurgaon">published patient cases</a> are there to illustrate.</p>
+    <p class="body mt-6 measure">If you are in week three, looking at hair on your pillow and wondering whether you have wasted your money: this is the expected part. The useful thing to do is photograph it at the same angle each month and bring the photographs to your review. The <a href="/blog/hair-transplant-growth-timeline-month-by-month">month-by-month growth timeline</a> explains what usually follows.</p>
   </div>
 </section>
 
@@ -414,9 +414,10 @@ require __DIR__ . '/includes/header.php';
           </div>
           <a class="btn btn--outline btn--sm mt-3" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> WhatsApp the clinic</a>
           <p class="meta mt-4"><?= e(HOURS_DISPLAY) ?><br><?= e(HOURS_NOTE) ?></p>
+          <p class="meta mt-2">Our Rohini, Delhi clinic can also be reached on <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>.</p>
         </div>
 
-        <div class="card card--pad-lg mt-4" style="background:var(--canvas);box-shadow:none">
+        <div class="card card--tint card--pad-lg mt-4">
           <?= icon('calendar', 24, 'var(--accent-deep)') ?>
           <p class="h3 mt-2">Your follow-up schedule</p>
           <p class="body-s mt-2">Reviews are scheduled from the start and run through the first year, because that is the period over which the result forms. Progress photography is taken at the same angle and lighting each time, so change is measured rather than guessed at.</p>
@@ -442,12 +443,12 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Recovery is where a transplant is won or lost after the surgery is over. Aftercare instructions at DenceSpot are written, the first wash is demonstrated rather than described, and follow-up reviews are scheduled from the outset — because the result forms over twelve months, not over twelve days.'
+    'Consultations, procedures and follow-up reviews are carried out by registered medical practitioners at the clinic. Aftercare instructions are given in writing, and the first wash is demonstrated rather than described.'
 ) ?>
 
 <?= cta_band(
     'Questions About Your Recovery?',
-    'Whether you are three days post-procedure or three months in and worried nothing is happening, send a photo on WhatsApp or call the clinic. Recovery questions are answered by the doctor who performed the procedure.',
+    'Whether you are three days post-procedure or three months in and worried nothing is happening, send a photo on WhatsApp or call the clinic. Recovery questions are answered by a doctor at the clinic.',
     'hair-transplant-aftercare',
     ['Hair transplant', 'Beard transplant', 'Hair PRP / GFC therapy', 'Not sure — please advise']
 ) ?>

@@ -39,7 +39,12 @@ header('Content-Type: application/xml; charset=utf-8');
  * would otherwise publish it as an indexable URL competing with / for the
  * brand query — and list a noindex page, which is a contradictory signal.
  */
-const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe'];
+/**
+ * 'dr-rahul' ships `noindex` until his recognised qualification and
+ * registration are confirmed (see the note in config.php). Remove it here when
+ * the noindex comes off.
+ */
+const SITEMAP_EXCLUDE = ['dr-rahul', 'thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe', 'build_sitemap'];
 
 /** Priority and change frequency by page role. Money pages rank highest. */
 function sitemap_weight(string $slug): array
@@ -58,8 +63,8 @@ function sitemap_weight(string $slug): array
     if (str_starts_with($slug, 'blog/')) {
         return ['0.5', 'monthly'];
     }
-    if (in_array($slug, ['contact', 'book-consultation', 'about-us', 'dr-nyra'], true)) {
-        return ['0.8', 'monthly'];
+    if (in_array($slug, ['contact', 'book-consultation', 'about-us', 'dr-nyra', 'dr-rahul', 'delhi-clinic'], true)) {
+        return ['0.8', 'weekly'];
     }
     return ['0.7', 'monthly'];
 }
@@ -89,13 +94,13 @@ function sitemap_pages(): array
 
     /**
      * Directory-based sections, which the two globs above cannot see: they only
-     * look at the site root and /blog. /patient-stories/ is a real indexable
-     * page served from patient-stories/index.php, and without this it would be
-     * the one published page missing from the sitemap.
+     * look at the site root and /blog. /patient-stories/ used to be the one such
+     * section; it was withdrawn in Oct 2026 (NMC Guidelines, cl. 8.1(v)) and
+     * now redirects to /blog/.
      *
      * Add a line here for any future section that lives in its own directory.
      */
-    foreach (['patient-stories'] as $dir) {
+    foreach ([] as $dir) {
         $index = $root . '/' . $dir . '/index.php';
         if (file_exists($index)) {
             $out[$dir . '/'] = filemtime($index);

@@ -124,7 +124,7 @@ const BLOG_POSTS = [
         'slug'     => 'donor-area-limits-hair-transplant',
         'title'    => 'Your Donor Area Is a One-Time Budget: What It Can and Cannot Cover',
         'seo_title'=> 'Donor Area Limits: What a Hair Transplant Can Cover',
-        'excerpt'  => 'Donor hair is spent once and does not grow back where it came from. How supply is measured, why coverage and density compete, and what advanced loss can realistically get.',
+        'excerpt'  => 'Donor hair is spent once and does not grow back where it came from. How supply is measured, why coverage and density compete, and what extensive loss can realistically get.',
         'hub'      => 'hair-transplant',
         'published'=> '2026-09-01',
         'updated'  => null,
@@ -135,7 +135,7 @@ const BLOG_POSTS = [
         'slug'     => 'is-a-hair-transplant-permanent',
         'title'    => 'Is a Hair Transplant Permanent, or Will You Be Thin Again in Ten Years?',
         'seo_title'=> 'Is a Hair Transplant Permanent? An Honest Answer',
-        'excerpt'  => 'The grafts stay. The hair around them is still on its own trajectory. Why a transplant does not stop hair loss, and what that means five and ten years later.',
+        'excerpt'  => 'The grafts usually stay. The hair around them is still on its own trajectory. Why a transplant does not stop hair loss, and what that means five and ten years later.',
         'hub'      => 'hair-transplant',
         'published'=> '2026-09-01',
         'updated'  => null,
@@ -157,7 +157,7 @@ const BLOG_POSTS = [
         'slug'     => 'who-should-not-have-a-hair-transplant',
         'title'    => 'When a Hair Transplant Is the Wrong Answer, and Why a Clinic Should Say So',
         'seo_title'=> 'Who Should Not Have a Hair Transplant',
-        'excerpt'  => 'Some people should be told no, and few clinics say it. Unstable donor zones, diffuse thinning, untreated medical causes and the cases where surgery makes things worse.',
+        'excerpt'  => 'Some people should be told no, or not yet. Unstable donor zones, diffuse thinning, untreated medical causes and the cases where surgery makes things worse.',
         'hub'      => 'hair-transplant',
         'published'=> '2026-09-01',
         'updated'  => null,
@@ -209,8 +209,8 @@ const BLOG_POSTS = [
         'image_alt'=> null,
     ],
     [
-        'slug'     => 'hair-transplant-guarantees-and-success-rates',
-        'title'    => 'Guaranteed Results and 98% Success Rates: What Those Claims Actually Mean',
+        'slug'     => 'hair-transplant-promises-and-success-rates',
+        'title'    => 'Hair Transplant Promises and Success Rates: What Those Claims Actually Mean',
         'seo_title'=> 'Hair Transplant Success Rate Claims, Examined',
         'excerpt'  => 'No clinic can verify a survival percentage for your head before operating. What those figures would have to measure, what Indian advertising rules forbid, and what to ask instead.',
         'hub'      => 'hair-transplant',
@@ -382,6 +382,12 @@ function blog_posts(?string $hub = null, ?string $excludeSlug = null): array
         if ($excludeSlug !== null && $p['slug'] === $excludeSlug) {
             return false;
         }
+        // A registry entry without its file is an unpublished post. Ten entries
+        // once sat here with no file, and every listing, related-post strip and
+        // hub "further reading" block linked straight into a 404.
+        if (!is_file(dirname(__DIR__) . '/blog/' . $p['slug'] . '.php')) {
+            return false;
+        }
         return $hub === null || $p['hub'] === $hub;
     });
 
@@ -427,17 +433,28 @@ function blog_card(array $post): string
        * post while taking its alt from the post record — so a photograph of a
        * named patient was announced to screen readers as "Diagram of the seven
        * Norwood stages". A post may now set an 'image' key with its own
-       * 'image_alt'; none currently does, so every card shows the clinic
-       * shopfront, correctly described. That is a deliberate visible change: the
-       * old card art was one named patient's before-and-after on every post.
+       * 'image_alt'; none currently does.
+       *
+       * Oct 2026: the default used to be the clinic shopfront photograph, whose
+       * window signage reads "No Pain | No Scar | No Stitch" and "Permanent Hair
+       * Loss Solution" — claims the NMC Guidelines of 06.10.2026 prohibit. Each
+       * hub now defaults to one of the homepage's AI-generated illustrations,
+       * which must carry a visible "AI-generated" mark (cl. 7.2) — hence the chip.
        */
+      $hubArt = [
+          'hair-transplant' => ['/assets/img/home/stage-temples-720.webp',  'AI-generated diagram of a receding hairline seen from above'],
+          'prp'             => ['/assets/img/home/hero-800.webp',           'AI-generated illustration of hair follicles in the scalp'],
+          'beard'           => ['/assets/img/home/step-procedure-640.webp', 'AI-generated image of sterile hair-restoration instruments'],
+          'hair-fall'       => ['/assets/img/home/stage-female-720.webp',   'AI-generated diagram of diffuse thinning along a parting'],
+      ];
       $cardImage = $post['image'] ?? null;
-      $cardAlt   = $cardImage !== null
-          ? $post['image_alt']
-          : 'DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage';
-      $cardImage ??= '/assets/img/clinic-front-board.jpg';
+      $cardAlt   = $cardImage !== null ? $post['image_alt'] : null;
+      $isAi      = $cardImage === null;
+      if ($isAi) {
+          [$cardImage, $cardAlt] = $hubArt[$post['hub']] ?? $hubArt['prp'];
+      }
     ?>
-    <div class="media ratio-16-10 media--shadow"><img src="<?= e($cardImage) ?>" alt="<?= e($cardAlt) ?>" width="800" height="500" loading="lazy"></div>
+    <div class="media ratio-16-10 media--shadow" style="position:relative"><img src="<?= e($cardImage) ?>" alt="<?= e($cardAlt) ?>" width="800" height="500" loading="lazy" style="width:100%;height:100%;object-fit:cover"><?php if ($isAi): ?><span aria-hidden="true" style="position:absolute;right:10px;top:10px;padding:2px 9px;border-radius:999px;background:rgba(255,255,255,.9);color:#3F4B46;font-size:11px;font-weight:600">AI-generated</span><?php endif; ?></div>
   </a>
   <div style="padding:24px;display:flex;flex-direction:column;flex:1 1 auto">
     <?php if ($hub !== null): ?>

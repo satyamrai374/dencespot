@@ -22,8 +22,9 @@ require_once __DIR__ . '/includes/schema.php';
  * graft') and the Rate column appears automatically, on the page and nowhere
  * else. Leave them null and the table renders technique and suitability only.
  *
- * Same rule as the AggregateRating gate on /patient-reviews: publish a number
- * or publish nothing — never publish a placeholder where a number belongs.
+ * Rule: publish a number or publish nothing — never publish a placeholder
+ * where a number belongs. (The reviews page this once pointed to was withdrawn
+ * in Oct 2026 under the NMC Guidelines of 06.10.2026.)
  */
 $rates = [
     ['technique' => 'FUE',        'rate' => null, 'best_for' => 'Larger areas — crown, mid-scalp, broad coverage'],
@@ -55,7 +56,7 @@ $faqs = [
     ],
     [
         'q' => 'Why do you not publish a starting price?',
-        'a' => 'Because a headline "starting from" figure is almost never what anyone pays. A low per-graft rate applied to an inflated graft count costs more than an honest quote at a higher rate. Publishing the arithmetic instead lets you compare clinics on the number that actually decides the bill.',
+        'a' => 'Because a headline "starting from" figure is rarely what anyone pays. A low per-graft rate applied to a higher graft count can cost more in total than a higher rate on a smaller count. Publishing the arithmetic instead lets you compare quotes on the number that actually decides the bill.',
     ],
     [
         'q' => 'What is included in the estimate?',
@@ -67,7 +68,7 @@ $faqs = [
     ],
     [
         'q' => 'Is a cheaper clinic a false economy?',
-        'a' => 'Not automatically — but ask three questions before deciding. Who physically performs the extraction and placement, and are they a doctor? How was the graft number arrived at? And what does the price include? A repair procedure costs considerably more than getting it right once.',
+        'a' => 'Not automatically — but ask three questions before deciding. Who physically performs the extraction and placement, and are they a doctor? How was the graft number arrived at? And what does the price include? Price on its own says little about quality either way.',
     ],
     [
         'q' => 'Do you offer EMI or payment in instalments?',
@@ -120,10 +121,10 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A hair transplant is priced as <b>graft count × per-graft rate</b>, plus anaesthesia, medication and follow-up. Graft count is the variable that moves the bill, and it is set by the area being covered and what your donor area can safely give — which is why the same photograph produces very different plans for two different people.</p>
         <?= medical_review_line() ?>
 
-        <p class="body mt-3 measure">This page explains every factor that moves that number, what an estimate should include, and the pricing tactics worth recognising before you compare quotes. We quote after examining you, in writing, itemised.</p>
+        <p class="body mt-3 measure">This page explains every factor that moves that number, what an estimate should include, and the pricing tactics worth recognising before you compare quotes. We quote after examining you, in writing, itemised. Consultations are available at both our clinics, in Sector 39, Gurugram and Rohini, Delhi.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Send Photos on WhatsApp</a>
         </div>
 
@@ -136,9 +137,9 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Quoted &amp; reviewed by</p>
+          <p class="eyebrow">Medically reviewed by</p>
           <p class="h4 mt-1"><?= doctor_name() ?></p>
           <p class="meta"><?= doctor_credit() ?></p>
         </div>
@@ -174,7 +175,7 @@ require __DIR__ . '/includes/header.php';
     </div>
 
     <div class="note mt-5">
-      <p class="body-s"><b>The tactic worth recognising.</b> A low per-graft rate applied to an inflated graft count costs more than an honest quote at a higher rate. ₹30 × 3,500 grafts is more expensive than ₹45 × 2,200 grafts — and the second plan may be the clinically correct one. Ask any clinic how the graft number was arrived at, and ask to see the donor area mapped.</p>
+      <p class="body-s"><b>The arithmetic worth checking.</b> A low per-graft rate applied to a higher graft count can cost more in total than a higher rate on a smaller one. ₹30 × 3,500 grafts is more expensive than ₹45 × 2,200 grafts — and the second plan may be the clinically correct one. Ask any clinic how the graft number was arrived at, and ask to see the donor area mapped.</p>
     </div>
   </div>
 </section>
@@ -214,10 +215,10 @@ require __DIR__ . '/includes/header.php';
     <?php if (!$hasRates): ?>
     <div class="card mt-4">
       <p class="h4">Why there is no price list here</p>
-      <p class="body-s mt-2">A per-graft rate on its own tells you very little: a low rate applied to an inflated graft count costs more than an honest quote on a lower one. Your figure comes from the mapped plan — graft count, technique and zones — and is given to you in writing after the assessment, before any date is booked. Nothing is added afterwards.</p>
+      <p class="body-s mt-2">A per-graft rate on its own tells you very little: a low rate applied to a higher graft count can cost more in total than a higher rate on a smaller one. Your figure comes from the mapped plan — graft count, technique and zones — and is given to you in writing after the assessment, before any date is booked. Nothing is added afterwards.</p>
       <div class="btn-row mt-4">
         <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> Ask for an estimate</a>
-        <a class="btn btn--outline" href="/book-consultation">Book an assessment</a>
+        <a class="btn btn--outline" href="/book-consultation" data-book data-track="book">Book an assessment</a>
       </div>
     </div>
     <?php endif; ?>
@@ -252,7 +253,7 @@ require __DIR__ . '/includes/header.php';
       </div>
     </div>
 
-    <div class="note note--tint mt-4" style="background:#fff">
+    <div class="note mt-4">
       <p class="body-s"><b>Donor supply is the real ceiling.</b> The donor area is finite and does not regenerate. A plan that spends it all on the hairline at thirty leaves nothing for the crown at forty-five. Where loss is extensive, staging across sessions is a clinical decision, not an upsell.</p>
     </div>
   </div>
@@ -267,7 +268,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body mt-3 measure">Every DenceSpot estimate is itemised. Anything not covered is named in the document rather than discovered on the day.</p>
 
         <div class="grid grid--2 mt-5">
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">The procedure</p><p class="meta mt-1">Extraction, site creation and placement by the treating doctor.</p></div>
+          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">The procedure</p><p class="meta mt-1">Extraction, site creation and graft placement.</p></div>
           <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Local anaesthesia</p><p class="meta mt-1">Administered and monitored through the session.</p></div>
           <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Post-procedure medication</p><p class="meta mt-1">What is prescribed for the recovery period.</p></div>
           <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Aftercare instructions</p><p class="meta mt-1">Written guidance on washing, activity and sun exposure.</p></div>
@@ -288,7 +289,7 @@ require __DIR__ . '/includes/header.php';
           <p class="meta mt-4">Named in your estimate if they apply to your plan, so the total you are looking at is the total.</p>
         </div>
 
-        <div class="card card--pad-lg mt-4" style="background:var(--canvas);box-shadow:none">
+        <div class="card card--tint card--pad-lg mt-4">
           <?= icon('rupee', 24, 'var(--accent-deep)') ?>
           <p class="h3 mt-2">Paying in instalments</p>
           <p class="body-s mt-2">Instalment options are available through third-party finance providers. Terms and eligibility are set by the provider, not the clinic, and are explained in full before you commit.</p>
@@ -307,16 +308,16 @@ require __DIR__ . '/includes/header.php';
       <p class="body-l mt-3">Two quotes for "2,000 grafts" can describe completely different procedures. These are the differences that do not appear on a price list.</p>
     </div>
     <div class="grid grid--5 mt-6">
-      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-2" style="color:#fff">Who operates</p><p class="meta mt-2">Whether a doctor performs the extraction and placement, or only the consultation.</p></div>
-      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-2" style="color:#fff">How grafts were counted</p><p class="meta mt-2">Mapped against the donor area, or a round number attached to a photograph.</p></div>
-      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-2" style="color:#fff">What is included</p><p class="meta mt-2">Medication, anaesthesia and follow-up inside the price, or billed later.</p></div>
-      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-2" style="color:#fff">Session load</p><p class="meta mt-2">How many patients the clinic runs in a day, and who is placing your grafts while that happens.</p></div>
-      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-2" style="color:#fff">The twelve-month plan</p><p class="meta mt-2">What the clinic does at the year review if density is uneven — in writing, before you pay.</p></div>
+      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-2">Who operates</p><p class="meta mt-2">Whether a doctor performs the extraction and placement, or only the consultation.</p></div>
+      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-2">How grafts were counted</p><p class="meta mt-2">Mapped against the donor area, or a round number attached to a photograph.</p></div>
+      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-2">What is included</p><p class="meta mt-2">Medication, anaesthesia and follow-up inside the price, or billed later.</p></div>
+      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-2">Session load</p><p class="meta mt-2">How many patients the clinic runs in a day, and who is placing your grafts while that happens.</p></div>
+      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-2">The twelve-month plan</p><p class="meta mt-2">What the clinic does at the year review if density is uneven — in writing, before you pay.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
