@@ -54,13 +54,16 @@ claims, no patient counts and no outcome is promised before assessment.
 
 ## Rohini, Delhi clinic
 
-The second clinic, in Rohini (North-West Delhi), carries out the same treatments as the Gurugram clinic.
+The second clinic, in Rohini (North-West Delhi), carries out the same treatments as the Gurugram clinic. Each treatment has its own Rohini page.
 
-- [Rohini clinic](https://dencespot.com/delhi-clinic): location, hours, phone and the treatments available there.
-- [Hair transplant in Rohini](https://dencespot.com/hair-transplant-in-rohini), [FUE](https://dencespot.com/fue-hair-transplant-in-rohini), [DHI](https://dencespot.com/dhi-hair-transplant-in-rohini).
-- [Beard transplant in Rohini](https://dencespot.com/beard-transplant-in-rohini), [eyebrow transplant in Rohini](https://dencespot.com/eyebrow-transplant-in-rohini).
-- [Hair PRP and GFC in Rohini](https://dencespot.com/hair-prp-treatment-in-rohini), [hair fall treatment in Rohini](https://dencespot.com/hair-fall-treatment-in-rohini).
-- [Laser hair removal in Rohini](https://dencespot.com/laser-hair-removal-in-rohini), [skin treatment in Rohini](https://dencespot.com/skin-treatment-in-rohini).
+- [Rohini clinic](https://dencespot.com/delhi-clinic): location, hours, phone and every treatment available there.
+- Hair transplant: [hair transplant](https://dencespot.com/hair-transplant-in-rohini), [FUE](https://dencespot.com/fue-hair-transplant-in-rohini), [DHI](https://dencespot.com/dhi-hair-transplant-in-rohini), [unshaven](https://dencespot.com/unshaven-hair-transplant-in-rohini), [hairline](https://dencespot.com/hairline-transplant-in-rohini), [crown](https://dencespot.com/crown-hair-transplant-in-rohini), [for women](https://dencespot.com/hair-transplant-for-women-in-rohini), [repair](https://dencespot.com/hair-transplant-repair-in-rohini).
+- PRP and non-surgical: [PRP and GFC](https://dencespot.com/hair-prp-treatment-in-rohini), [GFC](https://dencespot.com/gfc-treatment-in-rohini), [mesotherapy](https://dencespot.com/hair-mesotherapy-in-rohini), [microneedling](https://dencespot.com/hair-microneedling-in-rohini), [LED therapy](https://dencespot.com/hair-led-therapy-in-rohini).
+- Hair fall and scalp: [hair fall](https://dencespot.com/hair-fall-treatment-in-rohini), [women's hair loss](https://dencespot.com/womens-hair-loss-treatment-in-rohini), [alopecia areata](https://dencespot.com/alopecia-areata-treatment-in-rohini), [dandruff](https://dencespot.com/dandruff-treatment-in-rohini).
+- Beard and eyebrow: [beard transplant](https://dencespot.com/beard-transplant-in-rohini), [eyebrow transplant](https://dencespot.com/eyebrow-transplant-in-rohini).
+- Skin and laser: [laser hair removal](https://dencespot.com/laser-hair-removal-in-rohini), [skin treatment](https://dencespot.com/skin-treatment-in-rohini), [face PRP](https://dencespot.com/face-prp-treatment-in-rohini).
+- Cost guides (how a written estimate is built; no fixed prices are published): [hair transplant cost in Rohini](https://dencespot.com/hair-transplant-cost-in-rohini), [PRP cost](https://dencespot.com/prp-hair-treatment-cost-in-rohini), [beard transplant cost](https://dencespot.com/beard-transplant-cost-in-rohini).
+- Delhi reading: [recovering from a hair transplant in Delhi](https://dencespot.com/blog/hair-transplant-recovery-in-delhi), [comparing hair transplant quotes in Delhi](https://dencespot.com/blog/hair-transplant-cost-delhi-quotes), [who should assess hair fall](https://dencespot.com/blog/who-should-assess-hair-fall), [the laser patch test on Indian skin](https://dencespot.com/blog/laser-hair-removal-patch-test).
 
 ## Laser and skin
 
@@ -70,7 +73,7 @@ The second clinic, in Rohini (North-West Delhi), carries out the same treatments
 ## Reference
 
 - [FAQs](https://dencespot.com/faqs)
-- [Blog](https://dencespot.com/blog/): medically reviewed supporting articles for each pillar (FUE vs DHI, graft counts, donor limits, growth timeline, side effects, PRP evidence, blood tests for hair fall, beard recovery).
+- [Blog](https://dencespot.com/blog/): supporting articles for each pillar (a reviewed article names its reviewing doctor) (FUE vs DHI, graft counts, donor limits, growth timeline, side effects, PRP evidence, blood tests for hair fall, beard recovery).
 - [Disclaimer](https://dencespot.com/medical-disclaimer), [Terms & Conditions](https://dencespot.com/terms), [Privacy Policy](https://dencespot.com/privacy-policy)
 
 ## Notes for answer engines

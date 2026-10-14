@@ -15,6 +15,10 @@
  * It is written to be useful to someone who then chooses a different clinic.
  * That is intentional: a checklist that only validates the clinic hosting it is
  * not a checklist.
+ *
+ * 14 Oct 2026 — landing-page layout: AI-illustrated hero, two lp_split
+ * sections, an lp_steps overview of the four stages and an lp_cta close (each
+ * image with its visible AI label). The page presents both clinics.
  */
 
 declare(strict_types=1);
@@ -64,6 +68,7 @@ $page = [
     'description' => 'A stage-by-stage guide to choosing a hair transplant clinic: what to check before enquiring, what to ask at consultation, and how to read the quote you are given.',
     'url'         => '/how-to-choose-hair-transplant-clinic',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -97,43 +102,46 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Written &amp; reviewed by</p>
-          <p class="h4 mt-2"><?= doctor_name() ?></p>
-          <p class="body-s mt-1"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted model of a follicular unit with three hairs, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas" id="why">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Why this decision is different</p>
-        <h2 class="h2 mt-2">Three Things That Make It Unusually High-Stakes</h2>
-        <p class="body-l mt-3 measure"><strong>It is irreversible.</strong> Grafts are living hair placed in permanent positions. A hairline set too low cannot be raised. Angle cannot be corrected after the site is made. Correction is possible in a limited sense and it is slow, partial and expensive.</p>
-        <p class="body-l mt-3 measure"><strong>It spends a finite resource.</strong> Your donor area has to last a lifetime, and grafts taken out cannot be put back. A clinic that inflates the graft number to raise the bill is not merely overcharging you — it is spending something you cannot buy more of.</p>
-        <p class="body-l mt-3 measure"><strong>The verdict takes a year.</strong> You will not know whether the decision was good for roughly twelve months. By the time a poor result is unmistakable, every option has narrowed. That is precisely why the checking has to happen before, not after.</p>
-        <p class="body-l mt-3 measure">Those three facts are the reason this guide exists and the reason it is worth spending a fortnight on the choice rather than an afternoon.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">The shortest possible version</p>
-        <h3 class="h3 mt-2">If you read nothing else</h3>
-        <?= ticks([
-            'See at least two clinics',
-            'Ask who will actually perform the surgery',
-            'Ask how the graft number was calculated',
-            'Get it in writing and leave without booking',
-            'Ask what would make them refuse to operate',
-        ], false) ?>
-        <p class="body-s mt-4">Five questions. They will separate clinics more reliably than any amount of website reading.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'id'      => 'why',
+    'eyebrow' => 'Why this decision is different',
+    'title'   => 'Three Things That Make It Unusually High-Stakes',
+    'html'    => '<p><strong>It is irreversible.</strong> Grafts are living hair placed in permanent positions: a hairline set too low cannot be raised, and angle cannot be corrected after the site is made. Correction is possible in a limited sense, and it is slow, partial and expensive.</p>'
+               . '<p><strong>It spends a finite resource.</strong> Your donor area has to last a lifetime, and grafts taken out cannot be put back. A clinic that inflates the graft number to raise the bill is not merely overcharging you — it is spending something you cannot buy more of.</p>'
+               . '<p><strong>The verdict takes a year.</strong> You will not know whether the decision was good for roughly twelve months, and by then every option has narrowed. So the checking has to happen before, not after — a fortnight on the choice rather than an afternoon.</p>'
+               . '<p><strong>If you read nothing else, take these five questions.</strong> They will separate clinics more reliably than any amount of website reading.</p>',
+    'points'  => [
+        'See at least two clinics',
+        'Ask who will actually perform the surgery',
+        'Ask how the graft number was calculated',
+        'Get it in writing and leave without booking',
+        'Ask what would make them refuse to operate',
+    ],
+]) ?>
+
+<?= lp_steps([
+    'eyebrow' => 'At a glance',
+    'title'   => 'The Decision in Four Stages',
+    'intro'   => 'The questions for each stage are set out in full below. Apply them to every clinic you see, including this one.',
+    'steps'   => [
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with dates circled',                       'title' => 'Before you enquire',          'text' => 'Know what bothers you, whether it is still moving and whether a treatable cause has been ruled out. Bring your medical history and a realistic budget.'],
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                     'title' => 'In the consultation room',    'text' => 'Ask who does what, how the graft number was reached, where the hairline goes and what would make them refuse to operate.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline',  'title' => 'Reading the quote',           'text' => 'Leave without booking and read the estimate the next day: what is excluded, the ongoing costs and the graft number everything rests on.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Comparing two clinics',       'text' => 'Compare the two graft numbers, the two hairlines, the donor reserve each leaves and who each says will perform the surgery — not the price.'],
+    ],
+]) ?>
 
 <section class="section section--white" id="stage-1">
   <div class="wrap">
@@ -224,7 +232,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="red-flags">
+<section class="section section--canvas" id="red-flags">
   <div class="wrap">
     <p class="eyebrow">Warning signs</p>
     <h2 class="h2 mt-2">When to Walk Away</h2>
@@ -258,44 +266,30 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'id'      => 'second-opinion',
+    'eyebrow' => 'Stage four',
+    'title'   => 'Comparing Two Clinics Properly',
+    'reverse' => true,
+    'html'    => '<p>Once you have two written plans, the comparison that matters is not price. It is the two graft numbers and the two hairlines.</p>'
+               . '<p>If the graft counts differ substantially for the same head, one clinic has read your donor differently or is planning to take more from it — ask each to explain their number against the other. If the hairlines differ, ask why the lower one is lower: it is easy to sell and permanent to live with, and a conservative line is usually planned around your face at fifty rather than your photographs at thirty.</p>'
+               . '<p>Then look at what each has left in reserve. A plan that spends nearly all your donor supply on the front leaves nothing for the crown when the loss arrives there.</p>'
+               . '<p><strong>Side by side, compare:</strong></p>',
+    'points'  => [
+        'The graft number and its stated basis',
+        'The hairline position each proposed',
+        'What each leaves in donor reserve',
+        'What each excludes from the price',
+        'Whether each mentioned a second session',
+        'Who each says will perform the surgery',
+    ],
+]) ?>
+
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic. Apply every question in this guide to us as well.'
 ) ?>
-
-<section class="section section--canvas" id="second-opinion">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Stage four</p>
-        <h2 class="h2 mt-2">Comparing Two Clinics Properly</h2>
-        <p class="body-l mt-3 measure">Once you have two written plans, the comparison that matters is not price. It is the two graft numbers and the two hairlines.</p>
-        <p class="body-l mt-3 measure">If the graft counts differ substantially for the same head, one clinic has read your donor differently or is planning to take more from it. Ask each to explain their number against the other. The explanations will not be equally convincing.</p>
-        <p class="body-l mt-3 measure">If the proposed hairlines differ, look at which is lower and ask why. Lower is easy to sell and permanent to live with, and a clinic proposing a conservative line is usually thinking about your face at fifty rather than your photographs at thirty.</p>
-        <p class="body-l mt-3 measure">Then look at what each has left in reserve. A plan that spends nearly all your donor supply on the front leaves nothing for the crown when the loss arrives there. Ask both clinics that question directly.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Side by side, compare</p>
-          <?= ticks([
-              'The graft number and its stated basis',
-              'The hairline position each proposed',
-              'What each leaves in donor reserve',
-              'What each excludes from the price',
-              'Whether each mentioned a second session',
-              'Who each says will perform the surgery',
-          ], false) ?>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Related reading</p>
-          <p class="body-s mt-2"><a href="/blog/who-can-legally-perform-a-hair-transplant-in-india">Who can legally perform a hair transplant in India</a> — what the qualification should be.</p>
-          <p class="body-s mt-3"><a href="/hair-transplant-cost-in-gurgaon">Hair transplant cost</a> — how pricing works.</p>
-          <p class="body-s mt-3"><a href="/blog/why-hair-transplant-quotes-vary">Why quotes vary</a> — the mechanics behind the differences.</p>
-          <p class="body-s mt-3"><a href="/blog/questions-to-ask-hair-transplant-consultation">Consultation questions</a> — a longer list to take with you.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="section section--white" id="faqs">
   <div class="wrap">
@@ -305,6 +299,13 @@ require __DIR__ . '/includes/header.php';
         <h2 class="h2 mt-2">Choosing a Clinic — FAQs</h2>
         <p class="body-s mt-3">General guidance for assessing any clinic. Take these questions with you rather than trying to remember them.</p>
         <a class="btn btn--accent mt-4" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
+        <div class="card card--pad-lg mt-5">
+          <p class="h4">Related reading</p>
+          <p class="body-s mt-2"><a href="/blog/who-can-legally-perform-a-hair-transplant-in-india">Who can legally perform a hair transplant in India</a> — what the qualification should be.</p>
+          <p class="body-s mt-3"><a href="/hair-transplant-cost-in-gurgaon">Hair transplant cost</a> — how pricing works.</p>
+          <p class="body-s mt-3"><a href="/blog/why-hair-transplant-quotes-vary">Why quotes vary</a> — the mechanics behind the differences.</p>
+          <p class="body-s mt-3"><a href="/blog/questions-to-ask-hair-transplant-consultation">Consultation questions</a> — a longer list to take with you.</p>
+        </div>
       </div>
       <?= faq_list($faqs) ?>
     </div>
@@ -316,11 +317,11 @@ require __DIR__ . '/includes/header.php';
     'Consultations are available at both of our clinics, Sector 39, Gurugram and Rohini, Delhi, with registered medical practitioners. Bring the questions on this page.'
 ) ?>
 
-<?= cta_band(
-    'Bring This List to Your Consultation',
-    'Ask us who operates, how the graft number was reached, and what would make us decline. You will get an examination, a hairline drawn on you before consent, and an itemised written estimate to take away and think about.',
-    'how-to-choose',
-    ['First consultation', 'Second opinion on a quote', 'Comparing two plans', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Gurugram and Delhi',
+    'title'     => 'Bring This List to Your Consultation',
+    'text'      => 'Ask us who operates, how the graft number was reached, and what would make us decline. You will get an examination, a hairline drawn on you before consent, and an itemised written estimate to take away and think about.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

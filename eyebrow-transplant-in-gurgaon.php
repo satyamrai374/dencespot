@@ -15,12 +15,28 @@
  *
  * Deliberately not published here: any density figure per brow, any success
  * percentage, any before/after count. None of it is evidenced for this clinic.
+ *
+ * 14 Oct 2026: landing-page layout (lp_split / lp_steps / lp_cta); every image
+ * is an AI illustration with its visible label. Per the client, this Gurugram
+ * page never mentions the Rohini clinic.
  */
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
+
+// "Transplant vs microblading vs growth treatment" reference table:
+// [what differs, transplant, microblading, growth treatment]. General guide only.
+$browRows = [
+    ['What it is', 'Scalp hair follicles moved into the brow, one at a time', 'Fine strokes of pigment placed in the skin', 'Finding and treating the cause, so your own brow hair can regrow'],
+    ['Adds real hair?', 'Yes, living hair that grows', 'No, pigment only', 'Only your own, if the follicles still work'],
+    ['Usually suits', 'Follicles lost for good: years of plucking, scars, brows that were always sparse', 'Wanting shape or colour without surgery', 'Recent over-plucking, thyroid-related thinning, regrowth after chemotherapy'],
+    ['When you see a change', 'Shedding first; growth from three to four months, settling over eight to twelve', 'Straight away, softening as it heals', 'Over months, once the cause is treated'],
+    ['Upkeep', 'Trimming every one to two weeks, for life', 'Fades; touch-ups are needed', 'Depends on the cause'],
+    ['Uses donor hair?', 'Yes, from the back of the scalp', 'No', 'No'],
+    ['What is involved', 'Day-case surgery under local anaesthetic', 'Cosmetic tattooing, no surgery', 'Assessment, any tests needed, then treatment of the cause'],
+];
 
 $faqs = [
     ['q' => 'What is an eyebrow transplant?',
@@ -62,10 +78,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Eyebrow Transplant in Gurgaon | DenceSpot Clinic',
-    'description' => 'Eyebrow transplant in Gurgaon: single-hair grafts placed at brow angle and direction, who it suits, recovery, and the lifelong trimming commitment explained upfront.',
+    'title'       => 'Eyebrow Transplant in Gurgaon: Cost & Recovery | DenceSpot',
+    'description' => 'Eyebrow transplant in Gurgaon: single-hair grafts at brow angle, how it compares with microblading, recovery, lifelong trimming and what moves the cost.',
     'url'         => '/eyebrow-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-eyebrow-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -96,7 +113,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">An eyebrow transplant moves single hairs from the back of your scalp into the brow, one graft at a time, at the angle brow hair actually lies. The extraction is ordinary. Everything after it is not — direction changes three times across one brow, and the hair you gain will need trimming for the rest of your life.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Eyebrow transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -104,21 +121,22 @@ require __DIR__ . '/includes/header.php';
             'Single-hair grafts, placed individually',
             'Shape drawn and agreed before surgery',
             'Day-case procedure under local anaesthetic',
-            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
+            'At our clinic in Sector 39, Gurugram',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-eyebrow-768.webp" srcset="/assets/img/services/svc-eyebrow-512.webp 512w, /assets/img/services/svc-eyebrow-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: an eyebrow drawn in fine individual hairs on a pale, rounded cream surface" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -132,29 +150,40 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="what-is">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Is an Eyebrow Transplant?</h2>
-        <p class="body-l mt-3 measure">Follicular units are extracted from the donor area at the back of the scalp, exactly as they would be for a scalp procedure. They are then separated under magnification into individual hairs, because a brow is built from single hairs — a two- or three-hair graft placed in a brow produces a tuft, and a tuft reads as surgery from across a room.</p>
-        <p class="body-l mt-3 measure">Each of those single hairs is then placed into its own tiny site in the brow. The site is made at an acute angle, close to flat against the skin, because that is how brow hair grows. Scalp hair stands away from the head; brow hair lies along it. Placing brow grafts at a scalp angle is one of the most common reasons a technically successful transplant still looks wrong.</p>
-        <p class="body-l mt-3 measure">Direction matters just as much as angle, and it is not constant. At the inner end of the brow, hairs sweep upward. Through the body they flatten and run outward. Towards the tail they angle downward. A brow is therefore not one design decision but a sequence of them, made site by site along its length.</p>
-        <p class="body-l mt-3 measure">The procedure is done under local anaesthetic as a day case. You are awake, it takes a few hours depending on the number of grafts, and you go home afterwards.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">Before you read further</p>
-        <h3 class="h3 mt-2">The trimming commitment</h3>
-        <p class="body mt-3">Native brow hair has a short growth cycle. It reaches brow length and stops on its own.</p>
-        <p class="body mt-3">Transplanted hair comes from your scalp and keeps scalp behaviour. It does not stop. Most people trim every one to two weeks, and that does not end.</p>
-        <p class="body mt-3">This is permanent, it is not a complication, and it is not something we can design around. If lifelong trimming is not something you want, say so at consultation and we will tell you honestly that this is not your procedure.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Is an Eyebrow Transplant?',
+    'id'      => 'what-is',
+    'html'    => '<p>Follicular units are extracted from the donor area at the back of the scalp, exactly as for a scalp procedure, then separated under magnification into individual hairs. A brow is built from single hairs: a two- or three-hair graft produces a tuft, and a tuft reads as surgery from across a room.</p>'
+               . '<p>Each hair goes into its own tiny site, made at an acute angle close to flat against the skin, because that is how brow hair grows. Placing brow grafts at a scalp angle is one of the most common reasons a technically successful transplant still looks wrong.</p>'
+               . '<p>Direction matters as much as angle, and it is not constant: at the inner end hairs sweep upward, through the body they flatten and run outward, and towards the tail they angle downward. A brow is a sequence of design decisions, made site by site along its length.</p>',
+    'points'  => [
+        'Single-hair grafts only, placed one at a time',
+        'Local anaesthetic, as a day case: you are awake, and go home afterwards',
+        'A few hours, depending on the number of grafts',
+    ],
+]) ?>
 
-<section class="section section--canvas" id="candidacy">
+<?= lp_split([
+    'img'     => 'svc-hair-fall',
+    'alt'     => 'a wooden comb resting on folded linen towels by a window',
+    'eyebrow' => 'Before you read further',
+    'title'   => 'The Trimming Commitment',
+    'id'      => 'trimming',
+    'tone'    => 'canvas',
+    'reverse' => true,
+    'html'    => '<p>Native brow hair has a short growth cycle: it reaches brow length and stops on its own. Transplanted hair comes from your scalp and keeps scalp behaviour, so it does not stop.</p>'
+               . '<p>This is permanent, it is not a complication, and it is not something we can design around. If lifelong trimming is not something you want, say so at consultation and we will tell you honestly that this is not your procedure.</p>',
+    'points'  => [
+        'Most people trim every one to two weeks',
+        'That does not end',
+        'Explained upfront, before anything is booked',
+    ],
+]) ?>
+
+<section class="section section--white" id="candidacy">
   <div class="wrap">
     <p class="eyebrow">Suitability</p>
     <h2 class="h2 mt-2">Who an Eyebrow Transplant Suits</h2>
@@ -174,92 +203,77 @@ require __DIR__ . '/includes/header.php';
       <p class="body mt-3 measure">Alopecia areata is an autoimmune condition that attacks hair follicles, and it does not distinguish between the hair that was there and the hair you paid to move. Operating during an active phase risks losing the grafts and spending donor supply for nothing. It needs assessment, treatment and a sustained quiet period before surgery is even a conversation. If that is your diagnosis, the right first step is <a href="/alopecia-areata-treatment-in-gurgaon">treating the alopecia areata</a>, not booking a transplant.</p>
       <p class="body mt-3 measure">The same principle applies to any active inflammatory skin disease in the brow area. Settle the condition, then consider surgery.</p>
     </div>
-  </div>
-</section>
 
-<section class="section section--white" id="design">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Design</p>
-        <h2 class="h2 mt-2">The Shape Is Agreed Before Anything Is Taken</h2>
-        <p class="body-l mt-3 measure">A brow is a facial feature, not a patch of coverage. Shape, arch position, thickness and where the tail ends all change how a face reads, and they are decided with you, drawn on, and looked at in a mirror before consent — not improvised on the day.</p>
-        <p class="body-l mt-3 measure">Symmetry is discussed honestly at this stage too. Faces are not symmetrical, brows rarely start symmetrical, and chasing exactly mirror-image brows usually produces a result that looks manufactured. The aim is a matched pair that belongs to your face.</p>
-        <p class="body-l mt-3 measure">Restraint is a design decision. It is tempting to ask for the fullest brow possible, and it is the wrong instinct. A natural brow is denser through the body and thins towards the tail, with a soft, slightly irregular edge. Filling that edge in solidly is exactly what makes work identifiable.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">What the design fixes</p>
-          <div class="mt-3"><?= ticks([
-              'Where the brow begins at the inner end',
-              'Arch height and where it peaks',
-              'Thickness through the body',
-              'Where and how the tail tapers out',
-              'Direction of hair in each zone',
-              'How the two brows relate to each other',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">What it will not do</p>
-          <p class="body-s mt-2">Produce two identical brows, because faces are not symmetrical and identical brows look artificial.</p>
-          <p class="body-s mt-2">Give a solid block of hair. A natural brow has a soft, irregular edge, and that irregularity is deliberate.</p>
-        </div>
+    <div class="measure mt-6">
+      <h3 class="h3" id="transplant-vs-microblading">Eyebrow Transplant vs Microblading vs Growth Treatment</h3>
+      <p class="body mt-3">Three different answers to sparse brows: moving hair in, drawing hair on, or treating whatever stopped your own hair growing. They suit different causes and ask different things of you afterwards.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--wide">
+          <caption class="sr-only">Eyebrow transplant, microblading and treating the cause of brow loss compared: what each is, whether it adds hair, who it usually suits, timeline, upkeep, donor hair and what is involved — a general guide</caption>
+          <thead><tr><th scope="col">What differs</th><th scope="col">Eyebrow transplant</th><th scope="col">Microblading</th><th scope="col">Growth treatment</th></tr></thead>
+          <tbody>
+            <?php foreach ($browRows as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:19%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td><td><?= e($r[3]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
+    <p class="body-s mt-4 measure">The cause comes first: if it can still be treated, a transplant is premature, and if lifelong trimming sounds unworkable, it is the wrong choice whatever the cause.</p>
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="h2 mt-2">From Consultation to Settled Brows</h2>
-    <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Why the brow hair is missing, what the skin is like, what your donor area can spare, and whether anything needs treating first.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">Design</p><p class="body-s mt-2">Shape drawn on, reviewed in a mirror, adjusted and agreed. The graft number follows from the agreed design.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Procedure day</p><p class="body-s mt-2">Extraction, graft separation into single hairs under magnification, then placement. A few hours, local anaesthetic, home the same day.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Growth and review</p><p class="body-s mt-2">Shedding, then regrowth from around three to four months, reviewed with photographs until the shape settles.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'eyebrow' => 'Design',
+    'title'   => 'The Shape Is Agreed Before Anything Is Taken',
+    'id'      => 'design',
+    'tone'    => 'canvas',
+    'html'    => '<p>A brow is a facial feature, not a patch of coverage. Shape, arch position, thickness and where the tail ends all change how a face reads, so they are decided with you, drawn on and looked at in a mirror before consent — not improvised on the day.</p>'
+               . '<p>Faces are not symmetrical and brows rarely start that way; chasing exactly mirror-image brows usually looks manufactured, so the aim is a matched pair that belongs to your face. Restraint is a design decision too: a natural brow is denser through the body, thins towards the tail and has a soft, slightly irregular edge. Filling that edge in solidly, or asking for a solid block of hair, is exactly what makes work identifiable.</p>',
+    'points'  => [
+        'Where the brow begins at the inner end',
+        'Arch height and where it peaks',
+        'Thickness through the body, and where and how the tail tapers out',
+        'Direction of hair in each zone',
+        'How the two brows relate to each other',
+    ],
+]) ?>
 
-<section class="section section--white" id="recovery">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Recovery</p>
-        <h2 class="h2 mt-2">What the First Weeks Look Like</h2>
-        <p class="body-l mt-3 measure">Tiny crusts form around each graft and are visible for several days. Swelling around the eyes is common in the first few days and settles on its own. Most people are comfortable being seen in public within about a week, though the brows will not look like the finished result for months.</p>
-        <p class="body-l mt-3 measure">The transplanted hairs usually shed within the first few weeks. This alarms people who were not warned about it. The follicle stays in place; only the hair shaft is lost, and it regrows.</p>
-        <p class="body-l mt-3 measure">Regrowth typically begins around three to four months and comes in unevenly at first. The shape generally settles across roughly eight to twelve months. Judging the result before then is judging it too early.</p>
-        <p class="body mt-3 measure">General recovery principles are covered in more depth in our <a href="/hair-transplant-aftercare">recovery and aftercare guide</a>, and your specific instructions are given to you in writing.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">In the first days</p>
-          <div class="mt-3"><?= ticks([
-              'Crusting around each graft is expected',
-              'Swelling around the eyes is common',
-              'Do not rub, scratch or pick the area',
-              'Sleep as instructed to limit swelling',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Hold off on</p>
-          <div class="mt-3"><?= ticks([
-              'Brow makeup until you are told it is safe',
-              'Threading, plucking or waxing the area',
-              'Swimming, saunas and heavy sweating',
-              'Anything that puts pressure on the brow',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The process',
+    'title'   => 'From Consultation to Settled Brows',
+    'id'      => 'journey',
+    'tone'    => 'white',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Assessment',        'text' => 'Why the brow hair is missing, what the skin is like, what your donor area can spare, and whether anything needs treating first.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line',    'title' => 'Design',            'text' => 'Shape drawn on, reviewed in a mirror, adjusted and agreed. The graft number follows from the agreed design.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray', 'title' => 'Procedure day',     'text' => 'Extraction, separation into single hairs under magnification, then placement. A few hours, local anaesthetic, home the same day.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',              'title' => 'Growth and review', 'text' => 'Shedding, then regrowth from around three to four months, reviewed with photographs until the shape settles.'],
+    ],
+]) ?>
 
-<?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic. The brow shape is drawn and agreed with you before any graft is taken.'
-) ?>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles beneath the surface',
+    'eyebrow' => 'Recovery',
+    'title'   => 'What the First Weeks Look Like',
+    'id'      => 'recovery',
+    'tone'    => 'canvas',
+    'reverse' => true,
+    'html'    => '<p>Tiny crusts form around each graft and are visible for several days, and swelling around the eyes is common in the first few days before it settles on its own. Most people are comfortable being seen in public within about a week, though the brows will not look like the finished result for months.</p>'
+               . '<p>The transplanted hairs usually shed within the first few weeks, which alarms people who were not warned: the follicle stays in place and regrows. Regrowth typically begins around three to four months, unevenly at first, and the shape settles over roughly eight to twelve months — judging it before then is judging it too early.</p>'
+               . '<p>General principles are in our <a href="/hair-transplant-aftercare">recovery and aftercare guide</a>; your own instructions are given to you in writing.</p>',
+    'points'  => [
+        'Do not rub, scratch or pick the area, and sleep as instructed to limit swelling',
+        'No brow makeup until you are told it is safe',
+        'No threading, plucking or waxing of the area',
+        'No swimming, saunas or heavy sweating, and nothing that puts pressure on the brow',
+    ],
+]) ?>
 
 <section class="section section--white" id="cost">
   <div class="wrap">
@@ -275,10 +289,21 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Whether a second session is planned</p><p class="body-s mt-2">Some cases are deliberately staged, and this is stated in the estimate</p></div>
         </div>
         <p class="body-s mt-4 measure">Because brow grafts are single hairs, the count is not comparable with a scalp quote where grafts carry two to four hairs each. Comparing the two on price per graft is comparing different things.</p>
-        <p class="body mt-3 measure">For how pricing works across our procedures generally, see the <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost guide</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
+        <p class="body mt-3 measure">For how pricing works across our procedures generally, see the <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost guide</a> and <a href="/cost-and-emi-options">payment and EMI options</a>. The <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> is built for scalp pattern loss rather than brows, but if you are weighing scalp work as well, it gives a rough range for that.</p>
+        <div class="card card--pad-lg mt-5">
+          <h3 class="h4">Questions worth asking any clinic about eyebrows</h3>
+          <p class="body-s mt-2">They apply wherever you go, including here.</p>
+          <div class="mt-3"><?= ticks([
+              'Why is my brow hair missing, and does anything need treating first?',
+              'Will the shape be drawn on and agreed before the day?',
+              'Will only single-hair grafts be used?',
+              'How many grafts does the design need, and is a second session likely?',
+              'Who performs the extraction and the placement?',
+          ], false) ?></div>
+        </div>
       </div>
       <div class="cta-band" style="display:block">
-        <h3 class="h3">Get a Personalized Treatment Estimate</h3>
+        <h3 class="h3">Get a Personalised Treatment Estimate</h3>
         <p class="body mt-3">Send a clear, well-lit photo of each brow from the front and slightly to the side on WhatsApp, or request a call back. You will get an assessment appointment, not a sales pitch.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
         <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-track="book">Request an estimate by form</a>
@@ -287,6 +312,10 @@ require __DIR__ . '/includes/header.php';
     </div>
   </div>
 </section>
+
+<?= doctor_block(
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic. The brow shape is drawn and agreed with you before any graft is taken.'
+) ?>
 
 <section class="section section--white" id="faqs">
   <div class="wrap">
@@ -306,14 +335,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Eyebrow Transplants at Our Gurgaon Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, where the brow design, the procedure and follow-up reviews are arranged. Treatment is also available at our Rohini, Delhi clinic.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, where the brow design, the procedure and follow-up reviews are arranged.'
 ) ?>
 
-<?= cta_band(
-    'Have Your Brow Shape Drawn Before You Decide',
-    'Come in and see the shape on your own face before committing to anything. You will get an honest view of whether grafting is right for the reason your brows are sparse, a clear explanation of the lifelong trimming, and a written plan if it is appropriate.',
-    'eyebrow-transplant',
-    ['Eyebrow transplant', 'Eyebrow transplant — after over-plucking', 'Eyebrow transplant — scar or burn', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Have Your Brow Shape Drawn Before You Decide',
+    'text'      => 'Come in and see the shape on your own face before committing to anything. You will get an honest view of whether grafting is right for the reason your brows are sparse, a clear explanation of the lifelong trimming, and a written plan if it is appropriate.',
+    'treatment' => 'Eyebrow transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

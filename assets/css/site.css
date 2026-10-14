@@ -540,3 +540,90 @@ a.card.rohini-svc:hover { border-color: var(--hp-teal-500); transform: translate
 /* The AI label sits top-right on hero images, clear of the badge card that
    overlaps the image's lower edge. */
 .hero__figure .hp-ai-chip { top: 12px; bottom: auto; }
+
+/* ==========================================================================
+   Mobile alignment pass (Oct 2026)
+   ========================================================================== */
+
+/* Blog cards. On phones every card in a topic used the same illustration,
+   which made the list very long and repetitive: the image is dropped below
+   700px and the card becomes a clean text card. */
+.blog-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.blog-card__media { display: block; }
+.blog-card__body { padding: 24px; display: flex; flex-direction: column; flex: 1 1 auto; }
+@media (max-width: 699px) {
+  .blog-card__media { display: none; }
+  .blog-card__body { padding: 20px; }
+}
+
+/* A lone last card in a two-up grid spans the row instead of sitting
+   half-width on its own. */
+@media (max-width: 1079px) {
+  .grid--4 > :last-child:nth-child(odd),
+  .grid--5 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 700px) and (max-width: 1079px) {
+  .grid--3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+
+@media (max-width: 559px) {
+  /* Button pairs stack at one full width, so their edges line up. */
+  .btn-row { flex-direction: column; align-items: stretch; }
+  .btn-row > .btn { width: 100%; }
+
+  /* Tool options: one per row, never a lone half-width option. */
+  main .calc__opts.calc__opts--2,
+  main .hla__opts.hla__opts--2 { grid-template-columns: 1fr; }
+
+  /* Hero badge card: same width as the image above it. */
+  .hero__badge-card { max-width: none; margin-inline: 16px; }
+
+  /* FAQ question + toggle: keep the toggle on the first line. */
+  .faq summary { align-items: flex-start; }
+}
+
+/* Grouped Rohini treatment lists (rohini_services_block) */
+.rohini-groups { display: grid; gap: 16px; }
+@media (min-width: 700px)  { .rohini-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .rohini-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.rohini-group__list { display: grid; gap: 2px; margin-top: 12px; }
+.rohini-group__list a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 9px 0; border-bottom: 1px solid var(--hp-line-2);
+  font-size: 15px; font-weight: 500; color: var(--hp-green-800); text-decoration: none;
+}
+.rohini-group__list li:last-child a { border-bottom: 0; }
+.rohini-group__list a::after { content: "\2192"; color: var(--hp-teal-500); }
+.rohini-group__list a:hover { color: var(--hp-teal-600); text-decoration: none; }
+
+/* Blog post illustration under the title (16:9 crop of any lp image). */
+.lp-fig.blog-hero { aspect-ratio: 16 / 9; }
+
+/* Two neighbouring sections with the same background get a hairline divider,
+   so shared blocks (FAQs, further reading, clinic cards) never run together. */
+.section--white + .section--white,
+.section--canvas + .section--canvas { border-top: 1px solid var(--hp-line-2); }
+
+/* Call-back strip under the hero (lead_strip) */
+.lead-strip { background: var(--hp-green-800); color: rgba(255, 255, 255, .86); padding-block: 26px; }
+.lead-strip .eyebrow { color: var(--accent-on-dark); }
+.lead-strip .h3 { color: #fff; }
+.lead-strip .body-s { color: rgba(255, 255, 255, .8); }
+.lead-strip a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.lead-strip :focus-visible { outline-color: var(--accent-on-dark); }
+.lead-strip__inner { display: grid; gap: 18px; align-items: center; }
+.lead-strip__fields { display: grid; gap: 10px; }
+.lead-strip__field { display: grid; gap: 4px; }
+.lead-strip__field span { font-size: 12px; font-weight: 600; letter-spacing: .04em; color: rgba(255, 255, 255, .82); }
+.lead-strip .input { min-height: 46px; border-color: rgba(255, 255, 255, .34); background: rgba(255, 255, 255, .08); color: #fff; }
+.lead-strip .input:focus { border-color: var(--accent-on-dark); box-shadow: 0 0 0 3px rgba(143, 217, 203, .25); }
+.lead-strip__btn { background: var(--hp-ivory-50); color: var(--hp-green-900); box-shadow: none; min-height: 46px; align-self: end; }
+.lead-strip__btn:hover { background: #fff; color: var(--hp-green-950); }
+.lead-strip__consent { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, .76); }
+.lead-strip__consent input { margin-top: 2px; accent-color: var(--accent-on-dark); flex: none; }
+@media (min-width: 700px) {
+  .lead-strip__fields { grid-template-columns: 1fr 1fr auto; align-items: end; }
+}
+@media (min-width: 1080px) {
+  .lead-strip__inner { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px; }
+}

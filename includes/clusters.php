@@ -183,7 +183,7 @@ function cluster_section(string $pageUrl): string
           ? 'Everything in Our ' . e($cluster['label']) . ' Guide'
           : 'More From the ' . e($cluster['label']) . ' Guide' ?></h2>
       <p class="body mt-3"><?= $role === 'pillar'
-          ? 'Each page below answers one question in depth — a technique, an area, a cost, a recovery stage — and every one is written and medically reviewed by ' . e(REVIEWED_BY) . '.'
+          ? 'Each page below answers one question in depth — a technique, an area, a cost, a recovery stage' . (page_review_signed_off() ? ' — and every one is written and medically reviewed by ' . e(REVIEWED_BY) . '.' : '.')
           : 'This page covers one part of the decision. The overview, the related options and the supporting reading are below.' ?></p>
     </div>
 

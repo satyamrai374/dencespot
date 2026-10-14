@@ -77,7 +77,18 @@ $schemaHtml  = schema_render($medicalNode === null ? $page['schema'] : array_mer
 <meta property="og:image" content="<?= e($ogImage) ?>">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="<?= e(SITE_NAME) ?> — <?= e(SITE_TAGLINE) ?>">
+<?php
+  // Location-aware (14 Oct 2026): a Rohini page never names Gurugram, and a
+  // Gurugram page never names Rohini. The default share image is an
+  // AI-generated illustration, which the alt text says.
+  $ogAltPlace = match (hp_page_location()) {
+      'rohini'  => 'hair, skin and laser clinic in Rohini, Delhi',
+      'gurgaon' => 'hair, skin and laser clinic in Sector 39, Gurugram',
+      default   => 'hair, skin and laser clinics in Gurugram and Delhi',
+  };
+?>
+<meta property="og:image:alt" content="<?= e(SITE_NAME) ?>, <?= e($ogAltPlace) ?>. AI-generated illustration.">
+<meta name="twitter:image:alt" content="<?= e(SITE_NAME) ?>, <?= e($ogAltPlace) ?>. AI-generated illustration.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="<?= e($ogImage) ?>">
 <?php else: ?>

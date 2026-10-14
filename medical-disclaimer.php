@@ -25,8 +25,8 @@ require_once __DIR__ . '/includes/legal.php';
 $crumbs = [['name' => 'Home', 'url' => '/'], ['name' => 'Disclaimer']];
 
 $page = [
-    'title'       => 'Disclaimer | ' . SITE_NAME,
-    'description' => 'Disclaimer for the DenceSpot Clinic website: general health information only, individual outcomes vary, AI-generated images, emergencies and doctors’ registration details.',
+    'title'       => 'Medical Disclaimer & AI Image Policy | ' . SITE_NAME,
+    'description' => 'DenceSpot Clinic disclaimer: general health information only, outcomes vary, how AI-generated images are used, emergencies and doctors’ registration.',
     'url'         => '/medical-disclaimer',
     'crumbs'      => $crumbs,
     'schema'      => [schema_clinic(), schema_breadcrumbs($crumbs)],

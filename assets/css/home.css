@@ -1079,3 +1079,149 @@ body.hp { padding-bottom: 62px; }
   .hp-nav__link { font-size: 13.5px; }
   .hp-header__bar { gap: 12px; }
 }
+
+/* ==========================================================================
+   Mobile alignment pass (Oct 2026)
+   ========================================================================== */
+
+/* "How we work": the heading is centred, so the items are too. */
+.hp-why__item { text-align: center; }
+.hp-why__icon { margin-inline: auto; }
+
+@media (max-width: 559px) {
+  /* Button pairs at one full width. */
+  .hp-hero__actions > .hp-btn,
+  .hp-cta__actions > .hp-btn,
+  .hp-intro__cta > .hp-btn { flex: 1 1 100%; width: 100%; }
+
+  /* Seven treatment circles as two even rows (4 + 3) instead of 3 + 3 + 1. */
+  .hp-tx__list { gap: 18px 8px; }
+  .hp-tx__item { flex: 0 0 calc((100% - 3 * 8px) / 4); }
+  .hp-tx__img { width: 74px; height: 74px; }
+  .hp-tx__label { font-size: 12px; }
+  .hp-tx__label small { font-size: 11px; }
+  .hp-tx__ai { font-size: 8.5px; }
+
+  /* Footer link lists side by side; brand, the clinic list and the
+     addresses run full width. */
+  .hp-footer__grid { grid-template-columns: 1fr 1fr; gap: 30px 18px; }
+  .hp-footer__brand,
+  .hp-footer__grid > nav.hp-footer__col:nth-of-type(3),
+  .hp-footer__grid > div.hp-footer__col { grid-column: 1 / -1; }
+  .hp-footer__grid > nav.hp-footer__col:nth-of-type(3) ul { columns: 2; column-gap: 18px; }
+  .hp-footer__grid > nav.hp-footer__col:nth-of-type(3) li { break-inside: avoid; }
+}
+
+@media (max-width: 767px) {
+  /* "12 months of follow-up" card: full width, icon beside the text. */
+  .hp-stat-card {
+    justify-self: stretch;
+    grid-template-columns: auto 1fr; justify-items: start; align-items: center;
+    column-gap: 16px; row-gap: 2px; text-align: left;
+  }
+  .hp-stat-card .hp-i { grid-row: span 2; }
+}
+
+/* One-clinic card (location pages) and a four-column footer when one link
+   column is hidden for the page's location. */
+.hp-clinics__grid--one { grid-template-columns: minmax(0, 640px); }
+@media (min-width: 1024px) {
+  .hp-footer__grid.hp-footer__grid--4 { grid-template-columns: 1.35fr .85fr .85fr 1.4fr; gap: 40px; }
+}
+
+/* ==========================================================================
+   Landing-page sections (lp_*) — treatment and clinic pages
+   ========================================================================== */
+
+.lp-fig { position: relative; margin: 0; overflow: hidden; border-radius: var(--hp-r-lg); background: var(--hp-ivory-100); box-shadow: var(--hp-shadow); }
+.lp-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lp-fig--portrait { aspect-ratio: 4 / 5; }
+.lp-fig--wide { aspect-ratio: 3 / 2; }
+.lp-fig--tall { aspect-ratio: 3 / 4; }
+.lp-fig .hp-ai-chip { top: 12px; right: 12px; bottom: auto; }
+
+/* Image beside text */
+.lp-split__grid { display: grid; gap: 32px; align-items: center; }
+.lp-split__media { max-width: 520px; width: 100%; }
+.lp-split__text > * + * { margin-top: 14px; }
+.lp-split__text p { font-size: 16px; line-height: 1.72; color: var(--hp-body); }
+@media (min-width: 900px) {
+  .lp-split__grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; }
+  .lp-split--reverse .lp-split__media { order: 2; justify-self: end; }
+}
+
+/* Illustrated steps */
+.lp-steps__list { display: grid; gap: 28px; margin: 0; padding: 0; list-style: none; }
+.lp-step .lp-fig { box-shadow: var(--hp-shadow-sm); }
+.lp-step__num { margin-top: 16px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--hp-teal-600); }
+.lp-step .h4 { margin-top: 4px; }
+@media (min-width: 640px) { .lp-steps__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) {
+  .lp-steps__list--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lp-steps__list--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Icon highlights */
+.lp-highlights__list { display: grid; gap: 28px; margin: 0; padding: 0; list-style: none; }
+.lp-highlight { text-align: center; }
+.lp-highlight__icon {
+  display: inline-grid; place-items: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--hp-teal-100); color: var(--hp-green-800);
+}
+@media (min-width: 640px) { .lp-highlights__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) {
+  .lp-highlights__list--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lp-highlights__list--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Closing CTA with image */
+.lp-cta { display: grid; background: var(--hp-ivory-100); }
+.lp-cta__content { padding: clamp(44px, 6vw, 76px) var(--hp-gutter); }
+.lp-cta__content .h2 { max-width: 560px; }
+.lp-cta__content .body-l { max-width: 540px; }
+.lp-cta__media { border-radius: 0; box-shadow: none; aspect-ratio: 4 / 3; }
+@media (min-width: 1024px) {
+  .lp-cta { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .lp-cta__content { padding-left: max(var(--hp-gutter), calc((100vw - var(--hp-wrap)) / 2)); align-self: center; }
+  .lp-cta__media { aspect-ratio: auto; min-height: 420px; }
+}
+.lp-cta__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ---------- Treatments at both clinics (homepage, 14 Oct 2026) ---------- */
+
+.hp-services { padding-block: clamp(48px, 6vw, 70px); background: #fff; }
+.hp-services__grid { display: grid; gap: 20px; }
+.hp-services__group { min-width: 0; scroll-margin-top: calc(var(--hp-header-h) + 16px); }
+/* The illustrations are 4:5 portraits: take them out of flow so the frame's
+   own ratio sets the height, not the image's. */
+.hp-services .hp-stage__media { aspect-ratio: 16 / 10; overflow: hidden; }
+.hp-services .hp-stage__media img { position: absolute; inset: 0; object-position: 50% 45%; }
+.hp-services__list { display: grid; margin-top: 4px; }
+.hp-services__list li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--hp-line-2);
+}
+.hp-services__name { font-size: 14.5px; font-weight: 600; line-height: 1.35; color: var(--hp-ink); }
+.hp-services__links { display: flex; flex-shrink: 0; gap: 6px; }
+.hp-services__links a {
+  display: inline-flex; align-items: center;
+  min-height: 32px; padding: 4px 11px;
+  border: 1px solid var(--hp-line);
+  border-radius: 999px;
+  background: var(--hp-ivory-50);
+  color: var(--hp-green-800);
+  font-size: 12.5px; font-weight: 600; text-decoration: none;
+  transition: background-color .2s var(--hp-ease), border-color .2s var(--hp-ease), color .2s var(--hp-ease);
+}
+.hp-services__links a:hover { border-color: var(--hp-green-800); background: var(--hp-green-800); color: #fff; }
+
+@media (min-width: 640px) {
+  .hp-services__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+}
+@media (min-width: 1024px) {
+  .hp-services__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* The hair transplant introduction links to both clinics' pages. */
+.hp-intro__cta { display: flex; flex-wrap: wrap; gap: 12px; }

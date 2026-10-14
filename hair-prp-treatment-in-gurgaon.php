@@ -14,6 +14,11 @@
  * stop rule; a results timeline; PRP with medication and after a transplant;
  * cited evidence; dated market price context (never presented as ours).
  * The PRP cluster navigation is appended by footer.php.
+ *
+ * 14 Oct 2026: landing-page layout (lp_split / lp_steps / lp_cta); the
+ * comparison, timeline and market tables stay. Every image is an AI
+ * illustration with its visible label. Per the client, this Gurugram page
+ * never mentions the Rohini clinic.
  */
 
 declare(strict_types=1);
@@ -81,7 +86,7 @@ $faqs = [
     ['q' => 'How much does hair PRP treatment cost in Gurgaon?',
      'a' => 'Gurgaon clinics we reviewed in ' . MARKET_PRICES_AS_OF . ' mostly advertised PRP at ' . rupees(MARKET_PRP_SESSION_LOW) . '–' . rupees(MARKET_PRP_SESSION_HIGH) . ' per session, with prepaid courses of ₹20,000–₹60,000. A session is not a standard unit — volume, preparation and area all differ — so compare the course, not the session, and ask what happens if you do not respond. Ours is quoted in writing after assessment; see the <a href="/prp-hair-treatment-cost-in-gurgaon">PRP hair treatment cost guide</a>.'],
     ['q' => 'Where is DenceSpot’s PRP clinic in Gurgaon?',
-     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations and sessions are carried out by registered medical practitioners at the clinic, and PRP is also available at our Rohini, Delhi clinic. Hours are ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . ').'],
+     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations and sessions are carried out by registered medical practitioners at the clinic. Hours are ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . ').'],
 ];
 
 $crumbs = [
@@ -94,6 +99,7 @@ $page = [
     'description' => 'PRP treatment for hair in Gurgaon, Sector 39 near Medanta. Who it may help, its evidence limits, a session plan with a stop rule, timeline and typical costs.',
     'url'         => '/hair-prp-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-prp-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -137,16 +143,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager" fetchpriority="high"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-prp-768.webp" srcset="/assets/img/services/svc-prp-512.webp 512w, /assets/img/services/svc-prp-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a capped tube of golden plasma standing on a white tray beside a syringe" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -186,28 +193,23 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
-  <div class="wrap">
-    <div class="split split--wide-left">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Is Hair PRP Treatment?</h2>
-        <div class="stack mt-4 measure">
-          <p class="body-l">PRP stands for platelet-rich plasma. A small volume of blood is drawn from your arm, exactly as it would be for a routine blood test, and spun in a centrifuge. Spinning separates the blood into layers, and we keep the plasma fraction in which the platelets are concentrated.</p>
-          <p class="body-l">That concentrate is injected into the scalp at the depth where hair follicles sit, across the areas that are thinning. Platelets carry growth factors — signalling proteins the body normally uses for repair. The working principle in hair loss is that delivering them around miniaturising follicles helps hold those follicles in their growth phase for longer and improves the blood supply feeding them.</p>
-          <p class="body-l">Two things follow from that, and both matter more than any marketing claim. First, PRP acts on follicles that are still alive but shrinking; where a follicle is gone — a fully bald, shiny scalp, or scarred skin — there is nothing left for it to act on. Second, it does not switch off the process driving the hair loss, so a result is maintained rather than banked.</p>
-          <p class="body-l">It is also honest to say that the published evidence for PRP in pattern hair loss is supportive but uneven, largely because protocols differ so much between clinics: how the blood is spun, how concentrated the result is, how much is injected and how often. We treat PRP as one part of a plan, not the whole plan.</p>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <p class="eyebrow" style="color:var(--ink-muted)">In one line</p>
-          <p class="body mt-2">PRP supports follicles that are thinning but still alive. It does not create follicles where they no longer exist — which is the line between a PRP case and a transplant case. More in <a href="/blog/prp-or-hair-transplant">PRP or a hair transplant</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-transplant',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Is Hair PRP Treatment?',
+    'id'      => 'what-is',
+    'tone'    => 'canvas',
+    'html'    => '<p>PRP stands for platelet-rich plasma. A small volume of blood is drawn from your arm, exactly as for a routine blood test, and spun in a centrifuge; the plasma fraction in which the platelets are concentrated is kept and injected into the scalp at the depth where follicles sit, across the thinning areas.</p>'
+               . '<p>Platelets carry growth factors — signalling proteins the body normally uses for repair. The working principle is that delivering them around miniaturising follicles helps hold those follicles in their growth phase for longer and improves the blood supply feeding them.</p>'
+               . '<p>The published evidence for PRP in pattern hair loss is supportive but uneven, largely because protocols differ between clinics: how the blood is spun, how concentrated the result is, how much is injected and how often. We treat PRP as one part of a plan, not the whole plan.</p>',
+    'points'  => [
+        'It acts on follicles that are still alive but shrinking',
+        'Where a follicle is gone — a fully bald, shiny scalp, or scarred skin — there is nothing left for it to act on',
+        'It does not switch off the process driving the hair loss, so a result is maintained rather than banked',
+    ],
+    'link'    => ['url' => '/blog/prp-or-hair-transplant', 'label' => 'PRP or a hair transplant: where the line falls'],
+]) ?>
 
 <section class="section section--white" id="candidacy">
   <div class="wrap">
@@ -288,61 +290,38 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Step by step</p>
-      <h2 class="h2 mt-2">Your PRP Journey</h2>
-      <p class="body-l mt-3">Six stages, in this order. The investigations come before the injections, not after them.</p>
-    </div>
-    <div class="journey mt-6" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-1">Consultation</p><p class="meta mt-2">History, medication, and what has already been tried.</p></div>
-      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-1">Scalp examination</p><p class="meta mt-2">Pattern, density and miniaturisation assessed under magnification.</p></div>
-      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-1">Blood investigations</p><p class="meta mt-2">Thyroid, iron, vitamin D and platelet count where indicated.</p></div>
-      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-1">Plan and consent</p><p class="meta mt-2">Session count, intervals and full course cost, in writing.</p></div>
-      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-1">Session series</p><p class="meta mt-2">The agreed course, at the agreed intervals, same protocol each time.</p></div>
-      <div class="card card--ink"><span class="journey__num">06</span><p class="h4 mt-1">Review and maintenance</p><p class="meta mt-2">Response judged against baseline photographs before anything is repeated.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'Step by step',
+    'title'   => 'Your PRP Journey',
+    'id'      => 'journey',
+    'intro'   => 'In this order: the investigations come before the injections, not after them.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                 'title' => 'Consultation and examination',     'text' => 'History, medication and what has already been tried, then pattern, density and miniaturisation assessed under magnification.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line', 'title' => 'Investigations and a written plan', 'text' => 'Thyroid, iron, vitamin D and platelet count where indicated, then session count, intervals and the full course cost in writing.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile instruments laid out on a tray',              'title' => 'Session series',                   'text' => 'The agreed course, at the agreed intervals, with the same protocol each time.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',           'title' => 'Review and maintenance',           'text' => 'Response judged against baseline photographs before anything is repeated.'],
+    ],
+]) ?>
 
-<section class="section section--canvas" id="procedure">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">On the day</p>
-      <h2 class="h2 mt-2">How Does a PRP Session Work?</h2>
-      <p class="body mt-3">A walk-in, walk-out appointment, usually 30 to 60 minutes from arrival to leaving.</p>
-    </div>
-    <div class="split split--wide-left mt-6" style="align-items:start">
-      <div class="stack-sm">
-        <div class="step"><span class="step-num">1</span><div><h3 class="h3">Check-in and review</h3><p class="body-s mt-2">Anything that has changed since the last session is noted — medication, illness, how the scalp responded.</p></div></div>
-        <div class="step"><span class="step-num">2</span><div><h3 class="h3">Blood draw</h3><p class="body-s mt-2">A small volume from the arm, exactly as for a routine blood test.</p></div></div>
-        <div class="step"><span class="step-num">3</span><div><h3 class="h3">Centrifugation</h3><p class="body-s mt-2">The sample is spun to separate the layers and the platelet-rich fraction is drawn off. Same spin settings every time — consistency is the point.</p></div></div>
-        <div class="step"><span class="step-num">4</span><div><h3 class="h3">Scalp preparation</h3><p class="body-s mt-2">The treatment area is cleaned and topical anaesthetic or cooling applied to reduce the sting.</p></div></div>
-        <div class="step"><span class="step-num">5</span><div><h3 class="h3">Injection</h3><p class="body-s mt-2">The concentrate is injected at follicular depth across the mapped thinning areas — usually ten to fifteen minutes.</p></div></div>
-        <div class="step"><span class="step-num">6</span><div><h3 class="h3">Aftercare and next date</h3><p class="body-s mt-2">Washing and activity instructions, and your next session booked before you leave.</p></div></div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <p class="eyebrow" style="color:var(--ink-muted)">Commonly reported afterwards</p>
-          <p class="body-s mt-2">Scalp tenderness for a day or so, redness, pinpoint marks, mild swelling, occasional headache, and bruising where the blood was drawn. Infection at an injection site is uncommon but possible — which is why the aftercare instructions matter.</p>
-        </div>
-        <div class="card card--pad-lg">
-          <p class="eyebrow" style="color:var(--ink-muted)">Questions worth asking any clinic about its protocol</p>
-          <div class="mt-3"><?= ticks([
-              'Who draws, prepares and injects — by name?',
-              'Is the preparation the same at every session?',
-              'How much area is treated, and how is it mapped?',
-              'Are baseline photographs taken before session one?',
-              'When is the review, and what happens if nothing changed?',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-skin',
+    'alt'     => 'a sculpted cross-section of skin layers with a single hair follicle, set against a pale circle',
+    'eyebrow' => 'On the day',
+    'title'   => 'How Does a PRP Session Work?',
+    'id'      => 'procedure',
+    'reverse' => true,
+    'html'    => '<p>A walk-in, walk-out appointment, usually 30 to 60 minutes from arrival to leaving. Anything that has changed since the last session — medication, illness, how the scalp responded — is noted first, then a small volume of blood is drawn from the arm and spun with the same settings every time, because consistency is the point.</p>'
+               . '<p>Commonly reported afterwards: scalp tenderness for a day or so, redness, pinpoint marks, mild swelling, occasional headache and bruising where the blood was drawn. Infection at an injection site is uncommon but possible, which is why the aftercare instructions matter.</p>'
+               . '<p><b>Worth asking any clinic about its protocol:</b> who draws, prepares and injects, by name; whether the preparation is the same at every session; how much area is treated and how it is mapped; whether baseline photographs are taken before session one; and when the review is, and what happens if nothing changed.</p>',
+    'points'  => [
+        'The treatment area is cleaned, with topical anaesthetic or cooling to reduce the sting',
+        'The concentrate is injected at follicular depth across the mapped thinning areas, usually in ten to fifteen minutes',
+        'Washing and activity instructions, and your next session booked before you leave',
+    ],
+]) ?>
 
-<section class="section section--white" id="results">
+<section class="section section--canvas" id="results">
   <div class="wrap">
     <div style="max-width:62ch">
       <p class="eyebrow">Timeline and the stop rule</p>
@@ -389,26 +368,17 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="combinations">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">PRP is rarely the whole plan</p>
-      <h2 class="h2 mt-2">PRP With Medication, and PRP After a Hair Transplant</h2>
-    </div>
-    <div class="grid grid--2 mt-5">
-      <div class="card card--pad-lg">
-        <h3 class="h3">Alongside minoxidil or finasteride</h3>
-        <p class="body-s mt-3">Prescribed medical therapy acts on the process that drives pattern hair loss and is the most studied option available, though it is not a cure: benefit lasts only while it is taken, and not everyone responds. PRP is supportive. In practice the two are usually run together, not chosen between — and a PRP course is never a reason to start or stop medication without the prescribing doctor.</p>
-        <p class="body-s mt-3">Both medicines have side-effect profiles worth discussing properly before you start; see <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride in India</a>.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <h3 class="h3">After a hair transplant</h3>
-        <p class="body-s mt-3">Transplanted follicles keep their donor characteristics; the native hair around them does not. PRP is commonly used to support that surrounding hair, which keeps thinning on its own timetable after surgery.</p>
-        <p class="body-s mt-3">Timing is decided by the treating doctor once the scalp has healed. Ask which hair a post-transplant course is meant to help, and how that will be measured over the first year — see <a href="/blog/is-a-hair-transplant-permanent">is a hair transplant permanent</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'eyebrow' => 'PRP is rarely the whole plan',
+    'title'   => 'PRP With Medication, and PRP After a Hair Transplant',
+    'id'      => 'combinations',
+    'html'    => '<p><b>Alongside minoxidil or finasteride.</b> Prescribed medical therapy acts on the process that drives pattern hair loss and is the most studied option available, though it is not a cure: benefit lasts only while it is taken, and not everyone responds. PRP is supportive, so the two are usually run together, not chosen between — and a PRP course is never a reason to start or stop medication without the prescribing doctor. Both medicines have side-effect profiles worth discussing first; see <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride in India</a>.</p>'
+               . '<p><b>After a hair transplant.</b> Transplanted follicles keep their donor characteristics; the native hair around them does not, and keeps thinning on its own timetable. PRP is commonly used to support that surrounding hair, with timing decided by the treating doctor once the scalp has healed. Ask which hair a post-transplant course is meant to help, and how that will be measured over the first year — see <a href="/blog/is-a-hair-transplant-permanent">is a hair transplant permanent</a>.</p>',
+]) ?>
+
+<?= doctor_block('Consultations and procedures are carried out by registered medical practitioners at the clinic.') ?>
 
 <section class="section section--white" id="evidence">
   <div class="wrap">
@@ -427,9 +397,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= doctor_block('Consultations and procedures are carried out by registered medical practitioners at the clinic.') ?>
-
-<section class="section section--white" id="cost">
+<section class="section section--canvas" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -446,7 +414,7 @@ require __DIR__ . '/includes/header.php';
         <a class="btn btn--ink mt-4" href="/prp-hair-treatment-cost-in-gurgaon"><?= icon('rupee', 18) ?> PRP cost breakdown</a>
       </div>
       <div class="cta-band" style="display:block">
-        <h3 class="h3">Get a Personalized Treatment Estimate</h3>
+        <h3 class="h3">Get a Personalised Treatment Estimate</h3>
         <p class="body-s mt-2">Send photos of the parting, crown and hairline on WhatsApp, or request a call back. You will get an assessment — not a package sale.</p>
         <div class="stack-sm mt-4">
           <a class="btn btn--block btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
@@ -463,7 +431,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -483,14 +451,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Hair PRP Clinic Near Medanta, Sector 39 Gurugram',
-    'Sessions take place at our Sector 39 clinic in Gurugram, ' . NAP_LANDMARK . ', and are carried out by registered medical practitioners. Because a PRP course runs over months, each review compares your photographs against the same baseline. Treatment is also available at our Rohini, Delhi clinic.'
+    'Sessions take place at our Sector 39 clinic in Gurugram, ' . NAP_LANDMARK . ', and are carried out by registered medical practitioners. Because a PRP course runs over months, each review compares your photographs against the same baseline.'
 ) ?>
 
-<?= cta_band(
-    'Find Out Whether PRP Is Worth Doing for You',
-    'You will get a scalp examination, the investigations that matter, and an honest answer about whether PRP is likely to help — including when the answer is that something else should come first.',
-    'hair-prp-hub',
-    ['Hair PRP treatment', 'GFC therapy', 'Women’s hair loss', 'Hair fall treatment', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out Whether PRP Is Worth Doing for You',
+    'text'      => 'You will get a scalp examination, the investigations that matter, and an honest answer about whether PRP is likely to help — including when the answer is that something else should come first.',
+    'treatment' => 'Hair PRP / GFC',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

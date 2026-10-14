@@ -140,6 +140,7 @@ $page = [
     'description' => 'Hair fall and hair loss treatment in Gurgaon. The cause comes first: trichoscopy, a pull test and blood tests where indicated. Sector 39, Gurugram.',
     'url'         => '/hair-fall-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-hair-fall-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -149,7 +150,7 @@ $page = [
             '@id'   => abs_url('/hair-fall-treatment-in-gurgaon') . '#condition',
             'name'  => 'Hair loss',
             'alternateName' => ['Hair fall', 'Alopecia'],
-            // Each one is a visible sign card in the #normal section.
+            // Each one is a visible sign in the #normal section.
             'signOrSymptom' => [
                 ['@type' => 'MedicalSignOrSymptom', 'name' => 'Increased hair shedding'],
                 ['@type' => 'MedicalSignOrSymptom', 'name' => 'Widening parting'],
@@ -188,21 +189,22 @@ require __DIR__ . '/includes/header.php';
             'Scalp examined under magnification',
             'Blood tests where clinically indicated',
             'Medical treatment before injections or surgery',
-            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
+            'At our clinic in Sector 39, Gurugram',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-hair-fall-768.webp" srcset="/assets/img/services/svc-hair-fall-512.webp 512w, /assets/img/services/svc-hair-fall-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a wooden comb resting on folded towels" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -215,37 +217,25 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="normal">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Normal or not</p>
-      <h2 class="h2 mt-2">How Much Hair Fall Is Normal?</h2>
-      <p class="body mt-3">Most people shed somewhere between 50 and 100 hairs a day — the normal hair cycle releasing old hairs as new ones start. You will see more on wash days, more if you wash less often, and more with long hair.</p>
-      <p class="body mt-3">The number matters less than the trend. Shedding heavier than your normal for more than six to eight weeks, or density visibly falling even without much shedding, is worth an examination.</p>
-    </div>
-
-    <div class="split split--sidebar mt-6">
-      <div>
-        <div class="note">
-          <h3 class="h4">The hair pull test</h3>
-          <p class="body-s mt-2">Done at the assessment: around 50 to 60 hairs are gathered between the fingers and pulled gently, in several areas of the scalp. More than about six coming away from one pull suggests active shedding. It is most reliable if you have not washed for a day beforehand, and it is a pointer, not a diagnosis.</p>
-        </div>
-        <a class="btn btn--ink mt-4" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book">Book an assessment</a>
-      </div>
-      <div>
-        <h3 class="h3">Signs that are not normal</h3>
-        <div class="grid grid--2 mt-3">
-          <div class="card card--tint"><h4 class="h4">Shedding for more than 6–8 weeks</h4><p class="body-s mt-2">Persistently heavier than your normal, rather than a bad week.</p></div>
-          <div class="card card--tint"><h4 class="h4">A widening parting</h4><p class="body-s mt-2">Scalp becoming visible where it was not before — the earliest reliable sign in women.</p></div>
-          <div class="card card--tint"><h4 class="h4">A receding or thinning hairline</h4><p class="body-s mt-2">Temples moving back, or the frontal line losing definition.</p></div>
-          <div class="card card--tint"><h4 class="h4">Distinct patches</h4><p class="body-s mt-2">Round, well-defined bare areas on the scalp or in the beard. Get these seen promptly.</p></div>
-          <div class="card card--tint"><h4 class="h4">An itchy, flaking or sore scalp</h4><p class="body-s mt-2">Inflammation drives shedding and is treatable in its own right.</p></div>
-          <div class="card card--tint"><h4 class="h4">Shedding after an illness or childbirth</h4><p class="body-s mt-2">Often self-limiting, but worth confirming rather than assuming.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of the scalp showing hair follicles',
+    'eyebrow' => 'Normal or not',
+    'title'   => 'How Much Hair Fall Is Normal?',
+    'id'      => 'normal',
+    'html'    => '<p>Most people shed somewhere between 50 and 100 hairs a day — the normal hair cycle releasing old hairs as new ones start. You will see more on wash days, more if you wash less often, and more with long hair.</p>'
+               . '<p>The number matters less than the trend. Shedding heavier than your normal for more than six to eight weeks, or density visibly falling even without much shedding, is worth an examination.</p>'
+               . '<p><b>The hair pull test</b> is done at the assessment: around 50 to 60 hairs are gathered between the fingers and pulled gently, in several areas of the scalp. More than about six coming away from one pull suggests active shedding. It is most reliable if you have not washed for a day beforehand, and it is a pointer, not a diagnosis.</p>'
+               . '<p><b>Signs that are not normal:</b></p>',
+    'points'  => [
+        'Shedding heavier than your normal for more than 6–8 weeks',
+        'A widening parting — the earliest reliable sign in women',
+        'A receding or thinning hairline',
+        'Distinct round patches on the scalp or in the beard — get these seen promptly',
+        'An itchy, flaking or sore scalp, which is treatable in its own right',
+        'Shedding after an illness or childbirth — often self-limiting, but worth confirming',
+    ],
+]) ?>
 
 <section class="section section--canvas" id="causes">
   <div class="wrap">
@@ -268,100 +258,86 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="diagnosis">
+<?= lp_steps([
+    'eyebrow' => 'Step by step',
+    'title'   => 'How Your Hair Loss Is Diagnosed',
+    'id'      => 'diagnosis',
+    'intro'   => 'In this order, and nothing long-term starts before it is done.',
+    'tone'    => 'white',
+    'steps'   => [
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with dates circled',              'title' => 'History',                         'text' => 'Onset, shedding or thinning, family history, periods and pregnancy where relevant, diet and weight change, recent illness or stress, and every medicine and supplement you take.'],
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',             'title' => 'Trichoscopy and a pull test',     'text' => 'Magnification shows miniaturisation, the exclamation-mark hairs of alopecia areata, inflammation around follicles and lost follicle openings that point to scarring. A gentle pull test shows whether shedding is active now, and where.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile instruments laid out on a tray',           'title' => 'Blood tests, where indicated',    'text' => 'Chosen from your history rather than run as a fixed panel for everyone. A scalp biopsy is considered only when a scarring alopecia is suspected or the diagnosis stays unclear; most patients never need one.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram beside a notepad', 'title' => 'Baseline photographs and a plan', 'text' => 'Fixed angle and lighting, so progress is measured, not remembered — then the diagnosis, the plan and its cost, in writing.'],
+    ],
+]) ?>
+
+<section class="section section--canvas" id="blood-tests">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Step by step</p>
-      <h2 class="h2 mt-2">How Your Hair Loss Is Diagnosed</h2>
-      <p class="body mt-3">In this order, and nothing long-term starts before it is done. For more depth, read <a href="/blog/blood-tests-for-hair-fall">which blood tests matter for hair fall</a> and <a href="/blog/telogen-effluvium-vs-pattern-hair-loss">how telogen effluvium differs from pattern hair loss</a>.</p>
-    </div>
-
-    <div class="split split--wide-left mt-6" style="align-items:start">
-      <div class="stack-sm">
-        <div class="step"><span class="step-num">1</span><div><h3 class="h3">History</h3><p class="body-s mt-2">Onset, shedding or thinning, family history, periods and pregnancy where relevant, diet and weight change, recent illness or stress, and every medicine and supplement you take.</p></div></div>
-        <div class="step"><span class="step-num">2</span><div><h3 class="h3">Scalp examination under magnification (trichoscopy)</h3><p class="body-s mt-2">Magnification shows miniaturisation (hairs of varying thickness), the exclamation-mark hairs of alopecia areata, inflammation around follicles, and lost follicle openings that point to scarring.</p></div></div>
-        <div class="step"><span class="step-num">3</span><div><h3 class="h3">Hair pull test</h3><p class="body-s mt-2">A gentle pull on small groups of hairs in several areas, to tell whether shedding is active now and where it is concentrated.</p></div></div>
-        <div class="step"><span class="step-num">4</span><div><h3 class="h3">Blood tests, where indicated</h3><p class="body-s mt-2">Chosen from your history rather than run as a fixed panel for everyone — see the list alongside.</p></div></div>
-        <div class="step"><span class="step-num">5</span><div><h3 class="h3">Scalp biopsy, rarely</h3><p class="body-s mt-2">A small skin sample, considered only when a scarring alopecia is suspected or the diagnosis stays unclear. Most patients never need one.</p></div></div>
-        <div class="step"><span class="step-num">6</span><div><h3 class="h3">Baseline photographs and a written plan</h3><p class="body-s mt-2">Fixed angle and lighting so progress is measured, not remembered — then the diagnosis, the plan and its cost, in writing.</p></div></div>
-      </div>
-
-      <div class="stack">
-        <div class="card" style="padding:0;overflow:hidden">
-          <div class="table-scroll">
-            <table class="data" style="min-width:0">
-              <caption class="sr-only">Blood tests commonly considered in hair fall and what each one looks for</caption>
-              <thead>
-                <tr><th scope="col">Blood test</th><th scope="col">What it looks for</th></tr>
-              </thead>
-              <tbody>
-                <?php foreach ($bloodTests as $t): ?>
-                <tr>
-                  <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0;white-space:normal"><?= e($t['test']) ?></th>
-                  <td><?= e($t['why']) ?></td>
-                </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="note">
+    <div class="split split--sidebar" style="align-items:start">
+      <div>
+        <p class="eyebrow">Investigations</p>
+        <h2 class="h2 mt-2">Blood Tests, Chosen From Your History</h2>
+        <p class="body mt-3">Not a fixed panel for everyone. For more depth, read <a href="/blog/blood-tests-for-hair-fall">which blood tests matter for hair fall</a> and <a href="/blog/telogen-effluvium-vs-pattern-hair-loss">how telogen effluvium differs from pattern hair loss</a>.</p>
+        <div class="note mt-4">
           <p class="h4">Taking biotin?</p>
           <p class="body-s mt-2">Tell the doctor before any blood test. Biotin supplements can distort some laboratory results, including thyroid tests, and may need pausing beforehand.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--canvas" id="treatments">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Treatment ladder</p>
-      <h2 class="h2 mt-2">Hair Loss Treatment Options, Least Invasive First</h2>
-      <p class="body mt-3">A plan usually combines more than one of these, and should not start with the most invasive option. Which medicine, at what strength and in what combination, is decided at the consultation — never from a web page.</p>
-    </div>
-
-    <div class="stack mt-6">
-      <div class="card card--pad-lg">
-        <div class="split split--top" style="gap:24px;align-items:start">
-          <div>
-            <span class="pill">Step 1</span>
-            <h3 class="h3 mt-2">Correct what is correctable</h3>
-          </div>
-          <p class="body-s">Thyroid dysfunction, iron, vitamin D or B12 deficiency, low protein intake, PCOS, a scalp condition, a medication effect, or a trigger causing telogen effluvium. A meaningful proportion of hair fall improves here alone — which is why this step is not optional. Ask any clinic what it has checked before treatment starts.</p>
-        </div>
-      </div>
-      <div class="card card--pad-lg">
-        <div class="split split--top" style="gap:24px;align-items:start">
-          <div>
-            <span class="pill">Step 2</span>
-            <h3 class="h3 mt-2">Medical therapy</h3>
-          </div>
-          <p class="body-s">The most studied option for pattern hair loss. It slows loss rather than curing it, works only while it is used, and not everyone responds. <b>Topical minoxidil</b> is the usual starting point for men and women. <b>Oral minoxidil</b> is prescribed for some patients by a doctor, with monitoring. <b>Finasteride</b> is for men — not for women who are or could become pregnant. Selected women, particularly with PCOS or raised androgens, may be given <b>anti-androgen therapy</b> under medical supervision. Side effects are discussed first — see <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride in India</a>.</p>
-        </div>
-      </div>
-      <div class="card card--pad-lg">
-        <div class="split split--top" style="gap:24px;align-items:start">
-          <div>
-            <span class="pill">Step 3</span>
-            <h3 class="h3 mt-2">In-clinic therapy</h3>
-          </div>
-          <p class="body-s">For follicles that are thinning but still present, generally alongside medical therapy rather than instead of it: <a href="/hair-prp-treatment-in-gurgaon">PRP</a> from your own blood, <a href="/gfc-treatment-in-gurgaon">GFC</a>, <a href="/hair-mesotherapy-in-gurgaon">mesotherapy</a>, <a href="/hair-microneedling-in-gurgaon">scalp microneedling</a> to support topical treatment, and <a href="/hair-led-therapy-in-gurgaon">LED and low-level laser therapy</a>. Their evidence is weaker than medication’s and varies by treatment, none is a cure, and none helps where the follicles have already gone.</p>
-        </div>
-      </div>
-      <div class="card card--pad-lg">
-        <div class="split split--top" style="gap:24px;align-items:start">
-          <div>
-            <span class="pill pill--ink">Step 4</span>
-            <h3 class="h3 mt-2">Surgery</h3>
-          </div>
-          <p class="body-s">A <a href="/hair-transplant-in-gurgaon">hair transplant</a>, once the pattern has stabilised and where follicles in the affected area are already lost. It redistributes hair rather than creating it, so it is planned against a finite donor supply and it does not remove the need for medical treatment afterwards.</p>
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="table-scroll">
+          <table class="data" style="min-width:0">
+            <caption class="sr-only">Blood tests commonly considered in hair fall and what each one looks for</caption>
+            <thead>
+              <tr><th scope="col">Blood test</th><th scope="col">What it looks for</th></tr>
+            </thead>
+            <tbody>
+              <?php foreach ($bloodTests as $t): ?>
+              <tr>
+                <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0;white-space:normal"><?= e($t['test']) ?></th>
+                <td><?= e($t['why']) ?></td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<?= lp_split([
+    'img'     => 'svc-hairline',
+    'alt'     => 'a mannequin head seen from above with receding temples',
+    'eyebrow' => 'Treatment ladder',
+    'title'   => 'Hair Loss Treatment Options, Least Invasive First',
+    'id'      => 'treatments',
+    'html'    => '<p>A plan usually combines more than one option, and should not start with the most invasive. Which medicine, at what strength and in what combination, is decided at the consultation — never from a web page.</p>'
+               . '<p><b>Step 1 — correct what is correctable.</b> Thyroid dysfunction, iron, vitamin D or B12 deficiency, low protein intake, PCOS, a scalp condition, a medication effect, or a trigger causing telogen effluvium. A meaningful proportion of hair fall improves here alone, which is why this step is not optional. Ask any clinic what it has checked before treatment starts.</p>'
+               . '<p><b>Step 2 — medical therapy.</b> The most studied option for pattern hair loss. It slows loss rather than curing it, works only while it is used, and not everyone responds. Side effects are discussed first — see <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride in India</a>.</p>',
+    'points'  => [
+        'Topical minoxidil: the usual starting point for men and women',
+        'Oral minoxidil: prescribed for some patients by a doctor, with monitoring',
+        'Finasteride: for men — not for women who are or could become pregnant',
+        'Anti-androgen therapy: for selected women, particularly with PCOS or raised androgens, under medical supervision',
+    ],
+]) ?>
+
+<?= lp_split([
+    'img'     => 'svc-prp',
+    'alt'     => 'a vial of golden plasma and a syringe on a tray',
+    'eyebrow' => 'Steps 3 and 4',
+    'title'   => 'In-Clinic Therapy, Then Surgery Where Follicles Are Lost',
+    'reverse' => true,
+    'tone'    => 'canvas',
+    'html'    => '<p><b>Step 3 — in-clinic therapy.</b> For follicles that are thinning but still present, generally alongside medical therapy rather than instead of it: <a href="/hair-prp-treatment-in-gurgaon">PRP</a> from your own blood, <a href="/gfc-treatment-in-gurgaon">GFC</a>, <a href="/hair-mesotherapy-in-gurgaon">mesotherapy</a>, <a href="/hair-microneedling-in-gurgaon">scalp microneedling</a> to support topical treatment, and <a href="/hair-led-therapy-in-gurgaon">LED and low-level laser therapy</a>.</p>'
+               . '<p><b>Step 4 — surgery.</b> A <a href="/hair-transplant-in-gurgaon">hair transplant</a>, once the pattern has stabilised and where follicles in the affected area are already lost. It redistributes hair rather than creating it, so it is planned against a finite donor supply.</p>',
+    'points'  => [
+        'In-clinic evidence is weaker than medication’s, and varies by treatment',
+        'None is a cure, and none helps where the follicles have already gone',
+        'A transplant does not remove the need for medical treatment afterwards',
+    ],
+]) ?>
 
 <section class="section section--white" id="compare">
   <div class="wrap">
@@ -418,7 +394,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="cost">
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div style="max-width:68ch">
       <p class="eyebrow">Cost guidance</p>
@@ -436,7 +412,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="gurgaon-factors">
+<section class="section section--canvas" id="gurgaon-factors">
   <div class="wrap">
     <div style="max-width:62ch">
       <p class="eyebrow">Local factors</p>
@@ -452,7 +428,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="home-remedies">
+<section class="section section--white" id="home-remedies">
   <div class="wrap">
     <div style="max-width:62ch">
       <p class="eyebrow">What works, what does not</p>
@@ -470,16 +446,15 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="areas">
+<section class="section section--canvas" id="areas">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
         <p class="eyebrow">Service area</p>
         <h2 class="h2 mt-2">Serving Gurugram and South Delhi</h2>
-        <p class="body mt-3">The Gurugram clinic is on Sector 39 Road, <?= e(NAP_LANDMARK) ?>; there is also a DenceSpot clinic in Rohini, Delhi. Because hair-loss treatment is judged over months, each review compares your photographs against the same baseline.</p>
+        <p class="body mt-3">The Gurugram clinic is on Sector 39 Road, <?= e(NAP_LANDMARK) ?>. Because hair-loss treatment is judged over months, each review compares your photographs against the same baseline.</p>
         <div class="btn-row mt-4">
           <a class="btn btn--outline" href="<?= e(MAPS_URL) ?>" rel="noopener"><?= icon('pin', 17) ?> Gurugram directions</a>
-          <a class="btn btn--outline" href="/delhi-clinic">Delhi (Rohini) clinic</a>
         </div>
       </div>
       <div>
@@ -497,7 +472,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -515,11 +490,11 @@ require __DIR__ . '/includes/header.php';
 
 <?= awards_certificates_section() ?>
 
-<?= cta_band(
-    'Find Out What Is Actually Causing It',
-    'An examination, the investigations that matter, and a straight answer about what will help — including when the answer is that nothing invasive is needed yet.',
-    'hair-fall-hub',
-    ['Hair fall — cause unknown', 'Women’s hair loss', 'Patchy hair loss', 'Dandruff or scalp condition', 'Hair PRP / GFC', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out What Is Actually Causing It',
+    'text'      => 'An examination, the investigations that matter, and a straight answer about what will help — including when the answer is that nothing invasive is needed yet.',
+    'treatment' => 'Hair fall treatment',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

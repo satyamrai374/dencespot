@@ -22,6 +22,11 @@
  * procedure-day photographs (cl. 8.1(v)), no shopfront photograph (its signage
  * carries prohibited claims), no doctor promotion or "same doctor operates"
  * claims (cl. 8.3(ii)). Do not reinstate them.
+ *
+ * 14 Oct 2026: landing-page layout (lp_split / lp_steps / lp_cta in
+ * includes/home-components.php; every image an AI illustration with its
+ * visible label). Per the client, this Gurugram page never mentions the
+ * Rohini clinic.
  */
 
 declare(strict_types=1);
@@ -99,10 +104,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Beard Transplant in Gurgaon (Gurugram) | ' . SITE_NAME,
+    'title'       => 'Beard Transplant in Gurgaon: Grafts & Cost | DenceSpot',
     'description' => 'Beard transplant in Gurgaon (Gurugram): graft ranges by zone, moustache work, donor options, the right age, alternatives, risks and repair work.',
     'url'         => '/beard-transplant-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-beard-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -133,7 +139,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A beard transplant moves your own scalp follicles into patchy cheeks, a thin jawline, a gappy moustache or a scarred area. Much of how the result looks comes down to the angle: facial hair lies far flatter against the skin than scalp hair, and every graft has to be set to match it. At our Sector 39 clinic in Gurugram, consultations and procedures are carried out by registered medical practitioners, and the beard design is drawn on your own face and agreed before surgery.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Beard transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -141,21 +147,22 @@ require __DIR__ . '/includes/header.php';
             'Beard mapped on your face before anything is quoted',
             'Single-hair grafts along every visible border',
             'FUE and DHI performed at the clinic',
-            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
+            'At our clinic in Sector 39, Gurugram',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-beard-768.webp" srcset="/assets/img/services/svc-beard-512.webp 512w, /assets/img/services/svc-beard-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a wooden comb and a wooden beard brush lying on a folded green cloth" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -169,28 +176,22 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="what-is">
-  <div class="wrap">
-    <div class="split split--wide-left">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Is a Beard Transplant?</h2>
-        <div class="stack mt-4 measure">
-          <p class="body-l">A beard transplant takes follicles from the back and sides of your scalp and places them into the beard area — cheeks, jawline, chin, moustache, sideburns, or a scar that will not grow hair. It is the same extraction technique used for a scalp <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a>. What changes completely is the design.</p>
-          <p class="body-l">Scalp hair stands up from the skin. Facial hair lies almost flat against it, and the direction shifts across the face — sweeping down the cheek, fanning outward along the jaw, pointing inward under the chin, downward across the upper lip. Recipient sites have to be made to match that lie zone by zone. Grafts placed at a scalp angle stick out, and no amount of trimming hides it.</p>
-          <p class="body-l">Density is the second difference. A natural beard is far less dense than a scalp, and the borders — the cheek line, the moustache edge, the sideburn — are made of single hairs, not clusters. Over-packing a beard produces the tufted, doll-like look people recognise instantly, and it spends donor hair that cannot be replaced — the same finite supply a future <a href="/hair-transplant-in-gurgaon">scalp hair transplant</a> would need.</p>
-          <p class="body-l">Once healed, the transplanted hairs behave like the scalp hair they came from. They keep growing, so they need trimming. They can be shaved, shaped and grown out normally. How closely that reads as a beard is covered in <a href="/blog/beard-transplant-what-to-expect">what to realistically expect from a beard transplant</a>.</p>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <p class="eyebrow" style="color:var(--ink-muted)">In one line</p>
-          <p class="body mt-2">Scalp hair, relocated to your face and set to grow the way a beard grows. The extraction is routine; the angle and the density are where the result is won or lost.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles beneath the surface',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Is a Beard Transplant?',
+    'id'      => 'what-is',
+    'html'    => '<p>A beard transplant takes follicles from the back and sides of your scalp and places them into the beard area — cheeks, jawline, chin, moustache, sideburns, or a scar that will not grow hair. The extraction is the one used for a scalp <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a>; what changes completely is the design.</p>'
+               . '<p>Facial hair lies almost flat against the skin, and its direction shifts across the face — down the cheek, out along the jaw, in under the chin, down across the upper lip. Every recipient site is made to match that lie; grafts set at a scalp angle stick out, and no amount of trimming hides it.</p>'
+               . '<p>A natural beard is also far less dense than a scalp, and its borders are single hairs. Over-packing gives the tufted, doll-like look people recognise instantly, and spends donor hair a future <a href="/hair-transplant-in-gurgaon">scalp hair transplant</a> would need. How closely the result reads as a beard is covered in <a href="/blog/beard-transplant-what-to-expect">what to realistically expect from a beard transplant</a>.</p>',
+    'points'  => [
+        'Scalp hair, relocated and set to grow the way a beard grows',
+        'Once healed, it keeps growing and needs trimming like the rest of your beard',
+        'It can be shaved, shaped and grown out normally',
+        'The extraction is routine; angle and density decide the result',
+    ],
+]) ?>
 
 <section class="section section--canvas" id="areas">
   <div class="wrap">
@@ -219,7 +220,7 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="card mt-6" style="padding:0;overflow:hidden">
       <div class="table-scroll">
-        <table class="data">
+        <table class="data" style="min-width:720px">
           <caption class="sr-only">General beard transplant graft ranges by zone — patient education, not a quote</caption>
           <thead>
             <tr><th scope="col">Zone</th><th scope="col">General graft range</th><th scope="col">What moves it</th></tr>
@@ -279,19 +280,23 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="age">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Timing</p>
-      <h2 class="h2 mt-2">What Is the Right Age for a Beard Transplant?</h2>
-      <div class="stack mt-4">
-        <p class="body-l">Facial hair keeps maturing well past the teenage years, for many men filling in, darkening and coarsening into the mid-twenties. A patchy beard at twenty-one is not necessarily the beard you will have at twenty-six.</p>
-        <p class="body-l">That is the reason to wait. Grafts placed before growth settles can end up out of step with native hair that arrives later, and donor grafts spent on a beard at twenty-one cannot be recovered if scalp hair loss appears at thirty.</p>
-        <p class="body">No birthday settles it. The practical test is stability: the same zones, photographed in the same light a year apart, showing no real change. <a href="/blog/patchy-beard-wait-or-transplant">Whether a patchy beard is worth waiting on</a> explains how to tell.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-transplant',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'eyebrow' => 'Timing',
+    'title'   => 'What Is the Right Age for a Beard Transplant?',
+    'id'      => 'age',
+    'tone'    => 'canvas',
+    'reverse' => true,
+    'html'    => '<p>Facial hair keeps maturing well past the teenage years, for many men filling in, darkening and coarsening into the mid-twenties. A patchy beard at twenty-one is not necessarily the beard you will have at twenty-six.</p>'
+               . '<p>That is the reason to wait. Grafts placed before growth settles can end up out of step with native hair that arrives later, and donor grafts spent on a beard at twenty-one cannot be recovered if scalp hair loss appears at thirty.</p>',
+    'points'  => [
+        'No birthday settles it — the practical test is stability',
+        'Photograph the same zones, in the same light, a year apart',
+        'Wait until those photographs show no real change',
+    ],
+    'link'    => ['url' => '/blog/patchy-beard-wait-or-transplant', 'label' => 'Whether a patchy beard is worth waiting on'],
+]) ?>
 
 <section class="section section--white" id="alternatives">
   <div class="wrap">
@@ -313,35 +318,22 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="techniques">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Techniques</p>
-      <h2 class="h2 mt-2">Beard Transplant Techniques</h2>
-      <p class="body mt-3">Both techniques take grafts the same way. They differ in how each graft is put into the face — which, on a beard, is the part that matters. The choice is made zone by zone, and a single case often uses both.</p>
-    </div>
-    <div class="grid grid--2 mt-6">
-      <div class="card card--tint" style="padding:0;overflow:hidden">
-        <div style="padding:28px">
-          <h3 class="h3" style="font-size:22px">FUE Beard Transplant</h3>
-          <p class="body-s mt-3">Individual follicular units are removed one at a time from the back and sides of the scalp with a small punch, leaving dot-sized marks that settle into the surrounding hair. Recipient sites are then made across the beard at the correct angle and direction for each zone, and the grafts are placed into them.</p>
-          <p class="body-s mt-3">Making the sites first lets the doctor set the entire pattern — angle, direction, spacing — and review it as a whole before placement begins. It is efficient across larger areas such as cheeks and jawline.</p>
-        </div>
-      </div>
-      <div class="card card--tint" style="padding:0;overflow:hidden">
-        <div style="padding:28px">
-          <h3 class="h3" style="font-size:22px">DHI Beard Transplant</h3>
-          <p class="body-s mt-3">Extraction is the same. Placement is not: each graft is loaded into a fine implanter and set into untouched skin in one action, so the depth, angle and direction are fixed at the moment of placement rather than by a pre-made site.</p>
-          <p class="body-s mt-3">That control is worth most along the visible edges — the cheek line, the moustache border, the sideburn — where hairs sit almost flat and a degree or two of error is noticeable at conversational distance.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grid grid--2 mt-4">
-      <div class="note"><p class="h4">Neither one is universally better</p><p class="body-s mt-2">Each suits different zones, and no single technique is the answer for every beard. The reasoning behind your recommendation is explained at the consultation and written into the estimate.</p></div>
-      <div class="note"><p class="h4">A note on “DHT”</p><p class="body-s mt-2">You may see a “DHT beard transplant” advertised. DHT is dihydrotestosterone, a hormone involved in hair loss — not a surgical technique. The technique meant is DHI, direct hair implantation.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'Techniques',
+    'title'   => 'Beard Transplant Techniques',
+    'id'      => 'techniques',
+    'tone'    => 'canvas',
+    'html'    => '<p>Both techniques take grafts the same way: follicular units removed one at a time from the back and sides of the scalp with a small punch, leaving dot-sized marks that settle into the surrounding hair. They differ in how each graft goes into the face — on a beard, the part that matters — so the choice is made zone by zone, and one case often uses both.</p>'
+               . '<p><b>FUE beard transplant:</b> recipient sites are made first across the beard, at the angle and direction of each zone, and the grafts placed into them. The doctor can set and review the whole pattern before placement begins, which is efficient across cheeks and jawline.</p>'
+               . '<p><b>DHI beard transplant:</b> each graft is loaded into a fine implanter and set into untouched skin in one action, so depth, angle and direction are fixed at placement. That control is worth most along the cheek line, moustache border and sideburn, where a degree or two of error shows at conversational distance.</p>',
+    'points'  => [
+        'Neither one is universally better; each suits different zones',
+        'The reasoning is explained at consultation and written into the estimate',
+        'A “DHT beard transplant” is a misnomer: DHT (dihydrotestosterone) is a hormone; the technique meant is DHI, direct hair implantation',
+    ],
+]) ?>
 
 <section class="section section--white" id="donor">
   <div class="wrap">
@@ -359,49 +351,35 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Step by step</p>
-      <h2 class="h2 mt-2">Your Beard Transplant Journey</h2>
-      <p class="body-l mt-3">From the first appointment to the review at a year. Consultations and procedures are carried out by registered medical practitioners at the clinic.</p>
-    </div>
-    <div class="journey mt-6">
-      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-1">Consultation</p><p class="meta mt-2">What you want from your beard, and what is realistic.</p></div>
-      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-1">Facial hair assessment</p><p class="meta mt-2">Existing growth mapped zone by zone; skin checked.</p></div>
-      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-1">Donor evaluation</p><p class="meta mt-2">What the scalp can safely give, now and later.</p></div>
-      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-1">Beard design</p><p class="meta mt-2">Borders drawn on your face; you approve them in a mirror.</p></div>
-      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-1">Procedure</p><p class="meta mt-2">Day case under local anaesthetic; home the same day.</p></div>
-      <div class="card card--ink"><span class="journey__num">06</span><p class="h4 mt-1">Recovery &amp; aftercare</p><p class="meta mt-2">Written instructions on washing, trimming and shaving.</p></div>
-      <div class="card card--ink"><span class="journey__num">07</span><p class="h4 mt-1">Progress reviews</p><p class="meta mt-2">Photographed at set intervals through the first year.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'Step by step',
+    'title'   => 'Your Beard Transplant Journey',
+    'id'      => 'journey',
+    'intro'   => 'From the first appointment to the review at a year. Consultations and procedures are carried out by registered medical practitioners at the clinic.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Consultation and assessment', 'text' => 'What you want from your beard and what is realistic; existing growth mapped zone by zone, the skin checked, and what the scalp can safely give, now and later.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line',    'title' => 'Beard design',                'text' => 'Borders drawn on your face and approved by you in a mirror, then a written plan covering technique, approximate graft number, timeline and cost factors.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray', 'title' => 'Procedure',                   'text' => 'A day case under local anaesthetic. You go home the same day.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',              'title' => 'Recovery and reviews',        'text' => 'Written instructions on washing, trimming and shaving, then progress photographed at set intervals through the first year.'],
+    ],
+]) ?>
 
-<section class="section section--white" id="procedure">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">On the day</p>
-      <h2 class="h2 mt-2">How Does a Beard Transplant Work?</h2>
-    </div>
-    <div class="split split--wide-left mt-6" style="align-items:start">
-      <div class="stack-sm">
-        <div class="step"><span class="step-num">1</span><div><h3 class="h3">Design and marking</h3><p class="body-s mt-2">The agreed borders are redrawn on your face and checked with you sitting upright in natural light — a beard drawn on a reclined patient sits wrong when they stand up. Photographs are taken for your record.</p></div></div>
-        <div class="step"><span class="step-num">2</span><div><h3 class="h3">Preparation</h3><p class="body-s mt-2">The donor strip of scalp is trimmed short and both donor and beard areas are anaesthetised locally. The injections are usually the most uncomfortable part; after that the areas are numb, though pressure can still be felt.</p></div></div>
-        <div class="step"><span class="step-num">3</span><div><h3 class="h3">Extraction</h3><p class="body-s mt-2">Follicular units are removed individually from the donor area. For a beard, single-hair units are separated out under magnification and reserved for the borders, where clusters would be visible.</p></div></div>
-        <div class="step"><span class="step-num">4</span><div><h3 class="h3">Site creation</h3><p class="body-s mt-2">In an FUE case, recipient sites are made at the angle and direction of each zone — sweeping down the cheek, out along the jaw, in under the chin, down across the upper lip. In a DHI case this happens at the moment of placement instead.</p></div></div>
-        <div class="step"><span class="step-num">5</span><div><h3 class="h3">Implantation</h3><p class="body-s mt-2">Grafts are placed one by one, singles at the edges and larger units kept to the interior where density is wanted. The pattern is deliberately irregular; a ruled edge is what makes a transplanted beard obvious.</p></div></div>
-        <div class="step"><span class="step-num">6</span><div><h3 class="h3">Discharge and aftercare</h3><p class="body-s mt-2">You go home the same day with written instructions, medication where prescribed, and your first review already booked. Someone should drive you.</p></div></div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <p class="eyebrow" style="color:var(--ink-muted)">Plan the week around it</p>
-          <p class="body-s mt-2">A beard transplant is not concealable the way a scalp procedure is under a cap. Small crusts sit on the face for roughly the first week. Most patients book time when they are not client-facing.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'eyebrow' => 'On the day',
+    'title'   => 'How Does a Beard Transplant Work?',
+    'id'      => 'procedure',
+    'reverse' => true,
+    'html'    => '<p>The agreed borders are redrawn on your face and checked with you sitting upright in natural light — a beard drawn on a reclined patient sits wrong when they stand up — and photographed for your record. The donor strip is trimmed short and both areas are numbed; the injections are usually the most uncomfortable part, and pressure can still be felt afterwards.</p>'
+               . '<p>Follicular units are removed individually, and single-hair units are separated under magnification and kept for the borders, where clusters would show. In an FUE case the sites are then made at each zone’s angle; in DHI that happens at placement. Singles go at the edges and larger units in the interior, in a deliberately irregular pattern — a ruled edge is what makes a transplanted beard obvious.</p>',
+    'points'  => [
+        'Home the same day with written instructions, and medication where prescribed',
+        'Your first review is already booked; someone should drive you',
+        'Not concealable under a cap: small crusts sit on the face for about the first week, so most patients book time when they are not client-facing',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic. Patchy facial hair can be alopecia areata rather than genetics, and the donor arithmetic is a medical judgement, so the beard and the donor area are both examined before anything is planned.'
@@ -521,14 +499,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Beard Transplant Clinic in Gurugram (Gurgaon)',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, and assessment, beard design, the procedure and follow-up reviews are arranged there. Treatment is also available at our Rohini, Delhi clinic.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, and assessment, beard design, the procedure and follow-up reviews are arranged there.'
 ) ?>
 
-<?= cta_band(
-    'Talk to a Doctor About Your Beard',
-    'Bring your questions and your concerns. You will get a clinical assessment, a beard design drawn on your own face, an honest view of whether a transplant is appropriate for you, and a written plan if it is — with no pressure to book a date on the day.',
-    'beard-transplant-hub',
-    ['Beard transplant — patchy cheeks', 'Beard transplant — full reconstruction', 'Moustache or goatee', 'Sideburns', 'Scar camouflage in the beard area', 'Repair of a previous beard transplant', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Talk to a Doctor About Your Beard',
+    'text'      => 'Bring your questions and your concerns. You will get a clinical assessment, a beard design drawn on your own face, an honest view of whether a transplant is appropriate for you, and a written plan if it is — with no pressure to book a date on the day.',
+    'treatment' => 'Beard transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

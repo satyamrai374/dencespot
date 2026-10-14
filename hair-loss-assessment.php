@@ -19,6 +19,11 @@
  * Nothing is transmitted. All logic is client-side and no answers leave the
  * browser, which is stated on the page because people are reasonably wary of
  * entering health information into a form.
+ *
+ * 14 Oct 2026 — landing-page layout around the tool (the form, its styles and
+ * script are unchanged): AI-illustrated hero, "why this exists" as an
+ * lp_split and an lp_cta close, each image with its visible AI label.
+ * Presents both clinics.
  */
 
 declare(strict_types=1);
@@ -67,6 +72,7 @@ $page = [
     'description' => 'Answer six questions about your hair loss and get pointed to the right next step. Not a diagnosis. Nothing is stored, and no personal details are required.',
     'url'         => '/hair-loss-assessment',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-consultation-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -138,12 +144,11 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Treatment trolley with motorised handpieces and foot pedals at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk beside a fern" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
@@ -223,8 +228,8 @@ require __DIR__ . '/includes/header.php';
           <p class="body-s mt-3" id="hlaBody"></p>
           <ul class="hla__list" id="hlaSteps"></ul>
           <div class="hla__links" id="hlaLinks"></div>
-          <a class="btn btn--block btn--accent mt-4" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book an assessment</a>
-          <a class="btn btn--block btn--ghost mt-3" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
+          <a class="btn btn--block btn--accent mt-4" id="hlaBook" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book an assessment</a>
+          <a class="btn btn--block btn--ghost mt-3" id="hlaWa" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
           <p class="fine mt-4">This tool is patient education and not a diagnosis. Suitability for any treatment is determined only after clinical assessment.</p>
         </div>
         <noscript><p class="hla__noscript mt-4">This tool needs JavaScript. You can <a href="/book-consultation">book an assessment</a>, or read <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a> and <a href="/womens-hair-loss-treatment-in-gurgaon">women's hair loss treatment</a> instead.</p></noscript>
@@ -233,38 +238,22 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="why">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Why this exists</p>
-        <h2 class="h2 mt-2">Most Hair Loss Mistakes Happen Before the Diagnosis</h2>
-        <p class="body-l mt-3 measure">People buy treatments before anyone establishes what is wrong. A course of injections for hair loss driven by iron deficiency. A transplant offered for an autoimmune condition. Months of shampoo while genuine pattern loss progresses quietly underneath.</p>
-        <p class="body-l mt-3 measure">None of those are exotic cases. They happen when treatment starts before the cause is established, often because a patient reasonably wants the problem fixed rather than investigated.</p>
-        <p class="body-l mt-3 measure">This tool exists to slow that down by one step. It cannot diagnose you, and it does not try to. What it can do is tell you when your answers point at something that needs investigating before any treatment starts, and give you the right questions to arrive with.</p>
-        <p class="body-l mt-3 measure">If it tells you not to book surgery yet, that is not the tool being cautious for its own sake. Those routes exist because operating in those situations wastes donor hair that cannot be replaced.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Bring to your appointment</p>
-          <div class="mt-3"><?= ticks([
-              'Every medicine and supplement you take',
-              'Any recent blood test results',
-              'Photographs of your hair before the loss',
-              'When it started, and what else happened then',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Read next</p>
-          <p class="body-s mt-2"><a href="/hair-fall-treatment-in-gurgaon">Hair fall treatment</a> — how a diagnosis is reached.</p>
-          <p class="body-s mt-3"><a href="/womens-hair-loss-treatment-in-gurgaon">Women's hair loss treatment</a> — the female differential.</p>
-          <p class="body-s mt-3"><a href="/hair-transplant-graft-calculator">Graft calculator</a> — if surgery is already on the table.</p>
-          <p class="body-s mt-3"><a href="/how-to-choose-hair-transplant-clinic">How to choose a clinic</a> — before you commit anywhere.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-fall',
+    'alt'     => 'a wooden comb resting on folded white towels',
+    'id'      => 'why',
+    'eyebrow' => 'Why this exists',
+    'title'   => 'Most Hair Loss Mistakes Happen Before the Diagnosis',
+    'html'    => '<p>People buy treatments before anyone establishes what is wrong: a course of injections for hair loss driven by iron deficiency, a transplant offered for an autoimmune condition, months of shampoo while genuine pattern loss progresses quietly underneath. None of those are exotic cases.</p>'
+               . '<p>This tool exists to slow that down by one step. It cannot diagnose you, but it can tell you when your answers point at something that needs investigating before any treatment starts. If it tells you not to book surgery yet, that is because operating in those situations wastes donor hair that cannot be replaced.</p>'
+               . '<p><strong>Bring to your appointment:</strong></p>',
+    'points'  => [
+        'Every medicine and supplement you take',
+        'Any recent blood test results',
+        'Photographs of your hair before the loss',
+        'When it started, and what else happened then',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations are carried out by registered medical practitioners at the clinic. Hair loss is diagnosed by examination, history and, where needed, investigations — which this tool cannot replace.'
@@ -278,6 +267,13 @@ require __DIR__ . '/includes/header.php';
         <h2 class="h2 mt-2">About This Assessment</h2>
         <p class="body-s mt-3">General patient education. Your diagnosis comes from examination and, where needed, investigation.</p>
         <a class="btn btn--accent mt-4" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
+        <div class="card card--pad-lg mt-5">
+          <p class="h4">Read next</p>
+          <p class="body-s mt-2"><a href="/hair-fall-treatment-in-gurgaon">Hair fall treatment</a> — how a diagnosis is reached.</p>
+          <p class="body-s mt-3"><a href="/womens-hair-loss-treatment-in-gurgaon">Women's hair loss treatment</a> — the female differential.</p>
+          <p class="body-s mt-3"><a href="/hair-transplant-graft-calculator">Graft calculator</a> — if surgery is already on the table.</p>
+          <p class="body-s mt-3"><a href="/how-to-choose-hair-transplant-clinic">How to choose a clinic</a> — before you commit anywhere.</p>
+        </div>
       </div>
       <?= faq_list($faqs) ?>
     </div>
@@ -289,12 +285,12 @@ require __DIR__ . '/includes/header.php';
     'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, where assessment and any investigations your case calls for are arranged. Consultations are also available at our Rohini, Delhi clinic.'
 ) ?>
 
-<?= cta_band(
-    'Turn the Guess Into a Diagnosis',
-    'Bring your answers, your medication list and your timeline. You will get an examination, the investigations your case actually calls for, and a plan matched to the cause rather than to whatever we happen to offer.',
-    'hair-loss-assessment',
-    ['Hair loss — not yet diagnosed', 'Patchy hair loss', 'Shedding after pregnancy or illness', 'Receding hairline or crown', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Gurugram and Delhi',
+    'title'     => 'Turn the Guess Into a Diagnosis',
+    'text'      => 'Bring your answers, your medication list and your timeline. You will get an examination, the investigations your case actually calls for, and a plan matched to the cause rather than to whatever we happen to offer.',
+    'treatment' => 'Hair fall treatment',
+]) ?>
 
 <script>
 (function () {
@@ -307,6 +303,10 @@ require __DIR__ . '/includes/header.php';
   var body  = document.getElementById('hlaBody');
   var steps = document.getElementById('hlaSteps');
   var links = document.getElementById('hlaLinks');
+  var book  = document.getElementById('hlaBook');
+  var wa    = document.getElementById('hlaWa');
+  /* WhatsApp chat link without its default text, so the result can go in. */
+  var WA_BASE = <?= json_encode(strtok(WHATSAPP_URL, '&') . '&text=') ?>;
 
   function pick(name) {
     var el = form.querySelector('input[name="' + name + '"]:checked');
@@ -458,6 +458,14 @@ require __DIR__ . '/includes/header.php';
       a.setAttribute('href', pair[1]);
       links.appendChild(a);
     });
+
+    /* Hand the result to the booking form and WhatsApp. */
+    if (book) {
+      book.setAttribute('data-message', 'Hair-loss self-check result: "' + route.title + '". I would like an assessment.');
+    }
+    if (wa) {
+      wa.href = WA_BASE + encodeURIComponent('Hi, I did the hair-loss self-check on your website. My result: "' + route.title + '". I would like to book an assessment.');
+    }
   }
 
   form.addEventListener('change', function () { render(evaluate()); });

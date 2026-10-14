@@ -136,20 +136,48 @@ const LOC_DELHI_MAPS_URL      = 'https://maps.google.com/?cid=455683935213601115
 /**
  * Treatments carried out at the Rohini (Delhi) clinic, each with its own page
  * (confirmed by the agency, 13 Oct 2026: all services are performed in
- * Rohini). 'gurgaon' is the matching Gurugram page, so the two can link to
+ * Rohini; extended to every treatment page on 14 Oct 2026 — FUT and scalp
+ * micropigmentation excepted, as neither is confirmed at either clinic). 'gurgaon' is the matching Gurugram page, so the two can link to
  * each other; 'img' names assets/img/services/svc-<img>-{512,768}.webp, an
  * AI-generated illustration.
  */
+/** Treatment groups, in display order, for the Rohini lists and hub. */
+const ROHINI_GROUPS = [
+    'transplant'   => 'Hair transplant',
+    'non-surgical' => 'PRP and non-surgical hair treatment',
+    'hair-fall'    => 'Hair fall and scalp',
+    'face'         => 'Beard and eyebrow',
+    'skin'         => 'Skin and laser',
+];
+
 const ROHINI_SERVICES = [
-    ['url' => '/hair-transplant-in-rohini',     'label' => 'Hair Transplant',     'gurgaon' => '/hair-transplant-in-gurgaon',     'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.'],
-    ['url' => '/fue-hair-transplant-in-rohini', 'label' => 'FUE Hair Transplant', 'gurgaon' => '/fue-hair-transplant-in-gurgaon', 'img' => 'hair-transplant', 'note' => 'Follicles extracted one by one from the donor area.'],
-    ['url' => '/dhi-hair-transplant-in-rohini', 'label' => 'DHI Hair Transplant', 'gurgaon' => '/dhi-hair-transplant-in-gurgaon', 'img' => 'hair-transplant', 'note' => 'Grafts placed with an implanter pen.'],
-    ['url' => '/beard-transplant-in-rohini',    'label' => 'Beard Transplant',    'gurgaon' => '/beard-transplant-gurgaon',       'img' => 'beard',           'note' => 'Patchy cheeks, jawline, moustache and scars.'],
-    ['url' => '/eyebrow-transplant-in-rohini',  'label' => 'Eyebrow Transplant',  'gurgaon' => '/eyebrow-transplant-in-gurgaon',  'img' => 'eyebrow',         'note' => 'Thin, over-plucked or scarred brows.'],
-    ['url' => '/hair-prp-treatment-in-rohini',  'label' => 'Hair PRP & GFC',      'gurgaon' => '/hair-prp-treatment-in-gurgaon',  'img' => 'prp',             'note' => 'For thinning where follicles are still present.'],
-    ['url' => '/hair-fall-treatment-in-rohini', 'label' => 'Hair Fall Treatment', 'gurgaon' => '/hair-fall-treatment-in-gurgaon', 'img' => 'hair-fall',       'note' => 'The cause is investigated before treatment.'],
-    ['url' => '/laser-hair-removal-in-rohini',  'label' => 'Laser Hair Removal',  'gurgaon' => '/laser-hair-removal-in-gurgaon',  'img' => 'laser',           'note' => 'A course of sessions to reduce unwanted hair.'],
-    ['url' => '/skin-treatment-in-rohini',      'label' => 'Skin Treatment',      'gurgaon' => '/skin-treatment-in-gurgaon',      'img' => 'skin',            'note' => 'Acne, pigmentation and other skin concerns.'],
+    // Hair transplant
+    ['url' => '/hair-transplant-in-rohini',            'label' => 'Hair Transplant',            'group' => 'transplant',   'gurgaon' => '/hair-transplant-in-gurgaon',            'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.'],
+    ['url' => '/fue-hair-transplant-in-rohini',        'label' => 'FUE Hair Transplant',        'group' => 'transplant',   'gurgaon' => '/fue-hair-transplant-in-gurgaon',        'img' => 'hair-transplant', 'note' => 'Follicles extracted one by one from the donor area.'],
+    ['url' => '/dhi-hair-transplant-in-rohini',        'label' => 'DHI Hair Transplant',        'group' => 'transplant',   'gurgaon' => '/dhi-hair-transplant-in-gurgaon',        'img' => 'hair-transplant', 'note' => 'Grafts placed with an implanter pen.'],
+    ['url' => '/unshaven-hair-transplant-in-rohini',   'label' => 'Unshaven Hair Transplant',   'group' => 'transplant',   'gurgaon' => '/unshaven-hair-transplant-in-gurgaon',   'img' => 'unshaven',        'note' => 'Smaller sessions without shaving the whole head.'],
+    ['url' => '/hairline-transplant-in-rohini',        'label' => 'Hairline Transplant',        'group' => 'transplant',   'gurgaon' => '/hairline-transplant-in-gurgaon',        'img' => 'hairline',        'note' => 'Receding temples and the frontal hairline.'],
+    ['url' => '/crown-hair-transplant-in-rohini',      'label' => 'Crown Hair Transplant',      'group' => 'transplant',   'gurgaon' => '/crown-hair-transplant-in-gurgaon',      'img' => 'crown',           'note' => 'Thinning at the vertex, planned against donor supply.'],
+    ['url' => '/hair-transplant-for-women-in-rohini',  'label' => 'Hair Transplant for Women',  'group' => 'transplant',   'gurgaon' => '/hair-transplant-for-women-in-gurgaon',  'img' => 'women',           'note' => 'Considered only after a medical workup.'],
+    ['url' => '/hair-transplant-repair-in-rohini',     'label' => 'Hair Transplant Repair',     'group' => 'transplant',   'gurgaon' => '/hair-transplant-repair-in-gurgaon',     'img' => 'procedure',       'note' => 'Correcting an earlier procedure.'],
+    // PRP and non-surgical
+    ['url' => '/hair-prp-treatment-in-rohini',         'label' => 'Hair PRP & GFC',             'group' => 'non-surgical', 'gurgaon' => '/hair-prp-treatment-in-gurgaon',         'img' => 'prp',             'note' => 'For thinning where follicles are still present.'],
+    ['url' => '/gfc-treatment-in-rohini',              'label' => 'GFC Treatment',              'group' => 'non-surgical', 'gurgaon' => '/gfc-treatment-in-gurgaon',              'img' => 'follicle',        'note' => 'Growth factor concentrate from your own blood.'],
+    ['url' => '/hair-mesotherapy-in-rohini',           'label' => 'Hair Mesotherapy',           'group' => 'non-surgical', 'gurgaon' => '/hair-mesotherapy-in-gurgaon',           'img' => 'procedure',       'note' => 'Scalp injections, with their limited evidence explained.'],
+    ['url' => '/hair-microneedling-in-rohini',         'label' => 'Hair Microneedling',         'group' => 'non-surgical', 'gurgaon' => '/hair-microneedling-in-gurgaon',         'img' => 'skin',            'note' => 'An add-on to treatment, not a treatment on its own.'],
+    ['url' => '/hair-led-therapy-in-rohini',           'label' => 'Hair LED Therapy',           'group' => 'non-surgical', 'gurgaon' => '/hair-led-therapy-in-gurgaon',           'img' => 'followup',        'note' => 'Low-level light, with a small effect over months.'],
+    // Hair fall and scalp
+    ['url' => '/hair-fall-treatment-in-rohini',        'label' => 'Hair Fall Treatment',        'group' => 'hair-fall',    'gurgaon' => '/hair-fall-treatment-in-gurgaon',        'img' => 'hair-fall',       'note' => 'The cause is investigated before treatment.'],
+    ['url' => '/womens-hair-loss-treatment-in-rohini', 'label' => "Women's Hair Loss Treatment", 'group' => 'hair-fall',   'gurgaon' => '/womens-hair-loss-treatment-in-gurgaon', 'img' => 'women',           'note' => 'Hormonal, thyroid and nutritional causes checked first.'],
+    ['url' => '/alopecia-areata-treatment-in-rohini',  'label' => 'Alopecia Areata Treatment',  'group' => 'hair-fall',    'gurgaon' => '/alopecia-areata-treatment-in-gurgaon',  'img' => 'consultation',    'note' => 'Patchy hair loss, assessed and managed medically.'],
+    ['url' => '/dandruff-treatment-in-rohini',         'label' => 'Dandruff Treatment',         'group' => 'hair-fall',    'gurgaon' => '/dandruff-treatment-in-gurgaon',         'img' => 'hair-fall',       'note' => 'Scalp flaking and itch, diagnosed before treating.'],
+    // Beard and eyebrow
+    ['url' => '/beard-transplant-in-rohini',           'label' => 'Beard Transplant',           'group' => 'face',         'gurgaon' => '/beard-transplant-gurgaon',              'img' => 'beard',           'note' => 'Patchy cheeks, jawline, moustache and scars.'],
+    ['url' => '/eyebrow-transplant-in-rohini',         'label' => 'Eyebrow Transplant',         'group' => 'face',         'gurgaon' => '/eyebrow-transplant-in-gurgaon',         'img' => 'eyebrow',         'note' => 'Thin, over-plucked or scarred brows.'],
+    // Skin and laser
+    ['url' => '/laser-hair-removal-in-rohini',         'label' => 'Laser Hair Removal',         'group' => 'skin',         'gurgaon' => '/laser-hair-removal-in-gurgaon',         'img' => 'laser',           'note' => 'A course of sessions to reduce unwanted hair.'],
+    ['url' => '/skin-treatment-in-rohini',             'label' => 'Skin Treatment',             'group' => 'skin',         'gurgaon' => '/skin-treatment-in-gurgaon',             'img' => 'skin',            'note' => 'Acne, pigmentation and other skin concerns.'],
+    ['url' => '/face-prp-treatment-in-rohini',         'label' => 'Face PRP',                   'group' => 'skin',         'gurgaon' => '/face-prp-treatment-in-gurgaon',         'img' => 'prp',             'note' => 'PRP for the face, with its evidence limits stated.'],
 ];
 
 /* -------------------------------------------------------------------------
@@ -210,7 +238,10 @@ const DIRECTIONS = [
 ];
 
 /** Areas the clinic draws patients from — used in schema areaServed. */
-const AREA_SERVED = ['Gurugram', 'New Delhi', 'Delhi NCR'];
+// Gurugram clinic only. The Rohini clinic declares its own areaServed in
+// schema_delhi_clinic(); naming Delhi here put "Delhi" into the JSON-LD of
+// every Gurugram page (location rule, 14 Oct 2026).
+const AREA_SERVED = ['Gurugram', 'National Capital Region'];
 
 /* -------------------------------------------------------------------------
  * People
@@ -285,6 +316,22 @@ const REVIEWED_BY   = 'Dr. Nyra';
 const REVIEWED_DATE = 'August 2026';
 /** Same date, ISO 8601, for schema lastReviewed. Keep the two in step. */
 const REVIEWED_DATE_ISO = '2026-08-31';
+
+/**
+ * ⚠ Medical review sign-off, per page (October 2026).
+ *
+ * The August 2026 review covered text that the October 2026 redesign and SEO
+ * rounds have since rewritten and extended. A page that is not listed here
+ * therefore shows no "Medically reviewed by" badge or byline, and its
+ * MedicalWebPage carries no reviewedBy / lastReviewed. Claiming a review the
+ * current text has not had would itself be misleading (same rule as
+ * HOME_MEDICALLY_REVIEWED in index.php and the unreviewed Rohini pages).
+ *
+ * When Dr. Nyra has read and approved a page, add its URL (e.g.
+ * '/hair-transplant-in-gurgaon') and move REVIEWED_DATE / REVIEWED_DATE_ISO to
+ * the sign-off date.
+ */
+const REVIEW_SIGNED_OFF = [];
 
 /* -------------------------------------------------------------------------
  * Clinic figures

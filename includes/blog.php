@@ -18,6 +18,7 @@ const BLOG_HUBS = [
     'prp'             => ['label' => 'PRP & non-surgical', 'url' => '/hair-prp-treatment-in-gurgaon'],
     'beard'           => ['label' => 'Beard transplant', 'url' => '/beard-transplant-gurgaon'],
     'hair-fall'       => ['label' => 'Hair fall', 'url' => '/hair-fall-treatment-in-gurgaon'],
+    'skin'            => ['label' => 'Laser & skin', 'url' => '/skin-treatment-in-gurgaon'],
 ];
 
 /**
@@ -25,6 +26,70 @@ const BLOG_HUBS = [
  * meaningfully revised — never bumped just to look fresh.
  */
 const BLOG_POSTS = [
+    /**
+     * Delhi cluster, 14 Oct 2026 (COMPETITOR-SEO.md §6 item 4). Not yet
+     * reviewed by the clinic's doctor: blog-header.php prints "Written and
+     * medically reviewed by" on every post, so these four must be reviewed
+     * before they go live. Their body copy links Rohini pages only.
+     */
+    [
+        'slug'     => 'hair-transplant-recovery-in-delhi',
+        // Delhi post: related page in Rohini; not yet reviewed by the clinic's doctor.
+        'related'  => ['label' => 'Hair transplant in Rohini', 'url' => '/hair-transplant-in-rohini'],
+        'reviewed' => false,
+        'title'    => 'Recovering From a Hair Transplant in Delhi: Heat, Smog, Helmets and the Commute',
+        'seo_title'=> 'Hair Transplant Recovery in Delhi: Heat and Smog',
+        'excerpt'  => 'Aftercare sheets are written for a scalp, not a city. How summer heat, the smog season, road dust, crowded Metro coaches and the helmet law shape the first month.',
+        'hub'      => 'hair-transplant',
+        'published'=> '2026-10-14',
+        'updated'  => null,
+        'minutes'  => 9,
+        'image_alt'=> null,
+    ],
+    [
+        'slug'     => 'hair-transplant-cost-delhi-quotes',
+        // Delhi post: related page in Rohini; not yet reviewed by the clinic's doctor.
+        'related'  => ['label' => 'Hair transplant cost in Rohini', 'url' => '/hair-transplant-cost-in-rohini'],
+        'reviewed' => false,
+        'title'    => 'Why Hair Transplant Quotes in Delhi Differ, and How to Compare Them',
+        'seo_title'=> 'Hair Transplant Quotes in Delhi: How to Compare',
+        'excerpt'  => 'Per-graft rates, packages, slab rates, per-hair figures and monthly instalments can all describe one operation. The arithmetic that turns each into a comparable total.',
+        'hub'      => 'hair-transplant',
+        'published'=> '2026-10-14',
+        'updated'  => null,
+        'minutes'  => 8,
+        'image_alt'=> null,
+    ],
+    [
+        'slug'     => 'who-should-assess-hair-fall',
+        // Delhi post: related page in Rohini; not yet reviewed by the clinic's doctor.
+        'related'  => ['label' => 'Hair fall treatment in Rohini', 'url' => '/hair-fall-treatment-in-rohini'],
+        'reviewed' => false,
+        'title'    => 'Dermatologist, Trichologist or Salon: Who Should Assess Hair Fall?',
+        'seo_title'=> 'Dermatologist or Trichologist for Hair Fall?',
+        'excerpt'  => 'Only a registered doctor can diagnose a cause and prescribe for it. What a dermatologist, a trichologist and a salon each do, when to see a doctor, and what an assessment involves.',
+        'hub'      => 'hair-fall',
+        'published'=> '2026-10-14',
+        'updated'  => null,
+        'minutes'  => 8,
+        'image_alt'=> null,
+    ],
+    [
+        'slug'     => 'laser-hair-removal-patch-test',
+        // Delhi post: related page in Rohini; not yet reviewed by the clinic's doctor.
+        'related'  => ['label' => 'Laser hair removal in Rohini', 'url' => '/laser-hair-removal-in-rohini'],
+        'reviewed' => false,
+        'title'    => 'Laser Hair Removal on Indian Skin: What the Patch Test Checks',
+        'seo_title'=> 'Laser Hair Removal Patch Test on Indian Skin',
+        'excerpt'  => 'Darker skin competes with hair for laser energy, so a test spot comes first. Skin types, wavelengths in plain terms, what the patch test shows and what it cannot predict.',
+        // No skin/laser hub exists yet; 'prp' ("PRP & non-surgical") is the nearest.
+        'hub'      => 'skin',
+        'published'=> '2026-10-14',
+        'updated'  => null,
+        'minutes'  => 8,
+        'image_alt'=> null,
+    ],
+
     [
         'slug'     => 'norwood-scale-explained',
         'title'    => 'The Norwood Scale Explained: Which Stage Are You, and What It Means',
@@ -123,7 +188,7 @@ const BLOG_POSTS = [
     [
         'slug'     => 'donor-area-limits-hair-transplant',
         'title'    => 'Your Donor Area Is a One-Time Budget: What It Can and Cannot Cover',
-        'seo_title'=> 'Donor Area Limits: What a Hair Transplant Can Cover',
+        'seo_title'=> 'Donor Area Limits in a Hair Transplant',
         'excerpt'  => 'Donor hair is spent once and does not grow back where it came from. How supply is measured, why coverage and density compete, and what extensive loss can realistically get.',
         'hub'      => 'hair-transplant',
         'published'=> '2026-09-01',
@@ -189,7 +254,7 @@ const BLOG_POSTS = [
     [
         'slug'     => 'hair-transplant-repair-options',
         'title'    => 'Unhappy With a Previous Hair Transplant: What Repair Can and Cannot Fix',
-        'seo_title'=> 'Hair Transplant Repair: What Can and Cannot Be Fixed',
+        'seo_title'=> 'Hair Transplant Repair: What Can Be Fixed',
         'excerpt'  => 'Most disappointment is judged too early, and some of it is genuinely fixable. What corrective surgery can address, what it cannot, and why the second operation is harder.',
         'hub'      => 'hair-transplant',
         'published'=> '2026-09-01',
@@ -200,7 +265,7 @@ const BLOG_POSTS = [
     [
         'slug'     => 'how-to-read-before-and-after-photos',
         'title'    => 'How to Read a Hair Transplant Before-and-After Photo',
-        'seo_title'=> 'How to Read Hair Transplant Before and After Photos',
+        'seo_title'=> 'Reading Hair Transplant Before-and-After Photos',
         'excerpt'  => 'The same head can look transformed or unchanged depending on the lamp. How lighting, angle, hair length and timing are used, and what an honest gallery discloses.',
         'hub'      => 'hair-transplant',
         'published'=> '2026-09-01',
@@ -420,43 +485,77 @@ function blog_date(string $iso): string
 }
 
 /** Listing card. */
-function blog_card(array $post): string
+/**
+ * The AI illustration for a post: [HOME_IMAGES key, what it shows]. Used under
+ * the post title (blog-header.php) and on its card, so every card and article
+ * opens with a labelled AI image and cards in one strip are not all the same
+ * picture. All are AI-generated with no people (NMC Guidelines cl. 7.2).
+ *
+ * @return array{0:string,1:string}
+ */
+function blog_post_art(array $post): array
+{
+    $postArt = [
+          'norwood-scale-explained'                         => ['stage-extensive',  'mannequin heads seen from above, showing an extensive pattern of hair loss'],
+          'donor-area-limits-hair-transplant'               => ['intro-donor',      'a mannequin head seen from behind, with the donor area at the back and sides marked'],
+          'natural-hairline-design-explained'               => ['intro-recipient',  'a mannequin head seen from the front, with a pencilled hairline'],
+          'female-pattern-hair-loss-in-women'               => ['stage-female',     'a mannequin head seen from above, with a widening central parting'],
+          'how-many-grafts-do-you-need'                     => ['step-plan',        'a tablet showing a head diagram with a planned hairline'],
+          'first-14-days-after-a-hair-transplant'           => ['step-followup',    'a desk calendar with dates circled'],
+          'hair-transplant-growth-timeline-month-by-month'  => ['svc-followup',     'a desk calendar with dates circled'],
+          'questions-to-ask-hair-transplant-consultation'   => ['step-consultation','a dermatoscope and notepad on a desk'],
+          'who-can-legally-perform-a-hair-transplant-in-india' => ['svc-consultation', 'a dermatoscope and notepad on a desk'],
+          'fue-vs-dhi-hair-transplant'                      => ['step-procedure',   'sterile hair-restoration instruments laid out on a tray'],
+          'fue-vs-fut-hair-transplant'                      => ['svc-procedure',    'sterile hair-restoration instruments laid out on a tray'],
+          'blood-tests-for-hair-fall'                       => ['svc-consultation', 'a dermatoscope and notepad on a desk'],
+          'minoxidil-and-finasteride-in-india'              => ['svc-follicle',     'a sculpted cross-section of scalp skin with hair follicles'],
+          'does-prp-work-for-hair-loss'                     => ['svc-prp',          'a vial of golden plasma and a syringe on a tray'],
+          'why-hair-transplant-quotes-vary'                 => ['svc-hair-transplant', 'a sculpted model of a follicular unit with three hairs'],
+          'is-a-hair-transplant-permanent'                  => ['stage-crown',      'a mannequin head seen from above, with thinning at the crown'],
+          'hair-transplant-promises-and-success-rates'      => ['svc-unshaven',     'a mannequin head seen from the front, with a pencilled hairline'],
+          'hair-transplant-side-effects-and-risks'          => ['svc-skin',         'a sculpted cross-section of skin with a hair follicle'],
+          'hair-transplant-recovery-in-gurgaon'             => ['ambient',          'sunlight and leaf shadows on an ivory wall with a potted plant'],
+          'hair-transplant-repair-options'                  => ['svc-crown',        'a mannequin head seen from above, with a bald patch at the crown'],
+          'how-to-read-before-and-after-photos'             => ['svc-hairline',     'a mannequin head seen from above, with receding temples'],
+          'hair-transplant-recovery-in-delhi'               => ['svc-hair-fall',    'a wooden comb resting on folded towels'],
+          'hair-transplant-cost-delhi-quotes'               => ['svc-follicle',     'a sculpted cross-section of scalp skin with hair follicles'],
+          'who-should-assess-hair-fall'                     => ['step-consultation','a dermatoscope and notepad on a desk'],
+          'laser-hair-removal-patch-test'                   => ['svc-laser',        'a white handheld device beside a folded towel'],
+      ];
+    $hubArtDefault = [
+        'skin'            => ['svc-skin',      'a sculpted cross-section of skin with a hair follicle'],
+          'hair-transplant' => ['stage-temples', 'a mannequin head seen from above, with receding temples'],
+          'prp'             => ['hero',          'a sculpted cross-section of scalp skin with hair follicles and roots'],
+          'beard'           => ['svc-beard',     'a wooden comb and a beard brush on a green cloth'],
+          'hair-fall'       => ['svc-hair-fall', 'a wooden comb resting on folded towels'],
+      ];
+    return $postArt[$post['slug']] ?? $hubArtDefault[$post['hub']] ?? $hubArtDefault['prp'];
+}
+
+function blog_card(array $post, bool $withImage = true): string
 {
     $hub = BLOG_HUBS[$post['hub']] ?? null;
 
     ob_start(); ?>
-<article class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
-  <a href="<?= e(blog_url($post['slug'])) ?>" aria-label="<?= e($post['title']) ?>">
+<article class="card blog-card">
+  <?php if ($withImage): ?>
+  <a class="blog-card__media" href="<?= e(blog_url($post['slug'])) ?>" aria-label="<?= e($post['title']) ?>">
     <?php
-      /**
-       * The card used to hard-code a patient's before/after photograph for every
-       * post while taking its alt from the post record — so a photograph of a
-       * named patient was announced to screen readers as "Diagram of the seven
-       * Norwood stages". A post may now set an 'image' key with its own
-       * 'image_alt'; none currently does.
-       *
-       * Oct 2026: the default used to be the clinic shopfront photograph, whose
-       * window signage reads "No Pain | No Scar | No Stitch" and "Permanent Hair
-       * Loss Solution" — claims the NMC Guidelines of 06.10.2026 prohibit. Each
-       * hub now defaults to one of the homepage's AI-generated illustrations,
-       * which must carry a visible "AI-generated" mark (cl. 7.2) — hence the chip.
-       */
-      $hubArt = [
-          'hair-transplant' => ['/assets/img/home/stage-temples-720.webp',  'AI-generated diagram of a receding hairline seen from above'],
-          'prp'             => ['/assets/img/home/hero-800.webp',           'AI-generated illustration of hair follicles in the scalp'],
-          'beard'           => ['/assets/img/home/step-procedure-640.webp', 'AI-generated image of sterile hair-restoration instruments'],
-          'hair-fall'       => ['/assets/img/home/stage-female-720.webp',   'AI-generated diagram of diffuse thinning along a parting'],
-      ];
-      $cardImage = $post['image'] ?? null;
-      $cardAlt   = $cardImage !== null ? $post['image_alt'] : null;
-      $isAi      = $cardImage === null;
-      if ($isAi) {
-          [$cardImage, $cardAlt] = $hubArt[$post['hub']] ?? $hubArt['prp'];
+      // Each post's own AI illustration (blog_post_art()), with its visible
+      // AI label (NMC cl. 7.2). A post may still set 'image'/'image_alt' to use
+      // a real photograph instead.
+      if (!empty($post['image'])) {
+          $cardMedia = '<img src="' . e($post['image']) . '" alt="' . e($post['image_alt'] ?? '') . '" width="800" height="500" loading="lazy">';
+      } else {
+          [$artKey, $artAlt] = blog_post_art($post);
+          $cardMedia = hp_img($artKey, 'AI-generated illustration: ' . $artAlt, '(min-width: 1080px) 380px, (min-width: 700px) 45vw, 100vw')
+                     . hp_ai_chip('AI-generated');
       }
     ?>
-    <div class="media ratio-16-10 media--shadow" style="position:relative"><img src="<?= e($cardImage) ?>" alt="<?= e($cardAlt) ?>" width="800" height="500" loading="lazy" style="width:100%;height:100%;object-fit:cover"><?php if ($isAi): ?><span aria-hidden="true" style="position:absolute;right:10px;top:10px;padding:2px 9px;border-radius:999px;background:rgba(255,255,255,.9);color:#3F4B46;font-size:11px;font-weight:600">AI-generated</span><?php endif; ?></div>
+    <div class="media ratio-16-10 media--shadow"><?= $cardMedia ?></div>
   </a>
-  <div style="padding:24px;display:flex;flex-direction:column;flex:1 1 auto">
+  <?php endif; ?>
+  <div class="blog-card__body">
     <?php if ($hub !== null): ?>
       <span class="pill" style="align-self:flex-start"><?= e($hub['label']) ?></span>
     <?php endif; ?>
@@ -467,7 +566,7 @@ function blog_card(array $post): string
     <p class="meta mt-3">
       <time datetime="<?= e($post['published']) ?>"><?= e(blog_date($post['published'])) ?></time>
       · <?= (int) $post['minutes'] ?> min read
-      · Reviewed by <?= e(REVIEWED_BY) ?>
+      <?php if ($post['reviewed'] ?? true): ?>· Reviewed by <?= e(REVIEWED_BY) ?><?php endif; ?>
     </p>
   </div>
 </article>

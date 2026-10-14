@@ -88,6 +88,8 @@
     var treatmentSelect = dialog.querySelector('select[name="treatment"]');
     var clinicSelect = dialog.querySelector('select[name="clinic"]');
     var nameInput = dialog.querySelector('input[name="name"]');
+    var messageInput = dialog.querySelector('textarea[name="message"]');
+    var lastNote = '';
 
     var openedFromMenu = false;
 
@@ -109,6 +111,15 @@
       if (clinicSelect) {
         clinicSelect.value = trigger.getAttribute('data-clinic') || 'Either clinic';
         if (clinicSelect.selectedIndex < 0) { clinicSelect.selectedIndex = clinicSelect.length - 1; }
+      }
+      // A trigger may carry a note for the message box (data-message): the
+      // graft calculator and the hair-loss self-check pass the visitor's
+      // result, so the call back starts from what they saw. The note is
+      // cleared for any other trigger unless the visitor has edited it.
+      if (messageInput) {
+        var note = trigger.getAttribute('data-message') || '';
+        if (note) { messageInput.value = note; lastNote = note; }
+        else if (lastNote && messageInput.value === lastNote) { messageInput.value = ''; lastNote = ''; }
       }
       openedFromMenu = !!(mobileNav && mobileNav.contains(trigger));
       setMobileNav(false);

@@ -18,12 +18,30 @@
  * Cannibalisation split: the medical page owns "women's hair loss treatment"
  * and the workup. This page owns "hair transplant for women" — candidacy,
  * donor stability, unshaven options, and traction/scarring indications.
+ *
+ * Landing-page layout (14 Oct 2026): lp_split / lp_steps / lp_cta from
+ * includes/home-components.php, AI illustrations only, each with its label.
+ * A Gurugram page: no mention of, or link to, the Rohini clinic.
  */
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
+
+// "Pattern of loss → is a transplant considered?" reference table:
+// [pattern, usual answer, what is checked first]. A general guide only.
+$patternRows = [
+    ['Widening parting, with the back thinning too', 'Usually not', 'Checked first: donor density at the back and sides, and iron, thyroid and hormonal causes.'],
+    ['A defined female pattern with a dense, stable donor', 'Sometimes', 'Checked first: donor density, measured directly. Medical treatment usually starts or continues alongside.'],
+    ['A high or receding frontal hairline, the rest stable', 'Often considered', 'Checked first: that the front is not actively thinning, and what the donor can supply.'],
+    ['Traction loss at the hairline or temples', 'Often considered', 'Checked first: that tight styling has stopped and the hair has not returned after a long gap.'],
+    ['A scar from surgery, injury or a burn', 'Often considered, sometimes staged', 'Checked first: how mature the scar is and its blood supply, which affect graft survival.'],
+    ['Shedding in the months after childbirth', 'Rarely', 'Time comes first, since it usually recovers; anything else contributing is looked for if it does not.'],
+    ['Sudden or heavy shedding all over', 'Not yet', 'A diagnosis comes first: blood tests, recent illness or stress, new medicines.'],
+    ['Thinning with PCOS or a thyroid problem', 'Not until treated', 'The condition is brought under control first, then the hair is reassessed.'],
+    ['Alopecia areata, or a scarring alopecia', 'Not while active', 'Diagnosis and treatment come first, then a sustained quiet period.'],
+];
 
 $faqs = [
     ['q' => 'Can women have a hair transplant?',
@@ -63,10 +81,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Hair Transplant for Women in Gurgaon | DenceSpot',
-    'description' => 'Hair transplant for women in Gurgaon, assessed properly. Reversible causes investigated first, donor stability checked, and surgery advised only where it truly fits.',
+    'title'       => 'Hair Transplant for Women in Gurgaon: Who It Suits',
+    'description' => 'Hair transplant for women in Gurgaon: which patterns of loss suit surgery, what is tested first (iron, thyroid, hormones), donor checks and unshaven options.',
     'url'         => '/hair-transplant-for-women-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-women-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -110,16 +129,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-women-768.webp" srcset="/assets/img/services/svc-women-512.webp 512w, /assets/img/services/svc-women-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from above, with long hair and a widening parting" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -133,29 +153,24 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="why-different">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The honest starting point</p>
-        <h2 class="h2 mt-2">Why Female Hair Loss Is a Different Problem</h2>
-        <p class="body-l mt-3 measure">A hair transplant does not create hair. It moves hair from one part of your scalp to another, and the entire operation rests on one assumption: that the hair at the back and sides is permanent. In typical male pattern loss that assumption usually holds, which is why surgery is more often an option for men.</p>
-        <p class="body-l mt-3 measure">In women it frequently does not hold. Female pattern loss tends to be diffuse — a general thinning across the top and often the whole scalp, rather than a defined bald area with a safe zone behind it. When the donor region is thinning too, grafts taken from it carry that vulnerability with them. The hair is moved, and then it thins in its new position along with everything else.</p>
-        <p class="body-l mt-3 measure">The second difference is that reversible causes are far more common. Iron deficiency, thyroid disease, post-partum shedding, PCOS, certain medications and periods of significant physical or emotional stress all cause hair loss in women, and all of them respond better to treatment than to surgery.</p>
-        <p class="body-l mt-3 measure">This is why the assessment comes first and is not a formality. Operating on hair loss that had a treatable cause is the expensive mistake in this field, and it is not reversible — the donor hair is spent.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">What we will often recommend</p>
-        <h3 class="h3 mt-2">Investigation, then treatment</h3>
-        <p class="body mt-3">For a large proportion of women who enquire about surgery, the right answer is a proper diagnosis and medical treatment.</p>
-        <p class="body mt-3">That is not a soft refusal. Diffuse thinning that responds to treatment gives a better and cheaper outcome than surgery could, and it keeps your donor supply intact for later if it is ever needed.</p>
-        <p class="body mt-3">Start at <a href="/womens-hair-loss-treatment-in-gurgaon">women's hair loss treatment</a> if you have not yet been investigated.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'The honest starting point',
+    'title'   => 'Why Female Hair Loss Is a Different Problem',
+    'id'      => 'why-different',
+    'html'    => '<p>A hair transplant does not create hair. It moves hair from one part of your scalp to another, and the whole operation rests on one assumption: that the hair at the back and sides is permanent. In typical male pattern loss that usually holds, which is why surgery is more often an option for men.</p>'
+               . '<p>In women it frequently does not. Female pattern loss tends to be diffuse — a general thinning across the top and often the whole scalp — and when the donor region is thinning too, grafts taken from it carry that vulnerability with them and thin in their new position.</p>'
+               . '<p>Reversible causes are also far more common: iron deficiency, thyroid disease, post-partum shedding, PCOS, certain medications and periods of significant physical or emotional stress. Operating on hair loss that had a treatable cause is the expensive mistake in this field, and it is not reversible — the donor hair is spent.</p>',
+    'points'  => [
+        'For many women who ask about surgery, the right answer is a diagnosis and medical treatment',
+        'That is not a soft refusal: treatment that works keeps your donor supply intact for later',
+        'The assessment comes first, and it is not a formality',
+    ],
+    'link'    => ['url' => '/womens-hair-loss-treatment-in-gurgaon', 'label' => 'Not yet investigated? Start with women’s hair loss treatment'],
+]) ?>
 
-<section class="section section--white" id="candidacy">
+<section class="section section--canvas" id="candidacy">
   <div class="wrap">
     <p class="eyebrow">Suitability</p>
     <h2 class="h2 mt-2">When Surgery Genuinely Suits a Woman</h2>
@@ -192,75 +207,60 @@ require __DIR__ . '/includes/header.php';
       </div>
       <p class="body-s mt-4 measure">None of these are permanent refusals. Several of them become suitable once the underlying problem is treated and the picture settles. What they have in common is that operating now would spend donor hair inside a process that is still running.</p>
     </div>
-  </div>
-</section>
 
-<section class="section section--canvas" id="workup">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The assessment</p>
-        <h2 class="h2 mt-2">What Happens Before Surgery Is Even Discussed</h2>
-        <p class="body-l mt-3 measure">The purpose of the first appointment is diagnosis, not booking. Female hair loss has a genuinely wide differential, and the treatment that follows depends entirely on which one you have.</p>
-        <p class="body-l mt-3 measure">That means a full history — when the loss started, how quickly, whether it followed pregnancy, illness, weight change, a new medication or a period of stress; your menstrual and hormonal history; family history; and what you have already tried.</p>
-        <p class="body-l mt-3 measure">Then examination: the pattern of loss, whether the thinning is diffuse or localised, the condition of the scalp itself, and direct measurement of donor density at the back and sides. That last measurement is the one that decides whether surgery is even mechanically possible.</p>
-        <p class="body-l mt-3 measure">Investigations are ordered where indicated. Iron studies and thyroid function come up often; hormonal tests where the history points that way. The point is to find anything treatable before considering an operation.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">What to bring</p>
-          <div class="mt-3"><?= ticks([
-              'A list of every medicine and supplement',
-              'Any recent blood test results you have',
-              'Photographs showing how your hair looked before',
-              'Dates — when it started, what else was happening',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">What you leave with</p>
-          <div class="mt-3"><?= ticks([
-              'A working diagnosis, or the tests to reach one',
-              'An honest answer on surgical candidacy',
-              'A treatment plan, medical or surgical',
-              'A written estimate if surgery is appropriate',
-          ], false) ?></div>
-        </div>
+    <div class="measure mt-6">
+      <h3 class="h3" id="pattern-of-loss">Is a Hair Transplant an Option for Your Type of Hair Loss?</h3>
+      <p class="body mt-3">Whether surgery is even on the table depends on the pattern of loss and on what investigation finds. Use this as a rough map; the examination, and any tests it leads to, decide what applies to you.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--fit">
+          <caption class="sr-only">Patterns of hair loss in women, whether a hair transplant is usually considered for each, and what is checked first — a general guide, not a diagnosis</caption>
+          <thead><tr><th scope="col">Pattern of loss</th><th scope="col">Transplant, and what comes first</th></tr></thead>
+          <tbody>
+            <?php foreach ($patternRows as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:38%"><?= e($r[0]) ?></th><td><b style="color:var(--ink)"><?= e($r[1]) ?>.</b> <?= e($r[2]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
+    <p class="body-s mt-4 measure">How the usual causes are tested for is set out in <a href="/blog/blood-tests-for-hair-fall">blood tests for hair fall</a>. Patchy loss has its own page, <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata treatment in Gurgaon</a>, and <a href="/blog/female-pattern-hair-loss-in-women">female pattern hair loss explained</a> covers the most common pattern.</p>
   </div>
 </section>
 
-<section class="section section--white" id="procedure">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The procedure</p>
-        <h2 class="h2 mt-2">How the Surgery Works for Women</h2>
-        <p class="body-l mt-3 measure">Mechanically it is the same operation performed on men. Follicular units are extracted from the donor area, sorted under magnification, and placed into sites made across the affected region at the angle and direction of the surrounding hair. It is a day case under local anaesthetic.</p>
-        <p class="body-l mt-3 measure">Three things are usually handled differently. The first is shaving. Many women will not accept a shaved head, and they do not have to — the donor can often be trimmed in a concealed band with the hair above left long to cover it, and unshaven approaches are available for smaller sessions. They are slower and they suit some plans better than others.</p>
-        <p class="body-l mt-3 measure">The second is hairline design. A female frontal hairline is generally lower, rounder and without the pronounced temporal recession of a mature male one. Designing a female hairline to a male template is a recognisable error.</p>
-        <p class="body-l mt-3 measure">The third is what happens afterwards. Because female loss is more often ongoing, medical treatment usually continues alongside the surgery to protect the native hair the grafts do not replace.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Related reading</p>
-          <p class="body-s mt-2"><a href="/unshaven-hair-transplant-in-gurgaon">Unshaven hair transplant</a> — what it can and cannot cover.</p>
-          <p class="body-s mt-3"><a href="/hairline-transplant-in-gurgaon">Hairline transplant</a> — how a hairline is designed and agreed.</p>
-          <p class="body-s mt-3"><a href="/womens-hair-loss-treatment-in-gurgaon">Women's hair loss treatment</a> — the medical route.</p>
-          <p class="body-s mt-3"><a href="/hair-transplant-aftercare">Recovery and aftercare</a> — the full timeline.</p>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Timeline, once done</p>
-          <p class="body-s mt-2">Shedding within weeks, growth from around three to four months, a fuller picture at roughly ten to twelve months. The same as any transplant, and no faster because it is wanted sooner.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The assessment',
+    'title'   => 'What Happens Before Surgery Is Even Discussed',
+    'id'      => 'workup',
+    'intro'   => 'The first appointment is for diagnosis, not booking. Bring a list of every medicine and supplement, any recent blood test results, photographs showing how your hair looked before, and dates: when it started and what else was happening.',
+    'tone'    => 'white',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                               'title' => 'A full history',       'text' => 'When the loss started and how quickly; whether it followed pregnancy, illness, weight change, a new medication or stress; your menstrual, hormonal and family history; and what you have already tried.'],
+        ['img' => 'stage-female',      'alt' => 'a mannequin head seen from above, showing a widening parting',      'title' => 'Examination',          'text' => 'The pattern of loss, whether thinning is diffuse or localised, the scalp itself, and direct measurement of donor density at the back and sides — the measurement that decides whether surgery is even mechanically possible.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram beside a sheet of paper',           'title' => 'Tests, then a plan',   'text' => 'Iron studies, thyroid function or hormonal tests where indicated. You leave with a working diagnosis or the tests to reach one, an honest answer on surgery, and a plan, medical or surgical, with a written estimate if surgery is appropriate.'],
+    ],
+]) ?>
 
-<?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
-) ?>
+<?= lp_split([
+    'img'     => 'svc-procedure',
+    'alt'     => 'sterile hair-restoration instruments laid out on a green tray',
+    'eyebrow' => 'The procedure',
+    'title'   => 'How the Surgery Works for Women',
+    'id'      => 'procedure',
+    'reverse' => true,
+    'tone'    => 'canvas',
+    'html'    => '<p>Mechanically it is the same operation performed on men: follicular units are extracted from the donor area, sorted under magnification and placed at the angle and direction of the surrounding hair, as a day case under local anaesthetic. Three things are usually handled differently.</p>'
+               . '<p><b>Shaving.</b> Many women will not accept a shaved head, and they do not have to: the donor can often be trimmed in a concealed band, with the hair above left long to cover it, and <a href="/unshaven-hair-transplant-in-gurgaon">unshaven approaches</a> are available for smaller sessions. They are slower and suit some plans better than others.</p>'
+               . '<p><b>Hairline design.</b> A female frontal hairline is generally lower, rounder and without the pronounced temporal recession of a mature male one; designing it to a male template is a recognisable error. See <a href="/hairline-transplant-in-gurgaon">how a hairline is designed and agreed</a>.</p>'
+               . '<p><b>Afterwards.</b> Because female loss is more often ongoing, medical treatment usually continues alongside the surgery to protect the native hair the grafts do not replace. Once done, the timeline is the same as any transplant, and no faster because it is wanted sooner:</p>',
+    'points'  => [
+        'Shedding within the first weeks',
+        'Growth from around three to four months',
+        'A fuller picture at roughly ten to twelve months',
+    ],
+    'link'    => ['url' => '/hair-transplant-aftercare', 'label' => 'Recovery and aftercare: the full timeline'],
+]) ?>
 
 <section class="section section--white" id="cost">
   <div class="wrap">
@@ -278,7 +278,18 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Ongoing medical treatment</p><p class="body-s mt-2">Usually continues alongside, and has its own cost</p></div>
         </div>
         <p class="body-s mt-4 measure">If your assessment finds a treatable medical cause, the recommendation will be treatment. That is a much smaller cost than surgery, and it is the right one.</p>
-        <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">full cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
+        <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">full cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>. The <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> is built on the male Norwood scale, so it says little about diffuse female thinning; the <a href="/hair-loss-assessment">hair loss self-assessment</a> is a more useful starting point.</p>
+        <div class="card card--pad-lg mt-5">
+          <h3 class="h4">Questions worth asking any clinic</h3>
+          <p class="body-s mt-2">They apply wherever you go, including here.</p>
+          <div class="mt-3"><?= ticks([
+              'What is causing my hair loss, and which tests show it?',
+              'Has my donor density been measured, and is the back thinning too?',
+              'Can it be done unshaven, or with a hidden trimmed band?',
+              'Will medical treatment continue alongside, and at what cost?',
+              'Who performs each step of the procedure?',
+          ], false) ?></div>
+        </div>
       </div>
       <div class="cta-band" style="display:block">
         <h3 class="h3">Start With an Assessment, Not a Quote</h3>
@@ -291,7 +302,11 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<?= doctor_block(
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
+) ?>
+
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -309,14 +324,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Female Hair Restoration at Our Gurgaon Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners.'
 ) ?>
 
-<?= cta_band(
-    'Find Out What Is Actually Causing Your Hair Loss',
-    'Come in for a proper assessment before deciding on surgery. You will get an examination, investigation of anything treatable, an honest answer on whether grafting suits your pattern of loss, and a written plan either way.',
-    'hair-transplant-women',
-    ['Hair transplant — women', 'Traction alopecia', 'Hairline lowering', 'Hair loss — not yet diagnosed', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out What Is Actually Causing Your Hair Loss',
+    'text'      => 'Come in for a proper assessment before deciding on surgery. You will get an examination, investigation of anything treatable, an honest answer on whether grafting suits your pattern of loss, and a written plan either way.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

@@ -24,8 +24,10 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Hair Loss Blog | DenceSpot Clinic, Gurugram',
-    'description' => 'Patient education on hair loss, transplants, PRP and beard restoration — written and medically reviewed by Dr. Nyra at DenceSpot Clinic, Gurugram.',
+    // Not framed around one city (COMPETITOR-SEO.md §3 gap 9): the blog serves
+    // readers of both clinics. No "medically reviewed" claim in the meta.
+    'title'       => 'Hair Loss & Hair Transplant Blog | DenceSpot Clinic',
+    'description' => 'Patient education on hair fall, hair transplants, PRP, beard restoration and laser hair removal, from DenceSpot Clinic in Gurugram and Rohini, Delhi.',
     'url'         => '/blog/',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -36,7 +38,7 @@ $page = [
             '@type'       => 'Blog',
             '@id'         => abs_url('/blog/') . '#blog',
             'name'        => 'DenceSpot Clinic — hair loss blog',
-            'description' => 'Patient education on hair loss, hair transplant, PRP and beard restoration.',
+            'description' => 'Patient education on hair loss, hair transplant, PRP, beard restoration and laser hair removal.',
             'publisher'   => ['@id' => SITE_ORIGIN . '/#clinic'],
             'blogPost'    => array_map(
                 static fn (array $p): array => [
@@ -45,6 +47,8 @@ $page = [
                     'headline'      => $p['title'],
                     'datePublished' => $p['published'],
                     'url'           => abs_url(blog_url($p['slug'])),
+                    'author'        => ['@id' => abs_url(DOCTORS['dr-nyra']['url']) . '#physician'],
+                    'image'         => abs_url(OG_IMAGE),
                 ],
                 blog_posts()
             ),
@@ -96,7 +100,7 @@ $allCount = count(blog_posts());
     <div class="hp-head hp-head--center">
       <p class="eyebrow">Patient education</p>
       <h1 class="h1" style="margin-top:10px">Hair Loss, Explained Properly</h1>
-      <p class="lead mt-3">Articles on hair loss, transplants, PRP and beard restoration — written for patients, medically reviewed before publication, and clear about what treatment can and cannot do, including its risks and limits.</p>
+      <p class="lead mt-3">Articles on hair loss, transplants, PRP and beard restoration — written for patients, with the reviewing doctor named on each reviewed article, and clear about what treatment can and cannot do, including its risks and limits.</p>
     </div>
 
     <nav class="blog-topics" aria-label="Filter articles by topic">
@@ -115,6 +119,7 @@ $allCount = count(blog_posts());
       <p class="meta mt-4" style="text-align:center">
         <?= count($posts) ?> article<?= count($posts) === 1 ? '' : 's' ?><?= $activeHub !== null ? ' on ' . e(strtolower(BLOG_HUBS[$activeHub]['label'])) : '' ?> · newest first
       </p>
+      <h2 class="sr-only">Articles</h2>
       <div class="grid grid--3 mt-5">
         <?php foreach ($posts as $post): ?>
           <?= blog_card($post) ?>

@@ -8,6 +8,10 @@
  * competing. This page answers the clinic-level questions instead — booking,
  * payment, safety, privacy, choosing a clinic — and routes treatment
  * questions to the page that owns them.
+ *
+ * 14 Oct 2026 — landing-page layout: AI-illustrated hero, the treatment links
+ * as an lp_split and an lp_cta close (each image with its visible AI label).
+ * The page presents both clinics.
  */
 
 declare(strict_types=1);
@@ -86,6 +90,7 @@ $page = [
     'description' => 'Answers on booking, cost, safety, privacy and choosing a hair restoration clinic in Gurugram — and where to find the detail for each individual treatment.',
     'url'         => '/faqs',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-consultation-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -97,16 +102,30 @@ $page = [
 require __DIR__ . '/includes/header.php';
 ?>
 
-<section class="section section--canvas">
+<section class="hero">
   <div class="wrap">
-    <div class="measure">
-      <span class="pill pill--dot">FAQs</span>
-      <h1 class="h1 mt-3">Hair Transplant FAQs — DenceSpot Clinic, Gurgaon</h1>
-      <p class="lead mt-3">Questions about the clinic itself — booking, cost, safety, privacy and how to compare clinics. Questions about a specific treatment are answered on that treatment's own page, where they belong.</p>
-      <?= medical_review_line() ?>
-      <div class="btn-row mt-5">
-        <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
-        <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask something else</a>
+    <div class="split">
+      <div>
+        <span class="pill pill--dot">FAQs</span>
+        <h1 class="h1 mt-3">Hair Transplant FAQs — DenceSpot Clinic, Gurgaon</h1>
+        <p class="lead mt-3 measure">Questions about the clinic itself — booking, cost, safety, privacy and how to compare clinics. Questions about a specific treatment are answered on that treatment's own page, where they belong.</p>
+        <?= medical_review_line() ?>
+        <div class="btn-row mt-5">
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask something else</a>
+        </div>
+      </div>
+
+      <div class="hero__figure">
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk beside a fern" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
+        </div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Two clinics</p>
+          <p class="h4 mt-1">Sector 39, Gurugram · Rohini, Delhi</p>
+          <p class="meta"><?= e(HOURS_DISPLAY) ?><span style="display:block"><?= e(HOURS_NOTE) ?></span></p>
+        </div>
       </div>
     </div>
   </div>
@@ -128,26 +147,27 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas">
-  <div class="wrap">
-    <div class="measure">
-      <p class="eyebrow">Treatment questions</p>
-      <h2 id="looking-for-detail-on-a-specific-treatment" class="h2 mt-2">Looking for Detail on a Specific Treatment?</h2>
-      <p class="body mt-3">Each treatment page carries its own set of questions — recovery, shedding, graft counts, session numbers, what results to expect and when.</p>
-    </div>
-    <div class="grid grid--4 mt-6">
-      <a class="card" href="/hair-transplant-in-gurgaon#faqs" style="text-decoration:none;color:inherit"><?= icon('hairline', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Hair transplant</h3><p class="meta mt-1">13 questions on candidacy, recovery, grafts and permanence.</p></a>
-      <a class="card" href="/beard-transplant-gurgaon#faqs" style="text-decoration:none;color:inherit"><?= icon('beard', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Beard transplant</h3><p class="meta mt-1">17 questions including shaving, scars and donor supply.</p></a>
-      <a class="card" href="/hair-prp-treatment-in-gurgaon#faqs" style="text-decoration:none;color:inherit"><?= icon('settings', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Hair PRP</h3><p class="meta mt-1">15 questions on sessions, evidence, safety and GFC.</p></a>
-      <a class="card" href="/hair-fall-treatment-in-gurgaon#faqs" style="text-decoration:none;color:inherit"><?= icon('search', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Hair fall</h3><p class="meta mt-1">12 questions on causes, testing and what is reversible.</p></a>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-transplant',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'id'      => 'looking-for-detail-on-a-specific-treatment',
+    'eyebrow' => 'Treatment questions',
+    'title'   => 'Looking for Detail on a Specific Treatment?',
+    'tone'    => 'canvas',
+    'html'    => '<p>Each treatment page carries its own set of questions — recovery, shedding, graft counts, session numbers, what results to expect and when.</p>'
+               . '<ul class="rohini-group__list">'
+               . '<li><a href="/hair-transplant-in-gurgaon#faqs"><span>Hair transplant<span class="meta" style="display:block;font-weight:400;margin-top:2px">13 questions on candidacy, recovery, grafts and permanence.</span></span></a></li>'
+               . '<li><a href="/beard-transplant-gurgaon#faqs"><span>Beard transplant<span class="meta" style="display:block;font-weight:400;margin-top:2px">17 questions including shaving, scars and donor supply.</span></span></a></li>'
+               . '<li><a href="/hair-prp-treatment-in-gurgaon#faqs"><span>Hair PRP<span class="meta" style="display:block;font-weight:400;margin-top:2px">15 questions on sessions, evidence, safety and GFC.</span></span></a></li>'
+               . '<li><a href="/hair-fall-treatment-in-gurgaon#faqs"><span>Hair fall<span class="meta" style="display:block;font-weight:400;margin-top:2px">12 questions on causes, testing and what is reversible.</span></span></a></li>'
+               . '</ul>'
+               . '<p>Something not covered here? <a href="' . e(WHATSAPP_URL) . '" rel="noopener" data-track="whatsapp">Ask the clinic on WhatsApp</a>.</p>',
+]) ?>
 
-<?= cta_band(
-    'Still Have a Question?',
-    'Message the clinic on WhatsApp — you will usually get a faster answer than a call-back, and you can send photographs at the same time.',
-    'faqs'
-) ?>
+<?= lp_cta([
+    'eyebrow' => 'Gurugram and Delhi',
+    'title'   => 'Still Have a Question?',
+    'text'    => 'Message the clinic on WhatsApp — you will usually get a faster answer than a call-back, and you can send photographs at the same time.',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

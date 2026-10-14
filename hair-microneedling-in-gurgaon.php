@@ -63,10 +63,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Hair Microneedling in Gurgaon | DenceSpot Clinic',
-    'description' => 'Scalp microneedling in Gurgaon, positioned honestly as an adjunct to topical treatment with limited evidence, not a standalone treatment, and home dermaroller risks explained.',
+    'title'       => 'Hair Microneedling in Gurgaon: With PRP, Sessions & Cost',
+    'description' => 'Hair microneedling in Gurgaon: needling alone vs with PRP or a topical, what the limited evidence shows, home dermaroller risks, sessions and cost factors.',
     'url'         => '/hair-microneedling-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-skin-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -104,21 +105,22 @@ require __DIR__ . '/includes/header.php';
             'Offered as an adjunct, not a standalone treatment',
             'Diagnosis established before any course',
             'Response measured against baseline photographs',
-            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
+            'At our clinic in Sector 39, Gurugram',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted block of skin cut away to show its layers, one hair growing from its follicle and a coiled gland beside it" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -132,27 +134,22 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="what-is">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Microneedling Does to a Scalp</h2>
-        <p class="body-l mt-3 measure">Very fine needles create a large number of tiny, controlled injuries across the treatment area. Two things are meant to follow from that.</p>
-        <p class="body-l mt-3 measure">The first is biological. Controlled injury provokes a wound-healing response in the surrounding tissue, and the interest in hair medicine is in what that response might do around the follicles. This is the mechanism most often described in marketing, and it is also the one with the least direct evidence attached when microneedling is used alone.</p>
-        <p class="body-l mt-3 measure">The second is more straightforward and probably more important. The needles create temporary channels through the outer layer of skin, and a topical treatment applied to that scalp can reach deeper than it would through intact skin. Better delivery of a topical treatment that has its own evidence is a plausible and modest claim, though it is still being studied.</p>
-        <p class="body-l mt-3 measure">That second mechanism is the reason this page positions microneedling the way it does. It is a way of making something else work better, and it needs that something else to exist.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">The distinction that gets collapsed</p>
-        <h3 class="h3 mt-2">"With topical" is not "instead of"</h3>
-        <p class="body mt-3">The published work that makes microneedling interesting in hair loss looks at it combined with topical treatment.</p>
-        <p class="body mt-3">Marketing routinely reports that as evidence for microneedling, full stop, and sells it as a standalone course.</p>
-        <p class="body mt-3">It is a small change in wording and a large change in meaning, and it is worth holding onto when you are comparing clinics.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles beneath the surface and hair shafts rising from it',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Microneedling Does to a Scalp',
+    'id'      => 'what-is',
+    'html'    => '<p>Very fine needles create a large number of tiny, controlled injuries across the treatment area. Two things are meant to follow from that.</p>'
+               . '<p><b>A healing response.</b> Controlled injury provokes a wound-healing response in the tissue around the follicles. It is the mechanism most often described in marketing, and the one with the least direct evidence when microneedling is used alone.</p>'
+               . '<p><b>Better delivery.</b> The needles open temporary channels through the outer layer of skin, so a topical treatment applied afterwards can reach deeper than through intact skin. That is a plausible and modest claim, still being studied — and it means microneedling needs a treatment with its own evidence to work alongside.</p>'
+               . '<p><b>"With topical" is not "instead of".</b> The published work that makes microneedling interesting in hair loss looks at it combined with topical treatment. Marketing routinely reports that as evidence for microneedling, full stop, and sells it as a standalone course — worth holding onto when you are comparing clinics.</p>',
+    'points'  => [
+        'An adjunct to topical treatment, not a standalone treatment',
+        'Evidence mostly from small, short studies',
+        'Not a treatment that regrows hair by itself',
+    ],
+]) ?>
 
 <section class="section section--canvas" id="home-use">
   <div class="wrap">
@@ -181,92 +178,119 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="candidacy">
+<?php
+$mnCompare = [
+    ['What happens', 'Fine needles make controlled micro-injuries across the scalp, and nothing is applied to use the channels', 'Needling, then a planned topical treatment applied so that it can reach deeper than through intact skin', 'Needling, then platelet-rich plasma from your own blood applied to the scalp straight afterwards'],
+    ['What it relies on', 'The wound-healing response alone', 'The topical treatment\'s own evidence, with needling as a possible aid to delivery', 'PRP\'s own evidence, with needling as the route in'],
+    ['Evidence', 'The least direct of the three', 'Where the more interesting published work sits, though the studies are mostly small and short', 'Commonly combined; studies are small and their methods vary'],
+    ['Extra steps on the day', 'Numbing, needling and aftercare', 'Choosing what is applied and when, because some products irritate freshly needled skin', 'A blood draw and preparation of the plasma before needling'],
+    ['Usual after-effects', 'Redness and tenderness for a day or so, with pinpoint bleeding during the session', 'The same, with more chance of irritation from the product', 'The same; the blood draw is like any blood test'],
+    ['Where it fits', 'Not used as a treatment on its own', 'Alongside established topical treatment, once the diagnosis is clear', 'Where PRP already suits the plan'],
+];
+?>
+<section class="section section--white" id="combinations">
   <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Suitability</p>
-        <h2 class="h2 mt-2">Where It Fits in a Plan</h2>
-        <p class="body-l mt-3 measure">It fits where there is already a diagnosis and an established treatment for it, and the question is whether anything can reasonably be added. Microneedling is one option that may be discussed then, with modest expectations and the limits of its evidence explained.</p>
-        <p class="body-l mt-3 measure">It does not fit as a first move for someone whose hair loss has not been investigated, or as a substitute for treatment that has evidence behind it. It is also not the treatment for an autoimmune condition such as <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata</a>, and it should not be performed over inflamed or infected skin.</p>
-        <p class="body-l mt-3 measure">Where there is a tendency to keloid or abnormal scarring, it needs particular caution, and medication affecting bleeding or healing is reviewed before any session.</p>
+    <div style="max-width:62ch">
+      <p class="eyebrow">Side by side</p>
+      <h2 class="h2 mt-2">Microneedling Alone vs With PRP or a Topical Treatment</h2>
+      <p class="body mt-3">Most of what is said about microneedling for hair depends on what it is combined with. The same needling session means something different on its own, followed by a topical treatment, or followed by PRP.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--wide">
+          <caption class="sr-only">Hair microneedling on its own compared with microneedling combined with a topical treatment or with PRP: what happens, what it relies on, the evidence, extra steps, usual after-effects and where it fits. A general guide, not a treatment plan.</caption>
+          <thead><tr><th scope="col">&nbsp;</th><th scope="col">Microneedling alone</th><th scope="col">With a topical treatment</th><th scope="col">With PRP</th></tr></thead>
+          <tbody>
+            <?php foreach ($mnCompare as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:18%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td><td><?= e($r[3]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Reasonable to consider</p>
-          <div class="mt-3"><?= ticks([
-              'Alongside established topical treatment',
-              'Where the diagnosis is already clear',
-              'Combined with PRP where that suits the plan',
-              'As an addition, with modest expectations',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Not appropriate</p>
-          <div class="mt-3"><?= ticks([
-              'Active scalp infection or inflammation',
-              'Autoimmune or inflammatory scalp disease',
-              'A tendency to keloid or abnormal scarring',
-              'Undiagnosed hair loss, as a first step',
-          ], false) ?></div>
-        </div>
-      </div>
+    </div>
+    <p class="body-s mt-4 measure">For treatments injected into the scalp rather than applied to it, see <a href="/hair-mesotherapy-in-gurgaon">hair mesotherapy in Gurgaon</a> and <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment in Gurgaon</a>.</p>
+  </div>
+</section>
+
+<section class="section section--canvas" id="questions">
+  <div class="wrap">
+    <div style="max-width:62ch">
+      <p class="eyebrow">Before you pay</p>
+      <h2 class="h2 mt-2">Questions Worth Asking Any Clinic About Microneedling</h2>
+      <p class="body mt-3">They apply wherever you are treated, including here, and most of them apply to needling at home as well.</p>
+    </div>
+    <div class="card card--pad-lg mt-5">
+      <?= ticks([
+          'What needle depth will be used on my scalp, and why that depth?',
+          'Is the needling head single-use, and if not, how is it sterilised?',
+          'What is applied afterwards, and is it suitable for freshly needled skin?',
+          'Which treatment is this being added to, and is my diagnosis clear?',
+          'How far apart are sessions, so the scalp can recover?',
+          'When is the review, and what happens if nothing has changed?',
+      ]) ?>
+    </div>
+    <div class="note mt-4">
+      <p class="body-s"><b>Not sure what is behind your thinning?</b> The <a href="/hair-loss-assessment">six-question hair loss self-assessment</a> suggests a next step before you book. It is not a diagnosis, and nothing you enter is stored.</p>
     </div>
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="h2 mt-2">How a Course Runs</h2>
-    <div class="journey mt-6" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Diagnosis established, reversible causes investigated, scalp examined, and the existing treatment plan reviewed before anything is added to it.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">Baseline photographs</p><p class="body-s mt-2">Standardised images first, because a slow adjunct treatment cannot be judged without something to compare against.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Sessions</p><p class="body-s mt-2">A course spaced weeks apart to allow recovery between, with what is applied afterwards planned rather than improvised.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Review</p><p class="body-s mt-2">Compared against baseline. If nothing is changing, the adjunct is stopped rather than repeated indefinitely.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-prp',
+    'alt'     => 'a capped tube of golden plasma standing on a white tray beside a syringe',
+    'eyebrow' => 'Suitability',
+    'title'   => 'Where It Fits in a Plan',
+    'id'      => 'candidacy',
+    'reverse' => true,
+    'html'    => '<p>It fits where there is already a diagnosis and an established treatment for it, and the question is whether anything can reasonably be added. Microneedling is one option that may be discussed then, with modest expectations and the limits of its evidence explained.</p>'
+               . '<p>It does not fit as a first move for hair loss that has not been investigated, or as a substitute for treatment that has evidence behind it. It is not the treatment for an autoimmune condition such as <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata</a>, and medication affecting bleeding or healing is reviewed before any session.</p>'
+               . '<p><b>Not appropriate:</b> active scalp infection or inflammation; autoimmune or inflammatory scalp disease; a tendency to keloid or abnormal scarring, which needs particular caution; undiagnosed hair loss, as a first step.</p>'
+               . '<p><b>Reasonable to consider:</b></p>',
+    'points'  => [
+        'Alongside established topical treatment',
+        'Where the diagnosis is already clear',
+        'Combined with PRP where that suits the plan',
+        'As an addition, with modest expectations',
+    ],
+]) ?>
 
-<section class="section section--white" id="aftercare">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">After a session</p>
-        <h2 class="h2 mt-2">What to Expect and What to Avoid</h2>
-        <p class="body-l mt-3 measure">The scalp is red and tender afterwards, typically for a day or so, and pinpoint bleeding during the procedure is expected rather than a complication.</p>
-        <p class="body-l mt-3 measure">Because the skin barrier has been temporarily breached, the period immediately afterwards matters. Sweat, chlorinated water, sun exposure and irritating products all reach the tissue more readily than usual, and the aftercare instructions exist to keep that window uneventful.</p>
-        <p class="body-l mt-3 measure">Infection is uncommon but possible with any procedure that breaks the skin. Spreading redness, increasing pain, heat or fever should be reported promptly rather than waited out.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Usual and expected</p>
-          <div class="mt-3"><?= ticks([
-              'Redness for a day or so',
-              'Tenderness of the scalp',
-              'Pinpoint bleeding during the session',
-              'Mild tightness afterwards',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Briefly avoid</p>
-          <div class="mt-3"><?= ticks([
-              'Heavy sweating and the gym',
-              'Swimming pools, saunas and steam',
-              'Direct sun on the scalp',
-              'Any product not on your instructions',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The process',
+    'title'   => 'How a Course Runs',
+    'id'      => 'journey',
+    'intro'   => 'Diagnosis comes first, and the response is measured against a baseline.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk', 'title' => 'Assessment', 'text' => 'Diagnosis established, reversible causes investigated, scalp examined, and the existing treatment plan reviewed before anything is added to it.'],
+        ['img' => 'step-plan', 'alt' => 'a tablet on a desk showing a head diagram', 'title' => 'Baseline photographs', 'text' => 'Standardised images first, because a slow adjunct treatment cannot be judged without something to compare against.'],
+        ['img' => 'step-procedure', 'alt' => 'sterile instruments laid out on a tray', 'title' => 'Sessions', 'text' => 'A course spaced weeks apart to allow recovery between, with what is applied afterwards planned rather than improvised.'],
+        ['img' => 'step-followup', 'alt' => 'a desk calendar with review dates circled', 'title' => 'Review', 'text' => 'Compared against baseline. If nothing is changing, the adjunct is stopped rather than repeated indefinitely.'],
+    ],
+]) ?>
+
+<?= lp_split([
+    'img'     => 'svc-hair-fall',
+    'alt'     => 'a wooden wide-toothed comb lying on a stack of folded cream linen towels beside a window',
+    'eyebrow' => 'After a session',
+    'title'   => 'What to Expect and What to Avoid',
+    'id'      => 'aftercare',
+    'html'    => '<p>The scalp is red and tender afterwards, typically for a day or so, and pinpoint bleeding during the procedure is expected rather than a complication.</p>'
+               . '<p>Because the skin barrier has been temporarily breached, sweat, chlorinated water, sun exposure and irritating products reach the tissue more readily than usual, and the aftercare instructions exist to keep that window uneventful. Infection is uncommon but possible with any procedure that breaks the skin, so spreading redness, increasing pain, heat or fever should be reported promptly rather than waited out.</p>'
+               . '<p><b>Briefly avoid:</b> heavy sweating and the gym; swimming pools, saunas and steam; direct sun on the scalp; any product not on your instructions.</p>'
+               . '<p><b>Usual and expected:</b></p>',
+    'points'  => [
+        'Redness for a day or so',
+        'Tenderness of the scalp',
+        'Pinpoint bleeding during the session',
+        'Mild tightness afterwards',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
-<section class="section section--canvas" id="cost">
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -293,6 +317,11 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
+<?= local_block(
+    'Scalp Treatments at Our Gurgaon Clinic',
+    'Assessment, treatment and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic.'
+) ?>
+
 <section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
@@ -307,16 +336,11 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= local_block(
-    'Scalp Treatments at Our Gurgaon Clinic',
-    'Assessment, treatment and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic. Treatment is also available at our Rohini, Delhi clinic.'
-) ?>
-
-<?= cta_band(
-    'Get the Plan Right Before Adding Anything to It',
-    'Come in for a proper assessment. You will get a diagnosis, treatment matched to it, and an honest view on whether microneedling would add enough to be worth your money and your time.',
-    'hair-microneedling',
-    ['Hair microneedling', 'Microneedling with PRP', 'Already using a dermaroller at home', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Get the Plan Right Before Adding Anything to It',
+    'text'      => 'Come in for a proper assessment. You will get a diagnosis, treatment matched to it, and an honest view on whether microneedling would add enough to be worth your money and your time.',
+    'treatment' => 'Hair fall treatment',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

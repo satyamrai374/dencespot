@@ -65,10 +65,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Hair LED Therapy in Gurgaon | DenceSpot Clinic',
-    'description' => 'Low-level light therapy for hair in Gurgaon. Limited evidence, a small effect at most and months of consistent use, explained before you buy an expensive device.',
+    'title'       => 'Hair LED Therapy in Gurgaon: Does It Work? Sessions & Cost',
+    'description' => 'Hair LED (low-level light) therapy in Gurgaon: what it can and cannot do, the small effect over months, clinic sessions or a home device, and cost factors.',
     'url'         => '/hair-led-therapy-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-followup-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -106,21 +107,22 @@ require __DIR__ . '/includes/header.php';
             'Diagnosis established before any device is bought',
             'Realistic timeline stated at the start',
             'Supports thinning hair, not bald scalp',
-            'At our clinics in Sector 39, Gurugram and Rohini, Delhi',
+            'At our clinic in Sector 39, Gurugram',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-followup-768.webp" srcset="/assets/img/services/svc-followup-512.webp 512w, /assets/img/services/svc-followup-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a desk calendar with several days circled in green, beside a small potted succulent and a pen on a wooden desk" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -134,29 +136,62 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="what-is">
+<?= lp_split([
+    'img'     => 'svc-skin',
+    'alt'     => 'a sculpted block of skin cut away to show its layers, one hair growing from its follicle and a coiled gland beside it',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Light Therapy Is',
+    'id'      => 'what-is',
+    'html'    => '<p>Light of particular wavelengths is delivered to the scalp, either in clinic with a panel or at home through a cap, helmet or comb. The intention is to support follicles that are still present and still working, rather than to do anything to skin where the follicles have gone.</p>'
+               . '<p>It goes by several names — low-level light therapy, low-level laser therapy, red light therapy — and devices differ substantially in specification, coverage and price, which is one reason a general claim about "LED therapy" is less useful than it sounds.</p>'
+               . '<p>What can be said fairly is that it has some controlled-trial evidence, that many of those trials were small or short, and that the effect they report is modest. Marketing tends to keep the first part and drop the rest.</p>'
+               . '<p><b>What "it works" means here:</b> at most, reduced shedding and some improvement in the quality and calibre of hair that is thinning but still growing — and some people see no change. Not regrowth of a bald crown, not a visible transformation, not a cure, and not a replacement for surgery where the loss is established.</p>',
+    'points'  => [
+        'Non-invasive; it does not break the skin',
+        'Generally well tolerated',
+        'In clinic or at home, on a regular schedule over many months',
+    ],
+]) ?>
+
+<?php
+$ledFacts = [
+    ['Can it regrow hair on a bald area?', 'No. Where follicles have gone, light cannot bring them back. Established baldness is a conversation about surgery instead.'],
+    ['Can it thicken hair that is thinning?', 'Possibly, and modestly. Some controlled trials report a small improvement with regular use over months; some people see no change at all.'],
+    ['Will it stop pattern hair loss?', 'No. The underlying process continues, and any benefit is generally lost after stopping.'],
+    ['How soon would a change show?', 'Over months rather than weeks, judged against baseline photographs rather than the mirror.'],
+    ['Does it replace medication?', 'It is generally used alongside it. Some people who cannot take, or prefer not to take, medication choose it, with a smaller and less certain effect understood.'],
+    ['Can it be used after a transplant?', 'Sometimes, to support the surrounding native hair. The timing after surgery is decided at your follow-up.'],
+    ['Will it correct low iron, thyroid or hormonal causes?', 'No. Those respond to treating the cause, which is why the assessment comes first.'],
+    ['Does it treat alopecia areata or an inflamed scalp?', 'No. Patchy loss and scalp conditions need diagnosing and treating in their own right.'],
+    ['Is it safe?', 'Generally well tolerated and non-invasive. Photosensitivity, photosensitising medicines and any history of skin cancer on the scalp are reviewed first, and some devices need eye protection.'],
+    ['In the clinic or at home?', 'Both exist. Clinic sessions mean regular visits; a home device means keeping to its schedule yourself. The useful choice is the one you will keep up.'],
+];
+?>
+<section class="section section--canvas" id="can-cannot">
   <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Light Therapy Is</h2>
-        <p class="body-l mt-3 measure">Light of particular wavelengths is delivered to the scalp, either in clinic with a panel or at home through a cap, helmet or comb. The intention is to support follicles that are still present and still working, rather than to do anything to skin where the follicles have gone.</p>
-        <p class="body-l mt-3 measure">It goes by several names — low-level light therapy, low-level laser therapy, red light therapy — and devices differ substantially in specification, coverage and price. Those differences matter, which is one reason a general claim about "LED therapy" is less useful than it sounds.</p>
-        <p class="body-l mt-3 measure">What can be said fairly is that this category has some controlled-trial evidence, that many of those trials were small or short, and that the effect they report is modest. All of that is true, and marketing tends to keep the first part and drop the rest.</p>
-        <p class="body-l mt-3 measure">It is non-invasive, does not break the skin, and is generally well tolerated, which is why it is sometimes considered by people who cannot or would rather not use medication.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">The realistic outcome</p>
-        <h3 class="h3 mt-2">What "it works" means here</h3>
-        <p class="body mt-3">At most, reduced shedding and some improvement in the quality and calibre of hair that is thinning but still growing — and some people see no change.</p>
-        <p class="body mt-3">Not regrowth of a bald crown. Not a visible transformation. Not a cure. Not a replacement for surgery where the loss is established.</p>
-        <p class="body mt-3">Set against that description, it may be considered as an addition to a plan. Set against the photographs used to sell devices, it will disappoint.</p>
+    <div style="max-width:62ch">
+      <p class="eyebrow">At a glance</p>
+      <h2 class="h2 mt-2">Does LED Therapy Work for Hair? What It Can and Cannot Do</h2>
+      <p class="body mt-3">Light therapy sits at the supportive end of hair care: a possible small help for hair that is still there, used alongside treatment for the cause. These are the questions people most often ask before buying a device or booking sessions.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--fit">
+          <caption class="sr-only">What LED (low-level light) therapy can and cannot do for hair, and where it sits alongside other care. A general guide, not a diagnosis.</caption>
+          <thead><tr><th scope="col">Question</th><th scope="col">Short answer</th></tr></thead>
+          <tbody>
+            <?php foreach ($ledFacts as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:38%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
+    <p class="body-s mt-4 measure">The order that makes sense is diagnosis first, then treatment for the cause, then anything supportive. <a href="/hair-fall-treatment-in-gurgaon">Hair fall treatment</a> explains how the cause is found, and the <a href="/hair-loss-assessment">six-question hair loss self-assessment</a> suggests a next step before you book. It is not a diagnosis.</p>
   </div>
 </section>
 
-<section class="section section--canvas" id="adherence">
+<section class="section section--white" id="adherence">
   <div class="wrap">
     <p class="eyebrow">The thing that decides whether it works</p>
     <h2 class="h2 mt-2">Adherence Is the Entire Treatment</h2>
@@ -175,89 +210,64 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="candidacy">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Suitability</p>
-        <h2 class="h2 mt-2">Who It Suits</h2>
-        <p class="body-l mt-3 measure">It suits people with thinning hair rather than established baldness, who have a diagnosis, and who are realistic about a slow and modest effect over a long period.</p>
-        <p class="body-l mt-3 measure">It is sometimes considered by people who cannot take, or prefer not to take, medication for pattern hair loss. That is a legitimate choice, made with the smaller and less certain effect understood.</p>
-        <p class="body-l mt-3 measure">It is not the treatment for an area that is genuinely bald, for undiagnosed hair loss, or for autoimmune conditions such as <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata</a>. Photosensitivity, photosensitising medication and any history of skin cancer on the scalp all need reviewing before starting.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Reasonable to consider</p>
-          <div class="mt-3"><?= ticks([
-              'Thinning hair with follicles still present',
-              'Alongside established medical treatment',
-              'Where medication is unsuitable or unwanted',
-              'Supporting native hair after a transplant',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Not appropriate</p>
-          <div class="mt-3"><?= ticks([
-              'Established baldness with follicles gone',
-              'Active scalp infection or inflammation',
-              'Autoimmune scalp conditions',
-              'Undiagnosed hair loss, as a first move',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-women',
+    'alt'     => 'a white mannequin head seen from above, with green felt hair and a widening central parting',
+    'eyebrow' => 'Suitability',
+    'title'   => 'Who It Suits',
+    'id'      => 'candidacy',
+    'tone'    => 'canvas',
+    'reverse' => true,
+    'html'    => '<p>It suits people with thinning hair rather than established baldness, who have a diagnosis, and who are realistic about a slow and modest effect over a long period. It is sometimes considered by people who cannot take, or prefer not to take, medication for pattern hair loss — a legitimate choice, made with the smaller and less certain effect understood.</p>'
+               . '<p>It is not the treatment for an area that is genuinely bald, for undiagnosed hair loss, or for autoimmune conditions such as <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata</a>. Photosensitivity, photosensitising medication and any history of skin cancer on the scalp all need reviewing before starting.</p>'
+               . '<p><b>Not appropriate:</b> established baldness with follicles gone; active scalp infection or inflammation; autoimmune scalp conditions; undiagnosed hair loss, as a first move.</p>'
+               . '<p><b>Reasonable to consider:</b></p>',
+    'points'  => [
+        'Thinning hair with follicles still present',
+        'Alongside established medical treatment',
+        'Where medication is unsuitable or unwanted',
+        'Supporting native hair after a transplant',
+    ],
+]) ?>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="h2 mt-2">How It Is Approached Here</h2>
-    <div class="journey mt-6" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Diagnosis, stage of loss, and investigation of reversible causes — before any conversation about devices or sessions.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">The honest conversation</p><p class="body-s mt-2">Whether light therapy suits your stage of loss, what it realistically does, and whether the adherence it requires fits your life.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Baseline photographs</p><p class="body-s mt-2">Taken before starting. With a slow, subtle treatment this is the only way to know later whether it did anything.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Long review</p><p class="body-s mt-2">Reviewed over months against the baseline, with adherence discussed frankly, because that is usually the variable that explains the result.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The process',
+    'title'   => 'How It Is Approached Here',
+    'id'      => 'journey',
+    'intro'   => 'A realistic timeline is stated at the start, before any device is bought.',
+    'tone'    => 'white',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk', 'title' => 'Assessment', 'text' => 'Diagnosis, stage of loss, and investigation of reversible causes — before any conversation about devices or sessions.'],
+        ['img' => 'step-plan', 'alt' => 'a tablet on a desk showing a head diagram', 'title' => 'The honest conversation', 'text' => 'Whether light therapy suits your stage of loss, what it realistically does, and whether the adherence it requires fits your life.'],
+        ['img' => 'stage-temples', 'alt' => 'a mannequin head seen from above, with green felt hair receding at both temples', 'title' => 'Baseline photographs', 'text' => 'Taken before starting. With a slow, subtle treatment this is the only way to know later whether it did anything.'],
+        ['img' => 'hero', 'alt' => 'a sculpted cross-section of skin with several hair follicles and their roots', 'title' => 'Long review', 'text' => 'Reviewed over months against the baseline, with adherence discussed frankly, because that is usually the variable that explains the result.'],
+    ],
+]) ?>
 
-<section class="section section--white" id="devices">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Buying a device</p>
-        <h2 class="h2 mt-2">Before You Spend Money on Hardware</h2>
-        <p class="body-l mt-3 measure">Home devices are widely sold at wildly varying prices, and people frequently buy one before anyone has established why their hair is falling. If the cause is iron deficiency or a thyroid problem, a light cap will do nothing about it, and months will pass.</p>
-        <p class="body-l mt-3 measure">Devices also differ in coverage, specification and how practical they are to use daily. A device that is uncomfortable, awkward or inconvenient is a device that will not be used, and given how much adherence matters here, practicality is a clinical consideration rather than a comfort one.</p>
-        <p class="body-l mt-3 measure">The sensible order is: get assessed, establish the diagnosis, decide whether light therapy has a role in your plan at all, and then ask what to buy. That sequence costs a consultation and can save a great deal more.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Ask before buying</p>
-          <div class="mt-3"><?= ticks([
-              'Is light therapy right for my stage of loss?',
-              'What am I realistically expecting, and by when?',
-              'How often would I need to use it?',
-              'What else should be in the plan alongside it?',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Also worth reading</p>
-          <p class="body-s mt-2"><a href="/hair-fall-treatment-in-gurgaon">Hair fall treatment</a> — how the diagnosis is made.</p>
-          <p class="body-s mt-3"><a href="/hair-prp-treatment-in-gurgaon">Hair PRP treatment</a> — another supportive option.</p>
-          <p class="body-s mt-3"><a href="/hair-transplant-in-gurgaon">Hair transplant</a> — where the loss is established.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-laser',
+    'alt'     => 'a white handheld device on a white tray beside a folded sage-green towel',
+    'eyebrow' => 'Buying a device',
+    'title'   => 'Before You Spend Money on Hardware',
+    'id'      => 'devices',
+    'tone'    => 'canvas',
+    'html'    => '<p>Home devices are widely sold at wildly varying prices, and people frequently buy one before anyone has established why their hair is falling. If the cause is iron deficiency or a thyroid problem, a light cap will do nothing about it, and months will pass.</p>'
+               . '<p>Devices also differ in coverage, specification and how practical they are to use daily. A device that is uncomfortable or inconvenient will not be used, and given how much adherence matters here, practicality is a clinical consideration rather than a comfort one.</p>'
+               . '<p>The sensible order: get assessed, establish the diagnosis, decide whether light therapy has a role in your plan at all, and then ask what to buy. Also worth reading: <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a> for how the diagnosis is made, <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment</a> as another supportive option, and <a href="/hair-transplant-in-gurgaon">hair transplant</a> where the loss is established.</p>'
+               . '<p><b>Ask before buying:</b></p>',
+    'points'  => [
+        'Is light therapy right for my stage of loss?',
+        'What am I realistically expecting, and by when?',
+        'How often would I need to use it?',
+        'What else should be in the plan alongside it?',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
-<section class="section section--canvas" id="cost">
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -284,6 +294,11 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
+<?= local_block(
+    'Hair Loss Assessment at Our Gurgaon Clinic',
+    'Assessment, planning and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic.'
+) ?>
+
 <section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
@@ -298,16 +313,11 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= local_block(
-    'Hair Loss Assessment at Our Gurgaon Clinic',
-    'Assessment, planning and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic. Treatment is also available at our Rohini, Delhi clinic.'
-) ?>
-
-<?= cta_band(
-    'Find Out If It Is Worth It Before You Buy a Device',
-    'Come in and have your stage of hair loss assessed. You will get a diagnosis, an honest view of what light therapy would and would not do for you, and a plan that puts your money where it will actually count.',
-    'hair-led-therapy',
-    ['LED or light therapy for hair', 'Considering buying a home device', 'Medication not suitable for me', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out If It Is Worth It Before You Buy a Device',
+    'text'      => 'Come in and have your stage of hair loss assessed. You will get a diagnosis, an honest view of what light therapy would and would not do for you, and a plan that puts your money where it will actually count.',
+    'treatment' => 'Hair fall treatment',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

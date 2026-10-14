@@ -22,6 +22,11 @@
  *
  * No dependencies. Vanilla JS, progressive enhancement: the form is inert
  * without script but the page still reads as an explainer.
+ *
+ * 14 Oct 2026 — landing-page layout around the tool (the form, its styles and
+ * script are unchanged): AI-illustrated hero, "how a graft number is reached"
+ * as lp_steps, the donor constraint as an lp_split and an lp_cta close, each
+ * image with its visible AI label. Presents both clinics.
  */
 
 declare(strict_types=1);
@@ -71,6 +76,7 @@ $page = [
     'description' => 'Estimate a graft range from your pattern of hair loss, and understand why the number that actually matters cannot be worked out without measuring your donor area.',
     'url'         => '/hair-transplant-graft-calculator',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -142,12 +148,11 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted model of a follicular unit with three hairs, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
@@ -222,8 +227,8 @@ require __DIR__ . '/includes/header.php';
               <li><strong>Your scalp laxity and health.</strong> Both affect what can safely be harvested and placed.</li>
               <li><strong>Whether surgery suits you at all.</strong> Unstable loss and active scalp conditions are treated first.</li>
             </ul>
-            <a class="btn btn--block btn--accent mt-4" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Get a measured number</a>
-            <a class="btn btn--block btn--ghost mt-3" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask about your case</a>
+            <a class="btn btn--block btn--accent mt-4" id="calcBook" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Get a measured number</a>
+            <a class="btn btn--block btn--ghost mt-3" id="calcWa" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask about your case</a>
           </div>
         </div>
         <noscript><p class="calc__noscript mt-4">This calculator needs JavaScript. The rest of the page explains how graft numbers are actually worked out, and you can <a href="/book-consultation">book an assessment</a> for a measured figure.</p></noscript>
@@ -232,39 +237,39 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="what-decides">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The real calculation</p>
-        <h2 class="h2 mt-2">How a Graft Number Is Actually Reached</h2>
-        <p class="body-l mt-3 measure">The calculator above works forwards, from the size of the problem. A clinic works backwards, from what your donor area can safely give — and that is the direction that produces a usable plan.</p>
-        <p class="body-l mt-3 measure">Donor density is measured directly, not estimated. It varies substantially between people, and two men with visually identical recession can have donor areas that support very different numbers. This is the single reason no honest figure can be produced from a photograph, and it is the reason this page keeps saying so.</p>
-        <p class="body-l mt-3 measure">The recipient area is then mapped rather than eyeballed, so the number reflects a measured surface rather than an impression. The pattern is staged, and its likely progression is considered — because grafts spent today are not available for the crown that opens up in ten years.</p>
-        <p class="body-l mt-3 measure">Only then does a number appear, and it can be lower than the calculator's range. That is usually the plan being sensible about your donor rather than being ungenerous.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">What gets measured</p>
-          <div class="mt-3"><?= ticks([
-              'Donor density at the back and sides',
-              'The recipient area, mapped',
-              'Scalp laxity and skin condition',
-              'Hair calibre, curl and colour contrast',
-              'Pattern stage and likely progression',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">And the constraint</p>
-          <p class="body-s mt-2">Your donor has to last your lifetime. The safe number is what it can spare with something held in reserve, not what the bald area could absorb.</p>
-          <p class="body-s mt-3">Taking more than that thins the donor visibly and permanently. See <a href="/blog/donor-area-limits-hair-transplant">donor area limits</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The real calculation',
+    'title'   => 'How a Graft Number Is Actually Reached',
+    'id'      => 'what-decides',
+    'intro'   => 'The calculator above works forwards, from the size of the problem. A clinic works backwards, from what your donor area can safely give — and that is the direction that produces a usable plan.',
+    'tone'    => 'white',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Donor density, measured',  'text' => 'Measured directly, not estimated. It varies substantially between people, which is the single reason no honest figure can be produced from a photograph.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'The recipient area, mapped', 'text' => 'Mapped rather than eyeballed, so the number reflects a measured surface rather than an impression.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with dates circled',                      'title' => 'The pattern, staged',       'text' => 'Its likely progression is considered, because grafts spent today are not available for the crown that opens up in ten years.'],
+    ],
+]) ?>
 
-<section class="section section--canvas" id="grafts-vs-hairs">
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'id'      => 'donor-constraint',
+    'eyebrow' => 'And the constraint',
+    'title'   => 'Your Donor Has to Last Your Lifetime',
+    'tone'    => 'canvas',
+    'html'    => '<p>Two men with visually identical recession can have donor areas that support very different numbers. The safe number is what your donor can spare with something held in reserve, not what the bald area could absorb, and taking more than that thins the donor visibly and permanently. See <a href="/blog/donor-area-limits-hair-transplant">donor area limits</a>.</p>'
+               . '<p>So a measured number can be lower than the calculator’s range. That is usually the plan being sensible about your donor rather than being ungenerous.</p>'
+               . '<p><strong>What gets measured:</strong></p>',
+    'points'  => [
+        'Donor density at the back and sides',
+        'The recipient area, mapped',
+        'Scalp laxity and skin condition',
+        'Hair calibre, curl and colour contrast',
+        'Pattern stage and likely progression',
+    ],
+]) ?>
+
+<section class="section section--white" id="grafts-vs-hairs">
   <div class="wrap">
     <p class="eyebrow">A distinction worth knowing</p>
     <h2 class="h2 mt-2">Grafts Are Not Hairs</h2>
@@ -307,12 +312,12 @@ require __DIR__ . '/includes/header.php';
     'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, where the donor area is examined and the recipient area mapped. Consultations are also available at our Rohini, Delhi clinic.'
 ) ?>
 
-<?= cta_band(
-    'Swap the Estimate for a Measured Number',
-    'Come in and have your donor density measured and the recipient area mapped. You will leave with a graft number that reflects what your scalp can actually support, in writing, with no pressure to book a date on the day.',
-    'graft-calculator',
-    ['Hair transplant assessment', 'Second opinion on a graft number', 'Hairline only', 'Crown only', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Gurugram and Delhi',
+    'title'     => 'Swap the Estimate for a Measured Number',
+    'text'      => 'Come in and have your donor density measured and the recipient area mapped. You will leave with a graft number that reflects what your scalp can actually support, in writing, with no pressure to book a date on the day.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <script>
 (function () {
@@ -323,6 +328,10 @@ require __DIR__ . '/includes/header.php';
   var out  = document.getElementById('calcResult');
   var unit = document.getElementById('calcUnit');
   var bar  = document.getElementById('calcBar');
+  var book = document.getElementById('calcBook');
+  var wa   = document.getElementById('calcWa');
+  /* WhatsApp chat link without its default text, so the range can go in. */
+  var WA_BASE = <?= json_encode(strtok(WHATSAPP_URL, '&') . '&text=') ?>;
 
   /* Commonly cited patient-education ranges per pattern stage, in grafts.
      Deliberately broad. These are not clinic figures and are not a quote. */
@@ -363,8 +372,21 @@ require __DIR__ . '/includes/header.php';
     var hi = roundTo(base[1] * f * 1.08, 100);
     if (hi <= lo) { hi = lo + 200; }
 
-    out.textContent = lo.toLocaleString('en-IN') + '–' + hi.toLocaleString('en-IN');
+    var range = lo.toLocaleString('en-IN') + '–' + hi.toLocaleString('en-IN');
+    out.textContent = range;
     unit.textContent = 'grafts, as a broad guide only';
+
+    /* Hand the result to the booking form and WhatsApp, so the clinic's
+       call back starts from what the visitor saw. */
+    var pat = form.querySelector('input[name="pattern"]:checked');
+    var patB = pat && pat.parentNode.querySelector('b');
+    var patLabel = patB ? patB.textContent : '';
+    if (book) {
+      book.setAttribute('data-message', 'Graft calculator: "' + patLabel + '", broad range ' + range + ' grafts. I would like a measured assessment.');
+    }
+    if (wa) {
+      wa.href = WA_BASE + encodeURIComponent('Hi, the graft calculator on your website gave me a broad range of ' + range + ' grafts ("' + patLabel + '"). I would like to ask about an assessment.');
+    }
 
     var left  = Math.min(100, (lo / MAX) * 100);
     var width = Math.max(4, Math.min(100 - left, ((hi - lo) / MAX) * 100));

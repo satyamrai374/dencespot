@@ -58,22 +58,74 @@ const HOME_NAV = [
     ['label' => 'Rohini Clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
         ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-rohini'],
-        ['label' => 'FUE Hair Transplant',     'url' => '/fue-hair-transplant-in-rohini'],
-        ['label' => 'DHI Hair Transplant',     'url' => '/dhi-hair-transplant-in-rohini'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
         ['label' => 'Hair Fall Treatment',     'url' => '/hair-fall-treatment-in-rohini'],
+        ['label' => "Women's Hair Loss",       'url' => '/womens-hair-loss-treatment-in-rohini'],
+        ['label' => 'Laser Hair Removal',      'url' => '/laser-hair-removal-in-rohini'],
+        ['label' => 'Skin Treatment',          'url' => '/skin-treatment-in-rohini'],
+        ['label' => 'All Rohini treatments',   'url' => '/delhi-clinic#treatments'],
+    ]],
+    // Patient guides and the two tools (14 Oct 2026). General pages, so the
+    // same menu serves both clinics; it replaces the top-level FAQs link.
+    ['label' => 'Guides', 'children' => [
+        ['label' => 'FAQs',                      'url' => '/faqs'],
+        ['label' => 'Graft Calculator',          'url' => '/hair-transplant-graft-calculator'],
+        ['label' => 'Hair Loss Self-Check',      'url' => '/hair-loss-assessment'],
+        ['label' => 'Cost & EMI Options',        'url' => '/cost-and-emi-options'],
+        ['label' => 'How to Choose a Clinic',    'url' => '/how-to-choose-hair-transplant-clinic'],
+        ['label' => 'Hair Transplant Aftercare', 'url' => '/hair-transplant-aftercare'],
+    ]],
+    ['label' => 'Blog',    'url' => '/blog/'],
+    ['label' => 'Contact', 'url' => '/contact'],
+];
+
+/* Pages common to both clinics (homepage, about, contact, FAQs, blog, tools)
+   use this instead (14 Oct 2026): one menu per clinic, so neither clinic is
+   the default. Location pages keep HOME_NAV, adjusted by hp_nav_items(). */
+const HOME_NAV_COMMON = [
+    ['label' => 'About',      'url' => '/about-us'],
+    ['label' => 'Treatments', 'url' => '/#treatments'],
+    ['label' => 'Gurugram Clinic', 'children' => [
+        ['label' => 'Gurugram Clinic (Sector 39)', 'url' => '/contact'],
+        ['label' => 'Hair Transplant',      'url' => '/hair-transplant-in-gurgaon'],
+        ['label' => 'Beard Transplant',     'url' => '/beard-transplant-gurgaon'],
+        ['label' => 'Eyebrow Transplant',   'url' => '/eyebrow-transplant-in-gurgaon'],
+        ['label' => 'Hair PRP & GFC',       'url' => '/hair-prp-treatment-in-gurgaon'],
+        ['label' => 'Hair Fall Treatment',  'url' => '/hair-fall-treatment-in-gurgaon'],
+        ['label' => "Women's Hair Loss",    'url' => '/womens-hair-loss-treatment-in-gurgaon'],
+        ['label' => 'Laser Hair Removal',   'url' => '/laser-hair-removal-in-gurgaon'],
+        ['label' => 'Skin Treatment',       'url' => '/skin-treatment-in-gurgaon'],
+    ]],
+    ['label' => 'Rohini Clinic', 'children' => [
+        ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
+        ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
+        ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
+        ['label' => 'Hair Fall Treatment',     'url' => '/hair-fall-treatment-in-rohini'],
+        ['label' => "Women's Hair Loss",       'url' => '/womens-hair-loss-treatment-in-rohini'],
         ['label' => 'Laser Hair Removal',      'url' => '/laser-hair-removal-in-rohini'],
         ['label' => 'Skin Treatment',          'url' => '/skin-treatment-in-rohini'],
     ]],
-    ['label' => 'FAQs',    'url' => '/faqs'],
+    // Patient guides and the two tools (14 Oct 2026). General pages, so the
+    // same menu serves both clinics; it replaces the top-level FAQs link.
+    ['label' => 'Guides', 'children' => [
+        ['label' => 'FAQs',                      'url' => '/faqs'],
+        ['label' => 'Graft Calculator',          'url' => '/hair-transplant-graft-calculator'],
+        ['label' => 'Hair Loss Self-Check',      'url' => '/hair-loss-assessment'],
+        ['label' => 'Cost & EMI Options',        'url' => '/cost-and-emi-options'],
+        ['label' => 'How to Choose a Clinic',    'url' => '/how-to-choose-hair-transplant-clinic'],
+        ['label' => 'Hair Transplant Aftercare', 'url' => '/hair-transplant-aftercare'],
+    ]],
     ['label' => 'Blog',    'url' => '/blog/'],
     ['label' => 'Contact', 'url' => '/contact'],
 ];
 
 const HOME_FOOTER_LINKS = [
-    'Treatments' => [
+    // Named for its clinic so common pages list the two clinics side by side.
+    'Gurugram, Sector 39' => [
         ['label' => 'Hair Transplant',     'url' => '/hair-transplant-in-gurgaon'],
         ['label' => 'FUE Hair Transplant', 'url' => '/fue-hair-transplant-in-gurgaon'],
         ['label' => 'DHI Hair Transplant', 'url' => '/dhi-hair-transplant-in-gurgaon'],
@@ -94,6 +146,7 @@ const HOME_FOOTER_LINKS = [
         ['label' => 'Hair Fall Treatment', 'url' => '/hair-fall-treatment-in-rohini'],
         ['label' => 'Laser Hair Removal',  'url' => '/laser-hair-removal-in-rohini'],
         ['label' => 'Skin Treatment',      'url' => '/skin-treatment-in-rohini'],
+        ['label' => 'All treatments in Rohini', 'url' => '/delhi-clinic#treatments'],
     ],
     'Clinic' => [
         ['label' => 'About Us',             'url' => '/about-us'],
@@ -101,6 +154,8 @@ const HOME_FOOTER_LINKS = [
         ['label' => 'Delhi (Rohini) Clinic', 'url' => '/delhi-clinic'],
         ['label' => 'Hair Transplant Cost', 'url' => '/hair-transplant-cost-in-gurgaon'],
         ['label' => 'FAQs',                 'url' => '/faqs'],
+        ['label' => 'Graft Calculator',     'url' => '/hair-transplant-graft-calculator'],
+        ['label' => 'Hair Loss Self-Check', 'url' => '/hair-loss-assessment'],
         ['label' => 'Blog',                 'url' => '/blog/'],
         ['label' => 'Contact',              'url' => '/contact'],
     ],
@@ -153,11 +208,29 @@ const HOME_IMAGES = [
     'step-procedure'     => [[400, 268], [640, 429]],
     'step-followup'      => [[400, 268], [640, 429]],
     'ambient'            => [[600, 448], [900, 672], [1200, 896]],
+    // Treatment illustrations (4:5) in assets/img/services/ — AI-generated,
+    // no people; used by the service-page heroes and lp_* sections.
+    'svc-hair-transplant'    => [[512, 640], [768, 960]],
+    'svc-beard'              => [[512, 640], [768, 960]],
+    'svc-eyebrow'            => [[512, 640], [768, 960]],
+    'svc-prp'                => [[512, 640], [768, 960]],
+    'svc-hair-fall'          => [[512, 640], [768, 960]],
+    'svc-laser'              => [[512, 640], [768, 960]],
+    'svc-skin'               => [[512, 640], [768, 960]],
+    'svc-hairline'           => [[512, 640], [768, 960]],
+    'svc-crown'              => [[512, 640], [768, 960]],
+    'svc-women'              => [[512, 640], [768, 960]],
+    'svc-unshaven'           => [[512, 640], [768, 960]],
+    'svc-consultation'       => [[512, 640], [768, 960]],
+    'svc-procedure'          => [[512, 640], [768, 960]],
+    'svc-follicle'           => [[512, 640], [768, 960]],
+    'svc-followup'           => [[512, 640], [768, 960]],
 ];
 
 function hp_img_url(string $slug, int $width): string
 {
-    return '/assets/img/home/' . $slug . '-' . $width . '.webp';
+    $dir = str_starts_with($slug, 'svc-') ? '/assets/img/services/' : '/assets/img/home/';
+    return $dir . $slug . '-' . $width . '.webp';
 }
 
 function hp_srcset(string $slug): string
@@ -271,8 +344,12 @@ function hp_book_link(string $label, string $class = 'hp-btn hp-btn--primary', s
 
 function hp_phone_link(string $class = 'hp-btn hp-btn--outline'): string
 {
-    return '<a class="' . e($class) . '" href="tel:' . e(PHONE_E164) . '" data-track="call">'
-         . hp_icon('phone', 17) . ' <span>' . e(PHONE_DISPLAY) . '</span></a>';
+    // The Rohini number on Rohini pages (location rule, 14 Oct 2026).
+    $rohini = function_exists('hp_page_location') && hp_page_location() === 'rohini';
+    $tel    = $rohini ? LOC_DELHI_PHONE_E164 : PHONE_E164;
+    $show   = $rohini ? LOC_DELHI_PHONE_DISPLAY : PHONE_DISPLAY;
+    return '<a class="' . e($class) . '" href="tel:' . e($tel) . '" data-track="call">'
+         . hp_icon('phone', 17) . ' <span>' . e($show) . '</span></a>';
 }
 
 /** Eyebrow + h2 (+ optional intro). $id names the h2 for aria-labelledby. */
@@ -354,7 +431,7 @@ function hp_doctor_directory(): string
  * config yet (LOC_DELHI_ADDRESS holds only "Delhi (Rohini)"), so it prints a
  * marked placeholder rather than a guessed address.
  */
-function hp_clinic_cards(): string
+function hp_clinic_cards(?string $only = null): string
 {
     $delhiStreet = LOC_DELHI_ADDRESS !== 'Dencespot Clinic, Delhi (Rohini)' ? LOC_DELHI_ADDRESS : null;
     // Don't offer "clinic details" for the page the visitor is already on.
@@ -376,8 +453,18 @@ function hp_clinic_cards(): string
         ],
     ];
 
+    if ($only === 'gurgaon') {
+        $clinics = [$clinics[0]];
+    } elseif ($only === 'rohini') {
+        $clinics = [$clinics[1]];
+    }
+    if ($only !== null) {
+        // A single card is not "Clinic 1/2" of anything.
+        $clinics[0]['num'] = 'Our clinic';
+    }
+
     ob_start(); ?>
-<ul class="hp-clinics__grid" role="list">
+<ul class="hp-clinics__grid<?= count($clinics) === 1 ? ' hp-clinics__grid--one' : '' ?>" role="list">
   <?php foreach ($clinics as $c): ?>
     <li class="hp-clinic">
       <p class="hp-clinic__num"><?= e($c['num']) ?></p>
@@ -407,14 +494,29 @@ function hp_clinic_cards(): string
 function hp_header(string $current = '/'): string
 {
     ob_start(); ?>
+<?php $hpLoc = hp_page_location(); ?>
 <div class="hp-topbar">
   <div class="hp-wrap hp-topbar__inner">
-    <p class="hp-topbar__clinics"><?= hp_icon('pin', 14, 2) ?><span>Two clinics: <a href="/contact">Gurugram (Sector 39)</a> &amp; <a href="/delhi-clinic">Delhi (Rohini)</a></span></p>
-    <p class="hp-topbar__meta">
-      <span><?= hp_icon('clock', 14, 2) ?><?= e(HOURS_DISPLAY) ?></span>
-      <a href="tel:<?= e(PHONE_E164) ?>" data-track="call">Gurugram <?= e(PHONE_DISPLAY) ?></a>
-      <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call">Delhi <?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
-    </p>
+    <?php if ($hpLoc === 'rohini'): ?>
+      <p class="hp-topbar__clinics"><?= hp_icon('pin', 14, 2) ?><span><?= e(SITE_NAME) ?>, <a href="/delhi-clinic">Rohini, Delhi</a></span></p>
+      <p class="hp-topbar__meta">
+        <span><?= hp_icon('clock', 14, 2) ?><?= e(HOURS_DISPLAY) ?></span>
+        <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
+      </p>
+    <?php elseif ($hpLoc === 'gurgaon'): ?>
+      <p class="hp-topbar__clinics"><?= hp_icon('pin', 14, 2) ?><span><?= e(SITE_NAME) ?>, <a href="/contact">Sector 39, Gurugram</a></span></p>
+      <p class="hp-topbar__meta">
+        <span><?= hp_icon('clock', 14, 2) ?><?= e(HOURS_DISPLAY) ?></span>
+        <a href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= e(PHONE_DISPLAY) ?></a>
+      </p>
+    <?php else: ?>
+      <p class="hp-topbar__clinics"><?= hp_icon('pin', 14, 2) ?><span>Two clinics: <a href="/contact">Gurugram (Sector 39)</a> &amp; <a href="/delhi-clinic">Delhi (Rohini)</a></span></p>
+      <p class="hp-topbar__meta">
+        <span><?= hp_icon('clock', 14, 2) ?><?= e(HOURS_DISPLAY) ?></span>
+        <a href="tel:<?= e(PHONE_E164) ?>" data-track="call">Gurugram <?= e(PHONE_DISPLAY) ?></a>
+        <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call">Delhi <?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
+      </p>
+    <?php endif; ?>
   </div>
 </div>
 <header class="hp-header" data-hp-header>
@@ -423,7 +525,7 @@ function hp_header(string $current = '/'): string
 
     <nav class="hp-nav" aria-label="Primary">
       <ul class="hp-nav__list" role="list">
-        <?php foreach (HOME_NAV as $i => $item): ?>
+        <?php foreach (hp_nav_items() as $i => $item): ?>
           <?php if (isset($item['children'])): ?>
           <li class="hp-nav__item hp-nav__item--menu" data-hp-menu>
             <button class="hp-nav__link hp-nav__toggle" type="button" aria-expanded="false" aria-controls="hp-menu-<?= $i ?>"><?= e($item['label']) ?> <?= hp_icon('chevron', 14, 2) ?></button>
@@ -451,7 +553,7 @@ function hp_header(string $current = '/'): string
   <div class="hp-mnav" id="hp-mnav" hidden>
     <nav class="hp-wrap" aria-label="Mobile">
       <ul class="hp-mnav__list">
-        <?php foreach (HOME_NAV as $item): ?>
+        <?php foreach (hp_nav_items() as $item): ?>
           <?php if (isset($item['children'])): ?>
             <li class="hp-mnav__group"><span class="hp-mnav__heading"><?= e($item['label']) ?></span>
               <ul>
@@ -483,14 +585,31 @@ function hp_header(string $current = '/'): string
 function hp_footer(): string
 {
     $social = array_filter(SOCIAL_LINKS, static fn (?string $url): bool => $url !== null && $url !== '');
+    $loc    = hp_page_location();
+
+    // Link columns for this page's location (a Rohini page lists Rohini
+    // treatments only; a Gurugram page leaves the Rohini column out).
+    $columns = HOME_FOOTER_LINKS;
+    if ($loc === 'rohini') {
+        $columns = ['Treatments in Rohini' => $columns['Rohini, Delhi'], 'Clinic' => $columns['Clinic']];
+        $columns['Clinic'] = array_values(array_filter($columns['Clinic'], static fn (array $l): bool => !str_contains($l['url'], 'gurgaon')));
+    } elseif ($loc === 'gurgaon') {
+        unset($columns['Rohini, Delhi']);
+        $columns['Clinic'] = array_values(array_filter($columns['Clinic'], static fn (array $l): bool => $l['url'] !== '/delhi-clinic'));
+    }
+    $about = match ($loc) {
+        'rohini'  => 'Hair, skin and laser clinic in Rohini, North-West Delhi. Hair transplant, beard and eyebrow transplant, PRP, hair-fall treatment, laser hair removal and skin care, planned case by case after a consultation.',
+        'gurgaon' => 'Hair, skin and laser clinic in Sector 39, Gurugram. Hair transplant, beard and eyebrow transplant, PRP, hair-fall treatment, laser hair removal and skin care, planned case by case after a consultation.',
+        default   => 'Hair, skin and laser clinic in Gurugram and Delhi. Hair transplant, beard and eyebrow transplant, PRP, hair-fall treatment, laser hair removal and skin care, planned case by case after a consultation.',
+    };
 
     ob_start(); ?>
 <footer class="hp-footer">
   <div class="hp-wrap">
-    <div class="hp-footer__grid">
+    <div class="hp-footer__grid<?= count($columns) === 2 ? ' hp-footer__grid--4' : '' ?>">
       <div class="hp-footer__brand">
         <a href="/" aria-label="<?= e(SITE_NAME) ?> — home"><?= hp_logo(true) ?></a>
-        <p class="hp-footer__about">Hair, skin and laser clinic in Gurugram and Delhi. Hair transplant, beard and eyebrow transplant, PRP, hair-fall treatment, laser hair removal and skin care, planned case by case after a consultation.</p>
+        <p class="hp-footer__about"><?= e($about) ?></p>
         <?php if ($social !== []): ?>
         <ul class="hp-social" aria-label="<?= e(SITE_NAME) ?> on social media">
           <?php foreach ($social as $network => $url): ?>
@@ -500,7 +619,7 @@ function hp_footer(): string
         <?php endif; ?>
       </div>
 
-      <?php foreach (HOME_FOOTER_LINKS as $heading => $links): ?>
+      <?php foreach ($columns as $heading => $links): ?>
       <nav class="hp-footer__col" aria-label="<?= e($heading) ?>">
         <h2 class="hp-footer__h"><?= e($heading) ?></h2>
         <ul>
@@ -514,12 +633,17 @@ function hp_footer(): string
       <div class="hp-footer__col">
         <h2 class="hp-footer__h">Visit or Call</h2>
         <address class="hp-footer__addr">
+          <?php if ($loc !== 'rohini'): ?>
           <p><strong>Gurugram</strong><?= e(NAP_STREET) ?>, <?= e(NAP_LOCALITY) ?>, <?= e(NAP_REGION) ?> <?= e(NAP_POSTCODE) ?> <span class="hp-footer__muted">(<?= e(NAP_LANDMARK) ?>)</span><br>
             <a href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= e(PHONE_DISPLAY) ?></a> · <a href="<?= e(LOC_GURGAON_MAPS_URL) ?>" rel="noopener" target="_blank">Map<span class="hp-sr"> (opens in a new tab)</span></a></p>
+          <?php endif; ?>
+          <?php if ($loc !== 'gurgaon'): ?>
           <p><strong>Delhi (Rohini)</strong><?= e(LOC_DELHI_LANDMARK) ?><br>
             <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a> · <a href="<?= e(LOC_DELHI_MAPS_URL) ?>" rel="noopener" target="_blank">Map<span class="hp-sr"> (opens in a new tab)</span></a></p>
+          <?php endif; ?>
+          <?php $footWa = $loc === 'rohini' ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL; $footWaNum = $loc === 'rohini' ? LOC_DELHI_PHONE_DISPLAY : PHONE_DISPLAY; ?>
           <p><a href="mailto:<?= e(EMAIL) ?>"><?= e(EMAIL) ?></a><br>
-            <a href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp">WhatsApp <?= e(PHONE_DISPLAY) ?></a></p>
+            <a href="<?= e($footWa) ?>" rel="noopener" data-track="whatsapp">WhatsApp <?= e($footWaNum) ?></a></p>
           <p><?= e(HOURS_DISPLAY) ?> <span class="hp-footer__muted">· <?= e(HOURS_NOTE) ?></span></p>
         </address>
       </div>
@@ -590,6 +714,10 @@ function hp_booking_dialog(string $source = 'homepage'): string
             <?php endforeach; ?>
           </select>
         </div>
+        <?php $fixedClinic = hp_page_clinic(); ?>
+        <?php if ($fixedClinic !== null): ?>
+        <input type="hidden" name="clinic" value="<?= e($fixedClinic) ?>">
+        <?php else: ?>
         <div class="hp-field">
           <label for="hp-f-clinic">Preferred clinic</label>
           <select id="hp-f-clinic" name="clinic">
@@ -598,6 +726,7 @@ function hp_booking_dialog(string $source = 'homepage'): string
             <option selected>Either clinic</option>
           </select>
         </div>
+        <?php endif; ?>
       </div>
 
       <div class="hp-field">
@@ -626,19 +755,88 @@ function hp_booking_dialog(string $source = 'homepage'): string
     return (string) ob_get_clean();
 }
 
-/** True on the Rohini clinic page and every Rohini treatment page. */
-function hp_is_rohini_page(): bool
+/**
+ * Which clinic a page belongs to (client rule, 14 Oct 2026: a Rohini page
+ * never mentions the Gurugram clinic and a Gurugram page never mentions
+ * Rohini). 'rohini' — the Rohini clinic page and every Rohini treatment page;
+ * 'gurgaon' — every treatment page whose URL ends in "gurgaon" (blog posts
+ * excepted); 'both' — the homepage, contact, about, blog, tools and legal
+ * pages, which present both clinics.
+ */
+function hp_page_location(): string
 {
     $here = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
-    if ($here === '/delhi-clinic') {
-        return true;
+    // Any Rohini URL (service, cost guide…), registered or not.
+    if ($here === '/delhi-clinic' || str_ends_with($here, '-in-rohini')) {
+        return 'rohini';
     }
     foreach (ROHINI_SERVICES as $svc) {
         if ($svc['url'] === $here) {
-            return true;
+            return 'rohini';
         }
     }
-    return false;
+    if (!str_starts_with($here, '/blog/') && preg_match('#-gurgaon$#', $here)) {
+        return 'gurgaon';
+    }
+    return 'both';
+}
+
+/** True on the Rohini clinic page and every Rohini treatment page. */
+function hp_is_rohini_page(): bool
+{
+    return hp_page_location() === 'rohini';
+}
+
+/** The enquiry-form clinic value fixed by the page's location, or null. */
+function hp_page_clinic(): ?string
+{
+    return match (hp_page_location()) {
+        'rohini'  => 'Delhi (Rohini)',
+        'gurgaon' => 'Gurugram (Sector 39)',
+        default   => null,
+    };
+}
+
+/** HOME_NAV adjusted for the page's location. */
+function hp_nav_items(): array
+{
+    $loc = hp_page_location();
+    if ($loc === 'both') {
+        return HOME_NAV_COMMON;
+    }
+    $twin = [];
+    foreach (ROHINI_SERVICES as $svc) {
+        $twin[$svc['gurgaon']] = $svc['url'];
+    }
+    $twin['/hair-transplant-cost-in-gurgaon'] = '/hair-transplant-cost-in-rohini';
+    $out = [];
+    foreach (HOME_NAV as $item) {
+        if ($item['label'] === 'Rohini Clinic') {
+            if ($loc === 'rohini') {
+                $out[] = $item;
+            }
+            continue;
+        }
+        if ($loc === 'rohini') {
+            if (isset($item['url'])) {
+                $item['url'] = $twin[$item['url']] ?? $item['url'];
+            }
+            if (isset($item['children'])) {
+                $kids = [];
+                foreach ($item['children'] as $child) {
+                    if (isset($twin[$child['url']])) {
+                        $kids[] = ['label' => $child['label'], 'url' => $twin[$child['url']]];
+                    } elseif (!str_contains($child['url'], 'gurgaon')) {
+                        // General pages (Guides) serve both clinics.
+                        $kids[] = $child;
+                    }
+                }
+                $item['children'] = $kids;
+            }
+        }
+        $out[] = $item;
+    }
+    return $out;
 }
 
 /** On Rohini pages the quick-contact bar calls and messages the Rohini clinic. */
@@ -654,4 +852,159 @@ function hp_mobile_bar(): string
          . '<a href="' . e($wa) . '" rel="noopener" data-track="whatsapp">' . hp_icon('whatsapp', 18) . '<span>WhatsApp</span></a>'
          . '<a class="hp-mbar__book" href="/book-consultation" data-book' . $clinic . ' data-track="book">' . hp_icon('calendar', 18) . '<span>Book</span></a>'
          . '</div>';
+}
+
+/* -------------------------------------------------------------------------
+ * Landing-page sections (14 Oct 2026)
+ *
+ * Reusable visual sections for the treatment and clinic pages, so they read
+ * like the homepage instead of long runs of text. Every image is one of the
+ * AI-generated illustrations in HOME_IMAGES (assets/img/home and
+ * assets/img/services): no people, no doctors, no premises, no outcomes. Each
+ * carries its own visible "AI-generated" mark (NMC Guidelines 06.10.2026,
+ * cl. 7.2), and its alt text says the same for screen readers.
+ * ---------------------------------------------------------------------- */
+
+/** <img> + visible AI chip for an lp_* section. $alt describes what is shown. */
+function lp_figure(string $img, string $alt, string $sizes, string $class = ''): string
+{
+    $ratio = str_starts_with($img, 'svc-') ? 'lp-fig--portrait' : (str_starts_with($img, 'intro-') ? 'lp-fig--tall' : 'lp-fig--wide');
+    return '<figure class="lp-fig ' . $ratio . ($class !== '' ? ' ' . e($class) : '') . '">'
+         . hp_img($img, 'AI-generated illustration: ' . $alt, $sizes)
+         . hp_ai_chip('AI-generated illustration')
+         . '</figure>';
+}
+
+/**
+ * Image beside text. $o keys: img, alt, eyebrow, title, id (optional h2 id),
+ * html (trusted HTML — escape it yourself), points (list of plain strings),
+ * link (['url' => …, 'label' => …]), reverse (image on the right), tone
+ * ('white' | 'canvas').
+ */
+function lp_split(array $o): string
+{
+    $tone = ($o['tone'] ?? 'white') === 'canvas' ? 'section--canvas' : 'section--white';
+    ob_start(); ?>
+<section class="section <?= $tone ?> lp-split<?= !empty($o['reverse']) ? ' lp-split--reverse' : '' ?>">
+  <div class="wrap lp-split__grid">
+    <?= lp_figure($o['img'], $o['alt'], '(min-width: 1080px) 480px, (min-width: 700px) 60vw, 100vw', 'lp-split__media') ?>
+    <div class="lp-split__body">
+      <?php if (!empty($o['eyebrow'])): ?><p class="eyebrow"><?= e($o['eyebrow']) ?></p><?php endif; ?>
+      <h2 class="h2 mt-2"<?= !empty($o['id']) ? ' id="' . e($o['id']) . '"' : '' ?>><?= e($o['title']) ?></h2>
+      <?php if (!empty($o['html'])): ?><div class="lp-split__text mt-3"><?= $o['html'] ?></div><?php endif; ?>
+      <?php if (!empty($o['points'])): ?>
+        <ul class="ticks mt-4">
+          <?php foreach ($o['points'] as $pt): ?>
+            <li class="tick"><?= icon('check', 18, 'currentColor', 2.2) ?><span><?= e($pt) ?></span></li>
+          <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
+      <?php if (!empty($o['link'])): ?>
+        <p class="mt-4"><a class="hp-link" href="<?= e($o['link']['url']) ?>"><?= e($o['link']['label']) ?> <?= hp_icon('arrow', 15, 2) ?></a></p>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}
+
+/**
+ * Illustrated steps, like the homepage process. $o keys: eyebrow, title, id,
+ * intro, tone, steps — 2 to 4 of ['img', 'alt', 'title', 'text']. With no
+ * steps given, the four generic visit steps are used.
+ */
+function lp_steps(array $o): string
+{
+    $steps = $o['steps'] ?? [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',               'title' => 'Consultation and examination', 'text' => 'Your history is taken and your scalp or skin is examined before anything is suggested.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line', 'title' => 'A written plan',               'text' => 'If treatment is suitable, the plan and an itemised estimate are given to you in writing.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile instruments laid out on a tray',              'title' => 'Treatment',                    'text' => 'Carried out at the clinic by registered medical practitioners, on a date you choose.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',           'title' => 'Follow-up',                    'text' => 'Written aftercare and scheduled reviews, with progress judged against your baseline.'],
+    ];
+    $tone = ($o['tone'] ?? 'canvas') === 'white' ? 'section--white' : 'section--canvas';
+    ob_start(); ?>
+<section class="section <?= $tone ?> lp-steps">
+  <div class="wrap">
+    <div class="hp-head hp-head--center">
+      <?php if (!empty($o['eyebrow'])): ?><p class="eyebrow"><?= e($o['eyebrow']) ?></p><?php endif; ?>
+      <h2 class="h2 mt-2"<?= !empty($o['id']) ? ' id="' . e($o['id']) . '"' : '' ?>><?= e($o['title'] ?? 'What Happens, Step by Step') ?></h2>
+      <?php if (!empty($o['intro'])): ?><p class="body mt-3"><?= e($o['intro']) ?></p><?php endif; ?>
+    </div>
+    <ol class="lp-steps__list lp-steps__list--<?= count($steps) ?>" role="list">
+      <?php foreach ($steps as $i => $s): ?>
+        <li class="lp-step">
+          <?= lp_figure($s['img'], $s['alt'], '(min-width: 1080px) 280px, (min-width: 700px) 45vw, 100vw') ?>
+          <p class="lp-step__num">Step <?= sprintf('%02d', $i + 1) ?></p>
+          <h3 class="h4"><?= e($s['title']) ?></h3>
+          <p class="body-s mt-1"><?= e($s['text']) ?></p>
+        </li>
+      <?php endforeach; ?>
+    </ol>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}
+
+/**
+ * Icon highlight cards (the homepage "How we work" row). $o keys: eyebrow,
+ * title, intro, tone, items — 3 or 4 of ['icon' (hp_icon name), 'title', 'text'].
+ * Icons: stethoscope, follicle, doc, clipboard, user-md, layers, eye, people,
+ * cap, pin, clock, calendar, cal-check, shield, info, check.
+ */
+function lp_highlights(array $o): string
+{
+    $tone = ($o['tone'] ?? 'white') === 'canvas' ? 'section--canvas' : 'section--white';
+    ob_start(); ?>
+<section class="section <?= $tone ?> lp-highlights">
+  <div class="wrap">
+    <div class="hp-head hp-head--center">
+      <?php if (!empty($o['eyebrow'])): ?><p class="eyebrow"><?= e($o['eyebrow']) ?></p><?php endif; ?>
+      <h2 class="h2 mt-2"><?= e($o['title']) ?></h2>
+      <?php if (!empty($o['intro'])): ?><p class="body mt-3"><?= e($o['intro']) ?></p><?php endif; ?>
+    </div>
+    <ul class="lp-highlights__list lp-highlights__list--<?= count($o['items']) ?>" role="list">
+      <?php foreach ($o['items'] as $it): ?>
+        <li class="lp-highlight">
+          <span class="lp-highlight__icon"><?= hp_icon($it['icon'], 28, 1.5) ?></span>
+          <h3 class="h4 mt-3"><?= e($it['title']) ?></h3>
+          <p class="body-s mt-1"><?= e($it['text']) ?></p>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}
+
+/**
+ * Closing call to action with an image (the homepage's last section). $o
+ * keys: eyebrow, title, text, treatment (booking option), img (default
+ * 'ambient'), alt. Phone and booking follow the page's clinic.
+ */
+function lp_cta(array $o): string
+{
+    $loc    = hp_page_location();
+    $tel    = $loc === 'rohini' ? LOC_DELHI_PHONE_E164 : PHONE_E164;
+    $phone  = $loc === 'rohini' ? LOC_DELHI_PHONE_DISPLAY : PHONE_DISPLAY;
+    $clinic = hp_page_clinic();
+    $img    = $o['img'] ?? 'ambient';
+    $alt    = $o['alt'] ?? 'sunlight and leaf shadows on an ivory wall with a potted plant';
+    ob_start(); ?>
+<section class="lp-cta">
+  <div class="lp-cta__content">
+    <p class="eyebrow"><?= e($o['eyebrow'] ?? 'Appointments') ?></p>
+    <h2 class="h2 mt-2"><?= e($o['title']) ?></h2>
+    <p class="body-l mt-3"><?= e($o['text']) ?></p>
+    <div class="btn-row mt-5">
+      <a class="btn btn--lg btn--ink" href="/book-consultation" data-book<?= !empty($o['treatment']) ? ' data-treatment="' . e($o['treatment']) . '"' : '' ?><?= $clinic !== null ? ' data-clinic="' . e($clinic) . '"' : '' ?> data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+      <a class="btn btn--lg btn--outline" href="tel:<?= e($tel) ?>" data-track="call"><?= icon('phone', 17) ?> <?= e($phone) ?></a>
+    </div>
+  </div>
+  <?= lp_figure($img, $alt, '(min-width: 1080px) 50vw, 100vw', 'lp-cta__media') ?>
+</section>
+<?php
+    return (string) ob_get_clean();
 }

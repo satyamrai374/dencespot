@@ -23,6 +23,18 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
 
+// "Shaven vs unshaven" reference table: [what changes, shaven, unshaven].
+// General patient education; no figures beyond those already on the page.
+$shaveRows = [
+    ['What is trimmed', 'The donor area, and often the thinning area too', 'Nothing; hair stays at its usual length'],
+    ['Length of the day', 'Shorter for a given number of grafts', 'Longer, because extraction between long hairs is slower'],
+    ['Grafts in one day', 'The highest practical number', 'A lower ceiling; bigger plans are staged or partly shaved'],
+    ['First two weeks', 'Short hair and crusts are on show until the hair grows back', 'Your own hair hides most of the crusts and donor dots'],
+    ['Usually suits', 'Extensive loss needing a large session', 'Smaller sessions, touch-ups and many women'],
+    ['Estimate', 'Lower for the same number of grafts', 'Usually higher, because the work takes longer'],
+    ['Growth timeline', 'Shedding in the first weeks, growth from three to four months, fuller at ten to twelve', 'The same as shaven'],
+];
+
 $faqs = [
     ['q' => 'What is an unshaven hair transplant?',
      'a' => 'A transplant performed without trimming the hair, so the existing hair is left at its normal length in both the donor and recipient areas. Grafts are extracted from between long hairs and placed among them. It is sometimes marketed as no-shave FUE or U-FUE. The underlying operation is the same; what changes is the working conditions.'],
@@ -61,10 +73,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Unshaven Hair Transplant in Gurgaon | DenceSpot',
-    'description' => 'No-shave and partial-shave hair transplant in Gurgaon, with the real trade-offs explained: slower extraction, a lower graft ceiling, and who it genuinely suits.',
+    'title'       => 'Unshaven Hair Transplant in Gurgaon: No-Shave FUE',
+    'description' => 'Unshaven and partial-shave hair transplant in Gurgaon: no-shave FUE compared with a shaven session, the lower graft ceiling, cost and who it suits.',
     'url'         => '/unshaven-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-unshaven-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -108,16 +121,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-unshaven-768.webp" srcset="/assets/img/services/svc-unshaven-512.webp 512w, /assets/img/services/svc-unshaven-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -131,27 +145,39 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Unshaven Actually Means</h2>
-        <p class="body-l mt-3 measure">In a standard procedure the donor area is trimmed short so the punch can follow the direction of each follicle accurately under magnification. Trimming is not a convenience for the clinic — it is what makes the follicle visible and the angle judgeable.</p>
-        <p class="body-l mt-3 measure">In an unshaven procedure that trimming does not happen. The punch has to be positioned around a follicle surrounded by long hairs, at an angle that has to be inferred from the visible shaft. Extracted grafts then have to be separated from that long hair, and placement is done between existing shafts without damaging them.</p>
-        <p class="body-l mt-3 measure">None of that changes the biology. A graft harvested this way grows on the same timeline as any other. What changes is throughput — the same number of grafts takes materially longer, and a surgical day does not stretch indefinitely.</p>
-        <p class="body-l mt-3 measure">That single fact drives everything else on this page: the higher cost, the lower practical graft ceiling, and why large cases are usually better served by trimming.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">The version most people choose</p>
-        <h3 class="h3 mt-2">Partial shave</h3>
-        <p class="body mt-3">The donor is trimmed in a strip or window low at the back, and the longer hair above is left down to cover it completely.</p>
-        <p class="body mt-3">The recipient area stays untrimmed. Wearing your hair normally, nothing is visible.</p>
-        <p class="body mt-3">You get most of the discretion of a fully unshaven approach with much better surgical conditions, and a higher graft ceiling. For the majority of people who arrive asking for no-shave, this is the better answer.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles and their roots',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Unshaven Actually Means',
+    'id'      => 'what-is',
+    'tone'    => 'white',
+    'html'    => '<p>In a standard procedure the donor area is trimmed short so the punch can follow the direction of each follicle accurately under magnification. Trimming is not a convenience for the clinic: it is what makes the follicle visible and the angle judgeable.</p>'
+               . '<p>In an unshaven procedure that trimming does not happen. The punch is positioned around a follicle surrounded by long hairs, at an angle inferred from the visible shaft; extracted grafts are separated from that long hair, and placement is done between existing shafts without damaging them.</p>'
+               . '<p>None of that changes the biology: a graft harvested this way grows on the same timeline as any other. What changes is throughput, and that single fact drives everything else on this page.</p>',
+    'points'  => [
+        'The same number of grafts takes materially longer, and a surgical day does not stretch indefinitely',
+        'So the cost is higher and the practical graft ceiling lower',
+        'Large cases are usually better served by trimming',
+    ],
+]) ?>
+
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'The version most people choose',
+    'title'   => 'Partial Shave: The Middle Ground',
+    'id'      => 'partial-shave',
+    'reverse' => true,
+    'tone'    => 'canvas',
+    'html'    => '<p>The donor is trimmed in a strip or window low at the back, and the longer hair above is left down to cover it completely. The recipient area stays untrimmed, so wearing your hair normally, nothing is visible.</p>'
+               . '<p>You get most of the discretion of a fully unshaven approach with much better surgical conditions, and a higher graft ceiling. For the majority of people who arrive asking for no-shave, this is the better answer.</p>',
+    'points'  => [
+        'A hidden donor window, with the longer hair left down over it',
+        'The recipient area left untrimmed',
+        'Better surgical conditions and a higher graft ceiling than fully unshaven',
+    ],
+]) ?>
 
 <section class="section section--white" id="tradeoffs">
   <div class="wrap">
@@ -180,6 +206,26 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4">If your loss needs a large session, insisting on no trimming can mean either a compromised plan or several sessions. Neither is hidden from you at consultation.</p>
       </div>
     </div>
+
+    <div class="measure mt-6">
+      <h3 class="h3" id="shaven-vs-unshaven">Shaven vs Unshaven Hair Transplant at a Glance</h3>
+      <p class="body mt-3">The operation underneath is the same; the working conditions are not. This is how the two set-ups usually compare for the same plan.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--fit">
+          <caption class="sr-only">Shaven and unshaven hair transplant compared: what is trimmed, length of the day, grafts per day, the first two weeks, who each usually suits, the estimate and the growth timeline — a general guide</caption>
+          <thead><tr><th scope="col">What changes</th><th scope="col">Shaven</th><th scope="col">Unshaven</th></tr></thead>
+          <tbody>
+            <?php foreach ($shaveRows as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:28%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="body-s mt-4 measure">A <a href="#partial-shave">partial shave</a> sits between the two columns: a hidden trimmed window at the back, the thinning area left long, more grafts per day than fully unshaven work and most of the discretion.</p>
+
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">A claim worth treating carefully</p>
       <h3 class="h3 mt-2">No-shave is not a better technique</h3>
@@ -223,59 +269,42 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="h2 mt-2">How an Unshaven Case Runs</h2>
-    <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Pattern staged, donor density measured, and the graft number your plan needs established before the shaving question is settled.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">The honest answer</p><p class="body-s mt-2">Whether that number can be done unshaven, whether a partial shave serves you better, or whether the case needs trimming. Said before you book.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Procedure day</p><p class="body-s mt-2">A longer day than a shaven session of the same size, scheduled as such, with breaks. Local anaesthetic, home the same evening.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Growth and review</p><p class="body-s mt-2">The usual timeline: shedding, regrowth from around three to four months, fuller at roughly ten to twelve months.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--white" id="recovery">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Recovery</p>
-        <h2 class="h2 mt-2">What the First Weeks Look Like</h2>
-        <p class="body-l mt-3 measure">Healing follows the same course as any transplant. Small crusts form around each graft and are present for several days, and the donor has tiny extraction points that heal as pale dots.</p>
-        <p class="body-l mt-3 measure">The difference is cosmetic and it is the whole point of the approach: you have your own hair covering the recipient area from the moment you leave. Most people are comfortable being seen much sooner than after a shaven procedure.</p>
-        <p class="body-l mt-3 measure">Washing needs particular care, because the instructions have to be followed around hair that is still long. You will be shown exactly how, and it matters more here than usual.</p>
-        <p class="body mt-3 measure">The full timeline is in our <a href="/hair-transplant-aftercare">recovery and aftercare guide</a>, and your own instructions are given to you in writing.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Still true, even unshaven</p>
-          <div class="mt-3"><?= ticks([
-              'Crusting around grafts for several days',
-              'Shedding of the new hair within weeks',
-              'Growth from around three to four months',
-              'No verdict before ten to twelve months',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Extra care needed</p>
-          <div class="mt-3"><?= ticks([
-              'Washing carefully around long hair',
-              'No brushing or combing over the grafts',
-              'No styling products until cleared',
-              'No tying hair back tightly',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The process',
+    'title'   => 'How an Unshaven Case Runs',
+    'id'      => 'journey',
+    'tone'    => 'white',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Assessment',        'text' => 'Pattern staged, donor density measured, and the graft number your plan needs established before the shaving question is settled.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'The honest answer', 'text' => 'Whether that number can be done unshaven, whether a partial shave serves you better, or whether the case needs trimming. Said before you book.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Procedure day',     'text' => 'A longer day than a shaven session of the same size, scheduled as such, with breaks. Local anaesthetic, home the same evening.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',               'title' => 'Growth and review', 'text' => 'The usual timeline: shedding, regrowth from around three to four months, fuller at roughly ten to twelve months.'],
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
 ) ?>
 
-<section class="section section--white" id="cost">
+<?= lp_split([
+    'img'     => 'svc-hair-fall',
+    'alt'     => 'a wooden comb resting on folded linen towels by a window',
+    'eyebrow' => 'Recovery',
+    'title'   => 'What the First Weeks Look Like',
+    'id'      => 'recovery',
+    'tone'    => 'white',
+    'html'    => '<p>Healing follows the same course as any transplant. Small crusts form around each graft for several days and the donor has tiny extraction points that heal as pale dots; the new hair sheds within weeks, grows from around three to four months, and there is no verdict before ten to twelve months.</p>'
+               . '<p>The difference is cosmetic, and it is the whole point of the approach: your own hair covers the recipient area from the moment you leave, so most people are comfortable being seen much sooner than after a shaven procedure.</p>'
+               . '<p>Washing needs particular care, because the instructions have to be followed around hair that is still long, and you will be shown exactly how. Your own instructions are given in writing; the full timeline is in our <a href="/hair-transplant-aftercare">recovery and aftercare guide</a>.</p>',
+    'points'  => [
+        'Wash carefully around the long hair, exactly as shown',
+        'No brushing or combing over the grafts',
+        'No styling products until cleared',
+        'No tying hair back tightly',
+    ],
+]) ?>
+
+<section class="section section--canvas" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -289,7 +318,18 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Session structure</p><p class="body-s mt-2">Whether the plan needs staging across two days</p></div>
         </div>
         <p class="body-s mt-4 measure">If a clinic quotes the identical price for shaven and unshaven work of the same size, it is reasonable to ask how, because the time difference is real.</p>
-        <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">full cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
+        <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">full cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>. The <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> gives a rough range for your pattern of loss, which helps when asking whether a plan can be done unshaven at all.</p>
+        <div class="card card--pad-lg mt-5">
+          <h3 class="h4">Questions worth asking any clinic about unshaven work</h3>
+          <p class="body-s mt-2">They apply wherever you go, including here.</p>
+          <div class="mt-3"><?= ticks([
+              'Can my graft number be done fully unshaven in one day, or will it be staged?',
+              'Is the plan fully unshaven or a partial shave, and where would a trimmed window sit?',
+              'Is the number quoted in grafts or hairs, and how was it reached?',
+              'How does the estimate compare with a shaven session of the same size?',
+              'Who performs the extraction and the placement?',
+          ], false) ?></div>
+        </div>
       </div>
       <div class="cta-band" style="display:block">
         <h3 class="h3">Get a Personalized Treatment Estimate</h3>
@@ -302,7 +342,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -320,14 +360,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Unshaven Procedures at Our Gurgaon Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners.'
 ) ?>
 
-<?= cta_band(
-    'Find Out Whether Your Case Can Be Done Without Shaving',
-    'Come in and have the graft requirement established first. You will get a straight answer on whether it can be delivered unshaven, whether a partial shave serves you better, and a written plan either way.',
-    'unshaven-hair-transplant',
-    ['Unshaven hair transplant', 'Partial-shave approach', 'Unshaven — women', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out Whether Your Case Can Be Done Without Shaving',
+    'text'      => 'Come in and have the graft requirement established first. You will get a straight answer on whether it can be delivered unshaven, whether a partial shave serves you better, and a written plan either way.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

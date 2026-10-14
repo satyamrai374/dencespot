@@ -9,6 +9,12 @@
  * Delhi). The same chrome (includes/home-components.php, assets/css/home.css,
  * assets/js/home.js) now runs on every page through header.php/footer.php.
  *
+ * 14 Oct 2026 — the common page for both clinics. At the client's request the
+ * homepage targets no search keyword: each treatment is targeted by its own
+ * Gurugram and Rohini pages, so the title and H1 are brand-led, every
+ * treatment link offers both clinics (the "Treatments at both clinics"
+ * section, built from ROHINI_SERVICES), and no button favours one clinic.
+ *
  * WHAT WAS ADAPTED FROM THE REFERENCE, AND WHY
  *
  * The reference was a marketing comp. The NMC Guidelines on Ethical
@@ -53,21 +59,41 @@ const HOME_MEDICALLY_REVIEWED = false;
 /* ---------- Content ---------- */
 
 $heroFeatures = [
+    ['icon' => 'pin',         'text' => 'Two clinics:<br>Gurugram &amp; Delhi'],
     ['icon' => 'stethoscope', 'text' => 'Doctor-led<br>assessment'],
-    ['icon' => 'follicle',    'text' => 'FUE, DHI<br>&amp; FUT'],
     ['icon' => 'doc',         'text' => 'Written<br>treatment plan'],
     ['icon' => 'cal-check',   'text' => 'Scheduled<br>follow-up'],
 ];
 
+/* Each circle jumps to its group in "Treatments at both clinics" below, so
+   the homepage sends nobody to one clinic's page by default. */
 $treatments = [
-    ['img' => 'tx-hair-transplant', 'label' => 'Hair Transplant', 'note' => '(FUE / DHI / FUT)', 'url' => '/hair-transplant-in-gurgaon'],
-    ['img' => 'tx-beard',           'label' => 'Beard Transplant',    'url' => '/beard-transplant-gurgaon'],
-    ['img' => 'tx-eyebrow',         'label' => 'Eyebrow Transplant',  'url' => '/eyebrow-transplant-in-gurgaon'],
-    ['img' => 'tx-prp',             'label' => 'Hair PRP Treatment',  'url' => '/hair-prp-treatment-in-gurgaon'],
-    ['img' => 'tx-hair-fall',       'label' => 'Hair Fall Treatment', 'url' => '/hair-fall-treatment-in-gurgaon'],
-    ['img' => 'tx-laser',           'label' => 'Laser Hair Removal',  'url' => '/laser-hair-removal-in-gurgaon'],
-    ['img' => 'tx-skin',            'label' => 'Skin & Hair Care',    'url' => '/skin-treatment-in-gurgaon'],
+    ['img' => 'tx-hair-transplant', 'label' => 'Hair Transplant', 'note' => '(FUE / DHI / FUT)', 'url' => '#tx-transplant'],
+    ['img' => 'tx-beard',           'label' => 'Beard Transplant',    'url' => '#tx-face'],
+    ['img' => 'tx-eyebrow',         'label' => 'Eyebrow Transplant',  'url' => '#tx-face'],
+    ['img' => 'tx-prp',             'label' => 'Hair PRP Treatment',  'url' => '#tx-non-surgical'],
+    ['img' => 'tx-hair-fall',       'label' => 'Hair Fall Treatment', 'url' => '#tx-hair-fall'],
+    ['img' => 'tx-laser',           'label' => 'Laser Hair Removal',  'url' => '#tx-skin'],
+    ['img' => 'tx-skin',            'label' => 'Skin & Hair Care',    'url' => '#tx-skin'],
 ];
+
+/* "Treatments at both clinics": every treatment, grouped as on the Rohini
+   hub, each linking to its page at both clinics. One AI illustration per
+   group (assets/img/services/svc-<img>-{512,768}.webp). */
+$serviceImages = [
+    'transplant'   => ['hairline',  'AI-generated illustration: a white mannequin head seen from above, with green felt hair receding at both temples, on a cream background'],
+    'non-surgical' => ['prp',       'AI-generated illustration: a capped tube of golden-yellow plasma standing beside a syringe on a white tray'],
+    'hair-fall'    => ['hair-fall', 'AI-generated illustration: a wooden wide-toothed comb lying on a stack of folded cream linen towels beside a window'],
+    'face'         => ['beard',     'AI-generated illustration: a wooden comb and a wooden beard brush lying on a folded green cloth'],
+    'skin'         => ['laser',     'AI-generated illustration: a white handheld device on a white tray beside a folded sage-green towel'],
+];
+$serviceGroups = [];
+foreach (ROHINI_GROUPS as $groupKey => $groupLabel) {
+    $serviceGroups[$groupKey] = ['label' => $groupLabel, 'img' => $serviceImages[$groupKey], 'items' => []];
+}
+foreach (ROHINI_SERVICES as $svc) {
+    $serviceGroups[$svc['group']]['items'][] = $svc;
+}
 
 $introPoints = [
     'Hairline planned with you, considering age and donor supply',
@@ -90,7 +116,7 @@ $patterns = [
      'url' => '/blog/norwood-scale-explained', 'link' => 'The Norwood scale explained'],
     ['img' => 'stage-crown',     'tag' => 'Crown (vertex)',   'title' => 'Crown Thinning',
      'text' => 'Thinning at the top of the head. Medical therapy and graft planning are usually considered together.',
-     'url' => '/hair-fall-treatment-in-gurgaon', 'link' => 'Causes and treatment options'],
+     'url' => '/blog/minoxidil-and-finasteride-in-india', 'link' => 'Medicines for hair loss explained'],
     ['img' => 'stage-extensive', 'tag' => 'Norwood 5–6',      'title' => 'Extensive Hair Loss',
      'text' => 'Front and crown thinning have joined. What can be planned depends on the donor supply measured at assessment.',
      'url' => '/blog/donor-area-limits-hair-transplant', 'link' => 'Why donor supply matters'],
@@ -134,8 +160,9 @@ $facts = [
 /* ---------- Head ---------- */
 
 $meta = [
-    'title'       => 'Hair Transplant & Hair Loss Clinic in Gurgaon and Delhi | DenceSpot',
-    'description' => 'Hair transplant (FUE, DHI, FUT), PRP, hair-fall treatment, laser hair removal and skin care at two DenceSpot clinics: Sector 39, Gurugram and Rohini, Delhi.',
+    // Brand-led on purpose: the homepage targets no keyword (see top of file).
+    'title'       => 'DenceSpot | Hair Transplant & Skin Clinic, Gurugram & Rohini',
+    'description' => 'DenceSpot Clinic: hair, skin and laser clinics in Sector 39, Gurugram and Rohini, Delhi. Hair transplant, PRP, hair-fall, laser and skin treatment at both.',
     'canonical'   => abs_url('/'),
     'og_image'    => abs_url('/assets/img/home/og-home.jpg'),
 ];
@@ -224,9 +251,9 @@ $asset = static fn (string $path): string => $path . '?v=' . (string) @filemtime
   <section class="hp-hero" aria-labelledby="hp-hero-title">
     <div class="hp-wrap hp-hero__inner">
       <div class="hp-hero__content">
-        <p class="hp-eyebrow">Hair · Skin · Laser Clinics in Gurugram &amp; Delhi</p>
-        <h1 class="hp-h1" id="hp-hero-title">Hair Transplant &amp; Hair Loss Care in Gurgaon and Delhi</h1>
-        <p class="hp-hero__lead">Doctor-led <strong>hair transplant, PRP and hair-fall treatment</strong> at our two clinics, in <strong>Sector 39, Gurugram</strong> and <strong>Rohini, Delhi</strong>. Every plan starts with an examination of your scalp.</p>
+        <p class="hp-eyebrow">Sector 39, Gurugram · Rohini, Delhi</p>
+        <h1 class="hp-h1" id="hp-hero-title">DenceSpot Clinic: Hair Transplant, Skin and Laser Care at Two Clinics</h1>
+        <p class="hp-hero__lead">Our clinics in <strong>Sector 39, Gurugram</strong> and <strong>Rohini, Delhi</strong> offer the same treatments: hair transplant, PRP, hair-fall treatment, beard and eyebrow transplant, laser hair removal and skin care. Every plan starts with an examination by a doctor.</p>
 
         <ul class="hp-features" aria-label="How care works at <?= e(SITE_NAME) ?>">
           <?php foreach ($heroFeatures as $f): ?>
@@ -236,7 +263,7 @@ $asset = static fn (string $path): string => $path . '?v=' . (string) @filemtime
 
         <div class="hp-hero__actions">
           <?= hp_book_link('Book a Consultation') ?>
-          <?= hp_phone_link() ?>
+          <a class="hp-btn hp-btn--outline" href="#clinics"><?= hp_icon('pin', 17) ?> Choose a Clinic</a>
         </div>
       </div>
 
@@ -274,10 +301,43 @@ $asset = static fn (string $path): string => $path . '?v=' . (string) @filemtime
   </section>
 
   <!-- ============ OUR TWO CLINICS ============ -->
-  <section class="hp-clinics" aria-labelledby="hp-clinics-title">
+  <section class="hp-clinics" id="clinics" aria-labelledby="hp-clinics-title">
     <div class="hp-wrap">
       <?= hp_section_head('hp-clinics-title', 'Our clinics', 'Two Clinics: Gurugram and Delhi', 'Consultations and treatment are available at both clinics, so you can choose whichever is closer. Both are open ' . HOURS_DISPLAY . '.') ?>
       <?= hp_clinic_cards() ?>
+    </div>
+  </section>
+
+  <!-- ============ TREATMENTS AT BOTH CLINICS ============ -->
+  <section class="hp-services" id="treatments" aria-labelledby="hp-services-title">
+    <div class="hp-wrap">
+      <?= hp_section_head('hp-services-title', 'Treatments and services', 'Treatments at Both Clinics', 'Every treatment below is carried out at both clinics, and each starts with an examination and a written plan. Choose a clinic to read about the treatment there.') ?>
+      <ul class="hp-services__grid" role="list">
+        <?php foreach ($serviceGroups as $groupKey => $g): if ($g['items'] === []) { continue; } [$gImg, $gAlt] = $g['img']; ?>
+          <li class="hp-services__group" id="tx-<?= e($groupKey) ?>">
+            <article class="hp-stage__card">
+              <div class="hp-stage__media">
+                <img src="/assets/img/services/svc-<?= e($gImg) ?>-768.webp" srcset="/assets/img/services/svc-<?= e($gImg) ?>-512.webp 512w, /assets/img/services/svc-<?= e($gImg) ?>-768.webp 768w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" width="768" height="960" alt="<?= e($gAlt) ?>" loading="lazy" decoding="async">
+                <?= hp_ai_chip('AI-generated') ?>
+              </div>
+              <div class="hp-stage__body">
+                <h3 class="hp-h3"><?= e($g['label']) ?></h3>
+                <ul class="hp-services__list" role="list">
+                  <?php foreach ($g['items'] as $svc): ?>
+                    <li>
+                      <span class="hp-services__name"><?= e($svc['label']) ?></span>
+                      <span class="hp-services__links">
+                        <a href="<?= e($svc['gurgaon']) ?>">Gurugram<span class="hp-sr">: <?= e($svc['label']) ?></span></a>
+                        <a href="<?= e($svc['url']) ?>">Rohini<span class="hp-sr">: <?= e($svc['label']) ?></span></a>
+                      </span>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            </article>
+          </li>
+        <?php endforeach; ?>
+      </ul>
     </div>
   </section>
 
@@ -317,7 +377,8 @@ $asset = static fn (string $path): string => $path . '?v=' . (string) @filemtime
         </div>
 
         <div class="hp-intro__cta">
-          <a class="hp-btn hp-btn--outline" href="/hair-transplant-in-gurgaon">Learn About Hair Transplant <?= hp_icon('arrow', 17, 2) ?></a>
+          <a class="hp-btn hp-btn--outline" href="/hair-transplant-in-gurgaon">Hair Transplant in Gurugram <?= hp_icon('arrow', 17, 2) ?></a>
+          <a class="hp-btn hp-btn--outline" href="/hair-transplant-in-rohini">Hair Transplant in Rohini <?= hp_icon('arrow', 17, 2) ?></a>
         </div>
       </div>
     </div>
@@ -444,7 +505,8 @@ $asset = static fn (string $path): string => $path . '?v=' . (string) @filemtime
       <p class="hp-text">Book a consultation to understand the cause and stage of your hair loss. If treatment is suitable, you receive a written plan and estimate, and you decide in your own time.</p>
       <div class="hp-cta__actions">
         <?= hp_book_link('Book a Consultation') ?>
-        <?= hp_phone_link() ?>
+        <a class="hp-btn hp-btn--outline" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= hp_icon('phone', 17) ?> Call Gurugram</a>
+        <a class="hp-btn hp-btn--outline" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= hp_icon('phone', 17) ?> Call Rohini</a>
       </div>
     </div>
     <div class="hp-cta__media">

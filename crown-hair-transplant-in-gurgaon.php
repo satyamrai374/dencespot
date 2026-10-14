@@ -2,6 +2,10 @@
 /**
  * /crown-hair-transplant-in-gurgaon
  *
+ * Landing-page layout (14 Oct 2026): lp_split / lp_steps / lp_cta from
+ * includes/home-components.php, AI illustrations only, each with its label.
+ * A Gurugram page: no mention of, or link to, the Rohini clinic.
+ *
  * Surgical spoke off /hair-transplant-in-gurgaon. Owns the crown/vertex, which
  * is a genuinely different clinical problem from the hairline and deserves its
  * own page rather than a section on the hub.
@@ -23,6 +27,18 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
+
+// "Crown vs front" reference table: [what differs, front hairline, crown].
+// Geometry and planning principles only — no graft counts or coverage figures.
+$crownRows = [
+    ['Shape of the area', 'A band across the front', 'A disc, so the area grows quickly as it widens'],
+    ['Hair direction', 'Forward, lying close to the skin', 'Spirals out from a whorl; direction changes site by site'],
+    ['Grafts for a visible change', 'Fewer', 'More, for the same visible improvement'],
+    ['Over the years', 'Usually settles once the loss slows', 'Often keeps widening for years'],
+    ['Who sees it', 'Anyone facing you', 'Mostly people above or behind you'],
+    ['Usual priority', 'First, when donor supply is limited', 'First only if it is the only area of loss, the front is stable and the donor allows'],
+    ['Staging', 'One session is often enough', 'More often split across two'],
+];
 
 $faqs = [
     ['q' => 'What is a crown hair transplant?',
@@ -62,10 +78,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Crown Hair Transplant in Gurgaon | DenceSpot Clinic',
-    'description' => 'Crown hair transplant in Gurgaon. Whorl direction rebuilt graft by graft, with honest advice on staging and whether the crown should be treated first at all.',
+    'title'       => 'Crown Hair Transplant in Gurgaon: Grafts & Recovery',
+    'description' => 'Crown hair transplant in Gurgaon: why the vertex needs more grafts than the front, how the whorl is rebuilt, staging, recovery and what moves the cost.',
     'url'         => '/crown-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-crown-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -109,16 +126,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-crown-768.webp" srcset="/assets/img/services/svc-crown-512.webp 512w, /assets/img/services/svc-crown-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from above, with a bald patch at the crown" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -132,29 +150,24 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Makes the Crown Different</h2>
-        <p class="body-l mt-3 measure">The crown, or vertex, is the area at the back and top of the head where hair grows out from a central spiral called a whorl. Everywhere else on the scalp, hair broadly agrees on a direction. At the crown it does not — it radiates, and the direction of growth changes continuously as you move around the spiral.</p>
-        <p class="body-l mt-3 measure">That has a direct surgical consequence. Every recipient site has to be made at its own angle and its own direction, following the spiral. Grafts placed on one uniform angle across a crown produce a flat, brushed-down patch that catches the light wrongly and reads as artificial even to people who cannot name the problem.</p>
-        <p class="body-l mt-3 measure">The second difference is geometry. A receding hairline is a band, and a band of a given width takes a predictable number of grafts. A crown is a disc, and the graft requirement grows sharply as its diameter grows. Two patients whose crowns look similarly thin in a mirror can need very different numbers.</p>
-        <p class="body-l mt-3 measure">The third is that the crown moves. Vertex loss commonly keeps expanding for years. Whatever is grafted sits inside a boundary that is still travelling outwards, and a plan that ignores that produces an island of hair with a ring of scalp around it.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">The blunt version</p>
-        <h3 class="h3 mt-2">Why we ration crown work</h3>
-        <p class="body mt-3">Your donor area is finite and it has to last your lifetime. Every graft placed in the crown is a graft unavailable to the front later.</p>
-        <p class="body mt-3">The front is what people see across a table. The crown is seen from above and behind, in overhead light, by fewer people, less often.</p>
-        <p class="body mt-3">That is not an argument against treating it. It is an argument for treating it in the right order, with a number that leaves you something in reserve.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp showing hair follicles growing at an angle beneath the skin',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Makes the Crown Different',
+    'id'      => 'what-is',
+    'html'    => '<p>The crown, or vertex, is the area at the back and top of the head where hair grows out from a central spiral called a whorl. Everywhere else, hair broadly agrees on a direction; at the crown it radiates. So every recipient site has to be made at its own angle and direction, following the spiral — grafts placed on one uniform angle produce a flat, brushed-down patch that catches the light wrongly.</p>'
+               . '<p>The geometry differs too. A receding hairline is a band and takes a predictable number of grafts; a crown is a disc, and the graft requirement grows sharply as its diameter grows. Two crowns that look similarly thin in a mirror can need very different numbers.</p>'
+               . '<p>And the crown moves. Vertex loss commonly keeps expanding for years, and a plan that ignores that produces an island of hair with a ring of scalp around it.</p>',
+    'points'  => [
+        'Your donor area is finite and has to last your lifetime',
+        'Every graft placed in the crown is one unavailable to the front later',
+        'The front is seen across a table; the crown from above and behind, by fewer people',
+        'Treated in the right order, with a number that leaves something in reserve',
+    ],
+]) ?>
 
-<section class="section section--white" id="order">
+<section class="section section--canvas" id="order">
   <div class="wrap">
     <p class="eyebrow">Planning</p>
     <h2 class="h2 mt-2">Crown First, or Front First?</h2>
@@ -181,6 +194,25 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-4">If the front is secure and the donor can support it, there is no reason to make you wait. The point is that it should be a decision, not a default.</p>
       </div>
     </div>
+
+    <div class="measure mt-6">
+      <h3 class="h3" id="crown-vs-front">Why Does the Crown Need More Grafts Than the Front?</h3>
+      <p class="body mt-3">The same graft number buys a very different visible change at the front and at the crown. This is why the order of treatment matters so much.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--fit">
+          <caption class="sr-only">The front hairline and the crown compared: shape, hair direction, grafts needed, change over time, visibility, usual priority and staging — a general guide, not a plan for any individual</caption>
+          <thead><tr><th scope="col">What differs</th><th scope="col">Front hairline</th><th scope="col">Crown</th></tr></thead>
+          <tbody>
+            <?php foreach ($crownRows as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:28%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="body-s mt-4 measure">How a front line is planned is covered on <a href="/hairline-transplant-in-gurgaon">hairline transplant in Gurgaon</a>, and <a href="/blog/donor-area-limits-hair-transplant">why the donor area is a one-time budget</a> explains the arithmetic behind the order.</p>
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">A pattern worth recognising</p>
       <h3 class="h3 mt-2">The young patient with an opening crown</h3>
@@ -190,81 +222,52 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="alternatives">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Other routes</p>
-        <h2 class="h2 mt-2">Options That Do Not Spend Donor Hair</h2>
-        <p class="body-l mt-3 measure">Surgery is not the only way to improve how a crown looks, and for some people it is not the first thing to try.</p>
-        <p class="body-l mt-3 measure"><strong>Medical treatment</strong> is well established for vertex thinning and is often the first step where hair is thinning rather than gone. It also matters after surgery, because it acts on the native hair a transplant does not replace.</p>
-        <p class="body-l mt-3 measure"><strong>Scalp micropigmentation</strong> adds the appearance of density using pigment rather than follicles. In a region that consumes grafts this quickly, that is a genuine advantage — it can make a thinning crown read as fuller, or blend the edge of a grafted area, without touching your donor supply.</p>
-        <p class="body-l mt-3 measure"><strong>Supportive treatments</strong> such as PRP are used alongside medical therapy to support existing hair. They do not regrow a bald crown, and claims that they do should be treated with caution.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Worth reading</p>
-          <p class="body-s mt-2"><a href="/hair-fall-treatment-in-gurgaon">Hair fall treatment</a> — the medical route, and what it can hold onto.</p>
-          <p class="body-s mt-3"><a href="/scalp-micropigmentation-in-gurgaon">Scalp micropigmentation</a> — density without grafts, and its limits.</p>
-          <p class="body-s mt-3"><a href="/hair-prp-treatment-in-gurgaon">Hair PRP treatment</a> — what it supports and what it does not do.</p>
-          <p class="body-s mt-3"><a href="/hairline-transplant-in-gurgaon">Hairline transplant</a> — if the front is the priority.</p>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">A combination is common</p>
-          <p class="body-s mt-2">Grafting the crown, pigment to blend the perimeter, and medical treatment to hold the surrounding native hair is a frequent plan. It uses less donor supply than surgery alone.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'Other routes',
+    'title'   => 'Options That Do Not Spend Donor Hair',
+    'id'      => 'alternatives',
+    'reverse' => true,
+    'html'    => '<p>Surgery is not the only way to improve how a crown looks, and for some people it is not the first thing to try. <b>Medical treatment</b> is well established for vertex thinning and is often the first step where hair is thinning rather than gone; it also matters after surgery, because it acts on the native hair a transplant does not replace. See <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a>.</p>'
+               . '<p><b>Scalp micropigmentation</b> adds the appearance of density using pigment rather than follicles. It can make a thinning crown read as fuller, or blend the edge of a grafted area, without touching your donor supply. See <a href="/scalp-micropigmentation-in-gurgaon">scalp micropigmentation</a> for its limits.</p>'
+               . '<p><b>Supportive treatments</b> such as <a href="/hair-prp-treatment-in-gurgaon">hair PRP</a> are used alongside medical therapy to support existing hair. They do not regrow a bald crown, and claims that they do should be treated with caution.</p>',
+    'points'  => [
+        'A common plan: crown grafts, pigment to blend the perimeter, medical treatment for the hair around it',
+        'That combination uses less donor supply than surgery alone',
+    ],
+    'link'    => ['url' => '/hairline-transplant-in-gurgaon', 'label' => 'Hairline transplant, if the front is the priority'],
+]) ?>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="h2 mt-2">From Consultation to the Twelve-Month Review</h2>
-    <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Assessment</p><p class="body-s mt-2">Vertex mapped and measured, donor density checked, progression considered, and the order of treatment decided with you.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">Plan and staging</p><p class="body-s mt-2">Graft number from the mapped area, whorl position identified, and any likely second stage stated in writing before you commit.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Procedure day</p><p class="body-s mt-2">Extraction, sorting under magnification, then radial site-making around the whorl and placement. Day case under local anaesthetic.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Growth and review</p><p class="body-s mt-2">Shedding, regrowth from around three to four months, photographic review to roughly twelve months, with medical treatment continuing.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The process',
+    'title'   => 'From Consultation to the Twelve-Month Review',
+    'id'      => 'journey',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                   'title' => 'Assessment',        'text' => 'Vertex mapped and measured, donor density checked, progression considered, and the order of treatment decided with you.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned area',    'title' => 'Plan and staging',  'text' => 'Graft number from the mapped area, whorl position identified, and any likely second stage stated in writing before you commit.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray', 'title' => 'Procedure day',     'text' => 'Extraction, sorting under magnification, then radial site-making around the whorl and placement. Day case under local anaesthetic.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',              'title' => 'Growth and review', 'text' => 'Shedding, regrowth from around three to four months, photographic review to roughly twelve months, with medical treatment continuing.'],
+    ],
+]) ?>
 
-<section class="section section--white" id="recovery">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Recovery and timeline</p>
-        <h2 class="h2 mt-2">What to Expect Afterwards</h2>
-        <p class="body-l mt-3 measure">Small crusts form around each graft and are visible for several days. The crown has one practical advantage over frontal work here: it is harder to see from the front, so the visible healing phase is less exposed for most people.</p>
-        <p class="body-l mt-3 measure">The transplanted hairs usually shed within the first few weeks while the follicles stay in place. Growth generally starts around three to four months and fills in through to roughly ten to twelve months.</p>
-        <p class="body-l mt-3 measure">Crowns often look sparser for longer than the front, because the same number of new hairs is spread across more area. That is not a sign of failure and it is worth being ready for.</p>
-        <p class="body mt-3 measure">Detailed guidance is in our <a href="/hair-transplant-aftercare">recovery and aftercare guide</a>, and you get your own instructions in writing.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Plan for</p>
-          <div class="mt-3"><?= ticks([
-              'Crusting across the crown for several days',
-              'Shedding of the new hair within weeks',
-              'Slower-looking fill than the front',
-              'No verdict before ten to twelve months',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Protect the result</p>
-          <div class="mt-3"><?= ticks([
-              'Keep the crown out of direct sun',
-              'No caps or helmets until cleared',
-              'Sleep as instructed in the first nights',
-              'Continue medical treatment as prescribed',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-transplant',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'eyebrow' => 'Recovery and timeline',
+    'title'   => 'What to Expect Afterwards',
+    'id'      => 'recovery',
+    'html'    => '<p>Small crusts form around each graft and are visible for several days. The crown has one practical advantage over frontal work here: it is harder to see from the front, so the visible healing phase is less exposed for most people.</p>'
+               . '<p>The transplanted hairs usually shed within the first few weeks while the follicles stay in place. Growth generally starts around three to four months and fills in through to roughly ten to twelve months, and there is no verdict before then. Crowns often look sparser for longer than the front, because the same number of new hairs is spread across more area — not a sign of failure, but worth being ready for.</p>'
+               . '<p>Detailed guidance is in our <a href="/hair-transplant-aftercare">recovery and aftercare guide</a>, and you get your own instructions in writing. To protect the result:</p>',
+    'points'  => [
+        'Keep the crown out of direct sun',
+        'No caps or helmets until cleared',
+        'Sleep as instructed in the first nights',
+        'Continue medical treatment as prescribed',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
@@ -286,7 +289,18 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Supporting treatment</p><p class="body-s mt-2">Medical therapy or pigment running alongside</p></div>
         </div>
         <p class="body-s mt-4 measure">If a quote for your crown is much larger than you expected, ask how the area was measured and what is being left in the donor for the front. Those two answers tell you most of what you need to know.</p>
-        <p class="body mt-3 measure">See the full <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
+        <p class="body mt-3 measure">See the full <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost breakdown</a> and <a href="/cost-and-emi-options">payment and EMI options</a>. The <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> gives a rough range for your pattern, including the crown, before you come in.</p>
+        <div class="card card--pad-lg mt-5">
+          <h3 class="h4">Questions worth asking any clinic about crown work</h3>
+          <p class="body-s mt-2">They apply wherever you go, including here.</p>
+          <div class="mt-3"><?= ticks([
+              'Is a second session likely, and roughly when?',
+              'Is the number quoted in grafts or hairs?',
+              'How will the whorl direction be recreated?',
+              'What will medical treatment do for the hair around the grafted area?',
+              'Who performs each step of the procedure?',
+          ], false) ?></div>
+        </div>
       </div>
       <div class="cta-band" style="display:block">
         <h3 class="h3">Get a Personalized Treatment Estimate</h3>
@@ -299,7 +313,12 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<?= local_block(
+    'Crown Restoration at Our Gurgaon Clinic',
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners.'
+) ?>
+
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -317,16 +336,11 @@ require __DIR__ . '/includes/header.php';
 
 <?= awards_certificates_section() ?>
 
-<?= local_block(
-    'Crown Restoration at Our Gurgaon Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
-) ?>
-
-<?= cta_band(
-    'Find Out What Your Crown Actually Needs',
-    'Come in and have the area measured rather than estimated. You will get an honest view of whether the crown should be treated now or after the front, what your donor can support, and a written plan that says clearly whether a second stage is likely.',
-    'crown-hair-transplant',
-    ['Crown hair transplant', 'Crown and hairline together', 'Crown — thinning rather than bald', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out What Your Crown Actually Needs',
+    'text'      => 'Come in and have the area measured rather than estimated. You will get an honest view of whether the crown should be treated now or after the front, what your donor can support, and a written plan that says clearly whether a second stage is likely.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

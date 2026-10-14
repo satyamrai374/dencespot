@@ -111,7 +111,7 @@ $faqs = [
     ['q' => 'Can beard hair be transplanted?',
      'a' => 'Beard areas can be restored using scalp grafts placed at the correct angle and density for the face — see <a href="/beard-transplant-gurgaon">beard transplant in Gurgaon</a>. The reverse, using beard hair as a donor source for the scalp, is considered only in selected cases and is assessed individually.'],
     ['q' => 'Where is DenceSpot Clinic in Gurgaon?',
-     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations, procedures and follow-up reviews take place at the clinic itself rather than at a separate surgical centre. Opening hours are ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . '). DenceSpot also has a clinic in Rohini, Delhi; details are on the <a href="/contact">contact page</a>.'],
+     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations, procedures and follow-up reviews take place at the clinic itself rather than at a separate surgical centre. Opening hours are ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . ').'],
     ['q' => 'Can I travel back to another city after the procedure?',
      'a' => 'Usually, with planning. Patients travelling from outside Delhi NCR generally stay nearby for at least the first night. Whether you can travel before your first wash and review, and how to protect the grafts on the way, is agreed at the consultation and written into your aftercare plan.'],
     ['q' => 'What happens during the consultation?',
@@ -126,11 +126,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Hair Transplant in Gurgaon: Cost, Grafts & Recovery | DenceSpot',
+    'title'       => 'Hair Transplant in Gurgaon: FUE, DHI & Cost | DenceSpot',
     'description' => 'Hair transplant in Gurgaon (Gurugram), Sector 39, opposite Medanta. FUE and DHI explained, grafts by Norwood stage, local market prices, recovery and aftercare.',
     'url'         => '/hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
-    'preload_image' => '/assets/img/clinic-equipment.jpg',
+    'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -175,16 +175,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager" fetchpriority="high"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted model of a follicular unit with three hairs, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -239,33 +240,23 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
-  <div class="wrap">
-    <div class="split split--wide-left">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Is a Hair Transplant?</h2>
-        <div class="stack mt-4 measure">
-          <p class="body-l">A hair transplant moves hair you already have into the areas where it has thinned. Follicles are taken from the back and sides of the scalp — the donor area — because that hair is generally resistant to the hormonal process behind pattern hair loss.</p>
-          <p class="body-l">Those follicles are separated under magnification and placed individually into the thinning or bald zones, at the angle and direction the surrounding hair already grows. Once healed, they behave like the donor hair they came from: they are washed, cut and styled normally.</p>
-          <p class="body-l">Two things decide how the result looks. The first is hairline design — position, shape and irregularity, judged against your face and your age rather than a template. The second is honest arithmetic: the donor area is a finite supply, so coverage has to be prioritised over your lifetime, not spent in one session. Our guide to <a href="/blog/donor-area-limits-hair-transplant">what a donor area can and cannot cover</a> works through that arithmetic.</p>
-          <p class="body-l">That is why nothing is quoted before an examination. Two people with the same photograph can need very different plans.</p>
-        </div>
-        <div class="btn-row mt-4">
-          <a class="btn btn--outline btn--sm" href="/hair-transplant-cost-in-gurgaon">Cost &amp; graft guidance</a>
-          <a class="btn btn--outline btn--sm" href="#faqs">Read the FAQs</a>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
-        <div class="card">
-          <p class="eyebrow" style="color:var(--ink-muted)">In one line</p>
-          <p class="body mt-2">It redistributes your own donor hair. It does not create new hair — which is why donor supply, not marketing, sets the limit on what is achievable.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Is a Hair Transplant?',
+    'id'      => 'what-is',
+    'tone'    => 'canvas',
+    'html'    => '<p>A hair transplant moves hair you already have into the areas where it has thinned. Follicles are taken from the back and sides of the scalp — the donor area — because that hair is generally resistant to the hormonal process behind pattern hair loss. They are separated under magnification and placed one by one at the angle and direction the surrounding hair grows; once healed, they are washed, cut and styled normally.</p>'
+               . '<p>Two things decide how the result looks. The first is hairline design, judged against your face and your age rather than a template — see <a href="/blog/natural-hairline-design-explained">what makes a hairline look natural</a>. The second is honest arithmetic: the donor area is a finite supply, so coverage is prioritised over your lifetime, not spent in one session. Our guide to <a href="/blog/donor-area-limits-hair-transplant">what a donor area can and cannot cover</a> works through it.</p>'
+               . '<p>That is why nothing is quoted before an examination: two people with the same photograph can need very different plans. See our <a href="/hair-transplant-cost-in-gurgaon">cost and graft guidance</a>.</p>',
+    'points'  => [
+        'It redistributes your own donor hair; it does not create new hair',
+        'Donor supply, not marketing, sets the limit on what is achievable',
+        'The hairline is drawn on your face and agreed first',
+    ],
+    'link'    => ['url' => '#faqs', 'label' => 'Read the FAQs'],
+]) ?>
 
 <section class="section section--white" id="candidacy">
   <div class="wrap">
@@ -425,66 +416,37 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Step by step</p>
-      <h2 class="h2 mt-2">Your Hair Transplant Journey</h2>
-      <p class="body-l mt-3">From the first appointment to the review at a year. Consultations, the procedure and follow-up reviews are carried out by registered medical practitioners at the <?= e(NAP_LOCALITY) ?> clinic.</p>
-    </div>
-    <div class="journey mt-6">
-      <div class="card card--ink"><span class="journey__num">01</span><p class="h4 mt-1">Consultation</p><p class="meta mt-2">What you want, and what is realistic.</p></div>
-      <div class="card card--ink"><span class="journey__num">02</span><p class="h4 mt-1">Hair &amp; scalp assessment</p><p class="meta mt-2">Pattern staged; scalp condition checked.</p></div>
-      <div class="card card--ink"><span class="journey__num">03</span><p class="h4 mt-1">Donor evaluation</p><p class="meta mt-2">What can safely be harvested, now and later.</p></div>
-      <div class="card card--ink"><span class="journey__num">04</span><p class="h4 mt-1">Hairline &amp; graft planning</p><p class="meta mt-2">Drawn on your head; you approve it in a mirror.</p></div>
-      <div class="card card--ink"><span class="journey__num">05</span><p class="h4 mt-1">Procedure</p><p class="meta mt-2">Day case under local anaesthetic.</p></div>
-      <div class="card card--ink"><span class="journey__num">06</span><p class="h4 mt-1">Recovery &amp; aftercare</p><p class="meta mt-2">Written instructions; <a href="/hair-transplant-aftercare">aftercare guide</a>.</p></div>
-      <div class="card card--ink"><span class="journey__num">07</span><p class="h4 mt-1">Progress reviews</p><p class="meta mt-2">Photographed at set intervals through the year.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'Step by step',
+    'title'   => 'How Does a Hair Transplant Work?',
+    'id'      => 'procedure',
+    'intro'   => 'A day case under local anaesthetic that moves your own follicles from the donor area at the back and sides of the scalp into the thinning or bald areas. It redistributes the hair you already have rather than creating new hair, which is why donor supply sets the ceiling. Consultations, the procedure and follow-up reviews are carried out by registered medical practitioners at the ' . NAP_LOCALITY . ' clinic.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Consultation and assessment', 'text' => 'What you want and what is realistic. History and medication review, then the scalp and donor area examined under magnification, the pattern staged and photographs taken for your record.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'Donor and hairline plan',     'text' => 'What the donor can safely give, now and later, is measured. The hairline is drawn on your head and approved by you sitting upright in a mirror, and grafts are mapped zone by zone.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Procedure day',               'text' => 'The donor is trimmed and numbed; the injections are the uncomfortable part. Follicular units are extracted and sorted, singles kept for the hairline, then placed at the angle of the surrounding hair in a deliberately irregular pattern.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',               'title' => 'Recovery and reviews',        'text' => 'Home the same day with written aftercare, medication where prescribed and your first review already booked. Progress is photographed at set intervals through the year.'],
+    ],
+]) ?>
 
-<section class="section section--canvas" id="procedure">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">On the day</p>
-      <h2 class="h2 mt-2">How Does a Hair Transplant Work?</h2>
-      <p class="body mt-3">A hair transplant moves your own follicles from the donor area at the back and sides of the scalp into the thinning or bald areas at the front and crown. It is a day-case procedure under local anaesthetic: the hairline is designed and agreed, the donor area is harvested follicular unit by follicular unit, recipient sites are made at the angle and direction the surrounding hair grows, and the grafts are placed into them. It redistributes the hair you already have rather than creating new hair, which is why donor supply sets the ceiling on what is possible.</p>
-    </div>
-    <div class="split split--wide-left mt-6" style="align-items:start">
-      <div class="stack-sm">
-        <div class="step"><span class="step-num">1</span><div><h3 class="h3">Consultation</h3><p class="body-s mt-2">History, medication review and examination of the scalp and donor area under magnification. Photographs are taken for your record.</p></div></div>
-        <div class="step"><span class="step-num">2</span><div><h3 class="h3">Planning</h3><p class="body-s mt-2">The hairline is drawn on your head and checked with you sitting upright. Graft numbers are mapped zone by zone against what the donor can give.</p></div></div>
-        <div class="step"><span class="step-num">3</span><div><h3 class="h3">Preparation</h3><p class="body-s mt-2">The donor area is trimmed and both donor and recipient zones are anaesthetised locally. The injections are the uncomfortable part; after that the area is numb.</p></div></div>
-        <div class="step"><span class="step-num">4</span><div><h3 class="h3">Extraction</h3><p class="body-s mt-2">Follicular units are removed individually and sorted under magnification — singles reserved for the hairline, larger units for interior density.</p></div></div>
-        <div class="step"><span class="step-num">5</span><div><h3 class="h3">Implantation</h3><p class="body-s mt-2">Grafts are placed at the angle and direction of the surrounding hair, in a deliberately irregular pattern. A ruled edge is what makes a transplant obvious — see <a href="/blog/natural-hairline-design-explained">what makes a hairline look natural</a>.</p></div></div>
-        <div class="step"><span class="step-num">6</span><div><h3 class="h3">Recovery</h3><p class="body-s mt-2">You go home the same day with written instructions, medication where prescribed, and your first review already booked.</p></div></div>
-      </div>
-      <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--white" id="results">
-  <div class="wrap">
-    <div class="split split--sidebar">
-      <div>
-        <p class="eyebrow">Results</p>
-        <h2 class="h2 mt-2">Hair Transplant Results: How They Are Judged</h2>
-        <p class="body mt-3">This page does not show before-and-after photographs or patient cases. India's medical regulator does not permit doctors and clinics to advertise surgical results or display before-and-after photographs for promotion (National Medical Commission guidelines, October 2026), and another person's photograph cannot tell you what your own donor area and pattern of loss will allow. Your progress is recorded instead in standardised photographs taken at your own reviews, and the result is judged at around ten to twelve months. Outcomes vary between patients.</p>
-        <a class="btn btn--ink mt-4" href="/blog/hair-transplant-growth-timeline-month-by-month">Read the month-by-month growth timeline</a>
-      </div>
-      <div class="stack">
-        <div class="card card--dashed">
-          <p class="h4">If you are shown photographs elsewhere</p>
-          <p class="body-s mt-2">Lighting, angle, hair length, styling and the time since the procedure all change what a photograph seems to show. Our guide to <a href="/blog/how-to-read-before-and-after-photos">reading before-and-after photos</a> explains what to look for.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'eyebrow' => 'Results',
+    'title'   => 'Hair Transplant Results: How They Are Judged',
+    'id'      => 'results',
+    'reverse' => true,
+    'tone'    => 'white',
+    'html'    => '<p>This page does not show before-and-after photographs or patient cases. India’s medical regulator does not permit doctors and clinics to advertise surgical results or display before-and-after photographs for promotion (National Medical Commission guidelines, October 2026), and another person’s photograph cannot tell you what your own donor area and pattern of loss will allow.</p>'
+               . '<p>If you are shown photographs elsewhere, lighting, angle, hair length, styling and the time since the procedure all change what they seem to show. Our guide to <a href="/blog/how-to-read-before-and-after-photos">reading before-and-after photos</a> explains what to look for.</p>',
+    'points'  => [
+        'Your progress is recorded in standardised photographs taken at your own reviews',
+        'The result is judged at around ten to twelve months',
+        'Outcomes vary between patients',
+    ],
+    'link'    => ['url' => '/blog/hair-transplant-growth-timeline-month-by-month', 'label' => 'Read the month-by-month growth timeline'],
+]) ?>
 
 <?= doctor_block('Consultations and procedures are carried out by registered medical practitioners at the clinic. Every plan starts with a medical examination, because hair loss can have reversible causes and donor supply is finite.') ?>
 
@@ -565,21 +527,21 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="gurgaon-recovery">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Local conditions</p>
-      <h2 class="h2 mt-2">Recovering in Gurgaon: Heat, Dust, Hard Water and the Commute</h2>
-      <p class="body mt-3">Standard aftercare sheets assume mild weather and a car. The first fortnight in Gurgaon rarely looks like that, and a few local realities are worth planning around before you pick a date. The detail is in <a href="/blog/hair-transplant-recovery-in-gurgaon">recovering from a hair transplant in Gurgaon</a>.</p>
-    </div>
-    <div class="grid grid--4 mt-6">
-      <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Summer heat and sweat</h3><p class="body-s mt-2">Heavy sweating makes the scalp harder to keep clean while crusts are forming. Many patients book the cooler months; those who cannot, plan indoor days for the first week.</p></div>
-      <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Dust and pollution</h3><p class="body-s mt-2">Construction dust and winter smog do not damage grafts directly, but they do complicate keeping the area clean. When a loose covering is appropriate is set by your doctor, not by the weather.</p></div>
-      <div class="card"><?= icon('settings', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Hard water</h3><p class="body-s mt-2">Borewell water is hard on hair shafts, not on follicles. The first washes follow your written instructions exactly; the <a href="/blog/hard-water-pollution-and-hair-fall-in-gurgaon">hard water myth</a> is covered separately.</p></div>
-      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Helmets and two-wheelers</h3><p class="body-s mt-2">Anything that presses on the grafts waits until your doctor clears it. If you ride to work, arrange other transport for the first stretch before the procedure date.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-fall',
+    'alt'     => 'a wooden comb resting on folded linen towels by a window',
+    'eyebrow' => 'Local conditions',
+    'title'   => 'Recovering in Gurgaon: Heat, Dust, Hard Water and the Commute',
+    'id'      => 'gurgaon-recovery',
+    'tone'    => 'white',
+    'html'    => '<p>Standard aftercare sheets assume mild weather and a car. The first fortnight in Gurgaon rarely looks like that, so a few local realities are worth planning around before you pick a date. The detail is in <a href="/blog/hair-transplant-recovery-in-gurgaon">recovering from a hair transplant in Gurgaon</a>.</p>'
+               . '<p>Borewell water is hard on hair shafts, not on follicles, and the first washes follow your written instructions exactly. The <a href="/blog/hard-water-pollution-and-hair-fall-in-gurgaon">hard water myth</a> is covered separately.</p>',
+    'points'  => [
+        'Summer heat and sweat make the scalp harder to keep clean while crusts form: many patients book the cooler months, and those who cannot plan indoor days for the first week',
+        'Construction dust and winter smog do not damage grafts directly but complicate keeping the area clean; when a loose covering is appropriate is set by your doctor, not the weather',
+        'Helmets and anything that presses on the grafts wait until your doctor clears them, so if you ride to work, arrange other transport before the procedure date',
+    ],
+]) ?>
 
 <section class="section section--ink" id="questions">
   <div class="wrap">
@@ -643,7 +605,7 @@ require __DIR__ . '/includes/header.php';
         <p class="eyebrow">Finding us</p>
         <h2 class="h2 mt-2">Hair Transplant Clinic Near Medanta, Sector 39 Gurugram</h2>
         <p class="body mt-3">DenceSpot is on Sector 39 Road in Jharsa, <?= e(NAP_LANDMARK) ?>. Any driver or ride-hail app can use the Medanta gate as the landmark, and the clinic is on the main road.</p>
-        <p class="body mt-3">Consultations, procedures and follow-up reviews take place at the clinic itself rather than at a separate surgical centre. DenceSpot also has a clinic in Rohini, Delhi, where hair transplants are carried out too; both are listed below.</p>
+        <p class="body mt-3">Consultations, procedures and follow-up reviews take place at the clinic itself rather than at a separate surgical centre.</p>
       </div>
       <div class="stack">
         <div class="card card--pad-lg">
@@ -665,15 +627,15 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= local_block(
-    'Visit Our Clinics in Gurugram and Delhi',
-    'Consultations and procedures are carried out by registered medical practitioners at our Sector 39 clinic in Gurugram, where the assessment, procedure day and follow-up reviews all take place. Treatment is also available at our clinic in Rohini, Delhi.'
+    'Visit Our Clinic in Sector 39, Gurugram',
+    'Consultations and procedures are carried out by registered medical practitioners at our Sector 39 clinic in Gurugram, where the assessment, procedure day and follow-up reviews all take place.'
 ) ?>
 
-<?= cta_band(
-    'Take the First Step Toward Hair Restoration',
-    'Bring your questions and your concerns. You will get a clinical assessment, an honest view of whether a hair transplant is appropriate for you, and a written plan if it is — with no pressure to book a date on the day.',
-    'hair-transplant-hub',
-    ['Hair transplant (FUE)', 'Hair transplant (DHI)', 'Hair transplant (FUT)', 'Beard transplant', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Take the First Step Toward Hair Restoration',
+    'text'      => 'Bring your questions and your concerns. You will get a clinical assessment, an honest view of whether a hair transplant is appropriate for you, and a written plan if it is — with no pressure to book a date on the day.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

@@ -14,12 +14,28 @@
  * Deliberately avoided: any competitor naming, any implication about named
  * clinics, and any before/after claim. Also avoided is the temptation to
  * promise graft excision as a routine option; it is real but limited.
+ *
+ * Landing-page layout (14 Oct 2026): lp_split / lp_steps / lp_cta from
+ * includes/home-components.php, AI illustrations only, each with its label.
+ * A Gurugram page: no mention of, or link to, the Rohini clinic.
  */
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
+
+// "Can a bad transplant be fixed?" reference table:
+// [problem found, what may be possible, the limit]. A general guide, not a promise.
+$repairRows = [
+    ['Pluggy or tufted grafts at the front', 'Remove them and re-use the hair further back; add single hairs ahead to soften the edge', 'Each removal leaves a tiny mark, and some removed follicles do not survive re-implantation'],
+    ['A hard, straight edge', 'Single hairs placed irregularly in front of and between the existing line', 'Needs donor grafts, however few'],
+    ['A hairline placed too low', 'Selected grafts removed, sometimes over more than one session, to soften or lift the line', 'Slow and partial: hair is taken away, not moved up'],
+    ['Hair at the wrong angle or direction', 'The worst grafts removed and re-placed; new grafts around them can disguise the rest', 'A graft’s angle cannot be changed once it has grown in'],
+    ['Thin coverage or poor growth', 'More grafts added once the first result has had about twelve months to mature', 'Only as far as the remaining donor allows'],
+    ['An over-harvested donor', 'Pigment to reduce the contrast, careful use of what remains, medical treatment for the rest', 'Donor hair already taken cannot be replaced'],
+    ['A wide strip scar', 'Grafts set into the scar, pigment, or both', 'Grafts survive less well in scar tissue, and the line itself stays'],
+];
 
 $faqs = [
     ['q' => 'What is hair transplant repair?',
@@ -59,10 +75,11 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Hair Transplant Repair in Gurgaon | DenceSpot',
-    'description' => 'Corrective hair transplant surgery in Gurgaon for pluggy hairlines, poor growth and donor scarring, with an honest account of what repair can and cannot recover.',
+    'title'       => 'Hair Transplant Repair in Gurgaon: What Can Be Fixed',
+    'description' => 'Hair transplant repair in Gurgaon for pluggy grafts, low or straight hairlines, wrong angles and over-harvested donors: what may be possible, and the limits.',
     'url'         => '/hair-transplant-repair-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-consultation-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -106,16 +123,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad on a wooden desk beside a potted fern" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -129,7 +147,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-went-wrong">
+<section class="section section--white" id="what-went-wrong">
   <div class="wrap">
     <p class="eyebrow">Diagnosis</p>
     <h2 class="h2 mt-2">What Usually Goes Wrong</h2>
@@ -145,41 +163,26 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="donor">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The governing constraint</p>
-        <h2 class="h2 mt-2">Everything Depends on What Donor Hair Is Left</h2>
-        <p class="body-l mt-3 measure">Repair surgery has no independent supply of hair. Every correction that adds density, softens a hairline or camouflages a scar spends grafts from a donor area that has already been drawn on once.</p>
-        <p class="body-l mt-3 measure">So the first measurement at a repair consultation is not of the problem. It is of the donor. If the first procedure used a modest number of grafts and the donor is still healthy, there is real room to work and the improvement can be substantial. If the donor has been heavily harvested, the ceiling drops sharply, and correction becomes about camouflage and redistribution rather than adding volume.</p>
-        <p class="body-l mt-3 measure">Over-harvesting deserves to be stated bluntly, because people are still being told otherwise. Donor hair that has been taken out cannot be put back. There is no procedure that regenerates it. Where a donor has been thinned too far, the honest plan is to reduce the visible contrast, protect what remains with medical treatment, and use the remaining grafts where they buy the most.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Good signs at assessment</p>
-          <div class="mt-3"><?= ticks([
-              'A modest graft number used the first time',
-              'Donor density still measures well',
-              'Extraction spread evenly across the donor',
-              'The problem is design rather than volume',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Signs the ceiling is lower</p>
-          <div class="mt-3"><?= ticks([
-              'A very large graft number already used',
-              'Visible thinning or patchiness in the donor',
-              'Extraction clustered in one part of the donor',
-              'Multiple previous procedures',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'The governing constraint',
+    'title'   => 'Everything Depends on What Donor Hair Is Left',
+    'id'      => 'donor',
+    'tone'    => 'canvas',
+    'html'    => '<p>Repair surgery has no independent supply of hair. Every correction that adds density, softens a hairline or camouflages a scar spends grafts from a donor area that has already been drawn on once, so the first measurement at a repair consultation is of the donor, not the problem.</p>'
+               . '<p>If the first procedure used a modest number of grafts and the donor is still healthy, there is real room to work and the improvement can be substantial. If the donor has been heavily harvested, the ceiling drops sharply, and correction becomes about camouflage and redistribution rather than adding volume.</p>'
+               . '<p>Donor hair that has been taken out cannot be put back, and no procedure regenerates it. Where a donor has been thinned too far, the honest plan is to reduce the visible contrast, protect what remains with medical treatment, and use the remaining grafts where they buy the most.</p>'
+               . '<p><b>Signs the ceiling is lower:</b> a very large graft number already used, visible thinning or patchiness in the donor, extraction clustered in one part of it, or multiple previous procedures. <b>Good signs at assessment:</b></p>',
+    'points'  => [
+        'A modest graft number used the first time',
+        'Donor density still measures well',
+        'Extraction spread evenly across the donor',
+        'The problem is design rather than volume',
+    ],
+]) ?>
 
-<section class="section section--canvas" id="options">
+<section class="section section--white" id="options">
   <div class="wrap">
     <p class="eyebrow">What repair involves</p>
     <h2 class="h2 mt-2">The Tools Available for Correction</h2>
@@ -210,52 +213,58 @@ require __DIR__ . '/includes/header.php';
         <p class="body-s mt-2">Protecting the native hair that remains, including in the donor. It does not correct the previous surgery, but it stops the surrounding picture getting worse while the correction is carried out.</p>
       </div>
     </div>
+
+    <div class="measure mt-6">
+      <h3 class="h3" id="problem-by-problem">Can a Bad Hair Transplant Be Fixed? Problem by Problem</h3>
+      <p class="body mt-3">Repair is judged one problem at a time, and most cases involve more than one. This is what correction can usually offer for each, and what holds it back.</p>
+    </div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--fit">
+          <caption class="sr-only">Common problems after a hair transplant, what repair may be able to do for each, and the limit on it — a general guide, not a promise of any result</caption>
+          <thead><tr><th scope="col">Problem found</th><th scope="col">What may be possible</th><th scope="col">The limit</th></tr></thead>
+          <tbody>
+            <?php foreach ($repairRows as $r): ?>
+            <tr><th scope="row" style="white-space:normal;width:28%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td></tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="body-s mt-4 measure"><a href="/blog/hair-transplant-repair-options">Hair transplant repair options</a> goes through each approach in more detail, and <a href="/scalp-micropigmentation-in-gurgaon">scalp micropigmentation in Gurgaon</a> explains what pigment can and cannot hide.</p>
   </div>
 </section>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <p class="eyebrow">The process</p>
-    <h2 class="h2 mt-2">How a Repair Case Is Handled</h2>
-    <div class="grid grid--4 mt-6">
-      <div class="card card--ink"><p class="eyebrow">Step 01</p><p class="h4 mt-2">Full assessment</p><p class="body-s mt-2">The previous record where you have it, examination of the transplanted area and the donor, and direct measurement of the donor density that remains.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 02</p><p class="h4 mt-2">A stated ceiling</p><p class="body-s mt-2">What can realistically be achieved, written down, along with what cannot. If the honest answer is limited improvement, that is what you are told.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 03</p><p class="h4 mt-2">Staged plan</p><p class="body-s mt-2">Usually more than one session, sequenced so previously operated tissue is not pushed too hard at once. The stages are agreed before the first one.</p></div>
-      <div class="card card--ink"><p class="eyebrow">Step 04</p><p class="h4 mt-2">Correction and review</p><p class="body-s mt-2">Surgery, then the usual shedding and regrowth timeline, with photographic review before any further stage is confirmed.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'The process',
+    'title'   => 'How a Repair Case Is Handled',
+    'id'      => 'journey',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-plan',      'alt' => 'a tablet showing a head diagram beside a sheet of paper',  'title' => 'Assessment and a stated ceiling', 'text' => 'The previous record where you have it, examination of the transplanted area and the donor, and direct measurement of the donor density that remains. Then what can realistically be achieved, written down along with what cannot — if the honest answer is limited improvement, that is what you are told.'],
+        ['img' => 'step-followup',  'alt' => 'a desk calendar with dates circled',                       'title' => 'A staged plan',                   'text' => 'Usually more than one session, sequenced so previously operated tissue is not pushed too hard at once. The stages are agreed before the first one.'],
+        ['img' => 'step-procedure', 'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Correction and review',           'text' => 'Surgery, then the usual shedding and regrowth timeline, with photographic review before any further stage is confirmed.'],
+    ],
+]) ?>
 
-<section class="section section--white" id="timing">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Timing</p>
-        <h2 class="h2 mt-2">Why We Usually Ask You to Wait a Year</h2>
-        <p class="body-l mt-3 measure">People arrive for repair consultations at six months, distressed, convinced the result is final. Often it is not. A transplant is not mature until roughly twelve months, and hair that looks thin and patchy at six months can be substantially better at twelve.</p>
-        <p class="body-l mt-3 measure">Operating early risks two things: correcting a result that was still improving, and working into scalp that has not fully recovered from the first procedure. Neither serves you.</p>
-        <p class="body-l mt-3 measure">There are exceptions. Grossly misplaced grafts or an obviously wrong hairline position do not improve with time, and those cases are assessed on their own terms. But where the complaint is density or patchiness, waiting is usually the correct clinical advice even though it is not what anyone wants to hear.</p>
-        <p class="body mt-3 measure">If you are inside that window, come in anyway. An assessment now tells you whether you are looking at a genuine problem or an incomplete result, and that alone is worth having.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Bring with you</p>
-          <div class="mt-3"><?= ticks([
-              'The operative note from the first procedure',
-              'The graft number and technique used',
-              'Photographs from before the first surgery',
-              'Your current medication list',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Worth reading first</p>
-          <p class="body-s mt-2"><a href="/blog/hair-transplant-growth-timeline-month-by-month">The month-by-month growth timeline</a> — what a normal result looks like at each stage.</p>
-          <p class="body-s mt-3"><a href="/hairline-transplant-in-gurgaon">Hairline design</a> — why position and transition matter so much.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp showing hair follicles beneath the skin',
+    'eyebrow' => 'Timing',
+    'title'   => 'Why We Usually Ask You to Wait a Year',
+    'id'      => 'timing',
+    'reverse' => true,
+    'html'    => '<p>People often arrive for repair consultations at six months, convinced the result is final. Often it is not: a transplant is not mature until roughly twelve months, and hair that looks thin and patchy at six months can be substantially better at twelve.</p>'
+               . '<p>Operating early risks correcting a result that was still improving, and working into scalp that has not fully recovered from the first procedure. Grossly misplaced grafts or an obviously wrong hairline position do not improve with time and are assessed on their own terms; where the complaint is density or patchiness, waiting is usually the correct clinical advice.</p>'
+               . '<p>If you are inside that window, come in anyway: an assessment tells you whether you are looking at a genuine problem or an incomplete result. Worth reading first: <a href="/blog/hair-transplant-growth-timeline-month-by-month">the month-by-month growth timeline</a> and <a href="/hairline-transplant-in-gurgaon">why hairline position and transition matter</a>.</p>'
+               . '<p><b>Bring with you:</b></p>',
+    'points'  => [
+        'The operative note from the first procedure',
+        'The graft number and technique used',
+        'Photographs from before the first surgery',
+        'Your current medication list',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
@@ -277,7 +286,18 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Pigmentation alongside</p><p class="body-s mt-2">Often part of the plan, and priced separately</p></div>
         </div>
         <p class="body-s mt-4 measure">Correcting a transplant generally costs more than getting it right the first time, because the same number of grafts takes longer to place well in a field that has already been operated on.</p>
-        <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">general cost guide</a> and <a href="/cost-and-emi-options">payment and EMI options</a>.</p>
+        <p class="body mt-3 measure">See the <a href="/hair-transplant-cost-in-gurgaon">general cost guide</a> and <a href="/cost-and-emi-options">payment and EMI options</a>. If you know how many grafts the first procedure used, the <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> shows the range commonly cited for your pattern, which helps frame the question of what is left.</p>
+        <div class="card card--pad-lg mt-5">
+          <h3 class="h4">Questions worth asking any clinic about a repair</h3>
+          <p class="body-s mt-2">They apply wherever you go, including here.</p>
+          <div class="mt-3"><?= ticks([
+              'How much donor hair do I have left, and how was it measured?',
+              'What is the most this plan can realistically achieve, in writing?',
+              'How many stages are planned, and how far apart?',
+              'Will any grafts be removed, and can that hair be re-used?',
+              'Would pigment do more for me than further grafts?',
+          ], false) ?></div>
+        </div>
       </div>
       <div class="cta-band" style="display:block">
         <h3 class="h3">Send Photos for an Initial View</h3>
@@ -290,7 +310,12 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<?= local_block(
+    'Corrective Hair Restoration at Our Gurgaon Clinic',
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners.'
+) ?>
+
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -306,16 +331,11 @@ require __DIR__ . '/includes/header.php';
 
 <?= awards_certificates_section() ?>
 
-<?= local_block(
-    'Corrective Hair Restoration at Our Gurgaon Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
-) ?>
-
-<?= cta_band(
-    'Find Out What Can Realistically Be Improved',
-    'Bring your operative note and any photographs from before the first procedure. You will get your remaining donor supply measured, a factual account of what went wrong, and a written plan with a realistic ceiling rather than a promise.',
-    'hair-transplant-repair',
-    ['Repair — hairline too low or too hard', 'Repair — pluggy or misplaced grafts', 'Repair — poor growth', 'Repair — donor scarring', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Find Out What Can Realistically Be Improved',
+    'text'      => 'Bring your operative note and any photographs from before the first procedure. You will get your remaining donor supply measured, a factual account of what went wrong, and a written plan with a realistic ceiling rather than a promise.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

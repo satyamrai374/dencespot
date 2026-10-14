@@ -86,7 +86,7 @@ $faqs = [
     ['q' => 'When can I wash my hair after DHI?',
      'a' => 'On the schedule in your written aftercare, which is explained before you leave. The first washes are gentle and specific, because grafts are not yet secure in the first days. Our day-by-day account of <a href="/blog/first-14-days-after-a-hair-transplant">the first 14 days after a hair transplant</a> describes what each stage usually looks like.'],
     ['q' => 'Where is DenceSpot’s DHI clinic in Gurgaon?',
-     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic. DHI is also carried out at our clinic in Rohini, Delhi; details are on the <a href="/contact">contact page</a>.'],
+     'a' => 'At ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic.'],
     ['q' => 'What happens at the DHI consultation?',
      'a' => 'History and medication review, scalp and donor examination, pattern staging, photographs for your record, and a written plan — including an honest recommendation on whether DHI, FUE or a combination fits your case, with the cost difference explained.'],
 ];
@@ -102,6 +102,7 @@ $page = [
     'description' => 'DHI hair transplant in Gurgaon near Medanta: how implanter placement works, where DHI suits a case better than FUE, and advertised ₹40–₹200 per graft rates.',
     'url'         => '/dhi-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-follicle-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -146,16 +147,17 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager" fetchpriority="high"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-follicle-768.webp" srcset="/assets/img/services/svc-follicle-512.webp 512w, /assets/img/services/svc-follicle-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted cross-section of scalp skin showing hair follicles and their roots" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -192,31 +194,24 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="what-is">
-  <div class="wrap">
-    <div class="split split--top">
-      <div>
-        <p class="eyebrow">The basics, plainly</p>
-        <h2 class="h2 mt-2">What Is a DHI Hair Transplant?</h2>
-        <p class="body-l mt-3 measure">DHI stands for direct hair implantation. It describes the placement stage of a hair transplant, not the whole procedure. Follicular units are extracted from the donor area exactly as they are in FUE — individually, with a fine punch, leaving dot healing rather than a line.</p>
-        <p class="body-l mt-3 measure">The difference comes next. In a conventional FUE, recipient sites are made first across the whole area, and grafts are then placed into those waiting sites. In DHI, each graft is loaded into a hollow implanter — a pen-like instrument with a fine needle tip — and the surgeon makes the site and delivers the graft in one motion. Depth, angle, direction and spacing are all set at that moment, graft by graft.</p>
-        <p class="body-l mt-3 measure">Two practical consequences follow. Control is finer, which matters most in the first few rows of a hairline where hairs emerge at very shallow angles and any uniformity reads as artificial. And each graft spends less time outside the body between extraction and placement.</p>
-        <p class="body-l mt-3 measure">The trade-off is throughput. Loading implanters one graft at a time is slower than placing into pre-made sites, so DHI generally suits defined areas rather than very large sessions, and it usually costs more per graft. Where a whole crown needs covering, conventional FUE placement is often the better use of both time and money.</p>
-
-        <div class="btn-row mt-5">
-          <a class="btn btn--outline" href="/fue-hair-transplant-in-gurgaon">How FUE differs</a>
-          <a class="btn btn--outline" href="/hair-transplant-in-gurgaon">Hair transplant overview</a>
-        </div>
-      </div>
-      <div>
-        <div class="card card--tint">
-          <p class="eyebrow">In one line</p>
-          <p class="body mt-2">DHI is a placement method, not a separate operation. Extraction, healing and growth timelines are the same as FUE — the control over angle and depth is what you are paying for.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'eyebrow' => 'The basics, plainly',
+    'title'   => 'What Is a DHI Hair Transplant?',
+    'id'      => 'what-is',
+    'tone'    => 'canvas',
+    'html'    => '<p>DHI stands for direct hair implantation, and it describes the placement stage of a hair transplant, not the whole procedure. Follicular units are extracted exactly as in FUE — individually, with a fine punch, leaving dot healing rather than a line.</p>'
+               . '<p>The difference comes next. In conventional FUE, recipient sites are made first and grafts are then placed into them. In DHI each graft is loaded into a hollow implanter with a fine needle tip, and the site is made and the graft delivered in one motion, so depth, angle, direction and spacing are set graft by graft.</p>'
+               . '<p>Control is finer, which matters most in the first rows of a hairline, where hairs emerge at very shallow angles and any uniformity reads as artificial — see <a href="/blog/natural-hairline-design-explained">what makes a hairline look natural</a>. Each graft also spends less time outside the body.</p>'
+               . '<p>The trade-off is throughput. Loading implanters one graft at a time is slower, so DHI suits defined areas rather than very large sessions and usually costs more per graft; across a whole crown, <a href="/fue-hair-transplant-in-gurgaon">conventional FUE placement</a> is often the better use of time and money.</p>',
+    'points'  => [
+        'A placement method, not a separate operation',
+        'Extraction, healing and growth timelines are the same as FUE',
+        'The control over angle and depth is what you are paying for',
+    ],
+    'link'    => ['url' => '/hair-transplant-in-gurgaon', 'label' => 'Hair transplant overview'],
+]) ?>
 
 <section class="section section--white" id="candidacy">
   <div class="wrap">
@@ -308,106 +303,88 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="survival">
-  <div class="wrap">
-    <div class="split split--sidebar">
-      <div>
-        <p class="eyebrow">No percentages</p>
-        <h2 class="h2 mt-2">What Actually Decides Whether Grafts Survive</h2>
-        <p class="body mt-3">Pages in this market quote graft-survival percentages, often in the high nineties. None of those numbers can be verified for your head before surgery, and they are rarely measured the same way twice. What can be said is which factors move survival — and every one of them is about handling, not branding.</p>
-        <a class="btn btn--outline mt-4" href="/blog/hair-transplant-promises-and-success-rates">What success-rate claims mean</a>
-      </div>
-      <div class="grid grid--2">
-        <div class="card card--tint"><h3 class="h4">Time out of the body</h3><p class="body-s mt-2">Grafts are living tissue. The shorter and better-controlled the interval between extraction and placement, the better — which is the legitimate argument for implanter placement.</p></div>
-        <div class="card card--tint"><h3 class="h4">Hydration and temperature</h3><p class="body-s mt-2">Grafts waiting for placement are kept in a holding solution and not allowed to dry. A graft that dries out on a tray does not recover.</p></div>
-        <div class="card card--tint"><h3 class="h4">Transection at extraction</h3><p class="body-s mt-2">A follicle cut during extraction may not grow. Punch size and depth matched to your hair calibre keep this down — the same in DHI as in FUE.</p></div>
-        <div class="card card--tint"><h3 class="h4">Handling and depth</h3><p class="body-s mt-2">Crushing a graft with forceps, or placing it too deep or too shallow, costs growth. Implanters reduce handling; skill decides depth.</p></div>
-        <div class="card card--tint"><h3 class="h4">Density per session</h3><p class="body-s mt-2">Packing grafts too tightly in one sitting can compromise the blood supply they depend on. Planned density is a clinical decision, not a sales one.</p></div>
-        <div class="card card--tint"><h3 class="h4">Your own aftercare</h3><p class="body-s mt-2">Smoking, knocks to the grafts in the first days, and ignoring wash instructions all affect the outcome. The written aftercare exists for that reason.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-skin',
+    'alt'     => 'a sculpted cross-section of skin layers with a single hair follicle',
+    'eyebrow' => 'No percentages',
+    'title'   => 'What Actually Decides Whether Grafts Survive',
+    'id'      => 'survival',
+    'reverse' => true,
+    'tone'    => 'canvas',
+    'html'    => '<p>Pages in this market quote graft-survival percentages, often in the high nineties. None of those numbers can be verified for your head before surgery, and they are rarely measured the same way twice.</p>'
+               . '<p>What can be said is which factors move survival, and every one of them is about handling, not branding. Grafts are living tissue: the shorter and better-controlled the time between extraction and placement, the better, which is the legitimate argument for implanter placement.</p>',
+    'points'  => [
+        'Hydration and temperature: waiting grafts are kept in a holding solution, because a graft that dries out on a tray does not recover',
+        'Transection: a follicle cut during extraction may not grow, so punch size and depth are matched to your hair calibre, in DHI as in FUE',
+        'Handling and depth: crushing a graft or placing it too deep or too shallow costs growth; implanters reduce handling, skill decides depth',
+        'Density per session: packing grafts too tightly can compromise their blood supply, so planned density is a clinical decision, not a sales one',
+        'Your own aftercare: smoking, knocks to the grafts in the first days and ignoring wash instructions all affect the outcome',
+    ],
+    'link'    => ['url' => '/blog/hair-transplant-promises-and-success-rates', 'label' => 'What success-rate claims mean'],
+]) ?>
 
-<section class="section section--white" id="why">
-  <div class="wrap">
-    <div class="measure">
-      <p class="eyebrow">Why here</p>
-      <h2 class="h2 mt-2">Why Have DHI Done Here?</h2>
-    </div>
-    <div class="grid grid--3 mt-6">
-      <div class="card card--tint"><?= icon('info', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">You are told when not to have it</h3><p class="body-s mt-2">If your case is a large crown, we will say conventional FUE placement gives you the same coverage for less time and less money. DHI is recommended where it earns its cost.</p></div>
-      <div class="card card--tint"><?= icon('hairline', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Hairline drawn before you lie down</h3><p class="body-s mt-2">Position, shape and irregularity agreed with you sitting upright with a mirror. Implanter precision is worthless behind a badly designed line — see <a href="/blog/natural-hairline-design-explained">what makes a hairline look natural</a>.</p></div>
-      <div class="card card--tint"><?= icon('pencil', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Registered medical practitioners</h3><p class="body-s mt-2">Consultations and procedures are carried out by registered medical practitioners at the clinic. Their names, qualifications and registration details are listed on this page.</p></div>
-      <div class="card card--tint"><?= icon('clock', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Graft handling timed</h3><p class="body-s mt-2">Extraction and placement are run so grafts spend as little time out of the body as practical, and holding conditions are consistent through the session.</p></div>
-      <div class="card card--tint"><?= icon('list', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Priced per plan, in writing</h3><p class="body-s mt-2">You are told the graft number, the per-graft difference against FUE and what it buys you, before you book a date.</p></div>
-      <div class="card card--tint"><?= icon('calendar', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Reviewed on photographs</h3><p class="body-s mt-2">Standardised angles and lighting at fixed review points, so hairline density is assessed against a record.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_highlights([
+    'eyebrow' => 'Why here',
+    'title'   => 'Why Have DHI Done Here?',
+    'intro'   => 'Consultations and procedures are carried out by registered medical practitioners at the clinic. Their names, qualifications and registration details are listed on this page.',
+    'tone'    => 'white',
+    'items'   => [
+        ['icon' => 'info',  'title' => 'Told when not to have it',           'text' => 'If your case is a large crown, conventional FUE placement gives the same coverage for less time and less money. DHI is recommended where it earns its cost.'],
+        ['icon' => 'eye',   'title' => 'Hairline drawn before you lie down', 'text' => 'Position, shape and irregularity agreed with you sitting upright with a mirror. Implanter precision is worthless behind a badly designed line.'],
+        ['icon' => 'clock', 'title' => 'Graft handling timed',               'text' => 'Extraction and placement are run so grafts spend as little time out of the body as practical, with consistent holding conditions through the session.'],
+        ['icon' => 'doc',   'title' => 'Priced in writing, reviewed on photographs', 'text' => 'The graft number and the per-graft difference against FUE are given in writing before you book a date; reviews follow at fixed points with standardised photographs.'],
+    ],
+]) ?>
 
-<section class="section section--ink" id="journey">
-  <div class="wrap">
-    <div class="measure">
-      <p class="eyebrow">Start to finish</p>
-      <h2 class="h2 mt-2">Your DHI Journey</h2>
-      <p class="body mt-3">Seven stages, in the order you will experience them.</p>
-    </div>
-    <div class="journey mt-6">
-      <div class="card card--ink"><span class="journey__num">01</span><h3 class="h4 mt-2">Consultation</h3><p class="body-s mt-2">History, medication review, and what you want the hairline to do.</p></div>
-      <div class="card card--ink"><span class="journey__num">02</span><h3 class="h4 mt-2">Scalp &amp; donor exam</h3><p class="body-s mt-2">Density and calibre measured, pattern staged, baseline photographs.</p></div>
-      <div class="card card--ink"><span class="journey__num">03</span><h3 class="h4 mt-2">Technique decision</h3><p class="body-s mt-2">Whether DHI, FUE placement or a combination fits your zones and budget.</p></div>
-      <div class="card card--ink"><span class="journey__num">04</span><h3 class="h4 mt-2">Hairline design</h3><p class="body-s mt-2">Drawn on your face, sitting upright, checked in a mirror and approved.</p></div>
-      <div class="card card--ink"><span class="journey__num">05</span><h3 class="h4 mt-2">Written plan</h3><p class="body-s mt-2">Graft number, technique per zone, timeline and itemised cost.</p></div>
-      <div class="card card--ink"><span class="journey__num">06</span><h3 class="h4 mt-2">Procedure day</h3><p class="body-s mt-2">Extraction, loading and implanter placement under local anaesthetic.</p></div>
-      <div class="card card--ink"><span class="journey__num">07</span><h3 class="h4 mt-2">Reviews to 12 months</h3><p class="body-s mt-2">Shedding, regrowth and hairline density tracked photographically.</p></div>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'Start to finish',
+    'title'   => 'How a DHI Procedure Works',
+    'id'      => 'procedure',
+    'intro'   => 'The first half of the day is identical to FUE. The difference is in how the grafts go in.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Consultation and donor exam', 'text' => 'History, medication review and what you want the hairline to do. Density and calibre are measured, the pattern staged and baseline photographs taken.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'Technique, hairline and plan', 'text' => 'Whether DHI, FUE placement or a combination fits your zones. The hairline is drawn while you sit upright and approved in a mirror; graft number, technique per zone, timeline and itemised cost go in writing.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Procedure day',                'text' => 'The donor is trimmed and numbed and units are extracted as in FUE. Grafts are sorted, loaded into implanters one at a time and placed in one action that sets site, depth, angle and direction, the front rows at shallow angles.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',               'title' => 'Aftercare and reviews',        'text' => 'Dressing, medication and washing explained, and your first review booked before you go home the same day. Shedding, regrowth and hairline density are tracked photographically to twelve months.'],
+    ],
+]) ?>
 
-<section class="section section--canvas" id="procedure">
+<section class="section section--white" id="dhi-day">
   <div class="wrap">
-    <div class="measure">
+    <div style="max-width:62ch">
       <p class="eyebrow">On the day</p>
-      <h2 class="h2 mt-2">How a DHI Procedure Works</h2>
-      <p class="body mt-3">The first half of the day is identical to FUE. The difference is in how the grafts go in.</p>
+      <h2 class="h2 mt-2">A Typical DHI Day</h2>
+      <p class="body mt-3">For a mid-sized session. Your own timings are given to you beforehand, and how much of the recipient area is trimmed depends on the plan agreed with you.</p>
     </div>
-    <div class="split split--sidebar mt-6">
-      <div class="stack-sm">
-        <div class="step"><span class="step-num">1</span><div><h3 class="h3">Design and consent</h3><p class="body-s mt-2">The hairline is drawn while you sit upright and checked in a mirror before anything begins. With DHI the line is executed graft by graft, so agreeing it first matters more, not less.</p></div></div>
-        <div class="step"><span class="step-num">2</span><div><h3 class="h3">Donor trim and anaesthesia</h3><p class="body-s mt-2">The donor area is trimmed so the punch can follow each follicle, then anaesthetised locally. How much of the recipient area is trimmed depends on the plan agreed with you.</p></div></div>
-        <div class="step"><span class="step-num">3</span><div><h3 class="h3">Extraction</h3><p class="body-s mt-2">Follicular units are removed one at a time with a fine punch, spread across the donor so density stays even. Identical to FUE.</p></div></div>
-        <div class="step"><span class="step-num">4</span><div><h3 class="h3">Sorting and loading</h3><p class="body-s mt-2">Grafts are sorted by hair count under magnification, then loaded individually into implanters — single-hair units for the front rows, multi-hair units for behind.</p></div></div>
-        <div class="step"><span class="step-num">5</span><div><h3 class="h3">Implanter placement</h3><p class="body-s mt-2">Each graft is placed in one action that sets site, depth, angle and direction together. The front rows go in at shallow angles with deliberate irregularity so the line does not read as a row.</p></div></div>
-        <div class="step"><span class="step-num">6</span><div><h3 class="h3">Aftercare and discharge</h3><p class="body-s mt-2">The donor is dressed, medication and written aftercare issued, washing explained, and the first review booked. You go home the same day.</p></div></div>
+    <div class="grid grid--2 mt-5">
+      <div class="card card--pad-lg">
+        <ul class="stack-sm">
+          <li class="body-s"><b>Morning —</b> arrival, consent, photographs, hairline marked and checked upright.</li>
+          <li class="body-s"><b>Then —</b> donor trim and local anaesthetic.</li>
+          <li class="body-s"><b>Late morning —</b> extraction, spread across the donor.</li>
+          <li class="body-s"><b>Midday —</b> a proper break to eat and stretch.</li>
+          <li class="body-s"><b>Afternoon —</b> sorting, loading and implanter placement, the longest stretch of the day.</li>
+          <li class="body-s"><b>Evening —</b> dressing, medication, aftercare explained, first review booked, home.</li>
+        </ul>
       </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="eyebrow" style="color:var(--ink-muted)">A typical DHI day</p>
-          <p class="body-s mt-2">For a mid-sized session. Your own timings are given to you beforehand.</p>
-          <ul class="stack-sm mt-3">
-            <li class="body-s"><b>Morning —</b> arrival, consent, photographs, hairline marked and checked upright.</li>
-            <li class="body-s"><b>Then —</b> donor trim and local anaesthetic.</li>
-            <li class="body-s"><b>Late morning —</b> extraction, spread across the donor.</li>
-            <li class="body-s"><b>Midday —</b> a proper break to eat and stretch.</li>
-            <li class="body-s"><b>Afternoon —</b> sorting, loading and implanter placement, the longest stretch of the day.</li>
-            <li class="body-s"><b>Evening —</b> dressing, medication, aftercare explained, first review booked, home.</li>
-          </ul>
-        </div>
-        <div class="card card--tint mt-4">
-          <p class="eyebrow">Before the day</p>
-          <div class="mt-3"><?= ticks([
-              'Bring your full medication list, including supplements.',
-              'Stop alcohol and avoid blood thinners as instructed.',
-              'Confirm the shaving plan beforehand so there are no surprises.',
-              'Eat properly — DHI sessions run long by nature.',
-              'Wear a shirt that buttons rather than a pullover.',
-          ], false) ?></div>
-        </div>
+      <div class="note">
+        <p class="h4">Before the day</p>
+        <div class="mt-2"><?= ticks([
+            'Bring your full medication list, including supplements.',
+            'Stop alcohol and avoid blood thinners as instructed.',
+            'Confirm the shaving plan beforehand so there are no surprises.',
+            'Eat properly — DHI sessions run long by nature.',
+            'Wear a shirt that buttons rather than a pullover.',
+        ], false) ?></div>
       </div>
     </div>
   </div>
 </section>
+
+<?= doctor_block(
+    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
+) ?>
 
 <section class="section section--white" id="recovery">
   <div class="wrap">
@@ -448,11 +425,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
-) ?>
-
-<section class="section section--white" id="cost">
+<section class="section section--canvas" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -505,7 +478,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas" id="faqs">
+<section class="section section--white" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -525,14 +498,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'DHI Hair Transplant Near Medanta, Sector 39 Gurugram',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners. Treatment is also available at our clinic in Rohini, Delhi.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . ', where consultations and procedures are carried out by registered medical practitioners.'
 ) ?>
 
-<?= cta_band(
-    'Get an Honest Answer on Whether DHI Is Worth It for You',
-    'Bring your questions and your medication list. You will get a donor assessment, a hairline drawn on your own face, and a straight recommendation on whether DHI, FUE or a combination fits your case — including what the difference actually costs.',
-    'dhi-hair-transplant',
-    ['DHI hair transplant', 'DHI — hairline', 'DHI — temples', 'Correcting an earlier hairline', 'DHI or FUE — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Get an Honest Answer on Whether DHI Is Worth It for You',
+    'text'      => 'Bring your questions and your medication list. You will get a donor assessment, a hairline drawn on your own face, and a straight recommendation on whether DHI, FUE or a combination fits your case — including what the difference actually costs.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

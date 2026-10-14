@@ -424,6 +424,18 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
         return '';
     }
 
+    // On a location page, leave out posts that name the other location in
+    // their title or address (client rule, 14 Oct 2026).
+    $loc = function_exists('hp_page_location') ? hp_page_location() : 'both';
+    $other = $loc === 'rohini' ? '/gurgaon|gurugram/i' : ($loc === 'gurgaon' ? '/rohini/i' : null);
+    if ($other !== null) {
+        $posts = array_values(array_filter($posts, static fn (array $p): bool =>
+            !preg_match($other, $p['slug'] . ' ' . $p['title'] . ' ' . ($p['seo_title'] ?? '') . ' ' . $p['excerpt'])));
+    }
+    if ($posts === []) {
+        return '';
+    }
+
     $posts = array_slice($posts, 0, max(1, $limit));
 
     ob_start(); ?>
@@ -433,7 +445,7 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
       <div>
         <p class="eyebrow">Further reading</p>
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
-        <p class="body mt-3 measure">Patient education, written and medically reviewed by <?= e(REVIEWED_BY) ?> before publication.</p>
+        <p class="body mt-3 measure">Plain-language articles on hair loss and its treatment. Each article shows its own author and review details.</p>
       </div>
       <div class="btn-row">
         <a class="btn btn--outline" href="/blog/">All articles</a>
@@ -442,7 +454,9 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
 
     <div class="grid grid--3 mt-6">
       <?php foreach ($posts as $post): ?>
-        <?= blog_card($post) ?>
+        <?php /* Text cards: the page around this strip already carries its own
+                 illustrations, and repeating them here read as duplicates. */ ?>
+        <?= blog_card($post, false) ?>
       <?php endforeach; ?>
     </div>
   </div>
@@ -543,12 +557,17 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
       </select>
     </div>
     <div class="field">
+      <?php $fixedClinic = function_exists('hp_page_clinic') ? hp_page_clinic() : null; ?>
+      <?php if ($fixedClinic !== null): ?>
+        <input type="hidden" name="clinic" value="<?= e($fixedClinic) ?>">
+      <?php else: ?>
       <label for="f-clinic-<?= e($source) ?>">Preferred clinic</label>
       <select class="select" id="f-clinic-<?= e($source) ?>" name="clinic">
         <?php foreach (['Gurugram (Sector 39)', 'Delhi (Rohini)', 'Either clinic'] as $clinicOption): ?>
           <option<?= $clinicOption === $preferredClinic ? ' selected' : '' ?>><?= e($clinicOption) ?></option>
         <?php endforeach; ?>
       </select>
+      <?php endif; ?>
     </div>
     <div class="field">
       <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know</label>
@@ -576,6 +595,9 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
 
 function cta_band(string $heading, string $body, string $source, array $treatments = [], string $preferredClinic = 'Either clinic'): string
 {
+    if ($preferredClinic === 'Either clinic' && function_exists('hp_page_clinic') && hp_page_clinic() !== null) {
+        $preferredClinic = hp_page_clinic();
+    }
     $clinicAttr = $preferredClinic !== 'Either clinic' ? ' data-clinic="' . e($preferredClinic) . '"' : '';
     // On a Rohini page the WhatsApp button goes to the Rohini number.
     $waUrl = $preferredClinic === 'Delhi (Rohini)' ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL;
@@ -653,6 +675,7 @@ function doctor_registration(array $doc): string
  */
 function doctor_block(string $whyItMatters, string $portraitAlt = '', bool $reviewed = true): string
 {
+    $reviewed = $reviewed && page_review_signed_off();
     ob_start(); ?>
 <section class="section section--canvas" id="doctor">
   <div class="wrap">
@@ -670,8 +693,17 @@ function doctor_block(string $whyItMatters, string $portraitAlt = '', bool $revi
           <p class="h4"><?= e($doc['name']) ?></p>
           <p class="body-s mt-1"><?= e($doc['quals']) ?><?php if (!empty($doc['specialty']) && stripos((string) $doc['quals'], (string) $doc['specialty']) === false): ?> · <?= e($doc['specialty']) ?><?php endif; ?></p>
           <p class="meta mt-2"><?= doctor_registration($doc) ?></p>
-          <?php if (!empty($doc['clinics'])): ?>
-            <p class="meta">Consults at: <?= e($doc['clinics']) ?></p>
+          <?php
+            // Only show "Consults at" when it names this page's clinic (or on
+            // general pages): a Rohini page never names the Gurugram clinic.
+            $docLoc = function_exists('hp_page_location') ? hp_page_location() : 'both';
+            $docAt  = (string) ($doc['clinics'] ?? '');
+            $showAt = $docAt !== '' && ($docLoc === 'both'
+                || ($docLoc === 'rohini' && (stripos($docAt, 'Rohini') !== false || stripos($docAt, 'Delhi') !== false))
+                || ($docLoc === 'gurgaon' && (stripos($docAt, 'Gurugram') !== false || stripos($docAt, 'Gurgaon') !== false)));
+          ?>
+          <?php if ($showAt): ?>
+            <p class="meta">Consults at: <?= e($docAt) ?></p>
           <?php endif; ?>
         </div>
       <?php endforeach; ?>
@@ -714,6 +746,48 @@ function blog_cta(string $heading, string $body): string
 }
 
 /**
+ * True when the doctor has signed off the current page's text since the
+ * October 2026 rewrite (REVIEW_SIGNED_OFF in config.php). Every review claim —
+ * hero badge, doctor_block() byline, medical_review_line(), MedicalWebPage
+ * reviewedBy — goes through this, so one config line turns a page's review on.
+ */
+function page_review_signed_off(): bool
+{
+    $url = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
+    return in_array($url, REVIEW_SIGNED_OFF, true);
+}
+
+/**
+ * The card on the hero image. A signed-off page names the reviewing doctor;
+ * any other page shows its clinic's phone and hours instead, as the Rohini
+ * pages do — a call is the action a visitor on a treatment page wants anyway.
+ */
+function hero_review_badge(): string
+{
+    if (page_review_signed_off()) {
+        return '<div class="hero__badge-card">'
+             . '<p class="eyebrow">Medically reviewed by</p>'
+             . '<p class="h4 mt-1">' . doctor_name() . '</p>'
+             . '<p class="meta">' . doctor_credit() . '</p>'
+             . '</div>';
+    }
+    $loc   = function_exists('hp_page_location') ? hp_page_location() : 'both';
+    $hours = '<p class="meta">' . e(HOURS_DISPLAY) . '<span style="display:block">' . e(HOURS_NOTE) . '</span></p>';
+    if ($loc === 'gurgaon') {
+        return '<div class="hero__badge-card">'
+             . '<p class="eyebrow">Gurugram Clinic</p>'
+             . '<p class="h4 mt-1"><a href="tel:' . e(PHONE_E164) . '" data-track="call">' . e(PHONE_DISPLAY) . '</a></p>'
+             . $hours . '</div>';
+    }
+    // General pages serve both clinics, so both numbers.
+    return '<div class="hero__badge-card">'
+         . '<p class="eyebrow">Call either clinic</p>'
+         . '<p class="body-s mt-1">Gurugram · <a href="tel:' . e(PHONE_E164) . '" data-track="call"><b>' . e(PHONE_DISPLAY) . '</b></a></p>'
+         . '<p class="body-s">Rohini, Delhi · <a href="tel:' . e(LOC_DELHI_PHONE_E164) . '" data-track="call"><b>' . e(LOC_DELHI_PHONE_DISPLAY) . '</b></a></p>'
+         . $hours . '</div>';
+}
+
+/**
  * Page-level medical review byline.
  *
  * doctor_block() already carries this line, but four public pages — /faqs,
@@ -728,7 +802,7 @@ function blog_cta(string $heading, string $body): string
 function medical_review_line(): string
 {
     $doc = DOCTORS['dr-nyra'] ?? null;
-    if ($doc === null) {
+    if ($doc === null || !page_review_signed_off()) {
         return '';
     }
 
@@ -762,16 +836,17 @@ function local_block(string $heading, string $intro): string
      * third-party embed on some thirty pages; the cards link to each clinic's
      * Maps listing instead, and /contact and /delhi-clinic keep their maps.
      */
+    // A location page shows only its own clinic (client rule, 14 Oct 2026).
+    $loc = function_exists('hp_page_location') ? hp_page_location() : 'both';
     ob_start(); ?>
 <section class="section section--canvas" id="local">
   <div class="wrap">
     <div class="measure">
-      <p class="eyebrow">Our two clinics</p>
+      <p class="eyebrow"><?= $loc === 'both' ? 'Our two clinics' : 'Visit the clinic' ?></p>
       <h2 class="h2 mt-2"><?= e($heading) ?></h2>
       <p class="body mt-3"><?= e($intro) ?></p>
     </div>
-    <div class="mt-5"><?= hp_clinic_cards() ?></div>
-    <?= clinic_twin_note() ?>
+    <div class="mt-5"><?= hp_clinic_cards($loc === 'both' ? null : $loc) ?></div>
   </div>
 </section>
 <?php
@@ -786,6 +861,11 @@ function local_block(string $heading, string $intro): string
  */
 function clinic_twin_note(): string
 {
+    // Switched off 14 Oct 2026: the client asked that a location page never
+    // mention the other clinic, so the Gurugram and Rohini versions of a
+    // treatment no longer link to each other.
+    return '';
+
     $here = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
     foreach (ROHINI_SERVICES as $svc) {
         if ($svc['gurgaon'] === $here) {
@@ -801,15 +881,20 @@ function clinic_twin_note(): string
 }
 
 /**
- * "Treatments at our Rohini clinic" — a card grid of every Rohini service
- * page except the current one. Used on the Rohini pages and the Delhi clinic
- * page so they link to one another.
+ * "Treatments at our Rohini clinic" — every Rohini service page except the
+ * current one, as grouped link lists (ROHINI_GROUPS). Used on every Rohini
+ * page so they link to one another, and to the Rohini hub.
  */
 function rohini_services_block(string $current = '', string $heading = 'Other Treatments at Our Rohini Clinic'): string
 {
     $current = rtrim($current, '/');
-    $items = array_values(array_filter(ROHINI_SERVICES, static fn (array $s): bool => $s['url'] !== $current));
-    if ($items === []) {
+    $groups = [];
+    foreach (ROHINI_SERVICES as $svc) {
+        if ($svc['url'] !== $current) {
+            $groups[$svc['group']][] = $svc;
+        }
+    }
+    if ($groups === []) {
         return '';
     }
 
@@ -819,17 +904,30 @@ function rohini_services_block(string $current = '', string $heading = 'Other Tr
     <div class="measure">
       <p class="eyebrow">Rohini, Delhi</p>
       <h2 class="h2 mt-2"><?= e($heading) ?></h2>
-      <p class="body mt-3">Every treatment below is carried out at the Rohini clinic as well as in Sector 39, Gurugram. Each starts with an examination and a written plan.</p>
+      <p class="body mt-3">Every treatment below is carried out at the Rohini clinic, and each starts with an examination and a written plan. See the <a href="/delhi-clinic">Rohini clinic page</a> for directions and hours.</p>
     </div>
-    <div class="grid grid--3 mt-5">
-      <?php foreach ($items as $svc): ?>
-        <a class="card rohini-svc" href="<?= e($svc['url']) ?>">
-          <p class="h4"><?= e($svc['label']) ?> in Rohini</p>
-          <p class="body-s mt-1"><?= e($svc['note']) ?></p>
-          <p class="meta mt-2 rohini-svc__more">View treatment <?= icon('arrow', 15) ?></p>
-        </a>
+    <div class="rohini-groups mt-5">
+      <?php foreach (ROHINI_GROUPS as $key => $label): if (empty($groups[$key])) { continue; } ?>
+        <div class="card rohini-group">
+          <h3 class="h4"><?= e($label) ?></h3>
+          <ul class="rohini-group__list">
+            <?php foreach ($groups[$key] as $svc): ?>
+              <li><a href="<?= e($svc['url']) ?>"><?= e($svc['label']) ?> in Rohini</a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
       <?php endforeach; ?>
     </div>
+    <?php
+      $costGuides = array_filter([
+          '/hair-transplant-cost-in-rohini'     => 'Hair transplant cost',
+          '/prp-hair-treatment-cost-in-rohini'  => 'PRP treatment cost',
+          '/beard-transplant-cost-in-rohini'    => 'Beard transplant cost',
+      ], static fn (string $label, string $url): bool => $url !== $current, ARRAY_FILTER_USE_BOTH);
+    ?>
+    <p class="body-s mt-4">Cost guides for the Rohini clinic:
+      <?php $n = 0; foreach ($costGuides as $cgUrl => $cgLabel): ?><?= $n++ ? ' · ' : ' ' ?><a href="<?= e($cgUrl) ?>"><?= e($cgLabel) ?> in Rohini</a><?php endforeach; ?>.
+    </p>
   </div>
 </section>
 <?php
@@ -899,3 +997,85 @@ function awards_certificates_section(): string
 }
 
 
+
+/* -------------------------------------------------------------------------
+ * Call-back strip, directly under the hero (14 Oct 2026)
+ *
+ * Competitor clinics capture enquiries in the hero; ours only offered a form
+ * at the foot of the page. This is a short form — name, phone, consent —
+ * posting to enquire.php like every other form, with the treatment and the
+ * clinic set from the page. Consent is never pre-ticked (enquire.php refuses
+ * a submission without it). No offer, no urgency: it asks for a call back.
+ * ---------------------------------------------------------------------- */
+
+/** The booking option that matches the current page's URL. */
+function page_treatment_option(): string
+{
+    $url = (string) ($GLOBALS['page']['url'] ?? '');
+    $map = [
+        'face-prp'        => 'Skin care',
+        'skin'            => 'Skin care',
+        'laser'           => 'Laser hair removal',
+        'beard'           => 'Beard transplant',
+        'eyebrow'         => 'Eyebrow transplant',
+        'hair-fall'       => 'Hair fall treatment',
+        'womens-hair-loss'=> 'Hair fall treatment',
+        'alopecia'        => 'Hair fall treatment',
+        'dandruff'        => 'Hair fall treatment',
+        'prp'             => 'Hair PRP / GFC',
+        'gfc'             => 'Hair PRP / GFC',
+        'mesotherapy'     => 'Hair PRP / GFC',
+        'microneedling'   => 'Hair PRP / GFC',
+        'led-therapy'     => 'Hair PRP / GFC',
+        'transplant'      => 'Hair transplant',
+        'hairline'        => 'Hair transplant',
+    ];
+    foreach ($map as $needle => $option) {
+        if (str_contains($url, $needle)) {
+            return $option;
+        }
+    }
+    return 'Not sure — please advise';
+}
+
+function lead_strip(): string
+{
+    $source    = 'callback:' . (string) ($GLOBALS['page']['url'] ?? '');
+    $treatment = page_treatment_option();
+    $clinic    = function_exists('hp_page_clinic') ? hp_page_clinic() : null;
+    $loc       = function_exists('hp_page_location') ? hp_page_location() : 'both';
+    $wa        = $loc === 'rohini' ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL;
+    $topic     = [
+        'Hair transplant'     => 'a hair transplant',
+        'Beard transplant'    => 'a beard transplant',
+        'Eyebrow transplant'  => 'an eyebrow transplant',
+        'Hair PRP / GFC'      => 'PRP or GFC for your hair',
+        'Hair fall treatment' => 'your hair fall',
+        'Laser hair removal'  => 'laser hair removal',
+        'Skin care'           => 'your skin',
+    ][$treatment] ?? 'your hair or skin';
+    ob_start(); ?>
+<section class="lead-strip" aria-labelledby="lead-strip-title">
+  <div class="wrap lead-strip__inner">
+    <div class="lead-strip__text">
+      <p class="eyebrow">Request a call back</p>
+      <h2 class="h3 mt-1" id="lead-strip-title">Talk to the clinic about <?= e($topic) ?></h2>
+      <p class="body-s mt-1">Leave your number and the clinic will call you during opening hours (<?= e(HOURS_DISPLAY) ?>) to arrange a consultation. Prefer to message? <a href="<?= e($wa) ?>" rel="noopener" data-track="whatsapp">WhatsApp the clinic</a>.<?php if ($treatment === 'Hair transplant'): ?> Not ready to talk? <a href="/hair-transplant-graft-calculator">Estimate a graft range</a> first.<?php elseif ($treatment === 'Hair fall treatment'): ?> Not ready to talk? Try the <a href="/hair-loss-assessment">hair-loss self-check</a> first.<?php endif; ?></p>
+    </div>
+    <form class="lead-strip__form" action="/enquire.php" method="post">
+      <input type="hidden" name="source" value="<?= e($source) ?>">
+      <input type="hidden" name="treatment" value="<?= e($treatment) ?>">
+      <?php if ($clinic !== null): ?><input type="hidden" name="clinic" value="<?= e($clinic) ?>"><?php endif; ?>
+      <p class="sr-only"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="lead-strip__fields">
+        <label class="lead-strip__field"><span>Name</span><input class="input" name="name" type="text" autocomplete="name" maxlength="120" required></label>
+        <label class="lead-strip__field"><span>Phone</span><input class="input" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[\s\(\)+\-]*(?:[0-9][\s\(\)+\-]*){10,15}" title="A phone number with 10 to 15 digits" required></label>
+        <button class="btn btn--ink lead-strip__btn" type="submit"><?= icon('phone', 17) ?> Call Me Back</button>
+      </div>
+      <label class="lead-strip__consent"><input type="checkbox" name="dpdp_consent" value="1" required><span>I agree that <?= e(SITE_NAME) ?> may use these details to contact me about this enquiry (<a href="/privacy-policy">Privacy Policy</a>). Kept for 12 months; you can withdraw consent at any time.</span></label>
+    </form>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}

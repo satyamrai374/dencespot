@@ -13,6 +13,10 @@
  * patient education, no clinic-specific claim that has not been signed off.
  * Anything set by the clinic's own protocol is deferred to the written
  * discharge instructions rather than asserted here.
+ *
+ * 14 Oct 2026 — landing-page layout: AI-illustrated hero, two lp_split
+ * sections, the timeline summarised as lp_steps (the phase table stays) and an
+ * lp_cta close, each image with its visible AI label. Presents both clinics.
  */
 
 declare(strict_types=1);
@@ -172,6 +176,7 @@ $page = [
     'url'         => '/hair-transplant-aftercare',
     'nav_active'  => '/hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-followup-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -195,7 +200,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body mt-3 measure">This page sets out what happens week by week, how the first wash is done, why transplanted hair falls out around week three, what to avoid and for how long, and the specific signs that mean you should call the clinic rather than wait.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="#timeline"><?= icon('clock', 18) ?> See the Timeline</a>
+          <a class="btn btn--lg btn--ink" href="#the-recovery-timeline"><?= icon('clock', 18) ?> See the Timeline</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask a Recovery Question</a>
         </div>
 
@@ -208,55 +213,50 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-followup-768.webp" srcset="/assets/img/services/svc-followup-512.webp 512w, /assets/img/services/svc-followup-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a desk calendar with several dates circled, beside a pen and a small plant" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas">
-  <div class="wrap">
-    <div class="measure">
-      <p class="eyebrow">The first 48 hours</p>
-      <h2 id="the-only-part-that-is-genuinely-fragile" class="h2 mt-2">The Only Part That Is Genuinely Fragile</h2>
-      <p class="body mt-3">For the first two days, transplanted grafts are held in place by nothing more than early clot formation. They can be dislodged — by a pillow, a towel, a hat pulled off carelessly, or scratching in your sleep. After roughly ten days they are secure and effectively cannot be knocked out. Everything restrictive about early aftercare exists to cover that first window.</p>
-    </div>
+<?= lp_split([
+    'img'     => 'intro-recipient',
+    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'id'      => 'the-only-part-that-is-genuinely-fragile',
+    'eyebrow' => 'The first 48 hours',
+    'title'   => 'The Only Part That Is Genuinely Fragile',
+    'html'    => '<p>For the first two days, grafts are held in place by nothing more than early clot formation, and a pillow, a towel, a hat pulled off carelessly or scratching in your sleep can dislodge them. After roughly ten days they are secure. Everything restrictive about early aftercare exists to cover that first window.</p>'
+               . '<p><b>Swelling is not a complication.</b> Forehead and occasionally around-the-eye swelling is common from about day two, peaks near day three and settles over the following few days. Sleeping elevated and cold compresses <i>on the forehead — never on the grafts</i> are the usual measures. Swelling that spreads or is still worsening after around day four is different, and warrants a call.</p>',
+    'points'  => [
+        'Sleep propped up at roughly 45 degrees, on your back, for the first few nights — the most effective way to limit forehead swelling.',
+        'Do not touch: no scratching, rubbing or checking with your fingertips. Itching is managed with the saline spray you are given.',
+        'Keep it boring: no exertion, no bending at the waist, no alcohol, no smoking. Raised blood pressure over fresh grafts is the thing to avoid.',
+    ],
+]) ?>
 
-    <div class="grid grid--3 mt-6">
-      <div class="card card--pad-lg">
-        <span class="step-num">1</span>
-        <p class="h3 mt-3">Sleep propped up</p>
-        <p class="body-s mt-2">Roughly 45 degrees, on your back, for the first few nights. This is the single most effective thing you can do to limit forehead swelling, which peaks around day three and is the most common visible after-effect.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <span class="step-num">2</span>
-        <p class="h3 mt-3">Do not touch</p>
-        <p class="body-s mt-2">No scratching, no rubbing, no checking with your fingertips. Itching is normal as healing starts and is managed with the saline spray you are given, not with your hands.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <span class="step-num">3</span>
-        <p class="h3 mt-3">Keep it boring</p>
-        <p class="body-s mt-2">No exertion, no bending at the waist, no alcohol, no smoking. Raised blood pressure over freshly placed grafts is the thing to avoid, and it is easier to avoid than to correct.</p>
-      </div>
-    </div>
-
-    <div class="note mt-5">
-      <p class="body-s"><b>Swelling is not a complication.</b> Forehead and occasionally around-the-eye swelling is common from about day two, peaks near day three and settles over the following few days. It looks alarming and is almost always uneventful. Sleeping elevated and cold compresses <i>on the forehead — never on the grafts</i> are the usual measures. Swelling that spreads or is still worsening after around day four is different, and warrants a call.</p>
-    </div>
-  </div>
-</section>
+<?= lp_steps([
+    'eyebrow' => 'Week by week',
+    'title'   => 'The Recovery Timeline',
+    'id'      => 'the-recovery-timeline',
+    'intro'   => 'Hair transplant recovery runs over roughly twelve months. Looking normal again takes about ten to fourteen days; the result is judged at ten to twelve months.',
+    'steps'   => [
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',              'title' => 'Days 0–14: protect the grafts', 'text' => 'The grafts are fragile for the first two to five days. The first wash comes around day three to five, and crusting settles across the first one to two weeks.'],
+        ['img' => 'hero',              'alt' => 'a sculpted cross-section of scalp skin with hair follicles and their roots', 'title' => 'Weeks 2–6: shedding',          'text' => 'The transplanted hairs shed. This is expected and not a failure: the follicle stays in place and rests before it regrows.'],
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                                  'title' => 'Months 2–6: quiet, then growth', 'text' => 'Little visible change between months two and four. New growth becomes obvious from months four to six, fine at first and thickening over the following months.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline',               'title' => 'Months 10–12: judging the result', 'text' => 'The result is judged at ten to twelve months, at a review with same-angle photography. The crown typically lags the hairline by several months.'],
+    ],
+]) ?>
 
 <section class="section section--white" id="timeline">
   <div class="wrap">
     <div class="measure">
-      <p class="eyebrow">Week by week</p>
-      <h2 id="the-recovery-timeline" class="h2 mt-2">The Recovery Timeline</h2>
-      <p class="body mt-3">Hair transplant recovery runs over roughly twelve months. The grafts are fragile for the first two to five days; crusting settles across the first one to two weeks; most desk workers are back at work within three to five days; the transplanted hairs shed between weeks two and six, which is expected and not a failure; there is little visible change between months two and four; new growth becomes obvious from months four to six; and the result is judged at ten to twelve months. The detail for each phase is below.</p><p class="body mt-3">General patient education. Your own instructions take priority over anything on this page — protocols legitimately differ between clinics, and yours is written for your procedure.</p>
+      <p class="eyebrow">Phase by phase</p>
+      <h2 id="what-happens-in-each-phase" class="h2 mt-2">What Happens in Each Phase, and What to Avoid</h2>
+      <p class="body mt-3">The detail for each phase is below. Most desk workers are back at work within three to five days. General patient education: your own instructions take priority over anything on this page — protocols legitimately differ between clinics, and yours is written for your procedure.</p>
     </div>
 
     <div class="card card--pad-lg mt-5" style="padding:0;overflow:hidden">
@@ -291,40 +291,26 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--canvas">
-  <div class="wrap">
-    <div class="split split--top">
-      <div>
-        <p class="eyebrow">The first wash</p>
-        <h2 id="how-to-wash-your-hair-after-a-hair-transplant" class="h2 mt-2">How to Wash Your Hair After a Hair Transplant</h2>
-        <p class="body mt-3 measure">The first wash is usually around day three to five, and at DenceSpot it is either done at the clinic or demonstrated to you before you attempt it yourself. It is the step most often got wrong at home, because the instinct is to treat it like a normal shower. It is not one.</p>
-
-        <div class="grid grid--2 mt-5">
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Pour, do not spray</p><p class="meta mt-1">Water cupped or poured gently over the recipient area. Never direct shower pressure onto grafts.</p></div>
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Dilute the shampoo</p><p class="meta mt-1">Mixed with water in a cup, applied by dabbing with the flat of the hand — not worked in with fingertips.</p></div>
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">No rubbing, no circles</p><p class="meta mt-1">Downward dabbing only. The donor area can be handled slightly more normally than the recipient area.</p></div>
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Pat dry, air dry</p><p class="meta mt-1">Blot with a clean towel or let it air dry. No rubbing, no hairdryer heat on the grafts.</p></div>
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Daily, once started</p><p class="meta mt-1">Gentle washing continues daily. It is what lifts crusting safely over the following days.</p></div>
-          <div class="card"><?= icon('check', 20, 'var(--accent-deep)', 2.2) ?><p class="h4 mt-2">Let crusts go on their own</p><p class="meta mt-1">Picking a crust can take the graft with it. They lift by themselves with gentle washing, generally by day ten.</p></div>
-        </div>
-      </div>
-
-      <div>
-        <div class="card card--pad-lg">
-          <?= icon('info', 24, 'var(--accent-deep)') ?>
-          <p class="h3 mt-2">Why technique matters here</p>
-          <p class="body-s mt-3">Between day three and day ten the graft is anchored but not yet secure. Mechanical force — shower pressure, fingertip friction, a picked crust, a towel rubbed across the recipient area — is the realistic way a graft is lost at this stage. Infection is rare. Handling is the risk.</p>
-          <p class="body-s mt-3">This is also why the first wash is demonstrated rather than described. Reading it and doing it are different things, and the cost of getting it wrong is measured in grafts — grafts you have <a href="/hair-transplant-cost-in-gurgaon">already paid for</a>.</p>
-        </div>
-
-        <div class="card mt-4">
-          <p class="h4">Your own instructions come first</p>
-          <p class="body-s mt-2">The page above is general patient education. Your first-wash day, the shampoo specified for you and your spray schedule are set by the clinic's post-operative protocol and given to you in writing at discharge. Where the two differ, follow the written instructions you were given, and call the clinic if anything is unclear.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-hair-fall',
+    'alt'     => 'a wooden comb resting on folded white towels',
+    'id'      => 'how-to-wash-your-hair-after-a-hair-transplant',
+    'eyebrow' => 'The first wash',
+    'title'   => 'How to Wash Your Hair After a Hair Transplant',
+    'tone'    => 'canvas',
+    'reverse' => true,
+    'html'    => '<p>The first wash is usually around day three to five, and at DenceSpot it is either done at the clinic or demonstrated to you before you attempt it yourself. It is the step most often got wrong at home, because the instinct is to treat it like a normal shower.</p>'
+               . '<p><b>Why technique matters.</b> Between day three and day ten the graft is anchored but not yet secure. Mechanical force — shower pressure, fingertip friction, a picked crust, a towel rubbed across the recipient area — is the realistic way a graft is lost at this stage; infection is rare. The cost of getting it wrong is measured in grafts you have <a href="/hair-transplant-cost-in-gurgaon">already paid for</a>.</p>'
+               . '<p><b>Your own instructions come first.</b> Your first-wash day, shampoo and spray schedule are set by the clinic’s post-operative protocol and given to you in writing at discharge. Where they differ from this page, follow them, and call the clinic if anything is unclear.</p>',
+    'points'  => [
+        'Pour, do not spray: water cupped or poured gently over the recipient area, never direct shower pressure.',
+        'Dilute the shampoo in a cup and apply it by dabbing with the flat of the hand, not worked in with fingertips.',
+        'No rubbing, no circles: downward dabbing only. The donor area can be handled slightly more normally.',
+        'Pat dry or air dry: no rubbing, and no hairdryer heat on the grafts.',
+        'Wash gently every day once started — it is what lifts crusting safely.',
+        'Let crusts go on their own, generally by day ten. Picking one can take the graft with it.',
+    ],
+]) ?>
 
 <section class="section section--white">
   <div class="wrap">
@@ -446,11 +432,11 @@ require __DIR__ . '/includes/header.php';
     'Consultations, procedures and follow-up reviews are carried out by registered medical practitioners at the clinic. Aftercare instructions are given in writing, and the first wash is demonstrated rather than described.'
 ) ?>
 
-<?= cta_band(
-    'Questions About Your Recovery?',
-    'Whether you are three days post-procedure or three months in and worried nothing is happening, send a photo on WhatsApp or call the clinic. Recovery questions are answered by a doctor at the clinic.',
-    'hair-transplant-aftercare',
-    ['Hair transplant', 'Beard transplant', 'Hair PRP / GFC therapy', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Gurugram and Delhi',
+    'title'     => 'Questions About Your Recovery?',
+    'text'      => 'Whether you are three days post-procedure or three months in and worried nothing is happening, send a photo on WhatsApp or call the clinic. Recovery questions are answered by a doctor at the clinic.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

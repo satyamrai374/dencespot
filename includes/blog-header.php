@@ -27,9 +27,15 @@ if ($post === null) {
     exit('Post not found.');
 }
 
-$hub    = BLOG_HUBS[$post['hub']] ?? null;
-$url    = blog_url($post['slug']);
-$doctor = DOCTORS['dr-nyra'];
+$hub      = BLOG_HUBS[$post['hub']] ?? null;
+$url      = blog_url($post['slug']);
+$doctor   = DOCTORS['dr-nyra'];
+// A post the clinic's doctor has not reviewed yet makes no review claim — in
+// the byline or in the markup ('reviewed' => false in BLOG_POSTS).
+$reviewed = (bool) ($post['reviewed'] ?? true);
+// The treatment page a post points to: its own 'related' entry if set (the
+// Delhi posts point to Rohini pages), otherwise its hub's page.
+$relatedPage = $post['related'] ?? ($hub !== null ? ['label' => $hub['label'] . ' in Gurgaon', 'url' => $hub['url']] : null);
 
 $crumbs = [
     ['name' => 'Home',  'url' => '/'],
@@ -57,13 +63,27 @@ $page = [
             'dateModified'  => $post['updated'] ?? $post['published'],
             // Attributed to the reviewing doctor: on a YMYL page an
             // unattributed byline is the pattern raters distrust.
-            'author'        => ['@id' => abs_url($doctor['url']) . '#physician'],
-            'reviewedBy'    => ['@id' => abs_url($doctor['url']) . '#physician'],
+            'author'        => $reviewed ? ['@id' => abs_url($doctor['url']) . '#physician'] : ['@id' => SITE_ORIGIN . '/#clinic'],
             // The article is ABOUT hair loss, not about the clinic. Pointing
             // `about` at the business entity told parsers every post was a page
             // about DenceSpot, which is what `publisher` already says.
             'about'         => $post['about'] ?? ['@type' => 'MedicalCondition', 'name' => 'Hair loss'],
         ]),
+        /*
+         * reviewedBy / lastReviewed are WebPage properties, not Article ones —
+         * on the Article they were invalid on all 31 posts. They sit on the
+         * page node, whose mainEntity is the article.
+         */
+        array_filter([
+            '@type'        => 'MedicalWebPage',
+            '@id'          => abs_url($url) . '#webpage',
+            'url'          => abs_url($url),
+            'name'         => $post['title'],
+            'mainEntity'   => ['@id' => abs_url($url) . '#article'],
+            'isPartOf'     => ['@id' => abs_url('/blog/') . '#blog'],
+            'reviewedBy'   => $reviewed ? ['@id' => abs_url($doctor['url']) . '#physician'] : null,
+            'lastReviewed' => $reviewed ? REVIEWED_DATE_ISO : null,
+        ], static fn ($v): bool => $v !== null),
     ],
 ];
 
@@ -86,7 +106,7 @@ require __DIR__ . '/header.php';
   <div class="wrap" style="max-width:820px">
 
     <?php if ($hub !== null): ?>
-      <a class="pill" href="<?= e($hub['url']) ?>" style="text-decoration:none"><?= e($hub['label']) ?></a>
+      <a class="pill" href="/blog/?topic=<?= e($post['hub']) ?>" style="text-decoration:none"><?= e($hub['label']) ?></a>
     <?php endif; ?>
 
     <h1 class="h1 mt-3"><?= e($post['title']) ?></h1>
@@ -97,7 +117,11 @@ require __DIR__ . '/header.php';
       <span class="brand__mark" style="background:var(--accent-tint)"><?= icon('user', 19, 'var(--accent-deep)') ?></span>
       <div style="flex:1 1 220px">
         <p class="body-s" style="font-weight:600;color:var(--ink)">
+          <?php if ($reviewed): ?>
           Written and medically reviewed by <a href="<?= e($doctor['url']) ?>"><?= e($doctor['name']) ?>, <?= e($doctor['quals']) ?></a>
+          <?php else: ?>
+          Written by the <?= e(SITE_NAME) ?> team
+          <?php endif; ?>
         </p>
         <p class="meta mt-1">
           Published <time datetime="<?= e($post['published']) ?>"><?= e(blog_date($post['published'])) ?></time>
@@ -108,5 +132,11 @@ require __DIR__ . '/header.php';
         </p>
       </div>
     </div>
+
+    <?php
+      // A labelled AI illustration under every post title (blog_post_art()).
+      [$artKey, $artAlt] = blog_post_art($post);
+    ?>
+    <?= lp_figure($artKey, $artAlt, '(min-width: 860px) 780px, 100vw', 'blog-hero mt-5') ?>
 
     <div class="prose mt-6">

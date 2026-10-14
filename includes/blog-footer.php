@@ -31,13 +31,13 @@ $related = blog_posts($post['hub'], $post['slug']);
       <p class="body-s"><b>Medical disclaimer.</b> <?= e(MEDICAL_DISCLAIMER) ?></p>
     </div>
 
-    <?php if ($hub !== null): ?>
+    <?php if ($relatedPage !== null): ?>
     <div class="card card--pad-lg mt-4" style="background:var(--card)">
       <p class="eyebrow" style="color:var(--ink-muted)">Related treatment</p>
-      <h2 class="h3 mt-2">Considering <?= e(strtolower($hub['label'])) ?> treatment?</h2>
+      <h2 class="h3 mt-2">Considering <?= e(strtolower($hub['label'] ?? 'this')) ?> treatment?</h2>
       <p class="body-s mt-2">This article is patient education. What applies to your own case is decided after an examination — the treatment page sets out how that works, what it costs and what to expect.</p>
       <div class="btn-row mt-4">
-        <a class="btn btn--ink" href="<?= e($hub['url']) ?>"><?= e($hub['label']) ?> in Gurgaon</a>
+        <a class="btn btn--ink" href="<?= e($relatedPage['url']) ?>"><?= e($relatedPage['label']) ?></a>
         <a class="btn btn--outline" href="/book-consultation" data-book data-track="book">Book a consultation</a>
       </div>
     </div>

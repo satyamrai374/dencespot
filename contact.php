@@ -6,6 +6,10 @@
  * convert, this one answers "where are you, when are you open, how do I get
  * there". Splitting them keeps the conversion page free of distractions and
  * gives the local-intent queries somewhere sensible to land.
+ *
+ * 14 Oct 2026 — landing-page layout: "Practical Notes" is an lp_split and the
+ * closing call to action an lp_cta (AI illustrations, each with its visible
+ * AI label). The hero keeps the two clinic cards; the page presents both clinics.
  */
 
 declare(strict_types=1);
@@ -20,7 +24,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Contact DenceSpot Clinic | Gurugram & Delhi Locations',
-    'description' => 'Visit DenceSpot Clinic in Gurugram (Sector 39) and Delhi. Clinic addresses, embedded Google Maps, directions, opening hours, phone and WhatsApp. ' . HOURS_DISPLAY . '.',
+    'description' => 'Contact DenceSpot Clinic in Sector 39, Gurugram and Rohini, Delhi: addresses, maps, directions, phone and WhatsApp. Open ' . HOURS_DISPLAY . '.',
     'url'         => '/contact',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -50,6 +54,7 @@ require __DIR__ . '/includes/header.php';
         <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Message on WhatsApp</a>
       </div>
     </div>
+    <h2 class="sr-only">Our two clinics</h2>
     <div class="mt-6"><?= hp_clinic_cards() ?></div>
   </div>
 </section>
@@ -148,27 +153,26 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white">
-  <div class="wrap">
-    <div class="split split--sidebar">
-      <div>
-        <p class="eyebrow">Before you travel</p>
-        <h2 id="practical-notes" class="h2 mt-2">Practical Notes</h2>
-      </div>
-      <div class="grid grid--2">
-        <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Opening hours</h3><p class="body-s mt-2">Both clinics: <?= e(HOURS_DISPLAY) ?>. <?= e(HOURS_NOTE) ?>. Enquiries sent overnight are answered the next working morning.</p></div>
-        <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">What to bring</h3><p class="body-s mt-2">Your medical history and a list of any current medicines. If you have had a previous procedure elsewhere, bring whatever records you have.</p></div>
-        <div class="card"><?= icon('chat', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Travelling from further away</h3><p class="body-s mt-2">Send photos on WhatsApp first. The clinic will tell you whether a consultation is worth the journey before you make it.</p></div>
-        <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Your privacy</h3><p class="body-s mt-2">Details you send are used only to arrange your consultation. Photographs are kept on your clinical record, are not used in advertising, and are not shared without your written consent.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-consultation',
+    'alt'     => 'a dermatoscope and a notepad with a pencil on a wooden desk beside a fern',
+    'id'      => 'practical-notes',
+    'eyebrow' => 'Before you travel',
+    'title'   => 'Practical Notes',
+    'html'    => '<p><b>Opening hours.</b> Both clinics: ' . e(HOURS_DISPLAY) . '. ' . e(HOURS_NOTE) . '. Enquiries sent overnight are answered the next working morning.</p>'
+               . '<p><b>Travelling from further away?</b> Send photos on <a href="' . e(WHATSAPP_URL) . '" rel="noopener" data-track="whatsapp">WhatsApp</a> first. The clinic will tell you whether a consultation is worth the journey before you make it.</p>',
+    'points'  => [
+        'What to bring: your medical history and a list of any current medicines.',
+        'If you have had a previous procedure elsewhere, bring whatever records you have.',
+        'Your privacy: details you send are used only to arrange your consultation.',
+        'Photographs are kept on your clinical record, are not used in advertising, and are not shared without your written consent.',
+    ],
+]) ?>
 
-<?= cta_band(
-    'Book Your Consultation',
-    'Tell us how to reach you and the clinic will call you back during opening hours to arrange a time.',
-    'contact'
-) ?>
+<?= lp_cta([
+    'eyebrow' => 'Gurugram and Delhi',
+    'title'   => 'Book Your Consultation',
+    'text'    => 'Tell us how to reach you and the clinic will call you back during opening hours to arrange a time.',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

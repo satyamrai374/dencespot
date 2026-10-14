@@ -25,6 +25,10 @@
  * ⚠ No Offer / AggregateOffer / price schema for the market ranges. They are
  * not this clinic's prices, and schema.php's rule is that no price appears in
  * structured data unless it is. Refresh $marketAsOf and $marketRows together.
+ *
+ * 14 Oct 2026: landing-page layout (lp_split / lp_steps / lp_cta); the graft
+ * and market tables stay as they were. Per the client, this Gurugram page
+ * never mentions the Rohini clinic.
  */
 
 declare(strict_types=1);
@@ -106,6 +110,7 @@ $page = [
     'description' => 'Beard transplant cost in Gurgaon, 2026: grafts by zone, what other clinics advertise (₹35–₹100 per graft; moustache to full beard) and what a quote should include.',
     'url'         => '/beard-transplant-cost-gurgaon',
     'crumbs'      => $crumbs,
+    'preload_image' => '/assets/img/services/svc-beard-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -126,7 +131,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">How many grafts each beard zone typically needs, what clinics in Gurgaon and Gurugram advertised in <?= e($marketAsOf) ?> — per graft and by zone — and why a per-graft rate on its own can mislead. DenceSpot’s own figure is quoted in writing after assessment; we do not publish a starting price, and the reasons are set out below.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Beard transplant" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Send Photos on WhatsApp</a>
         </div>
 
@@ -134,21 +139,22 @@ require __DIR__ . '/includes/header.php';
             'Itemised estimate in writing before booking',
             'Graft count from a mapped design, not a package',
             'Staging costed upfront, not raised later',
-            'Consultations in Sector 39, Gurugram and Rohini, Delhi',
+            'Consultations at our Sector 39, Gurugram clinic',
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
-        <div class="hero__badge-card">
-          <p class="eyebrow">Medically reviewed by</p>
-          <p class="h4 mt-1"><?= doctor_name() ?></p>
-          <p class="meta"><?= doctor_credit() ?></p>
+        <div class="media ratio-4-5 media--shadow">
+          <img src="/assets/img/services/svc-beard-768.webp" srcset="/assets/img/services/svc-beard-512.webp 512w, /assets/img/services/svc-beard-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a wooden comb and a wooden beard brush lying on a folded green cloth" width="768" height="960" loading="eager" fetchpriority="high">
+          <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
+        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
+
+<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -171,7 +177,7 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="card mt-6" style="padding:0;overflow:hidden">
       <div class="table-scroll">
-        <table class="data">
+        <table class="data" style="min-width:720px">
           <caption class="sr-only">General beard transplant graft ranges by zone — patient education, not a quote</caption>
           <thead>
             <tr><th scope="col">Zone</th><th scope="col">General graft range</th><th scope="col">What moves it</th></tr>
@@ -229,29 +235,36 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="why-no-price">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">The starting point</p>
-        <h2 class="h2 mt-2">Why There Is No Single Beard Transplant Price</h2>
-        <p class="body-l mt-3 measure">A beard transplant is not one procedure. Filling two patchy areas on the cheeks of a man who already has reasonable growth, and building a full beard for someone with almost none, are separated by a large multiple in graft numbers. Publishing one price for both would be meaningless.</p>
-        <p class="body-l mt-3 measure">The variable that actually drives cost is the graft count, and the graft count comes out of two things: which zones you want treated, and how much native hair is already growing in them. Both of those are established by looking at your face, which is why the estimate follows the consultation rather than preceding it.</p>
-        <p class="body-l mt-3 measure">The advertised ranges above are published so you have a realistic frame of reference before you walk into any clinic, including this one. They are other clinics’ figures, not ours, and they are not a promise that your case falls inside them.</p>
-        <p class="body mt-3 measure">For what the procedure itself involves — technique, recovery, the right age and donor options — see <a href="/beard-transplant-gurgaon">beard transplant in Gurgaon</a>. For how pricing works across all our procedures, see the <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost guide</a>.</p>
-      </div>
-      <div class="card card--pad-lg">
-        <p class="eyebrow">What you get instead</p>
-        <h3 class="h3 mt-2">An itemised written estimate</h3>
-        <p class="body mt-3">After assessment, you receive a written estimate that states the zones being treated, the graft count for each, the technique, and what the figure covers.</p>
-        <p class="body mt-3">If a second stage is likely, that is stated and costed at the same time rather than introduced once you are already committed.</p>
-        <p class="body mt-3">You take it away. There is no expectation that you book on the day.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles beneath the surface',
+    'eyebrow' => 'The starting point',
+    'title'   => 'Why There Is No Single Beard Transplant Price',
+    'id'      => 'why-no-price',
+    'html'    => '<p>A beard transplant is not one procedure. Filling two patchy areas on the cheeks of a man who already has reasonable growth, and building a full beard for someone with almost none, are separated by a large multiple in graft numbers, so one price for both would be meaningless.</p>'
+               . '<p>The graft count drives cost, and it comes from two things: which zones you want treated, and how much native hair already grows in them. Both are established by looking at your face, which is why the estimate follows the consultation rather than preceding it.</p>'
+               . '<p>The advertised ranges above are a realistic frame of reference before you walk into any clinic, including this one. They are other clinics’ figures, not ours, and not a promise that your case falls inside them. For the procedure itself — technique, recovery, the right age and donor options — see <a href="/beard-transplant-gurgaon">beard transplant in Gurgaon</a>; for pricing across all our procedures, the <a href="/hair-transplant-cost-in-gurgaon">hair transplant cost guide</a>.</p>',
+    'points'  => [
+        'An itemised written estimate after assessment instead of a price list',
+        'Zones treated, grafts for each, the technique and what the figure covers',
+        'A likely second stage stated and costed at the same time, not once you are committed',
+    ],
+]) ?>
 
-<section class="section section--canvas" id="drivers">
+<?= lp_steps([
+    'eyebrow' => 'How your figure is reached',
+    'title'   => 'From Assessment to a Written Estimate',
+    'id'      => 'estimate-steps',
+    'intro'   => 'The number follows the plan, and the plan follows an examination of your face and your donor area.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                 'title' => 'Assessment',             'text' => 'Your existing growth and the zones you want treated are assessed, and the donor area is examined with density measurement.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line', 'title' => 'Design and graft count', 'text' => 'A design is agreed with you, then grafts are allocated zone by zone. Shape changes the count, so the two move together.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',           'title' => 'Your written estimate',  'text' => 'Itemised by zone, with anything excluded stated. You take it away; there is no expectation that you book on the day.'],
+    ],
+]) ?>
+
+<section class="section section--white" id="drivers">
   <div class="wrap">
     <p class="eyebrow">Cost drivers</p>
     <h2 class="h2 mt-2">The Six Things That Move Your Number</h2>
@@ -283,41 +296,24 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="included">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <p class="eyebrow">What the estimate covers</p>
-        <h2 class="h2 mt-2">Reading Your Written Estimate</h2>
-        <p class="body-l mt-3 measure">Your estimate is itemised so that you can see what drives the total rather than being handed a single figure. It states the zones being treated and the graft count allocated to each, the technique planned, and the scheduled follow-up reviews.</p>
-        <p class="body-l mt-3 measure">It also states anything that is not included, and whether a second stage is anticipated. If your plan involves supporting medical treatment, that is listed and costed separately so you can see it clearly.</p>
-        <p class="body-l mt-3 measure">You take the estimate away with you. There is no discount for booking on the day, because a price that expires is a pressure tactic rather than a price.</p>
-        <p class="body mt-3 measure">Payment and instalment options are set out on our <a href="/cost-and-emi-options">cost and EMI options</a> page, and what applies to you is confirmed at consultation.</p>
-      </div>
-      <div>
-        <div class="card card--pad-lg">
-          <p class="h4">Typically itemised</p>
-          <div class="mt-3"><?= ticks([
-              'Zones treated and grafts allocated to each',
-              'Technique used across each zone',
-              'Anaesthesia and procedure-day medication',
-              'Dressings and post-procedure supplies',
-              'Scheduled follow-up reviews',
-          ], false) ?></div>
-        </div>
-        <div class="card card--pad-lg mt-4">
-          <p class="h4">Stated separately</p>
-          <div class="mt-3"><?= ticks([
-              'Any anticipated second stage',
-              'Supporting medical treatment',
-              'Whether pre-procedure blood tests are included',
-              'Anything excluded from the figure',
-          ], false) ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lp_split([
+    'img'     => 'svc-procedure',
+    'alt'     => 'two pairs of tweezers, six punch tips and a slim steel handle laid out on a green surgical cloth',
+    'eyebrow' => 'What the estimate covers',
+    'title'   => 'Reading Your Written Estimate',
+    'id'      => 'included',
+    'reverse' => true,
+    'html'    => '<p>Your estimate is itemised so that you can see what drives the total rather than being handed a single figure. It also states anything that is not included and whether a second stage is anticipated, and any supporting medical treatment is listed and costed separately.</p>'
+               . '<p>You take the estimate away with you. There is no discount for booking on the day, because a price that expires is a pressure tactic rather than a price. Payment and instalment options are set out on our <a href="/cost-and-emi-options">cost and EMI options</a> page, and what applies to you is confirmed at consultation.</p>',
+    'points'  => [
+        'Itemised: zones treated and the grafts allocated to each',
+        'Itemised: the technique used across each zone',
+        'Itemised: anaesthesia, procedure-day medication, dressings and post-procedure supplies',
+        'Itemised: scheduled follow-up reviews',
+        'Stated separately: any anticipated second stage and supporting medical treatment',
+        'Stated separately: whether pre-procedure blood tests are included, and anything excluded',
+    ],
+]) ?>
 
 <?= doctor_block(
     'Consultations and procedures are carried out by registered medical practitioners at the clinic. The graft count in a beard estimate is set after the beard zones and the scalp donor area have been examined.'
@@ -339,14 +335,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Beard Transplant Estimates at Our Gurugram Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, and beard transplant estimates are given in writing after assessment. Consultations are also available at our Rohini, Delhi clinic.'
+    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, and beard transplant estimates are given in writing after assessment.'
 ) ?>
 
-<?= cta_band(
-    'Get a Beard Transplant Estimate Based on Your Face',
-    'Send photos of your cheeks, jawline and chin in daylight, or come in and have the zones mapped properly. You will leave with an itemised written estimate and a graft count you can actually interrogate.',
-    'beard-transplant-cost',
-    ['Beard transplant — cheeks', 'Beard transplant — full beard', 'Moustache or chin only', 'Sideburns', 'Not sure — please advise']
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Sector 39, Gurugram',
+    'title'     => 'Get a Beard Transplant Estimate Based on Your Face',
+    'text'      => 'Send photos of your cheeks, jawline and chin in daylight, or come in and have the zones mapped properly. You will leave with an itemised written estimate and a graft count you can actually interrogate.',
+    'treatment' => 'Beard transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

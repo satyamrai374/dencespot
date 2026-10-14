@@ -8,11 +8,18 @@
  * Cannibalisation split: /hair-transplant-in-rohini owns the broad Rohini
  * query (candidacy, the day, recovery, cost). This page owns how FUE
  * extraction works, the dot scars it leaves, shaving, donor limits and the
- * FUE-or-DHI choice, and links up to the Rohini pillar and across to the
- * Gurugram FUE page for depth.
+ * FUE-or-DHI choice, and links up to the Rohini pillar.
+ *
+ * Per the client (14 Oct 2026) the page never mentions the Gurugram clinic
+ * and never links to a Gurugram URL. Landing-page layout: lp_split /
+ * lp_steps / lp_cta (includes/home-components.php).
  *
  * Not yet reviewed by the clinic's doctor: doctor_block(..., false), no review
  * byline, not in MEDICAL_PAGES, and no named performer in the schema.
+ *
+ * SEO round 2 (14 Oct 2026, COMPETITOR-SEO §4 #6, §5): "who it suits / who it
+ * does not" table, a cost-factors section linking
+ * /hair-transplant-cost-in-rohini (no prices), and 14 FAQs.
  */
 
 declare(strict_types=1);
@@ -20,19 +27,52 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
 
+/**
+ * Who FUE suits. Each row restates a fact already on this page or the Rohini
+ * pillar's candidacy section; it is a general guide, not a verdict.
+ */
+$suitRows = [
+    ['situation' => 'Pattern loss that has slowed into a clear shape',  'fit' => 'Usually suits',     'why' => 'The plan can be drawn against loss that has settled, accepting that surrounding hair may keep thinning.'],
+    ['situation' => 'Fast-moving loss that is still changing',          'fit' => 'Not yet',           'why' => 'Medical treatment comes first, so grafts are not placed ahead of loss that has not settled.'],
+    ['situation' => 'A donor area with density to spare',               'fit' => 'Usually suits',     'why' => 'The graft count can cover the priority zone and keep a reserve for later.'],
+    ['situation' => 'A thin or thinning donor area',                    'fit' => 'Usually does not',  'why' => 'Taking more would thin the back of the head and make the dots visible, and that cannot be undone.'],
+    ['situation' => 'The crown, mid-scalp or several zones',            'fit' => 'Usually suits',     'why' => 'FUE placement is efficient over larger areas and larger graft numbers.'],
+    ['situation' => 'Only the front rows or the temples',               'fit' => 'Often DHI, or both', 'why' => 'Graft-by-graft control of angle and depth matters most there.'],
+    ['situation' => 'Hair kept short at the sides',                     'fit' => 'Usually suits',     'why' => 'Spread evenly, dot scars hide better than a line at most hair lengths.'],
+    ['situation' => 'The back kept shaved to the skin',                 'fit' => 'Discuss first',     'why' => 'The dots can show as faint speckling, so say so at the consultation.'],
+    ['situation' => 'An earlier strip (FUT) scar',                      'fit' => 'Often suits',       'why' => 'Assessed on examination; grafts can sometimes be placed into the old scar to soften it.'],
+    ['situation' => 'Active alopecia areata, or an untreated cause such as low iron', 'fit' => 'Not yet', 'why' => 'The cause is investigated and treated first.'],
+];
+
 $faqs = [
     ['q' => 'Is FUE carried out at the Rohini clinic?',
-     'a' => 'Yes. FUE hair transplants are carried out at the Rohini clinic in North-West Delhi by registered medical practitioners, as they are at our Sector 39, Gurugram clinic. The consultation, the procedure and the follow-up reviews can all be at Rohini.'],
+     'a' => 'Yes. FUE hair transplants are carried out at the Rohini clinic in North-West Delhi by registered medical practitioners. The consultation, the procedure and the follow-up reviews can all be at Rohini.'],
+    ['q' => 'How much does FUE cost in Rohini?',
+     'a' => 'There is no fixed price. Cost follows the graft count, how the sessions are structured, your hair characteristics and any supporting treatment, and it is quoted itemised and in writing after the donor assessment. <a href="/hair-transplant-cost-in-rohini">Hair transplant cost in Rohini</a> works through the arithmetic.'],
+    ['q' => 'Is EMI available for FUE?',
+     'a' => 'Instalment options through third-party lenders may be available — ask at the consultation. Interest, tenure and eligibility are set by the lender, so compare the total payable with the amount on your estimate before signing. See <a href="/cost-and-emi-options">cost, EMI and payment options</a>.'],
     ['q' => 'Does FUE leave scars?',
      'a' => 'Yes, but as many tiny round dots rather than one line — usually pale and under a millimetre across, spread through the donor area. Spread evenly, they are hard to see at most hair lengths. Clustered or excessive extraction is what makes them visible.'],
     ['q' => 'Do I have to shave my head for FUE?',
      'a' => 'The donor area is trimmed short so each follicle can be extracted accurately. Whether the thinning area is trimmed depends on your plan. Unshaven and partially shaved approaches exist for smaller sessions, but they are slower and do not suit every case.'],
     ['q' => 'How many grafts can one FUE session take?',
      'a' => 'As many as your donor supply, scalp laxity and stamina for a long day allow — not a headline figure. Where the donor cannot support one large session, splitting the work over two protects it.'],
+    ['q' => 'How long does an FUE procedure take?',
+     'a' => 'It scales with the graft count. Smaller sessions take a few hours; larger ones run through most of the day, with breaks for food and rest. FUE is a day case under local anaesthetic, and you go home the same day.'],
+    ['q' => 'Should I eat, or stop any medicines, before FUE?',
+     'a' => 'Eat a proper meal beforehand. Bring a list of every medicine and supplement you take, and do not stop a prescribed medicine on your own: blood thinners and alcohol are reviewed at the consultation, and you are told what to pause and when. Stopping smoking well before the procedure helps healing.'],
     ['q' => 'Can I have FUE if I had a strip (FUT) procedure before?',
      'a' => 'Often, yes. An old strip scar does not by itself rule out FUE, though scalp laxity and the state of the donor need assessing, and grafts can sometimes be placed into the old scar to soften it. This is decided on examination.'],
+    ['q' => 'When can I go back to work after FUE?',
+     'a' => 'Most people return to desk work within a few days. The donor area has pinpoint scabs and the recipient area small crusts for the first week or two. Work that is strenuous or involves a helmet waits until a review clears it.'],
+    ['q' => 'When can I wear a helmet, exercise or go out in the sun?',
+     'a' => 'Helmets and tight caps wait until a review clears them, and then only loose-fitting ones, so travel home by car or cab rather than on a two-wheeler. Full gym training usually resumes at around three to four weeks and swimming at around four, and the recipient area is kept out of direct sun for the first few weeks.'],
+    ['q' => 'When will I see the result of FUE?',
+     'a' => 'Transplanted hairs commonly shed in weeks two to four while the follicles stay in place. Fine new hair appears from around three to four months, and the result is judged at about ten to twelve months against standardised photographs. Results vary between patients.'],
     ['q' => 'How often will I need to come back to Rohini?',
      'a' => 'There is a wash and review in the first week, then reviews with standardised photographs as the transplanted hair sheds and regrows, up to about twelve months. These take place at the Rohini clinic.'],
+    ['q' => 'Can I send photographs on WhatsApp before booking?',
+     'a' => 'Yes. Photographs of your hairline, crown and the back of your head, sent on WhatsApp to ' . LOC_DELHI_PHONE_DISPLAY . ', help the appointment start from the right questions. A graft count is given only once your donor area has been examined. The Rohini clinic is open ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . ').'],
 ];
 
 $crumbs = [
@@ -42,8 +82,8 @@ $crumbs = [
 ];
 
 $page = [
-    'title'         => 'FUE Hair Transplant in Rohini, Delhi | DenceSpot Clinic',
-    'description'   => 'FUE hair transplant in Rohini, Delhi: how follicles are extracted one by one, the dot scars FUE leaves, shaving, donor limits and when DHI fits better.',
+    'title'         => 'FUE Hair Transplant in Rohini, Delhi: Process & Cost',
+    'description'   => 'FUE hair transplant in Rohini, Delhi: how follicles are extracted, the dot scars FUE leaves, who it suits and who it does not, recovery and what decides cost.',
     'url'           => '/fue-hair-transplant-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
@@ -73,7 +113,7 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap">
     <div class="split">
       <div>
-        <span class="pill pill--dot">Clinic 2 · Rohini, Delhi</span>
+        <span class="pill pill--dot">Rohini, Delhi</span>
         <h1 class="h1 mt-3">FUE Hair Transplant in Rohini, Delhi</h1>
         <p class="lead mt-3 measure">FUE — follicular unit extraction — takes hair from the donor area one small group at a time, with a punch well under a millimetre across. It is carried out at our Rohini clinic by registered medical practitioners. Whether it suits you depends less on the technique than on how much your donor area can spare, and that is measured before any graft count is given.</p>
 
@@ -96,7 +136,7 @@ require __DIR__ . '/includes/header.php';
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
-          <p class="eyebrow">Clinic 2 · Rohini</p>
+          <p class="eyebrow">Rohini Clinic</p>
           <p class="h4 mt-1"><a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a></p>
           <p class="meta"><?= e(HOURS_DISPLAY) ?><span style="display:block"><?= e(HOURS_NOTE) ?></span></p>
         </div>
@@ -105,27 +145,22 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="extraction">
-  <div class="wrap">
-    <div class="split split--wide-left">
-      <div>
-        <p class="eyebrow">The technique</p>
-        <h2 class="h2 mt-2">How FUE Extraction Works</h2>
-        <div class="stack mt-4 measure">
-          <p class="body-l">Hair grows in natural groups of one to four hairs, called follicular units. In FUE each unit is freed with a fine circular punch and lifted out whole. Punch size and depth are matched to the thickness of your hair and the angle it leaves the skin, because a follicle cut during extraction may not grow.</p>
-          <p class="body-l">The harvest is spread across the back and sides of the head rather than taken from one patch, so the donor area stays even. The units are then sorted under magnification and kept in a holding solution: single hairs for the hairline, larger units behind it, where density shows.</p>
-          <p class="body">Finally, recipient sites are made across the thinning area at the angle and direction of the surrounding hair, and the grafts are set into them. In DHI the extraction is the same and only this last step differs — see <a href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini</a>. For the wider picture, read <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="card card--tint">
-          <p class="eyebrow" style="color:var(--ink-muted)">Graft or hair?</p>
-          <p class="body mt-2">A graft is one follicular unit; a hair is one strand. Two thousand grafts may carry roughly 4,000 to 5,000 hairs, so always ask which unit a quote is in.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?= lead_strip() ?>
+
+<?= lp_split([
+    'img'     => 'svc-follicle',
+    'alt'     => 'a sculpted cross-section of the scalp showing hair follicles beneath the skin',
+    'eyebrow' => 'The technique',
+    'title'   => 'How FUE Extraction Works',
+    'html'    => '<p>Hair grows in natural groups of one to four hairs, called follicular units. In FUE each unit is freed with a fine circular punch and lifted out whole. Punch size and depth are matched to your hair and the angle it leaves the skin, because a follicle cut during extraction may not grow.</p>'
+               . '<p>The units are sorted under magnification, then set into recipient sites made at the angle and direction of the surrounding hair. In DHI the extraction is the same and only this last step differs: see <a href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini</a>, or the wider picture on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>'
+               . '<p><b>Graft or hair?</b> A graft is one follicular unit; a hair is one strand. Two thousand grafts may carry roughly 4,000 to 5,000 hairs, so always ask which unit a quote is in.</p>',
+    'points'  => [
+        'The harvest is spread across the back and sides, so the donor stays even',
+        'Units are kept in a holding solution until they are placed',
+        'Single hairs for the hairline, larger units behind it',
+    ],
+]) ?>
 
 <section class="section section--canvas" id="scars-and-shaving">
   <div class="wrap">
@@ -143,35 +178,62 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--3 mt-4">
       <div class="card card--tint"><p class="h4">The donor area</p><p class="body-s mt-2">Trimmed to a short, even length so the punch can follow each follicle beneath the skin. This is needed in every FUE.</p></div>
       <div class="card card--tint"><p class="h4">The thinning area</p><p class="body-s mt-2">Whether it is trimmed depends on your case, and is agreed at the consultation rather than on the day.</p></div>
-      <div class="card card--tint"><p class="h4">Unshaven options</p><p class="body-s mt-2">Possible for smaller sessions, but slower and not right for every plan. See <a href="/unshaven-hair-transplant-in-gurgaon">how unshaven transplants work</a>.</p></div>
+      <div class="card card--tint"><p class="h4">Unshaven options</p><p class="body-s mt-2">Possible for smaller sessions, but slower and not right for every plan. See <a href="/unshaven-hair-transplant-in-rohini">unshaven hair transplant in Rohini</a>.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="donor-limits">
+<?= lp_split([
+    'img'     => 'intro-donor',
+    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'eyebrow' => 'The ceiling on FUE',
+    'title'   => 'Donor Limits and Over-harvesting',
+    'reverse' => true,
+    'html'    => '<p>Hair at the back and sides is generally resistant to pattern loss, which is why it is used. But there is only so much of it, and extracted follicles do not grow back.</p>'
+               . '<p><b>Three questions for any FUE quote:</b> is the number in grafts or hairs, how was it arrived at, and what will be left in the donor afterwards? More in <a href="/blog/donor-area-limits-hair-transplant">what a donor area can and cannot cover</a>.</p>'
+               . '<p>The same numbers drive the cost, which is quoted in writing after the assessment: see <a href="#cost">FUE cost in Rohini</a> below.</p>',
+    'points'  => [
+        'Over-harvesting, too many grafts or from too concentrated an area, leaves the donor visibly thin with obvious dots, and donor hair cannot be put back',
+        'Session size is set by donor supply, scalp laxity and how you manage a long day; where one large session is too much, staging protects the donor',
+        'Pattern loss usually continues, so part of the donor is held back rather than all spent on the hairline now',
+    ],
+]) ?>
+
+<section class="section section--canvas" id="who-it-suits">
   <div class="wrap">
     <div style="max-width:62ch">
-      <p class="eyebrow">The ceiling on FUE</p>
-      <h2 class="h2 mt-2">Donor Limits and Over-harvesting</h2>
-      <p class="body mt-3">Hair at the back and sides is generally resistant to pattern loss, which is why it is used. But there is only so much of it, and extracted follicles do not grow back.</p>
+      <p class="eyebrow">Candidacy</p>
+      <h2 class="h2 mt-2">Who FUE Suits — and Who It Does Not</h2>
+      <p class="body mt-3">A general guide only: suitability is decided once your scalp and donor area have been examined at the Rohini clinic. The six-question <a href="/hair-loss-assessment">hair loss self-assessment</a> can help you describe your pattern before you book.</p>
     </div>
-    <div class="grid grid--3 mt-6">
-      <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Over-harvesting</h3><p class="body-s mt-2">Taking more than the donor can spare, or from too concentrated an area, leaves it visibly thin with obvious dots. Donor hair cannot be put back.</p></div>
-      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Session size</h3><p class="body-s mt-2">Set by donor supply, scalp laxity and how you manage a long day. Where the donor cannot support one large session, staging protects it.</p></div>
-      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Keeping a reserve</h3><p class="body-s mt-2">Pattern loss usually continues. Spending the whole donor on the hairline now may leave nothing for the crown later, so part is held back.</p></div>
+    <div class="card mt-5" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+        <table class="data data--fit">
+          <caption class="sr-only">Situations in which FUE hair transplant usually suits, may suit or does not yet suit, with the reason for each — a general guide, not a diagnosis</caption>
+          <thead>
+            <tr><th scope="col">Your situation</th><th scope="col">FUE, and why</th></tr>
+          </thead>
+          <tbody>
+            <?php foreach ($suitRows as $r): ?>
+            <tr>
+              <th scope="row" style="white-space:normal;width:38%"><?= e($r['situation']) ?></th>
+              <td><b style="color:var(--ink)"><?= e($r['fit']) ?>.</b> <?= e($r['why']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="note mt-4">
-      <p class="body-s"><b>Three questions for any FUE quote:</b> is the number in grafts or hairs, how was it arrived at, and what will be left in the donor afterwards? More in <a href="/blog/donor-area-limits-hair-transplant">what a donor area can and cannot cover</a>.</p>
-    </div>
+    <p class="body-s mt-4 measure">If FUE is not right for you yet, <a href="/hair-fall-treatment-in-rohini">hair fall treatment in Rohini</a> or <a href="/hair-prp-treatment-in-rohini">PRP in Rohini</a> may come first, and the question can be revisited once the loss has settled.</p>
   </div>
 </section>
 
-<section class="section section--canvas" id="fue-or-dhi">
+<section class="section section--white" id="fue-or-dhi">
   <div class="wrap">
     <div style="max-width:62ch">
       <p class="eyebrow">Choosing a technique</p>
-      <h2 class="h2 mt-2">Who FUE Suits — and When DHI Fits Better</h2>
-      <p class="body mt-3">Extraction is the same in both, so the choice is about placement. Many plans combine them, and the reasoning for yours is written into the estimate.</p>
+      <h2 class="h2 mt-2">FUE or DHI: Which Placement Fits Where</h2>
+      <p class="body mt-3">Extraction is the same in both, so the choice is about placement. Many plans combine them, and the reasoning for yours is written into the estimate. <a href="/blog/fue-vs-dhi-hair-transplant">FUE vs DHI</a> compares the two in more depth.</p>
     </div>
     <div class="grid grid--2 mt-6">
       <div class="card card--pad-lg">
@@ -198,20 +260,34 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<section class="section section--white" id="at-rohini">
+<?= lp_steps([
+    'eyebrow' => 'Day and follow-up',
+    'title'   => 'FUE at the Rohini Clinic',
+    'intro'   => 'FUE is a day case under local anaesthetic, and every stage below takes place at the Rohini clinic. Results vary between patients, and no clinic can promise a particular density.',
+    'tone'    => 'canvas',
+    'steps'   => [
+        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Donor assessment',    'text' => 'Your pattern of loss is examined and your donor density measured before any graft count is given.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'A written plan',      'text' => 'A mapped graft count, the reasoning for FUE, DHI or both, and the cost in writing. You are not asked to book a date on the day.'],
+        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Procedure day',       'text' => 'Smaller sessions take a few hours; larger ones run through most of the day, with breaks. You go home the same day.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',               'title' => 'Healing and reviews', 'text' => 'Crusts and pinpoint donor scabs in week one, when washing is taught and the first review is at Rohini. Shedding in weeks 2–4, new growth from months 3–4, and the result judged at 10–12 months against standardised photographs.'],
+    ],
+]) ?>
+
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div style="max-width:62ch">
-      <p class="eyebrow">Day and follow-up</p>
-      <h2 class="h2 mt-2">FUE at the Rohini Clinic</h2>
-      <p class="body mt-3">FUE is a day case under local anaesthetic. Smaller sessions take a few hours; larger ones run through most of the day, with breaks. The full sequence, from consultation to discharge, is on the <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> page.</p>
+      <p class="eyebrow">Cost guidance</p>
+      <h2 class="h2 mt-2">FUE Cost in Rohini: What Decides It</h2>
+      <p class="body mt-3">There is no fixed price for FUE, because no two plans use the same number of grafts. Cost is broadly the graft count multiplied by a per-graft rate, plus what the estimate includes, and it is given to you itemised and in writing after the donor assessment.</p>
     </div>
-    <div class="grid grid--4 mt-6">
-      <div class="card"><span class="pill">Week 1</span><p class="body-s mt-3">Small crusts at the grafts and pinpoint scabs across the donor. Washing is taught, and the first review is at Rohini.</p></div>
-      <div class="card"><span class="pill">Weeks 2–4</span><p class="body-s mt-3">Transplanted hairs commonly shed while the follicles stay in place. Expected.</p></div>
-      <div class="card"><span class="pill">Months 3–4</span><p class="body-s mt-3">New growth begins, uneven and fine at first. Donor dots have usually faded.</p></div>
-      <div class="card"><span class="pill pill--ink">Months 10–12</span><p class="body-s mt-3">The result is judged against standardised photographs from your reviews.</p></div>
+    <div class="grid grid--4 mt-5">
+      <div class="card"><p class="h4">Graft count</p><p class="meta mt-1">Mapped from your scalp, zone by zone</p></div>
+      <div class="card"><p class="h4">Sessions</p><p class="meta mt-1">One sitting, or staged to protect the donor</p></div>
+      <div class="card"><p class="h4">Your hair</p><p class="meta mt-1">Donor density and hair thickness</p></div>
+      <div class="card"><p class="h4">Supporting treatment</p><p class="meta mt-1">Medication or PRP alongside</p></div>
     </div>
-    <p class="body-s mt-5 measure">Cost depends on the graft count, session structure, hair characteristics and any supporting treatment, so it is quoted in writing after the assessment — see <a href="/hair-transplant-cost-in-gurgaon">how hair transplant cost is worked out</a>. For the technique in more depth, read the <a href="/fue-hair-transplant-in-gurgaon">FUE page for our Gurugram clinic</a>. Results vary between patients, and no clinic can promise a particular density.</p>
+    <p class="body-s mt-4 measure">Ask whether any FUE quote is in grafts or hairs, and how the number was reached; <a href="/blog/why-hair-transplant-quotes-vary">why hair transplant quotes vary</a> explains the difference it makes. The <a href="/hair-transplant-graft-calculator">graft calculator</a> gives a starting range. Instalment options through third-party lenders may be available — ask at the consultation, and read <a href="/cost-and-emi-options">how medical EMI works</a> first.</p>
+    <p class="mt-4"><a class="hp-link" href="/hair-transplant-cost-in-rohini">Hair transplant cost in Rohini, worked through <?= hp_icon('arrow', 15, 2) ?></a></p>
   </div>
 </section>
 
@@ -237,17 +313,16 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Visit Our Rohini Clinic',
-    'FUE consultations, procedures and follow-up reviews take place at the Rohini clinic in North-West Delhi, six days a week. Our Sector 39, Gurugram clinic carries out FUE as well, if it is closer for you.'
+    'FUE consultations, procedures and follow-up reviews take place at the Rohini clinic in North-West Delhi, six days a week.'
 ) ?>
 
 <?= rohini_services_block($page['url']) ?>
 
-<?= cta_band(
-    'Book an FUE Assessment in Rohini',
-    'Bring your questions and your medication list. Your donor area is measured, you get a straight view of whether FUE suits your pattern of loss, and a written plan with a mapped graft count if it does — with no pressure to book a date on the day.',
-    'rohini-fue-hair-transplant',
-    ['FUE hair transplant', 'FUE — hairline', 'FUE — crown', 'FUE or DHI — please advise'],
-    'Delhi (Rohini)'
-) ?>
+<?= lp_cta([
+    'eyebrow'   => 'Rohini, Delhi',
+    'title'     => 'Book an FUE Assessment in Rohini',
+    'text'      => 'Bring your questions and your medication list. Your donor area is measured, you get a straight view of whether FUE suits your pattern of loss, and a written plan with a mapped graft count if it does — with no pressure to book a date on the day.',
+    'treatment' => 'Hair transplant',
+]) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
