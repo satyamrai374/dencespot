@@ -63,6 +63,13 @@ if ($withdrawn !== '' && isset(WITHDRAWN_REDIRECTS[$withdrawn])) {
     exit;
 }
 
+// 1e. Trailing slash on a page URL -> 301 to the slashless URL. Mirrors the
+//     .htaccess rule (§6), so /about-us/ behaves locally as it does live.
+if ($trimmed !== '' && $trimmed !== $uri && !is_dir($file) && file_exists(__DIR__ . $trimmed . '.php')) {
+    header('Location: ' . $trimmed, true, 301);
+    exit;
+}
+
 // 2. Directory with index.php exists? (e.g. /blog/)
 if (is_dir($file)) {
     $dirIndex = rtrim($file, '/') . '/index.php';
@@ -79,11 +86,8 @@ if (file_exists($phpFile)) {
     exit;
 }
 
-// 4. Nothing matched. Redirect to /404
-if ($uri !== '/404') {
-    header("Location: /404", true, 302);
-    exit;
-}
-
+// 4. Nothing matched: 404.php, at the requested address. It 301s old URLs
+//    that have a counterpart (includes/legacy-redirects.php) and otherwise
+//    answers 404. Mirrors .htaccess §9.
 http_response_code(404);
 require __DIR__ . '/404.php';

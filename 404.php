@@ -14,6 +14,16 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
+require_once __DIR__ . '/includes/legacy-redirects.php';
+
+// An old URL from the previous site (blog post, locality page) that has a
+// counterpart here gets a 301 to it; anything else is a real 404, served at
+// the requested address (.htaccess §9 and router.php rewrite to this file).
+$legacyTarget = legacy_redirect((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH));
+if ($legacyTarget !== null) {
+    header('Location: ' . $legacyTarget, true, 301);
+    exit;
+}
 
 http_response_code(404);
 

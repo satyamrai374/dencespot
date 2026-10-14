@@ -148,13 +148,19 @@ RewriteRule ^(.+?)/?$ $1.php [L]
 RewriteRule ^(includes|storage|_design|_ds|dencespot\.com-audit|\.claude|\.git)(/|$) - [F,L]
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 9. Recover 404s by explicitly redirecting to the /404 URL
+# 9. Unknown URLs are handled by 404.php at the requested address (14 Oct 2026)
 # ─────────────────────────────────────────────────────────────────────────────
+# This used to 302 every unknown URL to /404. That threw away the 337 old
+# blog and locality URLs of the previous site, and a redirect to an error page
+# reads as a soft 404. 404.php now 301s an old URL to its counterpart
+# (includes/legacy-redirects.php) and otherwise shows the 404 page with a real
+# 404 status. The .php clean-up rules above match THE_REQUEST, so this
+# internal rewrite cannot loop.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^/404$
 RewriteCond %{REQUEST_URI} !^/404\.php$
-RewriteRule ^ /404 [R=302,L]
+RewriteRule ^ /404.php [L]
 
 </IfModule>
 

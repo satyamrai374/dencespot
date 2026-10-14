@@ -221,6 +221,9 @@ const OG_IMAGE     = '/assets/img/home/og-home.jpg';
  */
 const CLINIC_SAME_AS = [
     MAPS_URL,
+    // Instagram: the clinic's own, unambiguous profile (also in SOCIAL_LINKS).
+    // Facebook stays out until its duplicate pages are consolidated.
+    'https://www.instagram.com/dencespot/',
     // 'https://www.practo.com/gurgaon/clinic/…',   ← after the Sector 38 fix
     // 'https://www.justdial.com/Gurgaon/…',        ← after the name fix
     // 'https://www.facebook.com/…',
