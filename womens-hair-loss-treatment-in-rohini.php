@@ -219,7 +219,7 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="grid grid--2 mt-6">
       <div class="card card--pad-lg"><h3 class="h4">Correcting the cause</h3><p class="body-s mt-2">Iron replaced and rechecked, thyroid disease treated, PCOS managed, tension taken off the hairline. Where one of these drove the shedding, this alone can make a clear difference.</p></div>
-      <div class="card card--pad-lg"><h3 class="h4">Waiting, with a review date</h3><p class="body-s mt-2">Shedding after pregnancy and most telogen effluvium recover by themselves. The work is ruling out anything else and checking progress, not starting long-term medicine.</p></div>
+      <div class="card card--pad-lg"><h3 class="h4">Waiting, with a review date</h3><p class="body-s mt-2"><a href="/blog/hair-fall-after-pregnancy">Shedding after pregnancy</a> and most telogen effluvium recover by themselves. The work is ruling out anything else and checking progress, not starting long-term medicine.</p></div>
       <div class="card card--pad-lg"><h3 class="h4">Minoxidil on the scalp</h3><p class="body-s mt-2">The most established first treatment for pattern loss, taking months to work. Possible side effects: scalp irritation, extra facial hair and a brief rise in shedding at the start. Generally avoided in pregnancy and while breastfeeding.</p></div>
       <div class="card card--pad-lg"><h3 class="h4">Prescribed tablets</h3><p class="body-s mt-2">Some women are offered low-dose oral minoxidil or an anti-androgen, off-label and with monitoring. Anti-androgens must not be taken if pregnancy is possible. Finasteride is not a standard treatment for women. See <a href="/blog/minoxidil-and-finasteride-in-india">minoxidil and finasteride side effects</a>.</p></div>
     </div>

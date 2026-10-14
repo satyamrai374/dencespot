@@ -242,7 +242,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'Is Dandruff Making Your Hair Fall?',
     'tone'    => 'white',
     'reverse' => true,
-    'html'    => '<p>Not in the way most people fear. Dandruff does not cause baldness and does not destroy follicles. An inflamed, itchy scalp can shed more while it is inflamed, and scratching snaps hairs; once the scalp settles, that extra shedding usually settles too.</p>'
+    'html'    => '<p>Not in the way most people fear. Dandruff does not cause baldness and does not destroy follicles. <a href="/blog/can-dandruff-cause-hair-fall">An inflamed, itchy scalp can shed more while it is inflamed</a>, and scratching snaps hairs; once the scalp settles, that extra shedding usually settles too.</p>'
                . '<p>Heavy oiling often makes this worse: oil left on a flaking scalp tends to feed seborrhoeic dermatitis, so the itch, scratching and shedding carry on. Keep oil to the lengths until the scalp is under control.</p>'
                . '<p>Sometimes pattern hair loss is progressing quietly behind the flaking. If shedding continues once the scalp is calm, it is assessed in its own right through <a href="/hair-fall-treatment-in-rohini">hair fall treatment at the Rohini clinic</a>; our guide to <a href="/blog/telogen-effluvium-vs-pattern-hair-loss">telogen effluvium and pattern hair loss</a> explains the difference, and the <a href="/hair-loss-assessment">six-question hair loss self-assessment</a> can suggest a next step.</p>'
                . '<p><b>Get the scalp examined if:</b></p>',

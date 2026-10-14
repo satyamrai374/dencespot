@@ -116,7 +116,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>Risk is not evenly distributed. Some of it you bring with you, and most of that is modifiable if it is found in time.</p>
 
 <ul>
-  <li><strong>Uncontrolled diabetes.</strong> Impairs healing and raises infection risk. Controlled diabetes is usually workable; unmeasured diabetes is not.</li>
+  <li><strong>Uncontrolled diabetes.</strong> Impairs healing and raises infection risk. <a href="/blog/hair-transplant-with-diabetes-or-high-blood-pressure">Controlled diabetes is usually workable</a>; unmeasured diabetes is not.</li>
   <li><strong>Smoking.</strong> Nicotine narrows the small vessels that grafts depend on and slows donor healing.</li>
   <li><strong>Bleeding tendencies and blood thinners.</strong> Aspirin, clopidogrel, warfarin and newer anticoagulants all matter, as do supplements such as fish oil and high-dose vitamin E. Never stop a prescribed drug on your own; that decision belongs to the prescriber.</li>
   <li><strong>Uncontrolled hypertension.</strong> Increases bleeding and interacts with the adrenaline in the anaesthetic.</li>

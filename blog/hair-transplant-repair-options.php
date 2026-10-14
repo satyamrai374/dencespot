@@ -66,7 +66,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>Poor or patchy density</h3>
 
-<p>Where growth was poor, often after a session that attempted too much or grafts that were handled badly, further grafts can be added into the existing area if the donor can still fund them. This is the correction most directly limited by the donor measurement.</p>
+<p>Where growth was poor, often after a session that attempted too much or grafts that were handled badly, <a href="/blog/second-hair-transplant">further grafts can be added into the existing area</a> if the donor can still fund them. This is the correction most directly limited by the donor measurement.</p>
 
 <h3>Visible donor scarring</h3>
 

@@ -217,7 +217,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body mt-3 measure">The assessment, treatment and reviews take place at the Rohini clinic. Read more on <a href="/womens-hair-loss-treatment-in-rohini">women’s hair loss treatment in Rohini</a> and <a href="/blog/female-pattern-hair-loss-in-women">female pattern hair loss</a>.</p>
       </div>
       <div class="grid grid--2">
-        <div class="card"><h3 class="h4">Iron and thyroid</h3><p class="body-s mt-2">Low iron stores and thyroid disease are among the commonest contributors, and both are found by blood tests rather than guessed.</p></div>
+        <div class="card"><h3 class="h4">Iron and thyroid</h3><p class="body-s mt-2">Low iron stores and <a href="/blog/thyroid-and-hair-loss">thyroid disease</a> are among the commonest contributors, and both are found by blood tests rather than guessed.</p></div>
         <div class="card"><h3 class="h4">PCOS and hormones</h3><p class="body-s mt-2">Hormone tests for some women, for instance with irregular periods. Some women with high androgen levels are offered anti-androgen medicine.</p></div>
         <div class="card"><h3 class="h4">After pregnancy</h3><p class="body-s mt-2">Shedding a few months after childbirth is a form of telogen effluvium and usually settles once the trigger is over.</p></div>
         <div class="card"><h3 class="h4">Pregnancy plans</h3><p class="body-s mt-2">Some hair-loss medicines are unsuitable in pregnancy or when trying to conceive, so tell the doctor if either applies.</p></div>
@@ -234,7 +234,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'white',
     'reverse' => true,
     'html'    => '<p>Most plans begin with the first two steps. Which medicine, and at what strength, is decided at the consultation.</p>'
-               . '<p><b>1. Treat the cause.</b> Correcting low iron, a thyroid problem, a vitamin deficiency or PCOS, settling an inflamed scalp, removing tension from hairstyles, or waiting out telogen effluvium once nothing else is found. A good share of hair fall improves at this stage without long-term hair-loss medicine.</p>'
+               . '<p><b>1. Treat the cause.</b> Correcting low iron, a thyroid problem, <a href="/blog/vitamin-deficiency-and-hair-loss">a vitamin deficiency</a> or PCOS, settling an inflamed scalp, removing tension from hairstyles, or waiting out telogen effluvium once nothing else is found. A good share of hair fall improves at this stage without long-term hair-loss medicine.</p>'
                . '<p><b>2. Medication for pattern loss.</b> Minoxidil on the scalp is the usual first step; tablets are prescribed for some, with monitoring; finasteride is for men only; some women with high androgen levels are offered anti-androgen medicine. They have the most research behind them, but:</p>',
     'points'  => [
         'None is a cure: the effect fades when you stop',

@@ -33,7 +33,7 @@ $crumbs = [
 
 $page = [
     'title'       => $doc['name'] . ', ' . $doc['quals'] . ' | DenceSpot Clinic',
-    'description' => $doc['name'] . ', ' . $doc['quals'] . ': specialty and the clinic where she consults — DenceSpot Clinic, Sector 39, Gurugram.',
+    'description' => $doc['name'] . ', ' . $doc['quals'] . ': qualifications, specialty, the clinic where she consults and how to book — DenceSpot Clinic, Sector 39, Gurugram.',
     'url'         => '/dr-nyra',
     'nav_active'  => '/about-us',
     'crumbs'      => $crumbs,

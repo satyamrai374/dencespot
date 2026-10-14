@@ -82,7 +82,7 @@ require __DIR__ . '/../includes/blog-header.php';
 ) ?>
 <h2 id="staging-across-a-lifetime">Staging, instead of one maximal session</h2>
 
-<p>The alternative to a maximal first procedure is a plan with reserves in it. Restore the frontal third properly. Keep medical treatment running on the hair you still have, because <a href="/hair-fall-treatment-in-gurgaon">slowing ongoing hair fall</a> reduces what the donor is later asked to replace. Reassess at ten to twelve months, when the first result can honestly be judged, then decide whether a second session goes to the mid-scalp, the crown, or nowhere.</p>
+<p>The alternative to a maximal first procedure is a plan with reserves in it. Restore the frontal third properly. Keep medical treatment running on the hair you still have, because <a href="/hair-fall-treatment-in-gurgaon">slowing ongoing hair fall</a> reduces what the donor is later asked to replace. Reassess at ten to twelve months, when the first result can honestly be judged, then decide <a href="/blog/second-hair-transplant">whether a second session goes to the mid-scalp, the crown, or nowhere</a>.</p>
 
 <p>This is slower, and it is a less satisfying thing to be told. It is also the only approach that accounts for the fact that your loss is still moving, which <a href="/blog/is-a-hair-transplant-permanent">a transplant does not halt</a>. Two staged procedures do add up to more than one session, and <a href="/hair-transplant-cost-in-gurgaon">how hair transplant cost is worked out</a> covers that.</p>
 

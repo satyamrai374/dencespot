@@ -157,7 +157,7 @@ require __DIR__ . '/includes/header.php';
     'html'    => '<h3 class="h4">Active acne</h3>'
                . '<p>Acne starts in the hair follicle and its oil gland, which is why it clusters on the face, chest and back. The type of spots, where they sit and whether they are scarring decide the treatment: prescription creams for milder acne, with tablets added for moderate, severe or scarring acne. Acne with irregular periods may need blood tests to look for a hormonal cause.</p>'
                . '<h3 class="h4">Acne marks and scars</h3>'
-               . '<p>Flat red or brown marks are not scars. They fade over months once the acne is controlled and the skin is protected from the sun. Pitted or raised scars are different: they are assessed once the acne has settled, and procedures are considered only where suitable.</p>',
+               . '<p>Flat red or brown marks are not scars. They fade over months once the acne is controlled and the skin is protected from the sun. <a href="/blog/acne-scars-treatment-options">Pitted or raised scars</a> are different: they are assessed once the acne has settled, and procedures are considered only where suitable.</p>',
     'points'  => [
         'Acne treatment is first judged at about two to three months, not in the first fortnight',
         'Creams often cause dryness and irritation at first; tell the clinic rather than stopping',
@@ -177,7 +177,7 @@ require __DIR__ . '/includes/header.php';
     'html'    => '<h3 class="h4">Pigmentation</h3>'
                . '<p>Darker patches have many causes: marks left by acne or eczema, sun damage, friction, a reaction to a cream or medicine, and occasionally an internal cause. The pattern, the history and a close look at the skin usually show which one it is, and treating the cause matters as much as treating the colour.</p>'
                . '<h3 class="h4">Melasma</h3>'
-               . '<p>Melasma is a symmetrical brown patchiness on the cheeks, forehead, nose or upper lip, linked with sun, heat and hormones, including pregnancy and some contraceptive pills. Treatment means sunscreen every day, prescription creams in courses and then maintenance. It can be lightened and kept under control, but it tends to return.</p>',
+               . '<p>Melasma is a symmetrical brown patchiness on the cheeks, forehead, nose or upper lip, <a href="/blog/melasma-causes-and-treatment">linked with sun, heat and hormones</a>, including pregnancy and some contraceptive pills. Treatment means sunscreen every day, prescription creams in courses and then maintenance. It can be lightened and kept under control, but it tends to return.</p>',
     'points'  => [
         'Pigmentation is judged over weeks to months, later than acne',
         'Melasma recurs: sun protection and maintenance continue after it fades',

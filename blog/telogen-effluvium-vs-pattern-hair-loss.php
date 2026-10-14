@@ -42,11 +42,11 @@ require __DIR__ . '/../includes/blog-header.php';
 <ul>
   <li>An illness with high fever, including infections common in north India such as dengue and typhoid, or COVID-19</li>
   <li>Surgery, a serious injury or a hospital admission</li>
-  <li>Childbirth, with postpartum shedding typically beginning a few months after delivery</li>
+  <li>Childbirth, with <a href="/blog/hair-fall-after-pregnancy">postpartum shedding</a> typically beginning a few months after delivery</li>
   <li>Rapid weight loss, crash dieting or a sharp drop in protein intake</li>
   <li>Severe psychological stress, bereavement or a prolonged difficult period</li>
   <li>Starting, stopping or changing certain medicines, including stopping hormonal contraception</li>
-  <li>Iron deficiency or a thyroid disorder, which can keep a shed going until corrected</li>
+  <li>Iron deficiency or <a href="/blog/thyroid-and-hair-loss">a thyroid disorder</a>, which can keep a shed going until corrected</li>
 </ul>
 
 <p>The delay also explains why hair fall can seem seasonal. Heavy shedding in the cooler months is sometimes simply the delayed shed from a fever or infection during the monsoon, arriving a few months later. Hard water and pollution tend to take the blame locally, and <a href="/blog/hard-water-pollution-and-hair-fall-in-gurgaon">what hard water, pollution and monsoon shedding really do</a> separates what they can cause from what they cannot.</p>

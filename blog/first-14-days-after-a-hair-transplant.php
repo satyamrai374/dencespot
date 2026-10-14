@@ -61,7 +61,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li>Pulling a t-shirt or kurta over the head. Wear shirts that button, for a fortnight.</li>
   <li>Rolling onto the recipient area in your sleep, or scratching in it. Night-time itch relief is worth asking about rather than enduring.</li>
   <li>Towel drying out of habit.</li>
-  <li>Heavy lifting, straining and bending at the waist, which raise scalp pressure while swelling is still settling.</li>
+  <li><a href="/blog/exercise-smoking-and-alcohol-after-a-hair-transplant">Heavy lifting, straining and bending at the waist</a>, which raise scalp pressure while swelling is still settling.</li>
   <li>A car headrest, a helmet, a mask strap dragged across the temples, or a barber's chair.</li>
 </ul>
 

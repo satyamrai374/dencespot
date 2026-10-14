@@ -37,7 +37,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="what-prp-actually-is">What PRP actually is</h2>
 
-<p>Platelet-rich plasma is made from your own blood. A sample is drawn, spun in a centrifuge so the plasma and platelet layer separates from the red cells, and that fraction is injected across the thinning scalp. It is autologous — nothing foreign enters your body — which avoids the concerns that come with donor material, though the ordinary risks of scalp injection still apply.</p>
+<p>Platelet-rich plasma is made from your own blood. A sample is drawn, spun in a centrifuge so the plasma and platelet layer separates from the red cells, and that fraction is injected across the thinning scalp. It is autologous — nothing foreign enters your body — which avoids the concerns that come with donor material, though <a href="/blog/does-prp-have-side-effects">the ordinary risks of scalp injection</a> still apply.</p>
 
 <p>The rationale is that platelets carry granules of growth factors, and that releasing those signals around miniaturising follicles supports the growth phase. The mechanism is inferred rather than mapped, and it only makes sense where living follicles remain. In androgenetic alopecia follicles shrink progressively before they disappear (<a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet on male pattern hair loss</a>), so the window for any injectable is early and moderate thinning.</p>
 

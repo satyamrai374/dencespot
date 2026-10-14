@@ -177,7 +177,7 @@ require __DIR__ . '/includes/header.php';
           <tbody>
             <tr><th scope="row">What is injected</th><td>Plasma with concentrated platelets, which release their growth factors gradually in the scalp</td><td>Growth factors already released from the platelets during preparation, with the cells filtered out</td></tr>
             <tr><th scope="row">Published evidence</th><td>The more studied of the two, though trials are mostly small and short and preparation varies between clinics</td><td>Smaller and newer; few studies compare it directly with well-prepared PRP</td></tr>
-            <tr><th scope="row">Usual course</th><td>Commonly three or four sessions about four weeks apart, then maintenance every three to six months if responding</td><td>A course of sessions spaced some weeks apart; it has not been shown to need fewer sessions than PRP</td></tr>
+            <tr><th scope="row">Usual course</th><td>Commonly <a href="/blog/how-many-prp-sessions-are-needed-for-hair">three or four sessions about four weeks apart</a>, then maintenance every three to six months if responding</td><td>A course of sessions spaced some weeks apart; it has not been shown to need fewer sessions than PRP</td></tr>
             <tr><th scope="row">Each session</th><td>Blood draw, preparation and injection, usually 30 to 60 minutes</td><td>Much the same, usually under an hour</td></tr>
             <tr><th scope="row">Side effects</th><td>Tenderness, redness, pinpoint marks or mild swelling for a day or so</td><td>Reported side effects resemble those of PRP</td></tr>
             <tr><th scope="row">Lasting benefit</th><td>Only with maintenance, usually alongside medication</td><td>The same; not shown to last longer than PRP</td></tr>
@@ -270,7 +270,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--3 mt-4">
       <div class="card card--pad-lg">
         <h3 class="h4">Side effects</h3>
-        <p class="body-s mt-2">Tenderness, redness, pinpoint marks or mild swelling for a day or so, an occasional headache and a bruise where the blood was taken. Because the material comes from your own blood, a reaction to it is not expected, but infection at an injection site is uncommon rather than impossible.</p>
+        <p class="body-s mt-2"><a href="/blog/does-prp-have-side-effects">Tenderness, redness, pinpoint marks or mild swelling for a day or so</a>, an occasional headache and a bruise where the blood was taken. Because the material comes from your own blood, a reaction to it is not expected, but infection at an injection site is uncommon rather than impossible.</p>
       </div>
       <div class="card card--pad-lg">
         <h3 class="h4">Limits worth hearing first</h3>

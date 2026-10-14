@@ -187,7 +187,7 @@ require __DIR__ . '/includes/header.php';
     <div class="measure">
       <p class="eyebrow">Suitability</p>
       <h2 class="h2 mt-2">Who It Suits, and When We Advise Waiting</h2>
-      <p class="body mt-3">Two checks decide most cases: whether your facial hair has stopped changing, and whether your scalp can spare the grafts. Both are examined in person at the Rohini clinic, not judged from a photograph.</p>
+      <p class="body mt-3">Two checks decide most cases: <a href="/blog/when-does-a-beard-fully-grow">whether your facial hair has stopped changing</a>, and whether your scalp can spare the grafts. Both are examined in person at the Rohini clinic, not judged from a photograph.</p>
     </div>
     <div class="grid grid--2 mt-5">
       <div class="card card--pad-lg">

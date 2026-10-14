@@ -188,7 +188,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <p class="eyebrow">Suitability</p>
         <h2 class="h2 mt-2">Who May Be Suited — and When Surgery Should Wait</h2>
-        <p class="body mt-3">Suitability is decided after an examination at the clinic, not from photographs. These are the situations most often assessed.</p>
+        <p class="body mt-3">Suitability is decided after an examination at the clinic, not from photographs. There is no single <a href="/blog/right-age-for-a-hair-transplant">right age for a hair transplant</a>; what matters more is whether the pattern has settled. These are the situations most often assessed.</p>
         <p class="body-s mt-3">Unsure where you stand? The six-question <a href="/hair-loss-assessment">hair loss self-assessment</a> points to a sensible next step before you book. It is not a diagnosis.</p>
       </div>
       <div class="grid grid--2">
@@ -375,7 +375,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><h3 class="h4">Is the number in grafts or hairs?</h3><p class="body-s mt-2">A graft carries one to four hairs, so 2,000 grafts and 2,000 hairs are very different plans. Ask which unit the quote uses and how the number was reached.</p></div>
       <div class="card"><h3 class="h4">What will be left in my donor area?</h3><p class="body-s mt-2">How your donor density was measured, and how many grafts the plan keeps in reserve for thinning that may come later. See <a href="/blog/donor-area-limits-hair-transplant">what a donor area can and cannot cover</a>.</p></div>
       <div class="card"><h3 class="h4">Why this technique for each zone?</h3><p class="body-s mt-2">FUE, DHI or both, with the reasoning for each zone written into the estimate rather than one label applied to the whole plan.</p></div>
-      <div class="card"><h3 class="h4">What does the estimate include?</h3><p class="body-s mt-2">Medicines, aftercare products, review visits and any second session: what is included, what is not, and the whole figure itemised in writing.</p></div>
+      <div class="card"><h3 class="h4">What does the estimate include?</h3><p class="body-s mt-2">Medicines, aftercare products, review visits and <a href="/blog/second-hair-transplant">any second session</a>: what is included, what is not, and the whole figure itemised in writing.</p></div>
       <div class="card"><h3 class="h4">When would you advise against surgery?</h3><p class="body-s mt-2">A clinic should be able to say what would make it delay or decline, such as fast-moving loss or a thin donor. See <a href="/blog/who-should-not-have-a-hair-transplant">who should not have a hair transplant</a>.</p></div>
     </div>
     <p class="body-s mt-4 measure">A longer checklist is in <a href="/how-to-choose-hair-transplant-clinic">how to choose a hair transplant clinic</a>.</p>

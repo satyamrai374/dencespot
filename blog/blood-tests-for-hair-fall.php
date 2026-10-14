@@ -33,7 +33,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="why-test-at-all">Why test at all, when hair fall is so common</h2>
 
-<p>Hair fall is a symptom, not a diagnosis. Losing somewhere between 50 and 100 hairs a day is normal, according to the <a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS overview of hair loss</a>, and most people who notice more than that have one of a handful of explanations. Some are internal and show up in the blood: iron deficiency, an underactive or overactive thyroid, low vitamin B12. Some are events, such as an illness, surgery, childbirth or a crash diet, that push many follicles into their resting phase at once. And some, like genetic pattern loss, leave the blood entirely normal.</p>
+<p>Hair fall is a symptom, not a diagnosis. Losing somewhere between 50 and 100 hairs a day is normal, according to the <a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS overview of hair loss</a>, and most people who notice more than that have one of a handful of explanations. Some are internal and show up in the blood: iron deficiency, <a href="/blog/thyroid-and-hair-loss">an underactive or overactive thyroid</a>, low vitamin B12. Some are events, such as an illness, surgery, childbirth or a crash diet, that push many follicles into their resting phase at once. And some, like genetic pattern loss, leave the blood entirely normal.</p>
 
 <p>Testing earns its place because the first group is correctable, and because treating the wrong problem wastes months. Someone with iron deficiency who starts a course of scalp injections is paying to work around a cause that a routine blood test would have found. That is why <a href="/hair-fall-treatment-in-gurgaon">a doctor-led hair fall assessment</a> puts investigation before any treatment plan, not after it.</p>
 
@@ -98,7 +98,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>They cannot replace a diagnosis.</strong> Taking something "just in case" also muddies later testing, because a deficiency that was partly corrected before anyone measured it is harder to interpret.</li>
 </ul>
 
-<p>None of this makes supplements useless. Iron for proven iron deficiency, B12 for proven B12 deficiency and vitamin D for a documented low level are appropriate, and where a deficiency is what triggered the shedding, correcting it is the treatment. The distinction is between treating a result and treating a hope.</p>
+<p>None of this makes supplements useless. Iron for proven iron deficiency, B12 for proven B12 deficiency and vitamin D for a documented low level are appropriate, and <a href="/blog/vitamin-deficiency-and-hair-loss">where a deficiency is what triggered the shedding</a>, correcting it is the treatment. The distinction is between treating a result and treating a hope.</p>
 
 <h2 id="when-blood-tests-will-not-explain-it">When blood tests will not explain your hair fall</h2>
 

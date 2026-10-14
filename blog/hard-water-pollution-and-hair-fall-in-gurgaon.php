@@ -74,7 +74,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>That is a plausible mechanism, not a demonstrated effect. A follicle in a dish receives a measured dose directly; a follicle in your scalp sits beneath skin, hair and sebum, and nobody has established how much airborne particulate actually reaches it in daily life, or whether that amount changes how much hair a person keeps. Anyone presenting NCR air quality as a proven cause of baldness is ahead of the evidence.</p>
 
-<p>What pollution does do, without much argument, is make a scalp dirtier and more irritable. Dust, sweat and oil build up through a Gurgaon summer, and a scalp prone to seborrhoeic dermatitis can flare. An itchy, flaking, inflamed scalp may shed more while the inflammation lasts, and scratching adds breakage. That is treatable, and it is a scalp problem rather than a pollution problem; <a href="/dandruff-treatment-in-gurgaon">dandruff and seborrhoeic dermatitis treatment</a> covers how it is distinguished from dry scalp, psoriasis and fungal infection. Regular washing helps rather than harms. The hairs that come out in the shower had already been shed.</p>
+<p>What pollution does do, without much argument, is make a scalp dirtier and more irritable. Dust, sweat and oil build up through a Gurgaon summer, and a scalp prone to seborrhoeic dermatitis can flare. <a href="/blog/can-dandruff-cause-hair-fall">An itchy, flaking, inflamed scalp may shed more</a> while the inflammation lasts, and scratching adds breakage. That is treatable, and it is a scalp problem rather than a pollution problem; <a href="/dandruff-treatment-in-gurgaon">dandruff and seborrhoeic dermatitis treatment</a> covers how it is distinguished from dry scalp, psoriasis and fungal infection. Regular washing helps rather than harms. The hairs that come out in the shower had already been shed.</p>
 
 <h2 id="monsoon-and-seasonal-shedding">Monsoon and seasonal shedding</h2>
 
@@ -113,7 +113,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>Conditioner and gentle handling</h3>
 
-<p>Conditioner on the lengths reduces friction, and less friction means less breakage. Detangle wet hair gently with a wide-toothed comb, press water out with a towel rather than rubbing, and keep oils to the lengths rather than an itchy, flaking scalp, where heavy oiling often makes seborrhoeic dermatitis worse. Some people with very hard borewell water find that a final rinse with a jug of softer, stored or purified water helps. It is a cosmetic measure, and a reasonable one.</p>
+<p>Conditioner on the lengths reduces friction, and less friction means less breakage. Detangle wet hair gently with a wide-toothed comb, press water out with a towel rather than rubbing, and <a href="/blog/rosemary-onion-juice-and-hair-oils-for-hair-fall">keep oils to the lengths</a> rather than an itchy, flaking scalp, where heavy oiling often makes seborrhoeic dermatitis worse. Some people with very hard borewell water find that a final rinse with a jug of softer, stored or purified water helps. It is a cosmetic measure, and a reasonable one.</p>
 
 <h2 id="when-to-stop-blaming-the-water">When to stop blaming the water and get assessed</h2>
 

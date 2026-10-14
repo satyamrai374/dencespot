@@ -40,19 +40,19 @@ const CLUSTERS = [
             ],
             'By area and patient' => [
                 ['url' => '/hairline-transplant-in-gurgaon',       'anchor' => 'Hairline restoration',         'blurb' => 'Receding temples and frontal lines, designed to still look right at fifty.', 'posts' => ['natural-hairline-design-explained', 'norwood-scale-explained', 'how-many-grafts-do-you-need']],
-                ['url' => '/crown-hair-transplant-in-gurgaon',     'anchor' => 'Crown and vertex transplant',  'blurb' => 'Why the crown consumes grafts fastest and how to plan it against donor supply.', 'posts' => ['donor-area-limits-hair-transplant', 'norwood-scale-explained', 'is-a-hair-transplant-permanent']],
-                ['url' => '/hair-transplant-for-women-in-gurgaon', 'anchor' => 'Hair transplant for women',    'blurb' => 'Who is a surgical candidate, and why the medical workup comes first.', 'posts' => ['female-pattern-hair-loss-in-women', 'who-should-not-have-a-hair-transplant', 'blood-tests-for-hair-fall']],
-                ['url' => '/hair-transplant-repair-in-gurgaon',    'anchor' => 'Failed transplant repair',     'blurb' => 'Correcting pluggy grafts, low hairlines and over-harvested donor areas.', 'posts' => ['hair-transplant-repair-options', 'hair-transplant-promises-and-success-rates', 'how-to-read-before-and-after-photos']],
+                ['url' => '/crown-hair-transplant-in-gurgaon',     'anchor' => 'Crown and vertex transplant',  'blurb' => 'Why the crown consumes grafts fastest and how to plan it against donor supply.', 'posts' => ['donor-area-limits-hair-transplant', 'norwood-scale-explained', 'is-a-hair-transplant-permanent', 'second-hair-transplant']],
+                ['url' => '/hair-transplant-for-women-in-gurgaon', 'anchor' => 'Hair transplant for women',    'blurb' => 'Who is a surgical candidate, and why the medical workup comes first.', 'posts' => ['female-pattern-hair-loss-in-women', 'who-should-not-have-a-hair-transplant', 'blood-tests-for-hair-fall', 'hair-fall-after-pregnancy']],
+                ['url' => '/hair-transplant-repair-in-gurgaon',    'anchor' => 'Failed transplant repair',     'blurb' => 'Correcting pluggy grafts, low hairlines and over-harvested donor areas.', 'posts' => ['hair-transplant-repair-options', 'hair-transplant-promises-and-success-rates', 'how-to-read-before-and-after-photos', 'second-hair-transplant']],
             ],
             'Cost and planning' => [
                 ['url' => '/hair-transplant-cost-in-gurgaon',      'anchor' => 'Hair transplant cost in Gurgaon', 'blurb' => 'Graft count × rate, Norwood graft bands, and what an honest estimate includes.', 'posts' => ['why-hair-transplant-quotes-vary', 'how-many-grafts-do-you-need', 'questions-to-ask-hair-transplant-consultation']],
                 ['url' => '/cost-and-emi-options',                 'anchor' => 'EMI and payment options',      'blurb' => 'Instalments, deposits and how finance terms are set.', 'posts' => ['why-hair-transplant-quotes-vary', 'questions-to-ask-hair-transplant-consultation']],
                 ['url' => '/hair-transplant-graft-calculator',     'anchor' => 'Graft calculator',             'blurb' => 'A deliberately wide graft range by stage and zone — and what it cannot know.', 'posts' => ['how-many-grafts-do-you-need', 'norwood-scale-explained', 'donor-area-limits-hair-transplant']],
-                ['url' => '/hair-loss-assessment',                 'anchor' => 'Hair loss self-assessment',    'blurb' => 'Two minutes to see whether surgery, medical treatment or waiting fits your pattern.', 'posts' => ['norwood-scale-explained', 'telogen-effluvium-vs-pattern-hair-loss', 'who-should-not-have-a-hair-transplant']],
+                ['url' => '/hair-loss-assessment',                 'anchor' => 'Hair loss self-assessment',    'blurb' => 'Two minutes to see whether surgery, medical treatment or waiting fits your pattern.', 'posts' => ['norwood-scale-explained', 'telogen-effluvium-vs-pattern-hair-loss', 'who-should-not-have-a-hair-transplant', 'right-age-for-a-hair-transplant']],
             ],
             'Choosing and recovery' => [
-                ['url' => '/how-to-choose-hair-transplant-clinic', 'anchor' => 'How to choose a clinic',       'blurb' => 'Who operates, how grafts are counted, and the answers that should worry you.', 'posts' => ['questions-to-ask-hair-transplant-consultation', 'who-can-legally-perform-a-hair-transplant-in-india', 'why-hair-transplant-quotes-vary']],
-                ['url' => '/hair-transplant-aftercare',            'anchor' => 'Recovery and aftercare guide', 'blurb' => 'Washing, sleeping, shedding and the month-by-month growth timeline.', 'posts' => ['first-14-days-after-a-hair-transplant', 'hair-transplant-growth-timeline-month-by-month', 'shedding-and-shock-loss-after-hair-transplant', 'hair-transplant-recovery-in-gurgaon']],
+                ['url' => '/how-to-choose-hair-transplant-clinic', 'anchor' => 'How to choose a clinic',       'blurb' => 'Who operates, how grafts are counted, and the answers that should worry you.', 'posts' => ['questions-to-ask-hair-transplant-consultation', 'who-can-legally-perform-a-hair-transplant-in-india', 'why-hair-transplant-quotes-vary', 'right-age-for-a-hair-transplant', 'hair-transplant-with-diabetes-or-high-blood-pressure']],
+                ['url' => '/hair-transplant-aftercare',            'anchor' => 'Recovery and aftercare guide', 'blurb' => 'Washing, sleeping, shedding and the month-by-month growth timeline.', 'posts' => ['first-14-days-after-a-hair-transplant', 'hair-transplant-growth-timeline-month-by-month', 'shedding-and-shock-loss-after-hair-transplant', 'hair-transplant-recovery-in-gurgaon', 'exercise-smoking-and-alcohol-after-a-hair-transplant']],
             ],
         ],
     ],
@@ -62,12 +62,12 @@ const CLUSTERS = [
         'pillar' => ['url' => '/hair-prp-treatment-in-gurgaon', 'anchor' => 'Hair PRP treatment in Gurgaon — the complete guide'],
         'groups' => [
             'Injectable and in-clinic therapies' => [
-                ['url' => '/prp-hair-treatment-cost-in-gurgaon',   'anchor' => 'PRP hair treatment cost',      'blurb' => 'Per-session vs course pricing, and what a PRP package should include.', 'posts' => ['what-to-ask-before-prp-in-gurgaon', 'does-prp-work-for-hair-loss', 'prp-or-hair-transplant']],
-                ['url' => '/gfc-treatment-in-gurgaon',             'anchor' => 'GFC hair treatment',           'blurb' => 'Growth factor concentrate: how it differs from PRP and what the evidence shows.', 'posts' => ['prp-vs-gfc-vs-exosomes', 'does-prp-work-for-hair-loss', 'what-to-ask-before-prp-in-gurgaon']],
-                ['url' => '/hair-mesotherapy-in-gurgaon',          'anchor' => 'Hair mesotherapy',             'blurb' => 'What is actually in the syringe, and where mesotherapy fits.', 'posts' => ['prp-vs-gfc-vs-exosomes', 'what-to-ask-before-prp-in-gurgaon']],
-                ['url' => '/hair-microneedling-in-gurgaon',        'anchor' => 'Scalp microneedling',          'blurb' => 'Microneedling alone and alongside topical treatment.', 'posts' => ['does-prp-work-for-hair-loss', 'minoxidil-and-finasteride-in-india']],
+                ['url' => '/prp-hair-treatment-cost-in-gurgaon',   'anchor' => 'PRP hair treatment cost',      'blurb' => 'Per-session vs course pricing, and what a PRP package should include.', 'posts' => ['what-to-ask-before-prp-in-gurgaon', 'does-prp-work-for-hair-loss', 'prp-or-hair-transplant', 'how-many-prp-sessions-are-needed-for-hair']],
+                ['url' => '/gfc-treatment-in-gurgaon',             'anchor' => 'GFC hair treatment',           'blurb' => 'Growth factor concentrate: how it differs from PRP and what the evidence shows.', 'posts' => ['prp-vs-gfc-vs-exosomes', 'does-prp-work-for-hair-loss', 'what-to-ask-before-prp-in-gurgaon', 'does-prp-have-side-effects']],
+                ['url' => '/hair-mesotherapy-in-gurgaon',          'anchor' => 'Hair mesotherapy',             'blurb' => 'What is actually in the syringe, and where mesotherapy fits.', 'posts' => ['prp-vs-gfc-vs-exosomes', 'what-to-ask-before-prp-in-gurgaon', 'what-to-do-after-prp-hair-treatment']],
+                ['url' => '/hair-microneedling-in-gurgaon',        'anchor' => 'Scalp microneedling',          'blurb' => 'Microneedling alone and alongside topical treatment.', 'posts' => ['does-prp-work-for-hair-loss', 'minoxidil-and-finasteride-in-india', 'does-microneedling-work-for-hair-loss']],
                 ['url' => '/hair-led-therapy-in-gurgaon',          'anchor' => 'LED and low-level laser therapy', 'blurb' => 'Light therapy for thinning hair: realistic expectations.', 'posts' => ['does-prp-work-for-hair-loss', 'minoxidil-and-finasteride-in-india']],
-                ['url' => '/face-prp-treatment-in-gurgaon',        'anchor' => 'Face and skin PRP',            'blurb' => 'PRP for skin texture and under-eye concerns — a different indication from hair.', 'posts' => ['what-to-ask-before-prp-in-gurgaon']],
+                ['url' => '/face-prp-treatment-in-gurgaon',        'anchor' => 'Face and skin PRP',            'blurb' => 'PRP for skin texture and under-eye concerns — a different indication from hair.', 'posts' => ['what-to-ask-before-prp-in-gurgaon', 'acne-scars-treatment-options', 'melasma-causes-and-treatment']],
             ],
         ],
     ],
@@ -77,20 +77,29 @@ const CLUSTERS = [
         'pillar' => ['url' => '/beard-transplant-gurgaon', 'anchor' => 'Beard transplant in Gurgaon — the complete guide'],
         'groups' => [
             'Facial hair restoration' => [
-                ['url' => '/beard-transplant-cost-gurgaon',        'anchor' => 'Beard transplant cost',        'blurb' => 'Graft counts by zone — cheeks, moustache, goatee, sideburns — and what moves the price.', 'posts' => ['beard-transplant-what-to-expect', 'patchy-beard-wait-or-transplant', 'donor-area-limits-hair-transplant']],
+                ['url' => '/beard-transplant-cost-gurgaon',        'anchor' => 'Beard transplant cost',        'blurb' => 'Graft counts by zone — cheeks, moustache, goatee, sideburns — and what moves the price.', 'posts' => ['beard-transplant-what-to-expect', 'patchy-beard-wait-or-transplant', 'donor-area-limits-hair-transplant', 'does-minoxidil-work-for-beard', 'when-does-a-beard-fully-grow']],
                 ['url' => '/eyebrow-transplant-in-gurgaon',        'anchor' => 'Eyebrow transplant',           'blurb' => 'Single-hair grafts at the flattest angle on the face, and the trimming that follows.', 'posts' => ['beard-transplant-what-to-expect', 'donor-area-limits-hair-transplant', 'natural-hairline-design-explained']],
             ],
         ],
     ],
 
+    'skin' => [
+        'label'  => 'Laser & Skin',
+        'pillar' => ['url' => '/skin-treatment-in-gurgaon', 'anchor' => 'Skin treatment in Gurgaon — the complete guide'],
+        'groups' => [
+            'Laser hair removal' => [
+                ['url' => '/laser-hair-removal-in-gurgaon',        'anchor' => 'Laser hair removal sessions',  'blurb' => 'Sessions by area, the patch test, and why hormonal hair needs upkeep.', 'posts' => ['is-laser-hair-removal-permanent', 'laser-hair-removal-for-pcos-facial-hair', 'melasma-causes-and-treatment', 'acne-scars-treatment-options']],
+            ],
+        ],
+    ],
     'hair-fall' => [
         'label'  => 'Hair Fall & Scalp Treatment',
         'pillar' => ['url' => '/hair-fall-treatment-in-gurgaon', 'anchor' => 'Hair fall treatment in Gurgaon — the complete guide'],
         'groups' => [
             'Conditions and treatments' => [
-                ['url' => '/womens-hair-loss-treatment-in-gurgaon', 'anchor' => "Women's hair loss treatment", 'blurb' => 'Thyroid, iron, PCOS and post-partum causes checked before anything long-term.', 'posts' => ['female-pattern-hair-loss-in-women', 'blood-tests-for-hair-fall', 'telogen-effluvium-vs-pattern-hair-loss']],
-                ['url' => '/alopecia-areata-treatment-in-gurgaon', 'anchor' => 'Alopecia areata (patchy hair loss)', 'blurb' => 'Round patches on the scalp or beard, treated medically — not surgically while active.', 'posts' => ['blood-tests-for-hair-fall', 'telogen-effluvium-vs-pattern-hair-loss']],
-                ['url' => '/dandruff-treatment-in-gurgaon',        'anchor' => 'Dandruff and scalp conditions', 'blurb' => 'Seborrhoeic dermatitis, flaking and itch — and their effect on shedding.', 'posts' => ['hard-water-pollution-and-hair-fall-in-gurgaon', 'blood-tests-for-hair-fall']],
+                ['url' => '/womens-hair-loss-treatment-in-gurgaon', 'anchor' => "Women's hair loss treatment", 'blurb' => 'Thyroid, iron, PCOS and post-partum causes checked before anything long-term.', 'posts' => ['female-pattern-hair-loss-in-women', 'blood-tests-for-hair-fall', 'telogen-effluvium-vs-pattern-hair-loss', 'hair-fall-after-pregnancy', 'thyroid-and-hair-loss', 'vitamin-deficiency-and-hair-loss']],
+                ['url' => '/alopecia-areata-treatment-in-gurgaon', 'anchor' => 'Alopecia areata (patchy hair loss)', 'blurb' => 'Round patches on the scalp or beard, treated medically — not surgically while active.', 'posts' => ['blood-tests-for-hair-fall', 'telogen-effluvium-vs-pattern-hair-loss', 'alopecia-barbae-patchy-beard-hair-loss', 'thyroid-and-hair-loss', 'premature-grey-hair-causes']],
+                ['url' => '/dandruff-treatment-in-gurgaon',        'anchor' => 'Dandruff and scalp conditions', 'blurb' => 'Seborrhoeic dermatitis, flaking and itch — and their effect on shedding.', 'posts' => ['hard-water-pollution-and-hair-fall-in-gurgaon', 'blood-tests-for-hair-fall', 'can-dandruff-cause-hair-fall', 'rosemary-onion-juice-and-hair-oils-for-hair-fall']],
                 ['url' => '/scalp-micropigmentation-in-gurgaon',   'anchor' => 'Scalp micropigmentation (SMP)', 'blurb' => 'A cosmetic tattoo that mimics follicles — for density illusion and scar camouflage.', 'posts' => ['hair-transplant-repair-options', 'donor-area-limits-hair-transplant']],
             ],
         ],

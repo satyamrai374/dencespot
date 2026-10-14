@@ -14,7 +14,7 @@ $postDescription = 'What the published evidence on PRP for hair loss actually su
  */
 $postFaqs = [
     ['q' => 'Does PRP hurt, and can you work the same day?',
-     'a' => 'The scalp injections sting, and most of the discomfort comes from the injection itself rather than from the blood draw. A topical anaesthetic or a cooling device reduces it. Tenderness and mild swelling for a day are common. Most people return to normal work the same day, though heavy training and alcohol are usually deferred for twenty-four hours.'],
+     'a' => 'The scalp injections sting, and most of the discomfort comes from the injection itself rather than from the blood draw. A topical anaesthetic or a cooling device reduces it. <a href="/blog/does-prp-have-side-effects">Tenderness and mild swelling for a day</a> are common. Most people return to normal work the same day, though heavy training and alcohol are usually deferred for twenty-four hours.'],
     ['q' => 'Is there a blood test I should have before starting PRP?',
      'a' => 'A basic screen is reasonable, because thyroid disease, iron deficiency and other treatable causes change the diagnosis rather than just the treatment plan. Starting injections while an untreated deficiency is driving the shedding wastes both the sessions and the months. See <a href="/blog/blood-tests-for-hair-fall">which blood tests are worth doing</a>.'],
     ['q' => 'Can PRP be done after a hair transplant?',
@@ -75,7 +75,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="how-sessions-are-usually-spaced">How sessions are usually spaced</h2>
 
-<p>Described here as usual practice, not as a promise. Most protocols run an induction phase of roughly three to four sessions about four weeks apart, then a formal review, then maintenance every few months if there has been a response worth maintaining. The spacing is convention, not rule.</p>
+<p>Described here as usual practice, not as a promise. Most protocols run an induction phase of <a href="/blog/how-many-prp-sessions-are-needed-for-hair">roughly three to four sessions about four weeks apart</a>, then a formal review, then maintenance every few months if there has been a response worth maintaining. The spacing is convention, not rule.</p>
 
 <p>Two things follow. Nothing can be judged early: hair cycles slowly, a change in shaft calibre is not visible within a month, and a course sold on a visible difference after the first session is being sold on something other than biology. And the review point matters more than the sessions do — a course with no scheduled assessment built into it is a subscription rather than a treatment plan, which is one of several things <a href="/blog/what-to-ask-before-prp-in-gurgaon">worth asking before you pay for a course</a>.</p>
 

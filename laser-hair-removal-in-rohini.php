@@ -326,7 +326,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'Limits Worth Knowing Before You Book',
     'id'      => 'limits',
     'tone'    => 'white',
-    'html'    => '<p>Weigh these before starting a course. How they apply to your own skin and hair is part of the assessment.</p>',
+    'html'    => '<p>Weigh these before starting a course. How they apply to your own skin and hair is part of the assessment. Our guide explains <a href="/blog/is-laser-hair-removal-permanent">why laser reduces hair rather than removing it for good</a>.</p>',
     'points'  => [
         'Laser reduces hair; it does not clear every hair for good, and results vary.',
         'White, grey, red and blonde hair respond poorly or not at all.',

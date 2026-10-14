@@ -60,7 +60,13 @@ $related = blog_posts($post['hub'], $post['slug']);
 <?php endif; ?>
 
 <?= cta_band(
-    'Have a Question About Your Own Hair Loss?',
+    // Topic-matched: a skin or beard article asking about "your hair loss"
+    // reads as boilerplate.
+    match ($post['hub'] ?? '') {
+        'skin'  => 'Have a Question About Your Own Skin or Unwanted Hair?',
+        'beard' => 'Have a Question About Your Own Beard?',
+        default => 'Have a Question About Your Own Hair Loss?',
+    },
     'Reading about it only gets you so far. An examination tells you what you actually have, and whether anything needs treating at all.',
     'blog-' . $post['slug']
 ) ?>

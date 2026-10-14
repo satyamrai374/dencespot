@@ -51,7 +51,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="rapidly-progressing-loss-in-your-twenties">Rapid loss in the early twenties</h2>
 
-<p>Age alone does not disqualify anyone. An unstable pattern does. A man of twenty-two who has moved noticeably in eighteen months is telling you the process is running fast, and nobody can predict where it stops.</p>
+<p><a href="/blog/right-age-for-a-hair-transplant">Age alone does not disqualify anyone</a>. An unstable pattern does. A man of twenty-two who has moved noticeably in eighteen months is telling you the process is running fast, and nobody can predict where it stops.</p>
 
 <p>Operate into that, and the arithmetic goes wrong twice. The hairline gets placed where a twenty-two-year-old wants it, low and straight, which is a position a forty-year-old face does not carry well. And the native hair behind it keeps disappearing, so within a few years there is a transplanted strip with a bald gap behind it, and the donor supply has been partly spent on a problem that had not finished happening. <a href="/blog/norwood-scale-explained">Where you sit on the Norwood scale</a> matters far less here than whether that position has changed in two years.</p>
 
@@ -67,7 +67,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Some people who arrive asking about surgery do not have pattern loss at all, or have it alongside something else doing most of the visible damage. Thyroid disease, iron deficiency, recent illness, crash dieting, post-partum shedding and some medications all cause hair loss that behaves differently, and much of it reverses when the cause is addressed (<a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS on hair loss</a>).</p>
 
-<p>The clue is usually the pattern of shedding rather than the pattern of baldness — hair coming out over the whole scalp, often weeks after a trigger, is <a href="https://dermnetnz.org/topics/telogen-effluvium" rel="noopener nofollow" target="_blank">telogen effluvium</a> rather than genetic loss. <a href="/blog/telogen-effluvium-vs-pattern-hair-loss">Telling shedding apart from pattern balding</a> is the first fork in the road, and getting it wrong sends someone to theatre for a problem that correcting a ferritin level would have improved. <a href="/blog/blood-tests-for-hair-fall">The blood tests genuinely worth doing</a> are few, cheap, and occasionally change everything.</p>
+<p>The clue is usually the pattern of shedding rather than the pattern of baldness — hair coming out over the whole scalp, often weeks after a trigger, is <a href="https://dermnetnz.org/topics/telogen-effluvium" rel="noopener nofollow" target="_blank">telogen effluvium</a> rather than genetic loss. <a href="/blog/telogen-effluvium-vs-pattern-hair-loss">Telling shedding apart from pattern balding</a> is the first fork in the road, and getting it wrong sends someone to theatre for a problem that correcting a ferritin level would have improved. <a href="/blog/blood-tests-for-hair-fall">The blood tests genuinely worth doing</a> are few, cheap, and occasionally change everything. General health is a separate check: <a href="/blog/hair-transplant-with-diabetes-or-high-blood-pressure">diabetes or high blood pressure</a> does not usually rule surgery out, but it needs to be well controlled first.</p>
 
 <h2 id="active-scalp-disease">Active alopecia areata, scarring alopecias and inflamed scalps</h2>
 

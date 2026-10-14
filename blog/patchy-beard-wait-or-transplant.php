@@ -27,7 +27,7 @@ $postFaqs = [
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>If you are 22 and your beard comes in thick on the chin and moustache but barely at all on the cheeks, the most likely explanation is that it has not finished developing. Facial hair is one of the later changes of adolescence, and in many men density keeps increasing into the mid-twenties, sometimes later. So for most people at that age the honest first answer is to wait, and to wait in a way that produces evidence rather than frustration.</p>
+<p>If you are 22 and your beard comes in thick on the chin and moustache but barely at all on the cheeks, the most likely explanation is that it has not finished developing. Facial hair is one of the later changes of adolescence, and in many men <a href="/blog/when-does-a-beard-fully-grow">density keeps increasing into the mid-twenties, sometimes later</a>. So for most people at that age the honest first answer is to wait, and to wait in a way that produces evidence rather than frustration.</p>
 
 <p>Waiting is not the whole answer, though. Some patchy beards are not developmental at all: alopecia areata can cause smooth patches in the beard and has to be ruled out, and scars, infection and hair-pulling can all leave gaps. Treatment has a limited but real place. And a transplant is a reasonable choice for some men, usually later, once the pattern has stopped changing and the donor arithmetic has been done. This article sets out how to tell which situation you are in.</p>
 
@@ -80,7 +80,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>Alopecia areata in the beard</h3>
 
-<p><strong>Alopecia areata is an autoimmune condition that can cause smooth, well-defined bald patches in the beard, sometimes called alopecia barbae.</strong> It has to be ruled out before a patchy beard is treated as a cosmetic question, because it follows a different course, is treated differently, and grafts placed into an active patch can be lost.</p>
+<p><strong>Alopecia areata is an autoimmune condition that can cause smooth, well-defined bald patches in the beard, sometimes called <a href="/blog/alopecia-barbae-patchy-beard-hair-loss">alopecia barbae</a>.</strong> It has to be ruled out before a patchy beard is treated as a cosmetic question, because it follows a different course, is treated differently, and grafts placed into an active patch can be lost.</p>
 
 <p>The <a href="https://www.aad.org/public/diseases/hair-loss/types/alopecia" rel="noopener nofollow" target="_blank">American Academy of Dermatology</a> describes alopecia barbae as patchy hair loss on the beard. Clues that point towards it rather than an unfinished beard include patches that appeared over weeks where hair previously grew, skin that looks smooth and otherwise normal, a patch that is enlarging or new patches appearing, and hair loss elsewhere, such as the scalp or eyebrows. Under magnification the edges of an active patch often show short, broken hairs of a characteristic shape, which is one reason an examination settles what a photograph cannot.</p>
 
@@ -103,7 +103,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>Topical minoxidil</h3>
 
-<p>Minoxidil is a scalp hair-loss medicine that is sometimes used off-label on the beard. The evidence is thin but not absent. A 2026 randomised, placebo-controlled trial in <a href="https://pubmed.ncbi.nlm.nih.gov/41778417/" rel="noopener nofollow" target="_blank">69 transgender men on stable testosterone therapy</a> found that twelve weeks of topical 3% minoxidil improved beard and moustache density compared with placebo, with adverse events comparable between the groups. Published trials in other groups of men are few.</p>
+<p>Minoxidil is a scalp hair-loss medicine that is <a href="/blog/does-minoxidil-work-for-beard">sometimes used off-label on the beard</a>. The evidence is thin but not absent. A 2026 randomised, placebo-controlled trial in <a href="https://pubmed.ncbi.nlm.nih.gov/41778417/" rel="noopener nofollow" target="_blank">69 transgender men on stable testosterone therapy</a> found that twelve weeks of topical 3% minoxidil improved beard and moustache density compared with placebo, with adverse events comparable between the groups. Published trials in other groups of men are few.</p>
 
 <p>That is a useful signal with real limits. The trial was short, it studied a specific group already receiving testosterone, and it does not tell you whether any gain lasts once treatment stops; on the scalp, the benefit of minoxidil is generally lost when it is discontinued. It is a prescription medicine in India, it can irritate facial skin, and it is better started after an examination than from an online order.</p>
 

@@ -61,7 +61,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li>Pregnancy and breastfeeding</li>
 </ul>
 
-<p>If nobody asked about your medication, including aspirin and regular anti-inflammatory painkillers, the screening was not done.</p>
+<p>If nobody asked about your medication, including aspirin and regular anti-inflammatory painkillers, the screening was not done. Painkillers matter after a session too: <a href="/blog/what-to-do-after-prp-hair-treatment">aftercare in the first 72 hours after PRP</a> covers them, along with washing and exercise.</p>
 
 <h2 id="who-injects">Who draws the blood, who prepares it, and who injects?</h2>
 
@@ -93,7 +93,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="sessions-interval-and-review">How many sessions, how far apart, and when is it judged?</h2>
 
-<p>A typical plan is an initial course of three or four sessions about four weeks apart, then a formal review, then maintenance every three to six months if there has been a response worth keeping. Your own number should come from your assessment, be written down, and remain open to change at review.</p>
+<p>A typical plan is an initial course of <a href="/blog/how-many-prp-sessions-are-needed-for-hair">three or four sessions about four weeks apart</a>, then a formal review, then maintenance every three to six months if there has been a response worth keeping. Your own number should come from your assessment, be written down, and remain open to change at review.</p>
 
 <p>The review is where most courses quietly fall apart. Ask three things:</p>
 

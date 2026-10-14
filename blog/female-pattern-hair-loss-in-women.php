@@ -53,11 +53,11 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>Polycystic ovary syndrome and other androgen excess</h3>
 
-<p>Thinning that comes with acne, irregular periods or increased facial and body hair suggests excess androgens, and PCOS is the most common cause. DermNet lists these features as markers worth investigating. Here the hair is one part of a hormonal condition that deserves management in its own right, sometimes alongside a gynaecologist or endocrinologist. The acne and unwanted facial hair that often come with it can be treated at the same time, through <a href="/skin-treatment-in-gurgaon">skin treatment</a> and <a href="/laser-hair-removal-in-gurgaon">laser hair removal</a>.</p>
+<p>Thinning that comes with acne, irregular periods or increased facial and body hair suggests excess androgens, and PCOS is the most common cause. DermNet lists these features as markers worth investigating. Here the hair is one part of a hormonal condition that deserves management in its own right, sometimes alongside a gynaecologist or endocrinologist. The acne and <a href="/blog/laser-hair-removal-for-pcos-facial-hair">unwanted facial hair</a> that often come with it can be treated at the same time, through <a href="/skin-treatment-in-gurgaon">skin treatment</a> and <a href="/laser-hair-removal-in-gurgaon">laser hair removal</a>.</p>
 
 <h3>Postpartum shedding</h3>
 
-<p>Heavy shedding a few months after delivery is common and usually temporary. It can, however, unmask pattern thinning that was already developing, and it frequently coexists with low iron.</p>
+<p><a href="/blog/hair-fall-after-pregnancy">Heavy shedding a few months after delivery</a> is common and usually temporary. It can, however, unmask pattern thinning that was already developing, and it frequently coexists with low iron.</p>
 
 <h3>Traction and styling damage</h3>
 

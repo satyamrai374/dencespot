@@ -171,7 +171,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--3 mt-6">
       <div class="card card--pad-lg">
         <h3 class="h4">What was tested</h3>
-        <p class="body-s mt-2">Needling combined with a topical medicine, usually minoxidil, compared with the medicine alone. Studies of needling by itself are fewer.</p>
+        <p class="body-s mt-2"><a href="/blog/does-microneedling-work-for-hair-loss">Needling combined with a topical medicine</a>, usually minoxidil, compared with the medicine alone. Studies of needling by itself are fewer.</p>
       </div>
       <div class="card card--pad-lg">
         <h3 class="h4">How strong it is</h3>

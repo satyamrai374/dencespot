@@ -33,9 +33,9 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="what-minoxidil-does">What minoxidil does</h2>
 
-<p>Minoxidil was first developed as a blood pressure tablet, and increased hair growth was noticed as a side effect. Applied to the scalp, it appears to prolong the growth phase of hair follicles and enlarge miniaturised ones, although its exact mechanism in hair is still not fully understood. It does not act on hormones.</p>
+<p>Minoxidil was first developed as a blood pressure tablet, and increased hair growth was noticed as a side effect. Applied to the scalp, it appears to prolong the growth phase of hair follicles and enlarge miniaturised ones, although its exact mechanism in hair is still not fully understood. It does not act on hormones. Small trials suggest that <a href="/blog/does-microneedling-work-for-hair-loss">adding microneedling to minoxidil</a> may increase hair counts, though that evidence is limited.</p>
 
-<p>Topical minoxidil is used for pattern hair loss in both men and women. <a href="https://dermnetnz.org/topics/minoxidil-solution" rel="noopener nofollow" target="_blank">DermNet's page on minoxidil solution</a> notes that results take months to appear, that regrown hair can be finer than the original, and that if treatment stops, the scalp generally returns to its pre-treatment appearance within three or four months.</p>
+<p>Topical minoxidil is used for pattern hair loss in both men and women. <a href="https://dermnetnz.org/topics/minoxidil-solution" rel="noopener nofollow" target="_blank">DermNet's page on minoxidil solution</a> notes that results take months to appear, that regrown hair can be finer than the original, and that if treatment stops, the scalp generally returns to its pre-treatment appearance within three or four months. Some men also try it off-label on the beard, where <a href="/blog/does-minoxidil-work-for-beard">the evidence for minoxidil and beard growth</a> is far smaller.</p>
 
 <h3>Oral minoxidil</h3>
 
@@ -143,7 +143,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h3>What a consultation adds</h3>
 
-<p>These are established prescription medicines with a defined place in treating pattern hair loss, and like any medicine they suit some people and not others. The decision to take them should be made knowingly. A proper assessment confirms that the hair loss is pattern loss, looks for anything else contributing, weighs your medical history, including mood, sexual health, heart health and pregnancy plans, and agrees when and how the result will be reviewed.</p>
+<p>These are established prescription medicines with a defined place in treating pattern hair loss, and like any medicine they suit some people and not others. Home remedies sit elsewhere: <a href="/blog/rosemary-onion-juice-and-hair-oils-for-hair-fall">rosemary oil, onion juice and hair oils</a> have far weaker evidence for hair fall. The decision to take them should be made knowingly. A proper assessment confirms that the hair loss is pattern loss, looks for anything else contributing, weighs your medical history, including mood, sexual health, heart health and pregnancy plans, and agrees when and how the result will be reviewed.</p>
 
 <p>Whoever prescribes, the prescription should follow an examination rather than replace it; <a href="/hair-fall-treatment-in-gurgaon">how a hair fall assessment works</a> sets out what that examination involves. If you want to think through your situation first, the <a href="/hair-loss-assessment">hair loss self-assessment</a> is a sensible starting point, and <a href="/medical-disclaimer#doctors">the clinic's doctors and their registration details</a> are listed separately.</p>
 

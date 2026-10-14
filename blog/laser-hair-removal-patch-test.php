@@ -126,7 +126,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Whether rare effects will occur.</strong> Occasionally, skin near a treated area starts growing thicker hair instead; a test spot cannot predict it.</li>
 </ul>
 
-<p>Laser reduces hair rather than removing every hair for good, and results vary between people. A clear patch test is a good start, not a promise.</p>
+<p><a href="/blog/is-laser-hair-removal-permanent">Laser reduces hair rather than removing every hair for good</a>, and results vary between people. A clear patch test is a good start, not a promise.</p>
 
 <?= blog_cta(
     'Wondering whether laser suits your skin and hair?',
@@ -147,7 +147,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Because laser relies on pigment, white and grey hair do not respond, and red or blonde hair responds poorly. That is a limit of the method, and the examination should say so plainly.</p>
 
-<p>New or increasing hair on the chin, upper lip, chest or abdomen in women can point to a hormonal cause such as PCOS. That deserves a medical assessment in its own right, because laser treats the hair, not the cause, and hormonally driven hair often needs more sessions and later top-ups. <a href="/womens-hair-loss-treatment-in-rohini">Women's hair loss</a> and hormonal hair growth can share a cause, which is one reason they are assessed by a doctor.</p>
+<p>New or increasing hair on the chin, upper lip, chest or abdomen in women can point to a hormonal cause such as PCOS. That deserves a medical assessment in its own right, because laser treats the hair, not the cause, and <a href="/blog/laser-hair-removal-for-pcos-facial-hair">hormonally driven hair often needs more sessions</a> and later top-ups. <a href="/womens-hair-loss-treatment-in-rohini">Women's hair loss</a> and hormonal hair growth can share a cause, which is one reason they are assessed by a doctor.</p>
 
 <h2 id="reactions-to-report">Reactions to report after a test or a session</h2>
 

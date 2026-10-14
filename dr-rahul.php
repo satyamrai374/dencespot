@@ -45,7 +45,7 @@ if ($physician !== null) {
 
 $page = [
     'title'       => $doc['name'] . ' | DenceSpot Clinic',
-    'description' => 'Directory profile of ' . $doc['name'] . ' at DenceSpot Clinic: recognised qualification and the clinic where he consults.',
+    'description' => 'Directory profile of ' . $doc['name'] . ' at DenceSpot Clinic: recognised qualification, the clinic where he consults, and how to book a consultation.',
     'url'         => '/dr-rahul',
     'nav_active'  => '/about-us',
     'crumbs'      => $crumbs,
