@@ -15,6 +15,9 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/config.php';
 
 header('Content-Type: application/xml; charset=utf-8');
+// Never cached at the CDN: a stale sitemap hides new pages from search
+// engines (see the ExpiresByType note in .htaccess).
+header('Cache-Control: public, max-age=0, must-revalidate');
 
 /**
  * Pages excluded from the sitemap.
