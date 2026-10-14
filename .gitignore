@@ -6,3 +6,6 @@ storage/
 .DS_Store
 Thumbs.db
 dencespot.com-audit/
+
+# Zoho SMTP password for lead emails. Uploaded to the server by hand.
+includes/mail-secrets.php

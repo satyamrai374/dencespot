@@ -94,7 +94,7 @@ require __DIR__ . '/includes/header.php';
       <ul class="ticks mt-3">
         <li class="tick"><span><strong>Our doctors and authorised clinic staff</strong>, only as far as they need it to respond to you or care for you.</span></li>
         <li class="tick"><span><strong>Our website host</strong> (Hostinger), which stores this website and the enquiry record.</span></li>
-        <li class="tick"><span><strong>Google</strong>, which provides the email inboxes (Gmail) that receive enquiries. Each enquiry is emailed to the clinic and to the agency that runs this website.</span></li>
+        <li class="tick"><span><strong>Zoho and Google</strong>, which provide the email services (Zoho Mail, Gmail) that send and receive enquiries. Each enquiry is emailed to the clinic and to the agency that runs this website.</span></li>
         <li class="tick"><span><strong>WhatsApp (Meta Platforms)</strong>, which carries our WhatsApp conversations with you. A website enquiry may also be sent as a WhatsApp notification to the clinic’s own number through a messaging gateway.</span></li>
         <li class="tick"><span><strong>The agency that runs this website for us</strong>, which maintains it and receives a copy of each website enquiry so that it reaches the clinic. It uses your details only for that purpose, on the clinic’s instructions.</span></li>
         <li class="tick"><span><strong>Laboratories, pharmacies or other healthcare providers</strong>, when needed for your care.</span></li>

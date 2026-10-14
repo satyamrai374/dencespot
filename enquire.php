@@ -12,12 +12,16 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 
+require_once __DIR__ . '/includes/mailer.php';
+
 /**
- * Where enquiries are emailed: the clinic's inbox plus the agency that runs
- * the website (14 Oct 2026). Comma-separated, as mail() expects. The privacy
- * policy (§6) names both recipients — keep it in step if this list changes.
+ * Where enquiries are emailed: the clinic's inbox, the agency that runs the
+ * website, and the leads mailbox itself as a record (14 Oct 2026). Sent
+ * through Zoho as websiteleads@dencespot.com (includes/mailer.php), falling
+ * back to mail(). The privacy policy (§6) names these recipients — keep it in
+ * step if this list changes.
  */
-const ENQUIRY_INBOX = EMAIL . ', raisatyam9651@gmail.com';
+const ENQUIRY_RECIPIENTS = [EMAIL, 'raisatyam9651@gmail.com', 'websiteleads@dencespot.com'];
 
 /** Newline-delimited JSON fallback, so a mail failure never loses a lead. */
 const ENQUIRY_LOG = __DIR__ . '/storage/enquiries.ndjson';
@@ -194,12 +198,16 @@ $body = "New consultation enquiry\n\n"
       . "Page:      {$source}\n\n"
       . "Message:\n{$message}\n";
 
-@mail(
-    ENQUIRY_INBOX,
-    'Consultation enquiry — ' . $name,
-    $body,
-    "From: website@dencespot.com\r\nReply-To: " . EMAIL . "\r\nContent-Type: text/plain; charset=UTF-8"
-);
+$subject = 'Consultation enquiry — ' . $name;
+if (!smtp_send(ENQUIRY_RECIPIENTS, $subject, $body, EMAIL)) {
+    // Zoho unreachable or its password not on the server: the host's mail().
+    @mail(
+        implode(', ', ENQUIRY_RECIPIENTS),
+        $subject,
+        $body,
+        "From: " . SMTP_USER . "\r\nReply-To: " . EMAIL . "\r\nContent-Type: text/plain; charset=UTF-8"
+    );
+}
 
 // 2b. Notify the clinic via WhatsApp using OpenWA Gateway.
 if (defined('OPENWA_API_URL') && OPENWA_API_URL !== '') {
