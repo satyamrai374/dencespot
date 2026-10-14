@@ -12,8 +12,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 
-/** Where enquiries are emailed. Change to the clinic's monitored inbox. */
-const ENQUIRY_INBOX = EMAIL;
+/**
+ * Where enquiries are emailed: the clinic's inbox plus the agency that runs
+ * the website (14 Oct 2026). Comma-separated, as mail() expects. The privacy
+ * policy (§6) names both recipients — keep it in step if this list changes.
+ */
+const ENQUIRY_INBOX = EMAIL . ', raisatyam9651@gmail.com';
 
 /** Newline-delimited JSON fallback, so a mail failure never loses a lead. */
 const ENQUIRY_LOG = __DIR__ . '/storage/enquiries.ndjson';
@@ -194,7 +198,7 @@ $body = "New consultation enquiry\n\n"
     ENQUIRY_INBOX,
     'Consultation enquiry — ' . $name,
     $body,
-    "From: website@dencespot.com\r\nReply-To: " . ENQUIRY_INBOX . "\r\nContent-Type: text/plain; charset=UTF-8"
+    "From: website@dencespot.com\r\nReply-To: " . EMAIL . "\r\nContent-Type: text/plain; charset=UTF-8"
 );
 
 // 2b. Notify the clinic via WhatsApp using OpenWA Gateway.
