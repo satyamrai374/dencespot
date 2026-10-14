@@ -320,7 +320,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Treatment at the Rohini clinic is carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with qualifications and registration details.',
+    'Treatment at the Rohini clinic is carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with their qualifications.',
     '',
     false
 ) ?>

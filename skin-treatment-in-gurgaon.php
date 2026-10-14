@@ -351,7 +351,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Skin consultations and treatment are carried out by registered medical practitioners. DenceSpot is led by a dermatologist, and every doctor at the clinic is listed below with qualifications and registration details.',
+    'Skin consultations and treatment are carried out by registered medical practitioners. DenceSpot is led by a dermatologist, and every doctor at the clinic is listed below with their qualifications.',
     '',
     false
 ) ?>

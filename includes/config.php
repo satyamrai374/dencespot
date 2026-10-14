@@ -562,6 +562,32 @@ function listed_doctors(): array
     return array_filter(DOCTORS, static fn (array $d): bool => !empty($d['quals']));
 }
 
+/**
+ * "Reg. No. …, Council · status" — only once a registration number has been
+ * entered in DOCTORS. Client decision (14 Oct 2026): no registration
+ * placeholders anywhere on the site, so an empty number prints nothing.
+ */
+function doctor_registration(array $doc): string
+{
+    if (empty($doc['reg_number'])) {
+        return '';
+    }
+    return 'Reg. No. ' . e((string) $doc['reg_number'])
+         . (!empty($doc['reg_council']) ? ', ' . e((string) $doc['reg_council']) : '')
+         . (!empty($doc['reg_status']) ? ' · ' . e((string) $doc['reg_status']) : '');
+}
+
+/** True when at least one of $docs has a registration number entered. */
+function doctors_have_registration(array $docs): bool
+{
+    foreach ($docs as $doc) {
+        if (!empty($doc['reg_number'])) {
+            return true;
+        }
+    }
+    return false;
+}
+
 /** Full canonical address on one line. */
 function nap_address_line(): string
 {

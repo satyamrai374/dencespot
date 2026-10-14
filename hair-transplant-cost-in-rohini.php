@@ -321,7 +321,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Assessments, estimates and procedures at the Rohini clinic are carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with qualifications and registration details.',
+    'Assessments, estimates and procedures at the Rohini clinic are carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with their qualifications.',
     '',
     false
 ) ?>

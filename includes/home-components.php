@@ -387,6 +387,10 @@ function hp_placeholder(string $what): string
  * website (name, qualifications, registration status, SMR/NMR number) and the
  * form cl. 9.1 treats as patient information rather than advertising. No
  * photographs (cl. 9.2) and nothing beyond the directory fields.
+ *
+ * 14 Oct 2026 (client request): every doctor in DOCTORS is listed here,
+ * Dr. Rahul included, and no placeholders are printed — a qualification or
+ * registration line appears only once it has been entered in config.php.
  */
 function hp_doctor_directory(): string
 {
@@ -394,20 +398,21 @@ function hp_doctor_directory(): string
 <div class="hp-docs">
   <h3 class="hp-docs__title">Doctors at <?= e(SITE_NAME) ?></h3>
   <ul class="hp-docs__list">
-    <?php foreach (listed_doctors() as $doc): ?>
+    <?php $hpDocs = array_filter(DOCTORS, static fn (array $d): bool => !empty($d['name'])); ?>
+    <?php foreach ($hpDocs as $doc): ?>
       <li class="hp-doc">
         <span class="hp-doc__icon"><?= hp_icon('user-md', 22, 1.6) ?></span>
         <div>
           <p class="hp-doc__name"><?= e($doc['name']) ?></p>
-          <p class="hp-doc__line">
-            <?= !empty($doc['quals']) ? e($doc['quals']) : hp_placeholder('recognised medical qualification') ?>
-            <?php if (!empty($doc['quals']) && !empty($doc['specialty']) && stripos($doc['quals'], $doc['specialty']) === false): ?> · <?= e($doc['specialty']) ?><?php endif; ?>
-          </p>
-          <p class="hp-doc__line">
-            Reg. No. <?= !empty($doc['reg_number']) ? e($doc['reg_number']) : hp_placeholder('registration number') ?>,
-            <?= !empty($doc['reg_council']) ? e($doc['reg_council']) : hp_placeholder('State Medical Council') ?> ·
-            <?= !empty($doc['reg_status']) ? e($doc['reg_status']) : hp_placeholder('registration status') ?>
-          </p>
+          <?php if (!empty($doc['quals'])): ?>
+            <p class="hp-doc__line">
+              <?= e($doc['quals']) ?>
+              <?php if (!empty($doc['specialty']) && stripos($doc['quals'], $doc['specialty']) === false): ?> · <?= e($doc['specialty']) ?><?php endif; ?>
+            </p>
+          <?php endif; ?>
+          <?php if (($reg = doctor_registration($doc)) !== ''): ?>
+            <p class="hp-doc__line"><?= $reg ?></p>
+          <?php endif; ?>
           <?php if (!empty($doc['clinics'])): ?>
             <p class="hp-doc__line hp-doc__line--muted">Consults at: <?= e($doc['clinics']) ?></p>
           <?php endif; ?>
@@ -415,7 +420,9 @@ function hp_doctor_directory(): string
       </li>
     <?php endforeach; ?>
   </ul>
+  <?php if (doctors_have_registration($hpDocs)): ?>
   <p class="hp-docs__verify">Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register<span class="hp-sr"> (opens in a new tab)</span></a> or the <a href="https://nmr-nmc.abdm.gov.in/" rel="noopener" target="_blank">National Medical Register<span class="hp-sr"> (opens in a new tab)</span></a>.</p>
+  <?php endif; ?>
 </div>
 <?php
     return (string) ob_get_clean();
@@ -651,7 +658,7 @@ function hp_footer(): string
 
     <div class="hp-footer__legal">
       <p><strong>Medical disclaimer.</strong> <?= e(MEDICAL_DISCLAIMER) ?></p>
-      <p><strong>About our images.</strong> <?= e(AI_IMAGE_NOTICE) ?> Each one is marked “AI-generated” where it appears. <a href="/medical-disclaimer#images">Image policy</a> · <a href="/medical-disclaimer#doctors">Doctors’ registration details</a></p>
+      <p><strong>About our images.</strong> <?= e(AI_IMAGE_NOTICE) ?> Each one is marked “AI-generated” where it appears. <a href="/medical-disclaimer#images">Image policy</a> · <a href="/medical-disclaimer#doctors">Our doctors</a></p>
     </div>
 
     <div class="hp-footer__bottom">

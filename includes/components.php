@@ -640,17 +640,6 @@ function missing_fact(string $what): string
          . e($what) . ']</span>';
 }
 
-/** "Reg. No. …, Council · status", with placeholders for anything unknown. */
-function doctor_registration(array $doc): string
-{
-    $part = static fn (string $key, string $what): string
-        => !empty($doc[$key]) ? e((string) $doc[$key]) : missing_fact($what);
-
-    return 'Reg. No. ' . $part('reg_number', 'registration number') . ', '
-         . $part('reg_council', 'State Medical Council') . ' · '
-         . $part('reg_status', 'registration status');
-}
-
 /**
  * "Doctors at DenceSpot Clinic" — Oct 2026.
  *
@@ -692,7 +681,9 @@ function doctor_block(string $whyItMatters, string $portraitAlt = '', bool $revi
         <div class="card card--pad-lg">
           <p class="h4"><?= e($doc['name']) ?></p>
           <p class="body-s mt-1"><?= e($doc['quals']) ?><?php if (!empty($doc['specialty']) && stripos((string) $doc['quals'], (string) $doc['specialty']) === false): ?> · <?= e($doc['specialty']) ?><?php endif; ?></p>
-          <p class="meta mt-2"><?= doctor_registration($doc) ?></p>
+          <?php if (($reg = doctor_registration($doc)) !== ''): ?>
+            <p class="meta mt-2"><?= $reg ?></p>
+          <?php endif; ?>
           <?php
             // Only show "Consults at" when it names this page's clinic (or on
             // general pages): a Rohini page never names the Gurugram clinic.
@@ -709,7 +700,10 @@ function doctor_block(string $whyItMatters, string $portraitAlt = '', bool $revi
       <?php endforeach; ?>
     </div>
 
-    <p class="meta mt-4">Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a>.<?php if ($reviewed): ?> Medically reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?>.<?php endif; ?></p>
+    <?php $verify = doctors_have_registration(listed_doctors()); ?>
+    <?php if ($verify || $reviewed): ?>
+      <p class="meta mt-4"><?php if ($verify): ?>Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a>. <?php endif; ?><?php if ($reviewed): ?>Medically reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?>.<?php endif; ?></p>
+    <?php endif; ?>
   </div>
 </section>
 <?php

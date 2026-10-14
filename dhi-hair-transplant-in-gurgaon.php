@@ -326,7 +326,7 @@ require __DIR__ . '/includes/header.php';
 <?= lp_highlights([
     'eyebrow' => 'Why here',
     'title'   => 'Why Have DHI Done Here?',
-    'intro'   => 'Consultations and procedures are carried out by registered medical practitioners at the clinic. Their names, qualifications and registration details are listed on this page.',
+    'intro'   => 'Consultations and procedures are carried out by registered medical practitioners at the clinic. Their names and qualifications are listed on this page.',
     'tone'    => 'white',
     'items'   => [
         ['icon' => 'info',  'title' => 'Told when not to have it',           'text' => 'If your case is a large crown, conventional FUE placement gives the same coverage for less time and less money. DHI is recommended where it earns its cost.'],

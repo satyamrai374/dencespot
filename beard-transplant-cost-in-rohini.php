@@ -251,7 +251,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Examinations, estimates and beard transplants at the Rohini clinic are carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with qualifications and registration details.',
+    'Examinations, estimates and beard transplants at the Rohini clinic are carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with their qualifications.',
     '',
     false
 ) ?>

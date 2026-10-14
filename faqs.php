@@ -44,7 +44,7 @@ $groups = [
     ],
     'Safety, risk and results' => [
         ['q' => 'Who actually performs the procedure?',
-         'a' => 'Consultations and procedures are carried out by registered medical practitioners at the clinic; their names, qualifications and registration details are listed on our <a href="/medical-disclaimer#doctors">doctors and registration</a> page. Whichever clinic you are considering, it is worth asking who performs the extraction, site creation and placement, and what their qualification is.'],
+         'a' => 'Consultations and procedures are carried out by registered medical practitioners at the clinic; their names and qualifications are listed on our <a href="/medical-disclaimer#doctors">doctors and registration</a> page. Whichever clinic you are considering, it is worth asking who performs the extraction, site creation and placement, and what their qualification is.'],
         ['q' => 'Can you promise a particular result?',
          'a' => 'No, and no clinic honestly can. Outcomes vary between patients, not every graft survives, and hair that was not transplanted can continue to thin. We give realistic expectations before you book and document progress photographically so the result can be judged against a baseline rather than a memory.'],
         ['q' => 'What are the risks?',

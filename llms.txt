@@ -2,7 +2,7 @@
 
 > Hair, skin and laser clinic in Sector 39, Gurugram (Gurgaon), Haryana, India, with a second clinic in Rohini, Delhi.
 > Hair transplant (FUE, DHI, FUT), beard and eyebrow transplant, PRP/GFC, medical hair-fall treatment, laser hair removal and skin care.
-> Doctors are listed with their qualifications and registration details at https://dencespot.com/medical-disclaimer#doctors
+> Doctors are listed with their qualifications at https://dencespot.com/medical-disclaimer#doctors
 
 DenceSpot treats pattern hair loss, beard gaps and medical hair-loss causes.
 Content is patient education first: no promised densities, no success-rate
@@ -49,7 +49,7 @@ claims, no patient counts and no outcome is promised before assessment.
 ## About the clinic
 
 - [About DenceSpot](https://dencespot.com/about-us): how the clinic is run and who does what.
-- [Doctors and registration details](https://dencespot.com/medical-disclaimer#doctors): names, recognised qualifications and council registration.
+- [Doctors](https://dencespot.com/medical-disclaimer#doctors): names and recognised qualifications.
 - [Contact and directions](https://dencespot.com/contact): address, hours, map and how to get there.
 
 ## Rohini, Delhi clinic

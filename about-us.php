@@ -115,7 +115,7 @@ require __DIR__ . '/includes/header.php';
 ]) ?>
 
 <?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners. Each doctor’s recognised qualification and medical council registration are listed below.'
+    'Consultations and procedures are carried out by registered medical practitioners. Each doctor’s recognised qualification is listed below.'
 ) ?>
 
 <section class="section section--white">

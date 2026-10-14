@@ -45,7 +45,7 @@ if ($physician !== null) {
 
 $page = [
     'title'       => $doc['name'] . ' | DenceSpot Clinic',
-    'description' => 'Directory profile of ' . $doc['name'] . ' at DenceSpot Clinic: recognised qualification, medical council registration and the clinic where he consults.',
+    'description' => 'Directory profile of ' . $doc['name'] . ' at DenceSpot Clinic: recognised qualification and the clinic where he consults.',
     'url'         => '/dr-rahul',
     'nav_active'  => '/about-us',
     'crumbs'      => $crumbs,
@@ -97,16 +97,20 @@ require __DIR__ . '/includes/header.php';
           <dt>Specialty</dt>
           <dd><?= missing_fact('specialty, as per recognised qualification') ?></dd>
         </div>
+        <?php if (($reg = doctor_registration($doc)) !== ''): ?>
         <div>
           <dt>Registration</dt>
-          <dd><?= doctor_registration($doc) ?></dd>
+          <dd><?= $reg ?></dd>
         </div>
+        <?php endif; ?>
         <div>
           <dt>Consults at</dt>
           <dd><?= !empty($doc['clinics']) ? e(SITE_NAME . ', ' . $doc['clinics']) : missing_fact('clinic(s) where he consults') ?></dd>
         </div>
       </dl>
+      <?php if (doctor_registration($doc) !== ''): ?>
       <p class="meta mt-4">Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a> or the <a href="https://nmr-nmc.abdm.gov.in/" rel="noopener" target="_blank">National Medical Register</a>.</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>

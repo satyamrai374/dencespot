@@ -57,14 +57,14 @@ function legal_doctor_list(): string
     <li class="tick"><span>
       <strong><?= e($doc['name']) ?></strong> —
       <?= legal_value($doc['quals'] ?? null, 'recognised medical qualification') ?>.
-      Registration no. <?= legal_value($doc['reg_number'] ?? null, 'registration number') ?>,
-      <?= legal_value($doc['reg_council'] ?? null, 'State Medical Council') ?>;
-      status: <?= legal_value($doc['reg_status'] ?? null, 'registration status') ?>.
+      <?php if (($reg = doctor_registration($doc)) !== ''): ?><?= $reg ?>.<?php endif; ?>
       <?php if (!empty($doc['clinics'])): ?>Consults at: <?= e($doc['clinics']) ?>.<?php endif; ?>
     </span></li>
   <?php endforeach; ?>
 </ul>
+<?php if (doctors_have_registration(listed_doctors())): ?>
 <p class="body mt-3">You can check a doctor's registration on the National Medical Commission's <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a> or the <a href="https://nmr-nmc.abdm.gov.in/" rel="noopener" target="_blank">National Medical Register</a>.</p>
+<?php endif; ?>
 <?php
     return (string) ob_get_clean();
 }

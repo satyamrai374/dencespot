@@ -71,7 +71,7 @@ $faqs = [
     ],
     [
         'q' => 'Who will conduct my consultation and treatment at the Rohini clinic?',
-        'a' => 'Consultations and treatments at the Rohini clinic are carried out by registered medical practitioners. The names, qualifications and registration details of the clinic’s doctors are listed on our <a href="/medical-disclaimer#doctors">doctors and registration</a> page.'
+        'a' => 'Consultations and treatments at the Rohini clinic are carried out by registered medical practitioners. The names and qualifications of the clinic’s doctors are listed on our <a href="/medical-disclaimer#doctors">doctors and registration</a> page.'
     ],
     [
         'q' => 'What should I bring to my first appointment?',

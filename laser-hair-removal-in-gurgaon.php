@@ -385,7 +385,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Consultations and laser sessions at the Gurugram clinic are carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with qualifications and registration details.',
+    'Consultations and laser sessions at the Gurugram clinic are carried out by registered medical practitioners. Every doctor at DenceSpot is listed below with their qualifications.',
     '',
     false
 ) ?>

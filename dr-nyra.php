@@ -14,9 +14,8 @@
  * personally" claim — only the particulars below, read from DOCTORS in
  * config.php.
  *
- * ⚠ Still required in config.php → DOCTORS['dr-nyra']: reg_number,
- * reg_council and reg_status. Until they are filled in, doctor_registration()
- * prints a visible placeholder here.
+ * Registration (reg_number, reg_council, reg_status in config.php) is shown
+ * only once entered; no placeholders (client decision, 14 Oct 2026).
  */
 
 declare(strict_types=1);
@@ -34,7 +33,7 @@ $crumbs = [
 
 $page = [
     'title'       => $doc['name'] . ', ' . $doc['quals'] . ' | DenceSpot Clinic',
-    'description' => $doc['name'] . ', ' . $doc['quals'] . ': specialty, medical council registration and the clinic where she consults — DenceSpot Clinic, Sector 39, Gurugram.',
+    'description' => $doc['name'] . ', ' . $doc['quals'] . ': specialty and the clinic where she consults — DenceSpot Clinic, Sector 39, Gurugram.',
     'url'         => '/dr-nyra',
     'nav_active'  => '/about-us',
     'crumbs'      => $crumbs,
@@ -80,10 +79,12 @@ require __DIR__ . '/includes/header.php';
           <dt>Specialty</dt>
           <dd><?= e($doc['specialty']) ?></dd>
         </div>
+        <?php if (($reg = doctor_registration($doc)) !== ''): ?>
         <div>
           <dt>Registration</dt>
-          <dd><?= doctor_registration($doc) ?></dd>
+          <dd><?= $reg ?></dd>
         </div>
+        <?php endif; ?>
         <div>
           <dt>Role</dt>
           <dd><?= e($doc['role']) ?></dd>
@@ -93,7 +94,9 @@ require __DIR__ . '/includes/header.php';
           <dd><?= e(SITE_NAME) ?>, <?= e($doc['clinics']) ?><span class="meta" style="display:block;font-weight:500"><?= e(nap_address_line()) ?></span></dd>
         </div>
       </dl>
+      <?php if (doctor_registration($doc) !== ''): ?>
       <p class="meta mt-4">Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a> or the <a href="https://nmr-nmc.abdm.gov.in/" rel="noopener" target="_blank">National Medical Register</a>.</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>
