@@ -35,6 +35,7 @@ $page = [
     'title'       => $doc['name'] . ', ' . $doc['quals'] . ' | DenceSpot Clinic',
     'description' => $doc['name'] . ', ' . $doc['quals'] . ': qualifications, specialty, the clinic where she consults and how to book — DenceSpot Clinic, Sector 39, Gurugram.',
     'url'         => '/dr-nyra',
+    'preload_image' => $doc['image'],
     'nav_active'  => '/about-us',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -54,13 +55,18 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--canvas">
   <div class="wrap">
-    <div class="measure">
-      <span class="pill pill--dot">Doctor profile</span>
-      <h1 class="h1 mt-3"><?= doctor_full('dr-nyra') ?></h1>
-      <p class="lead mt-3 measure"><?= e($doc['name']) ?> consults on hair loss and scalp conditions at <?= e(SITE_NAME) ?>, Gurugram, and carries out hair restoration procedures there. Treatment is planned only after an examination.</p>
-      <div class="btn-row mt-5">
-        <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
-        <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask a Question</a>
+    <div class="split split--wide-right" style="align-items:start">
+      <div class="media ratio-1-1 media--shadow" style="max-width:380px">
+        <img src="<?= e($doc['image']) ?>" alt="<?= e($doc['name']) ?>, <?= e($doc['quals']) ?> at <?= e(SITE_NAME) ?>" width="510" height="510" loading="eager" fetchpriority="high" decoding="async">
+      </div>
+      <div>
+        <span class="pill pill--dot">Doctor profile</span>
+        <h1 class="h1 mt-3"><?= doctor_full('dr-nyra') ?></h1>
+        <p class="lead mt-3 measure"><?= e($doc['name']) ?> consults on hair loss and scalp conditions at <?= e(SITE_NAME) ?>, Gurugram, and carries out hair restoration procedures there. Treatment is planned only after an examination.</p>
+        <div class="btn-row mt-5">
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask a Question</a>
+        </div>
       </div>
     </div>
 

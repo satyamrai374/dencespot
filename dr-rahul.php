@@ -47,6 +47,7 @@ $page = [
     'title'       => $doc['name'] . ' | DenceSpot Clinic',
     'description' => 'Directory profile of ' . $doc['name'] . ' at DenceSpot Clinic: recognised qualification, the clinic where he consults, and how to book a consultation.',
     'url'         => '/dr-rahul',
+    'preload_image' => $doc['image'],
     'nav_active'  => '/about-us',
     'crumbs'      => $crumbs,
     /*
@@ -76,10 +77,19 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section--canvas">
   <div class="wrap">
-    <div class="measure">
-      <span class="pill pill--dot">Doctor profile</span>
-      <h1 class="h1 mt-3"><?= e($doc['name']) ?></h1>
-      <p class="lead mt-3 measure"><?= e($doc['name']) ?> works with the hair restoration team at <?= e(SITE_NAME) ?>. The particulars below are listed in the form the National Medical Commission requires; items shown in brackets are awaiting verification.</p>
+    <div class="split split--wide-right" style="align-items:start">
+      <div class="media ratio-1-1 media--shadow" style="max-width:380px">
+        <img src="<?= e($doc['image']) ?>" alt="<?= e($doc['name']) ?> at <?= e(SITE_NAME) ?>" width="230" height="510" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 85%">
+      </div>
+      <div>
+        <span class="pill pill--dot">Doctor profile</span>
+        <h1 class="h1 mt-3"><?= e($doc['name']) ?></h1>
+        <p class="lead mt-3 measure"><?= e($doc['name']) ?> works with the hair restoration team at <?= e(SITE_NAME) ?>. The particulars below are listed in the form the National Medical Commission requires; items shown in brackets are awaiting verification.</p>
+        <div class="btn-row mt-5">
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask a Question</a>
+        </div>
+      </div>
     </div>
 
     <div class="card card--pad-lg mt-6" style="max-width:760px">
