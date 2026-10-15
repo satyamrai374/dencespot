@@ -79,7 +79,7 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap">
     <div class="split split--wide-right" style="align-items:start">
       <div class="media ratio-1-1 media--shadow" style="max-width:380px">
-        <img src="<?= e($doc['image']) ?>" alt="<?= e($doc['name']) ?> at <?= e(SITE_NAME) ?>" width="230" height="510" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 85%">
+        <img src="<?= e($doc['image']) ?>" alt="<?= e($doc['name']) ?> at <?= e(SITE_NAME) ?>" width="380" height="380" loading="eager" fetchpriority="high" decoding="async">
       </div>
       <div>
         <span class="pill pill--dot">Doctor profile</span>
