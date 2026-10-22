@@ -55,7 +55,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>How the outcome was measured</strong> — a photographic impression, a global assessment score, or a machine count of density in a tattooed reference area. Those are not comparable.</li>
 </ul>
 
-<p>So when a clinic quotes a figure for how well PRP works, ask which protocol it came from and whether that is the protocol you are being sold. Usually the number has been borrowed, which is why <a href="/blog/hair-transplant-guarantees-and-success-rates">quoted success rates deserve scepticism</a> across this field.</p>
+<p>So when a clinic quotes a figure for how well PRP works, ask which protocol it came from and whether that is the protocol you are being sold. Usually the number has been borrowed, which is why <a href="/blog/hair-transplant-promises-and-success-rates">quoted success rates deserve scepticism</a> across this field.</p>
 
 <h2 id="who-tends-to-respond">Who tends to respond, and who does not</h2>
 

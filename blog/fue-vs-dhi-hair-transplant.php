@@ -67,7 +67,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Implanter advocates note that a graft is gripped once, when loaded, and not taken up again by forceps. Channel advocates note that with sites already open, placement runs without pausing to load.</p>
 
-<p>Both are plausible, and neither settles it. What governs time out of the body is how many trained hands are working, how the day is sequenced, and whether the team is being pushed towards a graft target. A clinic answering this with a percentage is overreaching — <a href="/blog/hair-transplant-guarantees-and-success-rates">what claimed survival rates really mean</a> explains why no such figure can be verified on your own head.</p>
+<p>Both are plausible, and neither settles it. What governs time out of the body is how many trained hands are working, how the day is sequenced, and whether the team is being pushed towards a graft target. A clinic answering this with a percentage is overreaching — <a href="/blog/hair-transplant-promises-and-success-rates">what claimed survival rates really mean</a> explains why no such figure can be verified on your own head.</p>
 
 <h2 id="shaving-and-the-limits-of-unshaven-work">Shaving, and the real limits of unshaven work</h2>
 

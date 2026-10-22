@@ -123,7 +123,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Has a diagnosis been made?</strong> If nobody has examined your scalp under magnification or asked about your thyroid and iron status, you are buying treatment before anyone established what you have.</li>
 </ul>
 
-<p>A clinic that answers all seven plainly is one you can compare against another. One that answers by calling the newest product the most advanced has not answered — the scepticism <a href="/blog/hair-transplant-guarantees-and-success-rates">guarantees and quoted success rates</a> deserve in surgery applies here too.</p>
+<p>A clinic that answers all seven plainly is one you can compare against another. One that answers by calling the newest product the most advanced has not answered — the scepticism <a href="/blog/hair-transplant-promises-and-success-rates">guarantees and quoted success rates</a> deserve in surgery applies here too.</p>
 
 <p>If you would rather start with the cause of the shedding than with which injection to buy, the <a href="/hair-fall-treatment-in-gurgaon">hair fall assessment</a> is the entry point, and <a href="/dr-nyra">the dermatologist who runs the clinic</a> is the person who examines you.</p>
 

@@ -79,7 +79,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Replay the consultation afterwards and look for the limits. Were any named at all? A genuine assessment produces constraints, and they sound like this: the crown can be improved but not filled, the hairline will sit higher than in your college photograph, a second session is likely, medication first because the loss is still moving.</p>
 
-<p>If every wish you expressed was met with agreement, you were sold to rather than assessed. Hairline position in particular is a clinical decision constrained by age and donor supply, not a preference to be accommodated. Where a clinic offers assurance instead of constraints, weigh it against <a href="/blog/hair-transplant-guarantees-and-success-rates">what guaranteed results and success-rate claims mean</a>.</p>
+<p>If every wish you expressed was met with agreement, you were sold to rather than assessed. Hairline position in particular is a clinical decision constrained by age and donor supply, not a preference to be accommodated. Where a clinic offers assurance instead of constraints, weigh it against <a href="/blog/hair-transplant-promises-and-success-rates">what guaranteed results and success-rate claims mean</a>.</p>
 
 <h2 id="the-consent-form-and-when-you-see-it">The consent form, and when you are given it</h2>
 

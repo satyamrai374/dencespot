@@ -31,11 +31,19 @@ const COMPARISON_REDIRECTS = [
     '/prp-vs-hair-transplant'                => '/blog/prp-or-hair-transplant',
     '/prp-vs-gfc-treatment'                  => '/blog/prp-vs-gfc-vs-exosomes',
     '/hair-transplant-risks-and-side-effects' => '/blog/hair-transplant-side-effects-and-risks',
+    '/blog/hair-transplant-guarantees-and-success-rates' => '/blog/hair-transplant-promises-and-success-rates',
 ];
 
 $trimmed = rtrim($uri, '/');
 if ($trimmed !== '' && isset(COMPARISON_REDIRECTS[$trimmed])) {
     header('Location: ' . COMPARISON_REDIRECTS[$trimmed], true, 301);
+    exit;
+}
+
+// 1e. Trailing slash on a page URL -> 301 to the slashless URL. Mirrors the
+//     .htaccess rule (§6), so /about-us/ behaves locally as it does live.
+if ($trimmed !== '' && $trimmed !== $uri && !is_dir($file) && file_exists(__DIR__ . $trimmed . '.php')) {
+    header('Location: ' . $trimmed, true, 301);
     exit;
 }
 
@@ -55,11 +63,6 @@ if (file_exists($phpFile)) {
     exit;
 }
 
-// 4. Nothing matched. Redirect to /404
-if ($uri !== '/404') {
-    header("Location: /404", true, 302);
-    exit;
-}
-
+// 4. Nothing matched: 404.php, at the requested address.
 http_response_code(404);
 require __DIR__ . '/404.php';

@@ -82,7 +82,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Two versions come up often. The first is the fixed image: a photograph from school, a teenage hairline, a density the donor supply cannot fund. That is usually solvable by an honest conversation, drawings on the actual scalp, and a clear statement of what the outcome will and will not look like at ten to twelve months.</p>
 
-<p>The second is harder. Where distress is disproportionate to the visible loss, or the hair has become the explanation for problems that sit elsewhere in a life, surgery reliably fails to help. Body dysmorphic concerns are a recognised reason to decline cosmetic surgery of any kind, and the response is a referral rather than a scalpel. Any clinic promising a result will fix how you feel has stopped practising medicine, which is also why <a href="/blog/hair-transplant-guarantees-and-success-rates">guarantees and quoted success rates should raise your guard</a>.</p>
+<p>The second is harder. Where distress is disproportionate to the visible loss, or the hair has become the explanation for problems that sit elsewhere in a life, surgery reliably fails to help. Body dysmorphic concerns are a recognised reason to decline cosmetic surgery of any kind, and the response is a referral rather than a scalpel. Any clinic promising a result will fix how you feel has stopped practising medicine, which is also why <a href="/blog/hair-transplant-promises-and-success-rates">guarantees and quoted success rates should raise your guard</a>.</p>
 
 <?= blog_cta(
     'Not sure which of these describes you?',

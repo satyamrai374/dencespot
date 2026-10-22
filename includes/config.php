@@ -226,10 +226,61 @@ const DOCTORS = [
         'role'        => 'Owner & Chief Consultant, DenceSpot Clinic',
         'alumni'      => 'Dr. D. Y. Patil Medical College',
         'url'         => '/dr-nyra',
+        'image'       => '/assets/img/dr-nayra.webp',
+        'specialty'   => 'Dermatology & Hair Restoration',
         'reg_number'  => null,   // ⚠ add medical registration number
+        'reg_council' => null,   // ⚠ e.g. 'Haryana Medical Council'
+        'reg_status'  => null,   // ⚠ e.g. 'Registered, active'
+        'clinics'     => 'Gurugram',
         'same_as'     => [],     // ⚠ add Practo / LinkedIn profile URLs
     ],
+    'dr-rahul' => [
+        'name'        => 'Dr. Rahul',
+        'quals'       => null,
+        'role'        => null,
+        'alumni'      => null,
+        'url'         => '/dr-rahul',
+        'image'       => '/assets/img/dr-rahul.webp',
+        'specialty'   => null,
+        'reg_number'  => null,
+        'reg_council' => null,
+        'reg_status'  => null,
+        'clinics'     => null,
+        'same_as'     => [],
+    ],
 ];
+
+/**
+ * Doctors who may be named in the public directory: only those whose recognised qualification is on record.
+ */
+function listed_doctors(): array
+{
+    return array_filter(DOCTORS, static fn (array $d): bool => !empty($d['quals']));
+}
+
+/**
+ * "Reg. No. …, Council · status" — only once a registration number has been entered.
+ */
+function doctor_registration(array $doc): string
+{
+    if (empty($doc['reg_number'])) {
+        return '';
+    }
+    return 'Reg. No. ' . e((string) $doc['reg_number'])
+         . (!empty($doc['reg_council']) ? ', ' . e((string) $doc['reg_council']) : '')
+         . (!empty($doc['reg_status']) ? ' · ' . e((string) $doc['reg_status']) : '');
+}
+
+/** True when at least one of $docs has a registration number entered. */
+function doctors_have_registration(array $docs): bool
+{
+    foreach ($docs as $doc) {
+        if (!empty($doc['reg_number'])) {
+            return true;
+        }
+    }
+    return false;
+}
 
 const REVIEWED_BY   = 'Dr. Nyra';
 const REVIEWED_DATE = 'August 2026';

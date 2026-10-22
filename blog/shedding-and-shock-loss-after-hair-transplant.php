@@ -92,7 +92,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Shedding follows from moving a follicle, not from moving it badly. Every technique that lifts a follicle out of one blood supply and asks it to establish another provokes the response. Implanter pens do not abolish it and nor do pre-made channels — as <a href="/blog/fue-vs-dhi-hair-transplant">the real differences between FUE and DHI</a> sets out, that argument is about placement, not about whether the hair drops.</p>
 
-<p>So a clinic promising your transplant will not shed is describing something that does not happen, and one quoting a precise regrowth percentage is quoting a figure nobody can verify for your head before operating. Both belong with the claims examined in <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and success-rate claims</a>. What a surgeon can honestly give you is what usually happens, and over what timescale.</p>
+<p>So a clinic promising your transplant will not shed is describing something that does not happen, and one quoting a precise regrowth percentage is quoting a figure nobody can verify for your head before operating. Both belong with the claims examined in <a href="/blog/hair-transplant-promises-and-success-rates">guaranteed results and success-rate claims</a>. What a surgeon can honestly give you is what usually happens, and over what timescale.</p>
 
 <p>You may be offered <a href="/hair-prp-treatment-in-gurgaon">PRP around the time of surgery</a> to ease native-hair shock loss. It is defensible to discuss. It should not be sold as prevention, because the evidence for that specific use is limited.</p>
 

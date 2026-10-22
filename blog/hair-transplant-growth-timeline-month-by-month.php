@@ -98,7 +98,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Interval.</strong> Monthly is enough. Weekly photographs show noise and invite anxiety.</li>
 </ul>
 
-<p>Done properly, that is the only honest comparison available to you. It is also the discipline that exposes marketing photography, and the reason claims about <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and quoted success rates</a> deserve scepticism.</p>
+<p>Done properly, that is the only honest comparison available to you. It is also the discipline that exposes marketing photography, and the reason claims about <a href="/blog/hair-transplant-promises-and-success-rates">guaranteed results and quoted success rates</a> deserve scepticism.</p>
 
 <h2 id="why-individual-timelines-vary">Why individual timelines vary</h2>
 

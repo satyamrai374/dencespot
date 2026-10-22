@@ -104,7 +104,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>It does not record surgical volume. It cannot tell you whether a dermatologist has performed four hundred transplants or four. It does not record technique, so it will not separate a surgeon who does <a href="/dhi-hair-transplant-in-gurgaon">implanter-pen placement</a> most weeks from one who last did it in training. It holds no complication history and nothing about outcomes.</p>
 
-<p>Most importantly, it says nothing about who will be in the theatre on your date. A properly registered doctor delegating your extraction to a technician is entirely consistent with the register. It verifies a credential; only a written commitment verifies attendance. That is why the <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking at a consultation</a> matter alongside the check, and why claims about <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and quoted success rates</a> deserve the same scepticism.</p>
+<p>Most importantly, it says nothing about who will be in the theatre on your date. A properly registered doctor delegating your extraction to a technician is entirely consistent with the register. It verifies a credential; only a written commitment verifies attendance. That is why the <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking at a consultation</a> matter alongside the check, and why claims about <a href="/blog/hair-transplant-promises-and-success-rates">guaranteed results and quoted success rates</a> deserve the same scepticism.</p>
 
 <?= blog_cta(
     'Want to check who would actually be operating on you here?',

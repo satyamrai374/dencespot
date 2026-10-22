@@ -106,7 +106,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>Not defensible.</strong> A promise that you will never thin again, a survival percentage quoted before anyone has operated, or an assurance of how one head will look in 2040.</li>
 </ul>
 
-<p>Anyone offering the last of those is describing a wish rather than a prognosis, and the reasoning is set out in <a href="/blog/hair-transplant-guarantees-and-success-rates">what guarantees and success-rate claims really mean</a>. Individual outcomes vary, and a clinic unwilling to say so in the consultation is unlikely to say so afterwards.</p>
+<p>Anyone offering the last of those is describing a wish rather than a prognosis, and the reasoning is set out in <a href="/blog/hair-transplant-promises-and-success-rates">what guarantees and success-rate claims really mean</a>. Individual outcomes vary, and a clinic unwilling to say so in the consultation is unlikely to say so afterwards.</p>
 
 <blockquote>The grafts are permanent. The result is not fixed, because it sits inside a scalp that keeps changing. A transplant is best understood as one intervention in the ongoing management of a lifelong condition, not as a cure for it.</blockquote>
 
