@@ -11,39 +11,106 @@ declare(strict_types=1);
 <footer class="site-footer">
   <div class="wrap">
 
-    <div class="site-footer__cols">
-      <div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="brand__mark" style="background:rgba(255,255,255,.1)"><?= icon('logo', 19, '#10B981', 1.7) ?></span>
-          <span style="font-size:17px;font-weight:800;color:#fff;letter-spacing:-.01em">DenceSpot</span>
+    <!-- Both Clinic Location Maps -->
+    <div class="site-footer__locations">
+      <div class="site-footer__loc-head">
+        <span class="pill pill--sm">Our Clinic Locations</span>
+        <h2 class="site-footer__loc-title">Visit DenceSpot in Gurugram &amp; Delhi (Rohini)</h2>
+        <p class="site-footer__loc-sub">Doctor-led consultations, robotic &amp; micro-FUE hair restoration, and medical trichology care across both Delhi NCR locations.</p>
+      </div>
+
+      <div class="site-footer__loc-grid">
+        <!-- Location 1: Gurugram HQ -->
+        <div class="site-footer__loc-card">
+          <div class="site-footer__loc-card-body">
+            <div class="site-footer__loc-badge-row">
+              <span class="site-footer__loc-badge">HQ &amp; Surgical Centre</span>
+              <span class="site-footer__loc-city">Gurugram (Sector 39)</span>
+            </div>
+            <h3 class="site-footer__loc-name">DenceSpot Clinic — Gurugram</h3>
+            <p class="site-footer__loc-addr">
+              <?= icon('pin', 16, '#10B981') ?>
+              <span><?= e(NAP_STREET) ?>, <?= e(NAP_LOCALITY) ?>, <?= e(NAP_REGION) ?> <?= e(NAP_POSTCODE) ?><br><small style="color:rgba(255,255,255,0.6)"><?= e(NAP_LANDMARK) ?></small></span>
+            </p>
+            <p class="site-footer__loc-hours">
+              <?= icon('clock', 15, '#10B981') ?>
+              <span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span>
+            </p>
+            <div class="site-footer__loc-actions">
+              <a class="btn btn--sm btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>
+              <a class="btn btn--sm btn--outline-light" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e(PHONE_DISPLAY) ?></a>
+              <a class="site-footer__loc-dir-link" href="<?= e(MAPS_URL) ?>" target="_blank" rel="noopener">Directions &rarr;</a>
+            </div>
+          </div>
+          <div class="site-footer__loc-map">
+            <iframe title="DenceSpot Clinic Gurugram Map" src="<?= e(MAP_EMBED) ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
         </div>
-        <p class="mt-2" style="font-size:14px;line-height:1.65;max-width:34ch">Doctor-led hair restoration in Gurugram. Hair transplant, beard transplant, PRP and medical hair-loss treatment, planned case by case.</p>
-      </div>
 
-      <?php foreach (NAV_FOOTER as $heading => $links): ?>
-      <div>
-        <h2><?= e($heading) ?></h2>
-        <ul>
-          <?php foreach ($links as $link): ?>
-            <li><a href="<?= e($link['url']) ?>"><?= e($link['label']) ?></a></li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-      <?php endforeach; ?>
-
-      <div>
-        <h2>Contact</h2>
-        <ul>
-          <li><?= e(NAP_STREET) ?>,<br><?= e(NAP_LOCALITY) ?>, <?= e(NAP_REGION) ?> <?= e(NAP_POSTCODE) ?></li>
-          <li><a href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= e(PHONE_DISPLAY) ?></a></li>
-          <li><a href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp">WhatsApp</a></li>
-          <li><a href="mailto:<?= e(EMAIL) ?>"><?= e(EMAIL) ?></a></li>
-          <li><?= e(HOURS_DISPLAY) ?><br><?= e(HOURS_NOTE) ?></li>
-        </ul>
+        <!-- Location 2: Delhi Rohini -->
+        <div class="site-footer__loc-card">
+          <div class="site-footer__loc-card-body">
+            <div class="site-footer__loc-badge-row">
+              <span class="site-footer__loc-badge site-footer__loc-badge--alt">Delhi Branch</span>
+              <span class="site-footer__loc-city">Delhi (Rohini)</span>
+            </div>
+            <h3 class="site-footer__loc-name"><?= e(LOC_DELHI_NAME) ?></h3>
+            <p class="site-footer__loc-addr">
+              <?= icon('pin', 16, '#10B981') ?>
+              <span><?= e(LOC_DELHI_ADDRESS) ?><br><small style="color:rgba(255,255,255,0.6)"><?= e(LOC_DELHI_LANDMARK) ?></small></span>
+            </p>
+            <p class="site-footer__loc-hours">
+              <?= icon('clock', 15, '#10B981') ?>
+              <span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span>
+            </p>
+            <div class="site-footer__loc-actions">
+              <a class="btn btn--sm btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>
+              <a class="btn btn--sm btn--outline-light" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
+              <a class="site-footer__loc-dir-link" href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener">Directions &rarr;</a>
+            </div>
+          </div>
+          <div class="site-footer__loc-map">
+            <iframe title="DenceSpot Clinic Delhi Rohini Map" src="<?= e(LOC_DELHI_MAP_EMBED) ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>
       </div>
     </div>
 
-    <p class="disclaimer"><b>Medical disclaimer.</b> <?= e(MEDICAL_DISCLAIMER) ?> <b>Medically reviewed by Dr. Nyra.</b></p>
+    <!-- Aligned Footer Navigation Links -->
+    <div class="site-footer__nav-row">
+      <div class="site-footer__brand-col">
+        <a class="brand" href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
+          <span class="brand__mark" style="background:rgba(255,255,255,.1)"><?= icon('logo', 19, '#10B981', 1.7) ?></span>
+          <span class="brand__name">
+            <b style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-.01em">DenceSpot</b>
+            <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.05em">Hair Restoration Clinic</span>
+          </span>
+        </a>
+        <p class="site-footer__brand-desc">
+          Doctor-led hair restoration in Gurugram &amp; Delhi NCR. Micro-FUE, DHI, beard transplants, PRP therapy, and medical hair-loss solutions planned personally by MD dermatologists.
+        </p>
+        <div class="site-footer__brand-contact">
+          <a href="mailto:<?= e(EMAIL) ?>" style="color:rgba(255,255,255,.75);display:inline-flex;align-items:center;gap:8px;font-size:13.5px;">
+            <?= icon('mail', 15, '#10B981') ?> <?= e(EMAIL) ?>
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__cols">
+        <?php foreach (NAV_FOOTER as $heading => $links): ?>
+        <div class="site-footer__col">
+          <h2 class="site-footer__heading"><?= e($heading) ?></h2>
+          <ul class="site-footer__list">
+            <?php foreach ($links as $link): ?>
+              <li><a href="<?= e($link['url']) ?>"><?= e($link['label']) ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <p class="disclaimer"><b>Medical disclaimer:</b> <?= e(MEDICAL_DISCLAIMER) ?> <b>Medically reviewed by Dr. Nyra.</b></p>
 
     <div class="colophon">
       <p>&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?>. All rights reserved.</p>
