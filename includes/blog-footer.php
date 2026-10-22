@@ -9,36 +9,18 @@ $related = blog_posts($post['hub'], $post['slug']);
 ?>
     </div><!-- /.prose -->
 
-    <?php
-    /**
-     * The post's FAQ accordion, from the same $postFaqs array blog-header.php
-     * marks up as FAQPage.
-     *
-     * Every post used to call faq_list() itself, AFTER requiring this file — so
-     * the questions rendered below </body></html>, outside <main>, beneath the
-     * site footer. The FAQPage schema was describing text that sat outside the
-     * document. Rendering it here keeps it inside the article, above the
-     * disclaimer. Posts set $postFaqHeading (and optionally $postFaqId); they
-     * must not call faq_list() themselves.
-     */
-    ?>
-    <?php if (!empty($postFaqs)): ?>
-    <h2 id="<?= e($postFaqId ?? 'faqs') ?>" class="h2 mt-6"><?= e($postFaqHeading ?? 'Frequently Asked Questions') ?></h2>
-    <div class="mt-4"><?= faq_list($postFaqs) ?></div>
-    <?php endif; ?>
-
     <div class="note mt-6">
       <p class="body-s"><b>Medical disclaimer.</b> <?= e(MEDICAL_DISCLAIMER) ?></p>
     </div>
 
-    <?php if ($relatedPage !== null): ?>
+    <?php if ($hub !== null): ?>
     <div class="card card--pad-lg mt-4" style="background:var(--card)">
       <p class="eyebrow" style="color:var(--ink-muted)">Related treatment</p>
-      <h2 class="h3 mt-2">Considering <?= e(strtolower($hub['label'] ?? 'this')) ?> treatment?</h2>
+      <h2 class="h3 mt-2">Considering <?= e(strtolower($hub['label'])) ?> treatment?</h2>
       <p class="body-s mt-2">This article is patient education. What applies to your own case is decided after an examination — the treatment page sets out how that works, what it costs and what to expect.</p>
       <div class="btn-row mt-4">
-        <a class="btn btn--ink" href="<?= e($relatedPage['url']) ?>"><?= e($relatedPage['label']) ?></a>
-        <a class="btn btn--outline" href="/book-consultation" data-book data-track="book">Book a consultation</a>
+        <a class="btn btn--ink" href="<?= e($hub['url']) ?>"><?= e($hub['label']) ?> in Gurgaon</a>
+        <a class="btn btn--outline" href="/book-consultation">Book a consultation</a>
       </div>
     </div>
     <?php endif; ?>
@@ -60,13 +42,7 @@ $related = blog_posts($post['hub'], $post['slug']);
 <?php endif; ?>
 
 <?= cta_band(
-    // Topic-matched: a skin or beard article asking about "your hair loss"
-    // reads as boilerplate.
-    match ($post['hub'] ?? '') {
-        'skin'  => 'Have a Question About Your Own Skin or Unwanted Hair?',
-        'beard' => 'Have a Question About Your Own Beard?',
-        default => 'Have a Question About Your Own Hair Loss?',
-    },
+    'Have a Question About Your Own Hair Loss?',
     'Reading about it only gets you so far. An examination tells you what you actually have, and whether anything needs treating at all.',
     'blog-' . $post['slug']
 ) ?>

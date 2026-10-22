@@ -12,26 +12,6 @@
 
 declare(strict_types=1);
 
-/**
- * Enumeration values are written as schema.org URLs (Oct 2026 validation
- * pass): "Monday" and "Dermatology" as bare text are range violations for
- * dayOfWeek (DayOfWeek) and medicalSpecialty (MedicalSpecialty).
- *
- * @param list<string> $days
- * @return list<string>
- */
-function schema_days(array $days): array
-{
-    return array_map(static fn (string $d): string => 'https://schema.org/' . $d, $days);
-}
-
-/** A MedicalSpecialty enumeration URL, or null for a value schema.org does not list. */
-function schema_specialty(?string $specialty): ?string
-{
-    $members = ['Dermatology', 'PlasticSurgery', 'Surgery', 'Endocrine', 'PrimaryCare'];
-    return ($specialty !== null && in_array($specialty, $members, true)) ? 'https://schema.org/' . $specialty : null;
-}
-
 /** The clinic entity. Referenced by @id from every other node. */
 function schema_clinic(): array
 {
@@ -50,10 +30,10 @@ function schema_clinic(): array
             'postalCode'      => NAP_POSTCODE,
             'addressCountry'  => NAP_COUNTRY,
         ],
-        'medicalSpecialty' => schema_specialty('Dermatology'),
+        'medicalSpecialty' => 'Dermatology',
         'openingHoursSpecification' => [[
             '@type'     => 'OpeningHoursSpecification',
-            'dayOfWeek' => schema_days(HOURS_DAYS),
+            'dayOfWeek' => HOURS_DAYS,
             'opens'     => HOURS_OPEN,
             'closes'    => HOURS_CLOSE,
         ]],
@@ -69,15 +49,14 @@ function schema_clinic(): array
     }
 
     $node['hasMap'] = MAPS_URL;
-    // Only a real photograph of the premises may stand for the clinic — see
-    // CLINIC_IMAGE in config.php for why there is none at the moment.
-    if (CLINIC_IMAGE !== null) {
-        $node['image'] = abs_url(CLINIC_IMAGE);
-    }
+    $node['image']  = abs_url(CLINIC_IMAGE);
 
-    // No priceRange: the clinic publishes no charges (quotes are written after
-    // assessment), and a fee indication must be factual (NMC Guidelines
-    // 06.10.2026, cl. 8.1(x)).
+    /**
+     * A coarse band, not a figure. The clinic publishes no per-graft price
+     * because quotes are issued in writing after assessment, and priceRange
+     * accepts exactly this kind of indication without committing to a number.
+     */
+    $node['priceRange'] = '₹₹';
 
     /**
      * ⚠ NO hasCredential node. The three NABH certificate images could not be
@@ -92,15 +71,15 @@ function schema_clinic(): array
     }
 
     foreach (AREA_SERVED as $area) {
-        // The National Capital Region is a metropolitan region, not a city.
-        $type = str_contains($area, 'Region') ? 'AdministrativeArea' : 'City';
+        // "Delhi NCR" is a metropolitan region, not a city.
+        $type = str_contains($area, 'NCR') ? 'AdministrativeArea' : 'City';
         $node['areaServed'][] = ['@type' => $type, 'name' => $area];
     }
 
     return $node;
 }
 
-/** The Delhi (Rohini) clinic entity. */
+/** Delhi (Rohini) clinic entity. */
 function schema_delhi_clinic(): array
 {
     return [
@@ -112,18 +91,16 @@ function schema_delhi_clinic(): array
         'email'     => EMAIL,
         'address'   => array_filter([
             '@type'           => 'PostalAddress',
-            // LOC_DELHI_ADDRESS still holds a label, not a street address; it
-            // is only marked up once config has the real one.
             'streetAddress'   => LOC_DELHI_ADDRESS !== 'Dencespot Clinic, Delhi (Rohini)' ? LOC_DELHI_ADDRESS : null,
             'addressLocality' => 'Rohini, Delhi',
             'addressRegion'   => 'Delhi',
             'postalCode'      => '110085',
             'addressCountry'  => 'IN',
         ], static fn ($v): bool => $v !== null),
-        'medicalSpecialty' => schema_specialty('Dermatology'),
+        'medicalSpecialty' => 'Dermatology',
         'openingHoursSpecification' => [[
             '@type'     => 'OpeningHoursSpecification',
-            'dayOfWeek' => schema_days(HOURS_DAYS),
+            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             'opens'     => HOURS_OPEN,
             'closes'    => HOURS_CLOSE,
         ]],
@@ -152,49 +129,16 @@ function schema_physician(string $key = 'dr-nyra'): ?array
     }
 
     $node = [
-        // schema.org's Physician is an Organization type, on which jobTitle,
-        // worksFor and alumniOf are invalid; the person is typed as both.
-        '@type'    => ['Person', 'IndividualPhysician'],
+        '@type'    => 'Physician',
         '@id'      => abs_url($doc['url']) . '#physician',
         'name'     => $doc['name'],
+        'jobTitle' => $doc['role'],
         'url'      => abs_url($doc['url']),
         'worksFor' => ['@id' => SITE_ORIGIN . '/#clinic'],
     ];
 
-    if (!empty($doc['role'])) {
-        $node['jobTitle'] = $doc['role'];
-    }
-    // No default: a specialty is only marked up when config records one that
-    // schema.org lists.
-    $specialty = schema_specialty($doc['specialty'] ?? null);
-    if ($specialty !== null) {
-        $node['medicalSpecialty'] = $specialty;
-    }
-
-    // Where the doctor practises, from config 'clinics' ("Gurugram", "Delhi"…).
-    // IndividualPhysician is a LocalBusiness, so it also carries that clinic's
-    // address.
-    $clinics = (string) ($doc['clinics'] ?? '');
-    $at = [];
-    if (stripos($clinics, 'Gurugram') !== false || stripos($clinics, 'Gurgaon') !== false) {
-        $at[] = ['@id' => SITE_ORIGIN . '/#clinic'];
-        $node['address'] = [
-            '@type'           => 'PostalAddress',
-            'streetAddress'   => NAP_STREET,
-            'addressLocality' => NAP_LOCALITY,
-            'addressRegion'   => NAP_REGION,
-            'postalCode'      => NAP_POSTCODE,
-            'addressCountry'  => NAP_COUNTRY,
-        ];
-    }
-    if (stripos($clinics, 'Delhi') !== false || stripos($clinics, 'Rohini') !== false) {
-        $at[] = ['@id' => SITE_ORIGIN . '/delhi-clinic#clinic'];
-    }
-    if ($at !== []) {
-        $node['practicesAt'] = $at;
-    }
-    // No image: a doctor's photograph used as publicity is barred (NMC Guidelines
-    // 06.10.2026, cl. 9.2), and the portrait on file may be AI-edited.
+    $node['medicalSpecialty'] = 'Dermatology';
+    $node['image']            = abs_url('/assets/img/dr-nayra.webp');
 
     // Range is EducationalOrganization, not Text — a bare string is a range violation.
     if (!empty($doc['alumni'])) {
@@ -243,17 +187,11 @@ function schema_procedure(string $pageUrl, array $fields): array
     $node = array_merge([
         '@type'    => 'MedicalProcedure',
         '@id'      => abs_url($pageUrl) . '#procedure',
+        'performer'=> ['@id' => abs_url(DOCTORS['dr-nyra']['url']) . '#physician'],
         'location' => ['@id' => SITE_ORIGIN . '/#clinic'],
     ], $fields);
 
-    // "SurgicalProcedure" is a schema.org type (a MedicalProcedure subclass),
-    // not a MedicalProcedureType value, so it becomes the node's type.
-    if (($node['procedureType'] ?? null) === 'https://schema.org/SurgicalProcedure') {
-        $node['@type'] = 'SurgicalProcedure';
-        unset($node['procedureType']);
-    }
-
-    return schema_fix_prognosis(schema_service_links($node));
+    return schema_fix_prognosis($node);
 }
 
 /**
@@ -281,11 +219,12 @@ function schema_fix_prognosis(array $node): array
 /** Non-surgical therapy — PRP, GFC, mesotherapy, LLLT. */
 function schema_therapy(string $pageUrl, array $fields): array
 {
-    return schema_fix_prognosis(schema_service_links(array_merge([
+    return schema_fix_prognosis(array_merge([
         '@type'     => 'MedicalTherapy',
         '@id'       => abs_url($pageUrl) . '#therapy',
+        'performer' => ['@id' => abs_url(DOCTORS['dr-nyra']['url']) . '#physician'],
         'location'  => ['@id' => SITE_ORIGIN . '/#clinic'],
-    ], $fields)));
+    ], $fields));
 }
 
 /**
@@ -365,7 +304,7 @@ function schema_faq(string $pageUrl, array $faqs): ?array
 function schema_article(string $pageUrl, array $fields): array
 {
     return array_merge([
-        '@type'            => 'BlogPosting',
+        '@type'            => 'Article',
         '@id'              => abs_url($pageUrl) . '#article',
         'publisher'        => ['@id' => SITE_ORIGIN . '/#clinic'],
         'mainEntityOfPage' => abs_url($pageUrl),
@@ -396,29 +335,9 @@ function schema_medical_webpage(string $pageUrl, string $title): ?array
         'name'         => $title,
         'url'          => abs_url($pageUrl),
         'about'        => ['@id' => SITE_ORIGIN . '/#clinic'],
+        'reviewedBy'   => ['@id' => abs_url(DOCTORS['dr-nyra']['url']) . '#physician'],
+        'lastReviewed' => REVIEWED_DATE_ISO,
     ];
-    // Only pages the doctor has signed off since the October rewrite carry the
-    // review (REVIEW_SIGNED_OFF in config.php).
-    if (in_array(rtrim($pageUrl, '/'), REVIEW_SIGNED_OFF, true)) {
-        $node['reviewedBy']   = ['@id' => abs_url(DOCTORS['dr-nyra']['url']) . '#physician'];
-        $node['lastReviewed'] = REVIEWED_DATE_ISO;
-    }
-
-    /**
-     * Cluster relationships, from the same map footer.php renders visibly —
-     * every URL here is a link on the page. A cluster page declares its pillar
-     * as isPartOf; every cluster member lists the rest as relatedLink.
-     */
-    if (function_exists('cluster_for')) {
-        $related = cluster_related_urls($pageUrl);
-        if ($related !== []) {
-            $node['relatedLink'] = $related;
-        }
-        $found = cluster_for($pageUrl);
-        if ($found !== null && $found[1] === 'spoke') {
-            $node['isPartOf'] = ['@id' => abs_url(CLUSTERS[$found[0]]['pillar']['url']) . '#webpage'];
-        }
-    }
 
     return $node;
 }
@@ -444,6 +363,8 @@ const MEDICAL_PAGES = [
     '/hair-transplant-cost-in-gurgaon',
     '/cost-and-emi-options',
     '/hair-transplant-aftercare',
+    '/hair-transplant-results-gurgaon',
+    '/gallery',
     '/faqs',
 
     /*
@@ -474,9 +395,13 @@ const MEDICAL_PAGES = [
     '/hair-microneedling-in-gurgaon',
     '/hair-led-therapy-in-gurgaon',
     '/prp-hair-treatment-cost-in-gurgaon',
+    '/best-hair-transplant-clinic-in-gurgaon',
     '/how-to-choose-hair-transplant-clinic',
     '/hair-transplant-graft-calculator',
     '/hair-loss-assessment',
+    // schema_medical_webpage() rtrims the trailing slash before matching, so
+    // the directory section is listed without one.
+    '/patient-stories',
 ];
 
 /** Site-level entity, homepage only. */
@@ -491,73 +416,12 @@ function schema_website(): array
     ];
 }
 
-/**
- * MedicalProcedure and MedicalTherapy have no 'location' or 'performer'
- * property (schema.org domains: Event/Action/Organization) — 34 pages emitted
- * both until the October 2026 validation pass. The clinic is linked the valid
- * way round instead: MedicalClinic.availableService → the procedure. Callers
- * still pass 'location' (the clinic's @id); it is parked here and resolved in
- * schema_render(). 'performer' is dropped: who performs a procedure at each
- * clinic is not on record, and the doctor directory carries the doctors.
- */
-function schema_service_links(array $node): array
-{
-    $clinic = $node['location']['@id'] ?? null;
-    unset($node['location'], $node['performer']);
-    if ($clinic !== null) {
-        $node['_availableAt'] = $clinic;
-    }
-    return array_filter($node, static fn ($v): bool => $v !== null);
-}
-
 /** Render an @graph as a JSON-LD script tag. */
 function schema_render(array $nodes): string
 {
     $nodes = array_values(array_filter($nodes));
     if ($nodes === []) {
         return '';
-    }
-
-    // A location page names only its own clinic, in markup as in text (client
-    // rule, 14 Oct 2026). The page's location is only known now, at render
-    // time, so a doctor node built earlier is trimmed here: on a Rohini page
-    // it loses the Gurugram address and practicesAt; on a Gurugram page, the
-    // Rohini practicesAt.
-    $loc = function_exists('hp_page_location') ? hp_page_location() : 'both';
-    if ($loc !== 'both') {
-        $drop = $loc === 'rohini' ? SITE_ORIGIN . '/#clinic' : SITE_ORIGIN . '/delhi-clinic#clinic';
-        foreach ($nodes as $i => $node) {
-            $types = (array) ($node['@type'] ?? []);
-            if (!in_array('IndividualPhysician', $types, true)) {
-                continue;
-            }
-            if ($loc === 'rohini' && ($node['address']['addressLocality'] ?? null) === NAP_LOCALITY) {
-                unset($nodes[$i]['address']);
-            }
-            if (isset($node['practicesAt'])) {
-                $kept = array_values(array_filter($node['practicesAt'], static fn (array $r): bool => ($r['@id'] ?? '') !== $drop));
-                if ($kept === []) {
-                    unset($nodes[$i]['practicesAt']);
-                } else {
-                    $nodes[$i]['practicesAt'] = $kept;
-                }
-            }
-        }
-    }
-
-    // Resolve schema_service_links(): add each service to its clinic's
-    // availableService, when that clinic node is in this graph.
-    foreach ($nodes as $i => $node) {
-        if (!isset($node['_availableAt'])) {
-            continue;
-        }
-        $clinicId = $node['_availableAt'];
-        unset($nodes[$i]['_availableAt']);
-        foreach ($nodes as $j => $other) {
-            if (($other['@id'] ?? null) === $clinicId) {
-                $nodes[$j]['availableService'][] = ['@id' => $node['@id']];
-            }
-        }
     }
 
     $json = json_encode(

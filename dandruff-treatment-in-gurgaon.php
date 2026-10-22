@@ -39,9 +39,9 @@ $faqs = [
     ['q' => 'What treatments actually work?',
      'a' => 'Medicated shampoos are the mainstay, and the active ingredient matters more than the brand. Antifungal preparations, zinc-based and selenium-based preparations, tar preparations and keratolytics that lift scale are the usual categories, sometimes rotated. Where there is significant inflammation, a prescribed anti-inflammatory preparation may be added for a period. What suits your scalp is decided on examination.'],
     ['q' => 'How should I use a medicated shampoo?',
-     'a' => 'Most people use them wrongly. The active ingredient needs contact time on the scalp rather than on the hair, so it is worked into the scalp and left for the period stated on the product before rinsing. Applying it like ordinary shampoo and rinsing straight away is the most common reason a suitable product appears not to work.'],
+     'a' => 'Most people use them wrongly. The active ingredient needs contact time on the scalp rather than on the hair, so it is worked into the scalp and left for the period stated on the product before rinsing. Applying it like ordinary shampoo and rinsing straight away is the most common reason a perfectly good product appears not to work.'],
     ['q' => 'Will it come back?',
-     'a' => 'Usually, yes. Seborrhoeic dermatitis is a recurring condition that is controlled rather than cured. Most people find it settles with treatment and then needs occasional maintenance, often flaring in particular seasons or during periods of stress. Expecting control rather than a cure is the realistic frame.'],
+     'a' => 'Usually, yes. Seborrhoeic dermatitis is a recurring condition that is controlled rather than cured. Most people find it settles with treatment and then needs occasional maintenance, often flaring in particular seasons or during periods of stress. Expecting control rather than a permanent cure is the realistic frame.'],
     ['q' => 'Does stress make it worse?',
      'a' => 'Many people notice flares during stressful periods, and seasonal change is a common trigger too. That does not make it a psychological condition, and it does not mean it will resolve by relaxing. It is a reason to have a maintenance plan for the periods when it tends to return.'],
     ['q' => 'Is it contagious?',
@@ -63,11 +63,10 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Dandruff Treatment in Gurgaon: Causes, Shampoos & Hair Fall',
-    'description' => 'Dandruff treatment in Gurgaon: telling it apart from seborrhoeic dermatitis, psoriasis and fungal infection, which shampoos help and when hair fall is separate.',
+    'title'       => 'Dandruff Treatment in Gurgaon | DenceSpot Clinic',
+    'description' => 'Dandruff and seborrhoeic dermatitis treatment in Gurgaon by a dermatologist, including whether your flaking and your hair fall are actually the same problem.',
     'url'         => '/dandruff-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
-    'preload_image' => '/assets/img/services/svc-hair-fall-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -97,7 +96,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Most people who search this are worried about two things at once: the flaking, and the hair in the sink. They are usually connected less than you would expect. Dandruff does not cause baldness, and treating a scalp while pattern loss progresses underneath is a common and costly mistake.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -105,55 +104,62 @@ require __DIR__ . '/includes/header.php';
             'Scalp examined, not diagnosed from a description',
             'Hair loss assessed separately if present',
             'Treatment by active ingredient, not by brand',
-            'At our clinic in Sector 39, Gurugram',
+            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-hair-fall-768.webp" srcset="/assets/img/services/svc-hair-fall-512.webp 512w, /assets/img/services/svc-hair-fall-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a wooden comb resting on folded towels" width="768" height="960" loading="eager" fetchpriority="high">
-          <?= hp_ai_chip('AI-generated illustration') ?>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Scalp examination setup used for diagnosing scalp conditions at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Assessed &amp; treated by</p>
+          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
+          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
         </div>
-        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
 
-<?= lead_strip() ?>
-
 <section class="trust">
   <div class="wrap">
     <div class="grid grid--5">
-      <div class="card"><?= icon('search', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Properly distinguished</p><p class="meta mt-1">Psoriasis and fungal infection look similar.</p></div>
-      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Seen by a doctor</p><p class="meta mt-1">Assessed by a registered medical practitioner.</p></div>
-      <div class="card"><?= icon('list', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Two problems, two answers</p><p class="meta mt-1">Flaking and hair loss assessed separately.</p></div>
-      <div class="card"><?= icon('settings', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Used correctly</p><p class="meta mt-1">Contact time explained, because it is the usual failure.</p></div>
-      <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Maintenance planned</p><p class="meta mt-1">It recurs, so the plan expects that.</p></div>
+      <div class="card"><?= icon('search', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Properly distinguished</p><p class="body-s mt-2">Psoriasis and fungal infection look similar.</p></div>
+      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Seen by a dermatologist</p><p class="body-s mt-2">A scalp condition assessed by a skin doctor.</p></div>
+      <div class="card"><?= icon('list', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Two problems, two answers</p><p class="body-s mt-2">Flaking and hair loss assessed separately.</p></div>
+      <div class="card"><?= icon('settings', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Used correctly</p><p class="body-s mt-2">Contact time explained, because it is the usual failure.</p></div>
+      <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Maintenance planned</p><p class="body-s mt-2">It recurs, so the plan expects that.</p></div>
     </div>
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'svc-crown',
-    'alt'     => 'a mannequin head seen from above with a bald crown',
-    'eyebrow' => 'The question behind the question',
-    'title'   => 'Is My Dandruff Causing My Hair Loss?',
-    'id'      => 'hair-loss',
-    'html'    => '<p>Almost certainly not in the way you fear. Dandruff does not cause pattern baldness, and it does not destroy follicles. The link people notice is real but much smaller than it feels.</p>'
-               . '<p>An inflamed, itchy scalp is scratched, and inflammation itself can push more hairs into the shedding phase, so you shed more while the scalp is bad. Settle the scalp and that shedding usually settles with it, and the hair recovers.</p>'
-               . '<p>The trap is when the shedding does not settle. Very often two things are running at once: a flaking scalp, which is visible and gets all the attention, and genuine pattern hair loss, which is silent and progressive and gets none. That is why an appointment about dandruff here includes looking at whether you are also losing hair, and if so, why.</p>'
-               . '<p><b>Signs there is more than dandruff</b> — any of these warrants assessing the hair loss in its own right. Start at <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a>, or <a href="/womens-hair-loss-treatment-in-gurgaon">women’s hair loss treatment</a>.</p>',
-    'points'  => [
-        'A parting that has widened over time',
-        'A hairline that has moved back',
-        'Visible thinning at the crown',
-        'Shedding that continues after the scalp settles',
-        'Patches of complete hair loss',
-    ],
-]) ?>
+<section class="section section--canvas" id="hair-loss">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">The question behind the question</p>
+        <h2 class="h2 mt-2">Is My Dandruff Causing My Hair Loss?</h2>
+        <p class="body-l mt-3 measure">Almost certainly not in the way you fear. Dandruff does not cause pattern baldness, and it does not destroy follicles. The link people notice is real but much smaller than it feels.</p>
+        <p class="body-l mt-3 measure">What can happen is this: an inflamed, itchy scalp is scratched, and inflammation itself can push more hairs into the shedding phase. So you shed more while the scalp is bad. Settle the scalp and that shedding usually settles with it, and the hair recovers.</p>
+        <p class="body-l mt-3 measure">The trap is what happens when the shedding does not settle. Very often two separate things are running at the same time — a flaking, itchy scalp, which is visible and annoying and gets all the attention, and genuine pattern hair loss, which is silent and progressive and gets none. Treating the first does nothing for the second, and months go by.</p>
+        <p class="body-l mt-3 measure">That is why an appointment about dandruff here includes looking at whether you are also losing hair, and if so, why. They are two questions, and they get two answers.</p>
+      </div>
+      <div class="card card--pad-lg">
+        <p class="eyebrow">Worth checking</p>
+        <h3 class="h3 mt-2">Signs there is more than dandruff</h3>
+        <?= ticks([
+            'A parting that has widened over time',
+            'A hairline that has moved back',
+            'Visible thinning at the crown',
+            'Shedding that continues after the scalp settles',
+            'Patches of complete hair loss',
+        ], false) ?>
+        <p class="body-s mt-4">Any of these warrants assessing the hair loss in its own right. Start at <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a>, or <a href="/womens-hair-loss-treatment-in-gurgaon">women's hair loss treatment</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="section section--canvas" id="what-is">
+<section class="section section--white" id="what-is">
   <div class="wrap">
     <p class="eyebrow">The condition</p>
     <h2 class="h2 mt-2">What Dandruff Actually Is</h2>
@@ -170,119 +176,64 @@ require __DIR__ . '/includes/header.php';
       <div class="grid grid--2 mt-4">
         <div>
           <p class="h4">More like dandruff</p>
-          <div class="mt-3"><?= ticks([
+          <?= ticks([
               'Larger, oilier, yellowish flakes',
               'Scalp may be red and itchy',
               'Often worse when the scalp is oilier',
               'Sometimes affects eyebrows and nose creases',
-          ], false) ?></div>
+          ], false) ?>
         </div>
         <div>
           <p class="h4">More like dry scalp</p>
-          <div class="mt-3"><?= ticks([
+          <?= ticks([
               'Smaller, drier, whiter flakes',
               'Skin elsewhere is generally dry too',
               'Often worse in cold or dry weather',
               'Less redness of the scalp itself',
-          ], false) ?></div>
+          ], false) ?>
         </div>
       </div>
-      <p class="body-s mt-4 measure">This matters because the treatments pull in opposite directions. Treating oily seborrhoeic dermatitis as dryness, typically with heavy oil applications, is one of the most common self-treatments and one of the most reliable ways to make it worse. When the same flaking appears on the face or body, it is assessed as part of <a href="/skin-treatment-in-gurgaon">skin treatment</a>.</p>
+      <p class="body-s mt-4 measure">This matters because the treatments pull in opposite directions. Treating oily seborrhoeic dermatitis as dryness, typically with heavy oil applications, is one of the most common self-treatments and one of the most reliable ways to make it worse.</p>
     </div>
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'svc-skin',
-    'alt'     => 'a sculpted cross-section of skin with a single hair follicle',
-    'eyebrow' => 'What else it could be',
-    'title'   => 'Conditions That Look Like Dandruff',
-    'id'      => 'differential',
-    'reverse' => true,
-    'html'    => '<p>A flaking, itchy scalp is a symptom, not a diagnosis. Several conditions produce it and are managed quite differently, which is the reason a scalp is examined rather than a shampoo recommended over a chat.</p>'
-               . '<p><b>Scalp psoriasis</b> tends to produce thicker, well-defined, silvery plaques that can extend past the hairline. <b>Fungal infection of the scalp</b> can cause scaling with patches of hair loss, is more common in children, and needs specific treatment: it does not respond to an ordinary anti-dandruff shampoo.</p>'
-               . '<p><b>Contact dermatitis</b> from a hair product, dye or treatment resolves once the culprit is identified and stopped. <b>Inflammatory scarring conditions</b> are less common but important, because they can permanently destroy follicles: redness, soreness or scaling with genuine loss of hair in an area needs proper assessment rather than another shampoo.</p>'
-               . '<p><b>See someone if:</b></p>',
-    'points'  => [
-        'A properly used medicated shampoo is not working',
-        'The scalp is very red, sore or bleeding',
-        'There are thick, well-defined plaques',
-        'There are patches of actual hair loss',
-        'You are also losing hair generally',
-    ],
-]) ?>
-
-<?php
-$scalpSigns = [
-    ['Dandruff', 'Loose white or yellowish flakes with mild itch and little redness; the mild end of seborrhoeic dermatitis', 'If a medicated shampoo, used properly with contact time, has not helped'],
-    ['Seborrhoeic dermatitis', 'Greasy, yellowish scale on a red, itchy scalp; it can also affect the eyebrows, the creases beside the nose and behind the ears', 'If redness and itch persist despite treatment, or the face is involved too'],
-    ['Scalp psoriasis', 'Thick, sharply outlined, silvery plaques that can spread past the hairline; sometimes patches on the elbows, knees or nails', 'When plaques are thick, sore or bleeding, or there is psoriasis elsewhere'],
-    ['Fungal infection of the scalp', 'Scaling with patches of hair loss or broken hairs; more common in children', 'Promptly: it needs specific treatment and does not clear with an anti-dandruff shampoo'],
-    ['Dry scalp', 'Small, dry, white flakes with dry skin elsewhere and little redness; often worse in cold or dry weather', 'If gentle care and moisturising do not settle it'],
-    ['Contact dermatitis', 'Itch, redness or stinging after a new hair product, dye or treatment', 'If it does not settle once the product is stopped, or if there is swelling'],
-    ['Scarring conditions', 'Redness, soreness or scaling in an area where hair is also being lost', 'Soon, because some of these conditions can destroy follicles permanently'],
-];
-?>
-<section class="section section--canvas" id="signs">
+<section class="section section--canvas" id="differential">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Telling them apart</p>
-      <h2 class="h2 mt-2">Is It Dandruff, Psoriasis or a Fungal Infection?</h2>
-      <p class="body mt-3">A handful of conditions account for most flaking scalps, and they need different treatment. The signs below are a general guide to when a shampoo is enough and when to see a doctor; the examination is what tells them apart.</p>
-    </div>
-    <div class="card mt-5" style="padding:0;overflow:hidden">
-      <div class="table-scroll">
-        <table class="data data--fit">
-          <caption class="sr-only">Dandruff, seborrhoeic dermatitis, scalp psoriasis, fungal infection and other causes of a flaking scalp: the usual signs of each, and when to see a doctor. A general guide, not a diagnosis.</caption>
-          <thead><tr><th scope="col">Condition</th><th scope="col">Usual signs</th><th scope="col">When to see a doctor</th></tr></thead>
-          <tbody>
-            <?php foreach ($scalpSigns as $r): ?>
-            <tr><th scope="row" style="white-space:normal;width:24%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td></tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+    <div class="split">
+      <div>
+        <p class="eyebrow">What else it could be</p>
+        <h2 class="h2 mt-2">Conditions That Look Like Dandruff</h2>
+        <p class="body-l mt-3 measure">A flaking, itchy scalp is a symptom, not a diagnosis. Several conditions produce it and are managed quite differently, which is the reason a scalp is examined rather than a shampoo recommended over a chat.</p>
+        <p class="body-l mt-3 measure"><strong>Scalp psoriasis</strong> tends to produce thicker, well-defined, silvery plaques that can extend past the hairline. It is a different condition with different treatment.</p>
+        <p class="body-l mt-3 measure"><strong>Fungal infection of the scalp</strong> can cause scaling with patches of hair loss, and is more common in children. It needs specific treatment and does not respond to an ordinary anti-dandruff shampoo.</p>
+        <p class="body-l mt-3 measure"><strong>Contact dermatitis</strong> from a hair product, dye or treatment can produce itching and flaking that resolves once the culprit is identified and stopped.</p>
+        <p class="body-l mt-3 measure"><strong>Inflammatory scarring conditions</strong> of the scalp are less common but important, because they can permanently destroy follicles. Redness, soreness, or scaling combined with genuine loss of hair in an area needs proper assessment rather than another shampoo.</p>
+      </div>
+      <div>
+        <div class="card card--pad-lg">
+          <p class="h4">See someone if</p>
+          <?= ticks([
+              'A properly used medicated shampoo is not working',
+              'The scalp is very red, sore or bleeding',
+              'There are thick, well-defined plaques',
+              'There are patches of actual hair loss',
+              'You are also losing hair generally',
+          ], false) ?>
+        </div>
+        <div class="card card--pad-lg mt-4">
+          <p class="h4">Bring with you</p>
+          <?= ticks([
+              'Every shampoo and product you have tried',
+              'Any hair dye or treatment used recently',
+              'How long it has been going on',
+              'Whether it varies by season',
+          ], false) ?>
+        </div>
       </div>
     </div>
-    <p class="body-s mt-4 measure">Smooth, round bald patches with no flaking are a different problem, covered under <a href="/alopecia-areata-treatment-in-gurgaon">alopecia areata treatment</a>.</p>
   </div>
 </section>
-
-<section class="section section--white" id="questions">
-  <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Before you pay</p>
-      <h2 class="h2 mt-2">Questions Worth Asking Before Paying for Scalp Treatment</h2>
-      <p class="body mt-3">They apply at any clinic, including this one, and they keep a flaking scalp from turning into a course of procedures it does not need.</p>
-    </div>
-    <div class="card card--pad-lg mt-5">
-      <?= ticks([
-          'Has my scalp actually been examined, rather than described?',
-          'Could this be psoriasis, a fungal infection or a reaction to a product?',
-          'Which active ingredient is suggested, and how long should it stay on the scalp?',
-          'If I am also losing hair, is that being assessed separately?',
-          'What should I do when it comes back?',
-          'If a course of scalp procedures is suggested, which diagnosis is it treating?',
-      ]) ?>
-    </div>
-    <div class="note mt-4">
-      <p class="body-s"><b>Worried about hair fall as well?</b> The <a href="/hair-loss-assessment">six-question hair loss self-assessment</a> suggests a next step before you book. It is not a diagnosis, and nothing you enter is stored.</p>
-    </div>
-  </div>
-</section>
-
-<?= lp_steps([
-    'eyebrow' => 'At the appointment',
-    'title'   => 'What Happens at a Scalp Appointment',
-    'id'      => 'appointment',
-    'intro'   => 'Bring every shampoo and product you have tried and any hair dye or treatment used recently, and note how long it has been going on and whether it varies by season.',
-    'tone'    => 'canvas',
-    'steps'   => [
-        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                     'title' => 'History and scalp examination', 'text' => 'Duration, pattern, seasonal variation, products and previous treatments, then a direct look at the scalp to tell dandruff from psoriasis, fungal infection, contact dermatitis and scarring conditions.'],
-        ['img' => 'stage-temples',     'alt' => 'a mannequin head seen from above with receding temples',   'title' => 'Hair loss assessed separately', 'text' => 'If you are also losing hair, that is assessed in its own right, because treating the scalp will not address pattern loss.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram beside a notepad',         'title' => 'Treatment by active ingredient', 'text' => 'Medicated shampoos chosen by active ingredient, with contact time explained, and a prescribed anti-inflammatory preparation for a period where inflammation is significant.'],
-        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',                'title' => 'Review and maintenance',        'text' => 'Response is checked, the regimen adjusted if needed, and a maintenance plan agreed, because the condition tends to recur.'],
-    ],
-]) ?>
 
 <section class="section section--white" id="treatment">
   <div class="wrap">
@@ -326,10 +277,10 @@ $scalpSigns = [
 </section>
 
 <?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
+    'Why a dandruff appointment here includes looking at your hair: the flaking is what brings people in, and it is usually the less important of the two problems they arrive with. Scalp inflammation can increase shedding temporarily, but it does not cause pattern baldness, and the pattern loss that is often running alongside it is silent, progressive and treatable early. Settling the scalp and never asking the second question is how someone spends a year on shampoos while the thing that actually needed treating gets worse.'
 ) ?>
 
-<section class="section section--white" id="cost">
+<section class="section section--canvas" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -345,21 +296,16 @@ $scalpSigns = [
         <p class="body-s mt-4 measure">If a clinic responds to a flaking scalp by quoting for a course of scalp procedures, be sceptical. Dandruff is a condition to be diagnosed and controlled, not a sales opportunity.</p>
         <p class="body mt-3 measure">See <a href="/cost-and-emi-options">cost and payment options</a>.</p>
       </div>
-      <div class="cta-band" style="display:block">
+      <div class="card card--ink card--pad-lg">
         <h3 class="h3">Get the Scalp Looked At</h3>
         <p class="body mt-3">Send photos of the scalp with the hair parted in a few places, in daylight, and tell us what you have already tried and for how long.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair fall treatment" data-track="book">Book an assessment</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Book an assessment</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
   </div>
 </section>
-
-<?= local_block(
-    'Scalp Condition Care at Our Gurgaon Clinic',
-    'Diagnosis, treatment and review take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic.'
-) ?>
 
 <section class="section section--white" id="faqs">
   <div class="wrap">
@@ -375,11 +321,16 @@ $scalpSigns = [
   </div>
 </section>
 
-<?= lp_cta([
-    'eyebrow'   => 'Sector 39, Gurugram',
-    'title'     => 'Find Out Whether It Is One Problem or Two',
-    'text'      => 'Come in and have the scalp examined properly. You will get a diagnosis rather than a shampoo recommendation, a treatment plan that expects recurrence, and a separate answer on your hair loss if there is one.',
-    'treatment' => 'Hair fall treatment',
-]) ?>
+<?= local_block(
+    'Scalp Condition Care at Our Gurgaon Clinic',
+    'Diagnosis, treatment and review happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+) ?>
+
+<?= cta_band(
+    'Find Out Whether It Is One Problem or Two',
+    'Come in and have the scalp examined properly. You will get a diagnosis rather than a shampoo recommendation, a treatment plan that expects recurrence, and a separate answer on your hair loss if there is one.',
+    'dandruff-treatment',
+    ['Dandruff or flaking scalp', 'Itchy or sore scalp', 'Flaking plus hair fall', 'Not sure — please advise']
+) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

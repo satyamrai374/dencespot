@@ -7,13 +7,6 @@
 $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $file = __DIR__ . $uri;
 
-// 0. Private folders. Mirrors .htaccess, which refuses these in production;
-//    without it the dev server would hand out storage/enquiries.ndjson.
-if (preg_match('#^/(includes|storage|_design|_ds|dencespot\.com-audit|\.claude|\.git)(/|$)#', $uri)) {
-    http_response_code(403);
-    exit('Forbidden');
-}
-
 // 1. Static file exists? Return false to let PHP server serve it.
 if ($uri !== '/' && file_exists($file) && !is_dir($file)) {
     return false;
@@ -40,33 +33,9 @@ const COMPARISON_REDIRECTS = [
     '/hair-transplant-risks-and-side-effects' => '/blog/hair-transplant-side-effects-and-risks',
 ];
 
-// 1d. Pages withdrawn under the NMC Guidelines of 06.10.2026. Mirrors .htaccess §1c.
-const WITHDRAWN_REDIRECTS = [
-    '/best-hair-transplant-clinic-in-gurgaon' => '/how-to-choose-hair-transplant-clinic',
-    '/hair-transplant-results-gurgaon'        => '/blog/hair-transplant-growth-timeline-month-by-month',
-    '/gallery'                                => '/about-us',
-    '/patient-reviews'                        => '/about-us',
-    '/patient-stories'                        => '/blog/',
-    '/new-designe'                            => '/',
-    // Renamed Oct 2026 so no URL on the site carries the word "guarantees".
-    '/blog/hair-transplant-guarantees-and-success-rates' => '/blog/hair-transplant-promises-and-success-rates',
-];
-
 $trimmed = rtrim($uri, '/');
 if ($trimmed !== '' && isset(COMPARISON_REDIRECTS[$trimmed])) {
     header('Location: ' . COMPARISON_REDIRECTS[$trimmed], true, 301);
-    exit;
-}
-$withdrawn = str_starts_with($trimmed, '/patient-stories/') ? '/patient-stories' : $trimmed;
-if ($withdrawn !== '' && isset(WITHDRAWN_REDIRECTS[$withdrawn])) {
-    header('Location: ' . WITHDRAWN_REDIRECTS[$withdrawn], true, 301);
-    exit;
-}
-
-// 1e. Trailing slash on a page URL -> 301 to the slashless URL. Mirrors the
-//     .htaccess rule (§6), so /about-us/ behaves locally as it does live.
-if ($trimmed !== '' && $trimmed !== $uri && !is_dir($file) && file_exists(__DIR__ . $trimmed . '.php')) {
-    header('Location: ' . $trimmed, true, 301);
     exit;
 }
 
@@ -86,8 +55,11 @@ if (file_exists($phpFile)) {
     exit;
 }
 
-// 4. Nothing matched: 404.php, at the requested address. It 301s old URLs
-//    that have a counterpart (includes/legacy-redirects.php) and otherwise
-//    answers 404. Mirrors .htaccess §9.
+// 4. Nothing matched. Redirect to /404
+if ($uri !== '/404') {
+    header("Location: /404", true, 302);
+    exit;
+}
+
 http_response_code(404);
 require __DIR__ . '/404.php';

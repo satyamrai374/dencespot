@@ -22,18 +22,16 @@ $postFaqs = [
     ['q' => 'How fast does hair loss progress between stages?',
      'a' => 'There is no standard rate. Progression is driven by genetics and age, and the only reliable way to know your own is a fixed-angle photograph now and another in six to twelve months. That comparison, not a stage number, is what tells you whether loss has stabilised.'],
 ];
-$postFaqId = 'norwood-scale-faqs';
-$postFaqHeading = 'Norwood scale FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
 <p>The Norwood scale is the standard way doctors describe male pattern hair loss. It runs from stage 1 (no meaningful loss) to stage 7 (a horseshoe of hair around the sides and back). It exists so two clinicians looking at the same head describe it the same way — and so a patient's progression can be tracked over years rather than guessed at.</p>
 
-<p>It is useful. It is also routinely misused, most often when it is treated as a pricing table. Your stage is a description of where you are today. It is not a diagnosis, not a prognosis, and on its own it does not decide whether you are a candidate for surgery.</p>
+<p>It is useful. It is also routinely misused, mostly by clinics that treat it as a pricing table. Your stage is a description of where you are today. It is not a diagnosis, not a prognosis, and on its own it does not decide whether you are a candidate for surgery.</p>
 
 <h2 id="where-the-scale-comes-from">Where the scale comes from</h2>
 
-<p>It is properly the Norwood–Hamilton scale. James Hamilton first classified male pattern loss in the 1950s; O'Tar Norwood revised and extended it in 1975 into the version used today (<a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet: androgenetic alopecia</a>). Nothing about it is proprietary to any clinic, and a "custom" version of it is a marketing device rather than a clinical one.</p>
+<p>It is properly the Norwood–Hamilton scale. James Hamilton first classified male pattern loss in the 1950s; O'Tar Norwood revised and extended it in 1975 into the version used today (<a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet: androgenetic alopecia</a>). Nothing about it is proprietary to any clinic, and any clinic showing you a "custom" scale has invented a marketing device.</p>
 
 <h2 id="the-seven-stages">The seven stages</h2>
 
@@ -59,7 +57,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>The bridge breaks down. The frontal and crown areas merge into one continuous bald area across the top of the scalp.</p>
 
 <h3>Stage 7</h3>
-<p>The most extensive stage. Only a horseshoe band of hair remains around the sides and the back of the head, and that band is often thinner than it was.</p>
+<p>The most advanced stage. Only a horseshoe band of hair remains around the sides and the back of the head, and that band is often thinner than it was.</p>
 
 <h2 id="what-your-stage-does-and-does-not-tell-you">What your stage does and does not tell you</h2>
 
@@ -79,7 +77,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Patients often assume the hairline is the demanding part. Surgically, the hairline is the delicate part — but the crown is the expensive one. It is a circular area with hair whorling outward from a central point, so it consumes grafts quickly, and it tends to keep expanding as pattern loss progresses.</p>
 
-<p>This is why a surgeon may recommend prioritising the frontal third even when the crown bothers you more. A restored frontal hairline frames the face and is what people see when they look at you. A crown filled at thirty with the whole donor supply leaves nothing for the frontal line that recedes at forty-two.</p>
+<p>This is why an experienced surgeon may recommend prioritising the frontal third even when the crown bothers you more. A restored frontal hairline frames the face and is what people see when they look at you. A crown filled at thirty with the whole donor supply leaves nothing for the frontal line that recedes at forty-two.</p>
 
 <h2 id="what-usually-gets-discussed-at-each-stage">What usually gets discussed at each stage</h2>
 
@@ -92,17 +90,17 @@ require __DIR__ . '/../includes/blog-header.php';
       <tr><th scope="col">Stage</th><th scope="col">What it looks like</th><th scope="col">Usually discussed first</th></tr>
     </thead>
     <tbody>
-      <tr><th scope="row">1–2</th><td>Adolescent or mature hairline; little or no loss</td><td>Usually nothing. Photograph it and review in a year.</td></tr>
-      <tr><th scope="row">2A–3</th><td>Clear temporal recession, M-shaped</td><td>Medical therapy first, especially under thirty. Surgery once the pattern has settled.</td></tr>
-      <tr><th scope="row">3 vertex</th><td>Hairline at 2–3, crown thinning separately</td><td>Medical therapy, because two areas are progressing. Surgery planned around a donor budget.</td></tr>
-      <tr><th scope="row">4</th><td>Deeper frontal loss plus a distinct crown area</td><td>Surgery is commonly appropriate. Frontal third usually prioritised over the crown.</td></tr>
-      <tr><th scope="row">5</th><td>Both areas larger; the band between them thinning</td><td>Surgery, often staged. Realistic coverage becomes the main conversation.</td></tr>
-      <tr><th scope="row">6–7</th><td>Areas merged, or only a horseshoe remains</td><td>Depends entirely on donor supply. Partial coverage, or scalp micropigmentation, may be the honest answer.</td></tr>
+      <tr><th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">1–2</th><td>Adolescent or mature hairline; little or no loss</td><td>Usually nothing. Photograph it and review in a year.</td></tr>
+      <tr><th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">2A–3</th><td>Clear temporal recession, M-shaped</td><td>Medical therapy first, especially under thirty. Surgery once the pattern has settled.</td></tr>
+      <tr><th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">3 vertex</th><td>Hairline at 2–3, crown thinning separately</td><td>Medical therapy, because two areas are progressing. Surgery planned around a donor budget.</td></tr>
+      <tr><th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">4</th><td>Deeper frontal loss plus a distinct crown area</td><td>Surgery is commonly appropriate. Frontal third usually prioritised over the crown.</td></tr>
+      <tr><th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">5</th><td>Both areas larger; the band between them thinning</td><td>Surgery, often staged. Realistic coverage becomes the main conversation.</td></tr>
+      <tr><th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0">6–7</th><td>Areas merged, or only a horseshoe remains</td><td>Depends entirely on donor supply. Partial coverage, or scalp micropigmentation, may be the honest answer.</td></tr>
     </tbody>
   </table>
 </div>
 
-<p>Notice what is missing from that table: a stage at which surgery is automatic. At every stage the first question is whether the loss is still moving, and at the far end of the scale the limiting factor stops being what you want and becomes what the donor area can supply.</p>
+<p>Notice what is missing from that table: a stage at which surgery is automatic. At every stage the first question is whether the loss is still moving, and at the advanced end the limiting factor stops being what you want and becomes what the donor area can supply.</p>
 
 <h2 id="three-ways-the-scale-gets-misused">Three ways the scale gets misused</h2>
 
@@ -120,7 +118,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>You can get roughly there with a mirror, and it is a reasonable starting point for a conversation. What you cannot do from a photograph is see miniaturisation — the progressive thinning of individual hairs that happens before any visible bald patch appears. Under magnification a scalp that looks like a stage 2 can show clear miniaturisation across the crown, which changes both the diagnosis and the plan.</p>
 
-<p>That is the main thing a scalp examination adds, and it is the reason a graft number cannot responsibly be quoted from a photograph sent on WhatsApp.</p>
+<p>That is the main thing a scalp examination adds, and it is the reason no honest clinic quotes a graft number from a photograph you sent on WhatsApp.</p>
 
 <?= blog_cta(
     'Which stage are you — and does it actually change anything?',
@@ -130,6 +128,10 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>If you have identified your stage: useful, but the next question is more important — has it changed in the last two years? Old photographs are genuinely diagnostic here. Bring them to a consultation.</p>
 
-<p>If your loss is still moving, the honest answer is usually medical treatment first and surgery later, once the pattern has settled. That is a less satisfying answer than a date in the diary, and it is the one that keeps more of your options open at fifty. The <a href="/hair-fall-treatment-in-gurgaon">hair fall assessment</a> covers what gets investigated and in what order.</p>
+<p>If your loss is still moving, the honest answer is usually medical treatment first and surgery later, once the pattern has settled. That is a less satisfying answer than a date in the diary, and it is the one that leaves you with more hair at fifty. The <a href="/hair-fall-treatment-in-gurgaon">hair fall assessment</a> covers what gets investigated and in what order.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
+
+<h2 id="norwood-scale-faqs">Norwood scale FAQs</h2>
+
+<?= faq_list($postFaqs) ?>

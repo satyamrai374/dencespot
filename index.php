@@ -1,526 +1,325 @@
 <?php
 /**
- * / — homepage (October 2026 redesign).
+ * / — homepage.
  *
- * Rebuilt from the supplied design reference: sticky masthead, hero, treatment
- * circles, hair-transplant introduction, how-we-work, patterns carousel,
- * process, patient questions, facts and doctor directory, closing call to
- * action and footer, plus a section introducing the two clinics (Gurugram and
- * Delhi). The same chrome (includes/home-components.php, assets/css/home.css,
- * assets/js/home.js) now runs on every page through header.php/footer.php.
+ * The site had no homepage at all, which meant the root URL 404'd: every
+ * brand search, every GBP click, every backlink to the domain landed on an
+ * error. Nothing else in the SEO plan matters while that is true.
  *
- * 14 Oct 2026 — the common page for both clinics. At the client's request the
- * homepage targets no search keyword: each treatment is targeted by its own
- * Gurugram and Rohini pages, so the title and H1 are brand-led, every
- * treatment link offers both clinics (the "Treatments at both clinics"
- * section, built from ROHINI_SERVICES), and no button favours one clinic.
- *
- * WHAT WAS ADAPTED FROM THE REFERENCE, AND WHY
- *
- * The reference was a marketing comp. The NMC Guidelines on Ethical
- * Advertising and Public Communication (Public Notice R-13014/01/2024-Ethics,
- * 06.10.2026) and the IMC Regulations 2002 rule several of its elements out,
- * so the layout is kept and the content changed:
- *
- *  - "Natural & Permanent Results", "Expert", "Advanced", "No Visible Scars",
- *    "Quick Recovery", "Free Consultation", "Trusted Partner" → plain,
- *    verifiable descriptions of the process. No outcome is promised (8.1(iii),
- *    (vi), (ix), (x)).
- *  - Before/after split image → donor- and recipient-area diagrams.
- *  - Before/after results carousel → the same carousel showing common
- *    hair-loss patterns as diagrams (8.1(v): no before/after, consent or not).
- *  - Patient testimonials → questions patients ask, as general information.
- *    No reviews are quoted, embedded or linked for promotion (Explanation V).
- *  - "1000+ Happy Patients", "4.9/5", "8+ Years" → institutional facts, plus
- *    the doctor directory with registration details (Explanation IV, 9.1).
- *  - Doctor portrait → none (9.2). "As Featured In" logos → removed.
- *  - Model and clinic-scene photography → AI illustrations with no people,
- *    doctors, procedures on patients or premises, each with its own visible
- *    "AI-generated" mark (7.2).
+ * Its job here is not to explain hair transplantation — the treatment pages
+ * own that. It is to route the visitor to the right treatment page fast, and
+ * to make the one differentiator that competitors in Gurgaon cannot copy:
+ * the doctor who assesses you is the doctor who operates on you.
  */
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
-require_once __DIR__ . '/includes/home-components.php';
 
-/*
- * ⚠ Medical review sign-off. This copy was written in October 2026 and has
- * not yet been reviewed by the clinic's doctor, so no "reviewed by" byline or
- * MedicalWebPage reviewedBy schema is published — claiming a review that has
- * not happened would itself be misleading, and under the NMC Guidelines
- * (cl. 4.4) the doctor answers for content an agency publishes. Once Dr. Nyra
- * has approved this page, set this to true and update REVIEWED_DATE /
- * REVIEWED_DATE_ISO in config.php.
- */
-const HOME_MEDICALLY_REVIEWED = false;
-
-/* ---------- Content ---------- */
-
-$heroFeatures = [
-    ['icon' => 'pin',         'text' => 'Two clinics:<br>Gurugram &amp; Delhi'],
-    ['icon' => 'stethoscope', 'text' => 'Doctor-led<br>assessment'],
-    ['icon' => 'doc',         'text' => 'Written<br>treatment plan'],
-    ['icon' => 'cal-check',   'text' => 'Scheduled<br>follow-up'],
+/* Homepage-level questions only. Treatment specifics live on their own pages,
+   so the same question-and-answer pair never appears on two URLs. */
+$faqs = [
+    ['q' => 'Which hair loss treatment do I actually need?',
+     'a' => 'That is decided by examination, not by what you ask for. Many patients who arrive asking about a transplant are treated medically instead, or first, because surgery on an unstable pattern leaves gaps as the surrounding hair keeps receding. The assessment stages your hair loss, measures donor density and checks scalp health before anything is recommended.'],
+    ['q' => 'Who performs the procedure at DenceSpot Clinic?',
+     'a' => 'Dr. Nyra assesses your scalp and donor area, designs the hairline, plans the graft numbers and performs the procedure herself, supported by the clinic\'s trained team. Your follow-up reviews are with her as well. This is worth asking every clinic you shortlist, because in many the doctor consults while technicians operate.'],
+    ['q' => 'Where is the clinic and what are the timings?',
+     'a' => 'DenceSpot Clinic is at ' . nap_address_line() . ', ' . NAP_LANDMARK . '. Opening hours are ' . HOURS_DISPLAY . ', and Sunday is by appointment only. Consultations and procedures both happen at this one address — there is no separate surgical centre you get sent to.'],
+    ['q' => 'How much does treatment cost?',
+     'a' => 'Cost follows the plan, and the plan follows the assessment, so no single figure fits every case. What drives it is graft count, hair-loss stage, donor density, technique and whether supporting medical therapy is part of the plan. The cost pages set out the arithmetic, and you receive an itemised written estimate before you commit to anything.'],
+    ['q' => 'Do I have to travel to the clinic for a first opinion?',
+     'a' => 'Not to begin with. Send clear photographs of the front, crown and donor area on WhatsApp and the clinic will tell you whether a consultation is likely to be worth the journey. What cannot be done remotely is the part that decides your plan — examining the scalp under magnification and measuring donor density.'],
 ];
 
-/* Each circle jumps to its group in "Treatments at both clinics" below, so
-   the homepage sends nobody to one clinic's page by default. */
-$treatments = [
-    ['img' => 'tx-hair-transplant', 'label' => 'Hair Transplant', 'note' => '(FUE / DHI / FUT)', 'url' => '#tx-transplant'],
-    ['img' => 'tx-beard',           'label' => 'Beard Transplant',    'url' => '#tx-face'],
-    ['img' => 'tx-eyebrow',         'label' => 'Eyebrow Transplant',  'url' => '#tx-face'],
-    ['img' => 'tx-prp',             'label' => 'Hair PRP Treatment',  'url' => '#tx-non-surgical'],
-    ['img' => 'tx-hair-fall',       'label' => 'Hair Fall Treatment', 'url' => '#tx-hair-fall'],
-    ['img' => 'tx-laser',           'label' => 'Laser Hair Removal',  'url' => '#tx-skin'],
-    ['img' => 'tx-skin',            'label' => 'Skin & Hair Care',    'url' => '#tx-skin'],
+$page = [
+    'title'       => 'Hair Transplant Clinic in Gurgaon | DenceSpot Clinic',
+    'description' => 'Doctor-led hair transplant, PRP and hair-fall treatment in Sector 39, Gurugram. Dr. Nyra assesses, plans and performs every case herself. Book a consultation.',
+    'url'         => '/',
+    'preload_image' => '/assets/img/dr-nayra.webp',
+    'crumbs'      => [],
+    'schema'      => [
+        schema_website(),
+        schema_clinic(),
+        schema_physician(),
+        schema_faq('/', $faqs),
+    ],
 ];
 
-/* "Treatments at both clinics": every treatment, grouped as on the Rohini
-   hub, each linking to its page at both clinics. One AI illustration per
-   group (assets/img/services/svc-<img>-{512,768}.webp). */
-$serviceImages = [
-    'transplant'   => ['hairline',  'AI-generated illustration: a white mannequin head seen from above, with green felt hair receding at both temples, on a cream background'],
-    'non-surgical' => ['prp',       'AI-generated illustration: a capped tube of golden-yellow plasma standing beside a syringe on a white tray'],
-    'hair-fall'    => ['hair-fall', 'AI-generated illustration: a wooden wide-toothed comb lying on a stack of folded cream linen towels beside a window'],
-    'face'         => ['beard',     'AI-generated illustration: a wooden comb and a wooden beard brush lying on a folded green cloth'],
-    'skin'         => ['laser',     'AI-generated illustration: a white handheld device on a white tray beside a folded sage-green towel'],
-];
-$serviceGroups = [];
-foreach (ROHINI_GROUPS as $groupKey => $groupLabel) {
-    $serviceGroups[$groupKey] = ['label' => $groupLabel, 'img' => $serviceImages[$groupKey], 'items' => []];
-}
-foreach (ROHINI_SERVICES as $svc) {
-    $serviceGroups[$svc['group']]['items'][] = $svc;
-}
-
-$introPoints = [
-    'Hairline planned with you, considering age and donor supply',
-    'FUE, DHI or FUT, chosen after examination',
-    'Procedure under local anaesthesia',
-    'Written aftercare and recovery guidance',
-    'Scheduled follow-up reviews',
-];
-
-$expect = [
-    ['icon' => 'user-md',   'title' => 'Doctor-Led Care',          'text' => 'Your scalp is examined and your treatment is planned by a doctor at the clinic.'],
-    ['icon' => 'layers',    'title' => 'Technique Chosen for You', 'text' => 'FUE, DHI or FUT is selected after examining your donor area and pattern of hair loss.'],
-    ['icon' => 'clipboard', 'title' => 'A Written Plan',           'text' => 'Approximate graft numbers, timeline and costs are explained in writing before you decide.'],
-    ['icon' => 'eye',       'title' => 'Clear Expectations',       'text' => 'Risks, recovery and the limits of each treatment are discussed openly, with follow-up afterwards.'],
-];
-
-$patterns = [
-    ['img' => 'stage-temples',   'tag' => 'Norwood 2–3',      'title' => 'Receding Temples',
-     'text' => 'Early recession at the hairline. Medical treatment is often considered first; a hairline transplant may be discussed once the pattern is stable.',
-     'url' => '/blog/norwood-scale-explained', 'link' => 'The Norwood scale explained'],
-    ['img' => 'stage-crown',     'tag' => 'Crown (vertex)',   'title' => 'Crown Thinning',
-     'text' => 'Thinning at the top of the head. Medical therapy and graft planning are usually considered together.',
-     'url' => '/blog/minoxidil-and-finasteride-in-india', 'link' => 'Medicines for hair loss explained'],
-    ['img' => 'stage-extensive', 'tag' => 'Norwood 5–6',      'title' => 'Extensive Hair Loss',
-     'text' => 'Front and crown thinning have joined. What can be planned depends on the donor supply measured at assessment.',
-     'url' => '/blog/donor-area-limits-hair-transplant', 'link' => 'Why donor supply matters'],
-    ['img' => 'stage-female',    'tag' => 'Widening parting', 'title' => 'Thinning in Women',
-     'text' => 'Diffuse thinning along the parting. Hormonal, thyroid and nutritional causes are checked first.',
-     'url' => '/blog/female-pattern-hair-loss-in-women', 'link' => 'Hair loss in women'],
-];
-
-$steps = [
-    ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',
-     'title' => 'Consultation & Scalp Analysis', 'text' => 'Your scalp, pattern of hair loss and donor area are examined, and your medical history is reviewed.'],
-    ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline',
-     'title' => 'Personalised Treatment Plan',   'text' => 'Technique, approximate graft numbers, timeline and an itemised estimate, explained in writing.'],
-    ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments on a tray',
-     'title' => 'Procedure (FUE / DHI / FUT)',   'text' => 'Carried out under local anaesthesia at the clinic, on a date agreed with your doctor.'],
-    ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',
-     'title' => 'Aftercare & Follow-up',         'text' => 'Written aftercare instructions and scheduled reviews through the first year.'],
-];
-
-/* Rendered as cards and as FAQPage schema from the same array, so the markup
-   and the visible text cannot drift apart. General information, deliberately
-   not attributed to a doctor until the clinic's doctor has reviewed it. */
-$questions = [
-    ['q' => 'Do I need a hair transplant, or will medicine work?',
-     'a' => 'It depends on your pattern of hair loss and how stable it is. Many people start with medical treatment; surgery is considered when the pattern is stable and the donor area allows it. The doctor explains your options after examining your scalp.'],
-    ['q' => 'Will my outcome be the same as someone else’s?',
-     'a' => 'No. Outcomes vary with donor density, hair characteristics, general health, medicines and aftercare, so no density or timeline can be promised before your assessment. Your doctor will tell you what is realistic in your case.'],
-    ['q' => 'How much will treatment cost?',
-     'a' => 'Cost depends on your plan: graft count, technique and any supporting therapy. You receive an itemised written estimate after your assessment, before you decide anything.'],
-];
-
-$firstDay = substr(HOURS_DAYS[0], 0, 3);
-$lastDay  = substr(HOURS_DAYS[count(HOURS_DAYS) - 1], 0, 3);
-$facts = [
-    ['icon' => 'doc',      'value' => 'Written Estimates',        'label' => 'Itemised, given after your assessment'],
-    ['icon' => 'follicle', 'value' => 'FUE · DHI · FUT',          'label' => 'Hair transplant techniques offered'],
-    ['icon' => 'pin',      'value' => '2 Clinics',                'label' => 'Sector 39, Gurugram · Rohini, Delhi'],
-    ['icon' => 'clock',    'value' => $firstDay . '–' . $lastDay, 'label' => HOURS_OPEN . ' – ' . HOURS_CLOSE . ' · ' . HOURS_NOTE],
-];
-
-/* ---------- Head ---------- */
-
-$meta = [
-    // Brand-led on purpose: the homepage targets no keyword (see top of file).
-    'title'       => 'DenceSpot | Hair Transplant & Skin Clinic, Gurugram & Rohini',
-    'description' => 'DenceSpot Clinic: hair, skin and laser clinics in Sector 39, Gurugram and Rohini, Delhi. Hair transplant, PRP, hair-fall, laser and skin treatment at both.',
-    'canonical'   => abs_url('/'),
-    'og_image'    => abs_url('/assets/img/home/og-home.jpg'),
-];
-
-/*
- * Schema images are withheld on this page. CLINIC_IMAGE is an AI-generated
- * render of a building; the real shopfront photographs show signage reading
- * "No Pain | No Scar | No Stitch" and "Permanent Hair Loss Solution" (NMC
- * cl. 8.1(iii), (vi)); the doctor portrait may be AI-composited and would be
- * an unmarked AI image of a doctor (cl. 7.2(b), 9.2). ⚠ Add an image back only
- * once there is a real, compliant photograph. priceRange "₹₹" is dropped too:
- * charges must be factual (cl. 8.1(x)), and the page states none.
- */
-$clinicNode = schema_clinic();
-unset($clinicNode['image'], $clinicNode['priceRange']);
-// The Delhi clinic node is withheld here until LOC_DELHI_ADDRESS holds a real
-// street address — it currently reads "Dencespot Clinic, Delhi (Rohini)".
-$physicianNode = schema_physician('dr-nyra');
-unset($physicianNode['image']);
-
-$schemaHtml = schema_render([
-    schema_website(),
-    $clinicNode,
-    $physicianNode,
-    schema_faq('/', $questions),
-    HOME_MEDICALLY_REVIEWED ? schema_medical_webpage('/', $meta['title']) : null,
-]);
-
-$fonts      = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap';
-$scriptFont = 'https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap&text=' . rawurlencode('Diagnosis first, treatment next');
-$asset = static fn (string $path): string => $path . '?v=' . (string) @filemtime(__DIR__ . $path);
+require __DIR__ . '/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en-IN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= e($meta['title']) ?></title>
-<meta name="description" content="<?= e($meta['description']) ?>">
-<link rel="canonical" href="<?= e($meta['canonical']) ?>">
-<?php if (SITE_STAGING): ?>
-<meta name="robots" content="noindex, nofollow">
-<?php else: ?>
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<?php endif; ?>
 
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="<?= e(SITE_NAME) ?>">
-<meta property="og:title" content="<?= e($meta['title']) ?>">
-<meta property="og:description" content="<?= e($meta['description']) ?>">
-<meta property="og:url" content="<?= e($meta['canonical']) ?>">
-<meta property="og:locale" content="en_IN">
-<meta property="og:image" content="<?= e($meta['og_image']) ?>">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="<?= e(SITE_NAME) ?>, hair, skin and laser clinics in Gurugram and Delhi. AI-generated illustration of hair follicles.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<?= e($meta['title']) ?>">
-<meta name="twitter:description" content="<?= e($meta['description']) ?>">
-<meta name="twitter:image" content="<?= e($meta['og_image']) ?>">
-<meta name="twitter:image:alt" content="<?= e(SITE_NAME) ?>, hair, skin and laser clinics in Gurugram and Delhi. AI-generated illustration of hair follicles.">
+<section class="hero">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="pill pill--dot">Hair restoration clinic in <?= e(NAP_LOCALITY) ?></span>
+        <h1 class="h1 mt-3">Hair Transplant Clinic in Gurgaon, Led by a Doctor Who Operates</h1>
+        <p class="lead mt-3 measure">At DenceSpot your scalp, donor area and hair-loss pattern are examined by a doctor before anything is recommended — and the doctor who plans your case is the doctor who performs it. Some patients need surgery. Many need medical treatment first, or instead. The assessment decides, not a package.</p>
 
-<meta name="theme-color" content="#0F3B2F">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<meta name="google-site-verification" content="lY4q2j4iJeavvMLFbV79PMyxrUoZwh-sV1bhIt4CNSU">
-<meta name="facebook-domain-verification" content="nzfopa7vm2op027gpg0uqu4j7zwuak">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="<?= e(hp_img_url('hero', 1200)) ?>" imagesrcset="<?= e(hp_srcset('hero')) ?>" imagesizes="(min-width: 1621px) 57vw, (min-width: 1024px) 924px, (min-width: 560px) 100vw, 120vw" fetchpriority="high">
-<link rel="stylesheet" href="<?= e($asset('/assets/css/home.css')) ?>">
-<link rel="stylesheet" href="<?= e($fonts) ?>" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="<?= e($scriptFont) ?>" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="<?= e($fonts) ?>"></noscript>
-
-<?= $schemaHtml ?>
-</head>
-<body class="hp">
-<a class="hp-skip" href="#main">Skip to content</a>
-
-<?= hp_header('/') ?>
-
-<main id="main">
-
-  <!-- ============ HERO ============ -->
-  <section class="hp-hero" aria-labelledby="hp-hero-title">
-    <div class="hp-wrap hp-hero__inner">
-      <div class="hp-hero__content">
-        <p class="hp-eyebrow">Sector 39, Gurugram · Rohini, Delhi</p>
-        <h1 class="hp-h1" id="hp-hero-title">DenceSpot Clinic: Hair Transplant, Skin and Laser Care at Two Clinics</h1>
-        <p class="hp-hero__lead">Our clinics in <strong>Sector 39, Gurugram</strong> and <strong>Rohini, Delhi</strong> offer the same treatments: hair transplant, PRP, hair-fall treatment, beard and eyebrow transplant, laser hair removal and skin care. Every plan starts with an examination by a doctor.</p>
-
-        <ul class="hp-features" aria-label="How care works at <?= e(SITE_NAME) ?>">
-          <?php foreach ($heroFeatures as $f): ?>
-            <li class="hp-feature"><?= hp_icon($f['icon'], 28, 1.5) ?><span><?= $f['text'] ?></span></li>
-          <?php endforeach; ?>
-        </ul>
-
-        <div class="hp-hero__actions">
-          <?= hp_book_link('Book a Consultation') ?>
-          <a class="hp-btn hp-btn--outline" href="#clinics"><?= hp_icon('pin', 17) ?> Choose a Clinic</a>
+        <div class="btn-row mt-5">
+          <a class="btn btn--lg btn--ink" href="/book-consultation"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
+
+        <?= ticks([
+            'Assessed, planned and performed by Dr. Nyra',
+            'Donor supply measured before any plan',
+            'Written estimate, nothing added later',
+            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
+        ]) ?>
       </div>
 
-      <p class="hp-hero__note" aria-hidden="true">
-        <span>Diagnosis first,<br>treatment next</span>
-        <svg width="74" height="52" viewBox="0 0 74 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c18-2 36 4 52 30"/><path d="M45 34l11 5 2-12"/></svg>
-      </p>
-    </div>
-
-    <div class="hp-hero__media">
-      <?= hp_img('hero', 'AI-generated illustration: cross-section of scalp skin showing hair follicles and roots', '(min-width: 1621px) 57vw, (min-width: 1024px) 924px, (min-width: 560px) 100vw, 120vw', ['loading' => 'eager', 'fetchpriority' => 'high', 'class' => 'hp-hero__img']) ?>
-      <?= hp_ai_chip('AI-generated illustration') ?>
-    </div>
-  </section>
-
-  <!-- ============ TREATMENT CATEGORIES ============ -->
-  <section class="hp-tx" aria-labelledby="hp-tx-title">
-    <div class="hp-wrap">
-      <h2 class="hp-sr" id="hp-tx-title">Treatments at <?= e(SITE_NAME) ?></h2>
-      <ul class="hp-tx__list" role="list">
-        <?php foreach ($treatments as $t): ?>
-          <li class="hp-tx__item">
-            <?php if (isset($t['book'])): ?>
-              <a class="hp-tx__link" href="/book-consultation" data-book data-treatment="<?= e($t['book']) ?>" data-track="book">
-            <?php else: ?>
-              <a class="hp-tx__link" href="<?= e($t['url']) ?>">
-            <?php endif; ?>
-                <span class="hp-tx__img"><?= hp_img($t['img'], 'AI-generated illustration', '124px') ?><span class="hp-tx__ai" aria-hidden="true">AI-generated</span></span>
-                <span class="hp-tx__label"><?= e($t['label']) ?><?php if (!empty($t['note'])): ?> <small><?= e($t['note']) ?></small><?php endif; ?></span>
-              </a>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ OUR TWO CLINICS ============ -->
-  <section class="hp-clinics" id="clinics" aria-labelledby="hp-clinics-title">
-    <div class="hp-wrap">
-      <?= hp_section_head('hp-clinics-title', 'Our clinics', 'Two Clinics: Gurugram and Delhi', 'Consultations and treatment are available at both clinics, so you can choose whichever is closer. Both are open ' . HOURS_DISPLAY . '.') ?>
-      <?= hp_clinic_cards() ?>
-    </div>
-  </section>
-
-  <!-- ============ TREATMENTS AT BOTH CLINICS ============ -->
-  <section class="hp-services" id="treatments" aria-labelledby="hp-services-title">
-    <div class="hp-wrap">
-      <?= hp_section_head('hp-services-title', 'Treatments and services', 'Treatments at Both Clinics', 'Every treatment below is carried out at both clinics, and each starts with an examination and a written plan. Choose a clinic to read about the treatment there.') ?>
-      <ul class="hp-services__grid" role="list">
-        <?php foreach ($serviceGroups as $groupKey => $g): if ($g['items'] === []) { continue; } [$gImg, $gAlt] = $g['img']; ?>
-          <li class="hp-services__group" id="tx-<?= e($groupKey) ?>">
-            <article class="hp-stage__card">
-              <div class="hp-stage__media">
-                <img src="/assets/img/services/svc-<?= e($gImg) ?>-768.webp" srcset="/assets/img/services/svc-<?= e($gImg) ?>-512.webp 512w, /assets/img/services/svc-<?= e($gImg) ?>-768.webp 768w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" width="768" height="960" alt="<?= e($gAlt) ?>" loading="lazy" decoding="async">
-                <?= hp_ai_chip('AI-generated') ?>
-              </div>
-              <div class="hp-stage__body">
-                <h3 class="hp-h3"><?= e($g['label']) ?></h3>
-                <ul class="hp-services__list" role="list">
-                  <?php foreach ($g['items'] as $svc): ?>
-                    <li>
-                      <span class="hp-services__name"><?= e($svc['label']) ?></span>
-                      <span class="hp-services__links">
-                        <a href="<?= e($svc['gurgaon']) ?>">Gurugram<span class="hp-sr">: <?= e($svc['label']) ?></span></a>
-                        <a href="<?= e($svc['url']) ?>">Rohini<span class="hp-sr">: <?= e($svc['label']) ?></span></a>
-                      </span>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              </div>
-            </article>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ HAIR TRANSPLANT INTRODUCTION ============ -->
-  <section class="hp-intro" aria-labelledby="hp-intro-title">
-    <div class="hp-wrap hp-intro__grid">
-      <figure class="hp-split">
-        <div class="hp-split__pane">
-          <?= hp_img('intro-donor', 'AI-generated illustration: mannequin head from behind with the donor area at the back and sides highlighted', '(min-width: 1024px) 372px, 57vw') ?>
-          <?= hp_ai_chip('AI-generated') ?>
-          <span class="hp-split__label">Donor area</span>
-        </div>
-        <div class="hp-split__pane">
-          <?= hp_img('intro-recipient', 'AI-generated illustration: mannequin head from the front with a planned hairline marked', '(min-width: 1024px) 372px, 57vw') ?>
-          <?= hp_ai_chip('AI-generated') ?>
-          <span class="hp-split__label">Recipient area</span>
-        </div>
-        <figcaption class="hp-sr">AI-generated diagrams of the donor area, where follicles are taken from, and the recipient area, where they are placed.</figcaption>
-      </figure>
-
-      <div class="hp-intro__content">
-        <p class="hp-eyebrow">Hair transplant at <?= e(SITE_NAME) ?></p>
-        <h2 class="hp-h2" id="hp-intro-title">Hair Transplant, Planned Around Your Scalp</h2>
-        <p class="hp-text">A hair transplant moves your own hair follicles from a donor area, usually the back of the scalp, to areas that are thinning. A doctor first examines your scalp, measures donor density and explains whether surgery, medical treatment or both suit your stage of hair loss.</p>
-
-        <div class="hp-intro__row">
-          <ul class="hp-checks">
-            <?php foreach ($introPoints as $point): ?>
-              <li><span class="hp-check"><?= hp_icon('check', 14, 2.6) ?></span><?= e($point) ?></li>
-            <?php endforeach; ?>
-          </ul>
-          <div class="hp-stat-card">
-            <?= hp_icon('cal-check', 32, 1.5) ?>
-            <p class="hp-stat-card__value">12 months</p>
-            <p class="hp-stat-card__label">of scheduled<br>follow-up reviews</p>
-          </div>
-        </div>
-
-        <div class="hp-intro__cta">
-          <a class="hp-btn hp-btn--outline" href="/hair-transplant-in-gurgaon">Hair Transplant in Gurugram <?= hp_icon('arrow', 17, 2) ?></a>
-          <a class="hp-btn hp-btn--outline" href="/hair-transplant-in-rohini">Hair Transplant in Rohini <?= hp_icon('arrow', 17, 2) ?></a>
+      <div class="hero__figure">
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="1000" loading="eager" fetchpriority="high" decoding="async"></div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Your consulting doctor</p>
+          <p class="h4 mt-1"><?= e(DOCTORS['dr-nyra']['name']) ?></p>
+          <p class="meta"><?= e(DOCTORS['dr-nyra']['quals']) ?> · <?= e(DOCTORS['dr-nyra']['role']) ?></p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ WHAT TO EXPECT ============ -->
-  <section class="hp-why" aria-labelledby="hp-why-title">
-    <div class="hp-wrap">
-      <?= hp_section_head('hp-why-title', 'How we work', 'What You Can Expect at ' . SITE_NAME) ?>
-      <ul class="hp-why__grid" role="list">
-        <?php foreach ($expect as $item): ?>
-          <li class="hp-why__item">
-            <span class="hp-why__icon"><?= hp_icon($item['icon'], 30, 1.5) ?></span>
-            <h3 class="hp-h3"><?= e($item['title']) ?></h3>
-            <p><?= e($item['text']) ?></p>
-          </li>
-        <?php endforeach; ?>
-      </ul>
+<!-- ============ START FROM THE CONCERN ============ -->
+<section class="section section--white">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">What brought you here</p>
+      <h2 class="h2 mt-2">Start From the Concern, Not the Procedure</h2>
+      <p class="body mt-3">Different patterns need different answers. Pick what matches your case and the page will tell you honestly what the options are — including when the option is to wait.</p>
     </div>
-  </section>
 
-  <!-- ============ HAIR-LOSS PATTERNS ============ -->
-  <section class="hp-stages" aria-labelledby="hp-stages-title">
-    <div class="hp-wrap">
-      <?= hp_section_head('hp-stages-title', 'Understand your hair loss', 'Which Pattern Looks Like Yours?') ?>
+    <div class="grid grid--4 mt-6">
+      <a class="card" href="/hair-transplant-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('hairline', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Receding hairline</h3>
+        <p class="meta mt-1">Temples going back, hairline losing its shape. Usually FUE or DHI, designed to age well.</p>
+      </a>
+      <a class="card" href="/hair-transplant-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('search', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Crown thinning</h3>
+        <p class="meta mt-1">The area that consumes grafts fastest. Graft planning plus medical therapy to hold what is there.</p>
+      </a>
+      <a class="card" href="/hair-fall-treatment-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('chart', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Sudden hair fall</h3>
+        <p class="meta mt-1">Increased shedding needs a cause found first — thyroid, iron, stress or pattern loss.</p>
+      </a>
+      <a class="card" href="/hair-prp-treatment-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('settings', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Early thinning</h3>
+        <p class="meta mt-1">Density dropping but no bald area yet. Often PRP and medical treatment rather than surgery.</p>
+      </a>
+      <a class="card" href="/beard-transplant-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('beard', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Patchy beard</h3>
+        <p class="meta mt-1">Gaps, thin sideburns or scarred areas filled with scalp grafts at the correct facial angle.</p>
+      </a>
+      <a class="card" href="/hair-fall-treatment-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('user', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Hair loss in women</h3>
+        <p class="meta mt-1">Diffuse thinning and parting-line loss, worked up for hormonal and nutritional causes first.</p>
+      </a>
+      <a class="card" href="/hair-transplant-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('shield', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">A previous transplant</h3>
+        <p class="meta mt-1">Unnatural hairlines, pluggy grafts or a depleted donor area, assessed for what can be corrected.</p>
+      </a>
+      <a class="card" href="/hair-transplant-cost-in-gurgaon" style="text-decoration:none;color:inherit">
+        <?= icon('rupee', 22, 'var(--accent-deep)') ?>
+        <h3 class="h4 mt-2">Comparing quotes</h3>
+        <p class="meta mt-1">How graft counts and per-graft rates actually combine, and what a fair quote looks like.</p>
+      </a>
+    </div>
+  </div>
+</section>
 
-      <div class="hp-carousel" data-hp-carousel>
-        <button class="hp-carousel__btn hp-carousel__btn--prev" type="button" data-dir="-1" aria-controls="hp-stage-track" aria-label="Previous pattern" hidden><?= hp_icon('arrow-left', 18, 2) ?></button>
-        <ul class="hp-carousel__track" id="hp-stage-track" data-hp-track role="list" tabindex="0" aria-label="Common hair-loss patterns">
-          <?php foreach ($patterns as $p): ?>
-            <li class="hp-stage">
-              <article class="hp-stage__card">
-                <div class="hp-stage__media">
-                  <?= hp_img($p['img'], 'AI-generated diagram of ' . strtolower($p['title']) . ': a mannequin head seen from above', '(min-width: 1024px) 380px, (min-width: 640px) 50vw, 86vw') ?>
-                  <span class="hp-stage__tag"><?= e($p['tag']) ?></span>
-                  <?= hp_ai_chip('AI-generated') ?>
-                </div>
-                <div class="hp-stage__body">
-                  <h3 class="hp-h3"><?= e($p['title']) ?></h3>
-                  <p><?= e($p['text']) ?></p>
-                  <a class="hp-link" href="<?= e($p['url']) ?>"><?= e($p['link']) ?> <?= hp_icon('arrow', 15, 2) ?></a>
-                </div>
-              </article>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-        <button class="hp-carousel__btn hp-carousel__btn--next" type="button" data-dir="1" aria-controls="hp-stage-track" aria-label="Next pattern" hidden><?= hp_icon('arrow', 18, 2) ?></button>
+<!-- ============ TREATMENTS ============ -->
+<section class="section section--canvas">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">Treatments</p>
+      <h2 class="h2 mt-2">Surgical and Non-Surgical, Under One Clinical Plan</h2>
+      <p class="body mt-3">Every treatment below is planned and carried out at the same address in <?= e(NAP_LOCALITY) ?>, by the same doctor.</p>
+    </div>
+
+    <div class="grid grid--3 mt-6">
+      <a class="card card--pad-lg" href="/hair-transplant-in-gurgaon" style="text-decoration:none;color:inherit">
+        <p class="eyebrow">Surgical</p>
+        <h3 class="h3 mt-2">Hair Transplant</h3>
+        <p class="body-s mt-2">FUE, DHI and FUT. Technique chosen to fit your scalp and donor area, not the other way round.</p>
+        <p class="meta mt-3"><?= icon('arrow', 15, 'var(--accent-deep)') ?> Graft counts, cost and recovery</p>
+      </a>
+      <a class="card card--pad-lg" href="/beard-transplant-gurgaon" style="text-decoration:none;color:inherit">
+        <p class="eyebrow">Surgical</p>
+        <h3 class="h3 mt-2">Beard Transplant</h3>
+        <p class="body-s mt-2">Scalp grafts placed along your natural growth direction to fill patchy or scarred beard zones.</p>
+        <p class="meta mt-3"><?= icon('arrow', 15, 'var(--accent-deep)') ?> Density, donor supply and cost</p>
+      </a>
+      <a class="card card--pad-lg" href="/hair-prp-treatment-in-gurgaon" style="text-decoration:none;color:inherit">
+        <p class="eyebrow">Non-surgical</p>
+        <h3 class="h3 mt-2">Hair PRP &amp; GFC</h3>
+        <p class="body-s mt-2">Platelet-rich plasma across a planned course, for early thinning or alongside a transplant.</p>
+        <p class="meta mt-3"><?= icon('arrow', 15, 'var(--accent-deep)') ?> Sessions, evidence and cost</p>
+      </a>
+      <a class="card card--pad-lg" href="/hair-fall-treatment-in-gurgaon" style="text-decoration:none;color:inherit">
+        <p class="eyebrow">Medical</p>
+        <h3 class="h3 mt-2">Hair Fall Treatment</h3>
+        <p class="body-s mt-2">Prescription and topical therapy with monitoring, used to slow loss and protect existing hair.</p>
+        <p class="meta mt-3"><?= icon('arrow', 15, 'var(--accent-deep)') ?> Causes, testing and what reverses</p>
+      </a>
+      <a class="card card--pad-lg" href="/fue-hair-transplant-in-gurgaon" style="text-decoration:none;color:inherit">
+        <p class="eyebrow">Technique</p>
+        <h3 class="h3 mt-2">FUE &amp; DHI</h3>
+        <p class="body-s mt-2">How each technique differs in placement, scarring, session length and what it suits.</p>
+        <p class="meta mt-3"><?= icon('arrow', 15, 'var(--accent-deep)') ?> Compare the techniques</p>
+      </a>
+      <a class="card card--pad-lg" href="/hair-transplant-cost-in-gurgaon" style="text-decoration:none;color:inherit">
+        <p class="eyebrow">Cost</p>
+        <h3 class="h3 mt-2">What It Costs</h3>
+        <p class="body-s mt-2">How graft count and per-graft rate combine, what an estimate includes, and what to ask.</p>
+        <p class="meta mt-3"><?= icon('arrow', 15, 'var(--accent-deep)') ?> Cost breakdown</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEFORE & AFTER SLIDER ============ -->
+<?= before_after_slider_section() ?>
+
+<!-- ============ THE DIFFERENTIATOR ============ -->
+<section class="section section--ink">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">Why patients choose DenceSpot</p>
+      <h2 class="h2 mt-2">The Doctor You Meet Is the Doctor Who Operates</h2>
+      <p class="body mt-3">In a large share of hair transplant clinics the consultation is taken by a counsellor and the surgery is carried out by technicians. Ask any clinic you shortlist who physically performs the extraction and the placement. The answer varies far more than most patients expect.</p>
+    </div>
+
+    <div class="grid grid--4 mt-6">
+      <div class="card card--ink">
+        <?= icon('user', 22, 'var(--accent)') ?>
+        <h3 class="h4 mt-2">One doctor, start to finish</h3>
+        <p class="meta mt-1">Assessment, hairline design, graft planning, the procedure itself and every follow-up review.</p>
       </div>
-      <div class="hp-dots" data-hp-dots hidden></div>
-
-      <p class="hp-note hp-note--center">The diagrams are AI-generated illustrations of common patterns, not photographs of patients. This page does not show before-and-after photographs: outcomes differ from person to person, and your doctor will explain what is realistic for you.</p>
-    </div>
-  </section>
-
-  <!-- ============ PROCESS ============ -->
-  <section class="hp-process" aria-labelledby="hp-process-title">
-    <div class="hp-wrap">
-      <?= hp_section_head('hp-process-title', 'Our hair transplant process', 'What Happens, Step by Step') ?>
-      <ol class="hp-steps" role="list">
-        <?php foreach ($steps as $i => $s): ?>
-          <li class="hp-step">
-            <div class="hp-step__media">
-              <?= hp_img($s['img'], 'AI-generated image: ' . $s['alt'], '(min-width: 1024px) 260px, (min-width: 560px) 50vw, 100vw') ?>
-              <?= hp_ai_chip('AI-generated') ?>
-            </div>
-            <p class="hp-step__num">Step <?= sprintf('%02d', $i + 1) ?></p>
-            <h3 class="hp-h3"><?= e($s['title']) ?></h3>
-            <p class="hp-step__text"><?= e($s['text']) ?></p>
-          </li>
-        <?php endforeach; ?>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ QUESTIONS PATIENTS ASK ============ -->
-  <section class="hp-qa" aria-labelledby="hp-qa-title">
-    <div class="hp-wrap">
-      <?= hp_section_head('hp-qa-title', 'Common questions', 'Questions Patients Ask First') ?>
-      <div class="hp-qa__grid">
-        <?php foreach ($questions as $item): ?>
-          <article class="hp-qa__card">
-            <h3 class="hp-qa__q"><?= e($item['q']) ?></h3>
-            <p class="hp-qa__a"><?= e($item['a']) ?></p>
-            <div class="hp-qa__by">
-              <span class="hp-qa__icon"><?= hp_icon('info', 20, 1.7) ?></span>
-              <span><strong>General information</strong>Your own options are decided at examination.</span>
-            </div>
-          </article>
-        <?php endforeach; ?>
+      <div class="card card--ink">
+        <?= icon('scale', 22, 'var(--accent)') ?>
+        <h3 class="h4 mt-2">Donor supply respected</h3>
+        <p class="meta mt-1">A transplant is a one-time use of a finite donor area. It is measured before it is spent.</p>
       </div>
-      <p class="hp-qa__more"><a class="hp-link" href="/faqs">More questions answered <?= hp_icon('arrow', 15, 2) ?></a></p>
-    </div>
-  </section>
-
-  <!-- ============ FACTS & DOCTOR DIRECTORY ============ -->
-  <section class="hp-band" aria-labelledby="hp-band-title">
-    <div class="hp-wrap">
-      <h2 class="hp-sr" id="hp-band-title">Clinic facts and doctors</h2>
-      <ul class="hp-band__facts" role="list">
-        <?php foreach ($facts as $f): ?>
-          <li class="hp-fact">
-            <?= hp_icon($f['icon'], 38, 1.3) ?>
-            <div>
-              <p class="hp-fact__value"><?= e($f['value']) ?></p>
-              <p class="hp-fact__label"><?= e($f['label']) ?></p>
-            </div>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-
-      <?= hp_doctor_directory() ?>
-
-      <?php if (HOME_MEDICALLY_REVIEWED): ?>
-        <p class="hp-band__review">Medical content on this page reviewed by <?= e(REVIEWED_BY) ?> · Last reviewed <?= e(REVIEWED_DATE) ?></p>
-      <?php endif; ?>
-    </div>
-  </section>
-
-  <!-- ============ CLOSING CALL TO ACTION ============ -->
-  <section class="hp-cta" aria-labelledby="hp-cta-title">
-    <div class="hp-cta__content">
-      <p class="hp-eyebrow">Appointments</p>
-      <h2 class="hp-h2" id="hp-cta-title">Start With a Doctor’s Assessment</h2>
-      <p class="hp-text">Book a consultation to understand the cause and stage of your hair loss. If treatment is suitable, you receive a written plan and estimate, and you decide in your own time.</p>
-      <div class="hp-cta__actions">
-        <?= hp_book_link('Book a Consultation') ?>
-        <a class="hp-btn hp-btn--outline" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= hp_icon('phone', 17) ?> Call Gurugram</a>
-        <a class="hp-btn hp-btn--outline" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= hp_icon('phone', 17) ?> Call Rohini</a>
+      <div class="card card--ink">
+        <?= icon('doc', 22, 'var(--accent)') ?>
+        <h3 class="h4 mt-2">Written estimate</h3>
+        <p class="meta mt-1">Itemised after the assessment, with what it excludes named rather than discovered later.</p>
+      </div>
+      <div class="card card--ink">
+        <?= icon('pin', 22, 'var(--accent)') ?>
+        <h3 class="h4 mt-2">One clinic, one address</h3>
+        <p class="meta mt-1">Consultations and procedures both happen in <?= e(NAP_LOCALITY) ?>. Nobody is sent elsewhere to be operated on.</p>
       </div>
     </div>
-    <div class="hp-cta__media">
-      <?= hp_img('ambient', 'AI-generated image: sunlight and leaf shadows on an ivory wall with a potted plant', '(min-width: 1024px) 50vw, 100vw') ?>
-      <?= hp_ai_chip('AI-generated image') ?>
+  </div>
+</section>
+
+<?= doctor_block(
+    'Dr. Nyra trained at ' . DOCTORS['dr-nyra']['alumni'] . ' and worked for three years in Germany — two at Bio Hair Clinic and one at St. Georg Klinikum Eisenach — before establishing DenceSpot in ' . NAP_LOCALITY . '. She consults on, plans and performs every hair-restoration case at the clinic personally, and all medical content on this website is written or reviewed by her.',
+    'Dr. Nyra, hair restoration doctor at DenceSpot Clinic Gurgaon'
+) ?>
+
+<!-- ============ PROCESS ============ -->
+<section class="section section--white">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2 mt-2">What Happens, In Order</h2>
+      <p class="body mt-3">No step is skipped and no date is booked before there is a plan you have seen in writing.</p>
     </div>
-  </section>
 
-</main>
+    <div class="grid grid--4 mt-6">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <h3 class="h4 mt-2">Get in touch</h3>
+          <p class="meta mt-1">Send photographs on WhatsApp or leave a name and number. The clinic calls you back to agree a time.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <h3 class="h4 mt-2">Doctor-led assessment</h3>
+          <p class="meta mt-1">Scalp examined under magnification, donor density measured, pattern staged, photographs taken for your record.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <h3 class="h4 mt-2">A plan and a figure</h3>
+          <p class="meta mt-1">Technique, approximate graft number, timeline and an itemised estimate. You decide in your own time.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <div>
+          <h3 class="h4 mt-2">Treatment and follow-up</h3>
+          <p class="meta mt-1">The procedure or the medical course, then scheduled reviews with progress photographed against your baseline.</p>
+        </div>
+      </div>
+    </div>
 
-<?= hp_footer() ?>
-<?= hp_booking_dialog('homepage') ?>
-<?= hp_mobile_bar() ?>
+    <div class="btn-row mt-6">
+      <a class="btn btn--ink" href="/book-consultation"><?= icon('calendar', 17) ?> Start at step 01</a>
+      <a class="btn btn--outline" href="/faqs"><?= icon('info', 17) ?> Read the FAQs</a>
+    </div>
+  </div>
+</section>
 
-<script src="<?= e($asset('/assets/js/home.js')) ?>" defer></script>
-</body>
-</html>
+<!-- ============ FAQ ============ -->
+<section class="section section--canvas" id="faqs">
+  <div class="wrap">
+    <div class="split split--sidebar">
+      <div>
+        <p class="eyebrow">FAQs</p>
+        <h2 class="h2 mt-2">Hair Transplant Questions Patients Ask First</h2>
+        <p class="body mt-3 measure">Questions about a specific treatment are answered on that treatment's own page, where they belong.</p>
+        <div class="btn-row mt-5">
+          <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> Ask on WhatsApp</a>
+          <a class="btn btn--outline" href="/faqs">All FAQs</a>
+        </div>
+      </div>
+      <div><?= faq_list($faqs) ?></div>
+    </div>
+  </div>
+</section>
+
+<?= local_block(
+    'Visit the Clinic in ' . NAP_LOCALITY,
+    'One clinic, one team, one address. Consultations and procedures both happen here, and patients travel to us from across ' . NAP_LOCALITY . ' and South Delhi.'
+) ?>
+
+<!-- ============ CERTIFICATES & AWARDS ============ -->
+<?= awards_certificates_section() ?>
+
+
+<?php
+/**
+ * Live Google reviews.
+ *
+ * The widget id was inline here and is now ELFSIGHT_REVIEWS_APP in config, so
+ * the homepage and the treatment pages cannot drift onto two different
+ * listings. The wrapper markup was carrying Tailwind utility classes
+ * (pt-[20px] bg-white w-full) that this stylesheet has never defined, so the
+ * section had no styling at all and the widget sat flush against the block
+ * above it.
+ */
+?>
+<?= google_reviews_block() ?>
+
+<?= cta_band(
+    'Book Your Hair Assessment',
+    'Leave a name and a phone number and the clinic will call you back. You will be told honestly whether you need surgery now, later, or not at all — there is no charge to enquire and no pressure to book a date.',
+    'homepage'
+) ?>
+
+<?php require __DIR__ . '/includes/footer.php'; ?>

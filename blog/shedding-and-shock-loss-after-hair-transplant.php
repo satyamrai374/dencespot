@@ -26,8 +26,6 @@ $postFaqs = [
     ['q' => 'Nothing has grown by month five. Is that a failure?',
      'a' => 'Not yet. Month five is early, the crown moves more slowly than the frontal area, and the first hairs to appear are thin and pale enough to miss in a mirror. A judgement made before ten to twelve months is a judgement made on incomplete growth — see <a href="/blog/hair-transplant-repair-options">what repair surgery can and cannot fix</a>.'],
 ];
-$postFaqId = 'shedding-and-shock-loss-faqs';
-$postFaqHeading = 'Shedding and shock loss FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -63,7 +61,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Shedding usually runs from about week two to week eight. Some people start at day ten, some not until week five, and some shed in two waves with a lull between. Then comes the quiet stretch, which is the hardest part psychologically, because nothing visible happens for weeks together.</p>
 
-<p>Regrowth typically begins between month three and month six. The first hairs are fine and pale, easy to miss under bathroom lighting, and thicken through months six to twelve. The frontal area generally moves ahead of the crown. A result is judged at ten to twelve months, later at the crown, which is why photographs are only worth comparing when the interval since surgery is stated — the <a href="/blog/hair-transplant-growth-timeline-month-by-month">month-by-month growth timeline</a> explains what each stage looks like.</p>
+<p>Regrowth typically begins between month three and month six. The first hairs are fine and pale, easy to miss under bathroom lighting, and thicken through months six to twelve. The frontal area generally moves ahead of the crown. A result is judged at ten to twelve months, later at the crown, which is why <a href="/hair-transplant-results-gurgaon">results photographed at a stated interval</a> are the only kind worth comparing.</p>
 
 <p>Two people operated on the same morning can sit weeks apart at every stage, so treat any timeline as a guide.</p>
 
@@ -94,7 +92,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Shedding follows from moving a follicle, not from moving it badly. Every technique that lifts a follicle out of one blood supply and asks it to establish another provokes the response. Implanter pens do not abolish it and nor do pre-made channels — as <a href="/blog/fue-vs-dhi-hair-transplant">the real differences between FUE and DHI</a> sets out, that argument is about placement, not about whether the hair drops.</p>
 
-<p>So a clinic promising your transplant will not shed is describing something that does not happen, and one quoting a precise regrowth percentage is quoting a figure nobody can verify for your head before operating. Both belong with the claims examined in <a href="/blog/hair-transplant-promises-and-success-rates">promised results and success-rate claims</a>. What a surgeon can honestly give you is what usually happens, and over what timescale.</p>
+<p>So a clinic promising your transplant will not shed is describing something that does not happen, and one quoting a precise regrowth percentage is quoting a figure nobody can verify for your head before operating. Both belong with the claims examined in <a href="/blog/hair-transplant-guarantees-and-success-rates">guaranteed results and success-rate claims</a>. What a surgeon can honestly give you is what usually happens, and over what timescale.</p>
 
 <p>You may be offered <a href="/hair-prp-treatment-in-gurgaon">PRP around the time of surgery</a> to ease native-hair shock loss. It is defensible to discuss. It should not be sold as prevention, because the evidence for that specific use is limited.</p>
 
@@ -124,8 +122,12 @@ require __DIR__ . '/../includes/blog-header.php';
   <li>Every medicine and supplement taken since surgery, including anything the clinic did not prescribe.</li>
 </ol>
 
-<p>General information about hair loss and shedding is set out in the <a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS hair loss overview</a>, but it cannot examine your scalp. To speak to someone, the phone, WhatsApp and opening hours are on the <a href="/contact">clinic contact page</a>, and <a href="/medical-disclaimer#doctors">the clinic's doctors and their registration details</a> are listed separately.</p>
+<p>General information about hair loss and shedding is set out in the <a href="https://www.nhs.uk/conditions/hair-loss/" rel="noopener nofollow" target="_blank">NHS hair loss overview</a>, but it cannot examine your scalp. To speak to someone, the phone, WhatsApp and opening hours are on the <a href="/contact">clinic contact page</a>, and the doctor who reviews these cases is described on <a href="/dr-nyra">Dr Nyra's profile and training</a>.</p>
 
 <p>The least satisfying point is the truest: at week three you cannot tell how your result will look, and neither can anyone else. A transplant also does not halt the pattern loss you already had, which is covered in <a href="/blog/is-a-hair-transplant-permanent">whether a hair transplant is permanent</a>. Judge the outcome at ten to twelve months, and keep your photographs consistent until then.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
+
+<h2 id="shedding-and-shock-loss-faqs">Shedding and shock loss FAQs</h2>
+
+<?= faq_list($postFaqs) ?>

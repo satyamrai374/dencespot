@@ -33,9 +33,9 @@ $faqs = [
     ['q' => 'Is GFC better than PRP?',
      'a' => 'We will not tell you it is, because the evidence does not currently support that claim. It is widely marketed as an upgrade, often with impressive-sounding concentration figures. A higher growth factor concentration in a tube is not the same thing as a better outcome on a scalp, and the studies needed to demonstrate the second are not yet there in the way they are for PRP.'],
     ['q' => 'Then why offer it at all?',
-     'a' => 'Because it belongs to the same family of treatments, it uses your own blood, and some patients ask for it once the evidence has been explained. It is offered only with that limited evidence stated, and never presented as a proven improvement in order to justify a higher price. Which of the two suits you is discussed at assessment on the basis of your diagnosis, not the newer label.'],
+     'a' => 'Because it is a reasonable option within the same family of treatments, it uses your own blood, and some patients prefer it. What we will not do is present it as a proven improvement in order to justify a higher price. Which of the two suits you is discussed at assessment on the basis of your diagnosis, not the newer label.'],
     ['q' => 'What does GFC treat?',
-     'a' => 'It is used to support thinning hair, most often in early to moderate pattern hair loss, and sometimes alongside medical treatment or after a transplant. Like PRP, it is intended to support existing follicles; it does not cure or reverse pattern hair loss, and its published evidence is small and early. It does not regrow hair in an area where the follicles are gone, and it is not a substitute for surgery in established baldness.'],
+     'a' => 'It is used to support thinning hair, most often in early to moderate pattern hair loss, and sometimes alongside medical treatment or after a transplant. Like PRP, it supports existing follicles. It does not regrow hair in an area where the follicles are gone, and it is not a substitute for surgery in established baldness.'],
     ['q' => 'How is the treatment done?',
      'a' => 'Blood is drawn, processed, and the concentrate is injected into the scalp at follicular depth across the thinning areas. It is done in the clinic and takes under an hour in total. Most people return to normal activity the same day.'],
     ['q' => 'Does it hurt?',
@@ -63,11 +63,10 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'GFC Treatment in Gurgaon: GFC vs PRP & Cost | DenceSpot',
-    'description' => 'GFC hair treatment in Gurgaon: how growth factor concentrate differs from PRP, what a session involves, who it may suit, its limited evidence and cost.',
+    'title'       => 'GFC Treatment in Gurgaon | DenceSpot Clinic',
+    'description' => 'GFC growth factor concentrate treatment for hair in Gurgaon, explained honestly. What it is, how it differs from PRP, and why we will not oversell the comparison.',
     'url'         => '/gfc-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
-    'preload_image' => '/assets/img/services/svc-follicle-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -79,7 +78,7 @@ $page = [
             'howPerformed'  => 'A sample of the patient\'s own blood is drawn and processed so that growth factors held within the platelets are released, with platelets and other cellular components then removed. The resulting growth factor concentrate is injected into the scalp at follicular depth across the thinning areas, as a planned course of sessions spaced some weeks apart.',
             'preparation'   => 'Clinical assessment and scalp examination, review of medical history and medication including anticoagulants and agents affecting platelet function, and investigation of reversible causes of hair loss such as iron deficiency and thyroid disease before treatment begins.',
             'followup'      => 'Baseline and interval photography, review of response over several months, and maintenance sessions where appropriate alongside ongoing medical therapy.',
-            'expectedPrognosis' => 'Reduced shedding is commonly the earliest observed change. Density and texture changes, where they occur, are assessed over several months with photography. The published evidence base for growth factor concentrate is less mature than for platelet-rich plasma, and it has not been shown to outperform it. GFC does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
+            'expectedPrognosis' => 'Reduced shedding is commonly the earliest observed change. Density and texture changes, where they occur, are assessed over several months with photography. The published evidence base for growth factor concentrate is less mature than for platelet-rich plasma, and it is not established as superior. GFC does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
         ]),
         schema_faq('/gfc-treatment-in-gurgaon', $faqs),
     ],
@@ -97,7 +96,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Growth factor concentrate is made from your own blood, processed a step further than PRP. That processing difference is real. Whether it produces a better result is a different question, and the honest answer is that the evidence is not there yet. Here is what it is, and what we will not claim for it.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book an Assessment</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -105,54 +104,57 @@ require __DIR__ . '/includes/header.php';
             'Prepared from your own blood',
             'Given as a planned course, not a package',
             'Response tracked with photographs',
-            'At our clinic in Sector 39, Gurugram',
+            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-follicle-768.webp" srcset="/assets/img/services/svc-follicle-512.webp 512w, /assets/img/services/svc-follicle-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted cross-section of scalp skin showing hair follicles beneath the surface and hair shafts rising from it" width="768" height="960" loading="eager" fetchpriority="high">
-          <?= hp_ai_chip('AI-generated illustration') ?>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and preparation equipment used for blood-derived scalp treatments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Assessed &amp; performed by</p>
+          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
+          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
         </div>
-        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
 
-<?= lead_strip() ?>
-
 <section class="trust">
   <div class="wrap">
     <div class="grid grid--5">
-      <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Diagnosis first</p><p class="meta mt-1">Treatable causes are looked for before injecting.</p></div>
-      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Registered doctors</p><p class="meta mt-1">Assessed and treated by registered medical practitioners.</p></div>
-      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Photographed, not guessed</p><p class="meta mt-1">Response measured against a baseline.</p></div>
-      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">No upgrade claims</p><p class="meta mt-1">We do not sell GFC as a proven upgrade.</p></div>
-      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-2">Told if it will not help</p><p class="meta mt-1">It supports hair; it does not replace it.</p></div>
+      <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Diagnosis first</p><p class="body-s mt-2">Treatable causes are looked for before injecting.</p></div>
+      <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Doctor-performed</p><p class="body-s mt-2">Assessed and treated by a dermatologist.</p></div>
+      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Photographed, not guessed</p><p class="body-s mt-2">Response measured against a baseline.</p></div>
+      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">No superiority claims</p><p class="body-s mt-2">We do not sell GFC as a proven upgrade.</p></div>
+      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Told if it will not help</p><p class="body-s mt-2">It supports hair; it does not replace it.</p></div>
     </div>
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'svc-prp',
-    'alt'     => 'a capped tube of golden plasma standing on a white tray beside a syringe',
-    'eyebrow' => 'The basics, plainly',
-    'title'   => 'What GFC Actually Is',
-    'id'      => 'what-is',
-    'html'    => '<p>Platelets in your blood carry growth factors — signalling proteins involved in tissue repair and in the hair follicle cycle. PRP concentrates the platelets themselves and injects them, and they release their growth factors gradually once in the tissue.</p>'
-               . '<p>GFC takes a further processing step: the growth factors are released from the platelets during preparation, and the platelets and other cells are then removed. What is injected is the concentrate of those released growth factors. That is a real difference in the injected material; it does not, on its own, mean the clinical result is better.</p>'
-               . '<p>Like PRP, GFC is autologous — it comes from you, so a reaction to the material itself is not expected. The usual side effects come from the injections: tenderness, redness and occasional swelling.</p>'
-               . '<p><b>The limits, stated plainly:</b></p>',
-    'points'  => [
-        'It does not regrow hair where the follicles are gone',
-        'It does not stop pattern hair loss, so medical treatment usually runs alongside',
-        'It does not replace a transplant for established baldness',
-        'Any benefit needs maintenance; it does not last on its own',
-    ],
-]) ?>
+<section class="section section--canvas" id="what-is">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">The basics, plainly</p>
+        <h2 class="h2 mt-2">What GFC Actually Is</h2>
+        <p class="body-l mt-3 measure">Platelets in your blood carry growth factors — signalling proteins involved in tissue repair and, of interest here, in the hair follicle cycle. Every treatment in this family is built on the same idea: concentrate those and deliver them to the scalp.</p>
+        <p class="body-l mt-3 measure">PRP concentrates the platelets themselves and injects them, and they release their growth factors gradually once in the tissue. GFC takes a further processing step: the growth factors are released from the platelets during preparation, and the platelets and other cells are then removed. What is injected is the concentrate of those released growth factors.</p>
+        <p class="body-l mt-3 measure">That is a real and describable difference in preparation. It is worth being precise about what it does and does not establish. It means the injected material is different. It does not, on its own, mean the clinical result is better.</p>
+        <p class="body-l mt-3 measure">Like PRP, GFC is autologous — it comes from you, which is why the risk profile is favourable and why allergic reaction to the material itself is not a concern.</p>
+      </div>
+      <div class="card card--pad-lg">
+        <p class="eyebrow">What it does not do</p>
+        <h3 class="h3 mt-2">The limits, stated plainly</h3>
+        <p class="body mt-3">It does not regrow hair where the follicles are gone. Nothing injected into a bald scalp creates new follicles.</p>
+        <p class="body mt-3">It does not stop pattern hair loss. The underlying process continues, which is why medical treatment usually runs alongside.</p>
+        <p class="body mt-3">It does not replace a transplant for established baldness, and it is not a permanent result. Benefit requires maintenance.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="section section--canvas" id="evidence">
+<section class="section section--white" id="evidence">
   <div class="wrap">
     <p class="eyebrow">The honest comparison</p>
     <h2 class="h2 mt-2">Why We Will Not Tell You GFC Beats PRP</h2>
@@ -160,148 +162,119 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--2 mt-5">
       <div class="card card--pad-lg">
         <p class="h4">What can be said</p>
-        <div class="mt-3"><?= ticks([
+        <?= ticks([
             'The preparation is genuinely different',
             'It is autologous, like PRP',
             'It is used for the same indications',
-            'Reported side effects are similar to PRP',
-        ], false) ?></div>
+            'The safety profile is comparable',
+        ], false) ?>
       </div>
       <div class="card card--pad-lg">
         <p class="h4">What cannot be said yet</p>
-        <div class="mt-3"><?= ticks([
+        <?= ticks([
             'That it outperforms PRP clinically',
             'That it works where PRP has failed',
             'That fewer sessions are needed',
             'That the result lasts longer',
-        ], false) ?></div>
+        ], false) ?>
       </div>
     </div>
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">The distinction worth holding onto</p>
       <h3 class="h3 mt-2">Concentration in a tube is not outcome on a scalp</h3>
-      <p class="body mt-3 measure">A treatment can contain more of an active ingredient and not produce a proportionally better result, or any better result at all. Showing that one treatment works better than another requires comparative studies, and the published evidence base for growth factor concentrate is considerably less mature than the one behind PRP, which itself is not a cure for pattern hair loss.</p>
+      <p class="body mt-3 measure">A treatment can contain more of an active ingredient and not produce a proportionally better result, or any better result at all. Demonstrating clinical superiority requires comparative studies, and the published evidence base for growth factor concentrate is considerably less mature than the one behind PRP, which itself is not a cure for pattern hair loss.</p>
       <p class="body mt-3 measure">So we describe GFC accurately, offer it where it fits, and decline to price it as a proven upgrade. If a clinic tells you it definitively outperforms PRP, ask what they are basing that on.</p>
       <p class="body mt-3 measure">For the other side of this comparison, see <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment</a>.</p>
     </div>
   </div>
 </section>
 
-<?php
-$gfcVsPrp = [
-    ['Made from', 'A sample of your own blood', 'A sample of your own blood'],
-    ['How it is prepared', 'Processed so that the growth factors held in the platelets are released, after which the platelets and other cells are removed', 'Spun in a centrifuge so that the platelets are concentrated in a small volume of plasma'],
-    ['What is injected', 'A concentrate of released growth factors, with no platelets in it', 'Plasma rich in platelets, which release their growth factors gradually once in the scalp'],
-    ['How a session feels', 'A blood draw like any blood test, then scalp injections that most people find uncomfortable rather than painful; tender for a day or so', 'The same: a blood draw, scalp injections, and tenderness for a day or so'],
-    ['Time in the clinic', 'Under an hour in total', 'Usually under an hour as well'],
-    ['Usual course', 'Sessions spaced some weeks apart and reviewed against photographs; not shown to need fewer sessions than PRP', 'Sessions spaced some weeks apart and reviewed against photographs, then maintenance if you respond'],
-    ['Published evidence', 'Smaller and less mature; not shown to outperform PRP', 'Larger and longer-standing, though PRP is still not a cure for pattern hair loss'],
-];
-?>
-<section class="section section--white" id="gfc-vs-prp">
+<section class="section section--canvas" id="candidacy">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Side by side</p>
-      <h2 class="h2 mt-2">GFC vs PRP: What Differs</h2>
-      <p class="body mt-3">Both start with a sample of your own blood, and both are injected into thinning areas of the scalp. The difference lies in what happens in between, and so in what goes into the syringe. A difference in preparation is not the same thing as a proven difference in hair.</p>
-    </div>
-    <div class="card mt-5" style="padding:0;overflow:hidden">
-      <div class="table-scroll">
-        <table class="data data--fit">
-          <caption class="sr-only">GFC and PRP for hair compared: what each is made from, how it is prepared, what is injected, how a session feels, the usual course and the published evidence. A general guide, not a treatment plan.</caption>
-          <thead><tr><th scope="col">&nbsp;</th><th scope="col">GFC</th><th scope="col">PRP</th></tr></thead>
-          <tbody>
-            <?php foreach ($gfcVsPrp as $r): ?>
-            <tr><th scope="row" style="white-space:normal;width:26%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td><td><?= e($r[2]) ?></td></tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+    <div class="split">
+      <div>
+        <p class="eyebrow">Suitability</p>
+        <h2 class="h2 mt-2">Who GFC Is For</h2>
+        <p class="body-l mt-3 measure">It is a supportive treatment for hair that is still there. That single sentence decides most of the candidacy question.</p>
+        <p class="body-l mt-3 measure">It is most reasonable in early to moderate thinning, where follicles are miniaturising but present, and where the aim is to support them alongside medical treatment. It is also used after a transplant to support the surrounding native hair, which the surgery does not address.</p>
+        <p class="body-l mt-3 measure">It is not the right treatment for an area that is genuinely bald, for hair loss with an untreated underlying cause, or as a way of avoiding a conversation about surgery when surgery is what the pattern actually calls for.</p>
+      </div>
+      <div>
+        <div class="card card--pad-lg">
+          <p class="h4">Reasonable to consider</p>
+          <?= ticks([
+              'Early to moderate thinning with follicles present',
+              'Alongside medical treatment for pattern loss',
+              'Supporting native hair after a transplant',
+              'Where you prefer an autologous option',
+          ], false) ?>
+        </div>
+        <div class="card card--pad-lg mt-4">
+          <p class="h4">Not appropriate</p>
+          <?= ticks([
+              'Established baldness with follicles gone',
+              'Active scalp infection or inflammation',
+              'Certain blood, clotting and platelet disorders',
+              'Untreated thyroid, iron or hormonal causes',
+          ], false) ?>
+        </div>
       </div>
     </div>
-    <p class="body-s mt-4 measure">Neither regrows hair where the follicles have gone, neither stops pattern hair loss, and both are generally used alongside medical treatment, with any benefit needing maintenance. For the research behind both, see <a href="/blog/prp-vs-gfc-vs-exosomes">PRP, GFC and exosomes compared</a>; for what changes the price of a course, see the <a href="/prp-hair-treatment-cost-in-gurgaon">PRP hair treatment cost guide</a>.</p>
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'svc-women',
-    'alt'     => 'a white mannequin head seen from above, with green felt hair and a widening central parting',
-    'eyebrow' => 'Suitability',
-    'title'   => 'Who GFC Is For',
-    'id'      => 'candidacy',
-    'tone'    => 'canvas',
-    'reverse' => true,
-    'html'    => '<p>It is a supportive treatment for hair that is still there, and that single sentence decides most of the candidacy question. It is usually considered in early to moderate thinning, where follicles are miniaturising but present, alongside medical treatment and with the smaller evidence base understood.</p>'
-               . '<p>It is also used after a transplant to support the surrounding native hair, which the surgery does not address. It is not the right treatment for an area that is genuinely bald, for hair loss with an untreated underlying cause, or as a way of avoiding a conversation about surgery when that is what the pattern calls for.</p>'
-               . '<p><b>Not appropriate:</b> established baldness with follicles gone; active scalp infection or inflammation; certain blood, clotting and platelet disorders; untreated thyroid, iron or hormonal causes.</p>'
-               . '<p><b>Reasonable to consider:</b></p>',
-    'points'  => [
-        'Early to moderate thinning with follicles present',
-        'Alongside medical treatment for pattern loss',
-        'Supporting native hair after a transplant',
-        'Where you prefer an autologous option',
-    ],
-]) ?>
-
-<?= lp_steps([
-    'eyebrow' => 'The process',
-    'title'   => 'How a Course of GFC Runs',
-    'id'      => 'journey',
-    'intro'   => 'Given as a planned course rather than a single treatment, with the response measured against a baseline.',
-    'tone'    => 'white',
-    'steps'   => [
-        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk', 'title' => 'Assessment', 'text' => 'History, scalp examination, and investigation of reversible causes. If something treatable is found, that is treated first.'],
-        ['img' => 'step-plan', 'alt' => 'a tablet on a desk showing a head diagram', 'title' => 'Baseline photographs', 'text' => 'Standardised images before anything starts, because memory is unreliable and progress in hair is slow.'],
-        ['img' => 'step-procedure', 'alt' => 'sterile instruments laid out on a tray', 'title' => 'Treatment sessions', 'text' => 'Blood drawn, processed, and the concentrate injected across the thinning areas. Under an hour, spaced weeks apart.'],
-        ['img' => 'step-followup', 'alt' => 'a desk calendar with review dates circled', 'title' => 'Review', 'text' => 'Response compared against the baseline images. If there is no response, you are told, and the plan changes.'],
-    ],
-]) ?>
-
-<?= lp_split([
-    'img'     => 'svc-hair-fall',
-    'alt'     => 'a wooden wide-toothed comb lying on a stack of folded cream linen towels beside a window',
-    'eyebrow' => 'On the day and after',
-    'title'   => 'What a Session Involves',
-    'id'      => 'aftercare',
-    'tone'    => 'canvas',
-    'html'    => '<p>Blood is drawn as it would be for any blood test, processed in the clinic, and the concentrate injected into the scalp across the areas being treated. The injections are uncomfortable rather than painful for most people, and some tenderness, occasionally mild swelling, is normal for a day or so.</p>'
-               . '<p>You will be given specific aftercare instructions. Progress is judged against your baseline photographs at review, not week to week in a mirror — hair changes slowly, and daily observation mostly measures lighting.</p>'
-               . '<p><b>Briefly avoid:</b> heavy exercise and heavy sweating; saunas, steam and swimming pools; harsh chemical treatments on the scalp; anything your instructions specifically list.</p>'
-               . '<p><b>Usually fine the same day:</b></p>',
-    'points'  => [
-        'Returning to work',
-        'Normal daily activity',
-        'Eating and drinking as usual',
-    ],
-]) ?>
-
-<section class="section section--white" id="questions">
+<section class="section section--ink" id="journey">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Before you pay</p>
-      <h2 class="h2 mt-2">Questions Worth Asking Any Clinic About GFC</h2>
-      <p class="body mt-3">They apply wherever you are treated, including here. Clear answers to them tell you more than any figure about growth factor concentration.</p>
+    <p class="eyebrow" style="color:var(--accent)">The process</p>
+    <h2 class="h2 mt-2" style="color:#fff">How a Course of GFC Runs</h2>
+    <div class="grid grid--4 mt-6">
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 01</p><p class="h4 mt-2" style="color:#fff">Assessment</p><p class="body-s mt-2">History, scalp examination, and investigation of reversible causes. If something treatable is found, that is treated first.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 02</p><p class="h4 mt-2" style="color:#fff">Baseline photographs</p><p class="body-s mt-2">Standardised images before anything starts, because memory is unreliable and progress in hair is slow.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 03</p><p class="h4 mt-2" style="color:#fff">Treatment sessions</p><p class="body-s mt-2">Blood drawn, processed, and the concentrate injected across the thinning areas. Under an hour, spaced weeks apart.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">Step 04</p><p class="h4 mt-2" style="color:#fff">Review</p><p class="body-s mt-2">Response compared against the baseline images. If there is no response, you are told, and the plan changes.</p></div>
     </div>
-    <div class="card card--pad-lg mt-5">
-      <?= ticks([
-          'How is the concentrate prepared, and is the method the same at every session?',
-          'Who examines me, and who gives the injections?',
-          'Have iron, thyroid and other treatable causes been checked first?',
-          'When will the response be reviewed, and against which photographs?',
-          'What happens to the plan if the review shows no change?',
-          'If GFC is priced above PRP, what is the difference based on?',
-      ]) ?>
-    </div>
-    <div class="note mt-4">
-      <p class="body-s"><b>Not sure what is behind your thinning?</b> The <a href="/hair-loss-assessment">six-question hair loss self-assessment</a> suggests a next step before you book. It is not a diagnosis, and nothing you enter is stored.</p>
+  </div>
+</section>
+
+<section class="section section--white" id="aftercare">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">On the day and after</p>
+        <h2 class="h2 mt-2">What a Session Involves</h2>
+        <p class="body-l mt-3 measure">Blood is drawn as it would be for any blood test. It is processed in the clinic, which takes a short time, and the concentrate is then injected into the scalp across the areas being treated.</p>
+        <p class="body-l mt-3 measure">The injections are uncomfortable rather than painful for most people. Some tenderness, and occasionally mild swelling, is normal for a day or so. Most people go back to normal activity the same day.</p>
+        <p class="body-l mt-3 measure">You will be given specific aftercare instructions. In general, the scalp is left alone for the rest of the day, heavy exercise and heat exposure are avoided briefly, and anything that irritates the scalp is postponed.</p>
+        <p class="body mt-3 measure">Progress is judged against your baseline photographs at review, not week to week in a mirror. Hair changes slowly, and daily observation mostly measures lighting.</p>
+      </div>
+      <div>
+        <div class="card card--pad-lg">
+          <p class="h4">Usually fine the same day</p>
+          <?= ticks([
+              'Returning to work',
+              'Normal daily activity',
+              'Eating and drinking as usual',
+          ], false) ?>
+        </div>
+        <div class="card card--pad-lg mt-4">
+          <p class="h4">Briefly avoid</p>
+          <?= ticks([
+              'Heavy exercise and heavy sweating',
+              'Saunas, steam and swimming pools',
+              'Harsh chemical treatments on the scalp',
+              'Anything your instructions specifically list',
+          ], false) ?>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic.'
+    'Why this page argues against its own product: growth factor concentrate is a reasonable treatment sitting inside a category that is routinely oversold. The pattern is familiar — a newer preparation, a bigger number on the concentration, and a price premium justified by a comparison nobody has demonstrated. Offering it honestly means describing what it is, being explicit that the evidence is less mature than PRP\'s, and making sure the underlying diagnosis has actually been established before anyone injects anything.'
 ) ?>
 
-<section class="section section--white" id="cost">
+<section class="section section--canvas" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -317,21 +290,16 @@ $gfcVsPrp = [
         <p class="body-s mt-4 measure">Be cautious with packages of a fixed number of sessions sold before an examination. A course should be planned from your diagnosis and adjusted by your response, and it should be possible to stop it if you are not responding.</p>
         <p class="body mt-3 measure">See <a href="/cost-and-emi-options">cost and EMI options</a>, and <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment</a> for the alternative in the same family.</p>
       </div>
-      <div class="cta-band" style="display:block">
+      <div class="card card--ink card--pad-lg">
         <h3 class="h3">Start With a Diagnosis</h3>
         <p class="body mt-3">Send photos of the parting, the crown and the hairline in daylight, and tell us when the thinning started and what you have already tried.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair PRP / GFC" data-track="book">Book an assessment</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Book an assessment</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
   </div>
 </section>
-
-<?= local_block(
-    'GFC Treatment at Our Gurgaon Clinic',
-    'Assessment, treatment sessions and reviews take place at our Sector 39 clinic in Gurugram. Consultations and procedures are carried out by registered medical practitioners at the clinic.'
-) ?>
 
 <section class="section section--white" id="faqs">
   <div class="wrap">
@@ -347,11 +315,16 @@ $gfcVsPrp = [
   </div>
 </section>
 
-<?= lp_cta([
-    'eyebrow'   => 'Sector 39, Gurugram',
-    'title'     => 'Find Out Whether GFC Is the Right Treatment for You',
-    'text'      => 'Come in for a proper assessment first. You will get an examination, investigation of anything treatable behind your hair loss, and a straight answer on whether a growth factor course is worth your money in your case.',
-    'treatment' => 'Hair PRP / GFC',
-]) ?>
+<?= local_block(
+    'GFC Treatment at Our Gurgaon Clinic',
+    'Assessment, treatment sessions and every review happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
+) ?>
+
+<?= cta_band(
+    'Find Out Whether GFC Is the Right Treatment for You',
+    'Come in for a proper assessment first. You will get an examination, investigation of anything treatable behind your hair loss, and a straight answer on whether a growth factor course is worth your money in your case.',
+    'gfc-treatment',
+    ['GFC treatment', 'GFC or PRP — please advise', 'After a hair transplant', 'Not sure — please advise']
+) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

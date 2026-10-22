@@ -22,11 +22,6 @@
  *
  * No dependencies. Vanilla JS, progressive enhancement: the form is inert
  * without script but the page still reads as an explainer.
- *
- * 14 Oct 2026 — landing-page layout around the tool (the form, its styles and
- * script are unchanged): AI-illustrated hero, "how a graft number is reached"
- * as lp_steps, the donor constraint as an lp_split and an lp_cta close, each
- * image with its visible AI label. Presents both clinics.
  */
 
 declare(strict_types=1);
@@ -54,13 +49,13 @@ $faqs = [
     ['q' => 'Can I have as many grafts as I want?',
      'a' => 'No. The limit is what your donor area can safely give across your lifetime, not what the recipient area could accept. Taking more than the donor can spare thins it visibly and permanently, and there is no way to reverse it.'],
     ['q' => 'Should the whole number be done in one session?',
-     'a' => 'Not always. Larger plans are frequently staged across two procedures, which can protect the donor and lets the second stage be planned around how the first has grown. Whether staging suits you is a decision made at assessment.'],
+     'a' => 'Not always. Larger plans are frequently staged across two procedures, which protects the donor and often produces a better long-term result. Whether staging suits you is a decision made at assessment.'],
     ['q' => 'Does the calculator account for future hair loss?',
      'a' => 'It cannot, and this is one of its more significant limitations. A sensible surgical plan reserves donor supply for loss that has not happened yet. A number based on today\'s pattern alone can be an overestimate of what should be spent now.'],
     ['q' => 'How do I get an actual number?',
      'a' => 'By being examined. Donor density is measured directly, the recipient area is mapped, your pattern is staged and its likely progression considered, and the number comes out of that. You then receive it in writing as part of an itemised estimate.'],
     ['q' => 'Does a bigger graft number mean a better result?',
-     'a' => 'No. The right number is the one your donor can support, placed well, in the area that matters most. More grafts placed badly, or taken from a donor that could not spare them, is a worse outcome.'],
+     'a' => 'No, and assuming so is how people are sold inflated counts. The right number is the one your donor can support, placed well, in the area that matters most. More grafts placed badly, or taken from a donor that could not spare them, is a worse outcome.'],
     ['q' => 'How much will that many grafts cost?',
      'a' => 'Cost follows the graft number, but we do not publish a per-graft rate, because a rate multiplied by an unexamined count is exactly the arithmetic this page is warning you about. See our <a href="/hair-transplant-cost-in-gurgaon">cost guide</a> for how pricing actually works.'],
 ];
@@ -76,7 +71,6 @@ $page = [
     'description' => 'Estimate a graft range from your pattern of hair loss, and understand why the number that actually matters cannot be worked out without measuring your donor area.',
     'url'         => '/hair-transplant-graft-calculator',
     'crumbs'      => $crumbs,
-    'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -89,41 +83,28 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <style>
-/* Scoped to the calculator. Oct 2026: homepage palette and type — forest
-   green panel, teal selection, ivory canvas, serif headings, 14–18px radii.
-   Buttons are the shared .btn (6px). Colours come from site/home tokens. */
+/* Scoped to the calculator. Uses site tokens so it inherits the palette. */
 .calc { display: grid; gap: 28px; }
 @media (min-width: 900px) { .calc { grid-template-columns: 1.1fr .9fr; align-items: start; } }
-.calc fieldset { border: 0; padding: 0; margin: 0 0 30px; min-width: 0; }
-.calc legend { padding: 0; margin-bottom: 6px; font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
-.calc__hint { font-size: 13.5px; line-height: 1.55; color: var(--ink-muted); margin: 0 0 14px; }
-.calc__opts { display: grid; gap: 10px; }
+.calc fieldset { border: 0; padding: 0; margin: 0 0 26px; }
+.calc legend { padding: 0; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.calc__hint { font-size: 13px; opacity: .72; margin: 0 0 12px; }
+.calc__opts { display: grid; gap: 8px; }
 .calc__opts--2 { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-.calc__opt { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px;
-  border: 1px solid var(--line); border-radius: 14px; cursor: pointer; background: #fff;
-  box-shadow: var(--shadow-sm);
-  transition: border-color .2s var(--hp-ease), background-color .2s var(--hp-ease), box-shadow .2s var(--hp-ease); }
-.calc__opt:hover { border-color: var(--hp-teal-500); }
-.calc__opt input { margin: 3px 0 0; flex: none; width: 16px; height: 16px; accent-color: var(--hp-green-800); }
-.calc__opt > span { display: block; min-width: 0; }
-.calc__opt b { display: block; font-size: 14.5px; font-weight: 600; line-height: 1.4; color: var(--ink); }
-.calc__opt span span { display: block; font-size: 13px; color: var(--ink-muted); margin-top: 2px; line-height: 1.5; }
-.calc__opt:has(input:checked) { border-color: var(--hp-teal-600); background: var(--hp-teal-50); box-shadow: 0 0 0 1px var(--hp-teal-600) inset; }
-.calc__opt:has(input:focus-visible) { outline: 2px solid var(--hp-teal-600); outline-offset: 2px; }
-.calc__out { position: sticky; top: calc(var(--hp-header-h, 68px) + 20px); }
-.card.calc__panel { background-color: var(--hp-green-800); border-color: var(--hp-green-800); border-radius: 18px; box-shadow: var(--shadow-lg);
-  background-image: radial-gradient(600px 260px at 100% 0%, rgba(143, 217, 203, .12), transparent 60%); }
-.calc__panel .eyebrow { color: var(--accent-on-dark); }
-.calc__num { font-family: var(--serif); font-size: clamp(34px, 6vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; color: #fff; }
-.calc__panel .calc__unit { color: rgba(255, 255, 255, .72); }
-.calc__bar { height: 8px; border-radius: 99px; background: rgba(255, 255, 255, .16); overflow: hidden; margin-top: 16px; }
-.calc__bar i { display: block; height: 100%; background: var(--accent-on-dark); border-radius: 99px; transition: width .35s var(--hp-ease), margin-left .35s var(--hp-ease); }
-.calc__cav { margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .16); }
-.calc__cav ul { list-style: disc; padding-left: 18px; }
-.calc__cav li { font-size: 13.5px; line-height: 1.6; margin-bottom: 9px; color: rgba(255, 255, 255, .8); }
-.calc__cav li::marker { color: var(--accent-on-dark); }
-.calc__cav strong { color: #fff; font-weight: 600; }
-.calc__noscript { padding: 16px 18px; border: 1px dashed var(--line-dash); border-radius: 14px; background: #fff; font-size: 14px; color: var(--ink-soft); }
+.calc__opt { display: flex; gap: 10px; align-items: flex-start; padding: 11px 13px;
+  border: 1px solid rgba(0,0,0,.14); border-radius: 10px; cursor: pointer; background: #fff; }
+.calc__opt:hover { border-color: rgba(0,0,0,.3); }
+.calc__opt input { margin: 2px 0 0; flex: none; }
+.calc__opt b { display: block; font-size: 14px; font-weight: 650; }
+.calc__opt span { display: block; font-size: 12.5px; opacity: .7; margin-top: 2px; line-height: 1.45; }
+.calc__opt:has(input:checked) { border-color: var(--accent-deep, #059669); box-shadow: 0 0 0 1px var(--accent-deep, #059669) inset; }
+.calc__out { position: sticky; top: 20px; }
+.calc__num { font-size: clamp(30px, 6vw, 44px); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+.calc__bar { height: 8px; border-radius: 99px; background: rgba(255,255,255,.18); overflow: hidden; margin-top: 14px; }
+.calc__bar i { display: block; height: 100%; background: var(--accent, #10B981); border-radius: 99px; transition: width .35s ease, margin-left .35s ease; }
+.calc__cav { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.16); }
+.calc__cav li { font-size: 13px; line-height: 1.55; margin-bottom: 9px; opacity: .82; }
+.calc__noscript { padding: 16px; border: 1px dashed rgba(0,0,0,.25); border-radius: 10px; font-size: 14px; }
 </style>
 
 <section class="hero">
@@ -136,7 +117,7 @@ require __DIR__ . '/includes/header.php';
 
         <div class="btn-row mt-5">
           <a class="btn btn--lg btn--ink" href="#calculator" data-track="calculator"><?= icon('chart', 18) ?> Use the Calculator</a>
-          <a class="btn btn--lg btn--accent" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 19) ?> Get a Measured Number</a>
+          <a class="btn btn--lg btn--accent" href="/book-consultation" data-track="book"><?= icon('calendar', 19) ?> Get a Measured Number</a>
         </div>
 
         <?= ticks([
@@ -148,11 +129,12 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted model of a follicular unit with three hairs, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
-          <?= hp_ai_chip('AI-generated illustration') ?>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Densitometry and mapping equipment used to measure donor density at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Reviewed by</p>
+          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
+          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
         </div>
-        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
@@ -213,22 +195,22 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="calc__out">
-        <div class="card card--ink calc__panel card--pad-lg">
-          <p class="eyebrow">Typical range for this pattern</p>
+        <div class="card card--ink card--pad-lg">
+          <p class="eyebrow" style="color:var(--accent)">Typical range for this pattern</p>
           <p class="calc__num mt-2" id="calcResult" aria-live="polite" aria-atomic="true">—</p>
-          <p class="body-s calc__unit mt-2" id="calcUnit">grafts, as a broad guide</p>
+          <p class="body-s mt-2" style="opacity:.8" id="calcUnit">grafts, as a broad guide</p>
           <div class="calc__bar" aria-hidden="true"><i id="calcBar" style="width:0"></i></div>
 
           <div class="calc__cav">
-            <p class="h4">What this number does not know</p>
-            <ul class="mt-3">
+            <p class="h4" style="color:#fff">What this number does not know</p>
+            <ul class="mt-3" style="list-style:disc;padding-left:18px">
               <li><strong>Your donor density.</strong> The most important variable, and the one that decides whether the range above is even available to you.</li>
               <li><strong>Your future loss.</strong> A sensible plan holds grafts back for loss that has not happened yet.</li>
               <li><strong>Your scalp laxity and health.</strong> Both affect what can safely be harvested and placed.</li>
               <li><strong>Whether surgery suits you at all.</strong> Unstable loss and active scalp conditions are treated first.</li>
             </ul>
-            <a class="btn btn--block btn--accent mt-4" id="calcBook" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Get a measured number</a>
-            <a class="btn btn--block btn--ghost mt-3" id="calcWa" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask about your case</a>
+            <a class="btn btn--block btn--accent mt-4" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Get a measured number</a>
+            <a class="btn btn--block btn--ghost mt-3" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask about your case</a>
           </div>
         </div>
         <noscript><p class="calc__noscript mt-4">This calculator needs JavaScript. The rest of the page explains how graft numbers are actually worked out, and you can <a href="/book-consultation">book an assessment</a> for a measured figure.</p></noscript>
@@ -237,39 +219,39 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_steps([
-    'eyebrow' => 'The real calculation',
-    'title'   => 'How a Graft Number Is Actually Reached',
-    'id'      => 'what-decides',
-    'intro'   => 'The calculator above works forwards, from the size of the problem. A clinic works backwards, from what your donor area can safely give — and that is the direction that produces a usable plan.',
-    'tone'    => 'white',
-    'steps'   => [
-        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Donor density, measured',  'text' => 'Measured directly, not estimated. It varies substantially between people, which is the single reason no honest figure can be produced from a photograph.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'The recipient area, mapped', 'text' => 'Mapped rather than eyeballed, so the number reflects a measured surface rather than an impression.'],
-        ['img' => 'step-followup',     'alt' => 'a desk calendar with dates circled',                      'title' => 'The pattern, staged',       'text' => 'Its likely progression is considered, because grafts spent today are not available for the crown that opens up in ten years.'],
-    ],
-]) ?>
+<section class="section section--white" id="what-decides">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">The real calculation</p>
+        <h2 class="h2 mt-2">How a Graft Number Is Actually Reached</h2>
+        <p class="body-l mt-3 measure">The calculator above works forwards, from the size of the problem. A clinic works backwards, from what your donor area can safely give — and that is the direction that produces a usable plan.</p>
+        <p class="body-l mt-3 measure">Donor density is measured directly, not estimated. It varies substantially between people, and two men with visually identical recession can have donor areas that support very different numbers. This is the single reason no honest figure can be produced from a photograph, and it is the reason this page keeps saying so.</p>
+        <p class="body-l mt-3 measure">The recipient area is then mapped rather than eyeballed, so the number reflects a measured surface rather than an impression. The pattern is staged, and its likely progression is considered — because grafts spent today are not available for the crown that opens up in ten years.</p>
+        <p class="body-l mt-3 measure">Only then does a number appear, and it is frequently lower than the calculator's range. That is usually the plan being sensible about your donor rather than being ungenerous.</p>
+      </div>
+      <div>
+        <div class="card card--pad-lg">
+          <p class="h4">What gets measured</p>
+          <?= ticks([
+              'Donor density at the back and sides',
+              'The recipient area, mapped',
+              'Scalp laxity and skin condition',
+              'Hair calibre, curl and colour contrast',
+              'Pattern stage and likely progression',
+          ], false) ?>
+        </div>
+        <div class="card card--pad-lg mt-4">
+          <p class="h4">And the constraint</p>
+          <p class="body-s mt-2">Your donor has to last your lifetime. The safe number is what it can spare with something held in reserve, not what the bald area could absorb.</p>
+          <p class="body-s mt-3">Taking more than that thins the donor visibly and permanently. See <a href="/blog/donor-area-limits-hair-transplant">donor area limits</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<?= lp_split([
-    'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
-    'id'      => 'donor-constraint',
-    'eyebrow' => 'And the constraint',
-    'title'   => 'Your Donor Has to Last Your Lifetime',
-    'tone'    => 'canvas',
-    'html'    => '<p>Two men with visually identical recession can have donor areas that support very different numbers. The safe number is what your donor can spare with something held in reserve, not what the bald area could absorb, and taking more than that thins the donor visibly and permanently. See <a href="/blog/donor-area-limits-hair-transplant">donor area limits</a>.</p>'
-               . '<p>So a measured number can be lower than the calculator’s range. That is usually the plan being sensible about your donor rather than being ungenerous.</p>'
-               . '<p><strong>What gets measured:</strong></p>',
-    'points'  => [
-        'Donor density at the back and sides',
-        'The recipient area, mapped',
-        'Scalp laxity and skin condition',
-        'Hair calibre, curl and colour contrast',
-        'Pattern stage and likely progression',
-    ],
-]) ?>
-
-<section class="section section--white" id="grafts-vs-hairs">
+<section class="section section--canvas" id="grafts-vs-hairs">
   <div class="wrap">
     <p class="eyebrow">A distinction worth knowing</p>
     <h2 class="h2 mt-2">Grafts Are Not Hairs</h2>
@@ -290,7 +272,7 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic. A graft number is set only after the donor area has been examined, because how much it can safely give decides the plan.'
+    'Why a clinic publishes a calculator and then spends the page undermining it: patients arrive with numbers from online tools and from clinics that produced them without an examination, and those numbers anchor expectations before anyone has measured anything. A range is genuinely useful for budgeting and for spotting a quote that is wildly out of line. It becomes harmful the moment it is mistaken for a plan, because the variable it cannot see — how much the donor can safely give — is the one that decides everything.'
 ) ?>
 
 <section class="section section--white" id="faqs">
@@ -309,15 +291,15 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Get Your Donor Area Measured in Gurgaon',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, where the donor area is examined and the recipient area mapped. Consultations are also available at our Rohini, Delhi clinic.'
+    'Assessment, mapping and surgery all happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
 ) ?>
 
-<?= lp_cta([
-    'eyebrow'   => 'Gurugram and Delhi',
-    'title'     => 'Swap the Estimate for a Measured Number',
-    'text'      => 'Come in and have your donor density measured and the recipient area mapped. You will leave with a graft number that reflects what your scalp can actually support, in writing, with no pressure to book a date on the day.',
-    'treatment' => 'Hair transplant',
-]) ?>
+<?= cta_band(
+    'Swap the Estimate for a Measured Number',
+    'Come in and have your donor density measured and the recipient area mapped. You will leave with a graft number that reflects what your scalp can actually support, in writing, with no pressure to book a date on the day.',
+    'graft-calculator',
+    ['Hair transplant assessment', 'Second opinion on a graft number', 'Hairline only', 'Crown only', 'Not sure — please advise']
+) ?>
 
 <script>
 (function () {
@@ -328,10 +310,6 @@ require __DIR__ . '/includes/header.php';
   var out  = document.getElementById('calcResult');
   var unit = document.getElementById('calcUnit');
   var bar  = document.getElementById('calcBar');
-  var book = document.getElementById('calcBook');
-  var wa   = document.getElementById('calcWa');
-  /* WhatsApp chat link without its default text, so the range can go in. */
-  var WA_BASE = <?= json_encode(strtok(WHATSAPP_URL, '&') . '&text=') ?>;
 
   /* Commonly cited patient-education ranges per pattern stage, in grafts.
      Deliberately broad. These are not clinic figures and are not a quote. */
@@ -372,21 +350,8 @@ require __DIR__ . '/includes/header.php';
     var hi = roundTo(base[1] * f * 1.08, 100);
     if (hi <= lo) { hi = lo + 200; }
 
-    var range = lo.toLocaleString('en-IN') + '–' + hi.toLocaleString('en-IN');
-    out.textContent = range;
+    out.textContent = lo.toLocaleString('en-IN') + '–' + hi.toLocaleString('en-IN');
     unit.textContent = 'grafts, as a broad guide only';
-
-    /* Hand the result to the booking form and WhatsApp, so the clinic's
-       call back starts from what the visitor saw. */
-    var pat = form.querySelector('input[name="pattern"]:checked');
-    var patB = pat && pat.parentNode.querySelector('b');
-    var patLabel = patB ? patB.textContent : '';
-    if (book) {
-      book.setAttribute('data-message', 'Graft calculator: "' + patLabel + '", broad range ' + range + ' grafts. I would like a measured assessment.');
-    }
-    if (wa) {
-      wa.href = WA_BASE + encodeURIComponent('Hi, the graft calculator on your website gave me a broad range of ' + range + ' grafts ("' + patLabel + '"). I would like to ask about an assessment.');
-    }
 
     var left  = Math.min(100, (lo / MAX) * 100);
     var width = Math.max(4, Math.min(100 - left, ((hi - lo) / MAX) * 100));

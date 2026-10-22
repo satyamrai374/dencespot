@@ -13,12 +13,7 @@ declare(strict_types=1);
  * the homepage results marquee draws from it — it must never scan the folder.
  */
 require_once __DIR__ . '/gallery-manifest.php';
-
-/** Pillar → cluster → supporting-page map, rendered by footer.php. */
-require_once __DIR__ . '/clusters.php';
-
-/** Dated prices other Gurgaon clinics advertise — market context only. */
-require_once __DIR__ . '/market-prices.php';
+require_once __DIR__ . '/home-components.php';
 
 /* -------------------------------------------------------------------------
  * Icons
@@ -82,7 +77,7 @@ function doctor_credit(string $key = 'dr-nyra'): string
     if ($doc === null) {
         return '';
     }
-    return e(implode(' · ', array_filter([(string) ($doc['quals'] ?? ''), (string) ($doc['role'] ?? '')])));
+    return e($doc['quals']) . ' · ' . e($doc['role']);
 }
 
 function doctor_name(string $key = 'dr-nyra'): string
@@ -196,16 +191,31 @@ function stat_strip(array $stats, ?string $footnote = null): string
  */
 function clinic_stat_strip(): string
 {
+    $asOf = STAT_FIGURES_AS_OF !== null
+        ? 'Clinic records, ' . STAT_FIGURES_AS_OF
+        : 'Clinic records';
+
     return stat_strip([
-        /*
-         * Oct 2026: only institutional facts remain. Gone are the patient-count
-         * and years-in-practice tiles (fed by STAT_CASES_TREATED /
-         * STAT_YEARS_ACTIVE) and "3 yrs — Clinical training in Germany": the
-         * NMC Guidelines of 06.10.2026 bar advertising the number of patients
-         * treated and personal achievements (cl. 8.1(iii)). "1 — Doctor plans
-         * and performs" went too: it cannot be evidenced with two doctors at
-         * two clinics. Do not reinstate any of them.
-         */
+        [
+            'value' => STAT_CASES_TREATED !== null ? number_format(STAT_CASES_TREATED) : null,
+            'label' => 'Patient cases treated',
+            'note'  => $asOf,
+        ],
+        [
+            'value' => STAT_YEARS_ACTIVE !== null ? STAT_YEARS_ACTIVE . ' yrs' : null,
+            'label' => 'Dr. Nyra in practice',
+            'note'  => 'Germany and Gurugram combined',
+        ],
+        [
+            'value' => '3 yrs',
+            'label' => 'Clinical training in Germany',
+            'note'  => 'Bio Hair Clinic and St. Georg Klinikum Eisenach',
+        ],
+        [
+            'value' => '1',
+            'label' => 'Doctor plans and performs',
+            'note'  => 'The same doctor from assessment to review',
+        ],
         [
             'value' => '3',
             'label' => 'Techniques performed here',
@@ -216,7 +226,7 @@ function clinic_stat_strip(): string
             'label' => 'Follow-up reviews scheduled',
             'note'  => 'Photographed at set intervals through the first year',
         ],
-    ], 'These describe the clinic, not your outcome. Suitability is decided case by case after examination, and no density or timeline can be promised.');
+    ], 'Figures describe the clinic and the doctor, not your outcome. No density, timeline or success rate is guaranteed — suitability and results are decided case by case after examination.');
 }
 
 /* -------------------------------------------------------------------------
@@ -273,7 +283,7 @@ function technique_comparison_table(): string
     ob_start(); ?>
 <div class="card mt-6" style="padding:0;overflow:hidden">
   <div class="table-scroll">
-    <table class="data data--wide">
+    <table class="data">
       <caption class="sr-only">FUE, DHI and FUT hair transplant techniques at DenceSpot Clinic, Gurgaon, compared by extraction method, scarring, recovery and the cases each typically suits</caption>
       <thead>
         <tr>
@@ -309,18 +319,48 @@ function technique_comparison_table(): string
  * ---------------------------------------------------------------------- */
 
 /**
- * ⚠ WITHDRAWN — Oct 2026. Returns nothing; callers need no change.
+ * The Elfsight widget reading the live Google Business Profile.
  *
- * This embedded the live Google reviews (Elfsight) under "What Patients Say
- * on Google" and told readers the clinic asks every patient for a review. The
- * NMC Guidelines on Ethical Advertising and Public Communication (06.10.2026)
- * bar a doctor or clinic from requesting or sharing patient reviews or
- * testimonials for promotion (Explanation V, cl. 6.1, 8.1(xi)). Do not
- * reinstate it.
+ * Live rather than typed in, for two reasons. A rating pasted into a template
+ * is wrong the day after it is pasted, and — the part that matters more — a
+ * rating this site cannot evidence is exactly what /patient-reviews refuses to
+ * publish. Reading it from the listing means the number on the page is the
+ * number on Google, and neither the clinic nor this template can move it.
+ *
+ * ⚠ The rating is therefore NOT marked up. AggregateRating stays gated behind
+ * $rating on /patient-reviews, because Google requires a marked-up rating to
+ * be visible in the page it ships with, and this one arrives from a third-party
+ * script after the HTML does. See the header of includes/schema.php.
+ *
+ * The link below the widget is always rendered, never conditional. A widget
+ * that fails to load — blocked script, ad blocker, CDN outage — would
+ * otherwise leave a heading with nothing under it, which is the exact defect
+ * this section was added to clear elsewhere on the page.
  */
-function google_reviews_block(string $heading = ''): string
+function google_reviews_block(string $heading = 'What Patients Say on Google'): string
 {
-    return '';
+    ob_start(); ?>
+<section class="section section--canvas" id="reviews">
+  <div class="wrap">
+    <div class="measure" style="text-align:center;margin-inline:auto">
+      <span class="pill pill--dot">Patient reviews</span>
+      <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+      <p class="body mt-3">Reviews load directly from our Google Business Profile, unedited and in the reviewer's own words. We ask every patient once at the ten-day follow-up, we do not screen who gets asked, and we do not offer anything in exchange.</p>
+    </div>
+
+    <div class="mt-6">
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-<?= e(ELFSIGHT_REVIEWS_APP) ?>" data-elfsight-app-lazy></div>
+    </div>
+
+    <div class="btn-row mt-5" style="justify-content:center">
+      <a class="btn btn--ink" href="<?= e(MAPS_URL) ?>" rel="noopener"><?= icon('star', 18) ?> Read every review on Google</a>
+      <a class="btn btn--outline" href="/patient-reviews">How we collect reviews</a>
+    </div>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
 }
 
 /* -------------------------------------------------------------------------
@@ -350,56 +390,6 @@ function cost_band_line(): string
 }
 
 /* -------------------------------------------------------------------------
- * Market price context
- * ---------------------------------------------------------------------- */
-
-/**
- * What OTHER Gurgaon clinics advertise, as dated market context.
- *
- * Cost is the commonest modifier on every money query in this market, and the
- * clinics outranking this site print numbers. DenceSpot's own rates are still
- * unconfirmed (see COST_BAND_* in config.php), and inventing one is not an
- * option. What can be published honestly is what the market advertises —
- * clearly dated, never attributed to this clinic, and never marked up as an
- * Offer: schema.php's rule is that no price appears in structured data unless
- * it is this clinic's price, visible on the page.
- *
- * $rows: [['item' => 'PRP (per session)', 'range' => '₹4,500 – ₹12,000', 'note' => '4–6 sessions usually advised'], …]
- * $asOf: month the ranges were observed, e.g. 'September 2026'. Required:
- *        a price with no date on it goes stale silently.
- */
-function market_price_table(string $caption, array $rows, string $asOf, string $scope = 'Gurgaon clinic websites'): string
-{
-    if ($rows === []) {
-        return '';
-    }
-
-    ob_start(); ?>
-<div class="card mt-5" style="padding:0;overflow:hidden">
-  <div class="table-scroll">
-    <table class="data data--wide">
-      <caption class="sr-only"><?= e($caption) ?></caption>
-      <thead>
-        <tr><th scope="col">Item</th><th scope="col">Advertised range</th><th scope="col">Worth knowing</th></tr>
-      </thead>
-      <tbody>
-        <?php foreach ($rows as $r): ?>
-        <tr>
-          <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0"><?= e($r['item']) ?></th>
-          <td style="font-weight:600;color:var(--ink);white-space:nowrap"><?= e($r['range']) ?></td>
-          <td><?= e($r['note'] ?? '') ?></td>
-        </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
-</div>
-<p class="fine mt-3" style="max-width:78ch"><b>Market context, not our price list.</b> Ranges as advertised on <?= e($scope) ?> we reviewed in <?= e($asOf) ?>. They are not DenceSpot’s prices — ours are quoted in writing after assessment — and advertised figures often exclude consultation, blood tests, medication or maintenance. Ask any clinic what its figure includes.</p>
-<?php
-    return (string) ob_get_clean();
-}
-
-/* -------------------------------------------------------------------------
  * Latest blog posts
  * ---------------------------------------------------------------------- */
 
@@ -424,18 +414,6 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
         return '';
     }
 
-    // On a location page, leave out posts that name the other location in
-    // their title or address (client rule, 14 Oct 2026).
-    $loc = function_exists('hp_page_location') ? hp_page_location() : 'both';
-    $other = $loc === 'rohini' ? '/gurgaon|gurugram/i' : ($loc === 'gurgaon' ? '/rohini/i' : null);
-    if ($other !== null) {
-        $posts = array_values(array_filter($posts, static fn (array $p): bool =>
-            !preg_match($other, $p['slug'] . ' ' . $p['title'] . ' ' . ($p['seo_title'] ?? '') . ' ' . $p['excerpt'])));
-    }
-    if ($posts === []) {
-        return '';
-    }
-
     $posts = array_slice($posts, 0, max(1, $limit));
 
     ob_start(); ?>
@@ -445,7 +423,7 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
       <div>
         <p class="eyebrow">Further reading</p>
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
-        <p class="body mt-3 measure">Plain-language articles on hair loss and its treatment. Each article shows its own author and review details.</p>
+        <p class="body mt-3 measure">Patient education, written and medically reviewed by <?= e(REVIEWED_BY) ?> before publication.</p>
       </div>
       <div class="btn-row">
         <a class="btn btn--outline" href="/blog/">All articles</a>
@@ -454,9 +432,7 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
 
     <div class="grid grid--3 mt-6">
       <?php foreach ($posts as $post): ?>
-        <?php /* Text cards: the page around this strip already carries its own
-                 illustrations, and repeating them here read as duplicates. */ ?>
-        <?= blog_card($post, false) ?>
+        <?= blog_card($post) ?>
       <?php endforeach; ?>
     </div>
   </div>
@@ -526,7 +502,7 @@ function nap_block(): string
  * the lead.
  * ---------------------------------------------------------------------- */
 
-function enquiry_form(string $source, array $treatments = [], bool $onInk = true, string $preferredClinic = 'Either clinic'): string
+function enquiry_form(string $source, array $treatments = [], bool $onInk = true): string
 {
     if ($treatments === []) {
         $treatments = [
@@ -557,32 +533,11 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
       </select>
     </div>
     <div class="field">
-      <?php $fixedClinic = function_exists('hp_page_clinic') ? hp_page_clinic() : null; ?>
-      <?php if ($fixedClinic !== null): ?>
-        <input type="hidden" name="clinic" value="<?= e($fixedClinic) ?>">
-      <?php else: ?>
-      <label for="f-clinic-<?= e($source) ?>">Preferred clinic</label>
-      <select class="select" id="f-clinic-<?= e($source) ?>" name="clinic">
-        <?php foreach (['Gurugram (Sector 39)', 'Delhi (Rohini)', 'Either clinic'] as $clinicOption): ?>
-          <option<?= $clinicOption === $preferredClinic ? ' selected' : '' ?>><?= e($clinicOption) ?></option>
-        <?php endforeach; ?>
-      </select>
-      <?php endif; ?>
-    </div>
-    <div class="field">
       <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know</label>
       <textarea class="textarea" id="f-message-<?= e($source) ?>" name="message" rows="2"></textarea>
     </div>
-    <div class="field" style="display:flex;align-items:flex-start;gap:8px;margin-top:4px;">
-      <?php /* Never pre-ticked: consent has to be the visitor's own act. enquire.php refuses a submission without it. */ ?>
-      <input type="checkbox" id="f-consent-<?= e($source) ?>" name="dpdp_consent" value="1" required style="margin-top:3px;accent-color:var(--accent);cursor:pointer;">
-      <label for="f-consent-<?= e($source) ?>" style="font-size:12px;line-height:1.45;color:<?= $onInk ? 'rgba(255,255,255,0.75)' : 'var(--ink-muted)' ?>;cursor:pointer;">
-        I agree that <?= e(SITE_NAME) ?> may use these details to contact me about this enquiry, as described in the <a href="/privacy-policy" style="color:<?= $onInk ? '#fff' : 'var(--ink)' ?>;text-decoration:underline;">Privacy Policy</a>.
-      </label>
-    </div>
     <button class="btn btn--block" type="submit" style="background:#fff;color:var(--ink)">Book My Consultation</button>
-    <?php /* Short notice beside the consent box — what is collected, who receives it, how long it is kept — so consent is informed without opening the policy. Keep in step with /privacy-policy and enquire.php. */ ?>
-    <p class="fine">We use your name, phone number, chosen treatment, preferred clinic and message only to contact you about this enquiry, and record the date, time, page and your IP address with it. It reaches the clinic by email (Google) and WhatsApp (Meta), whose services may process it outside India, and is kept for 12 months. You can withdraw consent at any time.</p>
+    <p class="fine">Your details are used only to arrange your consultation.</p>
   </div>
 </form>
 <?php
@@ -593,31 +548,25 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
  * Closing CTA band
  * ---------------------------------------------------------------------- */
 
-function cta_band(string $heading, string $body, string $source, array $treatments = [], string $preferredClinic = 'Either clinic'): string
+function cta_band(string $heading, string $body, string $source, array $treatments = []): string
 {
-    if ($preferredClinic === 'Either clinic' && function_exists('hp_page_clinic') && hp_page_clinic() !== null) {
-        $preferredClinic = hp_page_clinic();
-    }
-    $clinicAttr = $preferredClinic !== 'Either clinic' ? ' data-clinic="' . e($preferredClinic) . '"' : '';
-    // On a Rohini page the WhatsApp button goes to the Rohini number.
-    $waUrl = $preferredClinic === 'Delhi (Rohini)' ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL;
     ob_start(); ?>
 <section class="section section--canvas" id="book">
   <div class="wrap">
     <div class="cta-band">
       <div>
-        <p class="eyebrow">Next step</p>
+        <p class="eyebrow" style="color:var(--accent)">Next step</p>
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
-        <p class="body-l mt-3" style="max-width:56ch"><?= e($body) ?></p>
+        <p class="body-l mt-3" style="color:rgba(255,255,255,.72);max-width:56ch"><?= e($body) ?></p>
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--accent" href="/book-consultation" data-book<?= $clinicAttr ?> data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
-          <a class="btn btn--lg btn--ghost" href="<?= e($waUrl) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp Us</a>
+          <a class="btn btn--lg btn--accent" href="/book-consultation"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ghost" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp Us</a>
         </div>
         <p class="fine mt-4" style="max-width:56ch">Suitability is determined after clinical assessment. This page is patient education and does not constitute medical advice.</p>
       </div>
       <div class="card card--ink card--pad-lg">
         <p class="h4" style="color:#fff">Quick enquiry</p>
-        <div class="mt-3"><?= enquiry_form($source, $treatments, true, $preferredClinic) ?></div>
+        <div class="mt-3"><?= enquiry_form($source, $treatments) ?></div>
       </div>
     </div>
   </div>
@@ -627,88 +576,49 @@ function cta_band(string $heading, string $body, string $source, array $treatmen
 }
 
 /* -------------------------------------------------------------------------
- * Doctors — directory-style block
+ * Doctor E-E-A-T block
  * ---------------------------------------------------------------------- */
 
-/**
- * A missing fact the clinic has not supplied yet, marked so it cannot be
- * missed on review. Fill the matching value in config.php to replace it.
- */
-function missing_fact(string $what): string
+function doctor_block(string $whyItMatters, string $portraitAlt = 'Dr. Nyra — professional portrait'): string
 {
-    return '<span style="display:inline-block;padding:0 6px;border:1px dashed #C98A12;border-radius:4px;background:#FFF6E0;color:#7A4E00;font-weight:600">['
-         . e($what) . ']</span>';
-}
+    $doc = DOCTORS['dr-nyra'];
 
-/**
- * "Doctors at DenceSpot Clinic" — Oct 2026.
- *
- * This used to be a portrait-led profile of Dr. Nyra: her photograph, a
- * "3 years, Germany" training card and a "Meet Your Doctor" button. The NMC
- * Guidelines on Ethical Advertising and Public Communication (06.10.2026) bar
- * promotional portrayal of an individual doctor and use of a doctor's
- * photograph as publicity (cl. 8.3(ii), 9.2), and personal achievements may
- * not be advertised (cl. 8.1(iii)). What a clinic page may — and must — show
- * are the directory particulars (cl. 9.1, Explanation IV): name, recognised
- * qualification, specialty and registration. That is all this renders, for
- * every doctor listed_doctors() returns, plus the page's own factual sentence
- * and the dated review byline.
- *
- * $portraitAlt is accepted so existing calls keep working; it is unused.
- */
-/**
- * $reviewed: false on pages the clinic's doctor has not yet reviewed (the
- * October 2026 Rohini, laser and skin pages). The "Medically reviewed by"
- * sentence is then left out — claiming a review that has not happened would
- * itself be misleading. Set it to true once the doctor has signed the page off.
- */
-function doctor_block(string $whyItMatters, string $portraitAlt = '', bool $reviewed = true): string
-{
-    $reviewed = $reviewed && page_review_signed_off();
     ob_start(); ?>
 <section class="section section--canvas" id="doctor">
   <div class="wrap">
-    <div class="measure">
-      <p class="eyebrow">Who you will see</p>
-      <h2 class="h2 mt-2">Doctors at <?= e(SITE_NAME) ?></h2>
-      <?php if (trim($whyItMatters) !== ''): ?>
-        <p class="body mt-3"><?= e($whyItMatters) ?></p>
-      <?php endif; ?>
-    </div>
+    <div class="split split--wide-right">
+      <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="<?= e($portraitAlt) ?>" width="800" height="1000" loading="lazy" decoding="async"></div>
+      <div>
+        <p class="eyebrow">Who performs and reviews this treatment</p>
+        <h2 class="h2 mt-2"><?= doctor_full() ?></h2>
+        <p class="body-l mt-1" style="font-weight:600"><?= e($doc['role']) ?></p>
+        <p class="body mt-3 measure">Qualified MBBS from <?= e($doc['alumni']) ?>, and holds an MD in Dermatology. Three years of clinical work in Germany followed — two at Bio Hair Clinic and one at St. Georg Klinikum Eisenach — before establishing DenceSpot in Gurugram.</p>
+        <p class="body mt-3 measure"><?= e($whyItMatters) ?></p>
 
-    <div class="grid grid--2 mt-5" style="max-width:860px">
-      <?php foreach (listed_doctors() as $doc): ?>
-        <div class="card card--pad-lg">
-          <p class="h4"><?= e($doc['name']) ?></p>
-          <p class="body-s mt-1"><?= e($doc['quals']) ?><?php if (!empty($doc['specialty']) && stripos((string) $doc['quals'], (string) $doc['specialty']) === false): ?> · <?= e($doc['specialty']) ?><?php endif; ?></p>
-          <?php if (($reg = doctor_registration($doc)) !== ''): ?>
-            <p class="meta mt-2"><?= $reg ?></p>
-          <?php endif; ?>
-          <?php
-            // Only show "Consults at" when it names this page's clinic (or on
-            // general pages): a Rohini page never names the Gurugram clinic.
-            $docLoc = function_exists('hp_page_location') ? hp_page_location() : 'both';
-            $docAt  = (string) ($doc['clinics'] ?? '');
-            $showAt = $docAt !== '' && ($docLoc === 'both'
-                || ($docLoc === 'rohini' && (stripos($docAt, 'Rohini') !== false || stripos($docAt, 'Delhi') !== false))
-                || ($docLoc === 'gurgaon' && (stripos($docAt, 'Gurugram') !== false || stripos($docAt, 'Gurgaon') !== false)));
-          ?>
-          <?php if ($showAt): ?>
-            <p class="meta">Consults at: <?= e($docAt) ?></p>
+        <div class="grid grid--2 mt-4" style="max-width:640px">
+          <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Qualification</p><p class="h4 mt-1"><?= e($doc['quals']) ?></p></div>
+          <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Training</p><p class="h4 mt-1">3 years, Germany</p></div>
+          <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Specialization</p><p class="h4 mt-1">Dermatology</p></div>
+          <?php if (!empty($doc['reg_number'])): ?>
+          <div class="card"><p class="eyebrow" style="color:var(--ink-muted)">Registration</p><p class="h4 mt-1"><?= e($doc['reg_number']) ?></p></div>
           <?php endif; ?>
         </div>
-      <?php endforeach; ?>
-    </div>
 
-    <?php $verify = doctors_have_registration(listed_doctors()); ?>
-    <?php if ($verify || $reviewed): ?>
-      <p class="meta mt-4"><?php if ($verify): ?>Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a>. <?php endif; ?><?php if ($reviewed): ?>Medically reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?>.<?php endif; ?></p>
-    <?php endif; ?>
+        <div class="btn-row mt-4" style="align-items:center">
+          <a class="btn btn--ink" href="<?= e($doc['url']) ?>">Meet Your Doctor</a>
+          <p class="meta" style="max-width:30ch">Medically reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?></p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <?php
     return (string) ob_get_clean();
 }
+
+/* -------------------------------------------------------------------------
+ * Local / visit-us block
+ * ---------------------------------------------------------------------- */
 
 /**
  * Mid-article call to action for blog posts.
@@ -731,54 +641,12 @@ function blog_cta(string $heading, string $body): string
   <h2 class="h3 mt-2"><?= e($heading) ?></h2>
   <p class="body-s mt-2"><?= e($body) ?></p>
   <div class="btn-row mt-4">
-    <a class="btn btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a consultation</a>
+    <a class="btn btn--ink" href="/book-consultation"><?= icon('calendar', 18) ?> Book a consultation</a>
     <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
   </div>
 </div>
 <?php
     return (string) ob_get_clean();
-}
-
-/**
- * True when the doctor has signed off the current page's text since the
- * October 2026 rewrite (REVIEW_SIGNED_OFF in config.php). Every review claim —
- * hero badge, doctor_block() byline, medical_review_line(), MedicalWebPage
- * reviewedBy — goes through this, so one config line turns a page's review on.
- */
-function page_review_signed_off(): bool
-{
-    $url = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
-    return in_array($url, REVIEW_SIGNED_OFF, true);
-}
-
-/**
- * The card on the hero image. A signed-off page names the reviewing doctor;
- * any other page shows its clinic's phone and hours instead, as the Rohini
- * pages do — a call is the action a visitor on a treatment page wants anyway.
- */
-function hero_review_badge(): string
-{
-    if (page_review_signed_off()) {
-        return '<div class="hero__badge-card">'
-             . '<p class="eyebrow">Medically reviewed by</p>'
-             . '<p class="h4 mt-1">' . doctor_name() . '</p>'
-             . '<p class="meta">' . doctor_credit() . '</p>'
-             . '</div>';
-    }
-    $loc   = function_exists('hp_page_location') ? hp_page_location() : 'both';
-    $hours = '<p class="meta">' . e(HOURS_DISPLAY) . '<span style="display:block">' . e(HOURS_NOTE) . '</span></p>';
-    if ($loc === 'gurgaon') {
-        return '<div class="hero__badge-card">'
-             . '<p class="eyebrow">Gurugram Clinic</p>'
-             . '<p class="h4 mt-1"><a href="tel:' . e(PHONE_E164) . '" data-track="call">' . e(PHONE_DISPLAY) . '</a></p>'
-             . $hours . '</div>';
-    }
-    // General pages serve both clinics, so both numbers.
-    return '<div class="hero__badge-card">'
-         . '<p class="eyebrow">Call either clinic</p>'
-         . '<p class="body-s mt-1">Gurugram · <a href="tel:' . e(PHONE_E164) . '" data-track="call"><b>' . e(PHONE_DISPLAY) . '</b></a></p>'
-         . '<p class="body-s">Rohini, Delhi · <a href="tel:' . e(LOC_DELHI_PHONE_E164) . '" data-track="call"><b>' . e(LOC_DELHI_PHONE_DISPLAY) . '</b></a></p>'
-         . $hours . '</div>';
 }
 
 /**
@@ -796,7 +664,7 @@ function hero_review_badge(): string
 function medical_review_line(): string
 {
     $doc = DOCTORS['dr-nyra'] ?? null;
-    if ($doc === null || !page_review_signed_off()) {
+    if ($doc === null) {
         return '';
     }
 
@@ -809,76 +677,84 @@ function medical_review_line(): string
     );
 }
 
-/* -------------------------------------------------------------------------
- * Local / visit-us block
- * ---------------------------------------------------------------------- */
-
-/**
- * Address, hours, contact and the two clinic maps.
- *
- * Oct 2026: the shopfront photograph that sat beside the map is gone. Its
- * window signage reads "No Pain | No Scar | No Stitch", "Permanent Hair Loss
- * Solution" and "World Class Equipments" — claims the NMC Guidelines of
- * 06.10.2026 prohibit (cl. 8.1(iii), (vi), (ix)) — so showing it republished
- * them. Bring a photograph back only once the signage has been changed.
- */
 function local_block(string $heading, string $intro): string
 {
-    /*
-     * October 2026 redesign: both clinics as cards (hp_clinic_cards(), shared
-     * with the homepage). The Google Maps iframe that used to sit here loaded a
-     * third-party embed on some thirty pages; the cards link to each clinic's
-     * Maps listing instead, and /contact and /delhi-clinic keep their maps.
-     */
-    // A location page shows only its own clinic (client rule, 14 Oct 2026).
     $loc = function_exists('hp_page_location') ? hp_page_location() : 'both';
-    ob_start(); ?>
-<section class="section section--canvas" id="local">
+    if ($loc === 'rohini') {
+        ob_start(); ?>
+<section class="section section--white" id="local">
   <div class="wrap">
-    <div class="measure">
-      <p class="eyebrow"><?= $loc === 'both' ? 'Our two clinics' : 'Visit the clinic' ?></p>
-      <h2 class="h2 mt-2"><?= e($heading) ?></h2>
-      <p class="body mt-3"><?= e($intro) ?></p>
+    <div class="split split--top" style="align-items:start">
+      <div>
+        <p class="eyebrow">Visit the Rohini clinic</p>
+        <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+        <p class="body mt-3 measure"><?= e($intro) ?></p>
+        <dl class="dl mt-4">
+          <div><dt>Address</dt><dd><?= e(LOC_DELHI_ADDRESS) ?><span class="meta" style="display:block;font-weight:500"><?= e(LOC_DELHI_LANDMARK) ?></span></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a></dd></div>
+          <div><dt>Hours</dt><dd><?= e(HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(HOURS_NOTE) ?></span></dd></div>
+        </dl>
+        <div class="btn-row mt-4">
+          <a class="btn btn--outline" href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener"><?= icon('pin', 17) ?> Directions on Google Maps</a>
+          <a class="btn btn--outline" href="/delhi-clinic">Full clinic details</a>
+        </div>
+      </div>
+      <div>
+        <div class="media ratio-16-10 media--shadow">
+          <iframe title="Google Map showing DenceSpot Clinic, Rohini, Delhi" src="<?= e(LOC_DELHI_MAP_EMBED) ?>" width="100%" height="100%" style="display:block;border:0;width:100%;height:100%" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
     </div>
-    <div class="mt-5"><?= hp_clinic_cards($loc === 'both' ? null : $loc) ?></div>
+  </div>
+</section>
+<?php
+        return (string) ob_get_clean();
+    }
+
+    ob_start(); ?>
+<section class="section section--white" id="local">
+  <div class="wrap">
+    <div class="split split--top" style="align-items:start">
+      <div>
+        <p class="eyebrow">Visit the clinic</p>
+        <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+        <p class="body mt-3 measure"><?= e($intro) ?></p>
+        <?= nap_block() ?>
+        <div class="btn-row mt-4">
+          <a class="btn btn--outline" href="<?= e(MAPS_URL) ?>" rel="noopener"><?= icon('pin', 17) ?> Directions on Google Maps</a>
+          <a class="btn btn--outline" href="/contact">Full clinic details</a>
+        </div>
+      </div>
+      <div>
+        <div class="media ratio-16-10">
+          <iframe title="Google Map showing DenceSpot Clinic at 1123, Sector 39 Road, Jharsa, Sector 39, Gurugram, Haryana 122003" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.3229126883884!2d77.0438613!3d28.439680699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5e4f6f45491%3A0x9dc43165216a74e6!2sDencespot%20Clinic!5e0!3m2!1sen!2sus!4v1787587082143!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div class="grid grid--2 mt-3">
+          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
+          <div class="card">
+            <p class="eyebrow" style="color:var(--ink-muted)">Getting here</p>
+            <ul class="stack-sm mt-2">
+              <?php foreach (DIRECTIONS as $line): ?>
+                <?php if ($line !== null): ?>
+              <li class="meta"><?= e($line) ?></li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <?php
     return (string) ob_get_clean();
 }
 
-/**
- * On a treatment page that exists for both clinics, one line pointing to the
- * same treatment at the other clinic (from ROHINI_SERVICES). Reads the
- * current page from $page['url'], which every template sets before
- * including header.php.
- */
 function clinic_twin_note(): string
 {
-    // Switched off 14 Oct 2026: the client asked that a location page never
-    // mention the other clinic, so the Gurugram and Rohini versions of a
-    // treatment no longer link to each other.
-    return '';
-
-    $here = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
-    foreach (ROHINI_SERVICES as $svc) {
-        if ($svc['gurgaon'] === $here) {
-            return '<p class="body-s mt-4">' . e($svc['label']) . ' is also carried out at our Rohini, Delhi clinic: '
-                 . '<a href="' . e($svc['url']) . '">' . e($svc['label']) . ' in Rohini</a>.</p>';
-        }
-        if ($svc['url'] === $here) {
-            return '<p class="body-s mt-4">' . e($svc['label']) . ' is also carried out at our Sector 39, Gurugram clinic: '
-                 . '<a href="' . e($svc['gurgaon']) . '">' . e($svc['label']) . ' in Gurugram</a>.</p>';
-        }
-    }
     return '';
 }
 
-/**
- * "Treatments at our Rohini clinic" — every Rohini service page except the
- * current one, as grouped link lists (ROHINI_GROUPS). Used on every Rohini
- * page so they link to one another, and to the Rohini hub.
- */
 function rohini_services_block(string $current = '', string $heading = 'Other Treatments at Our Rohini Clinic'): string
 {
     $current = rtrim($current, '/');
@@ -900,11 +776,11 @@ function rohini_services_block(string $current = '', string $heading = 'Other Tr
       <h2 class="h2 mt-2"><?= e($heading) ?></h2>
       <p class="body mt-3">Every treatment below is carried out at the Rohini clinic, and each starts with an examination and a written plan. See the <a href="/delhi-clinic">Rohini clinic page</a> for directions and hours.</p>
     </div>
-    <div class="rohini-groups mt-5">
+    <div class="grid grid--3 mt-5">
       <?php foreach (ROHINI_GROUPS as $key => $label): if (empty($groups[$key])) { continue; } ?>
-        <div class="card rohini-group">
+        <div class="card card--pad-lg">
           <h3 class="h4"><?= e($label) ?></h3>
-          <ul class="rohini-group__list">
+          <ul class="ticks mt-3">
             <?php foreach ($groups[$key] as $svc): ?>
               <li><a href="<?= e($svc['url']) ?>"><?= e($svc['label']) ?> in Rohini</a></li>
             <?php endforeach; ?>
@@ -912,97 +788,78 @@ function rohini_services_block(string $current = '', string $heading = 'Other Tr
         </div>
       <?php endforeach; ?>
     </div>
-    <?php
-      $costGuides = array_filter([
-          '/hair-transplant-cost-in-rohini'     => 'Hair transplant cost',
-          '/prp-hair-treatment-cost-in-rohini'  => 'PRP treatment cost',
-          '/beard-transplant-cost-in-rohini'    => 'Beard transplant cost',
-      ], static fn (string $label, string $url): bool => $url !== $current, ARRAY_FILTER_USE_BOTH);
-    ?>
-    <p class="body-s mt-4">Cost guides for the Rohini clinic:
-      <?php $n = 0; foreach ($costGuides as $cgUrl => $cgLabel): ?><?= $n++ ? ' · ' : ' ' ?><a href="<?= e($cgUrl) ?>"><?= e($cgLabel) ?> in Rohini</a><?php endforeach; ?>.
-    </p>
   </div>
 </section>
 <?php
     return (string) ob_get_clean();
 }
 
-/**
- * ⚠ WITHDRAWN — Oct 2026. Returns nothing; callers need no change.
- *
- * This showed named patients ("Uttam", "Shukri"), a "Before & After Hair
- * Transplant Cases" gallery and a marquee of result photographs. The NMC
- * Guidelines of 06.10.2026 prohibit displaying before-and-after photographs,
- * advertising surgical results and publishing cases for promotion (cl. 8.1(v)),
- * and patient consent does not make them permissible (cl. 6.2). Do not
- * reinstate it.
- */
-function before_after_slider_section(): string
+function missing_fact(string $what): string
 {
-    return '';
+    return '<span style="display:inline-block;padding:0 6px;border:1px dashed #C98A12;border-radius:4px;background:#FFF6E0;color:#7A4E00;font-weight:600">[' . e($what) . ']</span>';
 }
 
-/* -------------------------------------------------------------------------
- * Awards & Accreditations block (NABH Certifications)
- * ---------------------------------------------------------------------- */
-
-function awards_certificates_section(): string
+function page_review_signed_off(): bool
 {
-    /**
-     * ⚠ WITHHELD — 1 Sep 2026. Returns nothing until the accreditation is
-     * evidenced. Called from index.php and the seven treatment pages; they need
-     * no change, because this guard turns the section off everywhere at once.
-     *
-     * WHY IT WAS SWITCHED OFF. The three certificate images could not be
-     * reconciled with a genuine NABH award:
-     *
-     *   • all three carry the SAME certificate number, 646744646-2026-001,
-     *     though they claim three distinct credentials;
-     *   • all three carry the same validity window, opening on the very day the
-     *     files were added to the repository;
-     *   • the signature in the "authorized signatures of CEO and Chairman"
-     *     position reads as the name of the person who built this site, and the
-     *     opposing signature renders as "Gor NABH" — a garbled "For NABH";
-     *   • "Excellence in Clinical Services" reads as an award, but the copy
-     *     below called the clinic "officially accredited by NABH for clinical
-     *     excellence", which is a different and larger claim.
-     *
-     * On a YMYL medical site an unevidenced accreditation is the expensive kind
-     * of mistake: it is a misrepresentation under Google's policies, and under
-     * the NMC code of ethics and the Consumer Protection Act it is a misleading
-     * advertisement. It also misleads someone choosing a surgeon.
-     *
-     * TO SWITCH IT BACK ON, all three must be true:
-     *   1. genuine certificate scans replace the three files in assets/img/;
-     *   2. each carries its OWN certificate number and real issue date;
-     *   3. the accreditation is verifiable in NABH's public directory at
-     *      https://nabh.co/ — and any item that is an award is described as an
-     *      award, not as accreditation.
-     * Then delete this guard. Add the hasCredential node to schema_clinic() at
-     * the same time, and not before: schema must never assert what the page
-     * cannot evidence.
-     */
-    // Oct 2026: the certificate markup that followed this return was deleted
-    // (it could never render, and the NMC Guidelines of 06.10.2026 bar award
-    // claims in any case). Rebuild it from git history only once the three
-    // conditions above are met.
-    return '';
+    $url = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
+    return in_array($url, REVIEW_SIGNED_OFF, true);
 }
 
+function hero_review_badge(): string
+{
+    if (page_review_signed_off()) {
+        return '<div class="hero__badge-card">'
+             . '<p class="eyebrow">Medically reviewed by</p>'
+             . '<p class="h4 mt-1">' . doctor_name() . '</p>'
+             . '<p class="meta">' . doctor_credit() . '</p>'
+             . '</div>';
+    }
+    $loc   = function_exists('hp_page_location') ? hp_page_location() : 'both';
+    $hours = '<p class="meta">' . e(HOURS_DISPLAY) . '<span style="display:block">' . e(HOURS_NOTE) . '</span></p>';
+    if ($loc === 'rohini') {
+        return '<div class="hero__badge-card">'
+             . '<p class="eyebrow">Rohini Clinic</p>'
+             . '<p class="h4 mt-1"><a href="tel:' . e(LOC_DELHI_PHONE_E164) . '" data-track="call">' . e(LOC_DELHI_PHONE_DISPLAY) . '</a></p>'
+             . $hours
+             . '</div>';
+    }
+    return '<div class="hero__badge-card">'
+         . '<p class="eyebrow">Gurugram Clinic</p>'
+         . '<p class="h4 mt-1"><a href="tel:' . e(PHONE_E164) . '" data-track="call">' . e(PHONE_DISPLAY) . '</a></p>'
+         . $hours
+         . '</div>';
+}
 
+function market_price_table(string $caption, array $rows, string $asOf, string $scope = 'Gurgaon clinic websites'): string
+{
+    if ($rows === []) {
+        return '';
+    }
 
-/* -------------------------------------------------------------------------
- * Call-back strip, directly under the hero (14 Oct 2026)
- *
- * Competitor clinics capture enquiries in the hero; ours only offered a form
- * at the foot of the page. This is a short form — name, phone, consent —
- * posting to enquire.php like every other form, with the treatment and the
- * clinic set from the page. Consent is never pre-ticked (enquire.php refuses
- * a submission without it). No offer, no urgency: it asks for a call back.
- * ---------------------------------------------------------------------- */
+    ob_start(); ?>
+<div class="card mt-5" style="padding:0;overflow:hidden">
+  <div class="table-scroll">
+    <table class="data data--wide">
+      <caption class="sr-only"><?= e($caption) ?></caption>
+      <thead>
+        <tr><th scope="col">Item</th><th scope="col">Advertised range</th><th scope="col">Worth knowing</th></tr>
+      </thead>
+      <tbody>
+        <?php foreach ($rows as $r): ?>
+        <tr>
+          <th scope="row" style="color:var(--ink);font-size:15px;font-weight:700;text-transform:none;letter-spacing:0"><?= e($r['item']) ?></th>
+          <td style="font-weight:600;color:var(--ink);white-space:nowrap"><?= e($r['range']) ?></td>
+          <td><?= e($r['note'] ?? '') ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<?php
+    return (string) ob_get_clean();
+}
 
-/** The booking option that matches the current page's URL. */
 function page_treatment_option(): string
 {
     $url = (string) ($GLOBALS['page']['url'] ?? '');
@@ -1073,3 +930,275 @@ function lead_strip(): string
 <?php
     return (string) ob_get_clean();
 }
+
+/* -------------------------------------------------------------------------
+ * Before & After Interactive Slider block
+ * ---------------------------------------------------------------------- */
+
+function before_after_slider_section(): string
+{
+    $results = [
+        [
+            'id' => 'uttam-gurgaon',
+            'title' => 'Uttam — Hairline & Temple Restoration',
+            'category' => 'FUE Hair Transplant (Gurugram)',
+            'img' => '/assets/img/case-uttam-gurgaon.jpg',
+            'badge' => 'BEFORE & AFTER RESULT',
+            'type' => 'image',
+            'desc' => 'Receding hairline & frontal scalp completely restored with age-appropriate hairline design and dense graft placement.',
+            'meta' => 'Procedure: FUE · Location: Gurgaon · Reviewed at 12 Months'
+        ],
+        [
+            // NOT a result, and must never be badged as one. The photograph is
+            // the operating day: hairline design on the left, grafts minutes
+            // after placement on the right. Nothing has grown yet. Calling it a
+            // before-and-after would fail the "stated interval" test this site
+            // tells patients to apply to every clinic, including this one.
+            'id' => 'shukri-europe',
+            'title' => 'Shukri — Frontal Zone, Procedure Day',
+            'category' => 'Advanced Micro-FUE (International)',
+            'img' => '/assets/img/case-shukri-europe.jpg',
+            'badge' => 'ON THE DAY OF SURGERY',
+            'type' => 'image',
+            'desc' => 'Hairline design and 2,800 grafts photographed immediately after placement. Growth is judged at ten to twelve months, so this shows the work, not the outcome.',
+            'meta' => 'Procedure: Micro-FUE · 2,800 grafts · Photographed on the day of surgery'
+        ],
+    ];
+
+    /**
+     * The video lightbox at the foot of this function is markup for a feature
+     * nothing currently uses: no entry in $results carries type => 'video',
+     * because no consented patient video exists yet.
+     *
+     * It shipped unconditionally, and although display:none hid it from
+     * sighted users, the <h3> inside it stayed in the DOM — so every text
+     * extractor that reads this page, Google's included and the AI answer
+     * engines especially, saw a "Patient Video Testimonial" heading with
+     * nothing whatsoever beneath it. An empty section reads as an unfinished
+     * clinic, which costs more trust than never having claimed the section.
+     *
+     * So the modal now renders only when something can open it. Add a video
+     * case to $results and it returns by itself — same gate as $rates, $rating
+     * and the STAT_* constants.
+     */
+    $hasVideo = array_filter($results, static fn (array $r): bool => ($r['type'] ?? '') === 'video') !== [];
+
+    ob_start(); ?>
+<section class="section section--white" id="results-gallery">
+  <div class="wrap">
+    <div class="measure" style="text-align: center; margin-inline: auto;">
+      <span class="pill pill--dot">Patient results</span>
+      <h2 class="h2 mt-2">Before &amp; After Hair Transplant Cases in Gurgaon</h2>
+      <p class="body mt-3">Consented photographs, with the hair never digitally altered, from patients treated personally by <strong>Dr. Nyra</strong> at DenceSpot Clinic, Sector 39 Gurugram. Results vary between patients, and hair restoration is judged at ten to twelve months.</p>
+    </div>
+
+    <!-- Results Cards Grid (Matching Awards Section Style) -->
+    <div class="grid grid--2 mt-6" style="gap:24px">
+      <?php foreach ($results as $r): ?>
+        <div class="card card--pad-lg cert-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="media ratio-16-10 media--shadow" style="border:1px solid var(--line); position:relative; overflow:hidden; border-radius:var(--r-md); background:#1e183a; cursor:pointer;" onclick="<?= $r['type'] === 'video' ? "openVideoModal('" . e($r['video_url']) . "', '" . e($r['title']) . "')" : "openCertModal('" . e($r['img']) . "', '" . e($r['title']) . "')" ?>">
+              <img src="<?= e($r['img']) ?>" alt="<?= e($r['title']) ?>" width="800" height="500" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;">
+              
+              <?php if ($r['type'] === 'video'): ?>
+                <div style="position:absolute; inset:0; background:rgba(26,17,71,0.4); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:64px; height:64px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(16,185,129,0.5); transition:transform 0.2s ease;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              <?php endif; ?>
+            </div>
+
+            <div style="margin-top:16px;">
+              <span class="pill pill--dot" style="font-size:10px"><?= e($r['badge']) ?></span>
+              <h3 class="h3 mt-2"><?= e($r['title']) ?></h3>
+              <p class="body-s mt-2"><?= e($r['desc']) ?></p>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--line); display:flex; align-items:center; justify-space-between; flex-wrap:wrap; gap:10px;">
+            <span class="meta"><?= e($r['meta']) ?></span>
+            <button type="button" class="btn btn--sm btn--outline" onclick="<?= $r['type'] === 'video' ? "openVideoModal('" . e($r['video_url']) . "', '" . e($r['title']) . "')" : "openCertModal('" . e($r['img']) . "', '" . e($r['title']) . "')" ?>" style="margin-left:auto;">
+              <?= $r['type'] === 'video' ? '▶ Watch Video' : '🔍 Enlarge View' ?>
+            </button>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+    <div class="btn-row mt-6" style="justify-content:center">
+      <a class="btn btn--ink" href="/hair-transplant-results-gurgaon">View Full Results Gallery</a>
+      <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask Cases Like Yours</a>
+    </div>
+  </div>
+
+  <!-- Smooth Infinite Sliding Marquee Track for Patient Cases -->
+  <div class="marquee mt-6">
+    <div class="marquee-track">
+      <?php
+      /**
+       * Consented patient composites only, from includes/gallery-manifest.php.
+       *
+       * This used to glob() the gallery folder, so the marquee scrolled the
+       * NABH certificate images and twelve creatives belonging to another
+       * clinic across the homepage, every one of them captioned "DenceSpot
+       * Patient Result Transformation". Never restore the glob.
+       */
+      $galleryImages = array_column(gallery_images(CAT_RESULT), 'url');
+
+      if ($galleryImages === []) {
+          $galleryImages = ['/assets/img/case-uttam-gurgaon.jpg'];
+      }
+      // Duplicate array to build 2 identical sets for 100% infinite endless loop without gaps
+      $marqueeLoop = array_merge($galleryImages, $galleryImages);
+      $marqueeIdx = 0;
+      ?>
+      <?php foreach ($marqueeLoop as $imgUrl): ?>
+        <?php $marqueeIdx++; $caseNo = (($marqueeIdx - 1) % max(1, count($galleryImages))) + 1; ?>
+        <img src="<?= e($imgUrl) ?>" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — case <?= $caseNo ?>" loading="lazy" onclick="openCertModal('<?= e($imgUrl) ?>', 'Hair transplant case <?= $caseNo ?> — DenceSpot Clinic, Gurugram')" style="cursor:pointer;">
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<?php if ($hasVideo): ?>
+<!-- Video Player Lightbox Modal — rendered only when a case can open it. -->
+<div id="video-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.88); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px;" onclick="closeVideoModal(event)">
+  <div style="position:relative; max-width:900px; width:100%; background:#100d28; border-radius:16px; overflow:hidden; box-shadow:0 25px 50px -12px rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.15);">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.1); color:#fff;">
+      <h3 id="video-modal-title" class="h4" style="margin:0; color:#fff;">Patient Video Testimonial</h3>
+      <button type="button" onclick="closeVideoModalForce()" style="background:none; border:none; font-size:24px; cursor:pointer; color:#fff;">&times;</button>
+    </div>
+    <div style="position:relative; padding-bottom:56.25%; height:0; background:#000;">
+      <iframe id="video-modal-iframe" src="" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
+<?php
+    return (string) ob_get_clean();
+}
+
+/* -------------------------------------------------------------------------
+ * Awards & Accreditations block (NABH Certifications)
+ * ---------------------------------------------------------------------- */
+
+function awards_certificates_section(): string
+{
+    /**
+     * ⚠ WITHHELD — 1 Sep 2026. Returns nothing until the accreditation is
+     * evidenced. Called from index.php and the seven treatment pages; they need
+     * no change, because this guard turns the section off everywhere at once.
+     *
+     * WHY IT WAS SWITCHED OFF. The three certificate images could not be
+     * reconciled with a genuine NABH award:
+     *
+     *   • all three carry the SAME certificate number, 646744646-2026-001,
+     *     though they claim three distinct credentials;
+     *   • all three carry the same validity window, opening on the very day the
+     *     files were added to the repository;
+     *   • the signature in the "authorized signatures of CEO and Chairman"
+     *     position reads as the name of the person who built this site, and the
+     *     opposing signature renders as "Gor NABH" — a garbled "For NABH";
+     *   • "Excellence in Clinical Services" reads as an award, but the copy
+     *     below called the clinic "officially accredited by NABH for clinical
+     *     excellence", which is a different and larger claim.
+     *
+     * On a YMYL medical site an unevidenced accreditation is the expensive kind
+     * of mistake: it is a misrepresentation under Google's policies, and under
+     * the NMC code of ethics and the Consumer Protection Act it is a misleading
+     * advertisement. It also misleads someone choosing a surgeon.
+     *
+     * TO SWITCH IT BACK ON, all three must be true:
+     *   1. genuine certificate scans replace the three files in assets/img/;
+     *   2. each carries its OWN certificate number and real issue date, and the
+     *      $certs array below is corrected to match;
+     *   3. the accreditation is verifiable in NABH's public directory at
+     *      https://nabh.co/ — and any item that is an award is described as an
+     *      award, not as accreditation.
+     * Then delete this guard. Add the hasCredential node to schema_clinic() at
+     * the same time, and not before: schema must never assert what the page
+     * cannot evidence.
+     */
+    return '';
+
+    $certs = [
+        [
+            'id' => 'cert-1',
+            'title' => 'Excellence in Clinical Services',
+            'category' => 'Dermatology & Cosmetology',
+            'issuer' => 'National Accreditation Board for Hospitals & Healthcare Providers (NABH)',
+            'img' => '/assets/img/cert-nabh-excellence.jpg',
+            'cert_no' => '646744646-2026-001',
+            'validity' => '01 Sep 2026 – 31 Aug 2029',
+            'badge' => 'NABH Clinical Excellence',
+            'alt' => 'NABH Certificate - Excellence in Clinical Services Dermatology & Cosmetology - DenceSpot Clinic'
+        ],
+        [
+            'id' => 'cert-2',
+            'title' => 'NABH Accreditation — Dermatology Clinic',
+            'category' => 'Dermatology Clinic Standards (Edition 1, 2021)',
+            'issuer' => 'National Accreditation Board for Hospitals & Healthcare Providers (NABH)',
+            'img' => '/assets/img/cert-nabh-dermatology.jpg',
+            'cert_no' => '646744646-2026-001',
+            'validity' => '01 Sep 2026 – 31 Aug 2029',
+            'badge' => 'NABH Accredited',
+            'alt' => 'NABH Accreditation Certificate - Dermatology Clinic - DenceSpot Clinic'
+        ],
+        [
+            'id' => 'cert-3',
+            'title' => 'NABH Accreditation — Allopathic Clinic',
+            'category' => 'Allopathic Clinic Standards (Edition 1, 2021)',
+            'issuer' => 'National Accreditation Board for Hospitals & Healthcare Providers (NABH)',
+            'img' => '/assets/img/cert-nabh-allopathic.jpg',
+            'cert_no' => '646744646-2026-001',
+            'validity' => '01 Sep 2026 – 31 Aug 2029',
+            'badge' => 'NABH Accredited',
+            'alt' => 'NABH Accreditation Certificate - Allopathic Clinic - DenceSpot Clinic'
+        ],
+    ];
+
+    ob_start(); ?>
+<section class="section section--white" id="awards">
+  <div class="wrap">
+    <div class="measure" style="text-align: center; margin-inline: auto;">
+      <span class="pill pill--dot">Official Accreditations</span>
+      <h2 class="h2 mt-2">Awards &amp; NABH Certifications</h2>
+      <p class="body mt-3">DenceSpot Clinic is officially accredited by the <strong>National Accreditation Board for Hospitals &amp; Healthcare Providers (NABH)</strong> for clinical excellence, patient safety, and high-standard care in Dermatology, Cosmetology &amp; Allopathic Medicine.</p>
+    </div>
+
+    <!-- Official Certificates Cards Grid -->
+    <div class="grid grid--3 mt-6">
+      <?php foreach ($certs as $c): ?>
+        <div class="card card--pad-lg text-center cert-card" style="text-align:center">
+          <div class="media ratio-4-5 media--shadow cert-img-wrap" style="border:1px solid var(--line); overflow:hidden; border-radius:var(--r-md); background:#fafafa; cursor:pointer;" onclick="openCertModal('<?= e($c['img']) ?>', '<?= e($c['title']) ?>')">
+            <img src="<?= e($c['img']) ?>" alt="<?= e($c['alt']) ?>" width="800" height="1100" loading="lazy" style="width:100%; height:auto; object-fit:contain; transition:transform 0.3s ease;">
+          </div>
+          <span class="pill pill--dot mt-3" style="font-size:10px"><?= e($c['badge']) ?></span>
+          <h3 class="h4 mt-2"><?= e($c['title']) ?></h3>
+          <p class="meta mt-1"><?= e($c['category']) ?></p>
+          <p class="fine mt-2" style="color:var(--ink-muted)">Cert No: <strong><?= e($c['cert_no']) ?></strong><br>Valid: <?= e($c['validity']) ?></p>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <!-- Smooth Infinite Marquee Carousel -->
+  <div class="marquee mt-6">
+    <div class="marquee-track">
+      <?php
+      $certSet = array_merge($certs, $certs, $certs);
+      $certDouble = array_merge($certSet, $certSet);
+      ?>
+      <?php foreach ($certDouble as $c): ?>
+        <img src="<?= e($c['img']) ?>" alt="<?= e($c['alt']) ?>" loading="lazy" onclick="openCertModal('<?= e($c['img']) ?>', '<?= e($c['title']) ?>')" style="cursor:pointer;">
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<?php
+    return (string) ob_get_clean();
+}
+
+

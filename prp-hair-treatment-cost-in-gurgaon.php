@@ -15,11 +15,6 @@
  *     thing to tell someone comparing PRP prices.
  *
  * No prices published, consistent with every other page on the site.
- *
- * 14 Oct 2026: landing-page layout (lp_split / lp_steps / lp_cta). The steps
- * restate how this page already says a course is planned (diagnosis, written
- * course, review with a stop rule) — no new claims. Per the client, this
- * Gurugram page never mentions the Rohini clinic.
  */
 
 declare(strict_types=1);
@@ -31,11 +26,11 @@ $faqs = [
     ['q' => 'How much does PRP hair treatment cost in Gurgaon?',
      'a' => 'It is priced per session, and what actually matters is the course your diagnosis calls for rather than a single-session figure. Because the course is planned from your assessment, we quote afterwards and give it to you in writing. A per-session price on its own tells you very little about what you will end up spending.'],
     ['q' => 'Why does the per-session price vary so much between clinics?',
-     'a' => 'Partly the preparation method and equipment used, partly who performs it, and partly whether the figure is for a single session or part of a package. A low per-session rate attached to a large mandatory package can cost more in total than a higher rate on a course you can stop.'],
+     'a' => 'Partly the preparation method and equipment used, partly who performs it, and partly how many sessions a clinic expects to sell. A low per-session rate attached to a large mandatory package is not cheaper than a higher rate on a course you can stop.'],
     ['q' => 'How many sessions will I need?',
      'a' => 'It depends on your diagnosis and how you respond, and it should be reviewed rather than fixed at the start. A clinic that can tell you the exact number before examining you is describing a package, not a plan.'],
     ['q' => 'Should I buy a prepaid package of sessions?',
-     'a' => 'We would advise against committing to a large block upfront, and this is the most important thing on this page. PRP does not work for everyone. Prepaying for a fixed number of sessions removes your ability to stop when the photographs show nothing is changing.'],
+     'a' => 'We would advise against committing to a large block upfront, and this is the most important thing on this page. PRP does not work for everyone. Prepaying for a fixed number of sessions removes your ability to stop when the photographs show nothing is changing, and it removes the clinic\'s incentive to tell you.'],
     ['q' => 'But packages are cheaper per session. Is that not better value?',
      'a' => 'Only if you would have had all the sessions anyway and they were working. A discounted block that you complete out of obligation rather than response is more expensive than a smaller number of sessions at a higher rate. The discount is real; whether it is value depends on the outcome.'],
     ['q' => 'What should be included in the price?',
@@ -47,15 +42,15 @@ $faqs = [
     ['q' => 'What if it does not work for me?',
      'a' => 'A proportion of patients do not respond, and that is stated before treatment starts rather than after. If interval photographs against your baseline show no change, the plan changes. That is only possible if you have not prepaid for a fixed block.'],
     ['q' => 'How does PRP cost compare with a hair transplant?',
-     'a' => 'They are not alternatives, so the comparison is less useful than it looks. A transplant is a surgical cost that relocates follicles which generally persist. PRP is an ongoing supportive cost that maintains hair you still have. Someone with established baldness will not save money by choosing PRP; they will spend money on the wrong treatment.'],
+     'a' => 'They are not alternatives, so the comparison is less useful than it looks. A transplant is a one-off surgical cost that moves permanent hair. PRP is an ongoing supportive cost that maintains hair you still have. Someone with established baldness will not save money by choosing PRP; they will spend money on the wrong treatment.'],
     ['q' => 'Is maintenance an extra cost?',
      'a' => 'Yes, and it should be planned for rather than discovered. PRP does not alter the underlying process of pattern hair loss, so benefit is maintained rather than banked. Ask any clinic what happens after the initial course before you compare their price to anyone else\'s.'],
     ['q' => 'How does GFC pricing compare?',
-     'a' => 'GFC is often priced above PRP on the basis that it is a newer preparation. The evidence does not currently establish that it outperforms PRP, so a higher price reflects a claim rather than a demonstrated advantage. See <a href="/gfc-treatment-in-gurgaon">GFC treatment</a> for the comparison.'],
+     'a' => 'GFC is often priced above PRP on the basis that it is a newer preparation. The evidence does not currently establish that it outperforms PRP, so a premium is being charged for a claim rather than a demonstrated advantage. See <a href="/gfc-treatment-in-gurgaon">GFC treatment</a> for the honest comparison.'],
     ['q' => 'Are EMI or payment plans available?',
      'a' => 'Payment options are set out on our <a href="/cost-and-emi-options">cost and EMI options</a> page, and what applies to you is confirmed at consultation.'],
-    ['q' => 'What is the sensible starting point?',
-     'a' => 'A diagnosis. If your hair loss turns out to be driven by iron deficiency or a thyroid problem, treating that usually costs far less than a course of injections and addresses the cause directly. Establishing the cause first is what makes any later spending make sense.'],
+    ['q' => 'What is the cheapest sensible starting point?',
+     'a' => 'A consultation. If your hair loss turns out to be driven by iron deficiency or a thyroid problem, treating that is far cheaper than any course of injections and considerably more likely to work. Paying for a diagnosis first is the best value available in this whole category.'],
 ];
 
 $crumbs = [
@@ -65,11 +60,10 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'PRP Hair Treatment Cost in Gurgaon: Per Session & Course',
-    'description' => 'PRP hair treatment cost in Gurgaon: what changes the estimate per session and per course, adding GFC or microneedling, maintenance and prepaid packages.',
+    'title'       => 'PRP Hair Treatment Cost in Gurgaon | DenceSpot',
+    'description' => 'What PRP hair treatment costs in Gurgaon and why the per-session price misleads. How to read a quote, and why we advise against large prepaid session packages.',
     'url'         => '/prp-hair-treatment-cost-in-gurgaon',
     'crumbs'      => $crumbs,
-    'preload_image' => '/assets/img/services/svc-prp-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -87,10 +81,10 @@ require __DIR__ . '/includes/header.php';
       <div>
         <span class="pill pill--dot">PRP hair treatment cost in Gurgaon</span>
         <h1 class="h1 mt-3">What PRP Costs, and Why the Per-Session Price Misleads</h1>
-        <p class="lead mt-3 measure">PRP is often sold as blocks of sessions paid for upfront. That is the part worth thinking about before you compare any two prices, because a proportion of patients do not respond, and a prepaid package removes your ability to stop when the photographs say so.</p>
+        <p class="lead mt-3 measure">PRP is sold in this market as blocks of sessions paid for upfront. That is the part worth thinking about before you compare any two prices, because a proportion of patients do not respond, and a prepaid package removes your ability to stop when the photographs say so.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Ask on WhatsApp</a>
         </div>
 
@@ -98,22 +92,21 @@ require __DIR__ . '/includes/header.php';
             'Course planned from a diagnosis, not sold as a block',
             'Response photographed, so you can judge it',
             'Stoppable if the images show nothing is changing',
-            'Consultations at our Sector 39, Gurugram clinic',
+            NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
         ]) ?>
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-prp-768.webp" srcset="/assets/img/services/svc-prp-512.webp 512w, /assets/img/services/svc-prp-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a capped tube of golden plasma standing on a white tray beside a syringe" width="768" height="960" loading="eager" fetchpriority="high">
-          <?= hp_ai_chip('AI-generated illustration') ?>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and preparation equipment used for platelet-rich plasma treatment at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Assessed &amp; performed by</p>
+          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
+          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
         </div>
-        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
-
-<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -127,42 +120,38 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'svc-followup',
-    'alt'     => 'a desk calendar with several days circled in green, beside a small potted succulent and a pen on a wooden desk',
-    'eyebrow' => 'The main thing to understand',
-    'title'   => 'Why Prepaid Session Packages Are the Problem',
-    'id'      => 'packages',
-    'html'    => '<p>A common way PRP is sold is a discounted block of sessions paid for upfront. It can look like value, but the money is committed before anyone knows whether the treatment is working for you.</p>'
-               . '<p>That matters more for PRP than for most treatments, because a proportion of patients do not respond — not a criticism of PRP, simply true of it, and you should be told so before you start. The correct response to a non-response is to stop and change the plan; a prepaid block makes stopping harder, so the money is spent on sessions your own photographs suggest are doing nothing.</p>'
-               . '<p>So the useful question is not what a session costs, but what happens at review if the images show no change, and whether you are financially free to act on the answer. Ask these four before paying anything — the answers tell you considerably more about a clinic than its per-session rate does:</p>',
-    'points'  => [
-        'Will you take baseline photographs before we start?',
-        'At what point will we review whether it is working?',
-        'What happens if the photographs show no change?',
-        'Am I committed to sessions I have not yet had?',
-    ],
-]) ?>
-
-<?= lp_steps([
-    'eyebrow' => 'How a course is planned',
-    'title'   => 'From Diagnosis to a Course You Can Stop',
-    'id'      => 'course-steps',
-    'intro'   => 'A plan adjusts with your response; a package does not.',
-    'tone'    => 'canvas',
-    'steps'   => [
-        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                 'title' => 'Diagnosis first',                    'text' => 'The cause of your hair loss is established before anything is quoted. Sometimes the answer is a cheaper treatment, such as correcting low iron or a thyroid problem.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line', 'title' => 'A course quoted in writing',         'text' => 'Sessions planned from your diagnosis, itemised — including what is not included — with maintenance stated upfront.'],
-        ['img' => 'step-procedure',    'alt' => 'sterile instruments laid out on a tray',              'title' => 'Sessions, photographed and reviewed', 'text' => 'Response is judged against baseline photographs. If nothing is changing, the course is adjusted or stopped, with no large prepaid block in the way.'],
-    ],
-]) ?>
+<section class="section section--canvas" id="packages">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">The main thing to understand</p>
+        <h2 class="h2 mt-2">Why Prepaid Session Packages Are the Problem</h2>
+        <p class="body-l mt-3 measure">The standard commercial model for PRP is a discounted block of sessions paid for in advance. It looks like value, and for the clinic it is excellent business, because the revenue is banked before anyone knows whether the treatment is working.</p>
+        <p class="body-l mt-3 measure">Here is why that matters more for PRP than for most treatments. A proportion of patients do not respond. That is not a criticism of PRP, it is simply true of it, and any honest clinic will tell you so before you start. The correct response to a non-response is to stop and change the plan.</p>
+        <p class="body-l mt-3 measure">A prepaid block makes stopping irrational. You have already paid, so you complete the sessions, and the money is spent on a treatment your own photographs suggest is doing nothing. It also removes the clinic's incentive to raise the subject, because there is no further revenue attached to continuing honestly.</p>
+        <p class="body-l mt-3 measure">So the useful question when comparing PRP prices is not what a session costs. It is what happens at review if the images show no change, and whether you are financially free to act on that answer.</p>
+      </div>
+      <div class="card card--pad-lg">
+        <p class="eyebrow">Ask this before paying anything</p>
+        <h3 class="h3 mt-2">Four questions</h3>
+        <?= ticks([
+            'Will you take baseline photographs before we start?',
+            'At what point will we review whether it is working?',
+            'What happens if the photographs show no change?',
+            'Am I committed to sessions I have not yet had?',
+        ], false) ?>
+        <p class="body-s mt-4">The answers to these tell you considerably more about a clinic than its per-session rate does.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section section--white" id="drivers">
   <div class="wrap">
     <p class="eyebrow">Cost drivers</p>
     <h2 class="h2 mt-2">What Actually Moves the Number</h2>
     <div class="grid grid--3 mt-5">
-      <div class="card"><p class="h4">Sessions in the course</p><p class="body-s mt-2">The largest factor by far, and the one that should be planned from your diagnosis and adjusted by your response rather than fixed at the start.</p></div>
+      <div class="card"><p class="h4">Sessions in the course</p><p class="body-s mt-2">The largest factor by far, and the one that should be planned from your diagnosis and adjusted by your response rather than fixed in advance.</p></div>
       <div class="card"><p class="h4">Area being treated</p><p class="body-s mt-2">A defined thinning patch is a different job from the whole top of the scalp, and the preparation volume differs accordingly.</p></div>
       <div class="card"><p class="h4">Preparation method</p><p class="body-s mt-2">Systems and equipment differ between clinics. It contributes to price, though less than the number of sessions does.</p></div>
       <div class="card"><p class="h4">Who performs it</p><p class="body-s mt-2">Whether you are assessed and treated by a doctor. This is a fair question to ask directly, and the answer should be immediate.</p></div>
@@ -172,94 +161,73 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?php
-$costFactors = [
-    ['Sessions in the first course', 'Usually the largest part. The estimate grows with each planned session, so a course reviewed after the first few sessions can be shortened or stopped if nothing is changing.'],
-    ['A prepaid block of sessions', 'Lowers the figure per session, but commits the whole total before anyone knows whether PRP is working for you.'],
-    ['Switching to GFC, or adding it', 'GFC is often priced above PRP as a newer preparation, which raises the per-session figure. The evidence does not show that it does more.'],
-    ['Adding microneedling', 'Where PRP is applied to the scalp straight after microneedling, the needling is an extra step and is costed with the session.'],
-    ['Medical treatment alongside', 'A separate line. Treatment for the diagnosis itself is not part of the session price.'],
-    ['Investigations', 'Separate, and only where your history calls for them. They can lower the total by pointing to a cheaper treatment for a reversible cause.'],
-    ['Review and photography', 'Should be part of the course. If a quote lists them as extras, add them in before comparing totals.'],
-    ['Maintenance after the course', 'An ongoing cost, because PRP does not stop pattern hair loss. Ask what maintenance would cost over a year before comparing any two quotes.'],
-];
-?>
-<section class="section section--canvas" id="estimate">
+<section class="section section--canvas" id="not-included">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Factor by factor</p>
-      <h2 class="h2 mt-2">PRP Hair Treatment Cost: What Raises or Lowers the Estimate</h2>
-      <p class="body mt-3">No figure is published here, because your estimate follows the assessment and is given in writing. What can be shown is how each choice moves the total, so that you can read any quote, ours included.</p>
-    </div>
-    <div class="card mt-5" style="padding:0;overflow:hidden">
-      <div class="table-scroll">
-        <table class="data data--fit">
-          <caption class="sr-only">How each factor changes the estimate for a course of PRP hair treatment: sessions, prepaid blocks, adding GFC or microneedling, medical treatment, investigations, review and maintenance. General guidance, not a quote.</caption>
-          <thead><tr><th scope="col">Cost factor</th><th scope="col">How it changes the estimate</th></tr></thead>
-          <tbody>
-            <?php foreach ($costFactors as $r): ?>
-            <tr><th scope="row" style="white-space:normal;width:38%"><?= e($r[0]) ?></th><td><?= e($r[1]) ?></td></tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+    <div class="split">
+      <div>
+        <p class="eyebrow">What the PRP price does not cover</p>
+        <h2 class="h2 mt-2">The Separate Costs People Miss</h2>
+        <p class="body-l mt-3 measure">PRP is a supportive treatment. In most plans it sits alongside the treatment that actually addresses the diagnosis, and that is a separate line on the estimate rather than something folded into the session price.</p>
+        <p class="body-l mt-3 measure">If your assessment identifies a reversible cause — low iron, a thyroid problem, a hormonal condition — treating that is its own cost, and usually a modest one. It is also the single highest-value thing in the whole plan, because correcting an actual cause outperforms supporting a scalp around it.</p>
+        <p class="body-l mt-3 measure">And if the assessment shows established baldness rather than thinning, the honest conversation is about <a href="/hair-transplant-in-gurgaon">surgery</a> and its cost, not about a course of injections that will not do what you are hoping.</p>
+        <p class="body mt-3 measure">All of this is why the consultation is quoted separately and honestly. It is the appointment that determines whether the rest of the spending makes any sense.</p>
+      </div>
+      <div>
+        <div class="card card--pad-lg">
+          <p class="h4">Usually separate</p>
+          <?= ticks([
+              'Medical treatment for the diagnosis',
+              'Investigations, where indicated',
+              'Treatment of a reversible cause',
+              'Maintenance sessions after the course',
+          ], false) ?>
+        </div>
+        <div class="card card--pad-lg mt-4">
+          <p class="h4">Should be included</p>
+          <?= ticks([
+              'Preparation and the session itself',
+              'Baseline and interval photography',
+              'The review where response is assessed',
+          ], false) ?>
+        </div>
       </div>
     </div>
-    <p class="body-s mt-4 measure">The add-ons are explained on their own pages: <a href="/hair-microneedling-in-gurgaon">hair microneedling in Gurgaon</a> and <a href="/gfc-treatment-in-gurgaon">GFC treatment in Gurgaon</a>. Before paying for any course, read <a href="/blog/what-to-ask-before-prp-in-gurgaon">the questions to ask before paying for PRP in Gurgaon</a>. If the cause of your thinning is not yet known, the <a href="/hair-loss-assessment">six-question hair loss self-assessment</a> suggests a next step.</p>
   </div>
 </section>
-
-<?= lp_split([
-    'img'     => 'svc-hair-fall',
-    'alt'     => 'a wooden comb with a few shed hairs resting on folded linen towels by a window',
-    'eyebrow' => 'What the PRP price does not cover',
-    'title'   => 'The Separate Costs People Miss',
-    'id'      => 'not-included',
-    'tone'    => 'white',
-    'reverse' => true,
-    'html'    => '<p>PRP is a supportive treatment. In most plans it sits alongside the treatment that actually addresses the diagnosis, and that is a separate line on the estimate rather than something folded into the session price.</p>'
-               . '<p>If your assessment identifies a reversible cause — low iron, a thyroid problem, a hormonal condition — treating it is its own cost, usually a modest one, and often the most important part of the plan. If it shows established baldness rather than thinning, the honest conversation is about <a href="/hair-transplant-in-gurgaon">surgery</a> and its cost, not a course of injections that will not do what you are hoping.</p>'
-               . '<p>That is why the consultation is quoted separately: it determines whether the rest of the spending makes sense. A PRP price should include the preparation and the session itself, baseline and interval photography, and the review where response is assessed. Usually separate:</p>',
-    'points'  => [
-        'Medical treatment for the diagnosis',
-        'Investigations, where indicated',
-        'Treatment of a reversible cause',
-        'Maintenance sessions after the course',
-    ],
-]) ?>
 
 <section class="section section--ink" id="compare">
   <div class="wrap">
-    <p class="eyebrow">Comparing clinics</p>
-    <h2 class="h2 mt-2">Reading a PRP Quote Properly</h2>
-    <p class="body-l mt-3" style="max-width:60ch">Two quotes with the same per-session figure can represent completely different arrangements.</p>
+    <p class="eyebrow" style="color:var(--accent)">Comparing clinics</p>
+    <h2 class="h2 mt-2" style="color:#fff">Reading a PRP Quote Properly</h2>
+    <p class="body-l mt-3" style="color:rgba(255,255,255,.72);max-width:60ch">Two quotes with the same per-session figure can represent completely different arrangements.</p>
     <div class="grid grid--3 mt-6">
-      <div class="card card--ink"><p class="eyebrow">01</p><p class="h4 mt-2">Was a diagnosis made first?</p><p class="body-s mt-2">If nobody established why your hair is falling, you are buying a procedure rather than a treatment, at any price.</p></div>
-      <div class="card card--ink"><p class="eyebrow">02</p><p class="h4 mt-2">Is the course fixed or reviewed?</p><p class="body-s mt-2">A plan adjusts with response. A package does not. This is the difference that decides what you actually spend.</p></div>
-      <div class="card card--ink"><p class="eyebrow">03</p><p class="h4 mt-2">Is photography included?</p><p class="body-s mt-2">Without a baseline you cannot tell whether it worked, and neither can they. It is not an optional extra.</p></div>
-      <div class="card card--ink"><p class="eyebrow">04</p><p class="h4 mt-2">Who performs it?</p><p class="body-s mt-2">Ask by name and qualification who assesses you and who injects. A reasonable question with a quick answer.</p></div>
-      <div class="card card--ink"><p class="eyebrow">05</p><p class="h4 mt-2">What happens after the course?</p><p class="body-s mt-2">Maintenance is an ongoing cost. A quote that ends at session six is not the full picture.</p></div>
-      <div class="card card--ink"><p class="eyebrow">06</p><p class="h4 mt-2">Is GFC priced higher?</p><p class="body-s mt-2">If a premium is being charged on the basis that it outperforms PRP, ask what that claim is based on. See <a href="/gfc-treatment-in-gurgaon" style="color:var(--accent-on-dark)">GFC treatment</a>.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">01</p><p class="h4 mt-2" style="color:#fff">Was a diagnosis made first?</p><p class="body-s mt-2">If nobody established why your hair is falling, you are buying a procedure rather than a treatment, at any price.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">02</p><p class="h4 mt-2" style="color:#fff">Is the course fixed or reviewed?</p><p class="body-s mt-2">A plan adjusts with response. A package does not. This is the difference that decides what you actually spend.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">03</p><p class="h4 mt-2" style="color:#fff">Is photography included?</p><p class="body-s mt-2">Without a baseline you cannot tell whether it worked, and neither can they. It is not an optional extra.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">04</p><p class="h4 mt-2" style="color:#fff">Who performs it?</p><p class="body-s mt-2">Ask by name and qualification who assesses you and who injects. A reasonable question with a quick answer.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">05</p><p class="h4 mt-2" style="color:#fff">What happens after the course?</p><p class="body-s mt-2">Maintenance is an ongoing cost. A quote that ends at session six is not the full picture.</p></div>
+      <div class="card card--ink"><p class="eyebrow" style="color:var(--accent)">06</p><p class="h4 mt-2" style="color:#fff">Is GFC being upsold?</p><p class="body-s mt-2">If a premium is being charged on the basis that it outperforms PRP, ask what that claim is based on. See <a href="/gfc-treatment-in-gurgaon" style="color:var(--accent)">GFC treatment</a>.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="better-value">
+<?= doctor_block(
+    'Why we will not sell a block of ten sessions upfront: a meaningful proportion of people do not respond to PRP, and the only way to know is to photograph properly and look at month three or four. A patient who has already paid for ten sessions has no reason to stop at four, and the clinic has no financial reason to suggest it. Charging as you go is worse business and it is the only arrangement in which the review conversation can be honest.'
+) ?>
+
+<section class="section section--canvas" id="better-value">
   <div class="wrap">
     <p class="eyebrow">Value</p>
-    <h2 class="h2 mt-2">Why a Diagnosis Comes Before Any Course</h2>
-    <p class="body-l mt-3 measure">It is worth stating plainly on a cost page: the diagnosis is the least glamorous item on any estimate, and often the one that decides whether anything else is worth paying for.</p>
+    <h2 class="h2 mt-2">The Cheapest Useful Thing You Can Buy</h2>
+    <p class="body-l mt-3 measure">A diagnosis. It is worth stating plainly on a cost page, because it is the least glamorous item on any estimate and reliably the highest value.</p>
     <div class="grid grid--3 mt-5">
-      <div class="card"><p class="h4">It may point somewhere cheaper</p><p class="body-s mt-2">Hair loss driven by iron deficiency or thyroid disease is treated by correcting that, usually at a fraction of the cost of an injectable course, and in a way that addresses the cause.</p></div>
+      <div class="card"><p class="h4">It may point somewhere cheaper</p><p class="body-s mt-2">Hair loss driven by iron deficiency or thyroid disease is treated by correcting that, at a fraction of the cost of any injectable course, and with a considerably better chance of working.</p></div>
       <div class="card"><p class="h4">It may point somewhere else entirely</p><p class="body-s mt-2">Established baldness is not a PRP problem. Spending on injections when the pattern calls for surgery is money spent on the wrong treatment, however competitive the rate.</p></div>
       <div class="card"><p class="h4">It makes the rest measurable</p><p class="body-s mt-2">Baseline photographs and a known diagnosis are what let you judge whether anything you subsequently pay for is doing something. Without them you are buying on faith.</p></div>
     </div>
     <p class="body mt-5 measure">For what PRP actually is and who it suits, see <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment</a>. For how the diagnosis is reached, see <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment</a> or <a href="/womens-hair-loss-treatment-in-gurgaon">women's hair loss treatment</a>.</p>
   </div>
 </section>
-
-<?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic. Response to PRP is reviewed against baseline photographs, and the course is adjusted or stopped where there is no change.'
-) ?>
 
 <section class="section section--white" id="faqs">
   <div class="wrap">
@@ -277,14 +245,14 @@ $costFactors = [
 
 <?= local_block(
     'PRP Assessment and Estimates at Our Gurgaon Clinic',
-    'Our Gurugram clinic is in Sector 39, ' . NAP_LANDMARK . '. Consultations and procedures are carried out by registered medical practitioners at the clinic, and PRP estimates are given in writing after assessment.'
+    'Assessment, treatment and every review happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
 ) ?>
 
-<?= lp_cta([
-    'eyebrow'   => 'Sector 39, Gurugram',
-    'title'     => 'Get a Diagnosis Before You Get a Quote',
-    'text'      => 'Come in and have the cause of your hair loss established first. The right recommendation may cost less than a course of PRP. If PRP is appropriate for you, the course is planned so that it can be stopped.',
-    'treatment' => 'Hair PRP / GFC',
-]) ?>
+<?= cta_band(
+    'Get a Diagnosis Before You Get a Quote',
+    'Come in and have the cause of your hair loss established first. You may leave with a recommendation that costs considerably less than a course of PRP, and works better. If PRP is right for you, you will get a plan you can stop.',
+    'prp-cost',
+    ['PRP for hair', 'Comparing PRP quotes', 'Hair loss — not yet diagnosed', 'Not sure — please advise']
+) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

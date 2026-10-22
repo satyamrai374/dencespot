@@ -14,22 +14,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
-require_once __DIR__ . '/includes/legacy-redirects.php';
-
-// An old URL from the previous site (blog post, locality page) that has a
-// counterpart here gets a 301 to it; anything else is a real 404, served at
-// the requested address (.htaccess §9 and router.php rewrite to this file).
-$legacyTarget = legacy_redirect((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH));
-if ($legacyTarget !== null) {
-    header('Location: ' . $legacyTarget, true, 301);
-    exit;
-}
 
 http_response_code(404);
 
 $page = [
     'title'       => 'Page Not Found | ' . SITE_NAME,
-    'description' => 'That page could not be found. Browse hair transplant, PRP and hair fall treatment at DenceSpot Clinic in Gurugram and Delhi, or book a consultation.',
+    'description' => 'That page could not be found. Browse hair transplant, PRP and hair fall treatment at DenceSpot Clinic, Gurugram, or book a consultation.',
     'url'         => '/404',
     'noindex'     => true,
     'crumbs'      => [],
@@ -44,10 +34,10 @@ require __DIR__ . '/includes/header.php';
     <div class="measure">
       <span class="pill pill--dot">404</span>
       <h1 class="h1 mt-3">That Page Isn't Here</h1>
-      <p class="lead mt-3">The link may be out of date, or the page may still be in progress. Everything the clinic treats is listed below — or send your question to the clinic on WhatsApp.</p>
+      <p class="lead mt-3">The link may be out of date, or the page may still be in progress. Everything the clinic treats is listed below — or send your case straight to the doctor and skip the browsing.</p>
       <div class="btn-row mt-5">
-        <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
         <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
+        <a class="btn btn--lg btn--ink" href="/book-consultation"><?= icon('calendar', 18) ?> Book a Consultation</a>
       </div>
     </div>
 
@@ -73,8 +63,8 @@ require __DIR__ . '/includes/header.php';
         <p class="meta mt-1">How graft count and per-graft rate actually combine.</p>
       </a>
       <a class="card card--pad-lg" href="/contact" style="text-decoration:none;color:inherit">
-        <h2 class="h4">Our Two Clinics</h2>
-        <p class="meta mt-1">Sector 39, Gurugram · Rohini, Delhi · <?= e(HOURS_DISPLAY) ?></p>
+        <h2 class="h4">Visit the Clinic</h2>
+        <p class="meta mt-1"><?= e(NAP_LOCALITY) ?> · <?= e(HOURS_DISPLAY) ?></p>
       </a>
     </div>
   </div>

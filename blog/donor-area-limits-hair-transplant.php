@@ -18,14 +18,12 @@ $postFaqs = [
     ['q' => 'Will medication or PRP increase how many grafts I have available?',
      'a' => 'No. Nothing adds follicles to the donor zone. Medication and injectables act on hair that already exists, mostly by keeping miniaturising hair in the game for longer. That is worth having, because protecting native hair reduces what the donor is later asked to replace, but it does not raise the ceiling itself.'],
     ['q' => 'Can I shave my head short after a transplant?',
-     'a' => 'It depends on how much was taken and how evenly. Many people can wear a number two or three without the extraction sites being obvious. Very short clipper work, or a wet shave, exposes the donor to inspection and is where earlier overharvesting becomes obvious. If you expect to wear your hair short, say so before the plan is drawn.'],
+     'a' => 'It depends on how much was taken and how evenly. Many patients return to a number two or three with nothing showing. Very short clipper work, or a wet shave, exposes the donor to inspection and is where earlier overharvesting becomes obvious. If you expect to wear your hair short, say so before the plan is drawn.'],
     ['q' => 'How long should I wait between transplant sessions?',
      'a' => 'Usually at least ten to twelve months, because that is when the first session can be honestly judged and when the donor has settled. Operating sooner means planning against an unfinished result and a scalp that has not recovered its laxity. The interval is a clinical one, not a commercial one.'],
     ['q' => 'Can a donor area damaged by a previous clinic be repaired?',
      'a' => 'Partly, and rarely to how it was. Scar tissue can sometimes be softened, small patches camouflaged with grafts or pigment, and a linear scar improved. Density that has been removed cannot be put back. See <a href="/blog/hair-transplant-repair-options">what hair transplant repair can address</a> before assuming a second procedure fixes it.'],
 ];
-$postFaqId = 'donor-area-faqs';
-$postFaqHeading = 'Donor area FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -33,11 +31,11 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Treat it as an account you can only withdraw from. Every graft moved to the front has left the back permanently, and the lifetime total is capped by anatomy you did not choose.</p>
 
-<h2 id="what-makes-donor-hair-permanent">Why donor hair resists pattern loss, and where the safe zone sits</h2>
+<h2 id="what-makes-donor-hair-permanent">What makes donor hair permanent, and where the safe zone sits</h2>
 
 <p>Pattern hair loss is not a disease of the skin; it is a sensitivity carried by individual follicles. Follicles on the top and front of the head respond to dihydrotestosterone by miniaturising over successive growth cycles until they produce nothing visible. Follicles in a band around the sides and lower back are largely insensitive to the same hormone, which is why that band survives while everything above it goes (<a href="https://dermnetnz.org/topics/male-pattern-hair-loss" rel="noopener nofollow" target="_blank">DermNet: male pattern hair loss</a>). Move an insensitive follicle into a bald area and it keeps behaving as it always did. That is donor dominance, and it is the entire biological basis of the operation.</p>
 
-<p>The working phrase is <strong>safe donor zone</strong>, and it is narrower than the hair you can see. Its boundaries are judged on your own head rather than from a diagram: broadly a band above the ears and across the occiput, kept below the point where the crown is thinning and above the nape, where hair thins with age in almost everyone. Take from outside that band and the transplanted hair may look good at thirty-five and thin at fifty, because you moved hair that was always going to go. The zone also narrows as loss progresses, which is one reason <a href="/blog/norwood-scale-explained">where you sit on the Norwood scale</a> changes the plan rather than merely the quote.</p>
+<p>The working phrase is <strong>safe donor zone</strong>, and it is narrower than the hair you can see. Its boundaries are judged on your own head rather than from a diagram: broadly a band above the ears and across the occiput, kept below the point where the crown is thinning and above the nape, where hair thins with age in almost everyone. Take from outside that band and the transplanted hair may look excellent at thirty-five and thin at fifty, because you moved hair that was always going to go. The zone also narrows as loss advances, which is one reason <a href="/blog/norwood-scale-explained">where you sit on the Norwood scale</a> changes the plan rather than merely the quote.</p>
 
 <h2 id="how-donor-supply-is-assessed">How donor supply is assessed</h2>
 
@@ -58,17 +56,17 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>The donor tolerates being thinned. It does not tolerate being emptied. Take too many units from one region, or space extractions too closely, and the result is a moth-eaten donor: patchy, low-density skin that looks acceptable at four inches of hair and obviously damaged at four millimetres. Most patients discover it the first time they use clippers.</p>
 
-<p>Nothing reverses it. There is no follicle to put back, and grafting into the donor to disguise the damage spends more of the same shrinking supply. It belongs firmly among <a href="/blog/hair-transplant-side-effects-and-risks">the risks that are permanent rather than temporary</a>, and it is usually the consequence of a single oversized session planned around graft count rather than donor capacity.</p>
+<p>Nothing reverses it. There is no follicle to put back, and grafting into the donor to disguise the damage spends more of the same shrinking supply. It belongs firmly among <a href="/blog/hair-transplant-side-effects-and-risks">the risks that are permanent rather than temporary</a>, and it is usually the consequence of a single oversized session sold on graft count. The incentive is structural: a bigger number is a bigger invoice, and the cost lands years later on a scalp the clinic will never see again.</p>
 
 <blockquote>A conservative extraction plan is not caution for its own sake. It is the difference between having options at fifty and having none.</blockquote>
 
 <h2 id="coverage-versus-density">Coverage versus density, when the arithmetic does not work</h2>
 
-<p>Here is the trade-off that matters most in extensive loss. Grafts can be spread thinly over a large area, or packed densely into a small one. They cannot do both once the bald area is larger than the donor can fill, and at Norwood 5, 6 and 7 it usually is.</p>
+<p>Here is the trade-off graft-count advertising rarely states plainly. Grafts can be spread thinly over a large area, or packed densely into a small one. They cannot do both once the bald area is larger than the donor can fill, and at Norwood 5, 6 and 7 it usually is.</p>
 
 <p>Native scalp carries far more hair per square centimetre than any transplant achieves. Surgery does not restore original density; it restores the <em>impression</em> of hair, and that impression rests on contrast between hair and skin, on shaft calibre, on hair colour against skin tone, and on how you wear it. A dark-haired man with pale skin needs more hair for the same visual effect than someone whose hair and skin sit closer in tone.</p>
 
-<p>So for an extensive pattern the real choice is between a strong, dense frontal area with an unrestored crown, and a uniform thin wash across the whole scalp that reads as thinning hair rather than as hair. Put in those terms, most surgeons and most patients choose the first. Either way, coverage can only be judged once the grafts have grown, which <a href="/blog/hair-transplant-growth-timeline-month-by-month">the month-by-month growth timeline</a> places at around ten to twelve months.</p>
+<p>So for an advanced pattern the real choice is between a strong, dense frontal area with an unrestored crown, and a uniform thin wash across the whole scalp that reads as thinning hair rather than as hair. Put in those terms, most surgeons and most patients choose the first. Looking at <a href="/hair-transplant-results-gurgaon">results photographed at ten to twelve months</a> makes that distinction concrete faster than any explanation does.</p>
 
 <h2 id="why-the-frontal-third-comes-first">Why the frontal third gets funded before the crown</h2>
 
@@ -82,7 +80,7 @@ require __DIR__ . '/../includes/blog-header.php';
 ) ?>
 <h2 id="staging-across-a-lifetime">Staging, instead of one maximal session</h2>
 
-<p>The alternative to a maximal first procedure is a plan with reserves in it. Restore the frontal third properly. Keep medical treatment running on the hair you still have, because <a href="/hair-fall-treatment-in-gurgaon">slowing ongoing hair fall</a> reduces what the donor is later asked to replace. Reassess at ten to twelve months, when the first result can honestly be judged, then decide <a href="/blog/second-hair-transplant">whether a second session goes to the mid-scalp, the crown, or nowhere</a>.</p>
+<p>The alternative to a maximal first procedure is a plan with reserves in it. Restore the frontal third properly. Keep medical treatment running on the hair you still have, because <a href="/hair-fall-treatment-in-gurgaon">slowing ongoing hair fall</a> reduces what the donor is later asked to replace. Reassess at ten to twelve months, when the first result can honestly be judged, then decide whether a second session goes to the mid-scalp, the crown, or nowhere.</p>
 
 <p>This is slower, and it is a less satisfying thing to be told. It is also the only approach that accounts for the fact that your loss is still moving, which <a href="/blog/is-a-hair-transplant-permanent">a transplant does not halt</a>. Two staged procedures do add up to more than one session, and <a href="/hair-transplant-cost-in-gurgaon">how hair transplant cost is worked out</a> covers that.</p>
 
@@ -109,3 +107,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>The technique matters less here than the budget does. <a href="/fue-hair-transplant-in-gurgaon">Follicular unit extraction</a> and its variants change how grafts are harvested and placed, not how many exist. If a plan does not begin from what the donor can safely give, the method it names is decoration on an arithmetic problem, and <a href="/hair-transplant-in-gurgaon">a doctor-led assessment</a> should be willing to show you the working.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
+
+<h2 id="donor-area-faqs">Donor area FAQs</h2>
+
+<?= faq_list($postFaqs) ?>

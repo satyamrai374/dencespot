@@ -14,11 +14,11 @@ $postDescription = 'What the published evidence on PRP for hair loss actually su
  */
 $postFaqs = [
     ['q' => 'Does PRP hurt, and can you work the same day?',
-     'a' => 'The scalp injections sting, and most of the discomfort comes from the injection itself rather than from the blood draw. A topical anaesthetic or a cooling device reduces it. <a href="/blog/does-prp-have-side-effects">Tenderness and mild swelling for a day</a> are common. Most people return to normal work the same day, though heavy training and alcohol are usually deferred for twenty-four hours.'],
+     'a' => 'The scalp injections sting, and most of the discomfort comes from the injection itself rather than from the blood draw. A topical anaesthetic or a cooling device reduces it. Tenderness and mild swelling for a day are common. Most people return to normal work the same day, though heavy training and alcohol are usually deferred for twenty-four hours.'],
     ['q' => 'Is there a blood test I should have before starting PRP?',
      'a' => 'A basic screen is reasonable, because thyroid disease, iron deficiency and other treatable causes change the diagnosis rather than just the treatment plan. Starting injections while an untreated deficiency is driving the shedding wastes both the sessions and the months. See <a href="/blog/blood-tests-for-hair-fall">which blood tests are worth doing</a>.'],
     ['q' => 'Can PRP be done after a hair transplant?',
-     'a' => 'It is sometimes offered around a transplant, usually with the aim of supporting the native hair surrounding the grafted area rather than the grafts themselves, since transplanted follicles are generally resistant to the process behind pattern loss. If it is offered to you, ask which hair it is meant to help and how that will be measured over the first year.'],
+     'a' => 'It is sometimes offered around a transplant, usually with the aim of supporting the native hair surrounding the grafted area rather than the grafts themselves, since grafted follicles are permanent regardless. If it is offered to you, ask which hair it is meant to help and how that will be measured over the first year.'],
     ['q' => 'Who should not have PRP?',
      'a' => 'It is generally avoided in active scalp infection, in bleeding or platelet disorders, on anticoagulant therapy without advice, in some cancers, and during pregnancy. It is also the wrong treatment when the diagnosis is a scarring alopecia. That is a decision for examination, not for a form — <a href="/contact">ask the clinic directly</a> if any of these apply.'],
     ['q' => 'How much does a course of PRP cost in Gurgaon?',
@@ -26,18 +26,16 @@ $postFaqs = [
     ['q' => 'Does PRP help alopecia areata or telogen effluvium?',
      'a' => 'Those are different conditions with different treatments, and PRP is not standard care for either. Alopecia areata is usually managed with immunomodulating therapy, and telogen effluvium generally settles once the trigger is corrected. There is a plain summary of the latter on <a href="https://dermnetnz.org/topics/telogen-effluvium" rel="noopener nofollow" target="_blank">DermNet</a>.'],
 ];
-$postFaqId = 'prp-for-hair-loss-faqs';
-$postFaqHeading = 'PRP for hair loss FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
-<p>Platelet-rich plasma is now widely offered for hair loss in India. It is a reasonable treatment for a narrow group of people and unlikely to help many others. What the evidence supports is less exciting than the way it is often described: an adjunct, with evidence that is real but modest, that has to be repeated indefinitely.</p>
+<p>Platelet-rich plasma has become the default upsell in Indian hair clinics, which is unfortunate, because it is a reasonable treatment for a narrow group of people and largely wasted money for everyone else. The honest version is less exciting than the brochure: an adjunct, with evidence that is real but modest, that has to be repeated indefinitely.</p>
 
 <h2 id="what-prp-is-and-what-it-is-meant-to-do">What PRP is, and what it is meant to do</h2>
 
 <p>Your blood is drawn, spun in a centrifuge to separate the plasma fraction carrying a high concentration of platelets, and that concentrate is injected into the thinning scalp. Platelets carry growth factors, and the proposal is that delivering them around miniaturising follicles pushes those follicles back towards a longer growth phase, improving the calibre of hairs still present.</p>
 
-<p>That is a mechanism, and a plausible one. The distance between a plausible mechanism and a proven clinical benefit is where most of the marketing lives. PRP does nothing to the androgen-driven process that drives <a href="/blog/norwood-scale-explained">pattern loss through the Norwood stages</a>, and it creates no follicles where the follicle has gone. At most it improves hair that is still growing, and it has to keep doing so to keep the effect.</p>
+<p>That is a mechanism, and a plausible one. The distance between a plausible mechanism and a proven clinical benefit is where most of the marketing lives. PRP does nothing to the androgen-driven process that drives <a href="/blog/norwood-scale-explained">pattern loss through the Norwood stages</a>, and it creates no follicles where the follicle has gone. At best it improves hair that is still growing, and it has to keep doing so to keep the effect.</p>
 
 <h2 id="what-the-published-reviews-report">What the published reviews report</h2>
 
@@ -57,7 +55,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <li><strong>How the outcome was measured</strong> — a photographic impression, a global assessment score, or a machine count of density in a tattooed reference area. Those are not comparable.</li>
 </ul>
 
-<p>So when a clinic quotes a figure for how well PRP works, ask which protocol it came from and whether that is the protocol you are being offered. A figure from one study's protocol does not transfer to a different one, which is why <a href="/blog/hair-transplant-promises-and-success-rates">quoted success rates deserve scepticism</a> across this field.</p>
+<p>So when a clinic quotes a figure for how well PRP works, ask which protocol it came from and whether that is the protocol you are being sold. Usually the number has been borrowed, which is why <a href="/blog/hair-transplant-guarantees-and-success-rates">quoted success rates deserve scepticism</a> across this field.</p>
 
 <h2 id="who-tends-to-respond">Who tends to respond, and who does not</h2>
 
@@ -75,7 +73,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="how-sessions-are-usually-spaced">How sessions are usually spaced</h2>
 
-<p>Described here as usual practice, not as a promise. Most protocols run an induction phase of <a href="/blog/how-many-prp-sessions-are-needed-for-hair">roughly three to four sessions about four weeks apart</a>, then a formal review, then maintenance every few months if there has been a response worth maintaining. The spacing is convention, not rule.</p>
+<p>Described here as usual practice, not as a promise. Most protocols run an induction phase of roughly three to four sessions about four weeks apart, then a formal review, then maintenance every few months if there has been a response worth maintaining. The spacing is convention, not rule.</p>
 
 <p>Two things follow. Nothing can be judged early: hair cycles slowly, a change in shaft calibre is not visible within a month, and a course sold on a visible difference after the first session is being sold on something other than biology. And the review point matters more than the sessions do — a course with no scheduled assessment built into it is a subscription rather than a treatment plan, which is one of several things <a href="/blog/what-to-ask-before-prp-in-gurgaon">worth asking before you pay for a course</a>.</p>
 
@@ -87,7 +85,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <blockquote>The useful question is not whether PRP works. It is whether it works enough, for you, to be worth repeating indefinitely — and that is a question about your examination findings and your budget, not about the treatment in the abstract.</blockquote>
 
-<p>PRP is not a one-off fix. Ask what happens when you stop; the answer should be the paragraph above.</p>
+<p>Anyone presenting PRP as a one-off fix has either misunderstood it or is relying on you to. Ask what happens when you stop; the answer should be the paragraph above.</p>
 
 <h2 id="prp-alongside-medical-therapy">PRP alongside medical therapy</h2>
 
@@ -107,7 +105,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <ol>
   <li><strong>Standardised photographs.</strong> Same lighting, distance, angle and hair length, dry hair, taken before the first session and repeated at fixed intervals. <a href="/blog/how-to-read-before-and-after-photos">Reading before-and-after photographs properly</a> explains what makes a comparison honest.</li>
-  <li><strong>Fixed review intervals,</strong> agreed beforehand rather than whenever you feel discouraged. Three months, six months, twelve months.</li>
+  <li><strong>Fixed review intervals,</strong> agreed in advance rather than whenever you feel discouraged. Three months, six months, twelve months.</li>
   <li><strong>Trichoscopy at the same marked site,</strong> so calibre and density are compared within one defined area, not by overall impression.</li>
   <li><strong>Tracking shedding rather than appearance</strong> early on. A reduction in daily shedding often precedes any visible change in density.</li>
 </ol>
@@ -116,7 +114,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="when-to-stop-paying-for-sessions">When it is reasonable to stop paying for sessions</h2>
 
-<p>Stopping is a legitimate decision, and it is worth stating plainly when it makes sense. It is reasonable to stop when:</p>
+<p>Few clinics will say this, so here it is plainly. It is reasonable to stop when:</p>
 
 <ul>
   <li><strong>A full induction course is complete and standardised photographs show no change.</strong> Not casual photographs — the fixed ones. If a proper comparison at six months shows nothing, continuing is optimism, not treatment.</li>
@@ -127,6 +125,10 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>The corollary is that continuing is reasonable when there has been a documented improvement you want to keep and you accept that keeping it means maintaining it. That is a rational purchase. Buying it in the belief that it is permanent is not.</p>
 
-<p>Which situation you are in is a question for examination, not for an article. A consultation with <a href="/dr-nyra">a dermatologist who examines the scalp</a> establishes the diagnosis first, then whether follicles remain to be stimulated, and only then whether <a href="/hair-prp-treatment-in-gurgaon">PRP at our Gurgaon clinic</a> belongs in the plan. Often the answer is that <a href="/hair-fall-treatment-in-gurgaon">a medical hair fall assessment</a> is all you need. Consultations are available at both our clinics, in Sector 39, Gurugram and in Rohini, Delhi.</p>
+<p>Which situation you are in is a question for examination, not for an article. A consultation with <a href="/dr-nyra">a dermatologist who examines the scalp</a> establishes the diagnosis first, then whether follicles remain to be stimulated, and only then whether <a href="/hair-prp-treatment-in-gurgaon">PRP at our Gurgaon clinic</a> belongs in the plan. Often the answer is that <a href="/hair-fall-treatment-in-gurgaon">a medical hair fall assessment</a> is all you need.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
+
+<h2 id="prp-for-hair-loss-faqs">PRP for hair loss FAQs</h2>
+
+<?= faq_list($postFaqs) ?>

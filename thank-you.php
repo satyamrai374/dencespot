@@ -12,7 +12,7 @@ require_once __DIR__ . '/includes/config.php';
 
 $page = [
     'title'       => 'Thank you — DenceSpot Clinic',
-    'description' => 'Your enquiry has reached DenceSpot Clinic. The clinic will call you back during opening hours to arrange a consultation.',
+    'description' => 'Your enquiry has reached DenceSpot Clinic, Sector 39 Gurugram. We will call you back to arrange a consultation with Dr. Nyra, usually the same working day.',
     'url'         => '/thank-you',
     'crumbs'      => [],
     'schema'      => [],
@@ -45,12 +45,12 @@ $ref = isset($_GET['ref']) ? preg_replace('/[^a-z0-9\- ]/i', '', (string) $_GET[
       <ul class="stack-sm mt-3">
         <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s"><b>We call you back</b> during clinic hours — <?= e(HOURS_DISPLAY) ?>. Enquiries sent overnight are answered the next working morning.</span></li>
         <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s"><b>We agree a time</b> that works, and tell you what to bring — your medical history and a list of any current medicines.</span></li>
-        <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s"><b>You see the doctor</b> at the clinic you chose — Sector 39, Gurugram or Rohini, Delhi — for an examination and a written plan. There is no obligation to book a date on the day.</span></li>
+        <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s"><b>You see the doctor</b> for an examination and a written plan. There is no obligation to book a date on the day.</span></li>
       </ul>
     </div>
 
     <div class="note mt-4">
-      <p class="body-s"><b>Prefer WhatsApp?</b> Message us on WhatsApp and you will usually get a faster reply than a call-back — you can send photos at the same time.</p>
+      <p class="body-s"><b>In a hurry?</b> Message us on WhatsApp and you will usually get a faster reply than a call-back — you can send photos at the same time.</p>
       <div class="btn-row mt-3">
         <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Message the clinic</a>
         <a class="btn btn--outline" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= icon('phone', 17) ?> <?= e(PHONE_DISPLAY) ?></a>
@@ -65,10 +65,10 @@ $ref = isset($_GET['ref']) ? preg_replace('/[^a-z0-9\- ]/i', '', (string) $_GET[
           <p class="h4 mt-2">What it costs</p>
           <p class="meta mt-1">The factors that move the number, and what a written estimate covers.</p>
         </a>
-        <a class="card" href="/blog/hair-transplant-growth-timeline-month-by-month" style="color:inherit;text-decoration:none">
+        <a class="card" href="/hair-transplant-results-gurgaon" style="color:inherit;text-decoration:none">
           <?= icon('chart', 22, 'var(--accent-deep)') ?>
-          <p class="h4 mt-2">Growth timeline</p>
-          <p class="meta mt-1">What typically happens month by month after a hair transplant, and when a result can be judged.</p>
+          <p class="h4 mt-2">Real results</p>
+          <p class="meta mt-1">Consented before and after photographs, shot at the same angle and lighting.</p>
         </a>
         <a class="card" href="/faqs" style="color:inherit;text-decoration:none">
           <?= icon('chat', 22, 'var(--accent-deep)') ?>

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'natural-hairline-design-explained';
-$postDescription = 'Why a transplanted hairline looks natural or obvious: position for your age, irregularity, single-hair grafts at the front edge and the angle of exit.';
+$postDescription = 'Why a transplanted hairline reads as natural or as obvious: position for your age, macro and micro irregularity, single-hair grafts at the leading edge, and angle of exit.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -22,12 +22,10 @@ $postFaqs = [
     ['q' => 'Should I ask for a widow\'s peak to be recreated?',
      'a' => 'A slight central point can be built in, and it suits some faces because it breaks up the symmetry of the line. Be cautious with a pronounced one: it is a strong feature, it draws the eye to the exact spot where design errors show, and it is not easy to soften afterwards. Raise it while the line is still a drawing.'],
     ['q' => 'Who should actually draw the hairline, the doctor or a technician?',
-     'a' => 'The design is a surgical decision and should be made by the doctor who will perform your procedure, with you sitting up and looking in a mirror. If the line is drawn by someone you will not see again on the day, ask who is accountable for it.'],
+     'a' => 'The design is a surgical decision and should be made by the doctor who will perform your procedure, with you sitting up and looking in a mirror. If the line is drawn by someone you will not see again on the day, ask who is accountable for it. <a href="/dr-nyra">Dr. Nyra</a> assesses and designs personally at DenceSpot.'],
     ['q' => 'Does the hairline need redesigning if I have a second session later?',
      'a' => 'Not usually redesigned, but it is reviewed. A second session normally works behind the existing line, adding density or following loss that has moved further back. If the original line was placed sensibly for your age, it should still suit you. If it was placed too low, the second session is where that becomes a repair problem rather than a top-up.'],
 ];
-$postFaqId = 'hairline-design-faqs';
-$postFaqHeading = 'Hairline design FAQs';
 require __DIR__ . '/../includes/blog-header.php';
 ?>
 
@@ -67,7 +65,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Follicular units come out of the donor area naturally containing one, two, three or occasionally four hairs. Sorting them under magnification and deciding where each type goes is a large part of the work, and none of it appears on a quotation.</p>
 
-<p>The front edge takes single-hair grafts only, placed irregularly. Two-hair units build the density behind them, and three-hair units go further back where they add bulk without being individually visible. A two-hair graft in the front row costs nothing on the day and shows for as long as the hair grows, because two hairs emerging from one point read as a tuft. This grading applies whether placement uses pre-made channels or an implanter pen, which is one reason <a href="/blog/fue-vs-dhi-hair-transplant">the FUE and DHI comparison</a> matters less than patients expect.</p>
+<p>The leading edge takes single-hair grafts only, placed irregularly. Two-hair units build the density behind them, and three-hair units go further back where they add bulk without being individually visible. A two-hair graft in the front row costs nothing on the day and shows for as long as the hair grows, because two hairs emerging from one point read as a tuft. This grading applies whether placement uses pre-made channels or an implanter pen, which is one reason <a href="/blog/fue-vs-dhi-hair-transplant">the FUE and DHI comparison</a> matters less than patients expect.</p>
 
 <h2 id="angle-and-direction">Angle and direction of exit</h2>
 
@@ -79,7 +77,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Design errors are not equally visible on everybody. The higher the contrast between hair and scalp colour, and the coarser the shaft, the more each hair reads as a separate object. Fine, light hair on fair skin is forgiving. Thick black hair on medium or deep brown skin is not, and that is the combination most patients in Gurgaon have.</p>
 
-<p>Coarse hair is an advantage in coverage and a liability at the front edge, where one thick shaft at the wrong angle is conspicuous. That argues for a wider transition zone, more single-hair grafts spent on it, and sometimes finer hairs from the lower nape in the very front row. It is also why any photograph you are shown is only relevant if it shows hair like yours, photographed properly, a skill set out in <a href="/blog/how-to-read-before-and-after-photos">how to read a before-and-after photograph</a>.</p>
+<p>Coarse hair is an advantage in coverage and a liability at the leading edge, where one thick shaft at the wrong angle is conspicuous. That argues for a wider transition zone, more single-hair grafts spent on it, and sometimes finer hairs from the lower nape in the very front row. It is also why you should judge any clinic on cases with hair like yours, photographed properly, a skill set out in <a href="/blog/how-to-read-before-and-after-photos">how to read a before-and-after photograph</a> and worth applying to the <a href="/hair-transplant-results-gurgaon">documented results from this clinic</a> as strictly as to anyone else's.</p>
 
 <?= blog_cta(
     'Where would a sensible hairline actually sit on your face?',
@@ -98,14 +96,18 @@ require __DIR__ . '/../includes/blog-header.php';
 <ul>
   <li><strong>Sit upright in front of a mirror with your eyebrows relaxed.</strong> A line drawn while you are reclined and raising your brows sits differently once you stand up.</li>
   <li><strong>Photograph it yourself</strong> — front on, both forty-five degree angles, and the top of your head — in daylight, then review those images away from the clinic.</li>
-  <li><strong>Check that the line is not a smooth arc</strong> and not exactly symmetrical. Ask where the transition zone begins and how deep it is.</li>
+  <li><strong>Check that the line is not a smooth arc</strong> and not perfectly symmetrical. Ask where the transition zone begins and how deep it is.</li>
   <li><strong>Ask where this line sits at fifty</strong> if your loss continues. The answer should acknowledge that <a href="/blog/is-a-hair-transplant-permanent">loss continues around transplanted hair</a>.</li>
   <li><strong>Ask which grafts go in the front row</strong> and how they are sorted. Anyone who designs hairlines answers that quickly and specifically.</li>
-  <li><strong>If you are shown photographs of other people,</strong> check that they have your hair calibre and skin tone and were taken at ten to twelve months, not at three.</li>
+  <li><strong>Ask to see cases with your hair calibre and skin tone</strong> at ten to twelve months, not at three.</li>
 </ul>
 
 <p>Then take a week. A line you still find acceptable in your own photographs seven days later is a reasonable line; one that only looked right in the consultation room is worth revisiting. If the honest answer is that surgery is premature or unsuitable, <a href="/blog/who-should-not-have-a-hair-transplant">that conversation</a> is a better outcome than a well-drawn line on the wrong candidate.</p>
 
-<p>Design judgement is the part of <a href="/hair-transplant-in-gurgaon">hair restoration surgery in Gurgaon</a> that no price comparison captures, and it is the part you live with longest. If you want a line drawn and discussed before committing to anything, <a href="/book-consultation" data-book data-track="book">arrange a consultation</a>.</p>
+<p>Design judgement is the part of <a href="/hair-transplant-in-gurgaon">hair restoration surgery in Gurgaon</a> that no price comparison captures, and it is the part you live with longest. If you want a line drawn and discussed before committing to anything, <a href="/book-consultation">arrange a consultation with the doctor</a> who would carry out the work.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>
+
+<h2 id="hairline-design-faqs">Hairline design FAQs</h2>
+
+<?= faq_list($postFaqs) ?>

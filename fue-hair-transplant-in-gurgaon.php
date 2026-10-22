@@ -19,21 +19,6 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
 
-// "Is FUE right for you?" reference table: [situation, usual answer, reason].
-// General patient education only; the examination decides.
-$fueFitRows = [
-    ['Recession at the front or temples that has slowed down', 'Often suits', 'The line can be planned against a pattern that is no longer changing quickly, with grafts held back for later loss.'],
-    ['Loss that is still speeding up, often in the early twenties', 'Usually not yet', 'Medical treatment is tried first, so grafts are not placed in front of loss that is still moving.'],
-    ['Dense hair at the back and sides', 'Often suits', 'There is room to cover the area that matters most to you and still keep a reserve.'],
-    ['Sparse hair at the back and sides', 'Often unsuitable', 'Each extra graft thins the donor further and makes the extraction dots easier to see; donor hair spent cannot be replaced.'],
-    ['Thinning spread across the whole scalp, donor included', 'Usually unsuitable', 'Hair taken from a thinning donor tends to keep thinning after it is moved, so the cause is looked for first.'],
-    ['Hair at the back worn short or clipped', 'Often suits', 'Dot scars spread evenly are hard to pick out at short lengths, where a strip line would show.'],
-    ['The back shaved down to the skin', 'Discuss first', 'Pale dots can show on bare skin; how noticeable they are depends on how many grafts are taken and how widely they are spread.'],
-    ['Crown and mid-scalp as well as the front', 'Possible, often staged', 'FUE places grafts efficiently over large areas, but the donor sets the ceiling, so two procedures are common.'],
-    ['A strip scar from an earlier FUT procedure', 'Often possible', 'The donor around the line is examined, and grafts can sometimes be set into the scar itself to soften it.'],
-    ['Patchy loss from alopecia areata, or a cause such as low iron not yet treated', 'Not yet', 'The cause is diagnosed and treated first, and surgery is reconsidered once things have settled.'],
-];
-
 $faqs = [
     ['q' => 'What is an FUE hair transplant?',
      'a' => 'A procedure in which follicular units — natural groupings of one to four hairs — are extracted individually from the donor area with a fine punch and placed into thinning or bald areas at the angle and direction the surrounding hair grows. No strip of skin is removed, so there is no linear scar.'],
@@ -50,7 +35,7 @@ $faqs = [
     ['q' => 'When will transplanted hair start growing?',
      'a' => 'Transplanted hairs commonly shed within the first weeks while the follicles remain in place. New growth usually begins around three to four months, with a fuller picture at roughly ten to twelve months. Growth is uneven early on, which is normal.'],
     ['q' => 'Is FUE permanent?',
-     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist. Surrounding non-transplanted hair can continue to thin with age, however, which is why a long-term plan and ongoing medical treatment matter. No clinic can promise a specific density or a permanent outcome.'],
+     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist. Surrounding non-transplanted hair can continue to thin with age, however, which is why a long-term plan and ongoing medical treatment matter. No clinic can guarantee a specific density or a permanent outcome.'],
     ['q' => 'What is over-harvesting, and why does it matter?',
      'a' => 'Taking more grafts from the donor than it can spare, or taking them from too concentrated an area. The donor thins visibly, extraction dots become obvious, and there is no way to reverse it — you cannot put donor hair back. It is the reason a graft number should never be inflated to win a quote.'],
     ['q' => 'FUE or DHI — which is better?',
@@ -72,11 +57,10 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'FUE Hair Transplant in Gurgaon: Process, Recovery & Cost',
-    'description' => 'FUE hair transplant in Gurgaon: who it suits, how grafts are taken one at a time, recovery from week one to month twelve, and what moves the cost.',
+    'title'       => 'FUE Hair Transplant in Gurgaon | DenceSpot Clinic',
+    'description' => 'Doctor-performed FUE hair transplant in Gurgaon. Units extracted one at a time, no linear scar, and the donor area mapped before any graft count is quoted.',
     'url'         => '/fue-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
-    'preload_image' => '/assets/img/services/svc-procedure-768.webp',
     'schema'      => [
         schema_clinic(),
         schema_physician(),
@@ -89,7 +73,7 @@ $page = [
             'howPerformed'  => 'Individual follicular units are extracted from the donor area of the scalp with a fine punch, sorted and trimmed under magnification, and placed into recipient sites prepared in the planned direction, angle and density across the thinning zones. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and donor density, review of medication and blood-thinning agents, blood investigations, photographic mapping and a hairline design agreed with the patient before the procedure date.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and cannot be promised.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and are not guaranteed.',
         ]),
         schema_faq('/fue-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -107,7 +91,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">FUE takes follicular units out of the donor area one at a time with a fine punch, so there is no strip and no linear scar. It is the technique most pattern hair loss is treated with. What decides whether it works for you is not the technique — it is how much your donor area can safely give.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/book-consultation" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 
@@ -120,17 +104,16 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-procedure-768.webp" srcset="/assets/img/services/svc-procedure-512.webp 512w, /assets/img/services/svc-procedure-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: sterile hair-restoration instruments, fine forceps and punch tips, laid out on a green surgical tray" width="768" height="960" loading="eager" fetchpriority="high">
-          <?= hp_ai_chip('AI-generated illustration') ?>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="hero__badge-card">
+          <p class="eyebrow">Performed &amp; reviewed by</p>
+          <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
+          <p class="body-s mt-1"><?= e(doctor_credit()) ?></p>
         </div>
-        <?= hero_review_badge() ?>
       </div>
     </div>
   </div>
 </section>
-
-<?= lead_strip() ?>
 
 <section class="trust">
   <div class="wrap">
@@ -144,25 +127,34 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
-    'eyebrow' => 'The basics, plainly',
-    'title'   => 'What Is an FUE Hair Transplant?',
-    'id'      => 'what-is',
-    'tone'    => 'white',
-    'html'    => '<p>FUE stands for follicular unit extraction. Hair grows in natural groupings of one to four hairs, called follicular units, and in FUE each unit is removed from the donor area individually with a punch typically well under a millimetre across. Every unit leaves a tiny round opening that heals as a pale dot rather than a line.</p>'
-               . '<p>The units are sorted under magnification, kept in a holding solution and placed into recipient sites made in the direction and angle the surrounding hair already grows. Once healed they behave like the hair they came from — washed, cut and styled normally. See <a href="/dhi-hair-transplant-in-gurgaon">how DHI differs</a>.</p>'
-               . '<p>The donor area is the whole story. Hair at the back and sides generally resists the hormonal process behind pattern loss, but it is a finite supply that has to last your lifetime, and taking too much thins the donor visibly in a way that cannot be undone. Two people with identical-looking recession can have very different donor density, so nothing sensible can be quoted from a photograph.</p>',
-    'points'  => [
-        'FUE moves your own donor hair; it does not create new hair',
-        'Donor supply, not technique, sets the ceiling on what is achievable',
-        'The supply is spent on the areas that matter most to you, in the order the loss progresses',
-    ],
-    'link'    => ['url' => '/hair-transplant-in-gurgaon', 'label' => 'Hair transplant overview'],
-]) ?>
+<section class="section section--canvas" id="what-is">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">The basics, plainly</p>
+        <h2 class="h2 mt-2">What Is an FUE Hair Transplant?</h2>
+        <p class="body-l mt-3 measure">FUE stands for follicular unit extraction. Hair does not grow as single strands but in natural groupings of one to four hairs, called follicular units. In FUE, each of those units is removed from the donor area individually, using a punch typically well under a millimetre across, and every unit leaves a tiny round opening that heals as a pale dot rather than a line.</p>
+        <p class="body-l mt-3 measure">Those units are then sorted under magnification, kept in a holding solution, and placed into recipient sites made across the thinning area in the direction and angle the surrounding hair already grows. Once healed they behave exactly like the hair they came from — washed, cut and styled normally.</p>
+        <p class="body-l mt-3 measure">The donor area is the whole story. Hair at the back and sides of the scalp is generally resistant to the hormonal process behind pattern loss, which is why it is used, but it is a finite supply that has to last your lifetime. Take too much and the donor thins visibly, which cannot be undone. A responsible plan spends that supply across the areas that matter most to you, in the order that makes sense as the loss progresses.</p>
+        <p class="body-l mt-3 measure">This is why nothing sensible can be quoted from a photograph. Two people with identical-looking recession can have completely different donor density, and the plans that follow are not comparable.</p>
 
-<section class="section section--canvas" id="candidacy">
+        <div class="btn-row mt-5">
+          <a class="btn btn--ghost" href="/hair-transplant-in-gurgaon">Hair transplant overview</a>
+          <a class="btn btn--ghost" href="/dhi-hair-transplant-in-gurgaon">How DHI differs</a>
+        </div>
+      </div>
+      <div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
+        <div class="card card--tint mt-4">
+          <p class="eyebrow">In one line</p>
+          <p class="body mt-2">FUE moves your own permanent hair; it does not create new hair. Donor supply, not technique, sets the ceiling on what is achievable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="candidacy">
   <div class="wrap">
     <div class="measure">
       <p class="eyebrow">Suitability</p>
@@ -177,76 +169,115 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('pencil', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Repair and refinement</h3><p class="body-s mt-2">Softening a hairline that was placed too straight or too low elsewhere, or filling gaps left by an earlier procedure.</p></div>
       <div class="card"><?= icon('doc', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Stable, staged pattern loss</h3><p class="body-s mt-2">Loss that has settled into a recognisable pattern, in someone who understands that surrounding hair keeps thinning.</p></div>
     </div>
-
-    <div class="measure mt-6">
-      <h3 class="h3" id="is-fue-right">Is FUE Right for You? Situation by Situation</h3>
-      <p class="body mt-3">Most people fit one of a handful of situations. Find the one closest to yours as a starting point; the answer at your assessment can differ once your donor area has been measured.</p>
-    </div>
-    <div class="card mt-5" style="padding:0;overflow:hidden">
-      <div class="table-scroll">
-        <table class="data data--fit">
-          <caption class="sr-only">Common situations and whether FUE usually suits each one, with the reason — a general guide, not a diagnosis</caption>
-          <thead><tr><th scope="col">Your situation</th><th scope="col">FUE: the usual answer</th></tr></thead>
-          <tbody>
-            <?php foreach ($fueFitRows as $r): ?>
-            <tr><th scope="row" style="white-space:normal;width:38%"><?= e($r[0]) ?></th><td><b style="color:var(--ink)"><?= e($r[1]) ?>.</b> <?= e($r[2]) ?></td></tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <p class="body-s mt-4 measure">If the answer is “not yet”, <a href="/hair-fall-treatment-in-gurgaon">hair fall treatment in Gurgaon</a> is usually the place to start, and <a href="/blog/who-should-not-have-a-hair-transplant">who should not have a hair transplant</a> explains the reasoning in more detail.</p>
   </div>
 </section>
 
-<?= lp_split([
-    'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles and their roots',
-    'eyebrow' => 'Read this before comparing quotes',
-    'title'   => 'A Graft Is Not a Hair — and That Is Where Quotes Go Wrong',
-    'id'      => 'grafts',
-    'reverse' => true,
-    'tone'    => 'white',
-    'html'    => '<p>A <b>graft</b> is one follicular unit, a natural grouping of one to four hairs. It is what gets extracted, what gets placed, and the unit almost every clinic prices in. A <b>hair</b> is a single strand.</p>'
-               . '<p>Two thousand grafts might carry roughly 4,000 to 5,000 hairs depending on the donor, which is why some clinics quote hair counts instead. The number looks bigger; the transplant is the same size. This one distinction explains most of the price confusion in the Gurgaon market.</p>'
-               . '<p>The cheapest per-graft rate applied to an inflated graft count is more expensive than an honest quote, and it costs donor hair you cannot get back. Three questions make quotes comparable, at any clinic, including this one:</p>',
-    'points'  => [
-        '“Grafts or hairs?” If one clinic quotes 4,500 and another 2,000, they may be describing the same procedure',
-        '“How was that count arrived at?” It should come from a zone-by-zone map of your scalp; a round number offered over the phone is a sales figure, not a plan',
-        '“What is left for later?” Pattern loss continues, and a plan that empties the donor now leaves nothing for the recession you will have in ten years',
-    ],
-]) ?>
+<section class="section section--canvas" id="grafts">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">Read this before comparing quotes</p>
+      <h2 class="h2 mt-2">A Graft Is Not a Hair — and That Is Where Quotes Go Wrong</h2>
+      <p class="body mt-3">This one distinction explains most of the price confusion in the Gurgaon market. It is worth two minutes.</p>
+    </div>
+    <div class="grid grid--2 mt-6">
+      <div class="card card--pad-lg">
+        <h3 class="h3">Graft</h3>
+        <p class="body mt-3">One follicular unit — a natural grouping that contains anywhere from one to four hairs. It is what gets extracted and what gets placed. It is also the unit almost every clinic prices in.</p>
+      </div>
+      <div class="card card--pad-lg">
+        <h3 class="h3">Hair</h3>
+        <p class="body mt-3">A single strand. Two thousand grafts might carry anywhere from roughly 4,000 to 5,000 hairs depending on the donor — which is why some clinics quote hair counts instead. The number looks bigger. The transplant is the same size.</p>
+      </div>
+    </div>
+    <div class="card card--ink mt-4">
+      <h3 class="h3">Three questions that make quotes comparable</h3>
+      <div class="grid grid--3 mt-4">
+        <div>
+          <p class="h4">&ldquo;Grafts or hairs?&rdquo;</p>
+          <p class="body-s mt-2">If one clinic quotes 4,500 and another 2,000, they may be describing the same procedure. Always ask which unit the number is in.</p>
+        </div>
+        <div>
+          <p class="h4">&ldquo;How was that count arrived at?&rdquo;</p>
+          <p class="body-s mt-2">A count should come from a zone-by-zone map of your scalp. A round number offered over the phone is a sales figure, not a plan.</p>
+        </div>
+        <div>
+          <p class="h4">&ldquo;What is left for later?&rdquo;</p>
+          <p class="body-s mt-2">Pattern loss continues. A plan that empties the donor now leaves nothing for the recession you will have in ten years.</p>
+        </div>
+      </div>
+    </div>
+    <p class="body-s mt-4 measure">The cheapest per-graft rate applied to an inflated graft count is more expensive than an honest quote, and it costs donor hair you cannot get back. This is the single most useful thing to understand before you speak to any clinic — including this one.</p>
+  </div>
+</section>
 
-<?= lp_highlights([
-    'eyebrow' => 'Our approach',
-    'title'   => 'How FUE Is Planned at DenceSpot',
-    'intro'   => 'Consultations and procedures are carried out by registered medical practitioners at the clinic, and you are told beforehand exactly who does what.',
-    'tone'    => 'canvas',
-    'items'   => [
-        ['icon' => 'layers',   'title' => 'Donor budget, not a sales figure',   'text' => 'Your donor is measured and mapped, and the graft number follows from it. If what you want is not supportable, you are told at the consultation, not on the day.'],
-        ['icon' => 'eye',      'title' => 'Hairline drawn on your face',        'text' => 'Position, shape and deliberate irregularity judged against your features, your forehead and your age, not a template traced onto everyone.'],
-        ['icon' => 'follicle', 'title' => 'Extraction judged graft by graft',   'text' => 'Punch size and depth adapted to your hair calibre and skin as the session goes on, to keep transection down and the donor looking even.'],
-        ['icon' => 'doc',      'title' => 'Written estimate, scheduled reviews', 'text' => 'Graft number, technique and what is included, in writing before you book a date, with nothing added afterwards. Reviews follow at fixed points with standardised photographs.'],
-    ],
-]) ?>
+<section class="section section--white" id="why">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">Why here</p>
+      <h2 class="h2 mt-2">Why Have FUE Done Here?</h2>
+    </div>
+    <div class="grid grid--3 mt-6">
+      <div class="card card--tint"><?= icon('chart', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Donor budget, not a sales figure</h3><p class="body-s mt-2">Your donor is measured and mapped, and the graft number follows from it. If what you want is not supportable by what you have, you are told at the consultation, not on the day.</p></div>
+      <div class="card card--tint"><?= icon('hairline', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Hairline drawn on your face</h3><p class="body-s mt-2">Position, shape and deliberate irregularity judged against your features, your forehead and your age — not a template traced onto everyone.</p></div>
+      <div class="card card--tint"><?= icon('search', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Extraction judged graft by graft</h3><p class="body-s mt-2">Punch size and depth adapted to your hair calibre and skin as the session goes on, to keep transection down and the donor looking even.</p></div>
+      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Doctor-performed, not delegated</h3><p class="body-s mt-2">The doctor who assessed you does the extraction and site creation. You are told in advance exactly who does what.</p></div>
+      <div class="card card--tint"><?= icon('list', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Written, itemised estimate</h3><p class="body-s mt-2">The graft number, the technique, what is included and what is not — in writing, before you book a date. Nothing is added afterwards.</p></div>
+      <div class="card card--tint"><?= icon('star', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Reviews that are scheduled</h3><p class="body-s mt-2">Follow-up at fixed points with standardised photographs, so growth is judged against a record rather than memory.</p></div>
+    </div>
+  </div>
+</section>
 
-<?= lp_steps([
-    'eyebrow' => 'Start to finish',
-    'title'   => 'How an FUE Procedure Works',
-    'id'      => 'procedure',
-    'intro'   => 'A day case, start to finish. Larger sessions run through most of the day with proper breaks.',
-    'tone'    => 'white',
-    'steps'   => [
-        ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                    'title' => 'Consultation and donor exam', 'text' => 'History, medication review and what you want the result to do. Density, calibre and laxity are measured, the pattern staged and baseline photographs taken.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned hairline', 'title' => 'Graft map and written plan',  'text' => 'A zone-by-zone graft count and a hairline drawn on your face while you sit upright, for you to approve. The written plan covers technique, timeline, cost and what is left in reserve.'],
-        ['img' => 'step-procedure',    'alt' => 'sterile hair-restoration instruments laid out on a tray',  'title' => 'Procedure day',               'text' => 'The donor is trimmed short and numbed. Units are extracted one at a time with a punch matched to your hair, spread across the donor, sorted under magnification and placed into sites made at the angle of the surrounding hair.'],
-        ['img' => 'step-followup',     'alt' => 'a desk calendar with review dates circled',               'title' => 'First week and growth reviews', 'text' => 'Home the same day with medication and written aftercare. Washing is taught in person, crusting settles, and shedding, regrowth and density are tracked photographically to twelve months.'],
-    ],
-]) ?>
+<section class="section section--ink" id="journey">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">Start to finish</p>
+      <h2 class="h2 mt-2">Your FUE Journey</h2>
+      <p class="body mt-3">Seven stages, in the order you will experience them.</p>
+    </div>
+    <div class="journey mt-6">
+      <div class="card card--ink"><span class="journey__num">1</span><h3 class="h4 mt-2">Consultation</h3><p class="body-s mt-2">History, medication review, and what you actually want the result to do.</p></div>
+      <div class="card card--ink"><span class="journey__num">2</span><h3 class="h4 mt-2">Scalp &amp; donor exam</h3><p class="body-s mt-2">Density, calibre and laxity measured; pattern staged; baseline photographs.</p></div>
+      <div class="card card--ink"><span class="journey__num">3</span><h3 class="h4 mt-2">Graft mapping</h3><p class="body-s mt-2">Zone-by-zone count and a hairline drawn on your face for you to approve.</p></div>
+      <div class="card card--ink"><span class="journey__num">4</span><h3 class="h4 mt-2">Written plan</h3><p class="body-s mt-2">Technique, graft number, timeline, cost and what is left in reserve.</p></div>
+      <div class="card card--ink"><span class="journey__num">5</span><h3 class="h4 mt-2">Procedure day</h3><p class="body-s mt-2">Local anaesthetic, extraction, site creation and placement, with breaks.</p></div>
+      <div class="card card--ink"><span class="journey__num">6</span><h3 class="h4 mt-2">First-week care</h3><p class="body-s mt-2">Washing taught in person, crusting settles, review before normal life resumes.</p></div>
+      <div class="card card--ink"><span class="journey__num">7</span><h3 class="h4 mt-2">Growth reviews</h3><p class="body-s mt-2">Shedding, regrowth and density tracked photographically to twelve months.</p></div>
+    </div>
+  </div>
+</section>
 
-<?= doctor_block(
-    'Consultations and procedures are carried out by registered medical practitioners at the clinic. The donor assessment matters more than the technique: over-harvesting is the one complication that cannot be revised.'
-) ?>
+<section class="section section--canvas" id="procedure">
+  <div class="wrap">
+    <div class="measure">
+      <p class="eyebrow">On the day</p>
+      <h2 class="h2 mt-2">How an FUE Procedure Works</h2>
+      <p class="body mt-3">A day case, start to finish. Larger sessions run through most of the day with proper breaks.</p>
+    </div>
+    <div class="split split--sidebar mt-6">
+      <div class="stack-sm">
+        <div class="step"><span class="step-num">1</span><div><h3 class="h3">Design and consent</h3><p class="body-s mt-2">The hairline is drawn while you are sitting upright, checked in a mirror, and agreed before anything else happens. Nothing is redrawn once you are lying down.</p></div></div>
+        <div class="step"><span class="step-num">2</span><div><h3 class="h3">Donor preparation</h3><p class="body-s mt-2">The donor area is trimmed to a uniform short length so the punch can follow each follicle accurately, then anaesthetised locally.</p></div></div>
+        <div class="step"><span class="step-num">3</span><div><h3 class="h3">Extraction</h3><p class="body-s mt-2">Follicular units are removed one at a time with a fine punch. Punch size is matched to your hair, and the harvest is spread across the donor so density stays even rather than patchy.</p></div></div>
+        <div class="step"><span class="step-num">4</span><div><h3 class="h3">Sorting under magnification</h3><p class="body-s mt-2">Grafts are separated by how many hairs each carries and held in solution. Single-hair units are set aside for the hairline; multi-hair units go behind, where density reads.</p></div></div>
+        <div class="step"><span class="step-num">5</span><div><h3 class="h3">Recipient sites</h3><p class="body-s mt-2">Sites are made at the angle, direction and depth the surrounding hair grows. This step, more than extraction, is what makes a result look grown rather than planted.</p></div></div>
+        <div class="step"><span class="step-num">6</span><div><h3 class="h3">Placement and discharge</h3><p class="body-s mt-2">Grafts are placed into the prepared sites, the donor is dressed, medication and written aftercare are issued, and you go home the same day.</p></div></div>
+      </div>
+      <div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/case-uttam-gurgaon.jpg" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — hairline and temple restoration, 2,400 grafts by FUE" width="800" height="600" loading="lazy"></div>
+        <div class="card card--tint mt-4">
+          <p class="eyebrow">Before the day</p>
+          <?= ticks([
+              'Bring your full medication list, including supplements.',
+              'Stop alcohol and avoid blood thinners as instructed.',
+              'Eat a proper breakfast — it is a long day.',
+              'Wear a shirt that buttons, not something pulled over the head.',
+              'Arrange a lift home if you would rather not drive.',
+          ], false) ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section section--white" id="recovery">
   <div class="wrap">
@@ -262,23 +293,18 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><span class="pill">Months 5–9</span><h3 class="h4 mt-3">Density builds</h3><p class="body-s mt-2">Coverage thickens and hair coarsens. This is the stretch where progress is easiest to see between photographs and hardest to judge in the mirror.</p></div>
       <div class="card"><span class="pill">Months 10–12</span><h3 class="h4 mt-3">The real result</h3><p class="body-s mt-2">A fair assessment of what the procedure achieved. Non-transplanted hair keeps thinning on its own schedule, so medical treatment often continues alongside.</p></div>
     </div>
-    <div class="grid grid--2 mt-5">
-      <div class="note"><p class="h4">Before the day</p><div class="mt-2"><?= ticks([
-          'Bring your full medication list, including supplements.',
-          'Stop alcohol and avoid blood thinners as instructed.',
-          'Eat a proper breakfast — it is a long day.',
-          'Wear a shirt that buttons, not something pulled over the head.',
-          'Arrange a lift home if you would rather not drive.',
-      ], false) ?></div></div>
-      <div class="note" style="display:flex;gap:16px;align-items:flex-start">
-        <?= icon('info', 20, 'var(--accent-deep)', 1.8) ?>
-        <p class="body-s">Individual recovery and growth vary. Transection, healing, donor characteristics and how closely aftercare is followed all affect the outcome. Timelines here are general patient education, not a promise of results, and no clinic can promise a specific density.</p>
-      </div>
+    <div class="note mt-5">
+      <?= icon('info', 20, 'var(--accent-deep)') ?>
+      <p class="body">Individual recovery and growth vary. Transection, healing, donor characteristics and how closely aftercare is followed all affect the outcome. Timelines here are general patient education, not a promise of results, and no clinic can guarantee a specific density.</p>
     </div>
   </div>
 </section>
 
-<section class="section section--canvas" id="cost">
+<?= doctor_block(
+    'Why the donor assessment matters more than the technique: FUE is often sold on the fact that it leaves no linear scar, which is true and largely beside the point. What determines whether you are happy in ten years is whether the donor was read correctly and spent sensibly. Over-harvesting is the one complication that cannot be revised.'
+) ?>
+
+<section class="section section--white" id="cost">
   <div class="wrap">
     <div class="split">
       <div>
@@ -294,20 +320,20 @@ require __DIR__ . '/includes/header.php';
           <div class="card"><p class="h4">Supporting treatment</p><p class="body-s mt-2">Medical therapy or PRP running alongside</p></div>
         </div>
         <p class="body-s mt-4 measure">A word of caution about &ldquo;per graft, starting from&rdquo; pricing: a low rate applied to an inflated graft count costs more than an honest quote, and the currency you overspend is donor hair. Ask any clinic how the graft number was arrived at, and what the price includes.</p>
-        <p class="body mt-3 measure">Working through the numbers first? See our full <a href="/hair-transplant-cost-in-gurgaon">breakdown of hair transplant cost in Gurgaon</a>, including what changes the per-graft rate. The <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> gives a rough range for your pattern of loss; it cannot measure your donor, which is what sets the real number.</p>
+        <p class="body mt-3 measure">Working through the numbers first? See our full <a href="/hair-transplant-cost-in-gurgaon">breakdown of hair transplant cost in Gurgaon</a>, including what changes the per-graft rate.</p>
       </div>
-      <div class="cta-band" style="display:block">
+      <div class="card card--ink card--pad-lg">
         <h3 class="h3">Get a Personalized Treatment Estimate</h3>
         <p class="body mt-3">Send photos of the front, crown and donor area on WhatsApp, or request a call back. You will get an assessment appointment — not a sales pitch.</p>
         <a class="btn btn--block btn--accent mt-5" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Send photos on WhatsApp</a>
-        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-book data-treatment="Hair transplant" data-track="book">Request an estimate by form</a>
+        <a class="btn btn--block btn--ghost mt-3" href="/book-consultation" data-track="book">Request an estimate by form</a>
         <p class="body-s mt-4">Your details are used only to arrange your consultation.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="faqs">
+<section class="section section--canvas" id="faqs">
   <div class="wrap">
     <div class="split split--sidebar">
       <div>
@@ -327,14 +353,14 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'FUE Hair Transplant at Our Gurgaon Clinic',
-    'Consultations, procedures and follow-up reviews are carried out by registered medical practitioners at our Sector 39 clinic in Gurugram.'
+    'Consultation, procedure and every follow-up happen at our Sector 39 clinic in Gurugram, with the same doctor throughout. Patients travel to us from across Gurugram and neighbouring parts of South Delhi.'
 ) ?>
 
-<?= lp_cta([
-    'eyebrow'   => 'Sector 39, Gurugram',
-    'title'     => 'Find Out What Your Donor Area Can Actually Support',
-    'text'      => 'Bring your questions and your medication list. You will get a donor assessment, an honest view of whether FUE is right for your pattern of loss, and a written plan with a mapped graft number if it is — with no pressure to book a date on the day.',
-    'treatment' => 'Hair transplant',
-]) ?>
+<?= cta_band(
+    'Find Out What Your Donor Area Can Actually Support',
+    'Bring your questions and your medication list. You will get a donor assessment, an honest view of whether FUE is right for your pattern of loss, and a written plan with a mapped graft number if it is — with no pressure to book a date on the day.',
+    'fue-hair-transplant',
+    ['FUE hair transplant', 'FUE — crown', 'FUE — hairline', 'Repair of an earlier procedure', 'Not sure — please advise']
+) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
