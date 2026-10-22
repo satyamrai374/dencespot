@@ -66,7 +66,7 @@ function sitemap_weight(string $slug): array
     if (str_starts_with($slug, 'blog/')) {
         return ['0.5', 'monthly'];
     }
-    if (in_array($slug, ['contact', 'book-consultation', 'about-us', 'dr-nyra', 'dr-rahul', 'delhi-clinic'], true)) {
+    if (in_array($slug, ['contact', 'book-consultation', 'about-us', 'gallery', 'dr-nyra', 'dr-rahul', 'delhi-clinic'], true)) {
         return ['0.8', 'weekly'];
     }
     return ['0.7', 'monthly'];

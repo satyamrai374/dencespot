@@ -62,8 +62,7 @@ RewriteRule ^hair-transplant-risks-and-side-effects/?$ /blog/hair-transplant-sid
 #     Mirrored in router.php (WITHDRAWN_REDIRECTS) for the local server.
 # ─────────────────────────────────────────────────────────────────────────────
 RewriteRule ^best-hair-transplant-clinic-in-gurgaon/?$ /how-to-choose-hair-transplant-clinic [R=301,L]
-RewriteRule ^hair-transplant-results-gurgaon/?$     /blog/hair-transplant-growth-timeline-month-by-month [R=301,L]
-RewriteRule ^gallery/?$                             /about-us [R=301,L]
+RewriteRule ^hair-transplant-results-gurgaon/?$     /gallery [R=301,L]
 RewriteRule ^patient-reviews/?$                     /about-us [R=301,L]
 RewriteRule ^patient-stories(/.*)?$                 /blog/ [R=301,L]
 RewriteRule ^new-designe/?$                         / [R=301,L]

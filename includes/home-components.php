@@ -43,6 +43,7 @@ declare(strict_types=1);
 const HOME_NAV = [
     ['label' => 'About',           'url' => '/about-us'],
     ['label' => 'Hair Transplant', 'url' => '/hair-transplant-in-gurgaon'],
+    ['label' => 'Gallery',         'url' => '/gallery'],
     ['label' => 'Other Treatments', 'children' => [
         ['label' => 'Beard Transplant',     'url' => '/beard-transplant-gurgaon'],
         ['label' => 'Eyebrow Transplant',   'url' => '/eyebrow-transplant-in-gurgaon'],
@@ -70,6 +71,7 @@ const HOME_NAV = [
     // Patient guides and the two tools (14 Oct 2026). General pages, so the
     // same menu serves both clinics; it replaces the top-level FAQs link.
     ['label' => 'Guides', 'children' => [
+        ['label' => 'Before & After Gallery',    'url' => '/gallery'],
         ['label' => 'FAQs',                      'url' => '/faqs'],
         ['label' => 'Graft Calculator',          'url' => '/hair-transplant-graft-calculator'],
         ['label' => 'Hair Loss Self-Check',      'url' => '/hair-loss-assessment'],
@@ -86,6 +88,7 @@ const HOME_NAV = [
    the default. Location pages keep HOME_NAV, adjusted by hp_nav_items(). */
 const HOME_NAV_COMMON = [
     ['label' => 'About',      'url' => '/about-us'],
+    ['label' => 'Gallery',    'url' => '/gallery'],
     ['label' => 'Treatments', 'url' => '/#treatments'],
     ['label' => 'Gurugram Clinic', 'children' => [
         ['label' => 'Gurugram Clinic (Sector 39)', 'url' => '/contact'],
@@ -112,6 +115,7 @@ const HOME_NAV_COMMON = [
     // Patient guides and the two tools (14 Oct 2026). General pages, so the
     // same menu serves both clinics; it replaces the top-level FAQs link.
     ['label' => 'Guides', 'children' => [
+        ['label' => 'Before & After Gallery',    'url' => '/gallery'],
         ['label' => 'FAQs',                      'url' => '/faqs'],
         ['label' => 'Graft Calculator',          'url' => '/hair-transplant-graft-calculator'],
         ['label' => 'Hair Loss Self-Check',      'url' => '/hair-loss-assessment'],
@@ -127,6 +131,7 @@ const HOME_FOOTER_LINKS = [
     // Named for its clinic so common pages list the two clinics side by side.
     'Gurugram, Sector 39' => [
         ['label' => 'Hair Transplant',     'url' => '/hair-transplant-in-gurgaon'],
+        ['label' => 'Before & After Gallery', 'url' => '/gallery'],
         ['label' => 'FUE Hair Transplant', 'url' => '/fue-hair-transplant-in-gurgaon'],
         ['label' => 'DHI Hair Transplant', 'url' => '/dhi-hair-transplant-in-gurgaon'],
         ['label' => 'Beard Transplant',    'url' => '/beard-transplant-gurgaon'],
@@ -140,6 +145,7 @@ const HOME_FOOTER_LINKS = [
     'Rohini, Delhi' => [
         ['label' => 'Rohini Clinic',       'url' => '/delhi-clinic'],
         ['label' => 'Hair Transplant',     'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Before & After Gallery', 'url' => '/gallery'],
         ['label' => 'Beard Transplant',    'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',  'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',      'url' => '/hair-prp-treatment-in-rohini'],
@@ -150,6 +156,7 @@ const HOME_FOOTER_LINKS = [
     ],
     'Clinic' => [
         ['label' => 'About Us',             'url' => '/about-us'],
+        ['label' => 'Before & After Gallery', 'url' => '/gallery'],
         ['label' => 'Our Doctors',          'url' => '/medical-disclaimer#doctors'],
         ['label' => 'Delhi (Rohini) Clinic', 'url' => '/delhi-clinic'],
         ['label' => 'Hair Transplant Cost', 'url' => '/hair-transplant-cost-in-gurgaon'],

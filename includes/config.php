@@ -394,15 +394,7 @@ const ELFSIGHT_REVIEWS_APP = 'd4976df7-93b9-45ec-899d-7d3934036fc5';
 
 const NAV_PRIMARY = [
     ['label' => 'About',           'url' => '/about-us'],
-    /* Oct 2026: "Gallery", "Results" and "Patient reviews" are gone from both
-       menus — those pages were before/after and review collections, which the
-       NMC Guidelines of 06.10.2026 prohibit (cl. 8.1(v), Explanation V). Their
-       URLs now 301 to compliant pages (.htaccess §1c, router.php). */
-    /*
-     * Sep 2026: the technique and cost pages were two clicks deep and linked
-     * only from their pillars. The ranking competitors carry their FUE, DHI
-     * and cost pages in sitewide navigation; so does this dropdown now.
-     */
+    ['label' => 'Gallery',         'url' => '/gallery'],
     ['label' => 'Treatments', 'url' => '#', 'children' => [
         ['label' => 'Hair Transplant',      'url' => '/hair-transplant-in-gurgaon'],
         ['label' => 'FUE Hair Transplant',  'url' => '/fue-hair-transplant-in-gurgaon'],
@@ -420,6 +412,7 @@ const NAV_FOOTER = [
     'Clinic' => [
         ['label' => 'Home',            'url' => '/'],
         ['label' => 'About the clinic','url' => '/about-us'],
+        ['label' => 'Photo Gallery',   'url' => '/gallery'],
         ['label' => 'Our doctors',     'url' => '/medical-disclaimer#doctors'],
         ['label' => 'Delhi Clinic',    'url' => '/delhi-clinic'],
         ['label' => 'Contact',         'url' => '/contact'],

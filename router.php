@@ -40,11 +40,10 @@ const COMPARISON_REDIRECTS = [
     '/hair-transplant-risks-and-side-effects' => '/blog/hair-transplant-side-effects-and-risks',
 ];
 
-// 1d. Pages withdrawn under the NMC Guidelines of 06.10.2026. Mirrors .htaccess §1c.
+// 1d. Pages withdrawn or redirected. Mirrors .htaccess §1c.
 const WITHDRAWN_REDIRECTS = [
     '/best-hair-transplant-clinic-in-gurgaon' => '/how-to-choose-hair-transplant-clinic',
-    '/hair-transplant-results-gurgaon'        => '/blog/hair-transplant-growth-timeline-month-by-month',
-    '/gallery'                                => '/about-us',
+    '/hair-transplant-results-gurgaon'        => '/gallery',
     '/patient-reviews'                        => '/about-us',
     '/patient-stories'                        => '/blog/',
     '/new-designe'                            => '/',
