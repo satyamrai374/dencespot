@@ -107,7 +107,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">White flakes on your shoulders and an itch that keeps coming back are not always plain dandruff. Psoriasis, a fungal infection or a reaction to hair dye can look much the same and need different treatment. At our Rohini clinic in North-West Delhi, a doctor examines the scalp and names the condition before suggesting any shampoo.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

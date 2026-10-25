@@ -121,7 +121,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Single hairs taken from the back of your scalp and placed one by one into brows that are thin, over-plucked or scarred. Registered medical practitioners carry out the assessment, brow design, procedure and follow-up visits at our clinic in Rohini, North-West Delhi. One thing to know first: the new hairs keep growing, so they need trimming for life.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Eyebrow transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Eyebrow transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

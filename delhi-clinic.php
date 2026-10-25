@@ -33,9 +33,10 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
 
+// /contact is the Gurugram clinic's page, so it is not this page's parent
+// (location rule, 14 Oct 2026).
 $crumbs = [
     ['name' => 'Home', 'url' => '/'],
-    ['name' => 'Our Clinics', 'url' => '/contact'],
     ['name' => 'Delhi Clinic (Rohini)'],
 ];
 
@@ -138,7 +139,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A doctor-led skin and hair clinic in Rohini, serving North-West Delhi, Pitampura and Delhi NCR. Hair transplant, beard and eyebrow transplant, PRP and GFC, hair fall treatment, laser hair removal and skin treatment for acne, pigmentation and melasma are all carried out here by registered medical practitioners, each planned case by case after an examination.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="#book-consultation" data-book data-clinic="Delhi (Rohini)" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 
@@ -211,11 +212,11 @@ require __DIR__ . '/includes/header.php';
     ?>
     <?php foreach (ROHINI_GROUPS as $gKey => $gLabel): ?>
       <h3 class="h3 mt-6"><?= e($gLabel) ?></h3>
-      <div class="grid grid--3 mt-3">
+      <div class="grid grid--3 mt-3 svc-grid">
         <?php foreach (ROHINI_SERVICES as $svc):
             if ($svc['group'] !== $gKey) { continue; }
             [$svcIcon, $svcText] = $svcDetail[$svc['url']] ?? ['check', null]; ?>
-          <div class="card card--pad-lg">
+          <div class="card card--pad-lg svc-card">
             <?= icon($svcIcon, 24, 'var(--accent-deep)') ?>
             <h4 class="h4 mt-3"><?= e($svc['label']) ?></h4>
             <p class="body-s mt-2"><?= e($svcText ?? $svc['note']) ?></p>
@@ -239,20 +240,20 @@ require __DIR__ . '/includes/header.php';
     <?php /* 14 Oct 2026: links to the Rohini cost pages. They explain how fees are worked out; no prices are stated here. */ ?>
     <h3 class="h3 mt-6" id="cost-guides">Cost guides for the Rohini clinic</h3>
     <p class="body-s mt-2 measure">How fees are worked out for the treatments people ask about most. Your own fees are confirmed in writing after an examination, before you book a treatment date.</p>
-    <div class="grid grid--3 mt-3">
-      <div class="card card--pad-lg">
+    <div class="grid grid--3 mt-3 svc-grid">
+      <div class="card card--pad-lg svc-card">
         <?= icon('chart', 24, 'var(--accent-deep)') ?>
         <h4 class="h4 mt-3">Hair transplant cost</h4>
         <p class="body-s mt-2">How an estimate follows from the graft count, and what a written estimate should include.</p>
         <p class="mt-4"><a class="hp-link" href="/hair-transplant-cost-in-rohini">Hair transplant cost in Rohini <?= hp_icon('arrow', 15, 2) ?></a></p>
       </div>
-      <div class="card card--pad-lg">
+      <div class="card card--pad-lg svc-card">
         <?= icon('heart', 24, 'var(--accent-deep)') ?>
         <h4 class="h4 mt-3">PRP hair treatment cost</h4>
         <p class="body-s mt-2">How the number of sessions and what each session includes shape the cost of a PRP course.</p>
         <p class="mt-4"><a class="hp-link" href="/prp-hair-treatment-cost-in-rohini">PRP hair treatment cost in Rohini <?= hp_icon('arrow', 15, 2) ?></a></p>
       </div>
-      <div class="card card--pad-lg">
+      <div class="card card--pad-lg svc-card">
         <?= icon('beard', 24, 'var(--accent-deep)') ?>
         <h4 class="h4 mt-3">Beard transplant cost</h4>
         <p class="body-s mt-2">How the zones to be filled and the graft count shape a beard transplant estimate.</p>

@@ -96,7 +96,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">PRP is priced by the session, but what you spend is decided by the course: how many sessions your diagnosis calls for, whether you can stop when the photographs show no change, and what sits outside the session price. This guide takes each in turn, for a course assessed and carried out at our Rohini clinic in North-West Delhi.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

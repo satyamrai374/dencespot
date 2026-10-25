@@ -102,7 +102,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">No two plans move the same number of grafts, so there is no fixed price. This guide shows how a quote is put together — the graft count multiplied by a per-graft rate, plus what the estimate covers — what changes each part, and what a written estimate should list before you pay anything. Assessments, estimates and procedures take place at our Rohini clinic in North-West Delhi.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Send Photos on WhatsApp</a>
         </div>
 

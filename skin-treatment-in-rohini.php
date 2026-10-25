@@ -13,7 +13,9 @@
  * lp_split / lp_steps / lp_cta (includes/home-components.php).
  *
  * Not on record, so NOT stated: which doctor consults at Rohini, which skin
- * procedures are offered (a marked missing_fact() below), the street address,
+ * procedures are offered (the page defers that to the consultation until the
+ * clinic supplies the list; it showed a missing_fact() marker until 25 Oct
+ * 2026), the street address,
  * prices, devices or brands, travel times. Not yet reviewed by the clinic's
  * doctor: doctor_block(..., false), no "medically reviewed" line, not in
  * MEDICAL_PAGES.
@@ -107,7 +109,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Skin treatment is carried out at our Rohini clinic in North-West Delhi. It starts with a consultation with a registered medical practitioner about the concern you came in with, whether acne, the marks it leaves, pigmentation, melasma, dry or sensitive skin, or a problem linked to hair, and it continues with review visits you can attend without crossing the city.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Skin care" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Skin care" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 
@@ -246,7 +248,7 @@ require __DIR__ . '/includes/header.php';
     <div class="note mt-5">
       <p class="h4">If a procedure is mentioned</p>
       <p class="body-s mt-2">A procedure is discussed only after the diagnosis, and only alongside medical treatment, not instead of it.</p>
-      <p class="body-s mt-2">Skin procedures offered at the clinic: <?= missing_fact('list of skin procedures offered at the clinic') ?></p>
+      <p class="body-s mt-2">Which procedures the Rohini clinic offers, and whether any of them suits your skin, is explained at the consultation.</p>
       <p class="body-s mt-2">Face PRP is one of the clinic’s skin treatments. How it works, and what it will not do, is explained on the <a href="/face-prp-treatment-in-rohini">face PRP page</a>.</p>
     </div>
   </div>

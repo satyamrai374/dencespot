@@ -106,7 +106,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Growth factor concentrate (GFC) is made from a small sample of your own blood, taken one processing step further than PRP. That step changes what is injected; it has not been shown to change the result. At our Rohini clinic in North-West Delhi, a GFC course starts only once the cause of your thinning is known, is measured against baseline photographs, and stops if nothing changes.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

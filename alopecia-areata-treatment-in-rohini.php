@@ -108,7 +108,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Alopecia areata causes smooth, round patches of hair loss on the scalp, beard or eyebrows, often within a few weeks. The immune system is turning on the hair follicles. At our Rohini clinic in North-West Delhi, a doctor confirms the diagnosis, explains how likely the patches are to regrow and agrees a plan that fits how much hair is affected.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

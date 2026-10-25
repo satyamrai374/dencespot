@@ -128,7 +128,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A course of laser hair removal means returning every few weeks for several months, so it helps to have the clinic nearby. Our Rohini clinic in North-West Delhi carries out laser hair removal for the face and body. Your skin and hair are examined by a registered medical practitioner before the first session, and the course is planned around what that shows.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Laser hair removal" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Laser hair removal" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Talk on WhatsApp</a>
         </div>
 

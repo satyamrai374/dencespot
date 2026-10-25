@@ -52,6 +52,9 @@ function icon(string $name, int $size = 24, string $color = 'currentColor', floa
         'scale'    => '<path d="M12 4v16M6 8h12"/><path d="M6 8l-2.5 6a2.5 2.5 0 0 0 5 0z"/><path d="M18 8l-2.5 6a2.5 2.5 0 0 0 5 0z"/>',
         'star'     => '<path d="M12 4l2.4 5 5.6.7-4 3.9 1 5.4-5-2.7-5 2.7 1-5.4-4-3.9 5.6-.7z"/>',
         'search'   => '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/>',
+        'plus'     => '<path d="M12 5v14M5 12h14"/>',
+        'camera'   => '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+        'alert'    => '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
     ];
 
     $body = $paths[$name] ?? $paths['info'];
@@ -59,6 +62,21 @@ function icon(string $name, int $size = 24, string $color = 'currentColor', floa
     return sprintf(
         '<svg width="%d" height="%d" viewBox="0 0 24 24" fill="none" stroke="%s" stroke-width="%s" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">%s</svg>',
         $size, $size, $body === '' ? 'currentColor' : $color, $width, $body
+    );
+}
+
+/* -------------------------------------------------------------------------
+ * Logo
+ *
+ * The one place the logo <img> is written. Size comes from CSS (.brand__logo);
+ * width/height here only reserve the aspect ratio so the header never shifts.
+ * ---------------------------------------------------------------------- */
+
+function site_logo(string $loading = 'eager'): string
+{
+    return sprintf(
+        '<img class="brand__logo" src="%s" width="%d" height="%d" alt="%s" loading="%s" decoding="async">',
+        e(LOGO_WEB), LOGO_WEB_W, LOGO_WEB_H, e(LOGO_ALT), e($loading)
     );
 }
 
@@ -423,7 +441,11 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
       <div>
         <p class="eyebrow">Further reading</p>
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+        <?php if (hp_is_rohini_page() && !page_review_signed_off()): ?>
+        <p class="body mt-3 measure">Patient education on the questions people most often ask before treatment.</p>
+        <?php else: ?>
         <p class="body mt-3 measure">Patient education, written and medically reviewed by <?= e(REVIEWED_BY) ?> before publication.</p>
+        <?php endif; ?>
       </div>
       <div class="btn-row">
         <a class="btn btn--outline" href="/blog/">All articles</a>
@@ -432,7 +454,7 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
 
     <div class="grid grid--3 mt-6">
       <?php foreach ($posts as $post): ?>
-        <?= blog_card($post) ?>
+        <?= blog_card($post, true, hp_is_rohini_page()) ?>
       <?php endforeach; ?>
     </div>
   </div>
@@ -448,15 +470,35 @@ function latest_posts_strip(?string $hub = null, int $limit = 3, string $heading
  * never drift apart. Answers may contain inline <a> and <strong>.
  * ---------------------------------------------------------------------- */
 
-function faq_list(array $faqs, int $openFirst = 1): string
+/**
+ * $visible > 0 shows only the first $visible questions; the rest sit in the
+ * page (and in the FAQ schema) behind a "View more" button that the footer
+ * script wires up. Without JavaScript every question shows.
+ */
+function faq_list(array $faqs, int $openFirst = 1, int $visible = 0): string
 {
+    static $n = 0;
+    $more = $visible > 0 && count($faqs) > $visible;
+    $id   = 'faq-more-' . (++$n);
+
     $out = '<div class="faq">';
     foreach ($faqs as $i => $faq) {
+        if ($more && $i === $visible) {
+            $out .= '<div class="faq faq__more" id="' . $id . '" hidden>';
+        }
         $open = $i < $openFirst ? ' open' : '';
         $out .= '<details' . $open . '>'
               . '<summary>' . e($faq['q']) . '</summary>'
               . '<p>' . $faq['a'] . '</p>'
               . '</details>';
+    }
+    if ($more) {
+        $label = 'View ' . (count($faqs) - $visible) . ' more questions';
+        $out .= '</div>'
+              . '<button class="btn btn--outline faq__toggle" type="button" aria-expanded="false" aria-controls="' . $id . '"'
+              . ' data-more="' . e($label) . '" data-less="Show fewer questions" hidden>'
+              . '<span>' . e($label) . '</span>' . icon('plus', 16) . '</button>'
+              . '<noscript><style>#' . $id . '{display:grid}</style></noscript>';
     }
     return $out . '</div>';
 }
@@ -559,8 +601,8 @@ function cta_band(string $heading, string $body, string $source, array $treatmen
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
         <p class="body-l mt-3" style="color:rgba(255,255,255,.72);max-width:56ch"><?= e($body) ?></p>
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--accent" href="/book-consultation"><?= icon('calendar', 18) ?> Book a Consultation</a>
-          <a class="btn btn--lg btn--ghost" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp Us</a>
+          <a class="btn btn--lg btn--accent" href="<?= e(book_url()) ?>"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ghost" href="<?= e(hp_is_rohini_page() ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp Us</a>
         </div>
         <p class="fine mt-4" style="max-width:56ch">Suitability is determined after clinical assessment. This page is patient education and does not constitute medical advice.</p>
       </div>
@@ -579,9 +621,13 @@ function cta_band(string $heading, string $body, string $source, array $treatmen
  * Doctor E-E-A-T block
  * ---------------------------------------------------------------------- */
 
-function doctor_block(string $whyItMatters, string $portraitAlt = 'Dr. Nyra — professional portrait'): string
+function doctor_block(string $whyItMatters, string $portraitAlt = 'Dr. Nyra — professional portrait', bool $reviewed = true): string
 {
     $doc = DOCTORS['dr-nyra'];
+
+    if (hp_is_rohini_page()) {
+        return doctor_directory_block($whyItMatters, $reviewed);
+    }
 
     ob_start(); ?>
 <section class="section section--canvas" id="doctor">
@@ -614,6 +660,126 @@ function doctor_block(string $whyItMatters, string $portraitAlt = 'Dr. Nyra — 
 </section>
 <?php
     return (string) ob_get_clean();
+}
+
+/**
+ * doctor_block() on Rohini pages: the original portrait layout (client, 25 Oct
+ * 2026: "original media"), worded for a Rohini page. Dr. Nyra is introduced as
+ * the clinic's owner and chief consultant, which is on record; who treats
+ * patients at Rohini is not, so she is not presented as the Rohini surgeon and
+ * the page's own $whyItMatters says the treating doctor is named at the
+ * consultation. No "medically reviewed" line until the page is in
+ * REVIEW_SIGNED_OFF, and no registration line until one is entered.
+ */
+function doctor_directory_block(string $whyItMatters, bool $reviewed): string
+{
+    $reviewed = $reviewed && page_review_signed_off();
+    $doc      = DOCTORS['dr-nyra'];
+    $verify   = doctors_have_registration([$doc]);
+
+    ob_start(); ?>
+<section class="section section--canvas" id="doctor">
+  <div class="wrap">
+    <div class="split split--wide-right">
+      <div class="doctor-photo">
+        <div class="media ratio-1-1 media--shadow"><img src="<?= e($doc['image']) ?>" alt="<?= e(doctor_full()) ?> — <?= e($doc['role']) ?>, at her desk at DenceSpot Clinic" width="510" height="510" loading="lazy" decoding="async"></div>
+      </div>
+      <div>
+        <p class="eyebrow">Meet the doctor</p>
+        <h2 class="h2 mt-2"><?= doctor_full() ?></h2>
+        <p class="body-l mt-1" style="font-weight:600"><?= e($doc['role']) ?></p>
+        <p class="body mt-3 measure">MBBS from <?= e($doc['alumni']) ?> and an MD in Dermatology, followed by three years of clinical work in Germany — two at Bio Hair Clinic and one at St. Georg Klinikum Eisenach.</p>
+        <?php if (trim($whyItMatters) !== ''): ?>
+          <p class="body mt-3 measure"><?= e($whyItMatters) ?></p>
+        <?php endif; ?>
+
+        <div class="grid grid--3 mt-4 cred-grid">
+          <div class="cred cred--mint"><p class="cred__label">Qualification</p><p class="cred__value"><?= e($doc['quals']) ?></p></div>
+          <div class="cred cred--violet"><p class="cred__label">Training</p><p class="cred__value">3 years, Germany</p></div>
+          <div class="cred cred--sky"><p class="cred__label">Specialisation</p><p class="cred__value">Dermatology</p></div>
+          <?php if (($reg = doctor_registration($doc)) !== ''): ?>
+          <div class="cred cred--amber"><p class="cred__label">Registration</p><p class="cred__value"><?= $reg ?></p></div>
+          <?php endif; ?>
+        </div>
+
+        <div class="btn-row mt-5" style="align-items:center">
+          <a class="btn btn--ink" href="<?= e($doc['url']) ?>">Doctor Profile</a>
+          <?php if ($verify || $reviewed): ?>
+          <p class="meta" style="max-width:40ch"><?php if ($verify): ?>Registration can be verified on the NMC’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a>. <?php endif; ?><?php if ($reviewed): ?>Medically reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?>.<?php endif; ?></p>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
+}
+
+/**
+ * Smaller WebP copies of a site photo, from assets/img/thumbs/
+ * ("<slug>-<width>.webp"). They are derived from photos that are already
+ * published (GALLERY_MANIFEST decides which patient photos may be shown);
+ * this only chooses the size to send. Returns [srcset, smallest copy], or
+ * ['', ''] when no copy exists.
+ */
+function img_thumbs(string $src): array
+{
+    $slug = trim((string) preg_replace('/[^a-z0-9]+/', '-', strtolower(pathinfo(rawurldecode($src), PATHINFO_FILENAME))), '-');
+    $set  = [];
+    $min  = '';
+    foreach ([480, 640, 1080] as $w) {
+        $rel = '/assets/img/thumbs/' . $slug . '-' . $w . '.webp';
+        if (is_file(dirname(__DIR__) . $rel)) {
+            $set[] = $rel . ' ' . $w . 'w';
+            $min   = $min === '' ? $rel : $min;
+        }
+    }
+    return [implode(', ', $set), $min];
+}
+
+/** A photo with its WebP copies when they exist. $attrs: loading, fetchpriority, class. */
+function photo_img(string $src, string $alt, string $sizes, int $w, int $h, array $attrs = []): string
+{
+    [$srcset, $small] = img_thumbs($src);
+    $loading = $attrs['loading'] ?? 'lazy';
+    return '<img src="' . e($small !== '' ? $small : $src) . '"'
+         . ($srcset !== '' ? ' srcset="' . e($srcset) . '" sizes="' . e($sizes) . '"' : '')
+         . ' width="' . $w . '" height="' . $h . '" alt="' . e($alt) . '"'
+         . ' loading="' . e($loading) . '" decoding="' . ($loading === 'eager' ? 'sync' : 'async') . '"'
+         . (!empty($attrs['fetchpriority']) ? ' fetchpriority="' . e($attrs['fetchpriority']) . '"' : '')
+         . (!empty($attrs['class']) ? ' class="' . e($attrs['class']) . '"' : '')
+         . '>';
+}
+
+/** Where "Book a consultation" leads. /book-consultation is the Gurugram
+ *  clinic's page, so a Rohini page books through the Rohini clinic's form. */
+function book_url(): string
+{
+    return hp_is_rohini_page() ? '/delhi-clinic#book-consultation' : '/book-consultation';
+}
+
+/**
+ * NAV_PRIMARY for this page. A Rohini page (location rule, 14 Oct 2026) drops
+ * the Gurugram treatments menu and sends Contact to the Rohini clinic, since
+ * /contact is the Gurugram clinic's page.
+ */
+function site_nav_items(): array
+{
+    if (!hp_is_rohini_page()) {
+        return NAV_PRIMARY;
+    }
+    $items = [];
+    foreach (NAV_PRIMARY as $item) {
+        if ($item['label'] === 'Treatments') {
+            continue;
+        }
+        if ($item['url'] === '/contact') {
+            $item['url'] = '/delhi-clinic#directions';
+        }
+        $items[] = $item;
+    }
+    return $items;
 }
 
 /* -------------------------------------------------------------------------
@@ -905,6 +1071,24 @@ function lead_strip(): string
         'Laser hair removal'  => 'laser hair removal',
         'Skin care'           => 'your skin',
     ][$treatment] ?? 'your hair or skin';
+    // Treatments that share a booking option but not a name: the LED therapy
+    // page should not offer to talk about PRP.
+    $url = (string) ($GLOBALS['page']['url'] ?? '');
+    foreach ([
+        'led-therapy'      => 'LED light therapy for your hair',
+        'mesotherapy'      => 'hair mesotherapy',
+        'microneedling'    => 'microneedling for your hair',
+        'gfc'              => 'GFC for your hair',
+        'alopecia'         => 'patchy hair loss',
+        'dandruff'         => 'dandruff and your scalp',
+        'womens-hair-loss' => 'hair loss in women',
+        'face-prp'         => 'PRP for your face',
+    ] as $needle => $label) {
+        if (str_contains($url, $needle)) {
+            $topic = $label;
+            break;
+        }
+    }
     ob_start(); ?>
 <section class="lead-strip" aria-labelledby="lead-strip-title">
   <div class="wrap lead-strip__inner">

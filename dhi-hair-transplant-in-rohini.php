@@ -116,7 +116,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">DHI — direct hair implantation — uses the same extraction as FUE, then sets each graft with a hollow implanter pen that makes the opening and places the hair in one movement. It is carried out at our Rohini clinic by registered medical practitioners. Its value is precision along the hairline and temples; across a large crown it usually adds cost without adding coverage.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

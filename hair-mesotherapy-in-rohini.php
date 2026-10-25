@@ -106,7 +106,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Mesotherapy describes how something is given, as many small, shallow injections across the scalp, not what is given, and the mixtures used differ from clinic to clinic. Its effectiveness for hair loss has not been established. At our Rohini clinic in North-West Delhi it is discussed only as an optional addition to better-evidenced treatment, never as the main treatment for pattern hair loss.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

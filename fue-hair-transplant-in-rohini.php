@@ -118,7 +118,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">FUE — follicular unit extraction — takes hair from the donor area one small group at a time, with a punch well under a millimetre across. It is carried out at our Rohini clinic by registered medical practitioners. Whether it suits you depends less on the technique than on how much your donor area can spare, and that is measured before any graft count is given.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

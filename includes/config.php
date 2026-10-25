@@ -172,6 +172,18 @@ const CLINIC_IMAGE = '/assets/img/clinic-front.webp';
 const OG_IMAGE     = '/assets/img/og-default.jpg';
 
 /**
+ * The clinic logo (Oct 2026 artwork). LOGO_WEB is the header/footer lockup at
+ * 2x its largest display size; LOGO_SCHEMA is the PNG Google reads from the
+ * MedicalClinic node. Favicons are cut from the DS mark alone, since the
+ * wordmark is unreadable at tab size.
+ */
+const LOGO_WEB    = '/assets/img/logo/dencespot-logo.webp';
+const LOGO_WEB_W  = 197;
+const LOGO_WEB_H  = 152;
+const LOGO_SCHEMA = '/assets/img/logo/dencespot-logo-400.png';
+const LOGO_ALT    = 'DenceSpot Hair & Skin Care Clinic';
+
+/**
  * Listings that are unambiguously this clinic, for schema sameAs. This is how
  * Google and the AI answer engines reconcile the conflicting directory records
  * documented in LOCAL-SEO-STRATEGY-dencespot.md §3.
@@ -235,6 +247,9 @@ const DOCTORS = [
         'clinics'     => 'Gurugram',
         'same_as'     => [],     // ⚠ add Practo / LinkedIn profile URLs
     ],
+    // Client, 25 Oct 2026: Senior Resident at ESIC Hospital, 8+ years of
+    // experience (shown as facts on the homepage tile). His degree is still
+    // not on record, so quals stays null and he stays out of listed_doctors().
     'dr-rahul' => [
         'name'        => 'Dr. Rahul',
         'quals'       => null,
@@ -247,6 +262,25 @@ const DOCTORS = [
         'reg_council' => null,
         'reg_status'  => null,
         'clinics'     => null,
+        'same_as'     => [],
+    ],
+    // Third doctor, photographed for the homepage. Client, 25 Oct 2026: trained
+    // at UMCH Hamburg, 1-year fellowship in hair restoration at D. Y. Patil,
+    // 10 years of experience (facts on the homepage tile). His degree is not
+    // on record, so the tile has no qualification line and, with no quals, he
+    // is skipped by every directory and schema list. No profile page yet.
+    'dr-akash' => [
+        'name'        => 'Dr. Akash',
+        'quals'       => null,   // ⚠ recognised medical qualification
+        'role'        => null,
+        'alumni'      => 'Universitätsmedizin Neumarkt a. M. Campus Hamburg (UMCH)',
+        'url'         => null,
+        'image'       => '/assets/img/home/doctor-3-720.webp',
+        'specialty'   => null,
+        'reg_number'  => null,
+        'reg_council' => null,
+        'reg_status'  => null,
+        'clinics'     => null,   // ⚠ 'Gurugram', 'Rohini, Delhi' or both
         'same_as'     => [],
     ],
 ];
@@ -413,7 +447,7 @@ const NAV_FOOTER = [
  * Shared copy
  * ---------------------------------------------------------------------- */
 
-const MEDICAL_DISCLAIMER = 'The information on this page is general patient education and is not a substitute for a consultation. Results vary between patients; individual treatment plans differ, and suitability for any procedure is determined only after clinical assessment by a qualified doctor. No outcome, density or timeline is guaranteed.';
+const MEDICAL_DISCLAIMER = 'The information on this page is general patient education and is not a substitute for a consultation. Results vary between patients; individual treatment plans differ, and suitability for any procedure is determined only after clinical assessment by a qualified doctor. No outcome, density or timeline can be promised.';
 
 /* -------------------------------------------------------------------------
  * mbstring fallback

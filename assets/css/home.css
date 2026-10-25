@@ -245,23 +245,10 @@ body.hp {
 .hp-header__actions { display: flex; align-items: center; gap: 8px; }
 .hp-header__book { display: none; }
 
-.hp-logo { display: inline-flex; align-items: center; gap: 10px; color: var(--hp-green-800); }
-.hp-logo__mark {
-  display: grid; place-items: center;
-  width: 40px; height: 40px;
-  border: 1.5px solid currentColor;
-  border-radius: 50%;
-}
-.hp-logo__text { display: flex; flex-direction: column; line-height: 1.1; }
-.hp-logo__name { font-family: var(--hp-serif); font-size: 18px; font-weight: 700; letter-spacing: -.005em; white-space: nowrap; }
-.hp-logo__tag {
-  margin-top: 4px;
-  font-size: 9.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-  color: var(--hp-muted);
-}
-.hp-logo__tag i { margin-inline: 1px; font-style: normal; opacity: .5; }
-.hp-logo--dark { color: #fff; }
-.hp-logo--dark .hp-logo__tag { color: rgba(255, 255, 255, .62); }
+.hp-logo { display: inline-flex; align-items: center; }
+.hp-logo .brand__logo { display: block; height: 52px; width: auto; }
+.hp-logo--dark { background: #fff; border-radius: 14px; padding: 8px 12px; }
+.hp-logo--dark .brand__logo { height: 72px; }
 
 .hp-nav { display: none; }
 

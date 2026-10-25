@@ -50,6 +50,7 @@ function schema_clinic(): array
 
     $node['hasMap'] = MAPS_URL;
     $node['image']  = abs_url(CLINIC_IMAGE);
+    $node['logo']   = abs_url(LOGO_SCHEMA);
 
     /**
      * A coarse band, not a figure. The clinic publishes no per-graft price

@@ -5,86 +5,39 @@
  */
 
 declare(strict_types=1);
+
+require_once __DIR__ . '/location-links.php';
+
+// The footer is the same on every page, both clinics and both maps (client,
+// 25 Oct 2026). Only the sticky mobile bar follows the page: a Rohini page
+// calls and messages the Rohini clinic.
+$footRohini = hp_is_rohini_page();
+$footWa     = $footRohini ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL;
+$footTel    = $footRohini ? LOC_DELHI_PHONE_E164 : PHONE_E164;
+
+// Both clinics sit in the main footer as one compact row, a small map beside
+// each clinic's details (client, 25 Oct 2026: the full-width map block above
+// the links made the footer too tall).
+$footClinics = [
+    ['name' => 'DenceSpot Clinic — Gurugram',
+     'addr' => NAP_STREET . ', ' . NAP_LOCALITY . ', ' . NAP_REGION . ' ' . NAP_POSTCODE, 'landmark' => NAP_LANDMARK,
+     'tel' => PHONE_E164, 'phone' => PHONE_DISPLAY, 'wa' => WHATSAPP_URL, 'maps' => MAPS_URL, 'embed' => MAP_EMBED],
+    ['name' => LOC_DELHI_NAME,
+     'addr' => LOC_DELHI_ADDRESS, 'landmark' => LOC_DELHI_LANDMARK,
+     'tel' => LOC_DELHI_PHONE_E164, 'phone' => LOC_DELHI_PHONE_DISPLAY, 'wa' => LOC_DELHI_WHATSAPP_URL, 'maps' => LOC_DELHI_MAPS_URL, 'embed' => LOC_DELHI_MAP_EMBED],
+];
 ?>
+<?= location_links_section() ?>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
 
-    <!-- Both Clinic Location Maps -->
-    <div class="site-footer__locations">
-      <div class="site-footer__loc-head">
-        <span class="pill pill--sm">Our Clinic Locations</span>
-        <h2 class="site-footer__loc-title">Visit DenceSpot in Gurugram &amp; Delhi (Rohini)</h2>
-        <p class="site-footer__loc-sub">Doctor-led consultations, robotic &amp; micro-FUE hair restoration, and medical trichology care across both Delhi NCR locations.</p>
-      </div>
-
-      <div class="site-footer__loc-grid">
-        <!-- Location 1: Gurugram HQ -->
-        <div class="site-footer__loc-card">
-          <div class="site-footer__loc-card-body">
-            <div class="site-footer__loc-badge-row">
-              <span class="site-footer__loc-badge">HQ &amp; Surgical Centre</span>
-              <span class="site-footer__loc-city">Gurugram (Sector 39)</span>
-            </div>
-            <h3 class="site-footer__loc-name">DenceSpot Clinic — Gurugram</h3>
-            <p class="site-footer__loc-addr">
-              <?= icon('pin', 16, '#10B981') ?>
-              <span><?= e(NAP_STREET) ?>, <?= e(NAP_LOCALITY) ?>, <?= e(NAP_REGION) ?> <?= e(NAP_POSTCODE) ?><br><small style="color:rgba(255,255,255,0.6)"><?= e(NAP_LANDMARK) ?></small></span>
-            </p>
-            <p class="site-footer__loc-hours">
-              <?= icon('clock', 15, '#10B981') ?>
-              <span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span>
-            </p>
-            <div class="site-footer__loc-actions">
-              <a class="btn btn--sm btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>
-              <a class="btn btn--sm btn--outline-light" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e(PHONE_DISPLAY) ?></a>
-              <a class="site-footer__loc-dir-link" href="<?= e(MAPS_URL) ?>" target="_blank" rel="noopener">Directions &rarr;</a>
-            </div>
-          </div>
-          <div class="site-footer__loc-map">
-            <iframe title="DenceSpot Clinic Gurugram Map" src="<?= e(MAP_EMBED) ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </div>
-        </div>
-
-        <!-- Location 2: Delhi Rohini -->
-        <div class="site-footer__loc-card">
-          <div class="site-footer__loc-card-body">
-            <div class="site-footer__loc-badge-row">
-              <span class="site-footer__loc-badge site-footer__loc-badge--alt">Delhi Branch</span>
-              <span class="site-footer__loc-city">Delhi (Rohini)</span>
-            </div>
-            <h3 class="site-footer__loc-name"><?= e(LOC_DELHI_NAME) ?></h3>
-            <p class="site-footer__loc-addr">
-              <?= icon('pin', 16, '#10B981') ?>
-              <span><?= e(LOC_DELHI_ADDRESS) ?><br><small style="color:rgba(255,255,255,0.6)"><?= e(LOC_DELHI_LANDMARK) ?></small></span>
-            </p>
-            <p class="site-footer__loc-hours">
-              <?= icon('clock', 15, '#10B981') ?>
-              <span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span>
-            </p>
-            <div class="site-footer__loc-actions">
-              <a class="btn btn--sm btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>
-              <a class="btn btn--sm btn--outline-light" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
-              <a class="site-footer__loc-dir-link" href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener">Directions &rarr;</a>
-            </div>
-          </div>
-          <div class="site-footer__loc-map">
-            <iframe title="DenceSpot Clinic Delhi Rohini Map" src="<?= e(LOC_DELHI_MAP_EMBED) ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Aligned Footer Navigation Links -->
     <div class="site-footer__nav-row">
       <div class="site-footer__brand-col">
-        <a class="brand" href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
-          <span class="brand__mark" style="background:rgba(255,255,255,.1)"><?= icon('logo', 19, '#10B981', 1.7) ?></span>
-          <span class="brand__name">
-            <b style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-.01em">DenceSpot</b>
-            <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.05em">Hair Restoration Clinic</span>
-          </span>
+        <a class="brand brand--plate" href="/" aria-label="<?= e(SITE_NAME) ?> — home">
+          <?= site_logo('lazy') ?>
         </a>
         <p class="site-footer__brand-desc">
           Doctor-led hair restoration in Gurugram &amp; Delhi NCR. Micro-FUE, DHI, beard transplants, PRP therapy, and medical hair-loss solutions planned personally by MD dermatologists.
@@ -110,7 +63,30 @@ declare(strict_types=1);
       </div>
     </div>
 
-    <p class="disclaimer"><b>Medical disclaimer:</b> <?= e(MEDICAL_DISCLAIMER) ?> <b>Medically reviewed by Dr. Nyra.</b></p>
+    <div class="site-footer__clinics">
+      <h2 class="site-footer__heading">Our clinics</h2>
+      <div class="site-footer__clinic-grid">
+        <?php foreach ($footClinics as $c): ?>
+        <div class="site-footer__clinic">
+          <div class="site-footer__clinic-map">
+            <iframe title="<?= e($c['name']) ?> on Google Maps" src="<?= e($c['embed']) ?>" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <div class="site-footer__clinic-body">
+            <h3 class="site-footer__clinic-name"><?= e($c['name']) ?></h3>
+            <p class="site-footer__clinic-line"><?= icon('pin', 15, '#10B981') ?><span><?= e($c['addr']) ?><br><small><?= e($c['landmark']) ?></small></span></p>
+            <p class="site-footer__clinic-line"><?= icon('clock', 15, '#10B981') ?><span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span></p>
+            <p class="site-footer__clinic-links">
+              <a href="tel:<?= e($c['tel']) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e($c['phone']) ?></a>
+              <a href="<?= e($c['wa']) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>
+              <a href="<?= e($c['maps']) ?>" target="_blank" rel="noopener">Directions &rarr;</a>
+            </p>
+          </div>
+        </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <p class="disclaimer"><b>Medical disclaimer:</b> <?= e(MEDICAL_DISCLAIMER) ?><?php if (!$footRohini || page_review_signed_off()): ?> <b>Medically reviewed by Dr. Nyra.</b><?php endif; ?></p>
 
     <div class="colophon">
       <p>&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?>. All rights reserved.</p>
@@ -138,7 +114,7 @@ declare(strict_types=1);
 <div id="cert-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px;" onclick="closeCertModal(event)">
   <div style="position:relative; max-width:900px; max-height:90vh; width:100%; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); display:flex; flex-direction:column;">
     <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--line); background:#fff;">
-      <h3 id="cert-modal-title" class="h4" style="margin:0;">DenceSpot Clinic, Gurugram</h3>
+      <h3 id="cert-modal-title" class="h4" style="margin:0;">DenceSpot Clinic</h3>
       <button type="button" onclick="closeCertModalForce()" style="background:none; border:none; font-size:24px; cursor:pointer; color:var(--ink);" aria-label="Close image">&times;</button>
     </div>
     <div style="padding:20px; text-align:center; overflow-y:auto; flex:1; background:#f9f9fb;">
@@ -147,8 +123,8 @@ declare(strict_types=1);
   </div>
 </div>
 <div class="sticky-cta">
-  <a class="btn btn--outline" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= icon('phone', 17) ?> Call</a>
-  <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> WhatsApp</a>
+  <a class="btn btn--outline" href="tel:<?= e($footTel) ?>" data-track="call"><?= icon('phone', 17) ?> Call</a>
+  <a class="btn btn--accent" href="<?= e($footWa) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> WhatsApp</a>
 </div>
 
 <script>
@@ -167,6 +143,33 @@ declare(strict_types=1);
       toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
     });
   }
+
+  // Result photos open in the lightbox below; without JavaScript the link
+  // simply opens the full-size image.
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest('a[data-lightbox]');
+    if (!link || typeof window.openCertModal !== 'function') { return; }
+    event.preventDefault();
+    window.openCertModal(link.getAttribute('href'), link.getAttribute('data-title') || '');
+  });
+
+  // "View more FAQs" (faq_list() with $visible). The extra questions are in
+  // the page and the FAQ schema; the button only reveals them.
+  document.querySelectorAll('.faq__toggle').forEach(function (btn) {
+    var more = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!more) { return; }
+    btn.hidden = false;
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      more.hidden = open;
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      btn.querySelector('span').textContent = open ? btn.getAttribute('data-more') : btn.getAttribute('data-less');
+      if (!open) {
+        var first = more.querySelector('summary');
+        if (first) { first.focus(); }
+      }
+    });
+  });
 
   // Conversion events. Every lead path on this site is measurable:
   // tel: clicks, WhatsApp clicks, and form submits landing on /thank-you.
@@ -229,8 +232,8 @@ declare(strict_types=1);
     // description. The markup ships alt="" because the src is not known until
     // this runs; leaving it empty would announce the enlarged patient
     // photograph as decorative.
-    modalImg.alt = title || 'DenceSpot Clinic, Gurugram';
-    if (modalTitle) modalTitle.textContent = title || 'DenceSpot Clinic, Gurugram';
+    modalImg.alt = title || 'DenceSpot Clinic';
+    if (modalTitle) modalTitle.textContent = title || 'DenceSpot Clinic';
     modal.style.display = 'flex';
   };
 

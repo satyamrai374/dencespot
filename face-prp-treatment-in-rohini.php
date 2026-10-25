@@ -108,7 +108,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Face PRP uses platelet-rich plasma prepared from your own blood, with the aim of improving skin texture, fine lines and dullness. The evidence for it is limited, and any change is modest and gradual. At our Rohini clinic in North-West Delhi, a doctor first checks whether it suits what you want changed, and says so if something else would serve you better.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Skin care" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Skin care" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

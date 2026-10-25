@@ -96,7 +96,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A beard transplant has no single price. The figure follows the graft count, and the graft count follows which zones are treated and how much hair already grows there. This guide covers grafts by zone, what changes the cost and what an estimate should include, for treatment assessed and carried out at our Rohini clinic in North-West Delhi.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Beard transplant" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Beard transplant" data-track="book"><?= icon('calendar', 18) ?> Get a Written Estimate</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Send Photos on WhatsApp</a>
         </div>
 

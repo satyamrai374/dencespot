@@ -128,7 +128,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Thinning at the crown, the vertex at the back of the top of the head, can be treated with a transplant at our Rohini clinic. It is also the area that uses grafts fastest and keeps widening longest, so your plan weighs it against what the front of your scalp may need later, and says before you start whether a second session is likely.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

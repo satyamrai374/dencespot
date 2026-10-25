@@ -104,7 +104,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Hair coming out faster than usual is a symptom with many possible causes: low iron, a thyroid problem, PCOS, a recent illness, a scalp condition, alopecia areata or inherited pattern loss. Each is treated differently. At our Rohini clinic in North-West Delhi, a doctor works out which one you have before recommending anything, so the treatment follows the cause.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair fall treatment" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

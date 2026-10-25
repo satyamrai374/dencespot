@@ -208,6 +208,20 @@ const HOME_IMAGES = [
     'step-procedure'     => [[400, 268], [640, 429]],
     'step-followup'      => [[400, 268], [640, 429]],
     'ambient'            => [[600, 448], [900, 672], [1200, 896]],
+    // Homepage treatment cards (4:3), AI-generated, one photographic style
+    // (hair and beard from the client, the rest generated to match; 25 Oct 2026).
+    'card-hair-transplant'    => [[512, 384], [768, 576]],
+    'card-beard-transplant'   => [[512, 384], [768, 576]],
+    'card-eyebrow-transplant' => [[512, 384], [768, 576]],
+    'card-hair-prp'           => [[512, 384], [768, 576]],
+    'card-hair-fall'          => [[512, 384], [768, 576]],
+    'card-womens-hair-loss'   => [[512, 384], [768, 576]],
+    'card-laser-hair-removal' => [[512, 384], [768, 576]],
+    'card-skin-treatment'     => [[512, 384], [768, 576]],
+    // Homepage doctor portraits (1:1), from the clinic's photos (25 Oct 2026).
+    'doctor-nyra'             => [[480, 480], [720, 720]],
+    'doctor-rahul'            => [[480, 480], [720, 720]],
+    'doctor-3'                => [[480, 480], [720, 720]],
     // Treatment illustrations (4:5) in assets/img/services/ — AI-generated,
     // no people; used by the service-page heroes and lp_* sections.
     'svc-hair-transplant'    => [[512, 640], [768, 960]],
@@ -242,6 +256,20 @@ function hp_srcset(string $slug): string
 }
 
 /**
+ * Image slugs this page has already shown (hp_img() records each one), so a
+ * later block — the further-reading cards — can avoid repeating one. Pass a
+ * slug to record it; the return value is every slug recorded so far.
+ */
+function hp_img_used(?string $slug = null): array
+{
+    static $used = [];
+    if ($slug !== null) {
+        $used[$slug] = true;
+    }
+    return $used;
+}
+
+/**
  * A responsive <img>. $attrs: class, loading ('lazy' default), fetchpriority.
  */
 function hp_img(string $slug, string $alt, string $sizes, array $attrs = []): string
@@ -250,6 +278,7 @@ function hp_img(string $slug, string $alt, string $sizes, array $attrs = []): st
     if ($set === null) {
         return '';
     }
+    hp_img_used($slug);
     [$w, $h] = $set[count($set) - 1];
     $loading = $attrs['loading'] ?? 'lazy';
 
@@ -319,10 +348,9 @@ function hp_icon(string $name, int $size = 22, float $stroke = 1.7): string
 
 function hp_logo(bool $onDark = false): string
 {
+    // The artwork sits on white; .hp-logo--dark gives it a white plate.
     return '<span class="hp-logo' . ($onDark ? ' hp-logo--dark' : '') . '">'
-         . '<span class="hp-logo__mark">' . hp_icon('logo', 22, 1.6) . '</span>'
-         . '<span class="hp-logo__text"><span class="hp-logo__name">' . e(SITE_NAME) . '</span>'
-         . '<span class="hp-logo__tag">Hair <i>|</i> Skin <i>|</i> Laser</span></span>'
+         . site_logo($onDark ? 'lazy' : 'eager')
          . '</span>';
 }
 
@@ -941,7 +969,7 @@ function lp_steps(array $o): string
     <ol class="lp-steps__list lp-steps__list--<?= count($steps) ?>" role="list">
       <?php foreach ($steps as $i => $s): ?>
         <li class="lp-step">
-          <?= lp_figure($s['img'], $s['alt'], '(min-width: 1080px) 280px, (min-width: 700px) 45vw, 100vw') ?>
+          <?= lp_figure($s['img'], $s['alt'], '(min-width: 1080px) ' . (count($steps) >= 4 ? '280px' : '380px') . ', (min-width: 640px) 45vw, 100vw') ?>
           <p class="lp-step__num">Step <?= sprintf('%02d', $i + 1) ?></p>
           <h3 class="h4"><?= e($s['title']) ?></h3>
           <p class="body-s mt-1"><?= e($s['text']) ?></p>
@@ -1006,7 +1034,7 @@ function lp_cta(array $o): string
     <h2 class="h2 mt-2"><?= e($o['title']) ?></h2>
     <p class="body-l mt-3"><?= e($o['text']) ?></p>
     <div class="btn-row mt-5">
-      <a class="btn btn--lg btn--ink" href="/book-consultation" data-book<?= !empty($o['treatment']) ? ' data-treatment="' . e($o['treatment']) . '"' : '' ?><?= $clinic !== null ? ' data-clinic="' . e($clinic) . '"' : '' ?> data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+      <a class="btn btn--lg btn--ink" href="<?= e(book_url()) ?>" data-book<?= !empty($o['treatment']) ? ' data-treatment="' . e($o['treatment']) . '"' : '' ?><?= $clinic !== null ? ' data-clinic="' . e($clinic) . '"' : '' ?> data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
       <a class="btn btn--lg btn--outline" href="tel:<?= e($tel) ?>" data-track="call"><?= icon('phone', 17) ?> <?= e($phone) ?></a>
     </div>
   </div>

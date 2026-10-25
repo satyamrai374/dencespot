@@ -353,7 +353,10 @@ $ndSocials = [
 <link rel="canonical" href="<?= e(abs_url('/')) ?>">
 
 <meta name="theme-color" content="#0B3B2C">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/logo/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="/assets/img/logo/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/img/logo/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -534,22 +537,9 @@ body.nd {
 .nd-head { position: sticky; top: 0; z-index: 60; background: #fff; border-bottom: 1px solid var(--nd-line); }
 .nd-head__bar { display: flex; align-items: center; gap: clamp(12px, 1.6vw, 26px); min-height: 76px; }
 
-.nd-brand { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
-.nd-brand__mark {
-  width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%;
-  display: grid; place-items: center; color: var(--nd-green);
-  background: var(--nd-cream-2); border: 1px solid var(--nd-line);
-}
-.nd-brand__name {
-  display: block; font-family: var(--nd-serif); font-size: clamp(17px, 1.6vw, 20px);
-  font-weight: 600; color: var(--nd-green); letter-spacing: -.01em; line-height: 1.1;
-}
-.nd-brand__sub { display: flex; align-items: center; gap: 7px; margin-top: 4px; }
-.nd-brand__rule { width: 16px; height: 1px; background: var(--nd-line); flex: 0 0 auto; }
-.nd-brand__tag {
-  font-size: 8.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--nd-muted); white-space: nowrap;
-}
+.nd-brand { display: flex; align-items: center; flex: 0 0 auto; }
+.nd-brand__logo { display: block; height: 58px; width: auto; }
+@media (min-width: 940px) { .nd-brand__logo { height: 64px; } }
 
 .nd-nav { display: none; align-items: center; gap: clamp(10px, 1.3vw, 24px); margin-inline: auto; }
 .nd-nav > * { position: relative; }
@@ -991,10 +981,9 @@ body.nd {
 }
 @media (min-width: 940px) { .nd-foot__grid { grid-template-columns: auto 1fr auto; gap: clamp(28px, 3.4vw, 56px); } }
 
-.nd-foot .nd-brand__mark { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); color: var(--nd-tan); }
-.nd-foot .nd-brand__name { color: #fff; }
-.nd-foot .nd-brand__rule { background: rgba(255,255,255,.24); }
-.nd-foot .nd-brand__tag  { color: rgba(255,255,255,.56); }
+/* The logo artwork sits on white, so on the green footer it gets a white plate. */
+.nd-foot .nd-brand { justify-self: start; background: #fff; border-radius: 14px; padding: 8px 12px; }
+.nd-foot .nd-brand__logo { height: 72px; }
 
 .nd-foot__h { font-size: 12.5px; font-weight: 700; color: #fff; letter-spacing: .04em; }
 .nd-foot__links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 12px; }
@@ -1024,15 +1013,8 @@ body.nd {
   <div class="nd-wrap">
     <div class="nd-head__bar">
 
-      <a class="nd-brand" href="/">
-        <span class="nd-brand__mark"><?= nd_icon('leaf', 21, 1.4) ?></span>
-        <span>
-          <span class="nd-brand__name"><?= e(SITE_NAME) ?></span>
-          <span class="nd-brand__sub">
-            <span class="nd-brand__rule" aria-hidden="true"></span>
-            <span class="nd-brand__tag">Hair &middot; Skin &middot; Aesthetics</span>
-          </span>
-        </span>
+      <a class="nd-brand" href="/" aria-label="<?= e(SITE_NAME) ?> — home">
+        <img class="nd-brand__logo" src="<?= e(LOGO_WEB) ?>" width="<?= LOGO_WEB_W ?>" height="<?= LOGO_WEB_H ?>" alt="<?= e(LOGO_ALT) ?>" decoding="async">
       </a>
 
       <nav class="nd-nav" aria-label="Primary">
@@ -1490,15 +1472,8 @@ body.nd {
   <div class="nd-wrap">
 
     <div class="nd-foot__grid">
-      <a class="nd-brand" href="/">
-        <span class="nd-brand__mark"><?= nd_icon('leaf', 21, 1.4) ?></span>
-        <span>
-          <span class="nd-brand__name"><?= e(SITE_NAME) ?></span>
-          <span class="nd-brand__sub">
-            <span class="nd-brand__rule" aria-hidden="true"></span>
-            <span class="nd-brand__tag">Hair &middot; Skin &middot; Aesthetics</span>
-          </span>
-        </span>
+      <a class="nd-brand" href="/" aria-label="<?= e(SITE_NAME) ?> — home">
+        <img class="nd-brand__logo" src="<?= e(LOGO_WEB) ?>" width="<?= LOGO_WEB_W ?>" height="<?= LOGO_WEB_H ?>" alt="<?= e(LOGO_ALT) ?>" decoding="async">
       </a>
 
       <nav aria-label="Footer">

@@ -106,7 +106,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">Your own scalp follicles, moved into patchy cheeks, a weak jawline, a thin moustache, short sideburns or a scar where hair will not grow. The examination, beard design, procedure and follow-up visits are all carried out at our Rohini clinic in North-West Delhi by registered medical practitioners.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Beard transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Beard transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

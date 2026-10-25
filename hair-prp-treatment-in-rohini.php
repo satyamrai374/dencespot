@@ -103,7 +103,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">PRP and GFC are prepared from a small sample of your own blood and injected where the scalp is thinning, with the aim of supporting follicles that have weakened but not yet disappeared. Neither is a cure, and neither suits every kind of hair loss, so the cause is checked first. A course runs over several months, and the assessment, every session and each review take place at our Rohini clinic in North-West Delhi.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair PRP / GFC" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

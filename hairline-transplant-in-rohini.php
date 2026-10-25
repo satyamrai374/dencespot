@@ -119,7 +119,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">A hairline transplant rebuilds the front of the scalp, and the temples where that makes sense, with hair from your own donor area. At our Rohini clinic your proposed line is marked on your forehead and you approve it, looking in a mirror, before a single graft is removed. It is drawn for the face you will have in twenty years rather than the one you had at eighteen.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

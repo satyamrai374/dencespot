@@ -122,7 +122,7 @@ require __DIR__ . '/includes/header.php';
         <p class="lead mt-3 measure">An unshaven transplant leaves your hair at its usual length, so it hides the work while it heals. It is carried out at our Rohini clinic by registered medical practitioners. It is also slower than a shaven session and suits smaller cases, so whether your plan can be done this way is settled at the assessment, before any date is booked.</p>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--ink" href="/book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ink" href="/delhi-clinic#book-consultation" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
           <a class="btn btn--lg btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp the Rohini Clinic</a>
         </div>
 

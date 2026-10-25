@@ -833,7 +833,44 @@ function blog_post_art(array $post): array
     return $postArt[$post['slug']] ?? $hubArtDefault[$post['hub']] ?? $hubArtDefault['prp'];
 }
 
-function blog_card(array $post, bool $withImage = true): string
+/**
+ * Illustrations a card can use instead of its own when the page has already
+ * shown that one (blog_card(..., $avoidRepeats)). Each alt describes the image.
+ */
+const BLOG_ART_SPARE = [
+    'svc-follicle'    => 'a sculpted cross-section of scalp skin with hair follicles',
+    'stage-temples'   => 'a mannequin head seen from above, with receding temples',
+    'stage-crown'     => 'a mannequin head seen from above, with thinning at the crown',
+    'intro-recipient' => 'a mannequin head seen from the front, with a pencilled hairline',
+    'stage-extensive' => 'a mannequin head seen from above, showing an extensive pattern of hair loss',
+    'svc-skin'        => 'a sculpted cross-section of skin with a single hair follicle',
+];
+
+/** The post's illustration, or the first spare the page has not shown yet. */
+function blog_card_art(array $post, bool $avoidRepeats): array
+{
+    [$key, $alt] = blog_post_art($post);
+    if (!$avoidRepeats) {
+        return [$key, $alt];
+    }
+    $used = hp_img_used();
+    // The hero image is hand-written on most pages, so it is read from the
+    // page's preload hint rather than from hp_img().
+    if (preg_match('#/([a-z-]+)-\d+\.webp$#', (string) ($GLOBALS['page']['preload_image'] ?? ''), $m)) {
+        $used[$m[1]] = true;
+    }
+    if (!isset($used[$key])) {
+        return [$key, $alt];
+    }
+    foreach (BLOG_ART_SPARE as $spare => $spareAlt) {
+        if (!isset($used[$spare])) {
+            return [$spare, $spareAlt];
+        }
+    }
+    return [$key, $alt];
+}
+
+function blog_card(array $post, bool $withImage = true, bool $avoidRepeats = false): string
 {
     $hub = BLOG_HUBS[$post['hub']] ?? null;
 
@@ -848,7 +885,7 @@ function blog_card(array $post, bool $withImage = true): string
       if (!empty($post['image'])) {
           $cardMedia = '<img src="' . e($post['image']) . '" alt="' . e($post['image_alt'] ?? '') . '" width="800" height="500" loading="lazy">';
       } else {
-          [$artKey, $artAlt] = blog_post_art($post);
+          [$artKey, $artAlt] = blog_card_art($post, $avoidRepeats);
           $cardMedia = hp_img($artKey, 'AI-generated illustration: ' . $artAlt, '(min-width: 1080px) 380px, (min-width: 700px) 45vw, 100vw')
                      . hp_ai_chip('AI-generated');
       }
