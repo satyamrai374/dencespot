@@ -353,7 +353,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Visit Our Rohini Clinic',
-    'Hairline consultations, the drawing, the procedure and every follow-up review take place at the Rohini clinic in North-West Delhi, Monday to Saturday.'
+    'Hairline consultations, the drawing, the procedure and every follow-up review take place at the Rohini clinic in North-West Delhi, seven days a week.'
 ) ?>
 
 <?= rohini_services_block($page['url']) ?>

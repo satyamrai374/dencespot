@@ -47,22 +47,21 @@ const NAP_COUNTRY  = 'IN';
 const NAP_LANDMARK = 'opposite Medanta – The Medicity';
 
 /**
- * ⚠ AWAITING SIGN-OFF. The site says Mon–Sat 10:00–20:00; the Google listing
- * says Mon–Sun 09:00–21:00. "Open at time of search" is a top-5 local pack
- * factor, so a mismatch costs real visibility. Publishing the conservative
- * version until the clinic confirms.
+ * Client, 26 Oct 2026: both clinics work 7 days a week. The times stay
+ * 10:00–20:00 until confirmed: the Google listing has said Mon–Sun
+ * 09:00–21:00, and "open at time of search" is a top-5 local pack factor, so
+ * the site and both Google Business Profiles must show the same hours.
+ * schema_clinic() and schema_delhi_clinic() both read these.
  */
-const HOURS_DAYS    = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const HOURS_DAYS    = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const HOURS_OPEN    = '10:00';
 const HOURS_CLOSE   = '20:00';
-const HOURS_DISPLAY = 'Mon–Sat · 10:00 – 20:00';
+const HOURS_DISPLAY = 'Mon–Sun · 10:00 – 20:00';
 /**
- * ⚠ Must not contradict openingHoursSpecification, which lists Monday-Saturday
- * only. This previously read 'Sunday · by appointment only', which asserted
- * Sunday availability the markup denied. Reinstate the Sunday wording only when
- * Sunday is also added to HOURS_DAYS.
+ * Printed after HOURS_DISPLAY in brackets, after " · ", or on its own line,
+ * so it has to read in all three. Must not contradict HOURS_DAYS.
  */
-const HOURS_NOTE    = 'Sunday · closed';
+const HOURS_NOTE    = '7 days a week, Sunday included';
 
 /**
  * Clinic pin, taken from the Google Business Profile place embed rendered on
@@ -351,13 +350,21 @@ const REVIEWED_DATE_ISO = '2026-08-31';
  * STAT_YEARS_ACTIVE  — years Dr. Nyra has practised, Germany and Gurugram
  *                      combined. The three German years are already published
  *                      in doctor_block(); this is the total.
- * STAT_FIGURES_AS_OF — when the two above were counted. A figure with no date
+ * STAT_SURGERIES     — total surgical procedures at DenceSpot.
+ * STAT_CLINIC_YEARS  — years the clinic has practised (shown with a "+").
+ *                      Not a doctor's own years: those stay in DOCTORS.
+ * STAT_FIGURES_AS_OF — when the figures were counted. A figure with no date
  *                      on it goes stale silently.
+ *
+ * Client, 26 Oct 2026: 11+ years, 9,520 surgeries, 8,569 patients ("happy
+ * clients"), shown on /lp/. Keep the clinic's records behind them.
  * ---------------------------------------------------------------------- */
 
-const STAT_CASES_TREATED = null;   // ⚠ integer, e.g. 1200
+const STAT_CASES_TREATED = 8569;
+const STAT_SURGERIES     = 9520;
+const STAT_CLINIC_YEARS  = 11;
 const STAT_YEARS_ACTIVE  = null;   // ⚠ integer, e.g. 9
-const STAT_FIGURES_AS_OF = null;   // ⚠ e.g. 'September 2026'
+const STAT_FIGURES_AS_OF = 'October 2026';
 
 /**
  * Indicative all-in cost band for a hair transplant, in whole rupees, as the

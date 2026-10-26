@@ -11,10 +11,11 @@
  *
  * Compliance (NMC advertising guidelines 06.10.2026 and the site's
  * strict-wording rule): the reference's "#1", "₹1", written-guarantee,
- * discount, "10,000+ clients" and "98%" claims are replaced with facts from
- * includes/config.php, and its patient photos with DenceSpot's consented
- * before/after composites (GALLERY_MANIFEST). No AI images. Change a clinic
- * fact in config.php, not here.
+ * discount and "98%" claims are gone; the figures come from includes/config.php
+ * (clinic-supplied, with an as-of date). Change a clinic fact there, not here.
+ * The before/after photos in lp/img/ were supplied by the client on 26 Oct 2026
+ * for this page only; they are not in GALLERY_MANIFEST, so /gallery does not
+ * show them. Written patient consent for each must be on file. No AI images.
  *
  * Every form posts to /enquire.php, like the rest of the site, so leads reach
  * the same log, email and WhatsApp alert and the visitor lands on /thank-you.
@@ -37,20 +38,29 @@ const LP_PIXEL_ID = '';   // Meta Pixel id, digits only
 const LP_URL    = '/lp/';
 const LP_SOURCE = 'lp-hair-transplant';
 
+/**
+ * One number on the whole page (client, 26 Oct 2026), for calls and WhatsApp.
+ * The clinic entities in the JSON-LD keep their own numbers, which must match
+ * each clinic's Google Business Profile.
+ */
+const LP_PHONE_E164    = LOC_DELHI_PHONE_E164;
+const LP_PHONE_DISPLAY = LOC_DELHI_PHONE_DISPLAY;
+const LP_WHATSAPP_URL  = LOC_DELHI_WHATSAPP_URL;
+
 $title       = 'Hair Transplant in Gurgaon & Delhi | DenceSpot Clinic';
 $description = 'FUE and DHI hair transplant at DenceSpot Clinic, Sector 39 Gurugram and Rohini, Delhi. Doctor-led consultation, itemised written estimate and card EMI.';
 
 /** "Why choose" cards: icon tone, Font Awesome icon, title, text. */
 $features = [
-    ['red',    'fa-user-doctor',         'Doctor-Led Care',      'Every hair transplant starts with an examination by a doctor, who explains whether a transplant suits your hair loss before anything is planned.'],
-    ['yellow', 'fa-microscope',          'Scalp Assessment',     'Hair density, the pattern of loss and the donor area at the back of the head are examined to work out how many grafts can be moved safely.'],
-    ['green',  'fa-pen-ruler',           'Hairline Design',      'Your hairline is drawn to suit your face, your age and how your hair loss may progress, and agreed with you before the procedure begins.'],
-    ['red',    'fa-bolt',                'Recovery Time',        'A day-case procedure under local anaesthetic. You go home the same day, and most people return to desk work within a few days.'],
-    ['yellow', 'fa-dna',                 'Technique Used',       'FUE and DHI. The technique is chosen after your donor assessment: FUE for larger areas, DHI implanter pens where close control of angle and depth matters.'],
-    ['green',  'fa-indian-rupee-sign',   'Pricing',              'Cost depends on the number of grafts and the technique. You get an itemised written estimate after assessment, and card EMI through your bank on eligible cards.'],
-    ['red',    'fa-calendar-check',      'Follow-Up Reviews',    'Written aftercare and photographed follow-up reviews through the first twelve months, so growth is judged against a record. Follow-up is part of your estimate.'],
-    ['yellow', 'fa-screwdriver-wrench',  'Tools Used',           'Fine punches remove follicles one at a time from the donor area. For DHI, an implanter pen sets each graft’s depth and angle in a single movement.'],
-    ['green',  'fa-hospital',            'Hygiene Standards',    'Sterilised instruments, single-use implanter tips and a procedure room prepared for each patient, with registered medical practitioners carrying out every procedure.'],
+    ['red',      'fa-user-doctor',         'Doctor-Led Care',      'Every hair transplant starts with an examination by a doctor, who explains whether a transplant suits your hair loss before anything is planned.'],
+    ['navy',     'fa-microscope',          'Scalp Assessment',     'Hair density, the pattern of loss and the donor area at the back of the head are examined to work out how many grafts can be moved safely.'],
+    ['charcoal', 'fa-pen-ruler',           'Hairline Design',      'Your hairline is drawn to suit your face, your age and how your hair loss may progress, and agreed with you before the procedure begins.'],
+    ['red',      'fa-bolt',                'Recovery Time',        'A day-case procedure under local anaesthetic. You go home the same day, and most people return to desk work within a few days.'],
+    ['navy',     'fa-dna',                 'Technique Used',       'FUE and DHI. The technique is chosen after your donor assessment: FUE for larger areas, DHI implanter pens where close control of angle and depth matters.'],
+    ['charcoal', 'fa-indian-rupee-sign',   'Pricing',              'Cost depends on the number of grafts and the technique. You get an itemised written estimate after assessment, and card EMI through your bank on eligible cards.'],
+    ['red',      'fa-calendar-check',      'Follow-Up Reviews',    'Written aftercare and photographed follow-up reviews through the first twelve months, so growth is judged against a record. Follow-up is part of your estimate.'],
+    ['navy',     'fa-screwdriver-wrench',  'Tools Used',           'Fine punches remove follicles one at a time from the donor area. For DHI, an implanter pen sets each graft’s depth and angle in a single movement.'],
+    ['charcoal', 'fa-hospital',            'Hygiene Standards',    'Sterilised instruments, single-use implanter tips and a procedure room prepared for each patient, with registered medical practitioners carrying out every procedure.'],
 ];
 
 /** "The DenceSpot Approach" cards. */
@@ -61,29 +71,53 @@ $approach = [
     ['fa-headset',    'Phone & WhatsApp Support',  'Questions answered before and after your procedure'],
 ];
 
-/** Stats band: only figures the clinic has confirmed (config.php DOCTORS). */
+/**
+ * Stats band: the clinic's own figures (config.php, client 26 Oct 2026). The
+ * client's "happy clients" reads as a satisfaction claim, which the NMC
+ * guidelines treat like a testimonial, so the label is "Patients Treated".
+ */
 $stats = [
-    ['fa-hospital',    '2',  'Clinics: Gurugram & Rohini'],
-    ['fa-user-doctor', '3',  'Doctors on Our Team'],
-    ['fa-certificate', '8+', 'Years’ Experience, Each Doctor'],
-    ['fa-calendar',    '12', 'Months of Follow-Up Reviews'],
+    ['fa-certificate',  STAT_CLINIC_YEARS . '+',            'Years of Experience'],
+    ['fa-user-doctor',  number_format(STAT_SURGERIES),     'Surgeries Performed'],
+    ['fa-users',        number_format(STAT_CASES_TREATED), 'Patients Treated'],
+    ['fa-location-dot', '2',                               'Clinic Locations'],
 ];
 
 /**
- * Results grid: eight of the consented composites. Picked by filename but
- * read through gallery_images(), so a file the manifest withholds can never
- * appear here.
+ * Before/after composites in lp/img/ (ba-NN-480/640/1080.webp, all square).
+ * The first three fill the hero cards, the other six the results grid, so no
+ * photo appears twice. No technique, graft count or interval is on record for
+ * them, so none is printed.
  */
-$resultPick = [
-    '2023-05-10.jpg', '2023-05-17 (1).jpg', '2023-05-17 (4).jpg', '2023-05-17 (5).jpg',
-    '2023-05-17 (7).jpg', '2023-05-17 (8).jpg', '2023-05-17 (9).jpg', '2023-05-17.jpg',
+$beforeAfter = [
+    'ba-01' => 'Before and after a hair transplant at DenceSpot Clinic: a fully shaved scalp with the new hairline drawn, and the grown-in result',
+    'ba-02' => 'Before and after a hair transplant at DenceSpot Clinic: a bald front and top marked for surgery, and the same patient with the area covered',
+    'ba-03' => 'Before and after a hair transplant at DenceSpot Clinic: thinning across the top of the head, and the result from the front',
+    'ba-04' => 'Before and after a hair transplant at DenceSpot Clinic: a receding hairline from the front, and the rebuilt hairline',
+    'ba-05' => 'Before and after a hair transplant at DenceSpot Clinic: the frontal hairline marked out, and the result',
+    'ba-06' => 'Before and after a hair transplant at DenceSpot Clinic: thinning front and temples seen from above, and the result',
+    'ba-07' => 'Before and after a hair transplant at DenceSpot Clinic: receded temples marked for grafting, and the restored temples',
+    'ba-08' => 'Before and after a hair transplant at DenceSpot Clinic: the hairline drawn on curly hair, and the result',
+    'ba-09' => 'Four photos of one DenceSpot Clinic patient: before treatment, then at three later stages',
 ];
-$results = array_values(array_filter(
-    gallery_images(CAT_RESULT),
-    static fn (array $img): bool => in_array($img['file'], $resultPick, true)
-));
+$heroPhotos   = array_slice($beforeAfter, 0, 3, true);
+$resultPhotos = array_slice($beforeAfter, 3, null, true);
 
-[$uttam, $shukri] = NAMED_CASES;
+/** A before/after composite with its WebP sizes. $attrs: loading, fetchpriority, class. */
+function lp_photo(string $slug, string $alt, string $sizes, array $attrs = []): string
+{
+    $set = implode(', ', array_map(
+        static fn (int $w): string => LP_URL . 'img/' . $slug . '-' . $w . '.webp ' . $w . 'w',
+        [480, 640, 1080]
+    ));
+    $loading = $attrs['loading'] ?? 'lazy';
+    return '<img src="' . e(LP_URL . 'img/' . $slug . '-640.webp') . '" srcset="' . e($set) . '" sizes="' . e($sizes) . '"'
+         . ' width="1080" height="1080" alt="' . e($alt) . '"'
+         . ' loading="' . e($loading) . '" decoding="' . ($loading === 'eager' ? 'sync' : 'async') . '"'
+         . (!empty($attrs['fetchpriority']) ? ' fetchpriority="' . e($attrs['fetchpriority']) . '"' : '')
+         . (!empty($attrs['class']) ? ' class="' . e($attrs['class']) . '"' : '')
+         . '>';
+}
 
 /** Team cards: facts from DOCTORS; a missing fact is left out. */
 $team = [
@@ -116,7 +150,7 @@ $schema = [
     schema_website(),
 ];
 
-$telHref = 'tel:' . PHONE_E164;
+$telHref = 'tel:' . LP_PHONE_E164;
 $asset   = static fn (string $file): string => LP_URL . $file . '?v=' . (int) @filemtime(__DIR__ . '/' . $file);
 
 /** One enquiry form, shared by the three popups. $id keeps label/for pairs unique. */
@@ -213,7 +247,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
   <meta name="robots" content="<?= SITE_STAGING ? 'noindex, nofollow' : 'index, follow, max-image-preview:large' ?>">
   <link rel="canonical" href="<?= e(abs_url(LP_URL)) ?>">
   <link rel="icon" href="/favicon.ico">
-  <meta name="theme-color" content="#c41e3a">
+  <meta name="theme-color" content="#da061a">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="<?= e(SITE_NAME) ?>">
@@ -281,7 +315,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
       'appointmentModal', '📅 BOOK NOW', 'doctor-rahul', DOCTORS['dr-rahul']['name'] . ' at ' . SITE_NAME,
       'Book Your Visit',
       'Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi',
-      ['Call-back to confirm a time', 'Open Monday to Saturday', 'Two clinics to choose from'],
+      ['Call-back to confirm a time', 'Open 7 days a week', 'Two clinics to choose from'],
       'fa-calendar-check', 'Book Appointment', 'We call you to confirm the time',
       lp_form('booking', 'Appointment popup', 'fa-calendar-check', 'Book My Appointment')
   ) ?>
@@ -300,7 +334,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
           <img src="<?= e(LOGO_WEB) ?>" alt="<?= e(LOGO_ALT) ?>" width="<?= LOGO_WEB_W ?>" height="<?= LOGO_WEB_H ?>">
         </div>
         <div class="header-cta">
-          <a href="<?= e($telHref) ?>" class="btn-call" data-track="call" aria-label="Call <?= e(PHONE_DISPLAY) ?>">
+          <a href="<?= e($telHref) ?>" class="btn-call" data-track="call" aria-label="Call <?= e(LP_PHONE_DISPLAY) ?>">
             <i class="fa-solid fa-phone"></i> <span class="btn-label">Call Now</span>
           </a>
           <button type="button" class="btn-primary book-appointment-btn" aria-label="Book consultation">
@@ -325,17 +359,13 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
         </div>
 
         <div class="hb-cards">
-          <figure class="hb-card hb-card--a">
-            <?= photo_img($shukri['image'], $shukri['alt'], '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 45vw', 1024, 1024, ['loading' => 'eager', 'class' => 'hb-photo hb-photo--left']) ?>
+          <?php foreach (array_keys($heroPhotos) as $i => $slug): ?>
+          <?php $card = ['a', 'b', 'c'][$i]; ?>
+          <figure class="hb-card hb-card--<?= $card ?>">
+            <?= lp_photo($slug, $heroPhotos[$slug], $card === 'b' ? '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 52vw' : '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 45vw', ['loading' => 'eager', 'fetchpriority' => $card === 'b' ? 'high' : '', 'class' => 'hb-photo']) ?>
+            <?php if ($card !== 'a'): /* card A carries the label */ ?><figcaption class="hb-note">Results vary</figcaption><?php endif; ?>
           </figure>
-          <figure class="hb-card hb-card--b">
-            <?= hp_img('doctor-nyra', DOCTORS['dr-nyra']['name'] . ', ' . DOCTORS['dr-nyra']['quals'] . ', ' . DOCTORS['dr-nyra']['role'], '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 52vw', ['loading' => 'eager', 'fetchpriority' => 'high', 'class' => 'hb-photo']) ?>
-            <figcaption class="hb-tag"><?= e(DOCTORS['dr-nyra']['name']) ?><small>MD (Dermatology)</small></figcaption>
-          </figure>
-          <figure class="hb-card hb-card--c">
-            <?= photo_img($uttam['image'], $uttam['alt'], '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 45vw', 1024, 1024, ['loading' => 'eager', 'class' => 'hb-photo']) ?>
-            <figcaption class="hb-note"><span><?= e(str_replace(' Hair Transplant', '', $uttam['technique'])) ?></span> · <span><?= e($uttam['grafts']) ?></span> · <span><?= e($uttam['interval']) ?></span><small>Consented photo · results vary</small></figcaption>
-          </figure>
+          <?php endforeach; ?>
           <div class="hb-label">
             <p class="hb-label__top">Hair Transplant</p>
             <p class="hb-label__big">FUE &amp; DHI</p>
@@ -348,7 +378,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
           <span class="hb-item">FUE <span class="hb-sep">|</span> DHI</span>
           <span class="hb-item hb-desktop-only"><i class="fas fa-credit-card"></i> Card EMI Options</span>
           <span class="hb-item hb-desktop-only"><i class="fas fa-file-signature"></i> Written Estimate</span>
-          <a class="hb-item" href="<?= e($telHref) ?>" data-track="call"><i class="fas fa-phone"></i> <?= e(preg_replace('/^\+91\s*/', '', PHONE_DISPLAY)) ?></a>
+          <a class="hb-item" href="<?= e($telHref) ?>" data-track="call"><i class="fas fa-phone"></i> <?= e(preg_replace('/^\+91\s*/', '', LP_PHONE_DISPLAY)) ?></a>
         </div>
       </div>
     </div>
@@ -388,7 +418,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
   <!-- CTA Section -->
   <section class="cta-section">
     <div class="container">
-      <div class="cta-title">✨ Clear Advice. Clear Costs. Choose DENCESPOT CLINIC.</div>
+      <div class="cta-title">Clear Advice. Clear Costs. Choose DENCESPOT CLINIC.</div>
       <div class="cta-subtitle">Hair transplant consultations at Sector 39, Gurugram and Rohini, Delhi.</div>
       <button type="button" class="cta-button book-appointment-btn"><i class="fas fa-calendar-check"></i> Book Your Consultation</button>
     </div>
@@ -434,39 +464,26 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
         </div>
         <?php endforeach; ?>
       </div>
+      <p class="stats-note">Figures from clinic records, <?= e(STAT_FIGURES_AS_OF) ?>.</p>
     </div>
   </section>
 
   <!-- Results Section -->
   <section class="results">
     <div class="container">
-      <h2>Hair Transplant Before &amp; After</h2>
-      <p class="results-subtitle">DenceSpot Patients. Consented Photos. Results Vary.</p>
-      <div class="flags">
-        <div class="flag-item">
-          <span><i class="fas fa-location-dot"></i></span>
-          <div>
-            <div>Gurugram Clinic</div>
-            <small>Sector 39, <?= e(NAP_LANDMARK) ?></small>
-          </div>
-        </div>
-        <div class="flag-item">
-          <span><i class="fas fa-location-dot"></i></span>
-          <div>
-            <div>Rohini Clinic</div>
-            <small>North-West Delhi</small>
-          </div>
-        </div>
-      </div>
+      <?php /* Visible heading, subtitle and clinic boxes removed (client, 26 Oct
+               2026); the heading stays for screen readers and the outline. */ ?>
+      <h2 class="sr-only">Hair Transplant Before &amp; After Photos</h2>
       <div class="results-grid">
-        <?php foreach ($results as $img): ?>
+        <?php foreach ($resultPhotos as $slug => $alt): ?>
         <div class="result-card">
-          <?= photo_img($img['url'], $img['alt'], '(min-width: 1025px) 290px, (min-width: 769px) 33vw, 50vw', $img['w'], $img['h']) ?>
+          <?= lp_photo($slug, $alt, '(min-width: 1025px) 380px, (min-width: 769px) 33vw, 50vw') ?>
         </div>
         <?php endforeach; ?>
       </div>
+      <p class="results-note">Photos of DenceSpot patients. Individual results vary.</p>
       <div class="cta-group">
-        <a href="<?= e(WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Ask About Your Case on WhatsApp</a>
+        <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Ask About Your Case on WhatsApp</a>
         <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Talk to Our Team Now</a>
       </div>
     </div>
@@ -479,7 +496,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
       <p>A doctor checks your donor area and gives you a written graft and cost estimate at your consultation.</p>
       <div class="cta-group">
         <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book Your Consultation</button>
-        <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Call Now: <?= e(PHONE_DISPLAY) ?></a>
+        <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Call Now: <?= e(LP_PHONE_DISPLAY) ?></a>
       </div>
     </div>
   </section>
@@ -516,8 +533,8 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
       <h2>Ready to Plan Your Hair Transplant?</h2>
       <p>Book a consultation at our Gurugram or Rohini clinic and get a written estimate before you decide.</p>
       <div class="cta-group">
-        <a href="<?= e(WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat With Our Team Now</a>
-        <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Call <?= e(PHONE_DISPLAY) ?></a>
+        <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat With Our Team Now</a>
+        <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Call <?= e(LP_PHONE_DISPLAY) ?></a>
       </div>
     </div>
   </section>
@@ -532,8 +549,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
             <i class="fa-solid fa-phone"></i>
             <div>
               <div><strong>Call Now:</strong></div>
-              <div>Gurugram: <a href="<?= e($telHref) ?>" data-track="call"><?= e(PHONE_DISPLAY) ?></a></div>
-              <div>Rohini: <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a></div>
+              <div><a href="<?= e($telHref) ?>" data-track="call"><?= e(LP_PHONE_DISPLAY) ?></a></div>
             </div>
           </div>
           <div class="footer-contact-item">
@@ -571,7 +587,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
             <li>✓ Card EMI on eligible cards</li>
             <li>✓ 12 months of follow-up reviews</li>
             <li>✓ Clinics in Gurugram &amp; Rohini</li>
-            <li>✓ Consented before &amp; after photos</li>
+            <li>✓ Open 7 days a week</li>
           </ul>
         </div>
       </div>
@@ -585,7 +601,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
 
   <!-- Floating CTA Button -->
   <div class="floating-cta">
-    <a href="<?= e(WHATSAPP_URL) ?>" rel="noopener" aria-label="WhatsApp" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="<?= e(LP_WHATSAPP_URL) ?>" rel="noopener" aria-label="WhatsApp" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
     <a href="<?= e($telHref) ?>" aria-label="Call Now" data-track="call"><i class="fa-solid fa-phone"></i></a>
   </div>
 

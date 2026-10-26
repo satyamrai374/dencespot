@@ -101,7 +101,7 @@ function schema_delhi_clinic(): array
         'medicalSpecialty' => 'Dermatology',
         'openingHoursSpecification' => [[
             '@type'     => 'OpeningHoursSpecification',
-            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            'dayOfWeek' => HOURS_DAYS,
             'opens'     => HOURS_OPEN,
             'closes'    => HOURS_CLOSE,
         ]],

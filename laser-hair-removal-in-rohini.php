@@ -359,7 +359,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Visit Our Rohini Clinic',
-    'Our Rohini clinic is in North-West Delhi, near the Outer Ring Road, and is open Monday to Saturday. Every laser session in your course takes place there.'
+    'Our Rohini clinic is in North-West Delhi, near the Outer Ring Road, and is open seven days a week. Every laser session in your course takes place there.'
 ) ?>
 
 <?= rohini_services_block($page['url']) ?>

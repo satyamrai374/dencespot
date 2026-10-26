@@ -313,7 +313,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Visit Our Rohini Clinic',
-    'FUE consultations, procedures and follow-up reviews take place at the Rohini clinic in North-West Delhi, six days a week.'
+    'FUE consultations, procedures and follow-up reviews take place at the Rohini clinic in North-West Delhi, seven days a week.'
 ) ?>
 
 <?= rohini_services_block($page['url']) ?>

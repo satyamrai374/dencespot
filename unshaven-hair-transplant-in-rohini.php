@@ -331,7 +331,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Visit Our Rohini Clinic',
-    'Unshaven and partial-shave assessments, procedures and follow-up reviews all take place at the Rohini clinic in North-West Delhi, six days a week.'
+    'Unshaven and partial-shave assessments, procedures and follow-up reviews all take place at the Rohini clinic in North-West Delhi, seven days a week.'
 ) ?>
 
 <?= rohini_services_block($page['url']) ?>

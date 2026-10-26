@@ -372,7 +372,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= local_block(
     'Skin Treatment at Our Gurugram Clinic',
-    'Skin consultations and treatment take place at our Sector 39 clinic in Gurugram, ' . NAP_LANDMARK . '. The clinic is open Monday to Saturday.'
+    'Skin consultations and treatment take place at our Sector 39 clinic in Gurugram, ' . NAP_LANDMARK . '. The clinic is open seven days a week.'
 ) ?>
 
 <?= lp_cta([

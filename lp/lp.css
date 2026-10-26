@@ -11,15 +11,19 @@
    ===================================================================== */
 
 :root {
-  /* Primary Colors */
-  --primary-red: #c41e3a;
-  --primary-red-light: #e63946;
-  --primary-red-dark: #a1162c;
+  /* LP: DenceSpot logo colours (client, 26 Oct 2026), sampled from
+     assets/img/logo/dencespot-logo-400.png. They replace the reference's
+     red and yellow: yellow buttons became navy with white text, and yellow
+     text on red became white. Its WhatsApp green stays for call and
+     WhatsApp buttons. */
+  --primary-red: #da061a;
+  --primary-red-light: #e8091d;
+  --primary-red-dark: #ab0308;
 
-  /* Secondary Colors */
-  --secondary-yellow: #ffd700;
-  --secondary-yellow-light: #ffed4e;
-  --secondary-yellow-dark: #e6c200;
+  --brand-navy: #032875;
+  --brand-navy-light: #0a3d9e;
+  --brand-navy-dark: #021b52;
+  --brand-charcoal: #303030;
 
   /* Accent Colors */
   --accent-green: #25d366;
@@ -28,22 +32,23 @@
 
   /* Neutral Colors */
   --white: #ffffff;
-  --black: #1a1a1a;
+  --black: #262626;
   --gray-light: #f8f9fa;
   --gray-medium: #e2e8f0;
   --gray-dark: #666666;
   --gray-darker: #333333;
 
   /* Background Gradients */
-  --gradient-red: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-light) 100%);
+  --gradient-red: linear-gradient(135deg, var(--primary-red-dark) 0%, var(--primary-red) 100%);
+  --gradient-navy: linear-gradient(135deg, var(--brand-navy-dark) 0%, var(--brand-navy-light) 100%);
   --gradient-pink: linear-gradient(135deg, #fff5f5 0%, #ffe5e9 100%);
 
   /* Shadows */
   --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 5px 20px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 10px 40px rgba(0, 0, 0, 0.2);
-  --shadow-yellow: 0 8px 20px rgba(255, 215, 0, 0.5);
-  --shadow-red: 0 8px 20px rgba(196, 30, 58, 0.5);
+  --shadow-navy: 0 8px 20px rgba(3, 40, 117, 0.4);
+  --shadow-red: 0 8px 20px rgba(218, 6, 26, 0.45);
   --shadow-green: 0 8px 20px rgba(37, 211, 102, 0.5);
 
   /* Border Radius */
@@ -77,18 +82,19 @@
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
 
-  /* LP: hero banner colours, sampled from the reference banner image */
-  --hb-gold: #f9d67d;
-  --hb-maroon: #891208;
-  --hb-badge: #ffd33d;
-  --hb-label-text: #f8c969;
-  --hb-ink: #1d3557;
-  --hb-icon: #2b6cb0;
+  /* LP: hero banner in the brand colours (the reference's gold field and
+     maroon ribbon became navy and red) */
+  --hb-field: var(--gradient-navy);
+  --hb-ribbon: var(--primary-red);
+  --hb-label: var(--primary-red);
+  --hb-label-text: var(--white);
+  --hb-ink: var(--brand-navy);
+  --hb-icon: var(--primary-red);
 }
 
 /* ---------- Reference: inline critical CSS ---------- */
 .top-bar {
-  background: #c41e3a;
+  background: #da061a;
   color: white;
   text-align: center;
   padding: 10px 0;
@@ -157,7 +163,7 @@ dialog.enhanced-modal {
   width: 90%;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 24px 64px rgba(196, 30, 58, 0.35);
+  box-shadow: 0 24px 64px rgba(218, 6, 26, 0.35);
   margin: auto;
   color: inherit;
 }
@@ -212,8 +218,8 @@ body {
 
 /* CTA Buttons */
 .btn-primary {
-  background: var(--secondary-yellow);
-  color: var(--primary-red);
+  background: var(--brand-navy);
+  color: var(--white);
   padding: var(--space-sm) var(--space-xl);
   border-radius: var(--radius-large);
   text-decoration: none;
@@ -230,8 +236,8 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-yellow);
-  background: var(--secondary-yellow-light);
+  box-shadow: var(--shadow-navy);
+  background: var(--brand-navy-light);
 }
 
 /* The reference styled every select globally (its arrow image 404'd). */
@@ -373,7 +379,7 @@ header {
 
 .feature-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+  box-shadow: 0 15px 40px rgba(218, 6, 26, 0.2);
 }
 
 .feature-icon {
@@ -387,7 +393,7 @@ header {
   margin: 0 auto var(--space-md);
   font-size: 36px;
   color: var(--white);
-  box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+  box-shadow: 0 5px 15px rgba(218, 6, 26, 0.3);
 }
 
 .feature-card h3 {
@@ -420,7 +426,7 @@ header {
   background: var(--white);
   padding: var(--space-lg);
   border-radius: var(--radius-medium);
-  box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
+  box-shadow: 0 5px 20px rgba(218, 6, 26, 0.1);
   border-left: 4px solid var(--primary-red);
   transition: transform var(--transition-normal);
 }
@@ -458,12 +464,12 @@ header {
   max-width: 100%;
   height: auto;
   border-radius: var(--radius-medium);
-  box-shadow: 0 10px 40px rgba(196, 30, 58, 0.2);
+  box-shadow: 0 10px 40px rgba(218, 6, 26, 0.2);
 }
 
 /* Stats Section */
 .stats {
-  background: var(--gradient-red);
+  background: var(--gradient-navy);
   padding: var(--space-xxl) 0;
   color: var(--white);
   position: relative;
@@ -492,7 +498,7 @@ header {
 .stat-item i {
   font-size: 52px;
   margin-bottom: var(--space-sm);
-  color: var(--secondary-yellow);
+  color: var(--primary-red-light);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
@@ -508,64 +514,48 @@ header {
   opacity: 0.95;
 }
 
+/* LP: as-of line for the clinic-supplied figures. */
+.stats-note {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: -20px;
+}
+
 /* Results Section */
 .results {
   padding: 80px 0;
   background: var(--gradient-pink);
 }
 
-.results h2 {
-  text-align: center;
-  font-size: var(--text-6xl);
-  color: var(--primary-red);
-  margin-bottom: var(--space-sm);
-  text-transform: uppercase;
-}
-
-.results-subtitle {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  font-size: var(--text-xl);
-  color: var(--primary-red);
-  font-weight: 600;
-  font-style: italic;
-}
-
-.flags {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
-}
-
-.flag-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-3xl);
-  font-weight: bold;
-  color: var(--primary-red);
-}
-
-/* LP: holds an icon instead of a flag emoji, so it is centred both ways. */
-.flag-item span {
-  flex: none;
-  width: 50px;
-  height: 50px;
-  border: 2px solid red;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-
+/* LP: the reference's results heading, subtitle and flag row were removed
+   (client, 26 Oct 2026). Six photos, so three columns instead of four. */
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(4, 2fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
   margin-bottom: 50px;
+}
+
+.results-note {
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray-dark);
+  margin-top: -30px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .result-card {
@@ -573,7 +563,7 @@ header {
   border-radius: 10px;
   border: 1px solid var(--primary-red);
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
+  box-shadow: 0 5px 15px rgba(218, 6, 26, 0.2);
   transition: transform var(--transition-normal);
   background: var(--white);
 }
@@ -687,16 +677,18 @@ header {
   box-shadow: var(--shadow-red);
 }
 
-.icon-yellow {
-  background: linear-gradient(135deg, var(--secondary-yellow), var(--secondary-yellow-dark));
-  color: var(--black);
-  box-shadow: var(--shadow-yellow);
+/* LP: the reference's yellow and green icon tones became the logo's navy
+   and charcoal. */
+.icon-navy {
+  background: linear-gradient(135deg, var(--brand-navy-light), var(--brand-navy-dark));
+  color: var(--white);
+  box-shadow: var(--shadow-navy);
 }
 
-.icon-green {
-  background: linear-gradient(135deg, var(--accent-green-light), var(--accent-green-dark));
+.icon-charcoal {
+  background: linear-gradient(135deg, #4a4a4a, var(--brand-charcoal));
   color: var(--white);
-  box-shadow: var(--shadow-green);
+  box-shadow: 0 8px 20px rgba(48, 48, 48, 0.35);
 }
 
 .feature-card:hover .feature-icon {
@@ -756,21 +748,21 @@ header {
 }
 
 .cta-subtitle {
-  color: var(--secondary-yellow);
+  color: rgba(255, 255, 255, 0.92);
   font-size: clamp(16px, 2.5vw, 20px);
   margin-bottom: var(--space-lg);
 }
 
 .cta-button {
-  background: var(--secondary-yellow);
-  color: var(--black);
+  background: var(--brand-navy);
+  color: var(--white);
   padding: var(--space-sm) var(--space-xl);
   border-radius: var(--radius-large);
   font-size: 18px;
   font-weight: 700;
   font-family: inherit;
   border: none;
-  box-shadow: var(--shadow-yellow);
+  box-shadow: var(--shadow-navy);
   transition: all var(--transition-normal);
   display: inline-flex;
   align-items: center;
@@ -779,14 +771,14 @@ header {
 }
 
 .cta-button:hover {
-  background: var(--secondary-yellow-light);
+  background: var(--brand-navy-light);
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 12px 30px rgba(3, 40, 117, 0.6);
 }
 
 .stats-badge {
   display: inline-block;
-  background: var(--accent-green);
+  background: var(--brand-navy);
   color: var(--white);
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-large);
@@ -832,14 +824,14 @@ header {
   border-radius: var(--radius-medium);
   padding: var(--space-lg);
   text-align: center;
-  box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
+  box-shadow: 0 5px 20px rgba(218, 6, 26, 0.1);
   transition: transform var(--transition-normal);
   border: 2px solid #ffd0d6;
 }
 
 .team-member:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(196, 30, 58, 0.2);
+  box-shadow: 0 10px 30px rgba(218, 6, 26, 0.2);
 }
 
 .team-image {
@@ -849,7 +841,7 @@ header {
   margin: 0 auto var(--space-md);
   background: var(--gradient-red);
   overflow: hidden;
-  border: 4px solid var(--accent-green);
+  border: 4px solid var(--brand-navy);
 }
 
 .team-image img {
@@ -894,7 +886,7 @@ footer {
 /* Reference: .footer-section h3 */
 .footer-section .footer-heading {
   margin-bottom: var(--space-md);
-  color: var(--secondary-yellow);
+  color: var(--white);
   font-size: var(--text-2xl);
   line-height: 1.6;
 }
@@ -911,7 +903,7 @@ footer {
 }
 
 .footer-contact-item i {
-  color: var(--secondary-yellow);
+  color: var(--primary-red-light);
   margin-top: 5px;
   font-size: var(--text-lg);
 }
@@ -928,7 +920,7 @@ footer {
 }
 
 .footer-cta {
-  background: rgba(196, 30, 58, 0.2);
+  background: rgba(218, 6, 26, 0.2);
   padding: var(--space-lg);
   border-radius: var(--radius-medium);
   border: 2px solid var(--primary-red);
@@ -1024,7 +1016,7 @@ footer a:not(.btn-call):not(.btn-primary) {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(192, 0, 32, 0.949), transparent);
+  background: linear-gradient(to top, rgba(171, 3, 8, 0.95), transparent);
   padding: 30px 20px;
   padding-top: 100px;
   color: white;
@@ -1070,7 +1062,7 @@ footer a:not(.btn-call):not(.btn-primary) {
 
 .modal-close-btn i {
   font-size: 18px;
-  color: #c41e3a;
+  color: #da061a;
 }
 
 .modal-form-side {
@@ -1086,7 +1078,7 @@ footer a:not(.btn-call):not(.btn-primary) {
 .modal-form-header .icon-badge {
   width: 70px;
   height: 70px;
-  background: linear-gradient(135deg, #c41e3a, #e63946);
+  background: linear-gradient(135deg, #da061a, #e8091d);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1094,13 +1086,13 @@ footer a:not(.btn-call):not(.btn-primary) {
   margin: 0 auto 15px;
   font-size: 32px;
   color: white;
-  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.3);
+  box-shadow: 0 8px 20px rgba(218, 6, 26, 0.3);
 }
 
 /* Reference: .modal-form-header h3 */
 .modal-form-header .modal-form-title {
   font-size: 26px;
-  color: #c41e3a;
+  color: #da061a;
   font-weight: 700;
   margin-bottom: 8px;
   line-height: 1.3;
@@ -1126,7 +1118,7 @@ footer a:not(.btn-call):not(.btn-primary) {
 }
 
 .enhanced-form-group label i {
-  color: #c41e3a;
+  color: #da061a;
   margin-right: 5px;
 }
 
@@ -1143,15 +1135,15 @@ footer a:not(.btn-call):not(.btn-primary) {
 
 /* LP: a visible arrow; the reference's arrow image was missing. */
 select.enhanced-input {
-  background: #f9fafb url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23c41e3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="m6 9 6 6 6-6"/%3E%3C/svg%3E') no-repeat right 16px center;
+  background: #f9fafb url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23da061a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="m6 9 6 6 6-6"/%3E%3C/svg%3E') no-repeat right 16px center;
   padding-right: 42px;
 }
 
 .enhanced-input:focus {
   outline: none;
-  border-color: #c41e3a;
+  border-color: #da061a;
   background-color: white;
-  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
+  box-shadow: 0 0 0 4px rgba(218, 6, 26, 0.1);
 }
 
 .enhanced-input::placeholder {
@@ -1161,7 +1153,7 @@ select.enhanced-input {
 .enhanced-submit-btn {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #c41e3a, #e63946);
+  background: linear-gradient(135deg, #da061a, #e8091d);
   color: white;
   border: none;
   border-radius: 12px;
@@ -1177,7 +1169,7 @@ select.enhanced-input {
 
 .enhanced-submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(196, 30, 58, 0.4);
+  box-shadow: 0 10px 25px rgba(218, 6, 26, 0.4);
 }
 
 .enhanced-submit-btn:active {
@@ -1214,14 +1206,14 @@ select.enhanced-input {
   position: absolute;
   top: 20px;
   left: 20px;
-  background: #ffd700;
-  color: #c41e3a;
+  background: var(--brand-navy);
+  color: var(--white);
   padding: 8px 16px;
   border-radius: 20px;
   font-weight: 700;
   font-size: 13px;
   z-index: 5;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(3, 40, 117, 0.5);
   animation: pulse 2s infinite;
 }
 
@@ -1268,11 +1260,11 @@ select.enhanced-input {
   width: 16px;
   height: 16px;
   margin-top: 1px;
-  accent-color: #c41e3a;
+  accent-color: #da061a;
 }
 
 .form-consent a {
-  color: #c41e3a;
+  color: #da061a;
 }
 
 /* LP: honeypot for /enquire.php; off-screen, never display:none (bots skip those). */
@@ -1327,12 +1319,13 @@ select.enhanced-input {
    LP: hero banner.
    The reference hero is one flattened image (banner.webp 1200×600 on
    desktop, banner-2.webp 768×800 on phones). Rebuilt here in HTML with the
-   same composition: a gold field, a maroon headline ribbon with a gold
-   badge, three white-framed photo cards with a maroon label on the first,
-   and a white strip of four selling points. Real text, so the H1 counts.
+   same composition: a coloured field, a headline ribbon with a badge, three
+   white-framed photo cards with a label on the first, and a white strip of
+   four selling points. Real text, so the H1 counts. The reference's gold and
+   maroon are the logo's navy and red here (--hb-* tokens).
    ===================================================================== */
 .hero-banner {
-  background: var(--hb-gold);
+  background: var(--hb-field);
   padding: 32px 0 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -1344,7 +1337,7 @@ select.enhanced-input {
 }
 
 .hb-ribbon {
-  background: var(--hb-maroon);
+  background: var(--hb-ribbon);
   border-radius: 4px;
   margin: 0 32px;
   padding: 8px 24px;
@@ -1370,8 +1363,8 @@ select.enhanced-input {
 }
 
 .hb-badge {
-  background: linear-gradient(180deg, #ffe066 0%, var(--hb-badge) 55%, #e8b923 100%);
-  color: var(--hb-maroon);
+  background: var(--white);
+  color: var(--hb-ribbon);
   font-size: clamp(14px, 1.5vw, 20px);
   font-weight: 800;
   line-height: 1;
@@ -1415,62 +1408,18 @@ select.enhanced-input {
   object-fit: cover;
 }
 
-/* Shukri's procedure-day composite: show only its left panel, the hairline
-   as drawn before surgery (the reference's first card shows the same step). */
-.hero-banner .hb-photo--left {
-  position: absolute;
-  top: -45%;
-  left: 0;
-  width: 201%;
-  max-width: none;
-  height: auto;
-}
-
-.hb-tag {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(137, 18, 8, 0.92);
-  color: var(--white);
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.2;
-  padding: 7px 12px;
-  border-radius: 8px;
-}
-
-.hb-tag small,
-.hb-note small {
-  display: block;
-  font-weight: 400;
-  opacity: 0.92;
-}
-
-.hb-tag small {
-  font-size: 12px;
-}
-
+/* "Results vary" on the before/after cards that have no label over them. */
 .hb-note {
   position: absolute;
-  left: 10px;
   right: 10px;
   bottom: 10px;
   background: rgba(0, 0, 0, 0.62);
   color: var(--white);
-  font-size: clamp(10px, 1.3vw, 14px);
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.3;
-  text-align: center;
-  padding: 6px 10px;
-  border-radius: 8px;
-}
-
-.hb-note span {
-  white-space: nowrap;
-}
-
-.hb-note small {
-  font-size: clamp(9px, 1vw, 11px);
+  line-height: 1.2;
+  padding: 4px 10px;
+  border-radius: 999px;
 }
 
 .hb-label {
@@ -1482,7 +1431,7 @@ select.enhanced-input {
   z-index: 2;
   width: 78%;
   margin-bottom: 4px;
-  background: var(--hb-maroon);
+  background: var(--hb-label);
   color: var(--hb-label-text);
   border-radius: 12px;
   padding: 10px 12px 12px;
@@ -1642,30 +1591,11 @@ select.enhanced-input {
     letter-spacing: 0;
   }
 
-  .hb-tag {
-    top: 8px;
-    left: 8px;
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 6px;
-  }
-
-  .hb-tag small {
-    font-size: 10px;
-  }
-
   .hb-note {
-    left: 4px;
-    right: 4px;
-    bottom: 4px;
+    right: 5px;
+    bottom: 5px;
     font-size: 9px;
-    line-height: 1.25;
-    padding: 3px 4px;
-    border-radius: 6px;
-  }
-
-  .hb-note small {
-    font-size: 8px;
+    padding: 3px 7px;
   }
 
   .hb-strip {
@@ -1804,7 +1734,7 @@ select.enhanced-input {
   .header-cta .btn-call {
     padding: 10px !important;
     background-color: transparent;
-    color: #c41e3a;
+    color: #da061a;
     text-align: center;
     font-size: 15px;
   }
@@ -2005,6 +1935,49 @@ select.enhanced-input {
 @media (min-width: 1920px) {
   .container {
     max-width: 1800px;
+  }
+}
+
+/* LP: shorter "Why choose" cards on phones (client, 26 Oct 2026): the icon
+   sits beside the text instead of above it, with tighter spacing. After the
+   reference's responsive rules, so it wins over their padding and sizes. */
+@media (max-width: 767px) {
+  .features-section .row {
+    row-gap: 12px;
+  }
+
+  .feature-card {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    column-gap: 14px;
+    align-items: start;
+    text-align: left;
+    padding: 16px;
+    margin-bottom: 0;
+  }
+
+  .feature-icon {
+    grid-row: 1 / span 2;
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .feature-card h3 {
+    font-size: 18px;
+    margin: 2px 0 4px;
+    text-align: left;
+  }
+
+  .feature-description {
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  .highlight-box {
+    margin: 30px 0 0;
   }
 }
 
