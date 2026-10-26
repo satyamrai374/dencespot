@@ -56,7 +56,7 @@ $faqs = [
     ['q' => 'Which side effects should I report straight away?',
      'a' => 'Spreading redness, heat or swelling, a fever after a session, or pain that worsens rather than settles. These are uncommon, but tell the Rohini clinic promptly by phone or WhatsApp if any of them appear.'],
     ['q' => 'Can GFC be used after a hair transplant?',
-     'a' => 'Sometimes, to support the native hair around the transplanted area rather than the grafts themselves. Timing matters, because a healing recipient area should not be injected too early. Surgery itself is covered on the <a href="/hair-transplant-in-rohini">hair transplant at the Rohini clinic</a> page.'],
+     'a' => 'Sometimes, to support the native hair around the transplanted area rather than the grafts themselves. Timing matters, because a healing recipient area should not be injected too early. Surgery itself is covered on the <a href="/hair-transplant-delhi/">hair transplant at the Rohini clinic</a> page.'],
     ['q' => 'Will the benefit last if I stop?',
      'a' => 'No. GFC does not alter the process behind pattern hair loss. Any benefit depends on continued maintenance, usually alongside medication, and once sessions stop, thinning generally carries on from where it had reached.'],
     ['q' => 'Is EMI available for a GFC course?',

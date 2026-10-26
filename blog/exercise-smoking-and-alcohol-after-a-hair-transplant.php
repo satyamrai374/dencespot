@@ -165,6 +165,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="getting-it-assessed">Getting it assessed</h2>
 
-<p>The right timings for you depend on the technique used, the size of the session, how your scalp heals and what your days involve, which is why they are confirmed at your reviews rather than read off a table. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi. <a href="/hair-transplant-in-gurgaon">Hair transplant in Gurgaon</a> and <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> set out how a procedure and its follow-up are planned, and bringing your work pattern, commute and sport to the consultation lets the recovery be planned around them from the start.</p>
+<p>The right timings for you depend on the technique used, the size of the session, how your scalp heals and what your days involve, which is why they are confirmed at your reviews rather than read off a table. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi. <a href="/hair-transplant-in-gurgaon">Hair transplant in Gurgaon</a> and <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> set out how a procedure and its follow-up are planned, and bringing your work pattern, commute and sport to the consultation lets the recovery be planned around them from the start.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>

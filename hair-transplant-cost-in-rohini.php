@@ -138,7 +138,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'How a Hair Transplant Quote Is Built',
     'id'      => 'how-a-quote-is-built',
     'html'    => '<p>Almost every quote follows the same arithmetic: <b>the graft count × a per-graft rate</b>, plus the items the estimate covers or lists separately. The rate is the part people compare, yet the graft count moves the total far more, and it cannot be known until your scalp has been examined.</p>'
-               . '<p>The count is mapped zone by zone from the area to be covered, then capped by what the donor area at the back and sides can give without visibly thinning. That ceiling is personal: two people at the same stage of loss can have very different donor supplies. What the procedure itself involves is explained on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>',
+               . '<p>The count is mapped zone by zone from the area to be covered, then capped by what the donor area at the back and sides can give without visibly thinning. That ceiling is personal: two people at the same stage of loss can have very different donor supplies. What the procedure itself involves is explained on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>',
     'points'  => [
         'Graft count: mapped from your scalp, capped by your donor area',
         'Per-graft rate: set by the technique and how long the work takes',

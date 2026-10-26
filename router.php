@@ -63,6 +63,14 @@ if (file_exists($phpFile)) {
     exit;
 }
 
+// 3b. Delhi hair transplant area pages without a file of their own share one
+//     template, which 404s an unknown slug. Mirrors .htaccess §7b.
+if (preg_match('#^/hair-transplant-delhi/([a-z0-9-]+)$#', $uri, $m)) {
+    $_GET['slug'] = $m[1];
+    require __DIR__ . '/hair-transplant-delhi/area.php';
+    exit;
+}
+
 // 4. Nothing matched: 404.php, at the requested address.
 http_response_code(404);
 require __DIR__ . '/404.php';

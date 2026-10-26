@@ -124,7 +124,8 @@ const ROHINI_GROUPS = [
 
 const ROHINI_SERVICES = [
     // Hair transplant
-    ['url' => '/hair-transplant-in-rohini',            'label' => 'Hair Transplant',            'group' => 'transplant',   'gurgaon' => '/hair-transplant-in-gurgaon',            'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.'],
+    // The Delhi parent page (25 Oct 2026); 'anchor' overrides "<label> in Rohini".
+    ['url' => '/hair-transplant-delhi/',                'label' => 'Hair Transplant',            'group' => 'transplant',   'gurgaon' => '/hair-transplant-in-gurgaon',            'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.', 'anchor' => 'Hair Transplant in Delhi'],
     ['url' => '/fue-hair-transplant-in-rohini',        'label' => 'FUE Hair Transplant',        'group' => 'transplant',   'gurgaon' => '/fue-hair-transplant-in-gurgaon',        'img' => 'hair-transplant', 'note' => 'Follicles extracted one by one from the donor area.'],
     ['url' => '/dhi-hair-transplant-in-rohini',        'label' => 'DHI Hair Transplant',        'group' => 'transplant',   'gurgaon' => '/dhi-hair-transplant-in-gurgaon',        'img' => 'hair-transplant', 'note' => 'Grafts placed with an implanter pen.'],
     ['url' => '/unshaven-hair-transplant-in-rohini',   'label' => 'Unshaven Hair Transplant',   'group' => 'transplant',   'gurgaon' => '/unshaven-hair-transplant-in-gurgaon',   'img' => 'unshaven',        'note' => 'Smaller sessions without shaving the whole head.'],
@@ -238,6 +239,8 @@ const DOCTORS = [
         'quals'       => 'MBBS, MD (Dermatology)',
         'role'        => 'Owner & Chief Consultant, DenceSpot Clinic',
         'alumni'      => 'Dr. D. Y. Patil Medical College',
+        'abroad'      => '3 years of clinical work in Germany',
+        'experience'  => '8 years',   // total, client 25 Oct 2026
         'url'         => '/dr-nyra',
         'image'       => '/assets/img/dr-nayra.webp',
         'specialty'   => 'Dermatology & Hair Restoration',
@@ -248,13 +251,16 @@ const DOCTORS = [
         'same_as'     => [],     // ⚠ add Practo / LinkedIn profile URLs
     ],
     // Client, 25 Oct 2026: Senior Resident at ESIC Hospital, 8+ years of
-    // experience (shown as facts on the homepage tile). His degree is still
-    // not on record, so quals stays null and he stays out of listed_doctors().
+    // experience (shown as facts on the homepage tile). The degree is still
+    // not on record, so quals stays null and the entry stays out of
+    // listed_doctors().
     'dr-rahul' => [
         'name'        => 'Dr. Rahul',
         'quals'       => null,
         'role'        => null,
         'alumni'      => null,
+        'position'    => 'Senior Resident, ESIC Hospital',
+        'experience'  => '8+ years',
         'url'         => '/dr-rahul',
         'image'       => '/assets/img/dr-rahul.webp',
         'specialty'   => null,
@@ -266,15 +272,17 @@ const DOCTORS = [
     ],
     // Third doctor, photographed for the homepage. Client, 25 Oct 2026: trained
     // at UMCH Hamburg, 1-year fellowship in hair restoration at D. Y. Patil,
-    // 10 years of experience (facts on the homepage tile). His degree is not
-    // on record, so the tile has no qualification line and, with no quals, he
-    // is skipped by every directory and schema list. No profile page yet.
+    // 10 years of experience (homepage tile and /dr-akash). The degree is not
+    // on record, so neither shows a qualification line and, with no quals, the
+    // entry is skipped by every directory and schema list.
     'dr-akash' => [
         'name'        => 'Dr. Akash',
         'quals'       => null,   // ⚠ recognised medical qualification
         'role'        => null,
         'alumni'      => 'Universitätsmedizin Neumarkt a. M. Campus Hamburg (UMCH)',
-        'url'         => null,
+        'fellowship'  => '1-year fellowship in hair restoration, D. Y. Patil',
+        'experience'  => '10 years',
+        'url'         => '/dr-akash',
         'image'       => '/assets/img/home/doctor-3-720.webp',
         'specialty'   => null,
         'reg_number'  => null,
@@ -391,7 +399,7 @@ const NAV_PRIMARY = [
     ]],
     ['label' => 'Rohini Clinic', 'url' => '/delhi-clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-delhi/'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
@@ -427,7 +435,7 @@ const NAV_FOOTER = [
         ['label' => 'Hair fall treatment',        'url' => '/hair-fall-treatment-in-gurgaon'],
     ],
     'Rohini Treatments' => [
-        ['label' => 'Hair transplant in Rohini',  'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Hair transplant in Delhi',  'url' => '/hair-transplant-delhi/'],
         ['label' => 'FUE hair transplant Rohini', 'url' => '/fue-hair-transplant-in-rohini'],
         ['label' => 'DHI hair transplant Rohini', 'url' => '/dhi-hair-transplant-in-rohini'],
         ['label' => 'Hair PRP in Rohini',         'url' => '/hair-prp-treatment-in-rohini'],

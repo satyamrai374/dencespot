@@ -47,7 +47,7 @@ $faqs = [
     ['q' => 'What should I bring, and will I need time off afterwards?',
      'a' => 'Bring a list of every medicine you take, including any that make the skin sensitive to light, any recent blood reports, and details of any light device you already own. The first appointment is an assessment. Light therapy does not break the skin, so there is no wound to recover from and no need for time off.'],
     ['q' => 'Will light therapy regrow hair on a bald patch?',
-     'a' => 'No. It can only support follicles that are still there. Where they have gone, nothing shone on the surface brings them back, and the realistic conversation is about a <a href="/hair-transplant-in-rohini">hair transplant at the Rohini clinic</a>.'],
+     'a' => 'No. It can only support follicles that are still there. Where they have gone, nothing shone on the surface brings them back, and the realistic conversation is about a <a href="/hair-transplant-delhi/">hair transplant at the Rohini clinic</a>.'],
     ['q' => 'Can I use it instead of medication?',
      'a' => 'It is usually added to medical treatment rather than used in its place. Some people who cannot take, or would rather avoid, medication choose it anyway. That is a reasonable choice when the smaller and less certain effect is understood beforehand.'],
     ['q' => 'Is it safe, and what are the side effects?',
@@ -315,7 +315,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'When Surgery Is the Honest Conversation',
     'tone'    => 'canvas',
     'reverse' => true,
-    'html'    => '<p>If the scalp is smooth and the follicles have gone, no light, lotion or injection brings them back. Where the loss is extensive, the useful discussion is a <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, if your donor area allows it.</p>'
+    'html'    => '<p>If the scalp is smooth and the follicles have gone, no light, lotion or injection brings them back. Where the loss is extensive, the useful discussion is a <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, if your donor area allows it.</p>'
                . '<p>Where follicles remain, other supportive options include <a href="/hair-prp-treatment-in-rohini">PRP and GFC at the Rohini clinic</a> and <a href="/hair-microneedling-in-rohini">hair microneedling in Rohini</a>, each with its own limits.</p>',
     'points'  => [
         'Established baldness: surgery is the realistic discussion',

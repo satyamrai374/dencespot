@@ -310,7 +310,7 @@ const BLOG_POSTS = [
     [
         'slug'     => 'hair-transplant-recovery-in-delhi',
         // Delhi post: related page in Rohini; not yet reviewed by the clinic's doctor.
-        'related'  => ['label' => 'Hair transplant in Rohini', 'url' => '/hair-transplant-in-rohini'],
+        'related'  => ['label' => 'Hair transplant in Rohini', 'url' => '/hair-transplant-delhi/rohini'],
         'reviewed' => false,
         'title'    => 'Recovering From a Hair Transplant in Delhi: Heat, Smog, Helmets and the Commute',
         'seo_title'=> 'Hair Transplant Recovery in Delhi: Heat and Smog',

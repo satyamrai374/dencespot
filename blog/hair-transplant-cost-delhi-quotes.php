@@ -158,6 +158,6 @@ require __DIR__ . '/../includes/blog-header.php';
   <li>Only then compare the totals, and take the questions the arithmetic cannot answer to the consultation.</li>
 </ol>
 
-<p>At that point the remaining difference is usually about who operates and how much of their time you get, which is a decision about what you are buying rather than something to haggle over. The <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking at a consultation</a> help with that part. Consultations and procedures for <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, by <a href="/fue-hair-transplant-in-rohini">FUE</a> or <a href="/dhi-hair-transplant-in-rohini">DHI</a>, take place at our clinic in North-West Delhi.</p>
+<p>At that point the remaining difference is usually about who operates and how much of their time you get, which is a decision about what you are buying rather than something to haggle over. The <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking at a consultation</a> help with that part. Consultations and procedures for <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, by <a href="/fue-hair-transplant-in-rohini">FUE</a> or <a href="/dhi-hair-transplant-in-rohini">DHI</a>, take place at our clinic in North-West Delhi.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>

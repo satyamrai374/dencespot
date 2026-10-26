@@ -172,7 +172,7 @@ require __DIR__ . '/includes/header.php';
     <div style="max-width:62ch">
       <p class="eyebrow">What gets corrected</p>
       <h2 class="h2 mt-2">Common Problems a Repair Addresses</h2>
-      <p class="body mt-3">Disappointing results tend to fall into a few recognisable groups, and most repair plans deal with more than one. The surgery uses the same methods as a first <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, applied with more caution; if the hairline is your main concern, <a href="/hairline-transplant-in-rohini">hairline transplant in Rohini</a> explains how a front edge is designed and agreed.</p>
+      <p class="body mt-3">Disappointing results tend to fall into a few recognisable groups, and most repair plans deal with more than one. The surgery uses the same methods as a first <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, applied with more caution; if the hairline is your main concern, <a href="/hairline-transplant-in-rohini">hairline transplant in Rohini</a> explains how a front edge is designed and agreed.</p>
     </div>
     <div class="grid grid--3 mt-6">
       <div class="card"><?= icon('hairline', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Pluggy or tufted grafts</h3><p class="body-s mt-2">Grafts carrying three or four hairs along the front row, where one-hair grafts belong, give a clumped look. Often among the more correctable problems.</p></div>

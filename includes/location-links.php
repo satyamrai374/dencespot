@@ -17,6 +17,7 @@
  *     skin pages to skin pages. A page in neither family (the Rohini clinic
  *     page, the noindex FUT page) lists every family for its city.
  *   • The page's own group comes first; the page itself is left out.
+ *   • Each group is a closed dropdown until clicked (client, 25 Oct 2026).
  *   • Indexable pages only, so FUT is absent until its noindex is lifted. It
  *     still shows its family's block, through 'unlisted'.
  *   • Anchors follow the strict wording rule, so /best-hair-transplant-clinic-…
@@ -89,13 +90,20 @@ const LOCATION_LINKS = [
         'label'    => 'Rohini, Delhi',
         'eyebrow'  => 'DenceSpot Clinic · Rohini, Delhi',
         'hub'      => ['url' => '/delhi-clinic', 'anchor' => 'Hair & Skin Clinic in Rohini, Delhi'],
-        'unlisted' => [],
+        // Delhi locality pages (includes/delhi-localities.php) show the hair
+        // block but are not listed in it: the parent and their neighbours link
+        // to them, so 25 Rohini pages do not each link to every locality.
+        // Rohini itself is listed below, as the clinic's own area.
+        'unlisted' => [
+            '/hair-transplant-delhi/pitampura' => 'hair',
+        ],
         'families' => [
             'hair' => [
                 'title'  => 'Hair Treatments in Rohini, Delhi',
                 'groups' => [
                     'Hair Transplant' => [
-                        '/hair-transplant-in-rohini'           => 'Hair Transplant in Rohini, Delhi',
+                        '/hair-transplant-delhi/'              => 'Hair Transplant in Delhi',
+                        '/hair-transplant-delhi/rohini'        => 'Hair Transplant in Rohini',
                         '/fue-hair-transplant-in-rohini'       => 'FUE Hair Transplant in Rohini',
                         '/dhi-hair-transplant-in-rohini'       => 'DHI Hair Transplant in Rohini',
                         '/unshaven-hair-transplant-in-rohini'  => 'Unshaven Hair Transplant in Rohini',
@@ -143,13 +151,21 @@ const LOCATION_LINKS = [
 /** The [family, group] a URL belongs to in $city, or null. */
 function location_links_find(string $city, string $url): ?array
 {
-    if (isset(LOCATION_LINKS[$city]['unlisted'][$url])) {
-        return [LOCATION_LINKS[$city]['unlisted'][$url], ''];
+    // Every Delhi area page (/hair-transplant-delhi/<slug>) is a hair page.
+    if ($city === 'rohini' && str_starts_with($url, '/hair-transplant-delhi/')) {
+        return ['hair', ''];
     }
-    foreach (LOCATION_LINKS[$city]['families'] as $family => $def) {
-        foreach ($def['groups'] as $group => $links) {
-            if (isset($links[$url])) {
-                return [$family, $group];
+    // $url comes without a trailing slash; a folder page (/hair-transplant-delhi/)
+    // is listed with one.
+    foreach ([$url, $url . '/'] as $key) {
+        if (isset(LOCATION_LINKS[$city]['unlisted'][$key])) {
+            return [LOCATION_LINKS[$city]['unlisted'][$key], ''];
+        }
+        foreach (LOCATION_LINKS[$city]['families'] as $family => $def) {
+            foreach ($def['groups'] as $group => $links) {
+                if (isset($links[$key])) {
+                    return [$family, $group];
+                }
             }
         }
     }
@@ -173,7 +189,7 @@ function location_links_section(): string
     $groups = [];
     foreach ($families as $def) {
         foreach ($def['groups'] as $group => $links) {
-            unset($links[$here]);
+            unset($links[$here], $links[$here . '/']);
             if ($links !== []) {
                 $groups[$group] = $links;
             }
@@ -196,16 +212,24 @@ function location_links_section(): string
   <div class="wrap">
     <p class="eyebrow"><?= e($cfg['eyebrow']) ?></p>
     <h2 class="h3 mt-1" id="loc-links-title"><?= e($title) ?></h2>
+    <?php /* Each group is a closed dropdown that opens on click (client,
+             25 Oct 2026). Native <details>: no script, keyboard-operable, and
+             the links stay in the HTML for crawlers. The shared name lets only
+             one group be open at a time where browsers support it. */ ?>
     <div class="loc-links__groups<?= count($groups) === 1 ? ' loc-links__groups--single' : '' ?> mt-4">
       <?php foreach ($groups as $group => $links): ?>
-      <div>
-        <h3 class="loc-links__heading"><?= e($group) ?></h3>
+      <details class="loc-links__drop" name="loc-links">
+        <summary>
+          <span><?= e($group) ?></span>
+          <span class="loc-links__count"><?= count($links) ?></span>
+          <?= hp_icon('chevron', 18, 2) ?>
+        </summary>
         <ul class="loc-links__list">
           <?php foreach ($links as $url => $anchor): ?>
           <li><a href="<?= e($url) ?>"><?= e($anchor) ?></a></li>
           <?php endforeach; ?>
         </ul>
-      </div>
+      </details>
       <?php endforeach; ?>
     </div>
     <?php if ($hub !== null): ?>

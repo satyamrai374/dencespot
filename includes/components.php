@@ -355,10 +355,10 @@ function technique_comparison_table(): string
  * otherwise leave a heading with nothing under it, which is the exact defect
  * this section was added to clear elsewhere on the page.
  */
-function google_reviews_block(string $heading = 'What Patients Say on Google'): string
+function google_reviews_block(string $heading = 'What Patients Say on Google', string $class = ''): string
 {
     ob_start(); ?>
-<section class="section section--canvas" id="reviews">
+<section class="section section--canvas<?= $class !== '' ? ' ' . e($class) : '' ?>" id="reviews">
   <div class="wrap">
     <div class="measure" style="text-align:center;margin-inline:auto">
       <span class="pill pill--dot">Patient reviews</span>
@@ -948,7 +948,7 @@ function rohini_services_block(string $current = '', string $heading = 'Other Tr
           <h3 class="h4"><?= e($label) ?></h3>
           <ul class="ticks mt-3">
             <?php foreach ($groups[$key] as $svc): ?>
-              <li><a href="<?= e($svc['url']) ?>"><?= e($svc['label']) ?> in Rohini</a></li>
+              <li><a href="<?= e($svc['url']) ?>"><?= e($svc['anchor'] ?? $svc['label'] . ' in Rohini') ?></a></li>
             <?php endforeach; ?>
           </ul>
         </div>

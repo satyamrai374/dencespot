@@ -39,7 +39,11 @@ header('Content-Type: application/xml; charset=utf-8');
  * would otherwise publish it as an indexable URL competing with / for the
  * brand query — and list a noindex page, which is a contradictory signal.
  */
-const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe'];
+/**
+ * 'dr-rahul' and 'dr-akash' ship noindex until each doctor's recognised degree
+ * is entered in DOCTORS; remove them here when their noindex lines go.
+ */
+const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe', 'dr-rahul', 'dr-akash'];
 
 /** Priority and change frequency by page role. Money pages rank highest. */
 function sitemap_weight(string $slug): array
@@ -95,11 +99,24 @@ function sitemap_pages(): array
      *
      * Add a line here for any future section that lives in its own directory.
      */
-    foreach (['patient-stories'] as $dir) {
+    foreach (['patient-stories', 'hair-transplant-delhi'] as $dir) {
         $index = $root . '/' . $dir . '/index.php';
         if (file_exists($index)) {
             $out[$dir . '/'] = filemtime($index);
         }
+    }
+
+    /**
+     * The Delhi area pages (/hair-transplant-delhi/rohini, /…/dwarka-sector-1,
+     * /…/pin-110075 …): one per entry in includes/delhi-areas-data.php, dated by
+     * its own file when hand-written, otherwise by the data file. The globs
+     * above skip this folder, so area.php itself is never listed.
+     */
+    require_once $root . '/includes/delhi-areas.php';
+    $areaData = filemtime($root . '/includes/delhi-areas-data.php');
+    foreach (delhi_areas() as $slug => $a) {
+        $file = $root . '/hair-transplant-delhi/' . $slug . '.php';
+        $out['hair-transplant-delhi/' . $slug] = !empty($a['file']) && file_exists($file) ? filemtime($file) : $areaData;
     }
 
     ksort($out);

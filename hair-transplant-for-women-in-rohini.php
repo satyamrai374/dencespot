@@ -236,7 +236,7 @@ require __DIR__ . '/includes/header.php';
     <div style="max-width:62ch">
       <p class="eyebrow">At the Rohini clinic</p>
       <h2 class="h2 mt-2">If Surgery Is Advised: How It Differs for Women</h2>
-      <p class="body mt-3">It is the same operation described on our <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> page: a day case under local anaesthetic, carried out by registered medical practitioners. Three things are planned differently.</p>
+      <p class="body mt-3">It is the same operation described on our <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> page: a day case under local anaesthetic, carried out by registered medical practitioners. Three things are planned differently.</p>
     </div>
     <div class="grid grid--3 mt-6">
       <div class="card card--tint card--pad-lg"><h3 class="h4">Keeping the donor hidden</h3><p class="body-s mt-2">Hair is usually trimmed in a narrow strip that longer hair covers. Fully <a href="/unshaven-hair-transplant-in-rohini">unshaven hair transplant</a> work is slower and suits smaller sessions.</p></div>

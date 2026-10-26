@@ -199,7 +199,7 @@ require __DIR__ . '/includes/header.php';
      * back to the service's short note.
      */
     $svcDetail = [
-        '/hair-transplant-in-rohini'     => ['hairline', 'FUE and DHI, planned around a measured donor area, with the hairline drawn on your face and follow-up reviews in Rohini.'],
+        '/hair-transplant-delhi/'     => ['hairline', 'FUE and DHI, planned around a measured donor area, with the hairline drawn on your face and follow-up reviews in Rohini.'],
         '/fue-hair-transplant-in-rohini' => ['list',     'Individual follicle extraction using motorised micro-punches (0.75–0.9 mm). Leaves small dot scars spread across the donor area rather than a linear scar.'],
         '/dhi-hair-transplant-in-rohini' => ['settings', 'Simultaneous incision and placement with implanter pens, allowing control over follicular angle, depth and hair exit direction.'],
         '/beard-transplant-in-rohini'    => ['beard',    'Filling patchy facial areas or defining moustache and beard lines with single-hair donor grafts positioned at flat skin angles.'],
@@ -220,7 +220,7 @@ require __DIR__ . '/includes/header.php';
             <?= icon($svcIcon, 24, 'var(--accent-deep)') ?>
             <h4 class="h4 mt-3"><?= e($svc['label']) ?></h4>
             <p class="body-s mt-2"><?= e($svcText ?? $svc['note']) ?></p>
-            <p class="mt-4"><a class="hp-link" href="<?= e($svc['url']) ?>"><?= e($svc['label']) ?> in Rohini <?= hp_icon('arrow', 15, 2) ?></a></p>
+            <p class="mt-4"><a class="hp-link" href="<?= e($svc['url']) ?>"><?= e($svc['anchor'] ?? $svc['label'] . ' in Rohini') ?> <?= hp_icon('arrow', 15, 2) ?></a></p>
           </div>
         <?php endforeach; ?>
       </div>

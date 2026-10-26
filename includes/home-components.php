@@ -57,7 +57,7 @@ const HOME_NAV = [
     ]],
     ['label' => 'Rohini Clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-delhi/'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
@@ -100,7 +100,7 @@ const HOME_NAV_COMMON = [
     ]],
     ['label' => 'Rohini Clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-delhi/'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
@@ -139,7 +139,7 @@ const HOME_FOOTER_LINKS = [
     ],
     'Rohini, Delhi' => [
         ['label' => 'Rohini Clinic',       'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',     'url' => '/hair-transplant-in-rohini'],
+        ['label' => 'Hair Transplant',     'url' => '/hair-transplant-delhi/'],
         ['label' => 'Beard Transplant',    'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',  'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',      'url' => '/hair-prp-treatment-in-rohini'],
@@ -408,6 +408,86 @@ function hp_ai_chip(string $text = 'AI-generated illustration'): string
 function hp_placeholder(string $what): string
 {
     return '<span class="hp-ph">[' . e($what) . ']</span>';
+}
+
+/**
+ * The three doctors with their photos, side by side; on phones each photo sits
+ * full width above that doctor's details (client, 25 Oct 2026). Used on the
+ * homepage and on /hair-transplant-in-gurgaon. Every fact comes from DOCTORS in
+ * config.php and a missing one is left out, so fill config, not this markup.
+ *
+ * $reviewNote prints the "written or reviewed by" line under the grid; pages
+ * whose copy has not been signed off pass false.
+ */
+function doctors_grid_section(string $eyebrow, string $heading, string $intro, string $bg = 'section--white', bool $reviewNote = true): string
+{
+    $tiles = [
+        'dr-nyra'  => ['img' => 'doctor-nyra',  'tone' => 'mint'],
+        'dr-rahul' => ['img' => 'doctor-rahul', 'tone' => 'violet'],
+        'dr-akash' => ['img' => 'doctor-3',     'tone' => 'sky'],
+    ];
+
+    ob_start(); ?>
+<section class="section <?= e($bg) ?>" id="doctors">
+  <div class="wrap">
+    <div class="home-head home-head--center">
+      <p class="eyebrow"><?= e($eyebrow) ?></p>
+      <h2 class="h2 mt-2"><?= e($heading) ?></h2>
+      <p class="body mt-3"><?= e($intro) ?></p>
+    </div>
+
+    <div class="doc-grid mt-6">
+      <?php foreach ($tiles as $key => $tile): ?>
+        <?php
+        $d     = DOCTORS[$key];
+        $name  = $d['name'] ?? null;
+        $facts = array_values(array_filter([
+            !empty($d['alumni'])     ? ['cap', 'Trained at ' . $d['alumni']] : null,
+            !empty($d['position'])   ? ['stethoscope', $d['position']] : null,
+            !empty($d['abroad'])     ? ['layers', $d['abroad']] : null,
+            !empty($d['fellowship']) ? ['follicle', $d['fellowship']] : null,
+            !empty($d['experience']) ? ['clock', $d['experience'] . ' of experience'] : null,
+            // A Rohini page never names the Gurugram clinic (location rule).
+            !empty($d['clinics']) && !hp_is_rohini_page() ? ['pin', 'Consults at ' . $d['clinics']] : null,
+        ]));
+        ?>
+      <article class="doc-tile tone--<?= e($tile['tone']) ?>">
+        <div class="doc-tile__photo">
+          <?= hp_img($tile['img'], ($name ?? 'A doctor') . (!empty($d['quals']) ? ', ' . $d['quals'] . ',' : '') . ' at ' . SITE_NAME, '(min-width: 1080px) 380px, (min-width: 700px) 30vw, calc(100vw - 32px)') ?>
+        </div>
+        <div class="doc-tile__body">
+          <?php /* The name comes first on every tile so the three names line up;
+                   the role, where one is on record, follows the degree. */ ?>
+          <h3 class="doc-tile__name"><?= $name !== null ? e($name) : hp_placeholder('doctor’s name') ?></h3>
+          <?php /* No placeholder for a missing degree (client, 25 Oct 2026): the
+                   line is left off until DOCTORS has one. */ ?>
+          <?php if (!empty($d['quals'])): ?><p class="doc-tile__quals"><?= e($d['quals']) ?></p><?php endif; ?>
+          <?php if (!empty($d['role'])): ?><p class="doc-tile__role"><?= e(preg_replace('/, ' . preg_quote(SITE_NAME, '/') . '$/', '', $d['role'])) ?></p><?php endif; ?>
+          <?php if ($facts !== []): ?>
+          <ul class="doc-tile__facts">
+            <?php foreach ($facts as [$ic, $txt]): ?>
+            <li><?= hp_icon($ic, 17) ?><span><?= e($txt) ?></span></li>
+            <?php endforeach; ?>
+          </ul>
+          <?php endif; ?>
+          <?php if (($reg = doctor_registration($d)) !== ''): ?><p class="meta mt-2"><?= $reg ?></p><?php endif; ?>
+          <?php if (!empty($d['url'])): ?>
+          <a class="hp-link doc-tile__link" href="<?= e($d['url']) ?>">View profile<span class="sr-only"> of <?= e((string) $name) ?></span> <?= hp_icon('arrow', 15, 2) ?></a>
+          <?php endif; ?>
+        </div>
+      </article>
+      <?php endforeach; ?>
+    </div>
+
+    <?php if ($reviewNote || doctors_have_registration(DOCTORS)): ?>
+    <p class="doc-grid__note">
+      <?php if ($reviewNote): ?>Medical content on this website is written or reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?>.<?php endif; ?><?php if (doctors_have_registration(DOCTORS)): ?> Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a>.<?php endif; ?>
+    </p>
+    <?php endif; ?>
+  </div>
+</section>
+<?php
+    return (string) ob_get_clean();
 }
 
 /**
@@ -796,13 +876,19 @@ function hp_booking_dialog(string $source = 'homepage'): string
  * Rohini). 'rohini' — the Rohini clinic page and every Rohini treatment page;
  * 'gurgaon' — every treatment page whose URL ends in "gurgaon" (blog posts
  * excepted); 'both' — the homepage, contact, about, blog, tools and legal
- * pages, which present both clinics.
+ * pages, which present both clinics. The Delhi hair transplant folder
+ * (/hair-transplant-delhi/ and its locality pages) belongs to Rohini, and any
+ * other page can name its clinic with $page['location'].
  */
 function hp_page_location(): string
 {
+    $declared = $GLOBALS['page']['location'] ?? null;
+    if ($declared === 'rohini' || $declared === 'gurgaon') {
+        return $declared;
+    }
     $here = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
     // Any Rohini URL (service, cost guide…), registered or not.
-    if ($here === '/delhi-clinic' || str_ends_with($here, '-in-rohini')) {
+    if ($here === '/delhi-clinic' || str_ends_with($here, '-in-rohini') || str_starts_with($here, '/hair-transplant-delhi')) {
         return 'rohini';
     }
     foreach (ROHINI_SERVICES as $svc) {

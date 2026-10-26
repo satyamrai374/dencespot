@@ -155,7 +155,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'Why the Line Matters More Than the Graft Count',
     'html'    => '<p>The extraction in a hairline case is the same as in any transplant. What sets it apart is that the front is seen face on, in daylight, by everyone you talk to.</p>'
                . '<p>Graft numbers can be added to later. A line placed too low cannot simply be raised: the only remedy is removing hairs one at a time, which is slow and does not always leave the skin as it was.</p>'
-               . '<p>The whole process is set out on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, and the clinic page has hours and <a href="/delhi-clinic">directions to the Rohini clinic</a>.</p>',
+               . '<p>The whole process is set out on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, and the clinic page has hours and <a href="/delhi-clinic">directions to the Rohini clinic</a>.</p>',
     'points'  => [
         'Drawn on your forehead and agreed in a mirror',
         'A slightly higher line can be lowered later',

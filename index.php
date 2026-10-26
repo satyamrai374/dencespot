@@ -45,7 +45,7 @@ $featured = [
     ['title' => 'Hair Transplant',    'cat' => 'Surgical',     'icon' => 'hairline', 'tone' => 'mint',
      'img' => 'card-hair-transplant', 'alt' => 'AI-generated image: a doctor in a surgical cap and mask placing hair grafts along a patient\'s hairline with an implanter pen',
      'note' => 'FUE and DHI, planned around your donor area and the hair loss still to come.',
-     'g' => '/hair-transplant-in-gurgaon', 'r' => '/hair-transplant-in-rohini'],
+     'g' => '/hair-transplant-in-gurgaon', 'r' => '/hair-transplant-delhi/'],
     ['title' => 'Beard Transplant',   'cat' => 'Surgical',     'icon' => 'beard',    'tone' => 'violet',
      'img' => 'card-beard-transplant', 'alt' => 'AI-generated image: a doctor placing grafts along a patient\'s beard line with an implanter pen while steadying his jaw',
      'note' => 'Patchy cheeks, jawline, moustache and scars, filled with scalp grafts.',
@@ -77,16 +77,21 @@ $featured = [
 ];
 
 /* Hair, beard and skin concerns together: the homepage serves the whole
-   clinic, not one treatment. */
+   clinic, not one treatment. Shown as two grouped lists (client, 25 Oct
+   2026); 'group' is a key of $concernGroups. */
+$concernGroups = [
+    'hair' => ['title' => 'Hair & scalp',        'icon' => 'hairline', 'tone' => 'mint'],
+    'skin' => ['title' => 'Beard, skin & laser', 'icon' => 'star',     'tone' => 'violet'],
+];
 $concerns = [
-    ['icon' => 'hairline', 'tone' => 'mint',   'title' => 'Receding hairline or thin crown', 'url' => '/hair-transplant-in-gurgaon',      'text' => 'Temples going back or the crown showing through. Planned around your donor area and the loss still to come.'],
-    ['icon' => 'chart',    'tone' => 'sky',    'title' => 'Sudden hair fall',      'url' => '/hair-fall-treatment-in-gurgaon',  'text' => 'Increased shedding needs a cause found first — thyroid, iron, stress or pattern loss.'],
-    ['icon' => 'heart',    'tone' => 'amber',  'title' => 'Early thinning',        'url' => '/hair-prp-treatment-in-gurgaon',   'text' => 'Density dropping but no bald area yet. Often PRP and medical treatment rather than surgery.'],
-    ['icon' => 'user',     'tone' => 'rose',   'title' => 'Hair loss in women',    'url' => '/womens-hair-loss-treatment-in-gurgaon', 'text' => 'Diffuse thinning and parting-line loss, worked up for hormonal and nutritional causes first.'],
-    ['icon' => 'beard',    'tone' => 'violet', 'title' => 'Patchy beard or brows', 'url' => '/beard-transplant-gurgaon',        'text' => 'Gaps in the beard, thin sideburns or sparse eyebrows, filled with grafts at the right angle.'],
-    ['icon' => 'search',   'tone' => 'mint',   'title' => 'Acne and acne marks',   'url' => '/skin-treatment-in-gurgaon',       'text' => 'Breakouts and the marks they leave, diagnosed before any product or procedure is suggested.'],
-    ['icon' => 'settings', 'tone' => 'amber',  'title' => 'Pigmentation and melasma', 'url' => '/skin-treatment-in-gurgaon',    'text' => 'Dark patches and uneven tone, with the cause and the triggers checked first.'],
-    ['icon' => 'star',     'tone' => 'violet', 'title' => 'Unwanted facial or body hair', 'url' => '/laser-hair-removal-in-gurgaon', 'text' => 'Laser hair removal after a patch test, with hormonal causes looked at where they fit.'],
+    ['group' => 'hair', 'icon' => 'hairline', 'tone' => 'mint',   'title' => 'Receding hairline or thin crown', 'url' => '/hair-transplant-in-gurgaon',      'text' => 'Temples going back or the crown showing through. Planned around your donor area and the loss still to come.'],
+    ['group' => 'hair', 'icon' => 'chart',    'tone' => 'sky',    'title' => 'Sudden hair fall',      'url' => '/hair-fall-treatment-in-gurgaon',  'text' => 'Increased shedding needs a cause found first — thyroid, iron, stress or pattern loss.'],
+    ['group' => 'hair', 'icon' => 'heart',    'tone' => 'amber',  'title' => 'Early thinning',        'url' => '/hair-prp-treatment-in-gurgaon',   'text' => 'Density dropping but no bald area yet. Often PRP and medical treatment rather than surgery.'],
+    ['group' => 'hair', 'icon' => 'user',     'tone' => 'rose',   'title' => 'Hair loss in women',    'url' => '/womens-hair-loss-treatment-in-gurgaon', 'text' => 'Diffuse thinning and parting-line loss, worked up for hormonal and nutritional causes first.'],
+    ['group' => 'skin', 'icon' => 'beard',    'tone' => 'violet', 'title' => 'Patchy beard or brows', 'url' => '/beard-transplant-gurgaon',        'text' => 'Gaps in the beard, thin sideburns or sparse eyebrows, filled with grafts at the right angle.'],
+    ['group' => 'skin', 'icon' => 'search',   'tone' => 'mint',   'title' => 'Acne and acne marks',   'url' => '/skin-treatment-in-gurgaon',       'text' => 'Breakouts and the marks they leave, diagnosed before any product or procedure is suggested.'],
+    ['group' => 'skin', 'icon' => 'settings', 'tone' => 'amber',  'title' => 'Pigmentation and melasma', 'url' => '/skin-treatment-in-gurgaon',    'text' => 'Dark patches and uneven tone, with the cause and the triggers checked first.'],
+    ['group' => 'skin', 'icon' => 'star',     'tone' => 'violet', 'title' => 'Unwanted facial or body hair', 'url' => '/laser-hair-removal-in-gurgaon', 'text' => 'Laser hair removal after a patch test, with hormonal causes looked at where they fit.'],
 ];
 
 $page = [
@@ -162,21 +167,41 @@ require __DIR__ . '/includes/header.php';
 
 <!-- ============ START FROM THE CONCERN ============ -->
 <section class="section section--white">
-  <div class="wrap">
-    <div class="home-head">
+  <div class="wrap concerns">
+    <div class="home-head concerns__head">
       <p class="eyebrow">What brought you here</p>
       <h2 class="h2 mt-2">Start From the Concern, Not the Procedure</h2>
       <p class="body mt-3">Different concerns need different answers. Pick what matches yours and the page will tell you honestly what the options are — including when the option is to wait.</p>
     </div>
 
-    <div class="grid grid--4 mt-6 home-concerns">
-      <?php foreach ($concerns as $c): ?>
-      <a class="tile home-concern tone--<?= e($c['tone']) ?>" href="<?= e($c['url']) ?>">
-        <span class="icon-dot"><?= icon($c['icon'], 22, 'currentColor', 1.9) ?></span>
-        <h3 class="h4"><?= e($c['title']) ?></h3>
-        <p class="meta mt-1"><?= e($c['text']) ?></p>
-        <span class="home-concern__go" aria-hidden="true"><?= icon('arrow', 16) ?></span>
-      </a>
+    <?php /* After the lists on phones, beside the heading on desktop. */ ?>
+    <aside class="concerns__help" aria-label="Not sure which concern fits">
+      <p><b>Not sure which one fits?</b>Send clear photos on WhatsApp and the clinic will tell you which of these applies, and whether a visit is worth it.</p>
+      <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> Send photos on WhatsApp</a>
+    </aside>
+
+    <div class="concerns__groups">
+      <?php foreach ($concernGroups as $key => $grp): ?>
+        <?php $items = array_filter($concerns, static fn (array $c): bool => $c['group'] === $key); ?>
+      <div class="concern-group">
+        <div class="concern-group__head tone--<?= e($grp['tone']) ?>">
+          <span class="icon-dot"><?= icon($grp['icon'], 19, 'currentColor', 1.9) ?></span>
+          <h3 class="concern-group__title"><?= e($grp['title']) ?></h3>
+          <span class="concern-group__count"><?= count($items) ?> concerns</span>
+        </div>
+        <div class="concern-group__list">
+          <?php foreach ($items as $c): ?>
+          <a class="concern tone--<?= e($c['tone']) ?>" href="<?= e($c['url']) ?>">
+            <span class="icon-dot"><?= icon($c['icon'], 21, 'currentColor', 1.9) ?></span>
+            <div>
+              <h4 class="concern__title"><?= e($c['title']) ?></h4>
+              <p class="concern__text"><?= e($c['text']) ?></p>
+            </div>
+            <span class="concern__go" aria-hidden="true"><?= icon('arrow', 15) ?></span>
+          </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -240,66 +265,12 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<?php
-/* The three doctors, side by side; on phones each photo sits full width above
-   that doctor's details (client photos, 25 Oct 2026). Every fact
-   comes from DOCTORS in config.php; nothing is guessed, so fill config, not
-   this markup. */
-$homeDoctors = [
-    ['key' => 'dr-nyra',  'img' => 'doctor-nyra',  'tone' => 'mint',
-     'facts' => [['cap', 'Trained at ' . DOCTORS['dr-nyra']['alumni']], ['layers', '3 years of clinical work in Germany'],
-                 ['clock', '8 years of experience']]],
-    ['key' => 'dr-rahul', 'img' => 'doctor-rahul', 'tone' => 'violet',
-     'facts' => [['stethoscope', 'Senior Resident, ESIC Hospital'], ['clock', '8+ years of experience']]],
-    ['key' => 'dr-akash', 'img' => 'doctor-3',     'tone' => 'sky',
-     'facts' => [['cap', 'Trained at ' . DOCTORS['dr-akash']['alumni']], ['follicle', '1-year fellowship in hair restoration, D. Y. Patil'],
-                 ['clock', '10 years of experience']]],
-];
-?>
 <!-- ============ DOCTORS ============ -->
-<section class="section section--white" id="doctors">
-  <div class="wrap">
-    <div class="home-head home-head--center">
-      <p class="eyebrow">Our doctors</p>
-      <h2 class="h2 mt-2">Meet the Doctors at DenceSpot</h2>
-      <p class="body mt-3">Every treatment starts with an examination by a doctor, who explains what is happening, what can help and what cannot, before anything is planned.</p>
-    </div>
-
-    <div class="doc-grid mt-6">
-      <?php foreach ($homeDoctors as $hd): ?>
-        <?php $d = DOCTORS[$hd['key']]; $name = $d['name'] ?? null; ?>
-      <article class="doc-tile tone--<?= e($hd['tone']) ?>">
-        <div class="doc-tile__photo">
-          <?= hp_img($hd['img'], ($name ?? 'A doctor') . (!empty($d['quals']) ? ', ' . $d['quals'] . ',' : '') . ' at ' . SITE_NAME, '(min-width: 1080px) 380px, (min-width: 700px) 30vw, calc(100vw - 32px)') ?>
-        </div>
-        <div class="doc-tile__body">
-          <?php if (!empty($d['role'])): ?><p class="doc-tile__role"><?= e(preg_replace('/, ' . preg_quote(SITE_NAME, '/') . '$/', '', $d['role'])) ?></p><?php endif; ?>
-          <h3 class="doc-tile__name"><?= $name !== null ? e($name) : hp_placeholder('doctor’s name') ?></h3>
-          <?php /* No placeholder for a missing degree (client, 25 Oct 2026): the
-                   line is left off until DOCTORS has one. */ ?>
-          <?php if (!empty($d['quals'])): ?><p class="doc-tile__quals"><?= e($d['quals']) ?></p><?php endif; ?>
-          <?php $facts = $hd['facts']; if (!empty($d['clinics'])) { $facts[] = ['pin', 'Consults at ' . $d['clinics']]; } ?>
-          <?php if ($facts !== []): ?>
-          <ul class="doc-tile__facts">
-            <?php foreach ($facts as [$ic, $txt]): ?>
-            <li><?= hp_icon($ic, 17) ?><span><?= e($txt) ?></span></li>
-            <?php endforeach; ?>
-          </ul>
-          <?php endif; ?>
-          <?php if (($reg = doctor_registration($d)) !== ''): ?><p class="meta mt-2"><?= $reg ?></p><?php endif; ?>
-          <?php if (!empty($d['url'])): ?>
-          <a class="hp-link doc-tile__link" href="<?= e($d['url']) ?>">View profile<span class="sr-only"> of <?= e((string) $name) ?></span> <?= hp_icon('arrow', 15, 2) ?></a>
-          <?php endif; ?>
-        </div>
-      </article>
-      <?php endforeach; ?>
-    </div>
-
-    <p class="doc-grid__note">
-      Medical content on this website is written or reviewed by <?= e(REVIEWED_BY) ?> · last reviewed <?= e(REVIEWED_DATE) ?>.<?php if (doctors_have_registration(DOCTORS)): ?> Registration can be verified on the National Medical Commission’s <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" rel="noopener" target="_blank">Indian Medical Register</a>.<?php endif; ?>
-    </p>
-  </div>
-</section>
+<?= doctors_grid_section(
+    'Our doctors',
+    'Meet the Doctors at DenceSpot',
+    'Every treatment starts with an examination by a doctor, who explains what is happening, what can help and what cannot, before anything is planned.'
+) ?>
 
 <?php
 /**

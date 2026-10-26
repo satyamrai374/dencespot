@@ -139,7 +139,10 @@ function schema_physician(string $key = 'dr-nyra'): ?array
     ];
 
     $node['medicalSpecialty'] = 'Dermatology';
-    $node['image']            = abs_url('/assets/img/dr-nayra.webp');
+    // Each doctor's own photo; this used to be Dr. Nyra's for every key.
+    if (!empty($doc['image'])) {
+        $node['image'] = abs_url($doc['image']);
+    }
 
     // Range is EducationalOrganization, not Text — a bare string is a range violation.
     if (!empty($doc['alumni'])) {

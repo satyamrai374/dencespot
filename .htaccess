@@ -121,6 +121,16 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.+?)/?$ $1.php [L]
 
+# 7b. Delhi hair transplant area pages (25 Oct 2026): a /hair-transplant-delhi/
+#     <slug> with no .php file of its own is served by one template, which
+#     answers 404 for a slug that is not in includes/delhi-areas-data.php.
+#     No QSA: the slug always comes from the path, so a ?slug= in the address
+#     cannot show one area's page at another's URL. Mirrored in router.php.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php !-f
+RewriteRule ^hair-transplant-delhi/([a-z0-9-]+)$ hair-transplant-delhi/area.php?slug=$1 [L]
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 8. Keep internals off the web

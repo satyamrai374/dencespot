@@ -152,7 +152,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'What an Implanter Pen Does',
     'tone'    => 'canvas',
     'html'    => '<p>An implanter is a pen-shaped instrument with a hollow needle tip. Each graft is loaded into one on its own, and the doctor makes the opening and delivers the graft in the same movement, setting depth, angle and direction for that graft. DHI is a way of placing grafts, not a separate operation; the control it gives is what you pay for.</p>'
-               . '<p>Needle sizes are matched to the graft, finer for single-hair units in the front rows and slightly larger behind, and grafts spend little time out of the body. Extraction, and the dot scars it leaves, are the same as in <a href="/fue-hair-transplant-in-rohini">FUE hair transplant in Rohini</a>; candidacy and aftercare are on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>'
+               . '<p>Needle sizes are matched to the graft, finer for single-hair units in the front rows and slightly larger behind, and grafts spend little time out of the body. Extraction, and the dot scars it leaves, are the same as in <a href="/fue-hair-transplant-in-rohini">FUE hair transplant in Rohini</a>; candidacy and aftercare are on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>'
                . '<p><b>Grafts are placed in one of three ways, and none is wrong.</b> The instrument matters less than the hands holding it, so ask which method is planned for each zone, and who will be holding it.</p>',
     'points'  => [
         'Sharp implanters make the opening and place the graft in one movement: DHI in the classic sense',

@@ -250,7 +250,7 @@ const LEGACY_BLOG = [
 /** Treatment prefix of an old locality page -> [Gurugram page, Rohini page]. */
 const LEGACY_LOCALITY = [
     'hair-fall-treatment'      => ['/hair-fall-treatment-in-gurgaon', '/hair-fall-treatment-in-rohini'],
-    'hair-transplant'          => ['/hair-transplant-in-gurgaon', '/hair-transplant-in-rohini'],
+    'hair-transplant'          => ['/hair-transplant-in-gurgaon', '/hair-transplant-delhi/'],
     'fue-hair-transplant'      => ['/fue-hair-transplant-in-gurgaon', '/fue-hair-transplant-in-rohini'],
     'beard-transplant'         => ['/beard-transplant-gurgaon', '/beard-transplant-in-rohini'],
     'prp-hair-treatment'       => ['/hair-prp-treatment-in-gurgaon', '/hair-prp-treatment-in-rohini'],
@@ -262,6 +262,40 @@ const LEGACY_LOCALITY = [
 
 /** Localities that belong to the Rohini (Delhi) clinic rather than Gurugram. */
 const LEGACY_DELHI_AREAS = '/(delhi|rohini|pitampura|shalimar-bagh|prashant-vihar|ashok-vihar|model-town|janakpuri|punjabi-bagh|paschim-vihar|mukherjee-nagar|azadpur|netaji-subhash-place|budh-vihar|sector-?[0-9]+-rohini)/';
+
+/**
+ * Delhi areas whose hair transplant intent is another area's page in
+ * /hair-transplant-delhi/: Netaji Subhash Place lies within Pitampura, and a
+ * Rohini sector is Rohini.
+ */
+const LEGACY_DELHI_HT_ALIAS = [
+    '#^netaji-subhash-place$#'        => 'pitampura',
+    '#^sector-?([0-9]+)-rohini$#'     => 'rohini-sector-$1',
+    '#^rohini-sector-?([0-9]+)$#'     => 'rohini-sector-$1',
+];
+
+/**
+ * An old hair transplant URL for a Delhi area (/hair-transplant-in-<area>,
+ * including /hair-transplant-in-rohini, which moved on 25 Oct 2026) goes to
+ * that area's page in /hair-transplant-delhi/ when one exists (a Rohini sector
+ * without a page goes to Rohini), to the parent for a known Delhi area without
+ * a page, and null otherwise (not a Delhi area: the Gurugram page applies).
+ */
+function legacy_delhi_hair_transplant(string $area): ?string
+{
+    require_once __DIR__ . '/delhi-areas.php';
+    foreach (LEGACY_DELHI_HT_ALIAS as $pattern => $target) {
+        if (preg_match($pattern, $area)) {
+            $alias = preg_replace($pattern, $target, $area);
+            $area  = delhi_area($alias) !== null ? $alias : (str_starts_with($alias, 'rohini-') ? 'rohini' : $alias);
+            break;
+        }
+    }
+    if (delhi_area($area) !== null) {
+        return '/hair-transplant-delhi/' . $area;
+    }
+    return preg_match(LEGACY_DELHI_AREAS, $area) ? '/hair-transplant-delhi/' : null;
+}
 
 /** 301 target for an old URL path, or null when it has no counterpart. */
 function legacy_redirect(string $path): ?string
@@ -277,6 +311,9 @@ function legacy_redirect(string $path): ?string
         return LEGACY_BLOG[substr($path, 6)] ?? '/blog/';
     }
     if (preg_match('#^/([a-z-]+?)-in-([a-z0-9-]+)$#', $path, $m) && isset(LEGACY_LOCALITY[$m[1]])) {
+        if ($m[1] === 'hair-transplant' && ($target = legacy_delhi_hair_transplant($m[2])) !== null) {
+            return $target;
+        }
         return LEGACY_LOCALITY[$m[1]][preg_match(LEGACY_DELHI_AREAS, $m[2]) ? 1 : 0];
     }
     return null;

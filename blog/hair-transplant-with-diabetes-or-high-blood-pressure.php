@@ -178,6 +178,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="getting-it-assessed">Getting it assessed</h2>
 
-<p>With diabetes, high blood pressure or a heart condition, the assessment for a hair transplant is partly a medical one. Bring your reports, your medicine list and your home readings, and expect the plan to involve your own doctors. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi; <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a> and <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> explain how an assessment and a procedure are planned. If the right answer is to improve control first, that is a delay, not a refusal.</p>
+<p>With diabetes, high blood pressure or a heart condition, the assessment for a hair transplant is partly a medical one. Bring your reports, your medicine list and your home readings, and expect the plan to involve your own doctors. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi; <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a> and <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> explain how an assessment and a procedure are planned. If the right answer is to improve control first, that is a delay, not a refusal.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>

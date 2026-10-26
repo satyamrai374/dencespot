@@ -57,7 +57,7 @@ $faqs = [
     ['q' => 'Do Delhi’s weather and water make it worse?',
      'a' => 'They can. Summer sweat under a helmet or cap and monsoon humidity are common triggers for flares; winter brings dry scalp, which looks similar but needs different care; and hard-water residue can leave a scalp itchy and dull. None of these is a reason to skip an examination if a shampoo used properly has not helped.'],
     ['q' => 'Can I have a hair transplant if I have dandruff?',
-     'a' => 'Yes, once the scalp is settled. Surgery is not done on an inflamed scalp, so the scalp condition is treated first and the procedure is planned afterwards. It is a short delay, not a reason to rule surgery out. See <a href="/hair-transplant-in-rohini">hair transplant at the Rohini clinic</a>.'],
+     'a' => 'Yes, once the scalp is settled. Surgery is not done on an inflamed scalp, so the scalp condition is treated first and the procedure is planned afterwards. It is a short delay, not a reason to rule surgery out. See <a href="/hair-transplant-delhi/">hair transplant at the Rohini clinic</a>.'],
     ['q' => 'How much does dandruff treatment cost in Rohini?',
      'a' => 'For most people it is a consultation, a medicated shampoo, sometimes a prescribed preparation for a few weeks, and a review. Prices are not published; your plan and its cost are explained after the examination. See <a href="/cost-and-emi-options">cost and payment options</a>.'],
     ['q' => 'Can I send photos on WhatsApp first?',

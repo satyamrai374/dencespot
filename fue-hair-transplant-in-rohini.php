@@ -153,7 +153,7 @@ require __DIR__ . '/includes/header.php';
     'eyebrow' => 'The technique',
     'title'   => 'How FUE Extraction Works',
     'html'    => '<p>Hair grows in natural groups of one to four hairs, called follicular units. In FUE each unit is freed with a fine circular punch and lifted out whole. Punch size and depth are matched to your hair and the angle it leaves the skin, because a follicle cut during extraction may not grow.</p>'
-               . '<p>The units are sorted under magnification, then set into recipient sites made at the angle and direction of the surrounding hair. In DHI the extraction is the same and only this last step differs: see <a href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini</a>, or the wider picture on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>'
+               . '<p>The units are sorted under magnification, then set into recipient sites made at the angle and direction of the surrounding hair. In DHI the extraction is the same and only this last step differs: see <a href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini</a>, or the wider picture on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>'
                . '<p><b>Graft or hair?</b> A graft is one follicular unit; a hair is one strand. Two thousand grafts may carry roughly 4,000 to 5,000 hairs, so always ask which unit a quote is in.</p>',
     'points'  => [
         'The harvest is spread across the back and sides, so the donor stays even',

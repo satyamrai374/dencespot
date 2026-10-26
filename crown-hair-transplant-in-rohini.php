@@ -170,7 +170,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">An edge that moves</h3><p class="body-s mt-2">Vertex loss commonly keeps widening for years, so today’s boundary may not be the final one.</p></div>
     </div>
     <div class="note mt-4">
-      <p class="body-s"><b>Measured, not guessed.</b> Two crowns that seem similar in the bathroom mirror may call for quite different graft counts, so the area is measured at the examination. For the overall process, see <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>
+      <p class="body-s"><b>Measured, not guessed.</b> Two crowns that seem similar in the bathroom mirror may call for quite different graft counts, so the area is measured at the examination. For the overall process, see <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>
     </div>
   </div>
 </section>

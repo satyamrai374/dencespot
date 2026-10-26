@@ -251,7 +251,7 @@ require __DIR__ . '/includes/header.php';
     'title'   => 'Where PRP, GFC or a Hair Transplant Fits',
     'tone'    => 'canvas',
     'html'    => '<p><b>3. PRP or GFC.</b> May be discussed for early to moderate thinning where follicles are still present, usually alongside medication. The evidence is weaker, some people do not respond and maintenance is needed. Sessions are available at this clinic; see <a href="/hair-prp-treatment-in-rohini">hair PRP and GFC in Rohini</a>.</p>'
-               . '<p><b>4. Hair transplant.</b> Only where follicles in an area are already gone, the pattern has settled and the donor area can supply the grafts. Surgery moves hair rather than creating it, and medical treatment usually continues afterwards. See <a href="/hair-transplant-in-rohini">how a hair transplant is planned</a>.</p>'
+               . '<p><b>4. Hair transplant.</b> Only where follicles in an area are already gone, the pattern has settled and the donor area can supply the grafts. Surgery moves hair rather than creating it, and medical treatment usually continues afterwards. See <a href="/hair-transplant-delhi/">how a hair transplant is planned</a>.</p>'
                . '<p><b>Shampoos, oils and supplements.</b> Shampoos and oils work on the hair shaft and skin surface, not on the follicle, although a medicated shampoo is useful for a scalp condition. Supplements are worth taking for a deficiency a test has confirmed; without one they seldom help, and excess vitamin A or selenium is a cause of hair loss in its own right.</p>',
 ]) ?>
 
