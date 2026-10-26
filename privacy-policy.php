@@ -38,7 +38,7 @@ require __DIR__ . '/includes/header.php';
     <div class="measure">
       <span class="pill pill--dot">Privacy</span>
       <h1 class="h1 mt-3">Privacy Policy</h1>
-      <p class="lead mt-3">How we handle the information you give us. Last reviewed <?= e(REVIEWED_DATE) ?>.</p>
+      <p class="lead mt-3">How we handle the information you give us. Last updated <?= e(LEGAL_UPDATED) ?>.</p>
     </div>
 
     <div class="prose measure mt-6">
@@ -51,7 +51,9 @@ require __DIR__ . '/includes/header.php';
         <li class="tick">Your name</li>
         <li class="tick">Your phone number</li>
         <li class="tick">The treatment you are enquiring about</li>
+        <li class="tick">The clinic you prefer and, if you give one, a preferred date</li>
         <li class="tick">Anything you choose to write in the message field</li>
+        <li class="tick">Whether you ticked the consent box, where the form has one</li>
         <li class="tick">The page you enquired from, and your IP address, recorded for spam prevention</li>
       </ul>
       <p class="body mt-3">The message field is free text. Please do not enter medical details you would not want held in an email — clinical history is taken properly at the consultation, not through a web form.</p>
@@ -60,10 +62,10 @@ require __DIR__ . '/includes/header.php';
       <p class="body mt-2">Solely to respond to your enquiry and arrange your consultation. We do not sell your details, we do not share them with other clinics or marketing companies, and we do not add you to a mailing list because you enquired.</p>
 
       <h2 class="h3 mt-6">How long we keep it</h2>
-      <p class="body mt-2">Enquiries that do not become appointments are deleted once they are no longer needed to answer you. If you become a patient, your clinical record is kept separately from this website under the retention periods that apply to medical records.</p>
+      <p class="body mt-2">Website enquiries are kept for 12 months from the date of the enquiry. Our website deletes enquiry records once they are more than 12 months old (the deletion runs each time a new enquiry is received), and the copies in email are deleted on the same schedule. If you become a patient, your clinical record is kept separately from this website under the retention periods that apply to medical records.</p>
 
       <h2 class="h3 mt-6">Where it goes</h2>
-      <p class="body mt-2">An enquiry is written to a file on the website's own server and emailed to the clinic's inbox. It is not passed to any third-party CRM or advertising platform.</p>
+      <p class="body mt-2">An enquiry is written to a file on the website's own server and emailed to the clinic's inbox and to the agency that runs this website for us, which receives a copy of each website enquiry so that it reaches the clinic and uses your details only for that purpose, on the clinic’s instructions. The email is sent through Zoho Mail and received in Gmail (Google), and the clinic may also be notified on WhatsApp (Meta). Some of these providers may store or process data outside India. Your enquiry is not passed to any CRM or advertising platform.</p>
 
       <h2 class="h3 mt-6">Analytics and cookies</h2>
       <p class="body mt-2">We use analytics to understand which pages people find useful and which lead to enquiries. That measurement records page views and whether a lead path was used — a call button, a WhatsApp tap, or a completed form. It is not linked to your name or phone number. Your browser can block these at any time without affecting your ability to contact us or use the site.</p>

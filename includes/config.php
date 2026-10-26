@@ -457,6 +457,14 @@ const NAV_FOOTER = [
 
 const MEDICAL_DISCLAIMER = 'The information on this page is general patient education and is not a substitute for a consultation. Results vary between patients; individual treatment plans differ, and suitability for any procedure is determined only after clinical assessment by a qualified doctor. No outcome, density or timeline can be promised.';
 
+/**
+ * Date shown as "Last updated" on the privacy policy, and stored with every
+ * enquiry as the policy version the visitor saw (enquire.php). Lost in the
+ * 22 Oct 2026 restore while enquire.php still needed it; move it whenever the
+ * privacy policy changes.
+ */
+const LEGAL_UPDATED = '26 October 2026';
+
 /* -------------------------------------------------------------------------
  * mbstring fallback
  *

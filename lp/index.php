@@ -139,11 +139,12 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
   </div>
   <div class="enhanced-form-group">
     <label for="<?= e($id) ?>-clinic"><i class="fas fa-location-dot"></i> Preferred Clinic</label>
+    <?php /* Values must match ENQUIRY_CLINICS in enquire.php, or the choice is dropped. */ ?>
     <select id="<?= e($id) ?>-clinic" name="clinic" class="enhanced-input">
       <option value="">Choose a clinic...</option>
-      <option value="Gurugram, Sector 39">Gurugram, Sector 39</option>
-      <option value="Rohini, Delhi">Rohini, Delhi</option>
-      <option value="Not sure">Not sure</option>
+      <option value="Gurugram (Sector 39)">Gurugram (Sector 39)</option>
+      <option value="Delhi (Rohini)">Delhi (Rohini)</option>
+      <option value="Either clinic">Either clinic</option>
     </select>
   </div>
   <div class="enhanced-form-group">
@@ -156,6 +157,10 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
       <option value="Not sure">Not sure</option>
     </select>
   </div>
+  <label class="form-consent" for="<?= e($id) ?>-consent">
+    <input type="checkbox" id="<?= e($id) ?>-consent" name="dpdp_consent" value="1" required>
+    <span>I agree that <?= e(SITE_NAME) ?> may use these details to contact me about this enquiry (<a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>). Kept for 12 months; you can withdraw consent at any time.</span>
+  </label>
   <button type="submit" class="enhanced-submit-btn"><i class="fas <?= e($icon) ?>"></i> <?= e($submit) ?></button>
 </form>
 <?php

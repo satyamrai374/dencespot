@@ -64,14 +64,12 @@
     });
   });
 
-  // /enquire.php stores name, phone, treatment, message and source; the two
-  // dropdowns and the popup name travel in the message.
+  // /enquire.php stores the clinic and consent fields itself; the visit
+  // timing and the popup name travel in the message.
   document.querySelectorAll('.popup-form').forEach(function (form) {
     form.addEventListener('submit', function () {
       var parts = [];
-      var clinic = form.elements.clinic.value;
       var visit = form.elements.visit.value;
-      if (clinic) { parts.push('Preferred clinic: ' + clinic); }
       if (visit) { parts.push('Plans to visit: ' + visit); }
       parts.push('Form: ' + form.elements.form_type.value + ' (landing page)');
       form.elements.message.value = parts.join(' | ');

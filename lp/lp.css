@@ -1250,6 +1250,31 @@ select.enhanced-input {
   to { transform: rotate(360deg); }
 }
 
+/* LP: consent tick box, as on the site's other enquiry forms. */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #666;
+  margin: 2px 0 4px;
+  padding-left: 7px;
+  cursor: pointer;
+}
+
+.form-consent input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  accent-color: #c41e3a;
+}
+
+.form-consent a {
+  color: #c41e3a;
+}
+
 /* LP: honeypot for /enquire.php; off-screen, never display:none (bots skip those). */
 .hp-field {
   position: absolute;
