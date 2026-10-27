@@ -44,7 +44,7 @@ $footClinics = [
         </p>
         <div class="site-footer__brand-contact">
           <a href="mailto:<?= e(EMAIL) ?>" style="color:rgba(255,255,255,.75);display:inline-flex;align-items:center;gap:8px;font-size:13.5px;">
-            <?= icon('mail', 15, '#10B981') ?> <?= e(EMAIL) ?>
+            <?= icon('mail', 15, 'var(--accent-light)') ?> <?= e(EMAIL) ?>
           </a>
         </div>
       </div>
@@ -73,8 +73,8 @@ $footClinics = [
           </div>
           <div class="site-footer__clinic-body">
             <h3 class="site-footer__clinic-name"><?= e($c['name']) ?></h3>
-            <p class="site-footer__clinic-line"><?= icon('pin', 15, '#10B981') ?><span><?= e($c['addr']) ?><br><small><?= e($c['landmark']) ?></small></span></p>
-            <p class="site-footer__clinic-line"><?= icon('clock', 15, '#10B981') ?><span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span></p>
+            <p class="site-footer__clinic-line"><?= icon('pin', 15, 'var(--accent-light)') ?><span><?= e($c['addr']) ?><br><small><?= e($c['landmark']) ?></small></span></p>
+            <p class="site-footer__clinic-line"><?= icon('clock', 15, 'var(--accent-light)') ?><span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span></p>
             <p class="site-footer__clinic-links">
               <a href="tel:<?= e($c['tel']) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e($c['phone']) ?></a>
               <a href="<?= e($c['wa']) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>

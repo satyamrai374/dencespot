@@ -89,7 +89,7 @@ $schemaHtml  = schema_render($medicalNode === null ? $page['schema'] : array_mer
 <meta name="twitter:title" content="<?= e($page['title']) ?>">
 <meta name="twitter:description" content="<?= e($page['description']) ?>">
 
-<meta name="theme-color" content="#F5F4F7">
+<meta name="theme-color" content="#F5F6F9">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/img/logo/favicon-48.png" type="image/png" sizes="48x48">
 <link rel="icon" href="/assets/img/logo/icon-192.png" type="image/png" sizes="192x192">

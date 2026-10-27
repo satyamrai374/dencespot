@@ -597,7 +597,7 @@ function cta_band(string $heading, string $body, string $source, array $treatmen
   <div class="wrap">
     <div class="cta-band">
       <div>
-        <p class="eyebrow" style="color:var(--accent)">Next step</p>
+        <p class="eyebrow" style="color:var(--accent-light)">Next step</p>
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
         <p class="body-l mt-3" style="color:rgba(255,255,255,.72);max-width:56ch"><?= e($body) ?></p>
         <div class="btn-row mt-5">
@@ -1181,12 +1181,12 @@ function before_after_slider_section(): string
       <?php foreach ($results as $r): ?>
         <div class="card card--pad-lg cert-card" style="display:flex; flex-direction:column; justify-content:space-between;">
           <div>
-            <div class="media ratio-16-10 media--shadow" style="border:1px solid var(--line); position:relative; overflow:hidden; border-radius:var(--r-md); background:#1e183a; cursor:pointer;" onclick="<?= $r['type'] === 'video' ? "openVideoModal('" . e($r['video_url']) . "', '" . e($r['title']) . "')" : "openCertModal('" . e($r['img']) . "', '" . e($r['title']) . "')" ?>">
+            <div class="media ratio-16-10 media--shadow" style="border:1px solid var(--line); position:relative; overflow:hidden; border-radius:var(--r-md); background:#021B52; cursor:pointer;" onclick="<?= $r['type'] === 'video' ? "openVideoModal('" . e($r['video_url']) . "', '" . e($r['title']) . "')" : "openCertModal('" . e($r['img']) . "', '" . e($r['title']) . "')" ?>">
               <img src="<?= e($r['img']) ?>" alt="<?= e($r['title']) ?>" width="800" height="500" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;">
               
               <?php if ($r['type'] === 'video'): ?>
-                <div style="position:absolute; inset:0; background:rgba(26,17,71,0.4); display:flex; align-items:center; justify-content:center;">
-                  <div style="width:64px; height:64px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(16,185,129,0.5); transition:transform 0.2s ease;">
+                <div style="position:absolute; inset:0; background:rgba(3,40,117,0.4); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:64px; height:64px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(218,6,26,0.5); transition:transform 0.2s ease;">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                 </div>

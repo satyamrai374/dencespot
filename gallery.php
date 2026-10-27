@@ -569,7 +569,7 @@ require __DIR__ . '/includes/header.php';
 /* Gallery Custom Styling matching DenceSpot Luxury Medical Theme */
 .ds-gallery-hero {
   padding: 3.5rem 0 2.5rem;
-  background: radial-gradient(circle at top right, rgba(15, 59, 47, 0.06), transparent 70%),
+  background: radial-gradient(circle at top right, rgba(3, 40, 117, 0.06), transparent 70%),
               radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.04), transparent 60%);
   border-bottom: 1px solid var(--hp-line, #E5E9E7);
   text-align: center;
@@ -589,7 +589,7 @@ require __DIR__ . '/includes/header.php';
   margin-top: 2rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--hp-green-800, #0F3B2F);
+  color: var(--hp-green-800, #032875);
 }
 .ds-trust-strip span {
   display: inline-flex;
@@ -626,14 +626,14 @@ require __DIR__ . '/includes/header.php';
 }
 .ds-filter-btn:hover {
   background: #F3F7F5;
-  border-color: var(--hp-green-800, #0F3B2F);
-  color: var(--hp-green-800, #0F3B2F);
+  border-color: var(--hp-green-800, #032875);
+  color: var(--hp-green-800, #032875);
 }
 .ds-filter-btn.active {
-  background: var(--hp-green-800, #0F3B2F);
-  border-color: var(--hp-green-800, #0F3B2F);
+  background: var(--hp-green-800, #032875);
+  border-color: var(--hp-green-800, #032875);
   color: #FFFFFF;
-  box-shadow: 0 4px 12px rgba(15, 59, 47, 0.2);
+  box-shadow: 0 4px 12px rgba(3, 40, 117, 0.2);
 }
 .ds-filter-btn .ds-badge-count {
   display: inline-block;
@@ -651,7 +651,7 @@ require __DIR__ . '/includes/header.php';
 /* Gallery Grid */
 .ds-gallery-section {
   padding: 3.5rem 0 5rem;
-  background: #FBFDFD;
+  background: #FBFCFE;
 }
 .ds-gallery-grid {
   display: grid;
@@ -672,23 +672,23 @@ require __DIR__ . '/includes/header.php';
 .ds-card {
   background: #FFFFFF;
   border-radius: 16px;
-  border: 1px solid var(--hp-line, #E5ECE9);
+  border: 1px solid var(--hp-line, #E3E6EE);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(15, 59, 47, 0.04);
+  box-shadow: 0 4px 16px rgba(3, 40, 117, 0.04);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
 .ds-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(15, 59, 47, 0.1);
+  box-shadow: 0 12px 30px rgba(3, 40, 117, 0.1);
   border-color: #B2CCC3;
 }
 .ds-card__media {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #141c19;
+  background: #0B1B40;
   overflow: hidden;
   cursor: pointer;
 }
@@ -708,7 +708,7 @@ require __DIR__ . '/includes/header.php';
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(15, 59, 47, 0.88);
+  background: rgba(3, 40, 117, 0.88);
   color: #FFFFFF;
   font-size: 0.72rem;
   font-weight: 700;
@@ -749,7 +749,7 @@ require __DIR__ . '/includes/header.php';
   font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.4;
-  color: #1A2621;
+  color: #12224A;
   margin: 0 0 8px;
 }
 .ds-card__meta {
@@ -761,7 +761,7 @@ require __DIR__ . '/includes/header.php';
 .ds-meta-pill {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--hp-green-800, #0F3B2F);
+  color: var(--hp-green-800, #032875);
   background: #EAF3F0;
   padding: 3px 9px;
   border-radius: 6px;
@@ -769,13 +769,13 @@ require __DIR__ . '/includes/header.php';
 .ds-card__desc {
   font-size: 0.875rem;
   line-height: 1.5;
-  color: #55625D;
+  color: #646E85;
   margin: 0 0 16px;
   flex-grow: 1;
 }
 .ds-card__footer {
   padding-top: 12px;
-  border-top: 1px solid var(--hp-line, #E5ECE9);
+  border-top: 1px solid var(--hp-line, #E3E6EE);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -783,7 +783,7 @@ require __DIR__ . '/includes/header.php';
 .ds-card__btn {
   font-size: 0.825rem;
   font-weight: 600;
-  color: var(--hp-green-800, #0F3B2F);
+  color: var(--hp-green-800, #032875);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -800,7 +800,7 @@ require __DIR__ . '/includes/header.php';
 .ds-lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(10, 20, 16, 0.88);
+  background: rgba(2, 18, 52, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   z-index: 999999;
@@ -880,7 +880,7 @@ require __DIR__ . '/includes/header.php';
   height: 46px;
   border-radius: 50%;
   background: rgba(255,255,255,0.85);
-  color: #141C19;
+  color: #0B1B40;
   border: 1px solid rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
@@ -906,7 +906,7 @@ require __DIR__ . '/includes/header.php';
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  border-top: 1px solid var(--hp-line, #E5ECE9);
+  border-top: 1px solid var(--hp-line, #E3E6EE);
 }
 .ds-lightbox__meta-box {
   flex: 1;
@@ -923,12 +923,12 @@ require __DIR__ . '/includes/header.php';
   font-family: var(--hp-font-serif, 'Playfair Display', serif);
   font-size: 1.25rem;
   font-weight: 600;
-  color: #141C19;
+  color: #0B1B40;
   margin: 0 0 6px;
 }
 .ds-lightbox__desc {
   font-size: 0.875rem;
-  color: #55625D;
+  color: #646E85;
   margin: 0;
   line-height: 1.45;
 }
@@ -939,19 +939,19 @@ require __DIR__ . '/includes/header.php';
 
 /* Compliance Disclosure */
 .ds-disclaimer-box {
-  background: #F4F7F6;
+  background: #F5F6F9;
   border-radius: 12px;
   border: 1px solid #DCE5E1;
   padding: 1.5rem 1.75rem;
   margin-top: 3.5rem;
   font-size: 0.85rem;
-  color: #55625D;
+  color: #646E85;
   line-height: 1.6;
 }
 .ds-disclaimer-box h4 {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #1A2621;
+  color: #12224A;
   margin: 0 0 8px;
 }
 </style>

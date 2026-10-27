@@ -95,12 +95,12 @@ require __DIR__ . '/includes/header.php';
 .hla__opt:has(input:checked) { border-color: var(--accent-deep, #059669); box-shadow: 0 0 0 1px var(--accent-deep, #059669) inset; }
 .hla__out { position: sticky; top: 20px; }
 .hla__flag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .04em;
-  text-transform: uppercase; padding: 5px 10px; border-radius: 99px; background: var(--accent, #10B981); color: #06281c; }
+  text-transform: uppercase; padding: 5px 10px; border-radius: 99px; background: var(--accent); color: #fff; }
 .hla__flag[data-tone="urgent"] { background: #FBBF24; color: #3b2600; }
 .hla__list { margin-top: 16px; padding-left: 18px; list-style: disc; }
 .hla__list li { font-size: 13.5px; line-height: 1.6; margin-bottom: 9px; opacity: .85; }
 .hla__links { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.16); }
-.hla__links a { display: block; font-size: 13.5px; margin-bottom: 9px; color: var(--accent, #10B981); }
+.hla__links a { display: block; font-size: 13.5px; margin-bottom: 9px; color: var(--accent-light); }
 .hla__noscript { padding: 16px; border: 1px dashed rgba(0,0,0,.25); border-radius: 10px; font-size: 14px; }
 </style>
 
