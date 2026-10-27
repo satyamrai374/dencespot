@@ -34,6 +34,8 @@ $page = array_merge([
     'body_class'  => '',
     'noindex'     => false,
     'preload_image' => '',   // above-the-fold LCP image, if the page has one
+    'keywords'    => [],         // meta keywords; built from the URL and title when empty
+    'author'      => SITE_NAME,  // meta author: the clinic publishes every page
 ], $page ?? []);
 
 $canonical  = abs_url($page['url']);
@@ -46,6 +48,7 @@ $headTel    = $isRohini ? LOC_DELHI_PHONE_E164 : PHONE_E164;
 $headPhone  = $isRohini ? LOC_DELHI_PHONE_DISPLAY : PHONE_DISPLAY;
 $bodyClass  = trim($page['body_class'] . ($isRohini ? ' loc-rohini' : ''));
 $ogImage    = $page['og_image'] !== '' ? abs_url($page['og_image']) : '';
+$keywords   = page_meta_keywords($page);
 // Append the page-level medical review node where the page earns one.
 $medicalNode = schema_medical_webpage($page['url'] ?? '', $page['title'] ?? SITE_NAME);
 $schemaHtml  = schema_render($medicalNode === null ? $page['schema'] : array_merge($page['schema'], [$medicalNode]));
@@ -60,6 +63,11 @@ $schemaHtml  = schema_render($medicalNode === null ? $page['schema'] : array_mer
 <?php if ($page['description'] !== ''): ?>
 <meta name="description" content="<?= e($page['description']) ?>">
 <?php endif; ?>
+<?php if ($keywords !== ''): ?>
+<meta name="keywords" content="<?= e($keywords) ?>">
+<?php endif; ?>
+<meta name="author" content="<?= e($page['author']) ?>">
+<meta name="publisher" content="<?= e(SITE_NAME) ?>">
 <link rel="canonical" href="<?= e($canonical) ?>">
 <?php if (SITE_STAGING): ?>
 <meta name="robots" content="noindex, nofollow">

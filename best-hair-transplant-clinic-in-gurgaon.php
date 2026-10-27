@@ -69,6 +69,8 @@ $page = [
     'description' => 'How to judge a hair transplant clinic in Gurgaon on things you can actually verify, and an honest account of what our clinic does and does not offer.',
     'url'         => '/best-hair-transplant-clinic-in-gurgaon',
     'crumbs'      => $crumbs,
+    // Strict-wording rule: no "best" in the keywords, whatever the URL says.
+    'keywords'    => ['hair transplant clinic in gurgaon', 'choosing a hair transplant clinic in gurgaon', 'how to choose a hair transplant clinic', 'hair transplant clinic gurugram', SITE_NAME],
     'schema'      => [
         schema_clinic(),
         schema_physician(),

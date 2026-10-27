@@ -248,6 +248,9 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= e($title) ?></title>
   <meta name="description" content="<?= e($description) ?>">
+  <meta name="keywords" content="hair transplant in gurgaon, hair transplant in delhi, fue hair transplant, dhi hair transplant, hair transplant cost, dencespot clinic">
+  <meta name="author" content="<?= e(SITE_NAME) ?>">
+  <meta name="publisher" content="<?= e(SITE_NAME) ?>">
   <meta name="robots" content="<?= SITE_STAGING ? 'noindex, nofollow' : 'index, follow, max-image-preview:large' ?>">
   <link rel="canonical" href="<?= e(abs_url(LP_URL)) ?>">
   <link rel="icon" href="/favicon.ico">

@@ -99,6 +99,8 @@ $page = [
     'description' => 'Doctor-led hair and skin care in Sector 39, Gurugram and Rohini, Delhi: hair transplant, PRP, hair fall, beard, skin and laser treatment. Book a visit.',
     'url'         => '/',
     'body_class'  => 'page-home',
+    // Brand-led like the title and H1: the homepage targets no treatment keyword.
+    'keywords'    => ['DenceSpot Clinic', 'DenceSpot hair and skin care clinic', 'DenceSpot Gurugram', 'DenceSpot Rohini Delhi', 'hair and skin clinic in Gurugram and Delhi'],
     // No preload: the hero photo is responsive (srcset), and a single-URL
     // preload would fetch a size the browser then discards. The <img> is in
     // the first screen of HTML with fetchpriority="high", which is enough.

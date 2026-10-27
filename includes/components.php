@@ -81,6 +81,75 @@ function site_logo(string $loading = 'eager'): string
 }
 
 /* -------------------------------------------------------------------------
+ * Meta keywords
+ *
+ * The client asked for a keywords meta tag on every page (27 Oct 2026). Search
+ * engines give it little or no weight, so it is kept short (at most eight) and
+ * built from what the page already targets: $page['keywords'] when the page
+ * sets it, otherwise the URL's own keyword phrase, the title's main phrase,
+ * its FUE / DHI / cost variants and the city variants of a city page. Nothing
+ * on the strict-wording list goes in.
+ * ---------------------------------------------------------------------- */
+
+function page_meta_keywords(array $page): string
+{
+    $keywords = (array) ($page['keywords'] ?? []);
+
+    if ($keywords === []) {
+        $slug  = basename(rtrim((string) ($page['url'] ?? ''), '/'));
+        $title = (string) ($page['title'] ?? '');
+        // Title segments without the brand; the part before a colon is the
+        // phrase, the part after it lists what the page covers.
+        $phrases = $extras = [];
+        foreach (explode(' | ', $title) as $segment) {
+            if (stripos($segment, 'DenceSpot') !== false) {
+                continue;
+            }
+            [$phrase, $rest] = array_pad(preg_split('/[:?]/', $segment, 2), 2, '');
+            $phrases[] = $phrase;
+            $extras[]  = $rest;
+        }
+        if ($slug !== '') {
+            $keywords[] = str_replace('-', ' ', $slug);
+        }
+        array_push($keywords, ...$phrases);
+
+        if (preg_match('/^(.+?)(?:-in)?-(gurgaon|rohini)$/', $slug, $m)) {
+            $treatment = str_replace('-', ' ', $m[1]);
+            $covered   = strtolower(implode(' ', $extras));
+            if ($m[2] === 'gurgaon') {
+                $cities = ['gurgaon', 'gurugram'];
+                $keywords[] = $treatment . ' in gurugram';
+            } else {
+                $cities = ['rohini delhi', 'delhi'];
+                $keywords[] = $treatment . ' in delhi';
+            }
+            if (str_contains($treatment, 'hair transplant') && !str_starts_with($treatment, 'fue') && !str_starts_with($treatment, 'dhi')) {
+                foreach (['fue', 'dhi'] as $technique) {
+                    if (str_contains($covered, $technique)) {
+                        $keywords[] = $technique . ' ' . $treatment . ' ' . $cities[0];
+                    }
+                }
+            }
+            if (str_contains($covered, 'cost') && !str_contains($treatment, 'cost')) {
+                $keywords[] = $treatment . ' cost ' . $cities[0];
+            }
+        }
+        $keywords[] = SITE_NAME;
+    }
+
+    $banned = '/\b(advanced?|best|number one|guarantee[ds]?|expert|specialist|leading|perfect|excellence|award|trusted|painless|scarless|no scar|100%|natural-looking|permanent solution|free consultation|world-class|top-rated)\b/i';
+    $clean  = [];
+    foreach ($keywords as $keyword) {
+        $keyword = strtolower(trim(preg_replace(['/\(\d{4}\)/', '/[?!.,]+/', '/\s+/'], ['', ' ', ' '], $keyword)));
+        if ($keyword !== '' && !preg_match($banned, $keyword)) {
+            $clean[$keyword] = true;
+        }
+    }
+    return implode(', ', array_slice(array_keys($clean), 0, 8));
+}
+
+/* -------------------------------------------------------------------------
  * Doctor credit line
  *
  * Used by every hero badge. Exists so a credential is never retyped into a

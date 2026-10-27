@@ -40,10 +40,27 @@ $crumbs = [
 // The brand shortens, then drops, where the full title would not fit (title_fits()).
 $seoTitle = $post['seo_title'] ?? $post['title'];
 
+// Meta keywords: the slug, the main phrase of both titles, and the hub's topic.
+$hubKeyword = [
+    'hair-transplant' => 'hair transplant',
+    'prp'             => 'prp hair treatment',
+    'beard'           => 'beard transplant',
+    'hair-fall'       => 'hair fall treatment',
+    'skin'            => 'skin and laser treatment',
+][$post['hub']] ?? null;
+$postKeywords = array_filter([
+    str_replace('-', ' ', $post['slug']),
+    preg_split('/[:?,]/', $seoTitle)[0],
+    preg_split('/[:?,]/', $post['title'])[0],
+    $hubKeyword,
+    SITE_NAME,
+]);
+
 $page = [
     'title'       => fit_title($seoTitle . ' | DenceSpot Clinic', $seoTitle . ' | DenceSpot', $seoTitle),
     'description' => $postDescription ?? $post['excerpt'],
     'url'         => $url,
+    'keywords'    => $postKeywords,
     'og_type'     => 'article',
     'nav_active'  => null,
     'crumbs'      => $crumbs,

@@ -99,6 +99,9 @@ $page = [
     'crumbs'         => $crumbs,
     'location'       => 'rohini',
     'location_links' => false,
+    'keywords'       => $isHome
+        ? ['hair transplant in rohini', 'hair transplant rohini delhi', 'fue hair transplant in rohini', 'dhi hair transplant in rohini', 'hair transplant clinic in rohini', 'hair transplant cost in rohini', SITE_NAME]
+        : ['hair transplant in ' . $name, 'hair transplant ' . $name . ' delhi', 'fue hair transplant ' . $name, 'dhi hair transplant ' . $name, 'hair transplant near ' . $name, 'hair transplant cost ' . $name, SITE_NAME],
     'schema'         => [
         schema_delhi_clinic(),
         schema_breadcrumbs($crumbs),
