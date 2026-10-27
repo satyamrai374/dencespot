@@ -31,7 +31,7 @@
 declare(strict_types=1);
 
 $postSlug = 'vitamin-deficiency-and-hair-loss';
-$postDescription = 'Which deficiencies cause hair fall: iron, protein, zinc, biotin, vitamin D and B12, the test for each, the risk of guessing with supplements, and regrowth time.';
+$postDescription = 'Which deficiencies cause hair fall (iron, protein, zinc, biotin, vitamin D, B12), the test for each, the risk of guessing with supplements, regrowth time.';
 $postFaqHeading = 'Vitamin deficiency and hair loss FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

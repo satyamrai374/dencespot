@@ -106,7 +106,7 @@ $faqs = [
 
 $page = [
     'title'       => 'Skin & Hair Clinic in Rohini, Delhi | DenceSpot Clinic',
-    'description' => 'DenceSpot skin and hair clinic in Rohini, North-West Delhi: hair transplant, PRP, hair fall, laser hair removal and skin treatment. Timings, map and booking.',
+    'description' => 'DenceSpot skin and hair clinic in Rohini, North-West Delhi: hair transplant, PRP, hair fall, laser hair removal, skin treatment. Timings, map, booking.',
     'url'           => '/delhi-clinic',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-consultation-768.webp',
@@ -153,7 +153,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk beside a potted fern" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -171,7 +171,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-hair-transplant',
-    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs',
     'eyebrow' => 'How the Rohini clinic works',
     'title'   => 'Doctor-Led Care, Planned After an Examination',
     'html'    => '<p>Consultations and treatments at the Rohini clinic are carried out by registered medical practitioners. Each treatment is planned case by case after an examination of your scalp or skin.</p>'
@@ -199,7 +199,7 @@ require __DIR__ . '/includes/header.php';
      * back to the service's short note.
      */
     $svcDetail = [
-        '/hair-transplant-delhi/'     => ['hairline', 'FUE and DHI, planned around a measured donor area, with the hairline drawn on your face and follow-up reviews in Rohini.'],
+        '/hair-transplant-in-delhi'     => ['hairline', 'FUE and DHI, planned around a measured donor area, with the hairline drawn on your face and follow-up reviews in Rohini.'],
         '/fue-hair-transplant-in-rohini' => ['list',     'Individual follicle extraction using motorised micro-punches (0.75–0.9 mm). Leaves small dot scars spread across the donor area rather than a linear scar.'],
         '/dhi-hair-transplant-in-rohini' => ['settings', 'Simultaneous incision and placement with implanter pens, allowing control over follicular angle, depth and hair exit direction.'],
         '/beard-transplant-in-rohini'    => ['beard',    'Filling patchy facial areas or defining moustache and beard lines with single-hair donor grafts positioned at flat skin angles.'],
@@ -270,7 +270,7 @@ require __DIR__ . '/includes/header.php';
     'intro'   => 'Consultations, procedures and follow-up reviews all take place at the Rohini clinic, carried out by registered medical practitioners.',
     'tone'    => 'white',
     'steps'   => [
-        ['img' => 'hero',           'alt' => 'a sculpted cross-section of the scalp showing hair follicles beneath the skin', 'title' => 'Consultation and examination', 'text' => 'An in-person examination: trichoscopy and donor measurement for hair, or the area to be treated for laser and skin.'],
+        ['img' => 'hero',           'alt' => 'a cross-section of the scalp showing hair follicles beneath the skin', 'title' => 'Consultation and examination', 'text' => 'An in-person examination: trichoscopy and donor measurement for hair, or the area to be treated for laser and skin.'],
         ['img' => 'step-plan',      'alt' => 'a tablet showing a head diagram on a desk',                                     'title' => 'A written plan',               'text' => 'Realistic medical recommendations and, if treatment suits you, a plan with your fees confirmed in writing before you book a date.'],
         ['img' => 'step-procedure', 'alt' => 'sterile instruments laid out on a tray',                                        'title' => 'Treatment in Rohini',          'text' => 'Carried out at the Rohini clinic by registered medical practitioners, on a date you choose.'],
         ['img' => 'step-followup',  'alt' => 'a desk calendar with review dates circled',                                     'title' => 'Follow-up reviews',            'text' => 'Reviews take place at the Rohini clinic too, with progress judged against your starting point.'],

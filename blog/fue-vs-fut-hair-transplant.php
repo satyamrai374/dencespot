@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'fue-vs-fut-hair-transplant';
-$postDescription = 'FUE and FUT both scar, differently. An honest comparison of donor yield, healing, hair length and the specific cases in which a strip is still the better engineering choice.';
+$postDescription = 'FUE and FUT both scar, differently. A comparison of donor yield, healing, hair length and the cases in which a strip is still the better choice.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

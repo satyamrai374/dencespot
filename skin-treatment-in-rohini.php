@@ -123,7 +123,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted cross-section of skin layers with a single hair follicle and a coiled gland, on a pale circular background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a cross-section of skin layers with a hair follicle and a coiled gland" width="768" height="960" loading="eager" fetchpriority="high">
           <?= /* top of the image: at the bottom it sits under the badge card on phones */ str_replace('class="hp-ai-chip"', 'class="hp-ai-chip" style="top:12px;bottom:auto"', hp_ai_chip('AI-generated illustration')) ?>
         </div>
         <div class="hero__badge-card">
@@ -151,7 +151,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of skin showing hair follicles beneath the surface',
+    'alt'     => 'a cross-section of skin showing hair follicles beneath the surface',
     'eyebrow' => 'Acne',
     'title'   => 'Acne and Acne Marks',
     'id'      => 'acne',
@@ -212,7 +212,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'canvas',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a desk',                            'title' => 'Your concern, in your words',          'text' => 'What bothers you most, how long it has been there, what has been tried, and what made it better or worse. The diagnosis often starts here.'],
-        ['img' => 'hero',              'alt' => 'a sculpted cross-section of skin showing hair follicles beneath the surface', 'title' => 'A close look at the skin',  'text' => 'Examination of the affected areas, including the chest and back for acne, or the scalp where flaking or itching is part of the picture.'],
+        ['img' => 'hero',              'alt' => 'a cross-section of skin showing hair follicles beneath the surface', 'title' => 'A close look at the skin',  'text' => 'Examination of the affected areas, including the chest and back for acne, or the scalp where flaking or itching is part of the picture.'],
         ['img' => 'step-procedure',    'alt' => 'sterile instruments laid out on a tray',                         'title' => 'Tests, if they would change the plan', 'text' => 'Most people need none. Blood tests are advised for a reason, for example acne with irregular periods, before some oral medicines, or darkening of the skin that hints at an internal cause.'],
         ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram with a planned line',            'title' => 'A written plan and a review date',     'text' => 'What to apply and in what order, which side effects are expected, and when to come back to the Rohini clinic to check progress.'],
     ],

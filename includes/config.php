@@ -124,7 +124,7 @@ const ROHINI_GROUPS = [
 const ROHINI_SERVICES = [
     // Hair transplant
     // The Delhi parent page (25 Oct 2026); 'anchor' overrides "<label> in Rohini".
-    ['url' => '/hair-transplant-delhi/',                'label' => 'Hair Transplant',            'group' => 'transplant',   'gurgaon' => '/hair-transplant-in-gurgaon',            'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.', 'anchor' => 'Hair Transplant in Delhi'],
+    ['url' => '/hair-transplant-in-delhi',                'label' => 'Hair Transplant',            'group' => 'transplant',   'gurgaon' => '/hair-transplant-in-gurgaon',            'img' => 'hair-transplant', 'note' => 'FUE and DHI, planned around your donor area.', 'anchor' => 'Hair Transplant in Delhi'],
     ['url' => '/fue-hair-transplant-in-rohini',        'label' => 'FUE Hair Transplant',        'group' => 'transplant',   'gurgaon' => '/fue-hair-transplant-in-gurgaon',        'img' => 'hair-transplant', 'note' => 'Follicles extracted one by one from the donor area.'],
     ['url' => '/dhi-hair-transplant-in-rohini',        'label' => 'DHI Hair Transplant',        'group' => 'transplant',   'gurgaon' => '/dhi-hair-transplant-in-gurgaon',        'img' => 'hair-transplant', 'note' => 'Grafts placed with an implanter pen.'],
     ['url' => '/unshaven-hair-transplant-in-rohini',   'label' => 'Unshaven Hair Transplant',   'group' => 'transplant',   'gurgaon' => '/unshaven-hair-transplant-in-gurgaon',   'img' => 'unshaven',        'note' => 'Smaller sessions without shaving the whole head.'],
@@ -241,12 +241,21 @@ const DOCTORS = [
         'abroad'      => '3 years of clinical work in Germany',
         'experience'  => '8 years',   // total, client 25 Oct 2026
         'url'         => '/dr-nyra',
-        'image'       => '/assets/img/dr-nayra.webp',
+        // The portraits supplied on 25 Oct 2026, sitewide since 27 Oct
+        // (client: "use every dr new photo"). 'photo' is the hp_img() slug.
+        'image'       => '/assets/img/home/doctor-nyra-720.webp',
+        'photo'       => 'doctor-nyra',
         'specialty'   => 'Dermatology & Hair Restoration',
         'reg_number'  => null,   // ⚠ add medical registration number
         'reg_council' => null,   // ⚠ e.g. 'Haryana Medical Council'
         'reg_status'  => null,   // ⚠ e.g. 'Registered, active'
-        'clinics'     => 'Gurugram',
+        // All three doctors consult at both clinics (client, 27 Oct 2026), and
+        // each profile lists both.
+        'clinics'     => 'Gurugram and Rohini, Delhi',
+        // The city the profile page is aimed at (client, 27 Oct 2026): its
+        // keyword, header phone and first-listed clinic. A city page's doctor
+        // tile links only to that city's profiles (location rule).
+        'city'        => 'rohini',
         'same_as'     => [],     // ⚠ add Practo / LinkedIn profile URLs
     ],
     // Client, 25 Oct 2026: Senior Resident at ESIC Hospital, 8+ years of
@@ -261,12 +270,14 @@ const DOCTORS = [
         'position'    => 'Senior Resident, ESIC Hospital',
         'experience'  => '8+ years',
         'url'         => '/dr-rahul',
-        'image'       => '/assets/img/dr-rahul.webp',
+        'image'       => '/assets/img/home/doctor-rahul-720.webp',
+        'photo'       => 'doctor-rahul',
         'specialty'   => null,
         'reg_number'  => null,
         'reg_council' => null,
         'reg_status'  => null,
-        'clinics'     => null,
+        'clinics'     => 'Gurugram and Rohini, Delhi',
+        'city'        => 'rohini',
         'same_as'     => [],
     ],
     // Third doctor, photographed for the homepage. Client, 25 Oct 2026: trained
@@ -283,11 +294,13 @@ const DOCTORS = [
         'experience'  => '10 years',
         'url'         => '/dr-akash',
         'image'       => '/assets/img/home/doctor-3-720.webp',
+        'photo'       => 'doctor-3',
         'specialty'   => null,
         'reg_number'  => null,
         'reg_council' => null,
         'reg_status'  => null,
-        'clinics'     => null,   // ⚠ 'Gurugram', 'Rohini, Delhi' or both
+        'clinics'     => 'Gurugram and Rohini, Delhi',
+        'city'        => 'gurgaon',
         'same_as'     => [],
     ],
 ];
@@ -406,7 +419,7 @@ const NAV_PRIMARY = [
     ]],
     ['label' => 'Rohini Clinic', 'url' => '/delhi-clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-delhi/'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-delhi'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
@@ -442,7 +455,7 @@ const NAV_FOOTER = [
         ['label' => 'Hair fall treatment',        'url' => '/hair-fall-treatment-in-gurgaon'],
     ],
     'Rohini Treatments' => [
-        ['label' => 'Hair transplant in Delhi',  'url' => '/hair-transplant-delhi/'],
+        ['label' => 'Hair transplant in Delhi',  'url' => '/hair-transplant-in-delhi'],
         ['label' => 'FUE hair transplant Rohini', 'url' => '/fue-hair-transplant-in-rohini'],
         ['label' => 'DHI hair transplant Rohini', 'url' => '/dhi-hair-transplant-in-rohini'],
         ['label' => 'Hair PRP in Rohini',         'url' => '/hair-prp-treatment-in-rohini'],
@@ -530,4 +543,68 @@ function is_current(string $url): bool
     $here = rtrim(strtok($_SERVER['REQUEST_URI'] ?? '/', '?'), '/');
     $there = rtrim($url, '/');
     return ($here === '' ? '/' : $here) === ($there === '' ? '/' : $there);
+}
+
+/*
+ * Page titles have to fit Google's desktop result: at most 60 characters and
+ * 561px wide in Arial 20px — the two "over" checks Screaming Frog runs on
+ * every title. Templates that build titles from data (blog posts, Delhi area
+ * pages) try the longer forms first and keep the first one that fits.
+ */
+const TITLE_MAX_CHARS = 60;
+const TITLE_MAX_PX    = 561;
+
+/** Arial advance widths at 20px, in whole pixels, grouped by width. */
+const TITLE_CHAR_PX = [
+     4 => '\'ijl’‘',
+     5 => '|',
+     6 => ' !,./:;I[\\]ft',
+     7 => '"()-`r{}“”·',
+     8 => '*',
+     9 => '^',
+    10 => 'Jcksvxyz',
+    11 => '#$0123456789?L_abdeghnopqu–é',
+    12 => '+<=>FTZ~',
+    13 => '&ABEKPSVXY',
+    14 => 'CDHNRUw',
+    16 => 'GOQ',
+    17 => 'Mm',
+    18 => '%',
+    19 => 'W',
+    20 => '@—',
+];
+
+/** Width of $title in Google's title font. A character not in the table counts as 11px. */
+function title_px(string $title): int
+{
+    static $px = null;
+    if ($px === null) {
+        $px = [];
+        foreach (TITLE_CHAR_PX as $width => $chars) {
+            foreach (preg_split('//u', $chars, -1, PREG_SPLIT_NO_EMPTY) as $ch) {
+                $px[$ch] = $width;
+            }
+        }
+    }
+    $total = 0;
+    foreach (preg_split('//u', $title, -1, PREG_SPLIT_NO_EMPTY) as $ch) {
+        $total += $px[$ch] ?? 11;
+    }
+    return $total;
+}
+
+function title_fits(string $title): bool
+{
+    return mb_strlen($title) <= TITLE_MAX_CHARS && title_px($title) <= TITLE_MAX_PX;
+}
+
+/** The first of $candidates that fits; the last one when none does. */
+function fit_title(string ...$candidates): string
+{
+    foreach ($candidates as $title) {
+        if (title_fits($title)) {
+            return $title;
+        }
+    }
+    return $candidates[count($candidates) - 1];
 }

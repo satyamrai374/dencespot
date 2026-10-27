@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'beard-transplant-what-to-expect';
-$postDescription = 'What a beard transplant realistically delivers: how scalp hair behaves on the face, why angle and density decide the result, and what it costs your donor area.';
+$postDescription = 'What a beard transplant can deliver: how scalp hair behaves on the face, why angle and density decide the result, and what it costs your donor area.';
 $postFaqHeading = 'Beard transplant expectations FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

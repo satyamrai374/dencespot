@@ -40,7 +40,7 @@
 declare(strict_types=1);
 
 $postSlug = 'when-does-a-beard-fully-grow';
-$postDescription = 'Most beards keep filling in from the late teens to the late twenties. How genes, DHT and follicle sensitivity set density, and when patchiness needs a doctor.';
+$postDescription = 'Most beards fill in from the late teens to the late twenties. How genes, DHT and follicle sensitivity set density, and when patchiness needs a doctor.';
 $postFaqHeading = 'Beard growth and age: more questions';
 $postFaqId = 'beard-age-faqs';
 

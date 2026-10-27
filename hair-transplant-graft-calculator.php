@@ -68,7 +68,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Transplant Graft Calculator | DenceSpot',
-    'description' => 'Estimate a graft range from your pattern of hair loss, and understand why the number that actually matters cannot be worked out without measuring your donor area.',
+    'description' => 'Estimate a graft range from your pattern of hair loss, and understand why the number that matters cannot be worked out without measuring your donor area.',
     'url'         => '/hair-transplant-graft-calculator',
     'crumbs'      => $crumbs,
     'schema'      => [

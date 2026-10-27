@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Microneedling in Gurgaon | DenceSpot Clinic',
-    'description' => 'Scalp microneedling in Gurgaon, positioned honestly as an adjunct to topical treatment rather than a standalone cure, with the home dermaroller risks explained.',
+    'description' => 'Scalp microneedling in Gurgaon, positioned as an adjunct to topical treatment rather than a standalone cure, with the home dermaroller risks explained.',
     'url'         => '/hair-microneedling-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

@@ -130,7 +130,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Laser Hair Removal in Gurgaon: Sessions, Cost & Patch Test',
-    'description'   => 'Laser hair removal in Gurgaon, Sector 39: sessions and spacing by area, the patch test, Indian skin types, PCOS facial hair, cost factors, EMI and aftercare.',
+    'description'   => 'Laser hair removal in Gurgaon, Sector 39: sessions and spacing by area, patch test, Indian skin types, PCOS facial hair, cost factors, EMI and aftercare.',
     'url'           => '/laser-hair-removal-in-gurgaon',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-laser-768.webp',

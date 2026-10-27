@@ -64,8 +64,8 @@ require __DIR__ . '/includes/header.php';
           <iframe title="Google Map showing DenceSpot Clinic at 1123, Sector 39 Road, Jharsa, Sector 39, Gurugram, Haryana 122003" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.3229126883884!2d77.0438613!3d28.439680699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5e4f6f45491%3A0x9dc43165216a74e6!2sDencespot%20Clinic!5e0!3m2!1sen!2sus!4v1787587082143!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
         <div class="grid grid--2 mt-3">
-          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
-          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
+          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
+          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
         </div>
         <a class="btn btn--outline btn--block mt-3" href="<?= e(MAPS_URL) ?>" rel="noopener"><?= icon('pin', 17) ?> Open in Google Maps</a>
       </div>

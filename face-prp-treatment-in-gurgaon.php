@@ -108,7 +108,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and preparation equipment used for platelet-rich plasma treatments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and equipment for preparing platelet-rich plasma at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Assessed &amp; performed by</p>
           <p class="h4 mt-2"><?= e(doctor_name()) ?></p>

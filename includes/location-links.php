@@ -51,6 +51,9 @@ const LOCATION_LINKS = [
                         '/hair-transplant-results-gurgaon'        => 'Hair Transplant Results in Gurgaon',
                         '/best-hair-transplant-clinic-in-gurgaon' => 'Choosing a Hair Transplant Clinic in Gurgaon',
                     ],
+                    'Hair Transplant Doctors' => [
+                        '/dr-akash' => 'Dr. Akash, Hair Transplant Doctor in Gurgaon',
+                    ],
                     'Beard & Eyebrow Transplant' => [
                         '/beard-transplant-gurgaon'      => 'Beard Transplant in Gurgaon',
                         '/beard-transplant-cost-gurgaon' => 'Beard Transplant Cost in Gurgaon',
@@ -90,20 +93,20 @@ const LOCATION_LINKS = [
         'label'    => 'Rohini, Delhi',
         'eyebrow'  => 'DenceSpot Clinic · Rohini, Delhi',
         'hub'      => ['url' => '/delhi-clinic', 'anchor' => 'Hair & Skin Clinic in Rohini, Delhi'],
-        // Delhi locality pages (includes/delhi-localities.php) show the hair
-        // block but are not listed in it: the parent and their neighbours link
-        // to them, so 25 Rohini pages do not each link to every locality.
-        // Rohini itself is listed below, as the clinic's own area.
-        'unlisted' => [
-            '/hair-transplant-delhi/pitampura' => 'hair',
-        ],
+        // Delhi area pages (includes/delhi-service-areas.php) show the hair
+        // block but are not listed in it: the pillar's "Serving Patients Across
+        // Delhi" block links them (client: from the pillar only), so 25 Rohini
+        // pages do not each link to every area. Rohini itself is listed below,
+        // as the clinic's own area.
+        'unlisted' => [],
         'families' => [
             'hair' => [
                 'title'  => 'Hair Treatments in Rohini, Delhi',
                 'groups' => [
                     'Hair Transplant' => [
-                        '/hair-transplant-delhi/'              => 'Hair Transplant in Delhi',
-                        '/hair-transplant-delhi/rohini'        => 'Hair Transplant in Rohini',
+                        // The Delhi area pages, Rohini's included, are linked
+                        // from the pillar only (client, 27 Oct 2026).
+                        '/hair-transplant-in-delhi'            => 'Hair Transplant in Delhi',
                         '/fue-hair-transplant-in-rohini'       => 'FUE Hair Transplant in Rohini',
                         '/dhi-hair-transplant-in-rohini'       => 'DHI Hair Transplant in Rohini',
                         '/unshaven-hair-transplant-in-rohini'  => 'Unshaven Hair Transplant in Rohini',
@@ -112,6 +115,12 @@ const LOCATION_LINKS = [
                         '/hair-transplant-for-women-in-rohini' => 'Hair Transplant for Women in Rohini',
                         '/hair-transplant-repair-in-rohini'    => 'Hair Transplant Repair in Rohini',
                         '/hair-transplant-cost-in-rohini'      => 'Hair Transplant Cost in Rohini',
+                    ],
+                    // Anchors say "Surgeon" only for a doctor whose degree is
+                    // in DOCTORS (as the profile's own title does).
+                    'Hair Transplant Doctors' => [
+                        '/dr-nyra'  => 'Dr. Nyra, Hair Transplant Surgeon in Rohini',
+                        '/dr-rahul' => 'Dr. Rahul, Hair Transplant Doctor in Rohini',
                     ],
                     'Beard & Eyebrow Transplant' => [
                         '/beard-transplant-in-rohini'      => 'Beard Transplant in Rohini, Delhi',
@@ -151,12 +160,7 @@ const LOCATION_LINKS = [
 /** The [family, group] a URL belongs to in $city, or null. */
 function location_links_find(string $city, string $url): ?array
 {
-    // Every Delhi area page (/hair-transplant-delhi/<slug>) is a hair page.
-    if ($city === 'rohini' && str_starts_with($url, '/hair-transplant-delhi/')) {
-        return ['hair', ''];
-    }
-    // $url comes without a trailing slash; a folder page (/hair-transplant-delhi/)
-    // is listed with one.
+    // $url comes without a trailing slash; a folder page is listed with one.
     foreach ([$url, $url . '/'] as $key) {
         if (isset(LOCATION_LINKS[$city]['unlisted'][$key])) {
             return [LOCATION_LINKS[$city]['unlisted'][$key], ''];

@@ -87,7 +87,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Hair Transplant for Women in Rohini, Delhi: Who It Suits',
-    'description'   => 'Hair transplant for women in Rohini, Delhi: a medical workup first, when surgery can suit traction loss, a high hairline or a scar, when it waits, and cost.',
+    'description'   => 'Hair transplant for women in Rohini, Delhi: medical workup first, when surgery can suit traction loss, a high hairline or a scar, when it waits, and cost.',
     'url'           => '/hair-transplant-for-women-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-women-768.webp',
@@ -135,7 +135,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-women-768.webp" srcset="/assets/img/services/svc-women-512.webp 512w, /assets/img/services/svc-women-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a white mannequin head seen from above, with green felt hair and a widening central parting" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-women-768.webp" srcset="/assets/img/services/svc-women-512.webp 512w, /assets/img/services/svc-women-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from above, with a widening central parting" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -152,7 +152,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with a band across the back and sides of the head shaded green',
+    'alt'     => 'a mannequin head from behind, with the back and sides shaded green',
     'eyebrow' => 'Why diagnosis comes first',
     'title'   => 'Hair Loss in Women Is Not One Condition',
     'html'    => '<p>A transplant takes follicles from the back and sides of the head and places them where hair is thin. It only works if that donor hair is stable, and in many women it is not: the thinning is diffuse, reaching the donor area as well as the top of the scalp.</p>'
@@ -172,7 +172,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'canvas',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope beside a notepad and a potted fern on a wooden desk',  'title' => 'History and scalp examination', 'text' => 'When the loss began and what came a few months before it — a pregnancy, an illness, weight loss, a new medicine. Then whether it is spread out or limited to one zone, with signs of alopecia areata or a scarring alopecia checked.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing an outline drawing of a head, beside a blank sheet of paper', 'title' => 'Donor measurement',    'text' => 'Density at the back and sides is measured directly. This one finding decides whether surgery is possible at all.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing an outline drawing of a head, beside a sheet of paper', 'title' => 'Donor measurement',    'text' => 'Density at the back and sides is measured directly. This one finding decides whether surgery is possible at all.'],
         ['img' => 'step-followup',     'alt' => 'a desk calendar with several dates circled in green',                  'title' => 'Tests, then a plan',            'text' => 'Iron and thyroid tests are common, with hormonal tests where your history points that way. The results are gone through with you before any plan is made.'],
     ],
 ]) ?>
@@ -216,7 +216,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of scalp skin with hair follicles and hair shafts, on a cream background',
+    'alt'     => 'a cross-section of scalp skin with hair follicles and hair shafts',
     'eyebrow' => 'Medical treatment',
     'title'   => 'Medication: What It Can Do, and Where It Stops',
     'reverse' => true,
@@ -236,7 +236,7 @@ require __DIR__ . '/includes/header.php';
     <div style="max-width:62ch">
       <p class="eyebrow">At the Rohini clinic</p>
       <h2 class="h2 mt-2">If Surgery Is Advised: How It Differs for Women</h2>
-      <p class="body mt-3">It is the same operation described on our <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> page: a day case under local anaesthetic, carried out by registered medical practitioners. Three things are planned differently.</p>
+      <p class="body mt-3">It is the same operation described on our <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> page: a day case under local anaesthetic, carried out by registered medical practitioners. Three things are planned differently.</p>
     </div>
     <div class="grid grid--3 mt-6">
       <div class="card card--tint card--pad-lg"><h3 class="h4">Keeping the donor hidden</h3><p class="body-s mt-2">Hair is usually trimmed in a narrow strip that longer hair covers. Fully <a href="/unshaven-hair-transplant-in-rohini">unshaven hair transplant</a> work is slower and suits smaller sessions.</p></div>

@@ -39,7 +39,7 @@
 declare(strict_types=1);
 
 $postSlug = 'is-laser-hair-removal-permanent';
-$postDescription = 'Laser hair removal gives long-term reduction, not removal of every hair. What "permanent" means, why several sessions are needed and which hair responds poorly.';
+$postDescription = 'Laser hair removal gives long-term reduction, not removal of every hair. What "permanent" means, why it needs several sessions, which hair responds poorly.';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */
 $postFaqs = [

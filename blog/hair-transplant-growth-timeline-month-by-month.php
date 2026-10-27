@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'hair-transplant-growth-timeline-month-by-month';
-$postDescription = 'What actually happens in each month after a hair transplant, published as ranges rather than a growth chart, and why nobody can commit to your personal timeline.';
+$postDescription = 'What happens in each month after a hair transplant, published as ranges rather than a growth chart, and why nobody can commit to your personal timeline.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

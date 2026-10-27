@@ -89,7 +89,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Hair Transplant Repair in Rohini, Delhi: Options & Limits',
-    'description'   => 'Hair transplant repair in Rohini, Delhi: tufted grafts, a low or hard hairline and donor damage assessed at 12 months, what can change, what cannot, and cost.',
+    'description'   => 'Hair transplant repair in Rohini, Delhi: tufted grafts, a low or hard hairline and donor damage assessed at 12 months, what can change and cost factors.',
     'url'           => '/hair-transplant-repair-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-procedure-768.webp',
@@ -137,7 +137,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-procedure-768.webp" srcset="/assets/img/services/svc-procedure-512.webp 512w, /assets/img/services/svc-procedure-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: two pairs of tweezers, six punch tips and a slim steel handle laid out on a green surgical cloth" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-procedure-768.webp" srcset="/assets/img/services/svc-procedure-512.webp 512w, /assets/img/services/svc-procedure-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: tweezers, six punch tips and a steel handle on a green surgical cloth" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -154,7 +154,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of scalp skin with hair follicles and hair shafts, on a cream background',
+    'alt'     => 'a cross-section of scalp skin with hair follicles and hair shafts',
     'eyebrow' => 'Timing',
     'title'   => 'Judge the Result at Twelve Months, Not Six',
     'html'    => '<p>Many people seek a repair opinion before their first transplant has finished growing. Hair returns in stages, and a result that looks thin at six months can still be on course.</p>'
@@ -172,7 +172,7 @@ require __DIR__ . '/includes/header.php';
     <div style="max-width:62ch">
       <p class="eyebrow">What gets corrected</p>
       <h2 class="h2 mt-2">Common Problems a Repair Addresses</h2>
-      <p class="body mt-3">Disappointing results tend to fall into a few recognisable groups, and most repair plans deal with more than one. The surgery uses the same methods as a first <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, applied with more caution; if the hairline is your main concern, <a href="/hairline-transplant-in-rohini">hairline transplant in Rohini</a> explains how a front edge is designed and agreed.</p>
+      <p class="body mt-3">Disappointing results tend to fall into a few recognisable groups, and most repair plans deal with more than one. The surgery uses the same methods as a first <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, applied with more caution; if the hairline is your main concern, <a href="/hairline-transplant-in-rohini">hairline transplant in Rohini</a> explains how a front edge is designed and agreed.</p>
     </div>
     <div class="grid grid--3 mt-6">
       <div class="card"><?= icon('hairline', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Pluggy or tufted grafts</h3><p class="body-s mt-2">Grafts carrying three or four hairs along the front row, where one-hair grafts belong, give a clumped look. Often among the more correctable problems.</p></div>
@@ -187,7 +187,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with a band across the back and sides of the head shaded green',
+    'alt'     => 'a mannequin head from behind, with the back and sides shaded green',
     'eyebrow' => 'The limiting factor',
     'title'   => 'The Donor Hair You Have Left Sets the Ceiling',
     'reverse' => true,
@@ -242,7 +242,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'white',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope beside a notepad and a potted fern on a wooden desk',               'title' => 'Records and examination', 'text' => 'Bring the operative note, graft count and technique if you have them. The transplanted area, the hairline and the donor are examined and photographed.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing an outline drawing of a head, beside a blank sheet of paper',    'title' => 'A written ceiling',       'text' => 'What can improve, what cannot, the likely number of stages and the cost factors for each, set down before anything is booked.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing an outline drawing of a head, beside a sheet of paper',    'title' => 'A written ceiling',       'text' => 'What can improve, what cannot, the likely number of stages and the cost factors for each, set down before anything is booked.'],
         ['img' => 'step-followup',     'alt' => 'a desk calendar with several dates circled in green',                             'title' => 'Staged correction',       'text' => 'Often removal and redistribution first, as a day case under local anaesthetic; then regrowth and a review at Rohini before density, softening or scar work.'],
     ],
 ]) ?>

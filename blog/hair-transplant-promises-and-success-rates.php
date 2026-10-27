@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'hair-transplant-promises-and-success-rates';
-$postDescription = 'What a hair transplant success rate would need to measure, why Indian advertising rules restrain such claims, and what a clinic can honestly commit to instead.';
+$postDescription = 'What a hair transplant success rate would need to measure, why Indian advertising rules restrain such claims, and what a clinic can commit to instead.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -111,7 +111,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>Who operates is the first and least often specified. India's medical regulator is clear about which qualifications may perform this surgery, so asking in writing is fair — see <a href="/blog/who-can-legally-perform-a-hair-transplant-in-india">who is legally permitted to perform the surgery</a>. At DenceSpot, consultations and procedures are carried out by registered medical practitioners, and <a href="/dr-nyra">Dr. Nyra's qualifications</a> are published; that is a statement about staffing, not about outcomes. The written estimate is the second: a plan that survives a printed page is a plan; a figure existing only in conversation is not. How one is built is set out on <a href="/hair-transplant-cost-in-gurgaon">the page explaining what a hair transplant costs</a>, with payment arrangements on <a href="/cost-and-emi-options">the cost and EMI options page</a>.</p>
 
 <?= blog_cta(
-    'Been quoted a success rate, and want to know what it would mean for you',
+    'Been quoted a success rate and want to know what it means for you',
     'An examination gives you what a percentage cannot: measured donor density, whether your loss has stabilised, and a written plan with its limits stated.'
 ) ?>
 <h2 id="how-to-respond-when-a-result-is-promised">How to respond when a result is promised</h2>

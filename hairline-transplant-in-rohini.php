@@ -85,7 +85,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Hairline Transplant in Rohini, Delhi: Design, Temples & Cost',
-    'description'   => 'Hairline transplant in Rohini, Delhi: a line drawn for your age and agreed in a mirror, single hairs at the front edge, temples, who it suits and cost factors.',
+    'description'   => 'Hairline transplant in Rohini, Delhi: a line drawn for your age and agreed in a mirror, single hairs at the front edge, temples, suitability and cost.',
     'url'           => '/hairline-transplant-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-hairline-768.webp',
@@ -133,7 +133,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-hairline-768.webp" srcset="/assets/img/services/svc-hairline-512.webp 512w, /assets/img/services/svc-hairline-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a white mannequin head seen from above, with green felt hair receding at both temples, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-hairline-768.webp" srcset="/assets/img/services/svc-hairline-512.webp 512w, /assets/img/services/svc-hairline-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from above, with hair receding at both temples" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -150,12 +150,12 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-recipient',
-    'alt'     => 'a mannequin head seen from the front, with short hair and a planned hairline drawn in pencil',
+    'alt'     => 'a mannequin head from the front, with a planned hairline drawn in pencil',
     'eyebrow' => 'Design first',
     'title'   => 'Why the Line Matters More Than the Graft Count',
     'html'    => '<p>The extraction in a hairline case is the same as in any transplant. What sets it apart is that the front is seen face on, in daylight, by everyone you talk to.</p>'
                . '<p>Graft numbers can be added to later. A line placed too low cannot simply be raised: the only remedy is removing hairs one at a time, which is slow and does not always leave the skin as it was.</p>'
-               . '<p>The whole process is set out on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, and the clinic page has hours and <a href="/delhi-clinic">directions to the Rohini clinic</a>.</p>',
+               . '<p>The whole process is set out on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, and the clinic page has hours and <a href="/delhi-clinic">directions to the Rohini clinic</a>.</p>',
     'points'  => [
         'Drawn on your forehead and agreed in a mirror',
         'A slightly higher line can be lowered later',
@@ -226,7 +226,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'stage-extensive',
-    'alt'     => 'a mannequin head seen from above, with green felt hair left only at the sides and back',
+    'alt'     => 'a mannequin head from above, with hair left only at the sides and back',
     'eyebrow' => 'Planning ahead',
     'title'   => 'Planning for Loss That Has Not Happened Yet',
     'reverse' => true,
@@ -242,7 +242,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-hair-transplant',
-    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs',
     'eyebrow' => 'Timing',
     'title'   => 'When It Is Better to Wait',
     'tone'    => 'canvas',
@@ -292,7 +292,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'canvas',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk', 'title' => 'Assessment and drawing', 'text' => 'History, donor density and medicines first. Then the line is drawn on your forehead, checked in a mirror and adjusted until you both agree; photograph it and look again a week later.'],
-        ['img' => 'hero', 'alt' => 'a sculpted cross-section of scalp skin with hair follicles and their roots', 'title' => 'Procedure day', 'text' => 'Extraction and sorting under magnification, then single hairs along the edge and larger units behind. A day case under local anaesthetic.'],
+        ['img' => 'hero', 'alt' => 'a cross-section of scalp skin with hair follicles and their roots', 'title' => 'Procedure day', 'text' => 'Extraction and sorting under magnification, then single hairs along the edge and larger units behind. A day case under local anaesthetic.'],
         ['img' => 'step-followup', 'alt' => 'a desk calendar with review dates circled', 'title' => 'Healing and reviews', 'text' => 'Crusts and forehead swelling early on; no caps or helmets until cleared. New growth from three to four months, settled at about ten to twelve.'],
     ],
 ]) ?>

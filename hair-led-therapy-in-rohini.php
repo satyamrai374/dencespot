@@ -47,7 +47,7 @@ $faqs = [
     ['q' => 'What should I bring, and will I need time off afterwards?',
      'a' => 'Bring a list of every medicine you take, including any that make the skin sensitive to light, any recent blood reports, and details of any light device you already own. The first appointment is an assessment. Light therapy does not break the skin, so there is no wound to recover from and no need for time off.'],
     ['q' => 'Will light therapy regrow hair on a bald patch?',
-     'a' => 'No. It can only support follicles that are still there. Where they have gone, nothing shone on the surface brings them back, and the realistic conversation is about a <a href="/hair-transplant-delhi/">hair transplant at the Rohini clinic</a>.'],
+     'a' => 'No. It can only support follicles that are still there. Where they have gone, nothing shone on the surface brings them back, and the realistic conversation is about a <a href="/hair-transplant-in-delhi">hair transplant at the Rohini clinic</a>.'],
     ['q' => 'Can I use it instead of medication?',
      'a' => 'It is usually added to medical treatment rather than used in its place. Some people who cannot take, or would rather avoid, medication choose it anyway. That is a reasonable choice when the smaller and less certain effect is understood beforehand.'],
     ['q' => 'Is it safe, and what are the side effects?',
@@ -72,7 +72,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair LED Therapy in Rohini, Delhi: Clinic or Home Device',
-    'description' => 'Hair LED (low-level light) therapy at our Rohini clinic, North-West Delhi: limited evidence, months of use, clinic sessions vs a home device, and cost factors.',
+    'description' => 'Hair LED (low-level light) therapy at our Rohini clinic, Delhi: limited evidence, months of use, clinic sessions vs a home device, and cost factors.',
     'url'         => '/hair-led-therapy-in-rohini',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -120,7 +120,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-followup-768.webp" srcset="/assets/img/services/svc-followup-512.webp 512w, /assets/img/services/svc-followup-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a desk calendar with several days circled in green, beside a small potted succulent and a pen on a wooden desk" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-followup-768.webp" srcset="/assets/img/services/svc-followup-512.webp 512w, /assets/img/services/svc-followup-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a desk calendar with several days circled in green, beside a pen" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -149,7 +149,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-hair-fall',
-    'alt'     => 'a wooden comb with a few shed hairs resting on folded linen towels by a window',
+    'alt'     => 'a wooden comb with a few shed hairs resting on folded linen towels',
     'eyebrow' => 'How it works',
     'title'   => 'What Low-Level Light Therapy Is',
     'tone'    => 'white',
@@ -246,8 +246,8 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'white',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk beside a potted fern',                      'title' => 'Assessment',                 'text' => 'The cause and stage of your hair loss, reversible causes looked for, and the scalp examined under magnification.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram, with a sheet of paper and a pencil on a wooden desk', 'title' => 'An honest plan',             'text' => 'Whether light therapy suits your stage of loss, what it can realistically do, clinic or home use, and baseline photographs before starting.'],
-        ['img' => 'hero',              'alt' => 'a sculpted cross-section of skin with several hair follicles and their roots',         'title' => 'Months of use, then review', 'text' => 'Regular use alongside your main treatment, reviewed over months against the baseline, with adherence discussed frankly.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram, with paper and a pencil on a desk', 'title' => 'An honest plan',             'text' => 'Whether light therapy suits your stage of loss, what it can realistically do, clinic or home use, and baseline photographs before starting.'],
+        ['img' => 'hero',              'alt' => 'a cross-section of skin with several hair follicles and their roots',         'title' => 'Months of use, then review', 'text' => 'Regular use alongside your main treatment, reviewed over months against the baseline, with adherence discussed frankly.'],
     ],
 ]) ?>
 
@@ -310,12 +310,12 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-crown',
-    'alt'     => 'a mannequin head seen from above with green felt hair and a bald patch at the crown',
+    'alt'     => 'a mannequin head seen from above with a bald patch at the crown',
     'eyebrow' => 'When light is not the answer',
     'title'   => 'When Surgery Is the Honest Conversation',
     'tone'    => 'canvas',
     'reverse' => true,
-    'html'    => '<p>If the scalp is smooth and the follicles have gone, no light, lotion or injection brings them back. Where the loss is extensive, the useful discussion is a <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>, if your donor area allows it.</p>'
+    'html'    => '<p>If the scalp is smooth and the follicles have gone, no light, lotion or injection brings them back. Where the loss is extensive, the useful discussion is a <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>, if your donor area allows it.</p>'
                . '<p>Where follicles remain, other supportive options include <a href="/hair-prp-treatment-in-rohini">PRP and GFC at the Rohini clinic</a> and <a href="/hair-microneedling-in-rohini">hair microneedling in Rohini</a>, each with its own limits.</p>',
     'points'  => [
         'Established baldness: surgery is the realistic discussion',

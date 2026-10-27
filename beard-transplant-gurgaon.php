@@ -106,7 +106,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Performed &amp; reviewed by</p>
           <p class="h4 mt-1"><?= doctor_name() ?></p>
@@ -143,7 +143,7 @@ require __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/case-uttam-gurgaon.jpg" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — hairline and temple restoration, 2,400 grafts by FUE" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/case-uttam-gurgaon.jpg" alt="Before and after a 2,400-graft FUE hairline and temple restoration at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
         <div class="card">
           <p class="eyebrow" style="color:var(--ink-muted)">In one line</p>
           <p class="body mt-2">Scalp hair, relocated to your face and set to grow the way a beard grows. The extraction is routine; the angle and the density are where the result is won or lost.</p>
@@ -210,7 +210,7 @@ require __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="card card--tint" style="padding:0;overflow:hidden">
-        <div class="media ratio-16-10 media--shadow"><img src="/assets/img/case-shukri-europe.jpg" alt="Micro-FUE hair transplant at DenceSpot Clinic, Gurugram — hairline design and 2,800 grafts photographed on the day of surgery" width="800" height="500" loading="lazy"></div>
+        <div class="media ratio-16-10 media--shadow"><img src="/assets/img/case-shukri-europe.jpg" alt="Micro-FUE at DenceSpot Clinic, Gurugram: hairline design and 2,800 grafts on the day of surgery" width="800" height="500" loading="lazy"></div>
         <div style="padding:28px">
           <h3 class="h3" style="font-size:22px">DHI Beard Transplant</h3>
           <p class="body-s mt-3">Extraction is the same. Placement is not: each graft is loaded into a fine implanter and set into untouched skin in one action, so the depth, angle and direction are fixed at the moment of placement rather than by a pre-made site.</p>
@@ -260,7 +260,7 @@ require __DIR__ . '/includes/header.php';
         <div class="step"><span class="step-num">6</span><div><h3 class="h3">Discharge and aftercare</h3><p class="body-s mt-2">You go home the same day with written instructions, medication where prescribed, and your first review already booked. Someone should drive you.</p></div></div>
       </div>
       <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
         <div class="card">
           <p class="eyebrow" style="color:var(--ink-muted)">Plan the week around it</p>
           <p class="body-s mt-2">A beard transplant is not concealable the way a scalp procedure is under a cap. Small crusts sit on the face for roughly the first week. Most patients book time when they are not client-facing.</p>

@@ -61,7 +61,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'PRP Hair Treatment Cost in Gurgaon | DenceSpot',
-    'description' => 'What PRP hair treatment costs in Gurgaon and why the per-session price misleads. How to read a quote, and why we advise against large prepaid session packages.',
+    'description' => 'What PRP hair treatment costs in Gurgaon and why the per-session price misleads. How to read a quote, and why we advise against large prepaid packages.',
     'url'         => '/prp-hair-treatment-cost-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -97,7 +97,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and preparation equipment used for platelet-rich plasma treatment at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and equipment for preparing platelet-rich plasma at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Assessed &amp; performed by</p>
           <p class="h4 mt-2"><?= e(doctor_name()) ?></p>

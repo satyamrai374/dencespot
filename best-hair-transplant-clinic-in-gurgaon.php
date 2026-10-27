@@ -247,7 +247,7 @@ require __DIR__ . '/includes/header.php';
           <p class="h4">Also worth reading</p>
           <p class="body-s mt-2"><a href="/how-to-choose-hair-transplant-clinic">How to choose a clinic</a> — the full decision process.</p>
           <p class="body-s mt-3"><a href="/hair-transplant-cost-in-gurgaon">Hair transplant cost</a> — how pricing actually works.</p>
-          <p class="body-s mt-3"><a href="/hair-transplant-risks-and-side-effects">Risks and side effects</a> — what should be discussed with you.</p>
+          <p class="body-s mt-3"><a href="/blog/hair-transplant-side-effects-and-risks">Risks and side effects</a> — what should be discussed with you.</p>
           <p class="body-s mt-3"><a href="/dr-nyra">About Dr. Nyra</a> — qualifications, in full.</p>
         </div>
       </div>

@@ -94,7 +94,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Crown Hair Transplant in Rohini, Delhi: Staging & Cost',
-    'description'   => 'Crown hair transplant in Rohini, Delhi: why the vertex uses so many grafts, sharing donor hair with the front, staging, the options compared and cost factors.',
+    'description'   => 'Crown hair transplant in Rohini, Delhi: why the vertex uses so many grafts, sharing donor hair with the front, staging, options compared and cost factors.',
     'url'           => '/crown-hair-transplant-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-crown-768.webp',
@@ -142,7 +142,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-crown-768.webp" srcset="/assets/img/services/svc-crown-512.webp 512w, /assets/img/services/svc-crown-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a white mannequin head seen from above, with green felt hair and a bald patch at the crown, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-crown-768.webp" srcset="/assets/img/services/svc-crown-512.webp 512w, /assets/img/services/svc-crown-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from above, with a bald patch at the crown" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -170,7 +170,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-3">An edge that moves</h3><p class="body-s mt-2">Vertex loss commonly keeps widening for years, so today’s boundary may not be the final one.</p></div>
     </div>
     <div class="note mt-4">
-      <p class="body-s"><b>Measured, not guessed.</b> Two crowns that seem similar in the bathroom mirror may call for quite different graft counts, so the area is measured at the examination. For the overall process, see <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>
+      <p class="body-s"><b>Measured, not guessed.</b> Two crowns that seem similar in the bathroom mirror may call for quite different graft counts, so the area is measured at the examination. For the overall process, see <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>
     </div>
   </div>
 </section>
@@ -208,7 +208,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'alt'     => 'a mannequin head seen from behind, with the donor area marked',
     'eyebrow' => 'Staging',
     'title'   => 'One Session or Two?',
     'html'    => '<p>Crown work is staged more often than frontal work, because useful coverage across a circle can need more grafts than one session should take from the donor area.</p>'
@@ -223,7 +223,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'stage-extensive',
-    'alt'     => 'a mannequin head seen from above, with green felt hair left only at the sides and back',
+    'alt'     => 'a mannequin head from above, with hair left only at the sides and back',
     'eyebrow' => 'When to wait',
     'title'   => 'Crown Loss in Your Twenties: Why Surgery Often Waits',
     'reverse' => true,
@@ -240,7 +240,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-hair-transplant',
-    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs',
     'eyebrow' => 'Alongside surgery',
     'title'   => 'Medical Treatment and Other Support for the Crown',
     'html'    => '<p>A transplant moves hair into the crown; it does nothing for the native hair around it. That is why most crown plans include treatment for the surrounding hair.</p>'
@@ -286,7 +286,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'white',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk', 'title' => 'Mapping and planning', 'text' => 'The crown is measured and photographed from above and donor density checked. Order, graft number and any likely second stage go into a written plan.'],
-        ['img' => 'hero', 'alt' => 'a sculpted cross-section of scalp skin with hair follicles and their roots', 'title' => 'Procedure day', 'text' => 'Extraction and sorting under magnification, then sites made around the whorl, each following the spiral. A day case under local anaesthetic.'],
+        ['img' => 'hero', 'alt' => 'a cross-section of scalp skin with hair follicles and their roots', 'title' => 'Procedure day', 'text' => 'Extraction and sorting under magnification, then sites made around the whorl, each following the spiral. A day case under local anaesthetic.'],
         ['img' => 'step-followup', 'alt' => 'a desk calendar with review dates circled', 'title' => 'Healing and reviews', 'text' => 'Sleep as instructed, shade the crown from strong sun, no caps or helmets until cleared. Reviews to about twelve months.'],
     ],
 ]) ?>

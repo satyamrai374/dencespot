@@ -67,7 +67,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Alopecia Areata Treatment in Gurgaon | DenceSpot',
-    'description' => 'Alopecia areata treatment in Gurgaon by a dermatologist. An autoimmune condition, why transplants are contraindicated while active, and how it is properly managed.',
+    'description' => 'Alopecia areata treatment in Gurgaon by a dermatologist: an autoimmune condition, why transplants are ruled out while it is active, and how it is managed.',
     'url'         => '/alopecia-areata-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

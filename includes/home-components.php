@@ -57,7 +57,7 @@ const HOME_NAV = [
     ]],
     ['label' => 'Rohini Clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-delhi/'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-delhi'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
@@ -100,7 +100,7 @@ const HOME_NAV_COMMON = [
     ]],
     ['label' => 'Rohini Clinic', 'children' => [
         ['label' => 'Rohini Clinic (Delhi)',   'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-delhi/'],
+        ['label' => 'Hair Transplant',         'url' => '/hair-transplant-in-delhi'],
         ['label' => 'Beard Transplant',        'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',      'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',          'url' => '/hair-prp-treatment-in-rohini'],
@@ -139,7 +139,7 @@ const HOME_FOOTER_LINKS = [
     ],
     'Rohini, Delhi' => [
         ['label' => 'Rohini Clinic',       'url' => '/delhi-clinic'],
-        ['label' => 'Hair Transplant',     'url' => '/hair-transplant-delhi/'],
+        ['label' => 'Hair Transplant',     'url' => '/hair-transplant-in-delhi'],
         ['label' => 'Beard Transplant',    'url' => '/beard-transplant-in-rohini'],
         ['label' => 'Eyebrow Transplant',  'url' => '/eyebrow-transplant-in-rohini'],
         ['label' => 'Hair PRP & GFC',      'url' => '/hair-prp-treatment-in-rohini'],
@@ -426,6 +426,7 @@ function doctors_grid_section(string $eyebrow, string $heading, string $intro, s
         'dr-rahul' => ['img' => 'doctor-rahul', 'tone' => 'violet'],
         'dr-akash' => ['img' => 'doctor-3',     'tone' => 'sky'],
     ];
+    $loc = hp_page_location();
 
     ob_start(); ?>
 <section class="section <?= e($bg) ?>" id="doctors">
@@ -441,14 +442,20 @@ function doctors_grid_section(string $eyebrow, string $heading, string $intro, s
         <?php
         $d     = DOCTORS[$key];
         $name  = $d['name'] ?? null;
+        // A city page names only its own clinic (location rule): there the
+        // line says the doctor consults at that clinic, if they do.
+        $where = match ($loc) {
+            'rohini'  => stripos((string) $d['clinics'], 'Rohini') !== false ? 'Rohini, Delhi' : null,
+            'gurgaon' => stripos((string) $d['clinics'], 'Gurugram') !== false ? 'Gurugram' : null,
+            default   => $d['clinics'] ?: null,
+        };
         $facts = array_values(array_filter([
             !empty($d['alumni'])     ? ['cap', 'Trained at ' . $d['alumni']] : null,
             !empty($d['position'])   ? ['stethoscope', $d['position']] : null,
             !empty($d['abroad'])     ? ['layers', $d['abroad']] : null,
             !empty($d['fellowship']) ? ['follicle', $d['fellowship']] : null,
             !empty($d['experience']) ? ['clock', $d['experience'] . ' of experience'] : null,
-            // A Rohini page never names the Gurugram clinic (location rule).
-            !empty($d['clinics']) && !hp_is_rohini_page() ? ['pin', 'Consults at ' . $d['clinics']] : null,
+            $where !== null ? ['pin', 'Consults at ' . $where] : null,
         ]));
         ?>
       <article class="doc-tile tone--<?= e($tile['tone']) ?>">
@@ -471,7 +478,9 @@ function doctors_grid_section(string $eyebrow, string $heading, string $intro, s
           </ul>
           <?php endif; ?>
           <?php if (($reg = doctor_registration($d)) !== ''): ?><p class="meta mt-2"><?= $reg ?></p><?php endif; ?>
-          <?php if (!empty($d['url'])): ?>
+          <?php /* Every profile is indexable since 27 Oct 2026. A city page links
+                   only to its own city's profiles (DOCTORS[...]['city']). */ ?>
+          <?php if (!empty($d['url']) && ($loc === 'both' || ($d['city'] ?? null) === $loc)): ?>
           <a class="hp-link doc-tile__link" href="<?= e($d['url']) ?>">View profile<span class="sr-only"> of <?= e((string) $name) ?></span> <?= hp_icon('arrow', 15, 2) ?></a>
           <?php endif; ?>
         </div>
@@ -876,9 +885,9 @@ function hp_booking_dialog(string $source = 'homepage'): string
  * Rohini). 'rohini' — the Rohini clinic page and every Rohini treatment page;
  * 'gurgaon' — every treatment page whose URL ends in "gurgaon" (blog posts
  * excepted); 'both' — the homepage, contact, about, blog, tools and legal
- * pages, which present both clinics. The Delhi hair transplant folder
- * (/hair-transplant-delhi/ and its locality pages) belongs to Rohini, and any
- * other page can name its clinic with $page['location'].
+ * pages, which present both clinics. Any other page can name its clinic with
+ * $page['location'], as the /hair-transplant-in-delhi pillar and its Delhi
+ * area pages do.
  */
 function hp_page_location(): string
 {
@@ -888,7 +897,7 @@ function hp_page_location(): string
     }
     $here = rtrim((string) ($GLOBALS['page']['url'] ?? ''), '/');
     // Any Rohini URL (service, cost guide…), registered or not.
-    if ($here === '/delhi-clinic' || str_ends_with($here, '-in-rohini') || str_starts_with($here, '/hair-transplant-delhi')) {
+    if ($here === '/delhi-clinic' || str_ends_with($here, '-in-rohini')) {
         return 'rohini';
     }
     foreach (ROHINI_SERVICES as $svc) {

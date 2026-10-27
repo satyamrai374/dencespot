@@ -60,7 +60,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Transplant Repair in Gurgaon | DenceSpot',
-    'description' => 'Corrective hair transplant surgery in Gurgaon for pluggy hairlines, poor growth and donor scarring, with an honest account of what repair can and cannot recover.',
+    'description' => 'Corrective hair transplant in Gurgaon for pluggy hairlines, poor growth and donor scarring, with an honest account of what repair can and cannot recover.',
     'url'         => '/hair-transplant-repair-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

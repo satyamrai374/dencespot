@@ -106,8 +106,8 @@ $faqs = [
 ];
 
 $page = [
-    'title'       => 'Hair Transplant in Gurgaon: FUE, DHI & Cost | DenceSpot Clinic',
-    'description' => 'Hair transplant in Gurgaon at DenceSpot, Sector 39: FUE and DHI planned and performed by Dr. Nyra, before-and-after photos, cost factors, recovery and FAQs.',
+    'title'       => 'Hair Transplant in Gurgaon: FUE, DHI & Cost | DenceSpot',
+    'description' => 'Hair transplant in Gurgaon at DenceSpot, Sector 39: FUE and DHI planned and performed by Dr. Nyra, before-and-after photos, cost, recovery and FAQs.',
     'url'         => '/hair-transplant-in-gurgaon',
     'body_class'  => 'tx-rich',
     'crumbs'      => $crumbs,
@@ -443,15 +443,15 @@ require __DIR__ . '/includes/header.php';
 
     <ol class="ht-steps">
       <?php foreach ([
-          ['svc-consultation', 'AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk beside a potted fern',
+          ['svc-consultation', 'AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk',
            'Consultation &amp; Scalp Analysis', 'Scalp and donor area examined under magnification; history and medicines reviewed.'],
-          ['svc-hairline', 'AI-generated illustration: a white mannequin head seen from above, with green felt hair receding at both temples, on a cream background',
+          ['svc-hairline', 'AI-generated illustration: a mannequin head seen from above, with hair receding at both temples',
            'Treatment Planning &amp; Hairline Design', 'Graft zones mapped and the hairline drawn on your face and agreed.'],
-          ['svc-follicle', 'AI-generated illustration: a sculpted cross-section of scalp skin showing hair follicles beneath the surface and hair shafts rising from it',
+          ['svc-follicle', 'AI-generated illustration: a cross-section of scalp skin showing hair follicles and hair shafts',
            'Graft Extraction', 'Follicles taken one at a time from the back and sides, under local anaesthetic.'],
-          ['svc-procedure', 'AI-generated illustration: two pairs of fine tweezers, a row of small punch tips and an instrument handle laid out on green cloth in a steel tray',
+          ['svc-procedure', 'AI-generated illustration: fine tweezers, small punch tips and an instrument handle in a steel tray',
            'Graft Implantation', 'Placed into pre-made sites (FUE) or with an implanter pen (DHI), at the angle of the surrounding hair.'],
-          ['svc-followup', 'AI-generated illustration: a desk calendar with several days circled in green, beside a small potted succulent and a pen on a wooden desk',
+          ['svc-followup', 'AI-generated illustration: a desk calendar with several days circled in green, beside a pen',
            'Recovery &amp; Follow-up', 'Written aftercare and photographed reviews through the first twelve months.'],
       ] as $i => [$img, $alt, $title, $text]): ?>
       <li class="ht-step">

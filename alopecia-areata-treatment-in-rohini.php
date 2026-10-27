@@ -122,7 +122,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk beside a potted fern" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-consultation-768.webp" srcset="/assets/img/services/svc-consultation-512.webp 512w, /assets/img/services/svc-consultation-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a dermatoscope and a notepad with a pencil on a wooden desk" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -242,7 +242,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked in green',
+    'alt'     => 'a mannequin head seen from behind, with the donor area marked in green',
     'eyebrow' => 'Surgery',
     'title'   => 'Why a Hair Transplant Is Not Used for Active Alopecia Areata',
     'id'      => 'no-transplant',

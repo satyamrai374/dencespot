@@ -73,7 +73,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'PRP Hair Treatment Cost in Rohini, Delhi (2026) | DenceSpot',
-    'description'   => 'PRP hair treatment cost in Rohini, Delhi: course vs single-session price, sessions, PRP vs GFC, prepaid packages and what a written estimate should include.',
+    'description'   => 'PRP hair treatment cost in Rohini, Delhi: course vs single-session price, sessions, PRP vs GFC, prepaid packages and what a written estimate includes.',
     'url'           => '/prp-hair-treatment-cost-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-prp-768.webp',
@@ -127,7 +127,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles beneath the surface',
+    'alt'     => 'a cross-section of scalp skin showing hair follicles beneath the surface',
     'eyebrow' => 'Session or course',
     'title'   => 'Single Session or Whole Course: Which Number Matters',
     'id'      => 'course-vs-session',

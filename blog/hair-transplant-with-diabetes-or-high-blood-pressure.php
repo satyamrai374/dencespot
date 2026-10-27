@@ -166,7 +166,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>Session length matters too. A larger graft number means a longer day, more local anaesthetic overall and more time lying still, and for someone with a heart condition, splitting the work into smaller sessions can be the more careful plan. The <a href="/hair-transplant-graft-calculator">hair transplant graft calculator</a> gives a deliberately wide range by stage and area; the real number, and whether it should be split, is set at examination. Age on its own counts for less than any of these conditions, as <a href="/blog/right-age-for-a-hair-transplant">whether there is a right age for a hair transplant</a> explains.</p>
 
 <?= blog_cta(
-    'Diabetes, blood pressure or a heart condition, and wondering where you stand?',
+    'Diabetes, blood pressure or a heart condition: where do you stand?',
     'An assessment goes through your reports, medicines and readings, explains what needs checking or adjusting first, and agrees a plan that your own doctors can confirm before anything is booked.'
 ) ?>
 
@@ -178,6 +178,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="getting-it-assessed">Getting it assessed</h2>
 
-<p>With diabetes, high blood pressure or a heart condition, the assessment for a hair transplant is partly a medical one. Bring your reports, your medicine list and your home readings, and expect the plan to involve your own doctors. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi; <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a> and <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> explain how an assessment and a procedure are planned. If the right answer is to improve control first, that is a delay, not a refusal.</p>
+<p>With diabetes, high blood pressure or a heart condition, the assessment for a hair transplant is partly a medical one. Bring your reports, your medicine list and your home readings, and expect the plan to involve your own doctors. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi; <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a> and <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> explain how an assessment and a procedure are planned. If the right answer is to improve control first, that is a delay, not a refusal.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>

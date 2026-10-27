@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'hair-transplant-recovery-in-gurgaon';
-$postDescription = 'How Gurgaon heat, dust, monsoon humidity and a helmeted commute change hair transplant recovery, and how to pick a month that makes the first fortnight easier.';
+$postDescription = 'How Gurgaon heat, dust, monsoon humidity and a helmeted commute change hair transplant recovery, and how to pick a month for an easier first fortnight.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

@@ -17,7 +17,7 @@
 declare(strict_types=1);
 
 $postSlug = 'hair-transplant-recovery-in-delhi';
-$postDescription = 'How Delhi\'s summer heat, winter smog, dust, crowded Metro coaches and helmet rules affect the first month after a hair transplant, and how to plan around them.';
+$postDescription = 'How Delhi\'s summer heat, winter smog, dust, crowded Metro and helmet rules affect the first month after a hair transplant, and how to plan around them.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -170,7 +170,7 @@ require __DIR__ . '/../includes/blog-header.php';
 ) ?>
 <h2 id="follow-up-in-delhi">Reviews and follow-up from across Delhi</h2>
 
-<p>A transplant is followed for about a year, so it helps if the clinic is somewhere you can reach in any season. At our Rohini clinic in North-West Delhi, consultations, <a href="/fue-hair-transplant-in-rohini">FUE</a> and <a href="/dhi-hair-transplant-in-rohini">DHI</a> procedures and follow-up reviews all take place on site; <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> sets out the day itself, and the <a href="/delhi-clinic">Rohini clinic page</a> has the hours and directions.</p>
+<p>A transplant is followed for about a year, so it helps if the clinic is somewhere you can reach in any season. At our Rohini clinic in North-West Delhi, consultations, <a href="/fue-hair-transplant-in-rohini">FUE</a> and <a href="/dhi-hair-transplant-in-rohini">DHI</a> procedures and follow-up reviews all take place on site; <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> sets out the day itself, and the <a href="/delhi-clinic">Rohini clinic page</a> has the hours and directions.</p>
 
 <p>Before any of that, a transplant has to be the right answer for you. Loss that is still moving is usually treated medically first, through <a href="/hair-fall-treatment-in-rohini">hair fall treatment</a>, and for some people surgery should wait, as <a href="/blog/who-should-not-have-a-hair-transplant">when a transplant is the wrong answer</a> explains. For estimates, see <a href="/hair-transplant-cost-in-rohini">what decides the cost in Rohini</a> and <a href="/blog/hair-transplant-cost-delhi-quotes">how to compare quotes in Delhi</a>. Bring your calendar to the consultation along with the <a href="/blog/questions-to-ask-hair-transplant-consultation">questions worth asking</a>: the date is the one part only you can supply.</p>
 

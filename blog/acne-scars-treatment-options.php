@@ -42,7 +42,7 @@
 declare(strict_types=1);
 
 $postSlug = 'acne-scars-treatment-options';
-$postDescription = 'Acne marks versus true scars, the main scar types, why active acne is treated first, and how scar treatments are chosen for Indian skin, with realistic goals.';
+$postDescription = 'Acne marks vs true scars, the main scar types, why active acne is treated first, and how scar treatments are chosen for Indian skin, with realistic goals.';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */
 $postFaqs = [

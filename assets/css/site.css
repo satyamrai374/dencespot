@@ -204,6 +204,9 @@ summary::-webkit-details-marker { display: none; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
+/* In-page filters (blog topics, results by procedure) — script in footer.php */
+[data-filter-nav][hidden], [data-filter-key][hidden], [data-filter-empty][hidden] { display: none; }
+
 /* --- Cards -------------------------------------------------------------- */
 
 .card {
@@ -2075,3 +2078,30 @@ a.tile:hover { text-decoration: none; color: inherit; }
 .dl-area b { display: block; font-size: 16px; color: var(--ink); }
 .dl-area b + span { display: block; margin-top: 4px; font-size: 14px; line-height: 1.5; }
 @media (prefers-reduced-motion: reduce) { .dl-area { transition: none; } .dl-area:hover { transform: none; } }
+
+/* "Serving Patients Across Delhi" just above the footer on the Delhi hair
+   transplant pillar (includes/delhi-service-areas.php), after the client's
+   reference: a heading with a pin, a Hide/Show Locations button, and every
+   area page in four columns, each with its own pin. */
+.serving-areas { padding-block: 48px 40px; background: var(--ink); color: rgba(255, 255, 255, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.serving-areas__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
+.serving-areas__heading { display: flex; align-items: center; gap: 12px; margin: 0; font-size: clamp(20px, 2.4vw, 28px); font-weight: 800; line-height: 1.2; color: #FFFFFF; }
+.serving-areas__heading svg { flex: 0 0 auto; color: var(--accent-light); }
+.serving-areas__toggle {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 22px; border-radius: 999px;
+  background: transparent; border: 1px solid rgba(255, 255, 255, 0.45); color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: background-color .15s, border-color .15s;
+}
+.serving-areas__toggle:hover { background: rgba(255, 255, 255, 0.08); border-color: #FFFFFF; }
+.serving-areas__toggle svg { transition: transform .2s; }
+.serving-areas__toggle[aria-expanded="false"] svg { transform: rotate(-90deg); }
+.serving-areas__list { display: grid; gap: 4px 24px; margin: 18px 0 0; padding: 0; list-style: none; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 560px)  { .serving-areas__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 860px)  { .serving-areas__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .serving-areas__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.serving-areas__list a { display: flex; align-items: flex-start; gap: 10px; padding-block: 7px; font-size: 15px; line-height: 1.45; color: rgba(255, 255, 255, 0.85); text-decoration: none; }
+.serving-areas__list a svg { flex: 0 0 auto; margin-top: 3px; color: var(--accent-light); }
+.serving-areas__list a:hover { color: #FFFFFF; }
+.serving-areas__list a:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.serving-areas__toggle[hidden], .serving-areas__list[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .serving-areas__toggle, .serving-areas__toggle svg { transition: none; } }

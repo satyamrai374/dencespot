@@ -89,7 +89,7 @@ require __DIR__ . '/includes/header.php';
     <div class="split">
       <div>
         <span class="pill pill--dot">Hair PRP in Gurgaon</span>
-        <h1 class="h1 mt-3">Hair PRP Treatment in Gurgaon for Early Thinning and Increased Shedding</h1>
+        <h1 class="h1 mt-3">Hair PRP Treatment in Gurgaon for Early Thinning and Shedding</h1>
         <p class="lead mt-3 measure">PRP concentrates the platelets from your own blood and injects them into thinning areas of the scalp, to support follicles that are shrinking but still alive. It is one part of a plan, not the whole plan — which is why the cause of your hair loss is investigated before a single session is booked.</p>
 
         <div class="btn-row mt-5">
@@ -143,7 +143,7 @@ require __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/home/doctor-nyra-720.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="720" height="720" loading="lazy"></div>
         <div class="card">
           <p class="eyebrow" style="color:var(--ink-muted)">In one line</p>
           <p class="body mt-2">PRP supports follicles that are thinning but still alive. It does not create follicles where they no longer exist — which is the line between a PRP case and a transplant case.</p>
@@ -245,7 +245,7 @@ require __DIR__ . '/includes/header.php';
         <div class="step"><span class="step-num">6</span><div><h3 class="h3">Aftercare and next date</h3><p class="body-s mt-2">Washing and activity instructions, and your next session booked before you leave.</p></div></div>
       </div>
       <div class="stack">
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
         <div class="card">
           <p class="eyebrow" style="color:var(--ink-muted)">Commonly reported afterwards</p>
           <p class="body-s mt-2">Scalp tenderness for a day or so, redness, pinpoint marks, mild swelling, occasional headache, and bruising where the blood was drawn. Infection at an injection site is uncommon but possible — which is why the aftercare instructions matter.</p>

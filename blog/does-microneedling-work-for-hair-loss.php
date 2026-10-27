@@ -46,7 +46,7 @@
 declare(strict_types=1);
 
 $postSlug = 'does-microneedling-work-for-hair-loss';
-$postDescription = 'Scalp microneedling may help minoxidil work a little better, but evidence is limited and it is not a treatment alone. What studies show and home roller risks.';
+$postDescription = 'Microneedling may help minoxidil work a little better, but evidence is limited and it is not a treatment alone. What studies show and home roller risks.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

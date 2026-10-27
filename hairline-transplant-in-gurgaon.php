@@ -62,7 +62,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hairline Transplant in Gurgaon | DenceSpot Clinic',
-    'description' => 'Hairline transplant in Gurgaon designed for the face you will have at fifty, not eighteen. Line drawn and agreed with you in a mirror before any graft is taken.',
+    'description' => 'Hairline transplant in Gurgaon designed for the face you will have at fifty, not eighteen. Line drawn and agreed in a mirror before any graft is taken.',
     'url'         => '/hairline-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

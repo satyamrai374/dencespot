@@ -24,7 +24,7 @@
 declare(strict_types=1);
 
 $postSlug = 'can-dandruff-cause-hair-fall';
-$postDescription = 'Dandruff does not cause baldness, but scalp inflammation and scratching can raise shedding. How to tell it from psoriasis or fungus, and use medicated shampoo.';
+$postDescription = 'Dandruff does not cause baldness, but inflammation and scratching can raise shedding. How to tell it from psoriasis or fungus, and use medicated shampoo.';
 $postFaqHeading = 'Dandruff and hair fall FAQs';
 $postFaqId = 'dandruff-hair-fall-faqs';
 

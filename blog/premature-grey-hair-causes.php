@@ -26,7 +26,7 @@
 declare(strict_types=1);
 
 $postSlug = 'premature-grey-hair-causes';
-$postDescription = 'Grey hair in your 20s is usually genetic, but B12, thyroid, smoking and vitiligo can play a part. Which tests help, what can reverse it and how to dye safely.';
+$postDescription = 'Grey hair in your 20s is usually genetic, but B12, thyroid, smoking and vitiligo can play a part. Which tests help, what can reverse it, how to dye safely.';
 $postFaqHeading = 'Premature grey hair FAQs';
 $postFaqId = 'premature-grey-hair-faqs';
 

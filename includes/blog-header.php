@@ -37,8 +37,11 @@ $crumbs = [
     ['name' => $post['title']],
 ];
 
+// The brand shortens, then drops, where the full title would not fit (title_fits()).
+$seoTitle = $post['seo_title'] ?? $post['title'];
+
 $page = [
-    'title'       => ($post['seo_title'] ?? $post['title']) . ' | DenceSpot Clinic',
+    'title'       => fit_title($seoTitle . ' | DenceSpot Clinic', $seoTitle . ' | DenceSpot', $seoTitle),
     'description' => $postDescription ?? $post['excerpt'],
     'url'         => $url,
     'og_type'     => 'article',

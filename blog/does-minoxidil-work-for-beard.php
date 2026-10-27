@@ -44,7 +44,7 @@
 declare(strict_types=1);
 
 $postSlug = 'does-minoxidil-work-for-beard';
-$postDescription = 'Minoxidil on the beard rests on a few small trials. What they found, how a doctor prescribes it, facial side effects, and why gains may fade after stopping.';
+$postDescription = 'Minoxidil on the beard rests on a few small trials. What they found, how a doctor prescribes it, facial side effects, and why gains may fade on stopping.';
 $postFaqHeading = 'Minoxidil for the beard: more questions';
 $postFaqId = 'minoxidil-beard-faqs';
 

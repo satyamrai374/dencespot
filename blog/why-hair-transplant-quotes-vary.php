@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'why-hair-transplant-quotes-vary';
-$postDescription = 'Why two Gurgaon hair transplant quotes for the same head can differ so much, what legitimately moves the number, and why a per-graft rate is not a comparable unit.';
+$postDescription = 'Why two Gurgaon hair transplant quotes for the same head can differ so much, what really moves the number, and why a per-graft rate is not comparable.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -49,7 +49,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>A three-hair unit can be divided under the microscope into smaller grafts. At the hairline that is good technique, because single-hair grafts make a front edge look soft rather than planted. Done across a whole session, it inflates the count without adding a hair to your head. The count rises, the rate holds, the total climbs, and what you gain does not.</p>
 
-<h2 id="why-the-same-head-gets-two-graft-counts">Why the same head is quoted 2,200 grafts in one clinic and 3,400 in another</h2>
+<h2 id="why-the-same-head-gets-two-graft-counts">Why one clinic quotes 2,200 grafts and another 3,400 for the same head</h2>
 
 <p>Both numbers can be produced honestly, because a graft count is the output of a plan rather than a measurement of your scalp. Change any input and the number moves.</p>
 

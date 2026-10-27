@@ -21,7 +21,7 @@
 declare(strict_types=1);
 
 $postSlug = 'laser-hair-removal-patch-test';
-$postDescription = 'Why laser hair removal on Indian skin starts with a patch test: skin types, wavelengths, what the test spot shows, what it cannot predict and how to prepare.';
+$postDescription = 'Why laser hair removal on Indian skin starts with a patch test: skin types, wavelengths, what the spot shows, what it cannot predict and how to prepare.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

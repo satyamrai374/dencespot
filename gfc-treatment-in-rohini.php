@@ -56,7 +56,7 @@ $faqs = [
     ['q' => 'Which side effects should I report straight away?',
      'a' => 'Spreading redness, heat or swelling, a fever after a session, or pain that worsens rather than settles. These are uncommon, but tell the Rohini clinic promptly by phone or WhatsApp if any of them appear.'],
     ['q' => 'Can GFC be used after a hair transplant?',
-     'a' => 'Sometimes, to support the native hair around the transplanted area rather than the grafts themselves. Timing matters, because a healing recipient area should not be injected too early. Surgery itself is covered on the <a href="/hair-transplant-delhi/">hair transplant at the Rohini clinic</a> page.'],
+     'a' => 'Sometimes, to support the native hair around the transplanted area rather than the grafts themselves. Timing matters, because a healing recipient area should not be injected too early. Surgery itself is covered on the <a href="/hair-transplant-in-delhi">hair transplant at the Rohini clinic</a> page.'],
     ['q' => 'Will the benefit last if I stop?',
      'a' => 'No. GFC does not alter the process behind pattern hair loss. Any benefit depends on continued maintenance, usually alongside medication, and once sessions stop, thinning generally carries on from where it had reached.'],
     ['q' => 'Is EMI available for a GFC course?',
@@ -120,7 +120,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-follicle-768.webp" srcset="/assets/img/services/svc-follicle-512.webp 512w, /assets/img/services/svc-follicle-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted cross-section of scalp skin showing hair follicles beneath the surface and hair shafts rising from it" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-follicle-768.webp" srcset="/assets/img/services/svc-follicle-512.webp 512w, /assets/img/services/svc-follicle-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a cross-section of scalp skin showing hair follicles and hair shafts" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -230,7 +230,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-women',
-    'alt'     => 'a mannequin head with green felt hair and a widening central parting, seen from above',
+    'alt'     => 'a mannequin head with a widening central parting, seen from above',
     'eyebrow' => 'Suitability',
     'title'   => 'Who GFC May Suit, and Who It Will Not Help',
     'tone'    => 'canvas',
@@ -255,7 +255,7 @@ require __DIR__ . '/includes/header.php';
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk beside a potted fern',             'title' => 'Assessment and tests',                    'text' => 'Your history, medicines and a magnified look at the scalp, with blood tests if your history points to iron, thyroid or other causes. Anything treatable is dealt with first.'],
         ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram beside a sheet of paper on a wooden desk',    'title' => 'Baseline photographs and a written plan', 'text' => 'Fixed angles and lighting. The plan names the preparation, the number of sessions, the review date and the cost of the whole course.'],
-        ['img' => 'step-followup',     'alt' => 'a desk calendar with several dates circled, beside a small plant and a pen',  'title' => 'Sessions, then review',                   'text' => 'Blood drawn and prepared, scalp cooled or numbed, concentrate injected at follicle depth in under an hour. At around three to six months the photographs are compared; no change means the course stops.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with several dates circled, beside a plant and a pen',  'title' => 'Sessions, then review',                   'text' => 'Blood drawn and prepared, scalp cooled or numbed, concentrate injected at follicle depth in under an hour. At around three to six months the photographs are compared; no change means the course stops.'],
     ],
 ]) ?>
 

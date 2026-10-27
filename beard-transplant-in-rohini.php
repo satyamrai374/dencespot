@@ -71,7 +71,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Beard Transplant in Rohini, Delhi: Grafts & Cost',
-    'description'   => 'Beard transplant at our Rohini clinic, North-West Delhi: grafts by zone for cheeks, jawline, moustache and sideburns, recovery, risks and what decides cost.',
+    'description'   => 'Beard transplant at our Rohini clinic, North-West Delhi: grafts by zone for cheeks, jawline, moustache and sideburns, recovery, risks and cost factors.',
     'url'           => '/beard-transplant-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-beard-768.webp',
@@ -137,7 +137,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'alt'     => 'a mannequin head seen from behind, with the donor area marked',
     'eyebrow' => 'In brief',
     'title'   => 'What a Beard Transplant Involves',
     'html'    => '<p>Hair at the back and sides of the scalp is generally resistant to pattern hair loss, so it serves as the donor supply. Follicles are lifted from there one at a time and set where facial growth is missing or weak. Nothing new is created; your own hair is moved.</p>'

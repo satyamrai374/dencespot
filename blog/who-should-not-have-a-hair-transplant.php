@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'who-should-not-have-a-hair-transplant';
-$postDescription = 'The clinical reasons a hair transplant should be declined — unstable donor zones, diffuse thinning, untreated medical causes, active scalp disease — and what a clinic should offer instead.';
+$postDescription = 'When to decline a hair transplant: unstable donor zones, diffuse thinning, untreated medical causes or active scalp disease, and what to offer instead.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

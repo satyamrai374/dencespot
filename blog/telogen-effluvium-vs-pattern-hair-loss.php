@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'telogen-effluvium-vs-pattern-hair-loss';
-$postDescription = 'Telogen effluvium sheds from the whole scalp and usually settles; pattern hair loss thins steadily. How to tell them apart, and when waiting costs you hair.';
+$postDescription = 'Telogen effluvium sheds from the whole scalp and usually settles; pattern hair loss thins steadily. How to tell them apart and when waiting costs you hair.';
 $postFaqHeading = 'Telogen effluvium and pattern hair loss FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

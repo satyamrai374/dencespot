@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'female-pattern-hair-loss-in-women';
-$postDescription = 'Female pattern hair loss: how it looks, the conditions that mimic it, the blood tests and scalp exam that come first, treatment options and who suits surgery.';
+$postDescription = 'Female pattern hair loss: how it looks, conditions that mimic it, blood tests and scalp exam that come first, treatment options and who suits surgery.';
 $postFaqHeading = 'Female pattern hair loss FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

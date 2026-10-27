@@ -191,7 +191,7 @@ function gallery_images(string $category): array
             'file' => $file,
             'url'  => '/assets/img/gallery/' . rawurlencode($file),
             'alt'  => $category === CAT_RESULT
-                ? 'Before and after a hair transplant performed by Dr. Nyra at DenceSpot Clinic, Sector 39 Gurugram — case ' . $n
+                ? 'Before and after a hair transplant by Dr. Nyra at DenceSpot Clinic, Sector 39 Gurugram — case ' . $n
                 : 'DenceSpot Clinic premises on Sector 39 Road, Jharsa, Gurugram — hair transplant and PRP treatment clinic',
             'w'    => $size ? (int) $size[0] : 1200,
             'h'    => $size ? (int) $size[1] : 1200,
@@ -225,7 +225,7 @@ const NAMED_CASES = [
         'grafts'    => '2,400 grafts',
         'interval'  => '12 months',
         'image'     => '/assets/img/case-uttam-gurgaon.jpg',
-        'alt'       => 'Hairline and temple restoration at DenceSpot Clinic Gurugram — 2,400-graft FUE hair transplant, before and 12 months after',
+        'alt'       => 'Hairline and temple restoration, 2,400 FUE grafts, DenceSpot Gurugram: before and 12 months after',
     ],
     [
         'id'        => 'shukri-frontal',
@@ -236,6 +236,6 @@ const NAMED_CASES = [
         'grafts'    => '2,800 grafts',
         'interval'  => null,
         'image'     => '/assets/img/case-shukri-europe.jpg',
-        'alt'       => 'Micro-FUE hair transplant at DenceSpot Clinic Gurugram — frontal hairline design and 2,800 grafts immediately after placement on the day of surgery',
+        'alt'       => 'Micro-FUE at DenceSpot Clinic Gurugram: frontal hairline with 2,800 grafts on the day of surgery',
     ],
 ];

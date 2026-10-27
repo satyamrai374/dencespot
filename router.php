@@ -32,6 +32,9 @@ const COMPARISON_REDIRECTS = [
     '/prp-vs-gfc-treatment'                  => '/blog/prp-vs-gfc-vs-exosomes',
     '/hair-transplant-risks-and-side-effects' => '/blog/hair-transplant-side-effects-and-risks',
     '/blog/hair-transplant-guarantees-and-success-rates' => '/blog/hair-transplant-promises-and-success-rates',
+    // The old Delhi folder (27 Oct 2026); its pages go to 404.php's legacy
+    // hook below. Mirrors .htaccess §1c.
+    '/hair-transplant-delhi'                 => '/hair-transplant-in-delhi',
 ];
 
 $trimmed = rtrim($uri, '/');
@@ -60,14 +63,6 @@ if (is_dir($file)) {
 $phpFile = __DIR__ . $uri . '.php';
 if (file_exists($phpFile)) {
     require $phpFile;
-    exit;
-}
-
-// 3b. Delhi hair transplant area pages without a file of their own share one
-//     template, which 404s an unknown slug. Mirrors .htaccess §7b.
-if (preg_match('#^/hair-transplant-delhi/([a-z0-9-]+)$#', $uri, $m)) {
-    $_GET['slug'] = $m[1];
-    require __DIR__ . '/hair-transplant-delhi/area.php';
     exit;
 }
 

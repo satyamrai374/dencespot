@@ -1,78 +1,24 @@
 <?php
 /**
- * Delhi hair transplant pages: the parent /hair-transplant-delhi/ and one page
- * per locality under it (/hair-transplant-delhi/rohini, /…/pitampura).
+ * Shared sections of the Delhi hair transplant area pages, /hair-transplant-in-
+ * <area> (laid out by includes/delhi-area-page.php; the areas, their facts and
+ * the rules are in includes/delhi-service-areas.php). They follow the
+ * /hair-transplant-in-gurgaon design, as the /hair-transplant-in-delhi pillar
+ * does, and link up to the pillar for depth.
  *
- * WHY THESE EXIST. On 25 Oct 2026 the client chose to build hyperlocal Delhi
- * hair transplant pages, overriding SEO-STRATEGY §5.3 ("no new locality
- * pages") after the doorway risk was explained, and asked for them in a
- * folder: one Hair Transplant Delhi page with every location under it, all on
- * the /hair-transplant-in-gurgaon design. /hair-transplant-in-rohini moved to
- * /hair-transplant-delhi/rohini (legacy-redirects.php has the 301).
+ * Every area page is a Rohini page under the location rule: it books, calls
+ * and messages the Rohini clinic and never mentions the Gurugram clinic, and
+ * it has no AI images (Rohini rule, 25 Oct 2026) — the hero is the licensed
+ * stock photo labelled representative, and the step circles hold icons.
  *
- * DenceSpot has one Delhi clinic, in Rohini, so every locality page is a
- * service-area page for that clinic:
- *   • it never says or implies a clinic in the locality;
- *   • it books, calls and messages the Rohini clinic and is a Rohini page under
- *     the location rule (hp_page_location() matches the folder), so it never
- *     mentions the Gurugram clinic;
- *   • no AI images (Rohini rule, 25 Oct 2026): the hero is the licensed stock
- *     photo the Gurgaon page also uses, labelled representative, and the step
- *     circles hold icons instead of the Gurgaon page's AI illustrations.
- *
- * DOORWAY GUARD. Each locality file holds its own hand-written copy (getting
- * there, landmarks, visits, FAQs) built from facts with a recorded source in
- * its docblock and in the Delhi URL inventory, which is kept outside the site
- * folder (Desktop/Dencespot SEO Reports/delhi-hair-transplant/, with the QA
- * report and qa-tools/; no reports in the site folder). The shared sections below are
- * images or short text that link up to the parent for depth, so most of each
- * page's words are about its own area. Never make a page by swapping a name
- * into another page's copy: if the swap still reads correctly, it is a doorway.
- *
- * Adding a page: write hair-transplant-delhi/<slug>.php, set 'live' => true
- * here, add its URL to the Rohini 'unlisted' entries in LOCATION_LINKS, run
- * the checks in that QA report, then update the inventory.
+ * History: from 25 to 27 Oct 2026 these sections served /hair-transplant-delhi/
+ * and its locality pages; on 27 Oct the client replaced that folder with the
+ * pillar and its own list of areas (legacy-redirects.php 301s the old URLs).
  */
 
 declare(strict_types=1);
 
-/** The Delhi parent page. A folder index keeps its slash, as /blog/ does. */
-const DELHI_HT_HUB = '/hair-transplant-delhi/';
-
-/**
- * Locality registry, in the order the parent lists them. 'live' pages are
- * linked from the parent and their neighbours; the rest stay unlinked.
- * 'near' lists areas a cited source places next to this one; 'card' is the
- * one-line summary on the parent page.
- */
-const DELHI_LOCALITIES = [
-    'rohini' => [
-        'name'   => 'Rohini',
-        'anchor' => 'Hair Transplant in Rohini',
-        'live'   => true,
-        'near'   => ['pitampura'],
-        'card'   => 'The clinic’s own area. Red Line at Rithala, Dr. Baba Saheb Ambedkar Hospital and Rohini; Yellow Line at Rohini Sector 18, 19.',
-    ],
-    'pitampura' => [
-        'name'   => 'Pitampura',
-        'anchor' => 'Hair Transplant Near Pitampura',
-        'live'   => true,
-        'near'   => ['rohini', 'shalimar-bagh', 'ashok-vihar', 'model-town', 'punjabi-bagh'],
-        'card'   => 'Next to Rohini. Red Line at Madhuban Chowk, Kohat Enclave and Netaji Subhash Place.',
-    ],
-];
-
-/** A locality page's URL. */
-function delhi_locality_url(string $slug): string
-{
-    return DELHI_HT_HUB . $slug;
-}
-
-/** Live locality pages, in registry order, as slug => entry. */
-function delhi_localities_live(): array
-{
-    return array_filter(DELHI_LOCALITIES, static fn (array $l): bool => $l['live']);
-}
+require_once __DIR__ . '/delhi-service-areas.php';
 
 /**
  * The full-width hero of /hair-transplant-in-gurgaon, with the licensed stock
@@ -352,92 +298,6 @@ function delhi_cost_brief(): string
         <div class="factor tone--violet"><span class="icon-dot"><?= icon('settings', 20) ?></span><div><b>Technique</b><span>DHI placement takes longer per graft than FUE placement.</span></div></div>
         <div class="factor tone--sky"><span class="icon-dot"><?= icon('scale', 20) ?></span><div><b>Complexity</b><span>Repair work, scarring, unshaven sessions or tightly curled hair.</span></div></div>
       </div>
-    </div>
-  </div>
-</section>
-<?php
-    return (string) ob_get_clean();
-}
-
-/**
- * Links up to the parent and across to live neighbouring localities. Only the
- * registry's 'near' areas, so the locality pages do not all link to each other.
- */
-function delhi_nearby(string $slug): string
-{
-    $links = [DELHI_HT_HUB => 'Hair Transplant in Delhi'];
-    // The page's district, then its listed neighbours that have a page
-    // (includes/delhi-areas.php, when loaded).
-    $self = function_exists('delhi_area') ? delhi_area($slug) : null;
-    if ($self !== null && ($d = delhi_area($self['district'] ?? '')) !== null) {
-        $links[delhi_area_url($self['district'])] = 'Hair Transplant Near ' . $d['name'];
-    }
-    foreach (DELHI_LOCALITIES[$slug]['near'] ?? [] as $n) {
-        if (isset(DELHI_LOCALITIES[$n]) && DELHI_LOCALITIES[$n]['live']) {
-            $links[delhi_locality_url($n)] = DELHI_LOCALITIES[$n]['anchor'];
-        } elseif (function_exists('delhi_area') && ($a = delhi_area($n)) !== null) {
-            $links[delhi_area_url($n)] = 'Hair Transplant Near ' . delhi_area_label($a);
-        }
-    }
-    $links['/delhi-clinic'] = 'Rohini Clinic Details';
-
-    ob_start(); ?>
-<section class="section ht-sec section--white" id="nearby">
-  <div class="wrap">
-    <p class="eyebrow">North-West Delhi</p>
-    <h2 class="h3 mt-1">Hair Transplant in Delhi: Related Pages</h2>
-    <ul class="ht-patterns mt-3">
-      <?php foreach ($links as $url => $anchor): ?>
-      <li><a href="<?= e($url) ?>"><?= icon('pin', 14) ?> <?= e($anchor) ?></a></li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-</section>
-<?php
-    return (string) ob_get_clean();
-}
-
-/**
- * The parent's directory: the hand-written locality pages, then one card per
- * Delhi district (each district page lists its areas, sectors and PIN codes).
- */
-function delhi_areas_section(): string
-{
-    $live      = delhi_localities_live();
-    $districts = function_exists('delhi_areas')
-        ? array_filter(delhi_areas(), static fn (array $a): bool => $a['type'] === 'district')
-        : [];
-    if ($live === [] && $districts === []) {
-        return '';
-    }
-
-    ob_start(); ?>
-<section class="section ht-sec section--white" id="areas">
-  <div class="wrap">
-    <div style="max-width:68ch">
-      <p class="eyebrow">Areas we serve</p>
-      <h2 class="h2 mt-2">Hair Transplant Across Delhi</h2>
-      <p class="body mt-3">DenceSpot has one clinic in Delhi, in Rohini. These pages cover getting there from each district, area, sector and PIN code, with the local metro stations and questions people from that area ask.</p>
-    </div>
-    <div class="dl-areas">
-      <?php foreach ($live as $slug => $loc): ?>
-      <a class="dl-area" href="<?= e(delhi_locality_url($slug)) ?>">
-        <span class="icon-dot tone--mint"><?= icon('pin', 20) ?></span>
-        <span>
-          <b><?= e($loc['anchor']) ?></b>
-          <span><?= e($loc['card']) ?></span>
-        </span>
-      </a>
-      <?php endforeach; ?>
-      <?php foreach ($districts as $slug => $d): ?>
-      <a class="dl-area" href="<?= e(delhi_area_url($slug)) ?>">
-        <span class="icon-dot tone--sky"><?= icon('list', 20) ?></span>
-        <span>
-          <b>Hair Transplant Near <?= e($d['name']) ?></b>
-          <span><?= count($d['children'] ?? []) ?> area and PIN code pages in this district.</span>
-        </span>
-      </a>
-      <?php endforeach; ?>
     </div>
   </div>
 </section>

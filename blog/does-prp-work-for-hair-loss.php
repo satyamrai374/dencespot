@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'does-prp-work-for-hair-loss';
-$postDescription = 'What the published evidence on PRP for hair loss actually supports, who tends to respond, how sessions are usually spaced, and why the benefit recedes once you stop.';
+$postDescription = 'What the published evidence on PRP for hair loss supports, who tends to respond, how sessions are spaced, and why the benefit recedes once you stop.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -96,7 +96,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>You may also be offered GFC, exosomes or another branded variant. Those differ in preparation and in how much published evidence stands behind them — <a href="/blog/prp-vs-gfc-vs-exosomes">how PRP, GFC and exosomes actually differ</a> covers it. Whatever the label, the maintenance logic above applies.</p>
 
 <?= blog_cta(
-    'Is your scalp the kind that responds to PRP, or the kind that will not?',
+    'Will your scalp respond to PRP, or is it the kind that will not?',
     'Trichoscopy at a consultation shows whether follicles are miniaturised but still present, which is the finding that separates a reasonable course of PRP from money spent on scalp that has nothing left to stimulate.'
 ) ?>
 <h2 id="how-to-judge-whether-yours-is-working">How to judge whether yours is working</h2>

@@ -156,7 +156,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted cross-section of skin layers with a single hair follicle and a coiled gland, on a pale circular background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a cross-section of skin layers with a hair follicle and a coiled gland" width="768" height="960" loading="eager" fetchpriority="high">
           <?= /* top of the image: at the bottom it sits under the badge card on phones */ str_replace('class="hp-ai-chip"', 'class="hp-ai-chip" style="top:12px;bottom:auto"', hp_ai_chip('AI-generated illustration')) ?>
         </div>
         <div class="hero__badge-card">
@@ -283,7 +283,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of skin with several hair follicles beneath the surface',
+    'alt'     => 'a cross-section of skin with several hair follicles beneath the surface',
     'eyebrow' => 'Skin in Gurugram',
     'title'   => 'Caring for Your Skin in Gurugram’s Sun, Heat and Smog',
     'id'      => 'gurugram-skin',

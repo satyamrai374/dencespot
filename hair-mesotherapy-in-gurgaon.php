@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Mesotherapy in Gurgaon | DenceSpot Clinic',
-    'description' => 'Hair mesotherapy in Gurgaon, assessed honestly. What is injected, why formulations are not standardised, and why it belongs alongside proven treatment, not instead.',
+    'description' => 'Hair mesotherapy in Gurgaon: what is injected, why formulations are not standardised, and why it belongs alongside proven treatment, not instead.',
     'url'         => '/hair-mesotherapy-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

@@ -122,7 +122,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted cross-section of skin layers with a single hair follicle and a coiled gland, on a pale circular background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a cross-section of skin layers with a hair follicle and a coiled gland" width="768" height="960" loading="eager" fetchpriority="high">
           <?= /* top of the image: at the bottom it sits under the badge card on phones */ str_replace('class="hp-ai-chip"', 'class="hp-ai-chip" style="top:12px;bottom:auto"', hp_ai_chip('AI-generated illustration')) ?>
         </div>
         <div class="hero__badge-card">
@@ -157,7 +157,7 @@ require __DIR__ . '/includes/header.php';
     'steps'   => [
         ['img' => 'svc-procedure', 'alt' => 'sterile instruments laid out on a green tray',                          'title' => 'A small blood sample',     'text' => 'Drawn from the arm in the same way as a routine blood test.'],
         ['img' => 'svc-prp',       'alt' => 'a capped tube of golden-yellow plasma beside a syringe on a white tray', 'title' => 'Spun to separate it',      'text' => 'A centrifuge separates the blood so the platelet-rich layer of plasma can be drawn off.'],
-        ['img' => 'svc-follicle',  'alt' => 'a sculpted cross-section of skin showing hair follicles beneath the surface', 'title' => 'Delivered into the skin', 'text' => 'Injected into the skin across the areas being treated, or applied straight after microneedling so it enters through the tiny channels made.'],
+        ['img' => 'svc-follicle',  'alt' => 'a cross-section of skin showing hair follicles beneath the surface', 'title' => 'Delivered into the skin', 'text' => 'Injected into the skin across the areas being treated, or applied straight after microneedling so it enters through the tiny channels made.'],
     ],
 ]) ?>
 
@@ -267,7 +267,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'hero',
-    'alt'     => 'a sculpted cross-section of skin with three hairs and their follicles, on a cream background',
+    'alt'     => 'a cross-section of skin with three hairs and their follicles',
     'eyebrow' => 'Side effects and aftercare',
     'title'   => 'The Days After a Session',
     'tone'    => 'canvas',

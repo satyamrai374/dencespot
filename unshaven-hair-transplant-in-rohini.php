@@ -136,7 +136,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-unshaven-768.webp" srcset="/assets/img/services/svc-unshaven-512.webp 512w, /assets/img/services/svc-unshaven-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a white mannequin head seen from the front, with short dark hair and a dotted line pencilled along the hairline, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-unshaven-768.webp" srcset="/assets/img/services/svc-unshaven-512.webp 512w, /assets/img/services/svc-unshaven-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head with short dark hair and a dotted hairline pencilled on" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -153,7 +153,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-hair-transplant',
-    'alt'     => 'a sculpted model of a follicular unit with three hairs, on a cream background',
+    'alt'     => 'a sculpted model of a follicular unit with three hairs',
     'eyebrow' => 'The approach',
     'title'   => 'What Changes When the Hair Is Not Shaved',
     'html'    => '<p>Trimming is normally what lets the doctor see each follicle and judge its angle under the skin. Leave the hair long and the same steps still happen, but every one of them is harder to see and reach.</p>'
@@ -212,7 +212,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'alt'     => 'a mannequin head seen from behind, with the donor area marked',
     'eyebrow' => 'Suitability',
     'title'   => 'Who It Suits, and When Shaving Is Still Advised',
     'reverse' => true,
@@ -234,7 +234,7 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'white',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk', 'title' => 'Assessment and a straight answer', 'text' => 'Your loss is staged, the donor area measured and the graft number worked out. Then fully unshaven, partial shave or shaven, with the reason in your written plan.'],
-        ['img' => 'hero', 'alt' => 'a sculpted cross-section of scalp skin with hair follicles and their roots', 'title' => 'A longer day, planned as one', 'text' => 'Scheduled with breaks, under local anaesthetic, and home the same day. The first wash is shown at the clinic.'],
+        ['img' => 'hero', 'alt' => 'a cross-section of scalp skin with hair follicles and their roots', 'title' => 'A longer day, planned as one', 'text' => 'Scheduled with breaks, under local anaesthetic, and home the same day. The first wash is shown at the clinic.'],
         ['img' => 'step-followup', 'alt' => 'a desk calendar with review dates circled', 'title' => 'Reviews at Rohini', 'text' => 'A check in the first week, then photographic reviews as the hair sheds and regrows, up to about twelve months.'],
     ],
 ]) ?>

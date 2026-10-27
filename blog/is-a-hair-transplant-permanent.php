@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'is-a-hair-transplant-permanent';
-$postDescription = 'Transplanted follicles usually stay for life, but the native hair around them keeps thinning. What that two-part answer means at five, ten and fifteen years.';
+$postDescription = 'Transplanted follicles usually stay for life, but the native hair around them keeps thinning. What that answer means at five, ten and fifteen years.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -72,7 +72,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>Injectables sit differently. <a href="/hair-prp-treatment-in-gurgaon">PRP as a maintenance treatment</a> is sometimes used alongside a surgical plan, though it cannot regrow hair from bald skin and its effect is not permanent either, as <a href="/blog/does-prp-work-for-hair-loss">the evidence on PRP for hair loss</a> makes clear. Where a non-pattern cause is contributing, a proper <a href="/hair-fall-treatment-in-gurgaon">hair fall assessment</a> matters more than any of it, because treating the wrong thing well achieves nothing.</p>
 
 <?= blog_cta(
-    'Wondering what your own head looks like in ten years, not twelve months',
+    'Wondering how your head will look in ten years, not twelve months',
     'An examination can tell you whether your loss is still moving, what your donor area can support over a lifetime, and whether a plan drawn today would still make sense at forty-five.'
 ) ?>
 <h2 id="ageing-is-not-the-same-as-relapse">Ageing is not the same as relapse</h2>

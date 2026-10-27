@@ -52,6 +52,14 @@ RewriteRule ^prp-vs-hair-transplant/?$              /blog/prp-or-hair-transplant
 RewriteRule ^prp-vs-gfc-treatment/?$                /blog/prp-vs-gfc-vs-exosomes [R=301,L]
 RewriteRule ^hair-transplant-risks-and-side-effects/?$ /blog/hair-transplant-side-effects-and-risks [R=301,L]
 
+# 1c. The Delhi hair transplant folder of 25–27 Oct 2026 → its replacements.
+#     The bare folder 301s to the pillar; every page that was in it goes to
+#     404.php, whose legacy hook (includes/legacy-redirects.php) 301s it to its
+#     area's new page or the pillar, even if old files linger on the server.
+#     Mirrored in router.php.
+RewriteRule ^hair-transplant-delhi/?$               /hair-transplant-in-delhi [R=301,L]
+RewriteRule ^hair-transplant-delhi/.                404.php [L]
+
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -121,16 +129,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.+?)/?$ $1.php [L]
 
-# 7b. Delhi hair transplant area pages (25 Oct 2026): a /hair-transplant-delhi/
-#     <slug> with no .php file of its own is served by one template, which
-#     answers 404 for a slug that is not in includes/delhi-areas-data.php.
-#     No QSA: the slug always comes from the path, so a ?slug= in the address
-#     cannot show one area's page at another's URL. Mirrored in router.php.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php !-f
-RewriteRule ^hair-transplant-delhi/([a-z0-9-]+)$ hair-transplant-delhi/area.php?slug=$1 [L]
-
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 8. Keep internals off the web
@@ -197,9 +195,12 @@ RewriteRule ^ /404.php [L]
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 
-  # frame-ancestors rather than X-Frame-Options: the pages embed a Google Map
-  # and the Elfsight reviews widget, so framing must be restricted, not banned.
+  # Who may frame THESE pages: this site only. Both headers say the same thing
+  # (browsers that know CSP use frame-ancestors; X-Frame-Options covers the
+  # rest, and crawlers flag its absence). Neither affects the Google Map or
+  # Elfsight iframes the pages embed — those are other sites' pages.
   Header always set Content-Security-Policy "upgrade-insecure-requests; frame-ancestors 'self'"
+  Header always set X-Frame-Options "SAMEORIGIN"
 
   # Stop advertising the exact PHP build. expose_php=Off in php.ini is the
   # better fix where the host allows it; this covers the case where it does not.

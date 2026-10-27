@@ -15,7 +15,7 @@ require_once __DIR__ . '/includes/schema.php';
 
 $page = [
     'title'       => 'Book a Consultation | DenceSpot Clinic, Gurgaon',
-    'description' => 'Book a doctor-led hair or beard restoration consultation at DenceSpot Clinic, Sector 39 Gurugram. Examination, written plan, no pressure to book on the day.',
+    'description' => 'Book a doctor-led hair or beard consultation at DenceSpot Clinic, Sector 39 Gurugram. Examination, written plan, no pressure to book on the day.',
     'url'         => '/book-consultation',
     'crumbs'      => [
         ['name' => 'Home', 'url' => '/'],

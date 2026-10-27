@@ -55,7 +55,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Patient Reviews | DenceSpot Clinic, Gurugram',
-    'description' => 'What patients say about hair transplant and PRP at DenceSpot Clinic, Sector 39 Gurugram — and how we collect reviews: every patient asked, nobody pre-screened.',
+    'description' => 'What patients say about hair transplant & PRP at DenceSpot Clinic, Sector 39 Gurugram, and how we collect reviews: every patient asked, none pre-screened.',
     'url'         => '/patient-reviews',
     'crumbs'      => $crumbs,
     'schema'      => $graph,

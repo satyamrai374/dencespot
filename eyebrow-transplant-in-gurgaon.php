@@ -63,7 +63,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Eyebrow Transplant in Gurgaon | DenceSpot Clinic',
-    'description' => 'Doctor-performed eyebrow transplant in Gurgaon. Single-hair grafts placed at brow angle and direction, with the lifelong trimming commitment explained upfront.',
+    'description' => 'Doctor-performed eyebrow transplant in Gurgaon. Single-hair grafts placed at brow angle and direction, with the lifelong trimming explained upfront.',
     'url'         => '/eyebrow-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -109,7 +109,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Magnification and fine instrumentation used for single-hair graft placement at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Magnification and fine instruments for single-hair graft placement at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Performed &amp; reviewed by</p>
           <p class="h4 mt-2"><?= e(doctor_name()) ?></p>

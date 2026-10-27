@@ -541,10 +541,11 @@ function nap_block(): string
  *
  * Posts to /enquire.php, which validates and redirects to /thank-you so a
  * conversion event can actually fire. $source records which page produced
- * the lead.
+ * the lead. $clinic, when given, adds a "Preferred clinic" choice with that
+ * clinic selected (a value from ENQUIRY_CLINICS in enquire.php).
  * ---------------------------------------------------------------------- */
 
-function enquiry_form(string $source, array $treatments = [], bool $onInk = true): string
+function enquiry_form(string $source, array $treatments = [], bool $onInk = true, ?string $clinic = null): string
 {
     if ($treatments === []) {
         $treatments = [
@@ -574,6 +575,16 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
         <?php endforeach; ?>
       </select>
     </div>
+    <?php if ($clinic !== null): ?>
+    <div class="field">
+      <label for="f-clinic-<?= e($source) ?>">Preferred clinic</label>
+      <select class="select" id="f-clinic-<?= e($source) ?>" name="clinic">
+        <?php foreach (['Delhi (Rohini)', 'Gurugram (Sector 39)', 'Either clinic'] as $c): ?>
+          <option<?= $c === $clinic ? ' selected' : '' ?>><?= e($c) ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+    <?php endif; ?>
     <div class="field">
       <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know</label>
       <textarea class="textarea" id="f-message-<?= e($source) ?>" name="message" rows="2"></textarea>
@@ -621,9 +632,14 @@ function cta_band(string $heading, string $body, string $source, array $treatmen
  * Doctor E-E-A-T block
  * ---------------------------------------------------------------------- */
 
-function doctor_block(string $whyItMatters, string $portraitAlt = 'Dr. Nyra — professional portrait', bool $reviewed = true): string
+function doctor_block(string $whyItMatters, string $portraitAlt = '', bool $reviewed = true): string
 {
     $doc = DOCTORS['dr-nyra'];
+    // Pages that only need $reviewed pass '' for the alt. alt="" marks the
+    // portrait as decorative, which crawlers report as missing alt text.
+    if ($portraitAlt === '') {
+        $portraitAlt = $doc['name'] . ', ' . $doc['quals'] . ', dermatologist at ' . SITE_NAME . ', Sector 39 Gurugram';
+    }
 
     if (hp_is_rohini_page()) {
         return doctor_directory_block($whyItMatters, $reviewed);
@@ -633,7 +649,7 @@ function doctor_block(string $whyItMatters, string $portraitAlt = 'Dr. Nyra — 
 <section class="section section--canvas" id="doctor">
   <div class="wrap">
     <div class="split split--wide-right">
-      <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="<?= e($portraitAlt) ?>" width="800" height="1000" loading="lazy" decoding="async"></div>
+      <div class="media ratio-1-1 media--shadow"><?= hp_img($doc['photo'], $portraitAlt, '(min-width: 1080px) 460px, calc(100vw - 32px)') ?></div>
       <div>
         <p class="eyebrow">Who performs and reviews this treatment</p>
         <h2 class="h2 mt-2"><?= doctor_full() ?></h2>
@@ -682,7 +698,7 @@ function doctor_directory_block(string $whyItMatters, bool $reviewed): string
   <div class="wrap">
     <div class="split split--wide-right">
       <div class="doctor-photo">
-        <div class="media ratio-1-1 media--shadow"><img src="<?= e($doc['image']) ?>" alt="<?= e(doctor_full()) ?> — <?= e($doc['role']) ?>, at her desk at DenceSpot Clinic" width="510" height="510" loading="lazy" decoding="async"></div>
+        <div class="media ratio-1-1 media--shadow"><?= hp_img($doc['photo'], doctor_full() . ' — ' . $doc['role'], '(min-width: 1080px) 460px, calc(100vw - 32px)') ?></div>
       </div>
       <div>
         <p class="eyebrow">Meet the doctor</p>
@@ -896,7 +912,7 @@ function local_block(string $heading, string $intro): string
           <iframe title="Google Map showing DenceSpot Clinic at 1123, Sector 39 Road, Jharsa, Sector 39, Gurugram, Haryana 122003" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.3229126883884!2d77.0438613!3d28.439680699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5e4f6f45491%3A0x9dc43165216a74e6!2sDencespot%20Clinic!5e0!3m2!1sen!2sus!4v1787587082143!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
         <div class="grid grid--2 mt-3">
-          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
+          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
           <div class="card">
             <p class="eyebrow" style="color:var(--ink-muted)">Getting here</p>
             <ul class="stack-sm mt-2">
@@ -1072,29 +1088,43 @@ function lead_strip(): string
         'Skin care'           => 'your skin',
     ][$treatment] ?? 'your hair or skin';
     // Treatments that share a booking option but not a name: the LED therapy
-    // page should not offer to talk about PRP.
+    // page should not offer to talk about PRP. The technique and cost pages get
+    // their own topic too, so no two pages share this heading (crawlers report
+    // an H2 repeated across pages as a duplicate).
     $url = (string) ($GLOBALS['page']['url'] ?? '');
     foreach ([
-        'led-therapy'      => 'LED light therapy for your hair',
-        'mesotherapy'      => 'hair mesotherapy',
-        'microneedling'    => 'microneedling for your hair',
-        'gfc'              => 'GFC for your hair',
-        'alopecia'         => 'patchy hair loss',
-        'dandruff'         => 'dandruff and your scalp',
-        'womens-hair-loss' => 'hair loss in women',
-        'face-prp'         => 'PRP for your face',
+        'led-therapy'               => 'LED light therapy for your hair',
+        'mesotherapy'               => 'hair mesotherapy',
+        'microneedling'             => 'microneedling for your hair',
+        'gfc'                       => 'GFC for your hair',
+        'alopecia'                  => 'patchy hair loss',
+        'dandruff'                  => 'dandruff and your scalp',
+        'womens-hair-loss'          => 'hair loss in women',
+        'face-prp'                  => 'PRP for your face',
+        'fue-hair-transplant'       => 'an FUE hair transplant',
+        'dhi-hair-transplant'       => 'a DHI hair transplant',
+        'hair-transplant-repair'    => 'repairing a hair transplant',
+        'hairline-transplant'       => 'a hairline transplant',
+        'crown-hair-transplant'     => 'a crown hair transplant',
+        'hair-transplant-for-women' => 'a hair transplant for women',
+        'unshaven-hair-transplant'  => 'an unshaven hair transplant',
+        'hair-transplant-cost'      => 'what your hair transplant would cost',
+        'beard-transplant-cost'     => 'what your beard transplant would cost',
+        'prp-hair-treatment-cost'   => 'what PRP or GFC would cost you',
     ] as $needle => $label) {
         if (str_contains($url, $needle)) {
             $topic = $label;
             break;
         }
     }
+    // Each city's page names its own clinic (location rule).
+    $where = ['rohini' => 'the Rohini clinic', 'gurgaon' => 'the Gurugram clinic'][$loc] ?? 'the clinic';
     ob_start(); ?>
 <section class="lead-strip" aria-labelledby="lead-strip-title">
   <div class="wrap lead-strip__inner">
     <div class="lead-strip__text">
       <p class="eyebrow">Request a call back</p>
-      <h2 class="h3 mt-1" id="lead-strip-title">Talk to the clinic about <?= e($topic) ?></h2>
+      <h2 class="h3 mt-1" id="lead-strip-title">Talk to <?= e($where) ?> about <?= e($topic) ?></h2>
       <p class="body-s mt-1">Leave your number and the clinic will call you during opening hours (<?= e(HOURS_DISPLAY) ?>) to arrange a consultation. Prefer to message? <a href="<?= e($wa) ?>" rel="noopener" data-track="whatsapp">WhatsApp the clinic</a>.<?php if ($treatment === 'Hair transplant'): ?> Not ready to talk? <a href="/hair-transplant-graft-calculator">Estimate a graft range</a> first.<?php elseif ($treatment === 'Hair fall treatment'): ?> Not ready to talk? Try the <a href="/hair-loss-assessment">hair-loss self-check</a> first.<?php endif; ?></p>
     </div>
     <form class="lead-strip__form" action="/enquire.php" method="post">
@@ -1228,18 +1258,20 @@ function before_after_slider_section(): string
        * clinic across the homepage, every one of them captioned "DenceSpot
        * Patient Result Transformation". Never restore the glob.
        */
-      $galleryImages = array_column(gallery_images(CAT_RESULT), 'url');
+      $galleryImages = gallery_images(CAT_RESULT);
 
       if ($galleryImages === []) {
-          $galleryImages = ['/assets/img/case-uttam-gurgaon.jpg'];
+          $fallback = @getimagesize(dirname(__DIR__) . '/assets/img/case-uttam-gurgaon.jpg') ?: [1024, 1024];
+          $galleryImages = [['url' => '/assets/img/case-uttam-gurgaon.jpg', 'w' => $fallback[0], 'h' => $fallback[1]]];
       }
       // Duplicate array to build 2 identical sets for 100% infinite endless loop without gaps
       $marqueeLoop = array_merge($galleryImages, $galleryImages);
       $marqueeIdx = 0;
       ?>
-      <?php foreach ($marqueeLoop as $imgUrl): ?>
+      <?php foreach ($marqueeLoop as $img): ?>
         <?php $marqueeIdx++; $caseNo = (($marqueeIdx - 1) % max(1, count($galleryImages))) + 1; ?>
-        <img src="<?= e($imgUrl) ?>" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — case <?= $caseNo ?>" loading="lazy" onclick="openCertModal('<?= e($imgUrl) ?>', 'Hair transplant case <?= $caseNo ?> — DenceSpot Clinic, Gurugram')" style="cursor:pointer;">
+        <?php /* width/height only reserve the aspect ratio: CSS fixes the height at 200px. */ ?>
+        <img src="<?= e($img['url']) ?>" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — case <?= $caseNo ?>" width="<?= (int) $img['w'] ?>" height="<?= (int) $img['h'] ?>" loading="lazy" onclick="openCertModal('<?= e($img['url']) ?>', 'Hair transplant case <?= $caseNo ?> — DenceSpot Clinic, Gurugram')" style="cursor:pointer;">
       <?php endforeach; ?>
     </div>
   </div>

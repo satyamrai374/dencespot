@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'prp-or-hair-transplant';
-$postDescription = 'PRP supports follicles that still exist; a transplant moves follicles into skin where they have gone. How to tell which problem you have, and when the answer is neither yet.';
+$postDescription = 'PRP supports follicles that still exist; a transplant moves follicles to where they have gone. Which problem you have, and when the answer is neither yet.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

@@ -46,7 +46,7 @@ require __DIR__ . '/includes/header.php';
           <a class="btn btn--lg btn--outline" href="/dr-nyra">Meet Dr. Nyra</a>
         </div>
       </div>
-      <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="1000" loading="eager"></div>
+      <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="1000" loading="eager"></div>
     </div>
   </div>
 </section>
@@ -79,9 +79,9 @@ require __DIR__ . '/includes/header.php';
         <a class="btn btn--outline mt-4" href="/contact"><?= icon('pin', 17) ?> Directions and hours</a>
       </div>
       <div class="grid grid--2">
-        <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
-        <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, showing the hair transplant and PRP treatment signage" width="800" height="600" loading="lazy"></div>
-        <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/home/doctor-nyra-480.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="480" height="480" loading="lazy"></div>
         <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Motorised follicular-unit extraction handpiece and trolley unit at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
       </div>
     </div>
@@ -91,7 +91,7 @@ require __DIR__ . '/includes/header.php';
 <section class="section section--white">
   <div class="wrap">
     <div class="split split--wide-right">
-      <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="1000" loading="lazy" decoding="async"></div>
+      <div class="media ratio-1-1 media--shadow"><img src="/assets/img/home/doctor-nyra-720.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="720" height="720" loading="lazy" decoding="async"></div>
       <div>
         <p class="eyebrow">Who treats you</p>
         <h2 class="h2 mt-2"><?= doctor_full() ?></h2>

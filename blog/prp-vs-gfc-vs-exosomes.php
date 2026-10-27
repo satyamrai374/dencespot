@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'prp-vs-gfc-vs-exosomes';
-$postDescription = 'PRP, GFC and exosomes compared by what is actually in the syringe, where the material comes from, what regulatory status it holds and how much published evidence stands behind it.';
+$postDescription = 'PRP, GFC and exosomes compared: what is in the syringe, where the material comes from, its regulatory status and how much published evidence supports it.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

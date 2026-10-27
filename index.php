@@ -43,19 +43,19 @@ $faqs = [
    Illustrations are AI-generated and carry a visible mark (NMC cl. 7.2). */
 $featured = [
     ['title' => 'Hair Transplant',    'cat' => 'Surgical',     'icon' => 'hairline', 'tone' => 'mint',
-     'img' => 'card-hair-transplant', 'alt' => 'AI-generated image: a doctor in a surgical cap and mask placing hair grafts along a patient\'s hairline with an implanter pen',
+     'img' => 'card-hair-transplant', 'alt' => 'AI-generated image: a doctor placing hair grafts along a patient\'s hairline with an implanter pen',
      'note' => 'FUE and DHI, planned around your donor area and the hair loss still to come.',
-     'g' => '/hair-transplant-in-gurgaon', 'r' => '/hair-transplant-delhi/'],
+     'g' => '/hair-transplant-in-gurgaon', 'r' => '/hair-transplant-in-delhi'],
     ['title' => 'Beard Transplant',   'cat' => 'Surgical',     'icon' => 'beard',    'tone' => 'violet',
-     'img' => 'card-beard-transplant', 'alt' => 'AI-generated image: a doctor placing grafts along a patient\'s beard line with an implanter pen while steadying his jaw',
+     'img' => 'card-beard-transplant', 'alt' => 'AI-generated image: a doctor placing grafts along a patient\'s beard line with an implanter pen',
      'note' => 'Patchy cheeks, jawline, moustache and scars, filled with scalp grafts.',
      'g' => '/beard-transplant-gurgaon', 'r' => '/beard-transplant-in-rohini'],
     ['title' => 'Eyebrow Transplant', 'cat' => 'Surgical',     'icon' => 'pencil',   'tone' => 'rose',
-     'img' => 'card-eyebrow-transplant', 'alt' => 'AI-generated image: a doctor placing single-hair grafts along a patient\'s eyebrow with an implanter pen',
+     'img' => 'card-eyebrow-transplant', 'alt' => 'AI-generated image: a doctor placing single-hair grafts along an eyebrow with an implanter pen',
      'note' => 'Thin, over-plucked or scarred brows, rebuilt with single-hair grafts.',
      'g' => '/eyebrow-transplant-in-gurgaon', 'r' => '/eyebrow-transplant-in-rohini'],
     ['title' => 'Hair PRP & GFC',     'cat' => 'Non-surgical', 'icon' => 'heart',    'tone' => 'amber',
-     'img' => 'card-hair-prp', 'alt' => 'AI-generated image: a doctor giving PRP injections into a patient\'s thinning crown, with a tube of plasma on a tray beside them',
+     'img' => 'card-hair-prp', 'alt' => 'AI-generated image: a doctor giving PRP injections into a patient\'s thinning crown',
      'note' => 'A planned course for early thinning, while the follicles are still there.',
      'g' => '/hair-prp-treatment-in-gurgaon', 'r' => '/hair-prp-treatment-in-rohini'],
     ['title' => 'Hair Fall Treatment', 'cat' => 'Medical',     'icon' => 'chart',    'tone' => 'sky',
@@ -67,11 +67,11 @@ $featured = [
      'note' => 'Diffuse thinning and a wider parting, checked for hormonal and nutritional causes.',
      'g' => '/womens-hair-loss-treatment-in-gurgaon', 'r' => '/womens-hair-loss-treatment-in-rohini'],
     ['title' => 'Laser Hair Removal', 'cat' => 'Skin & laser', 'icon' => 'star',     'tone' => 'violet',
-     'img' => 'card-laser-hair-removal', 'alt' => 'AI-generated image: a clinician in safety glasses treating a patient\'s forearm with a handheld laser, the patient wearing protective goggles',
+     'img' => 'card-laser-hair-removal', 'alt' => 'AI-generated image: a clinician in safety glasses treating a patient\'s forearm with a handheld laser',
      'note' => 'A course of sessions for face and body, after a patch test.',
      'g' => '/laser-hair-removal-in-gurgaon', 'r' => '/laser-hair-removal-in-rohini'],
     ['title' => 'Skin Treatment',     'cat' => 'Skin & laser', 'icon' => 'shield',   'tone' => 'mint',
-     'img' => 'card-skin-treatment', 'alt' => 'AI-generated image: a dermatologist examining acne marks on a woman\'s cheek through an illuminated magnifying lamp',
+     'img' => 'card-skin-treatment', 'alt' => 'AI-generated image: a dermatologist checking acne marks on a woman\'s cheek under a magnifying lamp',
      'note' => 'Acne, pigmentation and melasma, starting with a diagnosis.',
      'g' => '/skin-treatment-in-gurgaon', 'r' => '/skin-treatment-in-rohini'],
 ];
@@ -125,7 +125,7 @@ require __DIR__ . '/includes/header.php';
     <img src="/assets/img/home/hero-doctors-1280.webp"
          srcset="/assets/img/home/hero-doctors-640.webp 640w, /assets/img/home/hero-doctors-960.webp 960w, /assets/img/home/hero-doctors-1280.webp 1280w, /assets/img/home/hero-doctors-1536.webp 1536w"
          sizes="(min-width: 1024px) and (min-aspect-ratio: 1/1) and (max-height: 911px) 765px, (min-width: 1024px) and (min-aspect-ratio: 1/1) and (min-height: 1286px) 1080px, (min-width: 1024px) and (min-aspect-ratio: 1/1) 84vh, (min-width: 560px) and (max-width: 1023px) and (orientation: landscape) 72vh, (min-width: 560px) 100vw, 115vw"
-         alt="AI-generated image of three doctors in white coats and scrubs beside the DenceSpot Hair &amp; Skin Care Clinic logo"
+         alt="AI-generated image of three doctors in white coats and scrubs beside the DenceSpot clinic logo"
          width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async">
   </div>
   <?php /* NMC cl. 7.2: AI imagery carries a visible mark — under the photo

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'how-many-grafts-do-you-need';
-$postDescription = 'What a graft actually is, how recipient area and donor density are measured, and why any graft number quoted before a scalp examination is an estimate rather than a surgical plan.';
+$postDescription = 'What a graft is, how recipient area and donor density are measured, and why any graft number quoted before a scalp examination is an estimate, not a plan.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

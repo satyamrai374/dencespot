@@ -57,7 +57,7 @@ $faqs = [
     ['q' => 'Do Delhi’s weather and water make it worse?',
      'a' => 'They can. Summer sweat under a helmet or cap and monsoon humidity are common triggers for flares; winter brings dry scalp, which looks similar but needs different care; and hard-water residue can leave a scalp itchy and dull. None of these is a reason to skip an examination if a shampoo used properly has not helped.'],
     ['q' => 'Can I have a hair transplant if I have dandruff?',
-     'a' => 'Yes, once the scalp is settled. Surgery is not done on an inflamed scalp, so the scalp condition is treated first and the procedure is planned afterwards. It is a short delay, not a reason to rule surgery out. See <a href="/hair-transplant-delhi/">hair transplant at the Rohini clinic</a>.'],
+     'a' => 'Yes, once the scalp is settled. Surgery is not done on an inflamed scalp, so the scalp condition is treated first and the procedure is planned afterwards. It is a short delay, not a reason to rule surgery out. See <a href="/hair-transplant-in-delhi">hair transplant at the Rohini clinic</a>.'],
     ['q' => 'How much does dandruff treatment cost in Rohini?',
      'a' => 'For most people it is a consultation, a medicated shampoo, sometimes a prescribed preparation for a few weeks, and a review. Prices are not published; your plan and its cost are explained after the examination. See <a href="/cost-and-emi-options">cost and payment options</a>.'],
     ['q' => 'Can I send photos on WhatsApp first?',
@@ -121,7 +121,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-hair-fall-768.webp" srcset="/assets/img/services/svc-hair-fall-512.webp 512w, /assets/img/services/svc-hair-fall-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a wooden wide-toothed comb lying on a stack of folded cream linen towels beside a window" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-hair-fall-768.webp" srcset="/assets/img/services/svc-hair-fall-512.webp 512w, /assets/img/services/svc-hair-fall-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a wide-toothed wooden comb on a stack of folded cream linen towels" width="768" height="960" loading="eager" fetchpriority="high">
           <?= /* top of the image: at the bottom it sits under the badge card on phones */ str_replace('class="hp-ai-chip"', 'class="hp-ai-chip" style="top:12px;bottom:auto"', hp_ai_chip('AI-generated illustration')) ?>
         </div>
         <div class="hero__badge-card">
@@ -237,7 +237,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of scalp showing hair follicles beneath the surface',
+    'alt'     => 'a cross-section of scalp showing hair follicles beneath the surface',
     'eyebrow' => 'Flaking and hair fall',
     'title'   => 'Is Dandruff Making Your Hair Fall?',
     'tone'    => 'white',

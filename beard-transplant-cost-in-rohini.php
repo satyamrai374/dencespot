@@ -73,7 +73,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'Beard Transplant Cost in Rohini, Delhi (2026) | DenceSpot',
-    'description'   => 'Beard transplant cost in Rohini, Delhi: grafts by zone from cheeks and jawline to moustache and sideburns, what changes the cost, and what an estimate covers.',
+    'description'   => 'Beard transplant cost in Rohini, Delhi: grafts by zone from cheeks and jawline to moustache and sideburns, what changes it, and what an estimate covers.',
     'url'           => '/beard-transplant-cost-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-beard-768.webp',
@@ -127,7 +127,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'alt'     => 'a mannequin head seen from behind, with the donor area marked',
     'eyebrow' => 'The starting point',
     'title'   => 'Why a Beard Transplant Has No Single Price',
     'id'      => 'no-single-price',
@@ -215,7 +215,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-procedure',
-    'alt'     => 'two pairs of tweezers, punch tips and a slim steel handle laid out on a green surgical cloth',
+    'alt'     => 'tweezers, punch tips and a slim steel handle on a green surgical cloth',
     'eyebrow' => 'Before any deposit',
     'title'   => 'What a Beard Transplant Estimate Should Include',
     'id'      => 'estimate',

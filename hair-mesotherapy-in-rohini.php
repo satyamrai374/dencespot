@@ -73,7 +73,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Mesotherapy in Rohini, Delhi: Sessions, Risks & Cost',
-    'description' => 'Hair mesotherapy at our Rohini clinic, North-West Delhi: what is injected, why its effect is not established, how it compares with PRP and GFC, risks and cost.',
+    'description' => 'Hair mesotherapy at our Rohini clinic, Delhi: what is injected, why its effect is not established, how it compares with PRP and GFC, risks and cost.',
     'url'         => '/hair-mesotherapy-in-rohini',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -120,7 +120,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-procedure-768.webp" srcset="/assets/img/services/svc-procedure-512.webp 512w, /assets/img/services/svc-procedure-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: two pairs of fine tweezers, a row of small punch tips and an instrument handle laid out on green cloth in a steel tray" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-procedure-768.webp" srcset="/assets/img/services/svc-procedure-512.webp 512w, /assets/img/services/svc-procedure-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: fine tweezers, small punch tips and an instrument handle in a steel tray" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -149,7 +149,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-skin',
-    'alt'     => 'a sculpted cross-section of skin layers with a single hair follicle, set against a pale circle',
+    'alt'     => 'a cross-section of skin layers with a single hair follicle',
     'eyebrow' => 'A delivery method',
     'title'   => 'What Hair Mesotherapy Is',
     'tone'    => 'white',
@@ -235,7 +235,7 @@ require __DIR__ . '/includes/header.php';
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk beside a potted fern',            'title' => 'Assessment and a frank conversation',     'text' => 'Your history, a magnified scalp examination, allergies and every medicine you take; then what the preparation contains, what the evidence supports, and whether something better established should come first.'],
         ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram beside a sheet of paper on a wooden desk',   'title' => 'Baseline photographs and a written plan', 'text' => 'The preparation is named, along with the number of sessions, the review point and the cost.'],
-        ['img' => 'step-followup',     'alt' => 'a desk calendar with several dates circled, beside a small plant and a pen', 'title' => 'Sessions, then review',                   'text' => 'Short visits spaced some weeks apart, after which most people carry on with their day. Photographs are compared with the baseline, and if nothing has changed the course ends.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with several dates circled, beside a plant and a pen', 'title' => 'Sessions, then review',                   'text' => 'Short visits spaced some weeks apart, after which most people carry on with their day. Photographs are compared with the baseline, and if nothing has changed the course ends.'],
     ],
 ]) ?>
 

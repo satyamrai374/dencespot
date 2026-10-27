@@ -310,9 +310,9 @@ const BLOG_POSTS = [
     [
         'slug'     => 'hair-transplant-recovery-in-delhi',
         // Delhi post: related page in Rohini; not yet reviewed by the clinic's doctor.
-        'related'  => ['label' => 'Hair transplant in Rohini', 'url' => '/hair-transplant-delhi/rohini'],
+        'related'  => ['label' => 'Hair transplant in Rohini', 'url' => '/hair-transplant-in-rohini'],
         'reviewed' => false,
-        'title'    => 'Recovering From a Hair Transplant in Delhi: Heat, Smog, Helmets and the Commute',
+        'title'    => 'Hair Transplant Recovery in Delhi: Heat, Smog, Helmets, the Commute',
         'seo_title'=> 'Hair Transplant Recovery in Delhi: Heat and Smog',
         'excerpt'  => 'Aftercare sheets are written for a scalp, not a city. How summer heat, the smog season, road dust, crowded Metro coaches and the helmet law shape the first month.',
         'hub'      => 'hair-transplant',
@@ -397,7 +397,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'fue-vs-dhi-hair-transplant',
-        'title'    => 'FUE vs DHI: What Actually Differs, and Whether the Difference Matters for You',
+        'title'    => 'FUE vs DHI: What Actually Differs, and Whether It Matters for You',
         'seo_title'=> 'FUE vs DHI Hair Transplant: The Real Differences',
         'excerpt'  => 'Extraction is the same in both. What changes is how grafts are placed, and how much that difference is worth. A plain comparison of implanter pens against pre-made channels.',
         'hub'      => 'hair-transplant',
@@ -408,7 +408,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'fue-vs-fut-hair-transplant',
-        'title'    => 'FUE vs FUT: Scarring, Donor Yield and Why the Strip Method Still Exists',
+        'title'    => 'FUE vs FUT: Scarring, Donor Yield and Why Strip Surgery Still Exists',
         'seo_title'=> 'FUE vs FUT Hair Transplant: How to Choose',
         'excerpt'  => 'One leaves a linear scar, the other leaves hundreds of small ones. A straight comparison of donor yield, healing, hair length and who each method genuinely suits.',
         'hub'      => 'hair-transplant',
@@ -474,7 +474,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'is-a-hair-transplant-permanent',
-        'title'    => 'Is a Hair Transplant Permanent, or Will You Be Thin Again in Ten Years?',
+        'title'    => 'Is a Hair Transplant Permanent, or Will You Thin Again in Ten Years?',
         'seo_title'=> 'Is a Hair Transplant Permanent? An Honest Answer',
         'excerpt'  => 'The grafts usually stay. The hair around them is still on its own trajectory. Why a transplant does not stop hair loss, and what that means five and ten years later.',
         'hub'      => 'hair-transplant',
@@ -485,7 +485,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'shedding-and-shock-loss-after-hair-transplant',
-        'title'    => 'Shedding and Shock Loss After a Hair Transplant: What Is Normal and What Is Not',
+        'title'    => 'Shedding and Shock Loss After a Hair Transplant: What Is Normal',
         'seo_title'=> 'Shedding and Shock Loss After a Hair Transplant',
         'excerpt'  => 'Transplanted hairs fall out around week three and native hairs can thin too. What is expected, what is not, and the specific signs that genuinely warrant a phone call.',
         'hub'      => 'hair-transplant',
@@ -496,7 +496,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'who-should-not-have-a-hair-transplant',
-        'title'    => 'When a Hair Transplant Is the Wrong Answer, and Why a Clinic Should Say So',
+        'title'    => 'A Hair Transplant Can Be the Wrong Answer, and a Clinic Should Say So',
         'seo_title'=> 'Who Should Not Have a Hair Transplant',
         'excerpt'  => 'Some people should be told no, or not yet. Unstable donor zones, diffuse thinning, untreated medical causes and the cases where surgery makes things worse.',
         'hub'      => 'hair-transplant',
@@ -507,7 +507,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'natural-hairline-design-explained',
-        'title'    => 'What Makes a Hairline Look Natural, and Why Placement Matters More Than Graft Count',
+        'title'    => 'What Makes a Hairline Look Natural: Why Placement Beats Graft Count',
         'seo_title'=> 'What Makes a Transplanted Hairline Look Natural',
         'excerpt'  => 'Patients compare graft counts; surgeons argue about placement. Why hairline position, angle and irregularity decide whether a result reads as natural at 30 and at 50.',
         'hub'      => 'hair-transplant',
@@ -518,7 +518,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'hair-transplant-side-effects-and-risks',
-        'title'    => 'Hair Transplant Side Effects and Risks: The Expected, the Uncommon and the Permanent',
+        'title'    => 'Hair Transplant Side Effects and Risks: Expected, Uncommon, Permanent',
         'seo_title'=> 'Hair Transplant Side Effects and Risks Explained',
         'excerpt'  => 'Swelling and numbness are expected. Infection is uncommon. Overharvested donor and a badly placed hairline are permanent. An honest separation of the three, before you consent.',
         'hub'      => 'hair-transplant',
@@ -529,7 +529,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'hair-transplant-repair-options',
-        'title'    => 'Unhappy With a Previous Hair Transplant: What Repair Can and Cannot Fix',
+        'title'    => 'Unhappy With a Past Hair Transplant: What Repair Can and Cannot Fix',
         'seo_title'=> 'Hair Transplant Repair: What Can Be Fixed',
         'excerpt'  => 'Most disappointment is judged too early, and some of it is genuinely fixable. What corrective surgery can address, what it cannot, and why the second operation is harder.',
         'hub'      => 'hair-transplant',
@@ -551,7 +551,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'hair-transplant-promises-and-success-rates',
-        'title'    => 'Hair Transplant Promises and Success Rates: What Those Claims Actually Mean',
+        'title'    => 'Hair Transplant Promises and Success Rates: What the Claims Mean',
         'seo_title'=> 'Hair Transplant Success Rate Claims, Examined',
         'excerpt'  => 'No clinic can verify a survival percentage for your head before operating. What those figures would have to measure, what Indian advertising rules forbid, and what to ask instead.',
         'hub'      => 'hair-transplant',
@@ -573,7 +573,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'hair-transplant-recovery-in-gurgaon',
-        'title'    => 'Recovering From a Hair Transplant in Gurgaon: Heat, Dust, Helmets and the Commute',
+        'title'    => 'Hair Transplant Recovery in Gurgaon: Heat, Dust, Helmets, the Commute',
         'seo_title'=> 'Hair Transplant Recovery in Gurgaon: Heat and Dust',
         'excerpt'  => 'Standard aftercare assumes mild weather and a car. Helmets, May heat, construction dust and monsoon humidity change the timeline, and can change the month you book.',
         'hub'      => 'hair-transplant',
@@ -595,7 +595,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'prp-vs-gfc-vs-exosomes',
-        'title'    => 'PRP vs GFC vs Exosomes: Comparing the Injectable Hair Treatments Honestly',
+        'title'    => 'PRP vs GFC vs Exosomes: Comparing the Injectable Hair Treatments',
         'seo_title'=> 'PRP vs GFC vs Exosomes for Hair Loss',
         'excerpt'  => 'Three injectables, three very different levels of evidence. What each preparation actually is, where the published data is thin, and why price says nothing about effect.',
         'hub'      => 'prp',
@@ -628,7 +628,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'female-pattern-hair-loss-in-women',
-        'title'    => 'Female Pattern Hair Loss: Why the Workup Comes Before Any Talk of Surgery',
+        'title'    => 'Female Pattern Hair Loss: Why the Workup Comes Before Surgery',
         'seo_title'=> 'Female Pattern Hair Loss: Diagnosis and Options',
         'excerpt'  => 'Widening part, intact hairline, and a dozen possible causes behind it. Why women need blood work and a diagnosis before anyone discusses grafts, and who is not a candidate.',
         'hub'      => 'hair-fall',
@@ -639,7 +639,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'telogen-effluvium-vs-pattern-hair-loss',
-        'title'    => 'Is Your Hair Fall Temporary or Permanent? Telogen Effluvium vs Pattern Loss',
+        'title'    => 'Temporary or Permanent Hair Fall? Telogen Effluvium vs Pattern Loss',
         'seo_title'=> 'Telogen Effluvium vs Pattern Hair Loss',
         'excerpt'  => 'Shedding from everywhere usually stops on its own. Thinning in a pattern does not. How the two differ, how they are told apart, and when waiting costs you follicles.',
         'hub'      => 'hair-fall',
@@ -650,7 +650,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'minoxidil-and-finasteride-in-india',
-        'title'    => 'Minoxidil and Finasteride in India: Prescription Rules, Side Effects and Subscription Boxes',
+        'title'    => 'Minoxidil and Finasteride in India: Prescriptions, Side Effects, Kits',
         'seo_title'=> 'Minoxidil and Finasteride in India: What to Know',
         'excerpt'  => 'Both are prescription medicines here, whatever a subscription box implies. What they do, the side effects worth discussing, and why a questionnaire is not a diagnosis.',
         'hub'      => 'hair-fall',
@@ -697,7 +697,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'blood-tests-for-hair-fall',
-        'title'    => 'Which Blood Tests Actually Matter for Hair Fall, and What Supplements Cannot Do',
+        'title'    => 'Blood Tests That Matter for Hair Fall, and What Supplements Cannot Do',
         'seo_title'=> 'Blood Tests for Hair Fall: What to Test and Why',
         'excerpt'  => 'Ferritin, B12, thyroid and vitamin D are worth checking. Biotin usually is not, and it can skew your other results. What testing answers, and what it cannot fix.',
         'hub'      => 'hair-fall',
@@ -708,7 +708,7 @@ const BLOG_POSTS = [
     ],
     [
         'slug'     => 'hard-water-pollution-and-hair-fall-in-gurgaon',
-        'title'    => 'Hard Water, Pollution and Monsoon Shedding: What Really Drives Hair Fall in Gurgaon',
+        'title'    => 'Hard Water, Pollution or Monsoon: What Drives Hair Fall in Gurgaon',
         'seo_title'=> 'Hard Water and Hair Fall in Gurgaon: The Facts',
         'excerpt'  => 'Borewell water damages hair shafts; it does not cause pattern baldness. What hard water, pollution and monsoon shedding really do, and when to stop blaming the tap.',
         'hub'      => 'hair-fall',
@@ -775,8 +775,8 @@ function blog_date(string $iso): string
 function blog_post_art(array $post): array
 {
     $postArt = [
-          'norwood-scale-explained'                         => ['stage-extensive',  'mannequin heads seen from above, showing an extensive pattern of hair loss'],
-          'donor-area-limits-hair-transplant'               => ['intro-donor',      'a mannequin head seen from behind, with the donor area at the back and sides marked'],
+          'norwood-scale-explained'                         => ['stage-extensive',  'mannequin heads seen from above, with an extensive pattern of hair loss'],
+          'donor-area-limits-hair-transplant'               => ['intro-donor',      'a mannequin head seen from behind, with the donor area marked'],
           'natural-hairline-design-explained'               => ['intro-recipient',  'a mannequin head seen from the front, with a pencilled hairline'],
           'female-pattern-hair-loss-in-women'               => ['stage-female',     'a mannequin head seen from above, with a widening central parting'],
           'how-many-grafts-do-you-need'                     => ['step-plan',        'a tablet showing a head diagram with a planned hairline'],
@@ -804,13 +804,13 @@ function blog_post_art(array $post): array
           'right-age-for-a-hair-transplant'                   => ['stage-temples', 'a mannequin head seen from above, with receding temples'],
           'hair-transplant-with-diabetes-or-high-blood-pressure'=> ['svc-consultation', 'a dermatoscope and notepad on a desk'],
           'exercise-smoking-and-alcohol-after-a-hair-transplant'=> ['step-followup', 'a desk calendar with dates circled'],
-          'second-hair-transplant'                            => ['intro-donor', 'a mannequin head seen from behind, with the donor area at the back and sides marked'],
+          'second-hair-transplant'                            => ['intro-donor', 'a mannequin head seen from behind, with the donor area marked'],
           'how-many-prp-sessions-are-needed-for-hair'         => ['step-followup', 'a desk calendar with dates circled'],
           'does-prp-have-side-effects'                        => ['svc-prp', 'a capped tube of golden-yellow plasma beside a syringe on a white tray'],
           'what-to-do-after-prp-hair-treatment'               => ['svc-procedure', 'sterile instruments laid out on a tray'],
           'does-microneedling-work-for-hair-loss'             => ['svc-follicle', 'a sculpted cross-section of scalp skin with hair follicles'],
           'vitamin-deficiency-and-hair-loss'                  => ['step-consultation', 'a dermatoscope and notepad on a desk'],
-          'thyroid-and-hair-loss'                             => ['hero', 'a sculpted cross-section of scalp skin with hair follicles and their roots'],
+          'thyroid-and-hair-loss'                             => ['hero', 'a cross-section of scalp skin with hair follicles and their roots'],
           'hair-fall-after-pregnancy'                         => ['svc-women', 'a mannequin head seen from above, with a widening parting'],
           'can-dandruff-cause-hair-fall'                      => ['svc-skin', 'a sculpted cross-section of skin with a single hair follicle'],
           'rosemary-onion-juice-and-hair-oils-for-hair-fall'  => ['svc-hair-fall', 'a wooden comb resting on folded towels'],
@@ -875,7 +875,8 @@ function blog_card(array $post, bool $withImage = true, bool $avoidRepeats = fal
     $hub = BLOG_HUBS[$post['hub']] ?? null;
 
     ob_start(); ?>
-<article class="card blog-card">
+<?php /* data-filter-key: the /blog/ topic buttons filter cards by hub. */ ?>
+<article class="card blog-card" data-filter-key="<?= e($post['hub']) ?>">
   <?php if ($withImage): ?>
   <a class="blog-card__media" href="<?= e(blog_url($post['slug'])) ?>" aria-label="<?= e($post['title']) ?>">
     <?php

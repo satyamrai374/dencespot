@@ -39,7 +39,7 @@
 declare(strict_types=1);
 
 $postSlug = 'what-to-do-after-prp-hair-treatment';
-$postDescription = 'After PRP for hair: when to wash, when to go back to the gym, how long to wait before colouring, sun and painkillers, and the reactions to report to the clinic.';
+$postDescription = 'After PRP for hair: when to wash, when to go back to the gym, how long to wait before colouring, sun and painkillers, and the reactions to report.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

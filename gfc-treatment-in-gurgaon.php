@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'GFC Treatment in Gurgaon | DenceSpot Clinic',
-    'description' => 'GFC growth factor concentrate treatment for hair in Gurgaon, explained honestly. What it is, how it differs from PRP, and why we will not oversell the comparison.',
+    'description' => 'GFC (growth factor concentrate) treatment for hair in Gurgaon: what it is, how it differs from PRP, and why we will not oversell the comparison.',
     'url'         => '/gfc-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -109,7 +109,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and preparation equipment used for blood-derived scalp treatments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Centrifuge and equipment for preparing blood-derived scalp treatments at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Assessed &amp; performed by</p>
           <p class="h4 mt-2"><?= e(doctor_name()) ?></p>

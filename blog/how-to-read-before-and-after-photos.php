@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'how-to-read-before-and-after-photos';
-$postDescription = 'How lighting, camera angle, hair length, styling products and the unstated interval change what a hair transplant photograph appears to show, and what an honest gallery discloses.';
+$postDescription = 'How lighting, angle, hair length, styling and an unstated interval change what a hair transplant photo seems to show, and what a fair gallery discloses.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

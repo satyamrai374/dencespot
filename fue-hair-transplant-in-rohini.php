@@ -83,7 +83,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'FUE Hair Transplant in Rohini, Delhi: Process & Cost',
-    'description'   => 'FUE hair transplant in Rohini, Delhi: how follicles are extracted, the dot scars FUE leaves, who it suits and who it does not, recovery and what decides cost.',
+    'description'   => 'FUE hair transplant in Rohini, Delhi: how follicles are extracted, the dot scars FUE leaves, who it suits and who it does not, recovery and cost factors.',
     'url'           => '/fue-hair-transplant-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
@@ -132,7 +132,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted follicular unit model with three hair shafts, on a pale background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted follicular unit model with three hair shafts" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -149,11 +149,11 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of the scalp showing hair follicles beneath the skin',
+    'alt'     => 'a cross-section of the scalp showing hair follicles beneath the skin',
     'eyebrow' => 'The technique',
     'title'   => 'How FUE Extraction Works',
     'html'    => '<p>Hair grows in natural groups of one to four hairs, called follicular units. In FUE each unit is freed with a fine circular punch and lifted out whole. Punch size and depth are matched to your hair and the angle it leaves the skin, because a follicle cut during extraction may not grow.</p>'
-               . '<p>The units are sorted under magnification, then set into recipient sites made at the angle and direction of the surrounding hair. In DHI the extraction is the same and only this last step differs: see <a href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini</a>, or the wider picture on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>'
+               . '<p>The units are sorted under magnification, then set into recipient sites made at the angle and direction of the surrounding hair. In DHI the extraction is the same and only this last step differs: see <a href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini</a>, or the wider picture on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>'
                . '<p><b>Graft or hair?</b> A graft is one follicular unit; a hair is one strand. Two thousand grafts may carry roughly 4,000 to 5,000 hairs, so always ask which unit a quote is in.</p>',
     'points'  => [
         'The harvest is spread across the back and sides, so the donor stays even',
@@ -185,7 +185,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'intro-donor',
-    'alt'     => 'a mannequin head seen from behind, with the donor area at the back and sides marked',
+    'alt'     => 'a mannequin head seen from behind, with the donor area marked',
     'eyebrow' => 'The ceiling on FUE',
     'title'   => 'Donor Limits and Over-harvesting',
     'reverse' => true,

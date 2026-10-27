@@ -135,7 +135,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-eyebrow-768.webp" srcset="/assets/img/services/svc-eyebrow-512.webp 512w, /assets/img/services/svc-eyebrow-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: an eyebrow drawn in fine individual hairs on a pale, rounded cream surface" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-eyebrow-768.webp" srcset="/assets/img/services/svc-eyebrow-512.webp 512w, /assets/img/services/svc-eyebrow-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: an eyebrow drawn in fine individual hairs on a pale cream surface" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">

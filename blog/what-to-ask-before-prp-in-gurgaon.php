@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'what-to-ask-before-prp-in-gurgaon';
-$postDescription = 'The questions that make two PRP quotes in Gurgaon comparable: who injects, how it is prepared, what the course includes, and what happens if it does not work.';
+$postDescription = 'Questions that make two PRP quotes in Gurgaon comparable: who injects, how it is prepared, what the course includes, and what happens if it does not work.';
 $postFaqHeading = 'PRP course FAQs';
 $postFaqId = 'prp-course-faqs';
 
@@ -121,7 +121,7 @@ require __DIR__ . '/../includes/blog-header.php';
 <p>Our <a href="/prp-hair-treatment-cost-in-gurgaon">guide to PRP hair treatment cost in Gurgaon</a> goes through what legitimately moves the number, and why a figure given before your diagnosis is a guess rather than a plan.</p>
 
 <?= blog_cta(
-    'Want these questions answered for your own scalp before paying for anything?',
+    'Want these questions answered for your scalp before you pay anything?',
     'A consultation establishes what is causing the thinning, whether follicles remain that PRP could support, and, if it is appropriate, a written course with a set review date and no obligation to continue if the photographs show nothing has changed.'
 ) ?>
 

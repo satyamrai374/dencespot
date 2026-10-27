@@ -37,7 +37,7 @@
 declare(strict_types=1);
 
 $postSlug = 'thyroid-and-hair-loss';
-$postDescription = 'How an underactive or overactive thyroid affects hair, the eyebrow sign, TSH and free T4 tests, the alopecia areata link, and the regrowth timeline in months.';
+$postDescription = 'How an underactive or overactive thyroid affects hair, the eyebrow sign, TSH and free T4 tests, the alopecia areata link, and the regrowth timeline.';
 $postFaqHeading = 'Thyroid and hair loss FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

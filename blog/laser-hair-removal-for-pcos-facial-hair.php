@@ -42,7 +42,7 @@
 declare(strict_types=1);
 
 $postSlug = 'laser-hair-removal-for-pcos-facial-hair';
-$postDescription = 'Laser for PCOS facial hair: why the hormones need medical care too, why more sessions and upkeep are common, patch testing, and what to tell the clinic first.';
+$postDescription = 'Laser for PCOS facial hair: why hormones need medical care too, why more sessions and upkeep are common, patch testing, and what to tell the clinic first.';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */
 $postFaqs = [

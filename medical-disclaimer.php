@@ -37,7 +37,8 @@ require __DIR__ . '/includes/header.php';
       <h2 class="h3">This is education, not a consultation</h2>
       <p class="body mt-2">Everything written on this website is general patient education. It describes how treatments work, what they typically involve and what usually happens afterwards. It cannot tell you what <em>you</em> need, because that requires examining your scalp under magnification and measuring your donor density. Nothing here replaces a consultation with a qualified doctor.</p>
 
-      <h2 class="h3 mt-6">Who writes and reviews it</h2>
+      <?php /* #doctors: /delhi-clinic and the minoxidil article link here for the clinic's doctors. */ ?>
+      <h2 class="h3 mt-6" id="doctors">Who writes and reviews it</h2>
       <p class="body mt-2">All clinical content on this site is written or reviewed by <a href="/dr-nyra"><?= e(DOCTORS['dr-nyra']['name']) ?></a>, <?= e(DOCTORS['dr-nyra']['quals']) ?>, <?= e(DOCTORS['dr-nyra']['role']) ?>. Pages carry the date they were last reviewed.</p>
 
       <h2 class="h3 mt-6">No outcome is guaranteed</h2>

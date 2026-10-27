@@ -61,7 +61,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'How to Choose a Hair Transplant Clinic | DenceSpot',
-    'description' => 'A stage-by-stage guide to choosing a hair transplant clinic: what to check before enquiring, what to ask at consultation, and how to read the quote you are given.',
+    'description' => 'A stage-by-stage guide to choosing a hair transplant clinic: what to check before enquiring, what to ask at consultation, and how to read the quote.',
     'url'         => '/how-to-choose-hair-transplant-clinic',
     'crumbs'      => $crumbs,
     'schema'      => [

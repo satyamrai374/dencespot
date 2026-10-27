@@ -95,7 +95,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Transplant Cost in Gurgaon | DenceSpot Clinic',
-    'description' => 'What a hair transplant costs in Gurgaon and why: graft count, technique, donor supply, and what an estimate should include. Written quotes after assessment.',
+    'description' => 'What a hair transplant costs in Gurgaon and why: graft count, technique, donor supply, and what an estimate includes. Written quotes after assessment.',
     'url'         => '/hair-transplant-cost-in-gurgaon',
     'nav_active'  => '/hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
@@ -136,7 +136,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/dr-nayra.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-1-1 media--shadow"><img src="/assets/img/home/doctor-nyra-720.webp" alt="Dr. Nyra, MBBS, MD (Dermatology), hair restoration doctor at DenceSpot Clinic, Sector 39 Gurugram" width="720" height="720" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Quoted &amp; reviewed by</p>
           <p class="h4 mt-1"><?= doctor_name() ?></p>

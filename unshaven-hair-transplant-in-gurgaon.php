@@ -62,7 +62,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Unshaven Hair Transplant in Gurgaon | DenceSpot',
-    'description' => 'No-shave and partial-shave hair transplant in Gurgaon, with the real trade-offs explained: slower extraction, a lower graft ceiling, and who it genuinely suits.',
+    'description' => 'No-shave and partial-shave hair transplant in Gurgaon, with the real trade-offs explained: slower extraction, a lower graft ceiling, and who it suits.',
     'url'         => '/unshaven-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -108,7 +108,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Fine extraction punch and magnification used for unshaven graft harvesting at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Fine extraction punch and magnification for unshaven graft harvesting at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Performed &amp; reviewed by</p>
           <p class="h4 mt-2"><?= e(doctor_name()) ?></p>

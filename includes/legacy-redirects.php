@@ -250,7 +250,7 @@ const LEGACY_BLOG = [
 /** Treatment prefix of an old locality page -> [Gurugram page, Rohini page]. */
 const LEGACY_LOCALITY = [
     'hair-fall-treatment'      => ['/hair-fall-treatment-in-gurgaon', '/hair-fall-treatment-in-rohini'],
-    'hair-transplant'          => ['/hair-transplant-in-gurgaon', '/hair-transplant-delhi/'],
+    'hair-transplant'          => ['/hair-transplant-in-gurgaon', '/hair-transplant-in-delhi'],
     'fue-hair-transplant'      => ['/fue-hair-transplant-in-gurgaon', '/fue-hair-transplant-in-rohini'],
     'beard-transplant'         => ['/beard-transplant-gurgaon', '/beard-transplant-in-rohini'],
     'prp-hair-treatment'       => ['/hair-prp-treatment-in-gurgaon', '/hair-prp-treatment-in-rohini'],
@@ -264,37 +264,48 @@ const LEGACY_LOCALITY = [
 const LEGACY_DELHI_AREAS = '/(delhi|rohini|pitampura|shalimar-bagh|prashant-vihar|ashok-vihar|model-town|janakpuri|punjabi-bagh|paschim-vihar|mukherjee-nagar|azadpur|netaji-subhash-place|budh-vihar|sector-?[0-9]+-rohini)/';
 
 /**
- * Delhi areas whose hair transplant intent is another area's page in
- * /hair-transplant-delhi/: Netaji Subhash Place lies within Pitampura, and a
- * Rohini sector is Rohini.
+ * Old Delhi area slugs whose page goes by another name now: the old site's
+ * /hair-transplant-in-<area> and the 25–27 Oct 2026 /hair-transplant-delhi/<area>.
  */
-const LEGACY_DELHI_HT_ALIAS = [
-    '#^netaji-subhash-place$#'        => 'pitampura',
-    '#^sector-?([0-9]+)-rohini$#'     => 'rohini-sector-$1',
-    '#^rohini-sector-?([0-9]+)$#'     => 'rohini-sector-$1',
+const LEGACY_DELHI_ALIAS = [
+    'netaji-subhash-place'   => 'nsp-delhi',
+    'gandhi-nagar'           => 'gandhi-nagar-delhi',
+    'indraprastha-extension' => 'ip-extension',
+    'karkarduma'             => 'karkardooma',
+    'chhattarpur'            => 'chhatarpur',
+    'chattarpur'             => 'chhatarpur',
 ];
 
 /**
- * An old hair transplant URL for a Delhi area (/hair-transplant-in-<area>,
- * including /hair-transplant-in-rohini, which moved on 25 Oct 2026) goes to
- * that area's page in /hair-transplant-delhi/ when one exists (a Rohini sector
- * without a page goes to Rohini), to the parent for a known Delhi area without
- * a page, and null otherwise (not a Delhi area: the Gurugram page applies).
+ * The Delhi area page (includes/delhi-service-areas.php) for an old area slug,
+ * or null. A sector or part of an area goes to the area: rohini-sector-8,
+ * sector-8-rohini, greater-kailash-ii, east-patel-nagar.
+ */
+function legacy_delhi_area(string $slug): ?string
+{
+    require_once __DIR__ . '/delhi-service-areas.php';
+    $names = array_combine(array_keys(DELHI_SERVICE_AREAS), array_keys(DELHI_SERVICE_AREAS)) + LEGACY_DELHI_ALIAS;
+    $match = $names[$slug] ?? null;
+    if ($match === null) {
+        foreach ($names as $old => $area) {
+            if (str_starts_with($slug, $old . '-') || str_ends_with($slug, '-' . $old)) {
+                $match = $area;
+                break;
+            }
+        }
+    }
+    return $match !== null && DELHI_SERVICE_AREAS[$match]['live'] ? DELHI_SERVICE_AREAS[$match]['url'] : null;
+}
+
+/**
+ * An old hair transplant URL for a Delhi area without a page of its own
+ * (/hair-transplant-in-<area>) goes to that area's page, to the /hair-transplant-in-delhi
+ * pillar for any other Delhi area, and null otherwise (not a Delhi area: the
+ * Gurugram page applies).
  */
 function legacy_delhi_hair_transplant(string $area): ?string
 {
-    require_once __DIR__ . '/delhi-areas.php';
-    foreach (LEGACY_DELHI_HT_ALIAS as $pattern => $target) {
-        if (preg_match($pattern, $area)) {
-            $alias = preg_replace($pattern, $target, $area);
-            $area  = delhi_area($alias) !== null ? $alias : (str_starts_with($alias, 'rohini-') ? 'rohini' : $alias);
-            break;
-        }
-    }
-    if (delhi_area($area) !== null) {
-        return '/hair-transplant-delhi/' . $area;
-    }
-    return preg_match(LEGACY_DELHI_AREAS, $area) ? '/hair-transplant-delhi/' : null;
+    return legacy_delhi_area($area) ?? (preg_match(LEGACY_DELHI_AREAS, $area) ? DELHI_HT_HUB : null);
 }
 
 /** 301 target for an old URL path, or null when it has no counterpart. */
@@ -309,6 +320,11 @@ function legacy_redirect(string $path): ?string
     }
     if (str_starts_with($path, '/blog/')) {
         return LEGACY_BLOG[substr($path, 6)] ?? '/blog/';
+    }
+    // The Delhi folder of 25–27 Oct 2026: each page to its area's new page, the
+    // rest (districts, sectors without an area, PIN codes) to the pillar.
+    if ($path === '/hair-transplant-delhi' || str_starts_with($path, '/hair-transplant-delhi/')) {
+        return legacy_delhi_area(substr($path, 23)) ?? DELHI_HT_HUB;
     }
     if (preg_match('#^/([a-z-]+?)-in-([a-z0-9-]+)$#', $path, $m) && isset(LEGACY_LOCALITY[$m[1]])) {
         if ($m[1] === 'hair-transplant' && ($target = legacy_delhi_hair_transplant($m[2])) !== null) {

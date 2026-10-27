@@ -41,7 +41,7 @@ $faqs = [
     ['q' => 'FUE or DHI — which is better?',
      'a' => 'Neither is universally better; extraction is essentially the same and the difference is in placement. DHI sets each graft with an implanter in a single action, which suits hairlines and detail zones. FUE placement into pre-made sites is more efficient across large areas. Read more about <a href="/dhi-hair-transplant-in-gurgaon">DHI hair transplant</a>.'],
     ['q' => 'Can I have FUE if I had a strip procedure before?',
-     'a' => 'Often yes. An existing <a href="/fut-hair-transplant-in-gurgaon">FUT</a> scar does not rule out FUE, though scalp laxity and the state of the donor need assessing, and grafts can sometimes be taken to camouflage the old scar itself. This is decided on examination.'],
+     'a' => 'Often yes. An existing <a href="/blog/fue-vs-fut-hair-transplant">FUT</a> scar does not rule out FUE, though scalp laxity and the state of the donor need assessing, and grafts can sometimes be taken to camouflage the old scar itself. This is decided on examination.'],
     ['q' => 'Can women have FUE?',
      'a' => 'Sometimes. Female hair loss is more often diffuse, and hormonal, thyroid, iron or post-partum causes need investigating and treating first. Many women do better on medical treatment; surgery is considered selectively, for suitable patterns such as a receding frontal line.'],
     ['q' => 'How much does FUE cost in Gurgaon?',
@@ -263,7 +263,7 @@ require __DIR__ . '/includes/header.php';
         <div class="step"><span class="step-num">6</span><div><h3 class="h3">Placement and discharge</h3><p class="body-s mt-2">Grafts are placed into the prepared sites, the donor is dressed, medication and written aftercare are issued, and you go home the same day.</p></div></div>
       </div>
       <div>
-        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/case-uttam-gurgaon.jpg" alt="Before and after a hair transplant at DenceSpot Clinic, Sector 39 Gurugram — hairline and temple restoration, 2,400 grafts by FUE" width="800" height="600" loading="lazy"></div>
+        <div class="media ratio-4-3 media--shadow"><img src="/assets/img/case-uttam-gurgaon.jpg" alt="Before and after a 2,400-graft FUE hairline and temple restoration at DenceSpot Clinic, Gurugram" width="800" height="600" loading="lazy"></div>
         <div class="card card--tint mt-4">
           <p class="eyebrow">Before the day</p>
           <?= ticks([

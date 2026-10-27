@@ -35,7 +35,7 @@
 declare(strict_types=1);
 
 $postSlug = 'second-hair-transplant';
-$postDescription = 'Why some people have a second hair transplant, why it waits about a year, how remaining donor hair is assessed and when another session is the wrong answer.';
+$postDescription = 'Why some people have a second hair transplant, why it waits a year, how remaining donor hair is assessed and when another session is the wrong answer.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible
@@ -165,6 +165,6 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <h2 id="getting-it-assessed">Getting it assessed</h2>
 
-<p>Whether a second hair transplant makes sense depends on what the first one achieved, how much donor hair remains, and what your native hair is likely to do next. Bring the operative record, photographs from before the first procedure and since, and your medicine list. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi; <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a> and <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a> explain how assessment and planning work. A useful assessment tells you not only whether more surgery is possible, but whether it is worth the donor hair it would use.</p>
+<p>Whether a second hair transplant makes sense depends on what the first one achieved, how much donor hair remains, and what your native hair is likely to do next. Bring the operative record, photographs from before the first procedure and since, and your medicine list. Consultations with registered medical practitioners are available at our clinics in Sector 39, Gurugram and Rohini, Delhi; <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a> and <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a> explain how assessment and planning work. A useful assessment tells you not only whether more surgery is possible, but whether it is worth the donor hair it would use.</p>
 
 <?php require __DIR__ . '/../includes/blog-footer.php'; ?>

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'minoxidil-and-finasteride-in-india';
-$postDescription = 'Minoxidil and finasteride are Schedule H prescription medicines in India. What they do, their side effects, pregnancy precautions and the limits of online kits.';
+$postDescription = 'Minoxidil and finasteride are prescription (Schedule H) medicines in India: what they do, side effects, pregnancy precautions and limits of online kits.';
 $postFaqHeading = 'Minoxidil and finasteride FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

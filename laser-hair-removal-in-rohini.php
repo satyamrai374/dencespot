@@ -161,7 +161,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of skin showing hair follicles beneath the surface',
+    'alt'     => 'a cross-section of skin showing hair follicles beneath the surface',
     'eyebrow' => 'Close to home',
     'title'   => 'Why a Nearby Clinic Helps With Laser',
     'tone'    => 'canvas',
@@ -205,7 +205,7 @@ require __DIR__ . '/includes/header.php';
     'intro'   => 'Every course is different, but most follow a similar shape. The timings here are general information, not this clinic’s fixed protocol; your own gaps and number of visits are set at assessment.',
     'tone'    => 'white',
     'steps'   => [
-        ['img' => 'svc-hair-transplant', 'alt' => 'a sculpted model of a follicular unit with three hairs, on a cream background', 'title' => 'On the day', 'text' => 'Arrive with the area shaved and free of cream, deodorant or make-up. The skin is cleaned, everyone puts on eye protection, and the laser is passed over the area in overlapping pulses with cooling. An upper lip takes minutes; a back or both legs take considerably longer.'],
+        ['img' => 'svc-hair-transplant', 'alt' => 'a sculpted model of a follicular unit with three hairs', 'title' => 'On the day', 'text' => 'Arrive with the area shaved and free of cream, deodorant or make-up. The skin is cleaned, everyone puts on eye protection, and the laser is passed over the area in overlapping pulses with cooling. An upper lip takes minutes; a back or both legs take considerably longer.'],
         ['img' => 'svc-hair-fall', 'alt' => 'a wooden comb resting on folded linen towels by a window',             'title' => 'Through the course',          'text' => 'Treated hairs loosen and shed over one to three weeks, which can look like regrowth at first. By the second or third visit many people notice patchy thinning, as follicles are caught at different stages. Later, regrowth slows and comes back finer, and settings may be adjusted to how your skin reacted and how much hair remains.'],
         ['img' => 'svc-followup',  'alt' => 'a desk calendar with dates circled, beside a small plant',           'title' => 'The final sessions, and after', 'text' => 'Remaining hairs tend to be sparse and lighter. Some people need more sessions than first estimated, particularly on the face or where hormones drive growth. Some hair usually returns over the following months or years; an occasional maintenance session keeps it down, how often depending on your hair and any hormonal cause.'],
     ],
@@ -247,7 +247,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-skin',
-    'alt'     => 'a sculpted cross-section of skin layers with a single hair follicle and a coiled gland',
+    'alt'     => 'a cross-section of skin layers with a hair follicle and a coiled gland',
     'eyebrow' => 'Skin type',
     'title'   => 'Laser on Indian Skin Types',
     'id'      => 'skin-types',

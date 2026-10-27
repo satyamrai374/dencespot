@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'natural-hairline-design-explained';
-$postDescription = 'Why a transplanted hairline reads as natural or as obvious: position for your age, macro and micro irregularity, single-hair grafts at the leading edge, and angle of exit.';
+$postDescription = 'Why a transplanted hairline looks natural or obvious: position for your age, irregularity, single-hair grafts at the front edge, angle of exit.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

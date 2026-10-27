@@ -15,8 +15,10 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/schema.php';
 require_once __DIR__ . '/../includes/blog.php';
 
-$activeHub = isset($_GET['topic']) && isset(BLOG_HUBS[$_GET['topic']]) ? (string) $_GET['topic'] : null;
-$posts     = blog_posts($activeHub);
+// Every post is in the page; the topic buttons filter them in the browser
+// (footer.php). ?topic= links used to do it, and each of those URLs
+// canonicalised back to /blog/ — five duplicate URLs for every crawler.
+$posts = blog_posts();
 
 $crumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -63,25 +65,27 @@ require __DIR__ . '/../includes/header.php';
       <p class="lead mt-3">Articles on hair loss, transplants, PRP and beard restoration — written for patients, medically reviewed before publication, and honest about what treatment can and cannot do. No miracle cures, no guaranteed results, no borrowed photographs.</p>
     </div>
 
-    <nav class="btn-row mt-6" aria-label="Filter by topic">
-      <a class="btn btn--sm <?= $activeHub === null ? 'btn--ink' : 'btn--outline' ?>" href="/blog/">All topics</a>
-      <?php foreach (BLOG_HUBS as $key => $hub): ?>
-        <a class="btn btn--sm <?= $activeHub === $key ? 'btn--ink' : 'btn--outline' ?>" href="/blog/?topic=<?= e($key) ?>"><?= e($hub['label']) ?></a>
-      <?php endforeach; ?>
-    </nav>
+    <div data-filter-scope>
+      <div class="btn-row mt-6" role="group" aria-label="Filter by topic" data-filter-nav data-filter-param="topic" hidden>
+        <button type="button" class="btn btn--sm btn--ink" data-filter="" aria-pressed="true">All topics</button>
+        <?php foreach (BLOG_HUBS as $key => $hub): ?>
+          <button type="button" class="btn btn--sm btn--outline" data-filter="<?= e($key) ?>" aria-pressed="false"><?= e($hub['label']) ?></button>
+        <?php endforeach; ?>
+      </div>
 
-    <?php if ($posts === []): ?>
-      <div class="card card--pad-lg mt-6">
+      <div class="card card--pad-lg mt-6" data-filter-empty<?= $posts === [] ? '' : ' hidden' ?>>
         <h2 class="h3">Nothing here yet under this topic</h2>
         <p class="body-s mt-2">Try <a href="/blog/">all topics</a>, or go straight to the treatment pages — they carry the detail most people are looking for.</p>
       </div>
-    <?php else: ?>
+
+      <?php if ($posts !== []): ?>
       <div class="grid grid--3 mt-6">
         <?php foreach ($posts as $post): ?>
           <?= blog_card($post) ?>
         <?php endforeach; ?>
       </div>
-    <?php endif; ?>
+      <?php endif; ?>
+    </div>
 
     <div class="card card--dashed mt-6">
       <p class="h4">Why this blog starts small</p>

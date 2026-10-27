@@ -26,8 +26,22 @@ $footClinics = [
      'addr' => LOC_DELHI_ADDRESS, 'landmark' => LOC_DELHI_LANDMARK,
      'tel' => LOC_DELHI_PHONE_E164, 'phone' => LOC_DELHI_PHONE_DISPLAY, 'wa' => LOC_DELHI_WHATSAPP_URL, 'maps' => LOC_DELHI_MAPS_URL, 'embed' => LOC_DELHI_MAP_EMBED],
 ];
+
+// Just above the footer: the same-city treatment links, except on the Delhi
+// hair transplant pillar, which asks with $page['service_areas'] for its
+// "Serving Patients Across Delhi" block instead, and the Delhi area pages,
+// which set $page['location_links'] => false and show neither (client,
+// 27 Oct 2026: the area pages link only to the pillar).
+if (!empty($page['service_areas'])) {
+    require_once __DIR__ . '/delhi-service-areas.php';
+    $aboveFooter = delhi_service_areas_section();
+} elseif (($page['location_links'] ?? true) === false) {
+    $aboveFooter = '';
+} else {
+    $aboveFooter = location_links_section();
+}
 ?>
-<?= location_links_section() ?>
+<?= $aboveFooter ?>
 </main>
 
 <footer class="site-footer">
@@ -151,6 +165,47 @@ $footClinics = [
     if (!link || typeof window.openCertModal !== 'function') { return; }
     event.preventDefault();
     window.openCertModal(link.getAttribute('href'), link.getAttribute('data-title') || '');
+  });
+
+  // In-page filters: blog topics and results by procedure. These were
+  // ?topic= / ?type= links, and every one of those URLs canonicalised back to
+  // the page itself, so crawlers reported each as a canonicalised duplicate.
+  // Without JavaScript the buttons stay hidden and every item shows. An old
+  // ?topic= / ?type= link still opens on its filter.
+  document.querySelectorAll('[data-filter-nav]').forEach(function (nav) {
+    var scope   = nav.closest('[data-filter-scope]') || document;
+    var items   = scope.querySelectorAll('[data-filter-key]');
+    var empty   = scope.querySelector('[data-filter-empty]');
+    var buttons = Array.prototype.slice.call(nav.querySelectorAll('[data-filter]'));
+    var find = function (key) {
+      return buttons.filter(function (b) { return b.getAttribute('data-filter') === key; })[0];
+    };
+    var apply = function (key) {
+      var shown = 0;
+      items.forEach(function (item) {
+        item.hidden = key !== '' && item.getAttribute('data-filter-key') !== key;
+        if (!item.hidden) { shown++; }
+      });
+      buttons.forEach(function (b) {
+        var on = b.getAttribute('data-filter') === key;
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.classList.toggle('btn--ink', on);
+        b.classList.toggle('btn--outline', !on);
+      });
+      if (empty) {
+        empty.hidden = shown > 0;
+        var label = empty.querySelector('[data-filter-label]');
+        var name  = find(key).getAttribute('data-filter-name') || '';
+        if (label) { label.textContent = name ? name + ' ' : ''; }
+      }
+    };
+    nav.addEventListener('click', function (event) {
+      var b = event.target.closest('[data-filter]');
+      if (b) { apply(b.getAttribute('data-filter')); }
+    });
+    var start = new URLSearchParams(window.location.search).get(nav.getAttribute('data-filter-param') || '');
+    if (start && find(start)) { apply(start); }
+    nav.hidden = false;
   });
 
   // "View more FAQs" (faq_list() with $visible). The extra questions are in

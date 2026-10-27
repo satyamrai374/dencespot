@@ -30,7 +30,7 @@
 declare(strict_types=1);
 
 $postSlug = 'hair-fall-after-pregnancy';
-$postDescription = 'Why hair falls a few months after childbirth, when shedding stops, signs of an iron, thyroid or PCOS cause, care while breastfeeding and when to see a doctor.';
+$postDescription = 'Why hair falls months after childbirth, when shedding stops, signs of an iron, thyroid or PCOS cause, care while breastfeeding and when to see a doctor.';
 $postFaqHeading = 'Hair fall after pregnancy FAQs';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */

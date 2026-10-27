@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Dandruff Treatment in Gurgaon | DenceSpot Clinic',
-    'description' => 'Dandruff and seborrhoeic dermatitis treatment in Gurgaon by a dermatologist, including whether your flaking and your hair fall are actually the same problem.',
+    'description' => 'Dandruff and seborrhoeic dermatitis treatment in Gurgaon by a dermatologist, including whether your flaking and your hair fall are the same problem.',
     'url'         => '/dandruff-treatment-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'fue-vs-dhi-hair-transplant';
-$postDescription = 'DHI is a placement method, not a separate extraction technique — both are FUE. A plain comparison of implanter pens against pre-made channels, and when the difference actually changes your plan.';
+$postDescription = 'DHI is a placement method, not a separate extraction technique: both are FUE. Implanter pens vs pre-made channels, and when the difference matters.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

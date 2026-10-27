@@ -64,7 +64,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Transplant for Women in Gurgaon | DenceSpot',
-    'description' => 'Hair transplant for women in Gurgaon, assessed properly. Reversible causes investigated first, donor stability checked, and surgery advised only where it truly fits.',
+    'description' => 'Hair transplant for women in Gurgaon: reversible causes investigated first, donor stability checked, and surgery advised only where it fits.',
     'url'         => '/hair-transplant-for-women-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

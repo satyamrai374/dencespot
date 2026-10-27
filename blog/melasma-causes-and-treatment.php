@@ -49,7 +49,7 @@
 declare(strict_types=1);
 
 $postSlug = 'melasma-causes-and-treatment';
-$postDescription = 'Why melasma appears, the role of sun, visible light, heat and hormones, which sunscreen helps, the treatments a doctor may discuss, and why it tends to return.';
+$postDescription = 'Why melasma appears, the role of sun, visible light, heat and hormones, which sunscreen helps, treatments a doctor may discuss, and why it often returns.';
 
 /** Drives both the FAQPage schema and the visible accordion, from this one array. */
 $postFaqs = [

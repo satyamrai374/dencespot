@@ -39,11 +39,8 @@ header('Content-Type: application/xml; charset=utf-8');
  * would otherwise publish it as an indexable URL competing with / for the
  * brand query — and list a noindex page, which is a contradictory signal.
  */
-/**
- * 'dr-rahul' and 'dr-akash' ship noindex until each doctor's recognised degree
- * is entered in DOCTORS; remove them here when their noindex lines go.
- */
-const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe', 'dr-rahul', 'dr-akash'];
+/** The doctor profiles are indexable since 27 Oct 2026 (client request). */
+const SITEMAP_EXCLUDE = ['thank-you', 'enquire', 'sitemap', '404', 'router', 'fut-hair-transplant-in-gurgaon', 'new-designe'];
 
 /** Priority and change frequency by page role. Money pages rank highest. */
 function sitemap_weight(string $slug): array
@@ -52,7 +49,7 @@ function sitemap_weight(string $slug): array
         return ['1.0', 'weekly'];
     }
     $money = [
-        'hair-transplant-in-gurgaon', 'beard-transplant-gurgaon',
+        'hair-transplant-in-gurgaon', 'hair-transplant-in-delhi', 'beard-transplant-gurgaon',
         'hair-prp-treatment-in-gurgaon', 'hair-fall-treatment-in-gurgaon',
         'hair-transplant-cost-in-gurgaon',
     ];
@@ -62,7 +59,7 @@ function sitemap_weight(string $slug): array
     if (str_starts_with($slug, 'blog/')) {
         return ['0.5', 'monthly'];
     }
-    if (in_array($slug, ['contact', 'book-consultation', 'about-us', 'dr-nyra'], true)) {
+    if (in_array($slug, ['contact', 'book-consultation', 'about-us', 'dr-nyra', 'dr-rahul', 'dr-akash'], true)) {
         return ['0.8', 'monthly'];
     }
     return ['0.7', 'monthly'];
@@ -99,7 +96,7 @@ function sitemap_pages(): array
      *
      * Add a line here for any future section that lives in its own directory.
      */
-    foreach (['patient-stories', 'hair-transplant-delhi'] as $dir) {
+    foreach (['patient-stories'] as $dir) {
         $index = $root . '/' . $dir . '/index.php';
         if (file_exists($index)) {
             $out[$dir . '/'] = filemtime($index);
@@ -107,16 +104,20 @@ function sitemap_pages(): array
     }
 
     /**
-     * The Delhi area pages (/hair-transplant-delhi/rohini, /…/dwarka-sector-1,
-     * /…/pin-110075 …): one per entry in includes/delhi-areas-data.php, dated by
-     * its own file when hand-written, otherwise by the data file. The globs
-     * above skip this folder, so area.php itself is never listed.
+     * The Delhi area pages (hair-transplant-in-pitampura.php …) are in the root
+     * glob above. Their content lives in includes/delhi-service-areas.php and
+     * includes/delhi-area-page.php, so they carry the newest of the three
+     * dates; an area switched off ('live' => false) 301s and is left out.
      */
-    require_once $root . '/includes/delhi-areas.php';
-    $areaData = filemtime($root . '/includes/delhi-areas-data.php');
-    foreach (delhi_areas() as $slug => $a) {
-        $file = $root . '/hair-transplant-delhi/' . $slug . '.php';
-        $out['hair-transplant-delhi/' . $slug] = !empty($a['file']) && file_exists($file) ? filemtime($file) : $areaData;
+    require_once $root . '/includes/delhi-service-areas.php';
+    $areaDate = max(filemtime($root . '/includes/delhi-service-areas.php'), filemtime($root . '/includes/delhi-area-page.php'));
+    foreach (DELHI_SERVICE_AREAS as $a) {
+        $slug = ltrim($a['url'], '/');
+        if (!$a['live']) {
+            unset($out[$slug]);
+        } elseif (isset($out[$slug])) {
+            $out[$slug] = max($out[$slug], $areaDate);
+        }
     }
 
     ksort($out);

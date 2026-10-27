@@ -146,7 +146,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of the scalp showing hair follicles beneath the skin',
+    'alt'     => 'a cross-section of the scalp showing hair follicles beneath the skin',
     'eyebrow' => 'Two treatments, one family',
     'title'   => 'What PRP and GFC Actually Are',
     'html'    => '<p>Both begin with a small blood sample from your arm, processed in the clinic. Platelets carry growth factors, the signalling proteins the body uses for repair, and the thinking is that placing them around weakening follicles helps keep those follicles in their growth phase for longer.</p>'

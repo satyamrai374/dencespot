@@ -93,7 +93,7 @@ require __DIR__ . '/../includes/blog-header.php';
 </ul>
 
 <?= blog_cta(
-    'Is your result unfinished, fixable, or limited by the donor you have left?',
+    'Unfinished, fixable, or limited by the donor you have left?',
     'At a repair consultation the transplanted area and the donor are both examined, the remaining donor density is measured, and you are given a realistic ceiling in writing, including when pigment will do more than further surgery.'
 ) ?>
 

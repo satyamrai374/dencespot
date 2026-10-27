@@ -38,7 +38,7 @@
 declare(strict_types=1);
 
 $postSlug = 'does-prp-have-side-effects';
-$postDescription = 'PRP for hair often leaves the scalp sore and slightly swollen, with pinpoint bleeding, for a day or two. Rare problems, pain relief and who should avoid it.';
+$postDescription = 'PRP for hair often leaves the scalp sore and slightly swollen, with pinpoint bleeding, for a day or two. Rare problems, pain relief, who should avoid it.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

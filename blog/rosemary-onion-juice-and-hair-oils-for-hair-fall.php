@@ -27,7 +27,7 @@
 declare(strict_types=1);
 
 $postSlug = 'rosemary-onion-juice-and-hair-oils-for-hair-fall';
-$postDescription = 'What the rosemary oil vs minoxidil trial and the onion juice study really showed, what oiling does to hair and dandruff, and how to patch-test a home remedy.';
+$postDescription = 'What the rosemary oil vs minoxidil trial and the onion juice study showed, what oiling does to hair and dandruff, and how to patch-test a home remedy.';
 $postFaqHeading = 'Home remedies for hair fall: FAQs';
 $postFaqId = 'home-remedies-hair-fall-faqs';
 

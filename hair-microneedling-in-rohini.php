@@ -71,7 +71,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Microneedling in Rohini, Delhi: Sessions, PRP & Cost',
-    'description' => 'Hair microneedling at our Rohini clinic, North-West Delhi: an add-on to treatment, needling with PRP, home rollers, aftercare, risks and what decides the cost.',
+    'description' => 'Hair microneedling at our Rohini clinic, Delhi: an add-on to treatment, needling with PRP, home rollers, aftercare, risks and what decides the cost.',
     'url'         => '/hair-microneedling-in-rohini',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -118,7 +118,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a sculpted block of skin cut away to show its layers, one hair growing from its follicle and a coiled gland beside it" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-skin-768.webp" srcset="/assets/img/services/svc-skin-512.webp 512w, /assets/img/services/svc-skin-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a block of skin cut away to show its layers, a hair follicle and a gland" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -147,7 +147,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of scalp skin showing hair follicles beneath the surface',
+    'alt'     => 'a cross-section of scalp skin showing hair follicles beneath the surface',
     'eyebrow' => 'How it works',
     'title'   => 'What Needling Does to the Scalp',
     'tone'    => 'white',
@@ -251,7 +251,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-hair-fall',
-    'alt'     => 'a wooden comb with a few shed hairs resting on folded linen towels by a window',
+    'alt'     => 'a wooden comb with a few shed hairs resting on folded linen towels',
     'eyebrow' => 'Home rollers',
     'title'   => 'Rolling at Home Compared With Needling in the Clinic',
     'tone'    => 'white',
@@ -272,8 +272,8 @@ require __DIR__ . '/includes/header.php';
     'tone'    => 'canvas',
     'steps'   => [
         ['img' => 'step-consultation', 'alt' => 'a dermatoscope and notepad on a wooden desk beside a potted fern',                      'title' => 'Assessment',                              'text' => 'History, a magnified scalp examination and any blood tests your history calls for. Your current treatment, home routines included, is reviewed.'],
-        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram, with a sheet of paper and a pencil on a wooden desk', 'title' => 'Baseline photographs and a written plan', 'text' => 'Fixed angles and lighting. The plan says whether needling adds anything, whether PRP goes alongside, and what the course costs.'],
-        ['img' => 'step-followup',     'alt' => 'a desk calendar with dates circled in green, beside a small succulent and a pen',     'title' => 'Sessions and review',                     'text' => 'The scalp is cleaned, numbed and needled, and your main treatment carries on between sessions. Over months, photographs are compared with the baseline; if nothing has changed, the add-on stops.'],
+        ['img' => 'step-plan',         'alt' => 'a tablet showing a head diagram, with paper and a pencil on a desk', 'title' => 'Baseline photographs and a written plan', 'text' => 'Fixed angles and lighting. The plan says whether needling adds anything, whether PRP goes alongside, and what the course costs.'],
+        ['img' => 'step-followup',     'alt' => 'a desk calendar with dates circled in green, beside a plant and a pen',     'title' => 'Sessions and review',                     'text' => 'The scalp is cleaned, numbed and needled, and your main treatment carries on between sessions. Over months, photographs are compared with the baseline; if nothing has changed, the add-on stops.'],
     ],
 ]) ?>
 

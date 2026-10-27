@@ -74,8 +74,8 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => "Women's Hair Loss Treatment in Rohini, Delhi: Causes & Tests",
-    'description' => "Women's hair loss treatment in Rohini, North-West Delhi: iron, thyroid, PCOS and postpartum causes checked first, then a written plan with pregnancy in mind.",
+    'title'       => "Women's Hair Loss Treatment in Rohini, Delhi: Causes First",
+    'description' => "Women's hair loss treatment in Rohini, Delhi: iron, thyroid, PCOS and postpartum causes checked first, then a written plan with pregnancy in mind.",
     'url'         => '/womens-hair-loss-treatment-in-rohini',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -122,7 +122,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-women-768.webp" srcset="/assets/img/services/svc-women-512.webp 512w, /assets/img/services/svc-women-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a cream mannequin head seen from above, covered in green felt hair with a widening central parting" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-women-768.webp" srcset="/assets/img/services/svc-women-512.webp 512w, /assets/img/services/svc-women-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a mannequin head seen from above, with a widening central parting" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -240,7 +240,7 @@ require __DIR__ . '/includes/header.php';
     'reverse' => true,
     'html'    => '<p>Neither is a first step for women. Both are carried out at the Rohini clinic, after a diagnosis and a period of medical treatment.</p>'
                . '<p><b>PRP or GFC</b> may be suggested for pattern thinning where follicles are still present, alongside medicine rather than instead of it. The evidence is modest, some women do not respond and maintenance is needed. More on <a href="/hair-prp-treatment-in-rohini">hair PRP and GFC at the Rohini clinic</a>.</p>'
-               . '<p><b>A transplant</b> suits few women, because female thinning is often diffuse and can reach the donor area. It is more often an option for permanent traction loss, a high hairline or a stable scar, and grafts do not stop surrounding hair thinning. See <a href="/hair-transplant-for-women-in-rohini">hair transplant for women in Rohini</a> for when it can suit, and <a href="/hair-transplant-delhi/">how a hair transplant is planned</a>. Surgery is usually considered only when:</p>',
+               . '<p><b>A transplant</b> suits few women, because female thinning is often diffuse and can reach the donor area. It is more often an option for permanent traction loss, a high hairline or a stable scar, and grafts do not stop surrounding hair thinning. See <a href="/hair-transplant-for-women-in-rohini">hair transplant for women in Rohini</a> for when it can suit, and <a href="/hair-transplant-in-delhi">how a hair transplant is planned</a>. Surgery is usually considered only when:</p>',
     'points'  => [
         'Scarring alopecia has been ruled out',
         'Thinning is stable on medical treatment',

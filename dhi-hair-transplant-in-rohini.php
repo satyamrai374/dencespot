@@ -81,7 +81,7 @@ $crumbs = [
 
 $page = [
     'title'         => 'DHI Hair Transplant in Rohini, Delhi: Process & Cost',
-    'description'   => 'DHI hair transplant in Rohini, Delhi: how implanter pens place each graft, who DHI suits and when it is not worth the extra cost, unshaven options and cost.',
+    'description'   => 'DHI hair transplant in Rohini, Delhi: how implanter pens place each graft, who DHI suits and when it is not worth paying more, unshaven options and cost.',
     'url'           => '/dhi-hair-transplant-in-rohini',
     'crumbs'        => $crumbs,
     'preload_image' => '/assets/img/services/svc-hair-transplant-768.webp',
@@ -130,7 +130,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="hero__figure">
         <div class="media ratio-4-5 media--shadow">
-          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a model of a single follicular unit with three dark hair shafts, on a cream background" width="768" height="960" loading="eager" fetchpriority="high">
+          <img src="/assets/img/services/svc-hair-transplant-768.webp" srcset="/assets/img/services/svc-hair-transplant-512.webp 512w, /assets/img/services/svc-hair-transplant-768.webp 768w" sizes="(min-width: 1080px) 520px, 100vw" alt="AI-generated illustration: a model of a single follicular unit with three dark hair shafts" width="768" height="960" loading="eager" fetchpriority="high">
           <?= hp_ai_chip('AI-generated illustration') ?>
         </div>
         <div class="hero__badge-card">
@@ -147,12 +147,12 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-follicle',
-    'alt'     => 'a sculpted cross-section of the scalp showing hair follicles set at an angle beneath the skin',
+    'alt'     => 'a cross-section of the scalp showing hair follicles set at an angle',
     'eyebrow' => 'The instrument',
     'title'   => 'What an Implanter Pen Does',
     'tone'    => 'canvas',
     'html'    => '<p>An implanter is a pen-shaped instrument with a hollow needle tip. Each graft is loaded into one on its own, and the doctor makes the opening and delivers the graft in the same movement, setting depth, angle and direction for that graft. DHI is a way of placing grafts, not a separate operation; the control it gives is what you pay for.</p>'
-               . '<p>Needle sizes are matched to the graft, finer for single-hair units in the front rows and slightly larger behind, and grafts spend little time out of the body. Extraction, and the dot scars it leaves, are the same as in <a href="/fue-hair-transplant-in-rohini">FUE hair transplant in Rohini</a>; candidacy and aftercare are on <a href="/hair-transplant-delhi/rohini">hair transplant in Rohini</a>.</p>'
+               . '<p>Needle sizes are matched to the graft, finer for single-hair units in the front rows and slightly larger behind, and grafts spend little time out of the body. Extraction, and the dot scars it leaves, are the same as in <a href="/fue-hair-transplant-in-rohini">FUE hair transplant in Rohini</a>; candidacy and aftercare are on <a href="/hair-transplant-in-rohini">hair transplant in Rohini</a>.</p>'
                . '<p><b>Grafts are placed in one of three ways, and none is wrong.</b> The instrument matters less than the hands holding it, so ask which method is planned for each zone, and who will be holding it.</p>',
     'points'  => [
         'Sharp implanters make the opening and place the graft in one movement: DHI in the classic sense',
@@ -228,7 +228,7 @@ require __DIR__ . '/includes/header.php';
 
 <?= lp_split([
     'img'     => 'svc-unshaven',
-    'alt'     => 'a mannequin head seen from the front, with short hair and a hairline pencilled on',
+    'alt'     => 'a mannequin head from the front, with short hair and a pencilled hairline',
     'eyebrow' => 'Shaving',
     'title'   => 'Unshaven and Partially Shaved Options',
     'reverse' => true,

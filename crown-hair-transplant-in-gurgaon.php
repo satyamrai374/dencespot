@@ -63,7 +63,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Crown Hair Transplant in Gurgaon | DenceSpot Clinic',
-    'description' => 'Crown hair transplant in Gurgaon. Whorl direction rebuilt graft by graft, with honest advice on staging and whether the crown should be treated first at all.',
+    'description' => 'Crown hair transplant in Gurgaon. Whorl direction rebuilt graft by graft, with honest advice on staging and whether the crown should be treated first.',
     'url'         => '/crown-hair-transplant-in-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [

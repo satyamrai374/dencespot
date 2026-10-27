@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'first-14-days-after-a-hair-transplant';
-$postDescription = 'A day-by-day account of the first fortnight after a hair transplant: swelling, the first wash, crust clearance, what dislodges grafts, and what warrants a phone call.';
+$postDescription = 'Day by day through the first fortnight after a hair transplant: swelling, the first wash, crust clearance, what dislodges grafts and what warrants a call.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

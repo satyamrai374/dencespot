@@ -30,7 +30,7 @@ $galleryItems = [
         'grafts'   => '2,400 Grafts',
         'interval' => '12 Months Post-Op',
         'desc'     => 'Restoration of receding front hairline and bilateral temple angles with single-follicle feathering along the frontal margin.',
-        'alt'      => 'Hairline and temple restoration at DenceSpot Clinic Gurugram — 2,400-graft FUE hair transplant before and 12 months after',
+        'alt'      => 'Hairline and temple restoration, 2,400 FUE grafts, DenceSpot Gurugram: before and 12 months after',
         'w'        => 1500,
         'h'        => 1500,
     ],
@@ -538,8 +538,8 @@ foreach ($galleryItems as $item) {
 }
 
 $page = [
-    'title'       => 'Before and After Hair Transplant Gallery | DenceSpot Clinic Gurgaon & Delhi',
-    'description' => 'Explore authentic before and after hair transplant results, patient transformations, and clinical facilities at DenceSpot Clinic. Doctor-led, 100% unedited photos.',
+    'title'       => 'Hair Transplant Before and After Gallery | DenceSpot Clinic',
+    'description' => 'Before and after hair transplant photos of DenceSpot Clinic patients, published with consent and never digitally altered, plus photos of the clinic itself.',
     'url'         => '/gallery',
     'crumbs'      => $crumbs,
     'nav_active'  => '/gallery',

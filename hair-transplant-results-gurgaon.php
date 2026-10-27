@@ -79,6 +79,10 @@ $filters = [
     'womens'            => 'Women’s hair loss',
 ];
 
+// Every case is in the page; the procedure buttons filter them in the browser
+// (footer.php). ?type= links used to do it, and each of those URLs
+// canonicalised back to this page. An old ?type= link still opens on its
+// filter, so $visible keeps that view's structured data in step with it.
 $activeFilter = isset($_GET['type']) && isset($filters[$_GET['type']]) ? (string) $_GET['type'] : 'all';
 $visible = $activeFilter === 'all'
     ? $cases
@@ -128,7 +132,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Hair Transplant Results in Gurgaon | DenceSpot Clinic',
-    'description' => 'Consented before and after photographs from hair transplant patients treated by Dr. Nyra at DenceSpot Clinic, Sector 39 Gurugram. The hair is never digitally altered.',
+    'description' => 'Consented before and after photos of hair transplant patients treated by Dr. Nyra at DenceSpot Clinic, Sector 39 Gurugram. Hair never digitally altered.',
     'url'         => '/hair-transplant-results-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => array_merge([
@@ -142,7 +146,7 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section class="section section--canvas">
-  <div class="wrap">
+  <div class="wrap" data-filter-scope>
     <div style="max-width:64ch">
       <span class="pill pill--dot">Results</span>
       <h1 class="h1 mt-3">Hair Transplant Results in Gurgaon</h1>
@@ -151,31 +155,31 @@ require __DIR__ . '/includes/header.php';
       <?= medical_review_line() ?>
     </div>
 
-    <nav class="btn-row mt-6" aria-label="Filter results by procedure">
+    <div class="btn-row mt-6" role="group" aria-label="Filter results by procedure" data-filter-nav data-filter-param="type" hidden>
       <?php foreach ($filters as $key => $label): ?>
-        <a class="btn btn--sm <?= $activeFilter === $key ? 'btn--ink' : 'btn--outline' ?>"
-           href="/hair-transplant-results-gurgaon<?= $key === 'all' ? '' : '?type=' . e($key) ?>"><?= e($label) ?></a>
+        <button type="button" class="btn btn--sm <?= $key === 'all' ? 'btn--ink' : 'btn--outline' ?>"
+                data-filter="<?= $key === 'all' ? '' : e($key) ?>"
+                data-filter-name="<?= $key === 'all' ? '' : e(strtolower($label)) ?>"
+                aria-pressed="<?= $key === 'all' ? 'true' : 'false' ?>"><?= e($label) ?></button>
       <?php endforeach; ?>
-    </nav>
+    </div>
 
-    <?php if ($visible === []): ?>
-      <div class="card card--dashed card--pad-lg mt-6">
-        <?= icon('info', 24, 'var(--ink-muted)') ?>
-        <h2 class="h3 mt-3"><?= $activeFilter === 'all' ? 'No cases are published yet' : 'No ' . e(strtolower($filters[$activeFilter])) . ' cases are published yet' ?></h2>
-        <p class="body mt-3 measure">This space stays empty until a real, consented case fills it. Nothing here is stock imagery, a licensed photo library, or a result from another clinic.</p>
-        <p class="body mt-3 measure">That is not modesty. Publishing borrowed before-and-afters breaches Google's policies on misleading content, breaches medical-advertising rules, and — the part that actually matters — misleads someone making a decision about surgery on their own body. Patients notice, too: the same handful of stock result photos circulate across dozens of clinic websites.</p>
-        <p class="body mt-3 measure">Cases appear here as consented patients reach their review points, with the graft count and interval printed on each one so you can judge them properly.</p>
-        <div class="btn-row mt-5">
-          <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask to see cases like yours</a>
-          <a class="btn btn--outline" href="/book-consultation">Book a consultation</a>
-        </div>
-        <p class="meta mt-4">At a consultation the doctor can show you consented cases relevant to your own pattern and donor supply, which is far more useful than a public gallery in any event.</p>
+    <div class="card card--dashed card--pad-lg mt-6" data-filter-empty<?= $cases === [] ? '' : ' hidden' ?>>
+      <?= icon('info', 24, 'var(--ink-muted)') ?>
+      <h2 class="h3 mt-3">No <span data-filter-label></span>cases are published yet</h2>
+      <p class="body mt-3 measure">This space stays empty until a real, consented case fills it. Nothing here is stock imagery, a licensed photo library, or a result from another clinic.</p>
+      <p class="body mt-3 measure">That is not modesty. Publishing borrowed before-and-afters breaches Google's policies on misleading content, breaches medical-advertising rules, and — the part that actually matters — misleads someone making a decision about surgery on their own body. Patients notice, too: the same handful of stock result photos circulate across dozens of clinic websites.</p>
+      <p class="body mt-3 measure">Cases appear here as consented patients reach their review points, with the graft count and interval printed on each one so you can judge them properly.</p>
+      <div class="btn-row mt-5">
+        <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask to see cases like yours</a>
+        <a class="btn btn--outline" href="/book-consultation">Book a consultation</a>
       </div>
-    <?php endif; ?>
+      <p class="meta mt-4">At a consultation the doctor can show you consented cases relevant to your own pattern and donor supply, which is far more useful than a public gallery in any event.</p>
+    </div>
 
     <div class="grid grid--3 mt-6">
-      <?php foreach ($visible as $case): ?>
-        <article class="card" style="padding:0;overflow:hidden">
+      <?php foreach ($cases as $case): ?>
+        <article class="card" style="padding:0;overflow:hidden" data-filter-key="<?= e($case['procedure']) ?>">
           <?php if ($case['image'] !== null): ?>
             <?php /* One composite per case: the clinic's own image already carries both panels
                      and its BEFORE / AFTER labels, so splitting it would cut through them. */ ?>

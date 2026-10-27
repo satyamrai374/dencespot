@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $postSlug = 'who-can-legally-perform-a-hair-transplant-in-india';
-$postDescription = 'What India\'s medical regulator requires of anyone performing a hair transplant, how to verify a doctor on the Indian Medical Register in two minutes, and what that register cannot tell you.';
+$postDescription = 'What India\'s medical regulator requires of anyone doing a hair transplant, how to check a doctor on the Indian Medical Register, and its limits.';
 
 /**
  * Drives both the FAQPage schema (emitted by blog-header.php) and the visible

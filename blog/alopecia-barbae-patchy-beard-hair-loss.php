@@ -36,7 +36,7 @@
 declare(strict_types=1);
 
 $postSlug = 'alopecia-barbae-patchy-beard-hair-loss';
-$postDescription = 'Smooth, round bald patches in a beard are often alopecia areata. How it differs from a patchy beard and fungal infection, how it is treated and why it recurs.';
+$postDescription = 'Smooth, round bald patches in a beard are often alopecia areata. How it differs from a patchy beard or fungal infection, how it is treated, why it recurs.';
 $postFaqHeading = 'Alopecia barbae: more questions';
 $postFaqId = 'alopecia-barbae-faqs';
 

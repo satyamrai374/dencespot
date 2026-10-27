@@ -63,7 +63,7 @@ $crumbs = [
 
 $page = [
     'title'       => 'Beard Transplant Cost in Gurgaon | DenceSpot',
-    'description' => 'What actually decides beard transplant cost in Gurgaon: zones treated, graft count and existing growth. How to read a quote, and why we price after assessment.',
+    'description' => 'What decides beard transplant cost in Gurgaon: zones treated, graft count and existing growth. How to read a quote, and why we price after assessment.',
     'url'         => '/beard-transplant-cost-gurgaon',
     'crumbs'      => $crumbs,
     'schema'      => [
@@ -99,7 +99,7 @@ require __DIR__ . '/includes/header.php';
       </div>
 
       <div class="hero__figure">
-        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Consultation and assessment setup where beard transplant estimates are prepared at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
+        <div class="media ratio-4-5 media--shadow"><img src="/assets/img/clinic-equipment.jpg" alt="Assessment setup where beard transplant estimates are prepared at DenceSpot Clinic, Gurugram" width="800" height="1000" loading="eager"></div>
         <div class="hero__badge-card">
           <p class="eyebrow">Assessed &amp; performed by</p>
           <p class="h4 mt-2"><?= e(doctor_name()) ?></p>
