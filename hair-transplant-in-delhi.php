@@ -100,6 +100,7 @@ $page = [
     'crumbs'        => $crumbs,
     'location'      => 'rohini',
     'service_areas' => true,
+    'keywords'      => ['hair transplant in delhi', 'hair transplant delhi', 'fue hair transplant in delhi', 'dhi hair transplant in delhi', 'hair transplant cost in delhi', 'hair transplant clinic in rohini delhi', SITE_NAME],
     'schema'        => [
         schema_delhi_clinic(),
         schema_breadcrumbs($crumbs),
@@ -312,7 +313,7 @@ require __DIR__ . '/includes/header.php';
             'Often used for the crown and mid-scalp',
             'Crusts settle in one to two weeks',
         ], false) ?>
-        <a class="btn btn--outline btn--sm mt-4" href="/fue-hair-transplant-in-rohini">FUE hair transplant in Rohini <?= icon('arrow', 14) ?></a>
+        <a class="btn btn--outline btn--sm mt-4" href="/fue-hair-transplant-in-delhi">FUE hair transplant in Delhi <?= icon('arrow', 14) ?></a>
       </div>
 
       <div class="card card--pad-lg tech-card tone--violet">
@@ -324,7 +325,7 @@ require __DIR__ . '/includes/header.php';
             'Often used for the hairline and temples',
             'Crusts settle in one to two weeks',
         ], false) ?>
-        <a class="btn btn--outline btn--sm mt-4" href="/dhi-hair-transplant-in-rohini">DHI hair transplant in Rohini <?= icon('arrow', 14) ?></a>
+        <a class="btn btn--outline btn--sm mt-4" href="/dhi-hair-transplant-in-delhi">DHI hair transplant in Delhi <?= icon('arrow', 14) ?></a>
       </div>
 
       <div class="tint-card tone--sky ht-tech__choose">
@@ -342,12 +343,14 @@ require __DIR__ . '/includes/header.php';
 
     <h3 class="h4 mt-6">Hair Transplant by Area and Need</h3>
     <ul class="ht-patterns">
+      <?php /* The Delhi pillars of each need (includes/delhi-treatments.php);
+               their Rohini pages are linked from those pillars. */ ?>
       <?php foreach ([
-          '/hairline-transplant-in-rohini'       => 'Hairline transplant',
-          '/crown-hair-transplant-in-rohini'     => 'Crown hair transplant',
-          '/hair-transplant-for-women-in-rohini' => 'Hair transplant for women',
-          '/hair-transplant-repair-in-rohini'    => 'Hair transplant repair',
-          '/unshaven-hair-transplant-in-rohini'  => 'Unshaven hair transplant',
+          '/hairline-transplant-in-delhi'       => 'Hairline transplant in Delhi',
+          '/crown-hair-transplant-in-delhi'     => 'Crown hair transplant in Delhi',
+          '/hair-transplant-for-women-in-delhi' => 'Hair transplant for women in Delhi',
+          '/hair-transplant-repair-in-delhi'    => 'Hair transplant repair in Delhi',
+          '/unshaven-hair-transplant-in-delhi'  => 'Unshaven hair transplant in Delhi',
       ] as $href => $anchor): ?>
       <li><a href="<?= e($href) ?>"><?= e($anchor) ?> <?= icon('arrow', 14) ?></a></li>
       <?php endforeach; ?>

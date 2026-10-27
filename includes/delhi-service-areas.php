@@ -30,12 +30,38 @@
  *
  * 'live' => false turns a page off: the URL then 301s to the pillar and the
  * pillar stops linking it.
+ *
+ * Beard transplant (client, 27 Oct 2026): the same areas have a second set of
+ * pages, /beard-transplant-in-<slug> (beard-transplant-in-<slug>.php, layout
+ * includes/delhi-beard-area-page.php), under the /beard-transplant-in-delhi
+ * pillar. Rohini has no beard area page: /beard-transplant-in-rohini is the
+ * clinic's own beard page, and the beard area list links that. 'live' turns
+ * off both pages of an area.
+ *
+ * Laser hair removal (client, 27 Oct 2026): a third set, /laser-hair-removal-
+ * in-<slug> (laser-hair-removal-in-<slug>.php, layout
+ * includes/delhi-laser-area-page.php), under the /laser-hair-removal-in-delhi
+ * pillar. As with beard, Rohini has no laser area page: the laser area list
+ * links the clinic's own /laser-hair-removal-in-rohini. 'live' turns off all
+ * three pages of an area.
+ *
+ * Every other service (client, 27 Oct 2026): the same pattern from one
+ * layout, for each treatment in DELHI_TREATMENTS (includes/delhi-treatments.php).
+ * 'live' turns off an area's page for every treatment.
  */
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/delhi-treatments.php';
+
 /** The Delhi pillar page. */
 const DELHI_HT_HUB = '/hair-transplant-in-delhi';
+
+/** The Delhi beard transplant pillar page. */
+const DELHI_BEARD_HUB = '/beard-transplant-in-delhi';
+
+/** The Delhi laser hair removal pillar page. */
+const DELHI_LASER_HUB = '/laser-hair-removal-in-delhi';
 
 /** Parts of the city, named on an area page whose district is not on record. */
 const DELHI_SERVICE_ZONES = [
@@ -545,16 +571,55 @@ function delhi_service_area_slug(string $path): ?string
     return null;
 }
 
+/** An area's beard transplant page; Rohini's is the clinic's own beard page. */
+function delhi_beard_url(string $slug): string
+{
+    return $slug === 'rohini' ? '/beard-transplant-in-rohini' : '/beard-transplant-in-' . $slug;
+}
+
+/** An area's laser hair removal page; Rohini's is the clinic's own laser page. */
+function delhi_laser_url(string $slug): string
+{
+    return $slug === 'rohini' ? '/laser-hair-removal-in-rohini' : '/laser-hair-removal-in-' . $slug;
+}
+
+/** Treatment => the anchor's opening words in "Serving Patients Across Delhi". */
+const DELHI_AREA_ANCHORS = [
+    'hair'  => 'Hair Transplant',
+    'beard' => 'Beard Transplant',
+    'laser' => 'Laser Hair Removal',
+];
+
+/** The anchor's opening words for a treatment: DELHI_AREA_ANCHORS, else its DELHI_TREATMENTS name. */
+function delhi_area_anchor(string $treatment): ?string
+{
+    return DELHI_AREA_ANCHORS[$treatment] ?? DELHI_TREATMENTS[$treatment]['name'] ?? null;
+}
+
+/** An area's page for a treatment in DELHI_AREA_ANCHORS or DELHI_TREATMENTS. */
+function delhi_area_url(string $treatment, string $slug): string
+{
+    return match ($treatment) {
+        'beard' => delhi_beard_url($slug),
+        'laser' => delhi_laser_url($slug),
+        default => isset(DELHI_TREATMENTS[$treatment]) ? delhi_treatment_url($treatment, $slug) : DELHI_SERVICE_AREAS[$slug]['url'],
+    };
+}
+
 /**
  * "Serving Patients Across Delhi": every live area page, linked with its
  * keyword anchor, on the pillar only (client, 27 Oct 2026, after a reference
  * site's "Serving Patients Across India" block). It sits just above the
  * footer, in place of the Rohini treatment links (client: only the hair
  * transplant location pages there). Open by default, so the links are in the
- * page without script; the button folds the list away.
+ * page without script; the button folds the list away. $treatment is a key of
+ * DELHI_AREA_ANCHORS ('beard' lists the beard transplant pages, for the beard
+ * pillar) or of DELHI_TREATMENTS.
  */
-function delhi_service_areas_section(): string
+function delhi_service_areas_section(string $treatment = 'hair'): string
 {
+    $treatment = delhi_area_anchor($treatment) !== null ? $treatment : 'hair';
+    $anchor    = delhi_area_anchor($treatment);
     ob_start(); ?>
 <section class="serving-areas" aria-labelledby="serving-areas-title">
   <div class="wrap">
@@ -563,9 +628,9 @@ function delhi_service_areas_section(): string
     <button type="button" class="serving-areas__toggle" aria-expanded="true" aria-controls="serving-areas" hidden><span>Hide Locations</span> <?= hp_icon('chevron', 18, 2) ?></button>
   </div>
   <ul class="serving-areas__list" id="serving-areas">
-    <?php foreach (DELHI_SERVICE_AREAS as $a): ?>
+    <?php foreach (DELHI_SERVICE_AREAS as $slug => $a): ?>
       <?php if (!$a['live']) { continue; } ?>
-    <li><a href="<?= e($a['url']) ?>"><?= icon('pin', 16, 'currentColor', 2) ?><span>Hair Transplant in <?= e($a['name']) ?></span></a></li>
+    <li><a href="<?= e(delhi_area_url($treatment, $slug)) ?>"><?= icon('pin', 16, 'currentColor', 2) ?><span><?= e($anchor) ?> in <?= e($a['name']) ?></span></a></li>
     <?php endforeach; ?>
   </ul>
   </div>

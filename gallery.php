@@ -948,7 +948,7 @@ require __DIR__ . '/includes/header.php';
   color: #646E85;
   line-height: 1.6;
 }
-.ds-disclaimer-box h4 {
+.ds-disclaimer-box h3 {
   font-size: 0.95rem;
   font-weight: 700;
   color: #12224A;
@@ -1042,7 +1042,7 @@ require __DIR__ . '/includes/header.php';
 
     <!-- Medical & Transparency Disclosure -->
     <div class="ds-disclaimer-box">
-      <h4>Clinical Photography Disclosure &amp; Patient Standards</h4>
+      <h3>Clinical Photography Disclosure &amp; Patient Standards</h3>
       <p>
         <strong>Individual Results Notice:</strong> Hair restoration outcomes depend on individual physiological factors, donor density, follicle characteristics, laxity, post-operative compliance, and patient age. Photographs depict individual outcomes achieved under doctor-led treatment protocols and do not constitute an explicit or implied warranty of identical results for every individual. All patient photography displayed on this website is published under signed written consent in accordance with medical ethics and Indian clinical communication standards.
       </p>

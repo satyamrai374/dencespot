@@ -27,14 +27,15 @@ $footClinics = [
      'tel' => LOC_DELHI_PHONE_E164, 'phone' => LOC_DELHI_PHONE_DISPLAY, 'wa' => LOC_DELHI_WHATSAPP_URL, 'maps' => LOC_DELHI_MAPS_URL, 'embed' => LOC_DELHI_MAP_EMBED],
 ];
 
-// Just above the footer: the same-city treatment links, except on the Delhi
-// hair transplant pillar, which asks with $page['service_areas'] for its
-// "Serving Patients Across Delhi" block instead, and the Delhi area pages,
-// which set $page['location_links'] => false and show neither (client,
-// 27 Oct 2026: the area pages link only to the pillar).
+// Just above the footer: the same-city treatment links, except on a Delhi
+// pillar, which asks with $page['service_areas'] for its "Serving Patients
+// Across Delhi" block instead (true for hair transplant, or a key of
+// DELHI_AREA_ANCHORS such as 'beard'), and the Delhi area pages, which set
+// $page['location_links'] => false and show neither (client, 27 Oct 2026:
+// the area pages link only to their pillar).
 if (!empty($page['service_areas'])) {
     require_once __DIR__ . '/delhi-service-areas.php';
-    $aboveFooter = delhi_service_areas_section();
+    $aboveFooter = delhi_service_areas_section(is_string($page['service_areas']) ? $page['service_areas'] : 'hair');
 } elseif (($page['location_links'] ?? true) === false) {
     $aboveFooter = '';
 } else {

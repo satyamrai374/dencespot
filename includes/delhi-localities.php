@@ -22,10 +22,12 @@ require_once __DIR__ . '/delhi-service-areas.php';
 
 /**
  * The full-width hero of /hair-transplant-in-gurgaon, with the licensed stock
- * photo in place of its AI image. $o: pill, title, lead, feats [[icon, label]].
+ * photo in place of its AI image. $o: pill, title, lead, feats [[icon, label]],
+ * and optionally treatment (the booking form's preset; hair transplant).
  */
 function delhi_hero(array $o): string
 {
+    $o += ['treatment' => 'Hair transplant'];
     ob_start(); ?>
 <section class="hero-x hero-x--page">
   <div class="hero-x__media">
@@ -50,7 +52,7 @@ function delhi_hero(array $o): string
       </ul>
 
       <div class="btn-row hero-x__ctas">
-        <a class="btn btn--lg btn--ink" href="<?= e(book_url()) ?>" data-book data-clinic="Delhi (Rohini)" data-treatment="Hair transplant" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+        <a class="btn btn--lg btn--ink" href="<?= e(book_url()) ?>" data-book data-clinic="Delhi (Rohini)" data-treatment="<?= e($o['treatment']) ?>" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
         <a class="btn btn--lg btn--outline" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= icon('phone', 18) ?> Call <?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
       </div>
       <p class="hero-x__note hero-x__note--copy">Image: representative, not the Rohini clinic</p>
@@ -100,10 +102,11 @@ function delhi_glance(array $rows, string $label): string
 /**
  * The "why" band: a row of round icons, and beside it either a photo or the
  * Rohini clinic's map. $o: id, eyebrow, heading, intro, icons [[icon, label]],
- * media 'map' | 'equipment'.
+ * media 'map' | 'equipment', and optionally checks (the photo's checklist).
  */
 function delhi_band(array $o): string
 {
+    $o += ['checks' => ['FUE & DHI at the Rohini clinic', 'Consented patient photographs', 'Reviews through the first year']];
     ob_start(); ?>
 <section class="section ht-sec ht-why" id="<?= e($o['id']) ?>">
   <div class="wrap">
@@ -127,9 +130,9 @@ function delhi_band(array $o): string
   <figure class="ht-why__media">
     <img src="/assets/img/clinic-equipment.jpg" alt="Motorised FUE handpiece used at DenceSpot Clinic to take follicular units one at a time" width="492" height="855" loading="lazy" decoding="async">
     <ul class="ht-why__checks">
-      <li><?= icon('check', 16, 'currentColor', 2.4) ?> FUE &amp; DHI at the Rohini clinic</li>
-      <li><?= icon('check', 16, 'currentColor', 2.4) ?> Consented patient photographs</li>
-      <li><?= icon('check', 16, 'currentColor', 2.4) ?> Reviews through the first year</li>
+      <?php foreach ($o['checks'] as $check): ?>
+      <li><?= icon('check', 16, 'currentColor', 2.4) ?> <?= e($check) ?></li>
+      <?php endforeach; ?>
     </ul>
     <figcaption class="ht-why__tag">DenceSpot’s FUE handpiece</figcaption>
   </figure>
@@ -305,9 +308,20 @@ function delhi_cost_brief(): string
     return (string) ob_get_clean();
 }
 
-/** The closing consultation band, with the Rohini clinic's details and form. */
-function delhi_consult(string $heading, string $intro, string $source): string
+/**
+ * The closing consultation band, with the Rohini clinic's details and form.
+ * $treatments: the form's treatment options; the hair transplant list when empty.
+ */
+function delhi_consult(string $heading, string $intro, string $source, array $treatments = []): string
 {
+    $treatments = $treatments ?: [
+        'Hair transplant (FUE / DHI)',
+        'Hairline transplant',
+        'Crown hair transplant',
+        'Hair transplant for women',
+        'Hair transplant repair',
+        'Not sure — please advise',
+    ];
     ob_start(); ?>
 <section class="section ht-sec consult" id="consultation">
   <div class="wrap">
@@ -334,14 +348,7 @@ function delhi_consult(string $heading, string $intro, string $source): string
         <h3 class="h3">Book Your Consultation</h3>
         <p class="body-s mt-1">The Rohini clinic replies during opening hours (<?= e(HOURS_DISPLAY) ?>).</p>
         <div class="mt-4">
-          <?= enquiry_form($source, [
-              'Hair transplant (FUE / DHI)',
-              'Hairline transplant',
-              'Crown hair transplant',
-              'Hair transplant for women',
-              'Hair transplant repair',
-              'Not sure — please advise',
-          ], false) ?>
+          <?= enquiry_form($source, $treatments, false) ?>
         </div>
         <p class="fine mt-4">Suitability is decided after clinical assessment. This page is patient education and is not medical advice.</p>
       </div>
@@ -352,8 +359,8 @@ function delhi_consult(string $heading, string $intro, string $source): string
     return (string) ob_get_clean();
 }
 
-/** The FAQ section in the Gurgaon layout. */
-function delhi_faqs(string $heading, array $faqs, int $visible): string
+/** The FAQ section in the Gurgaon layout. $about: what the consultation answers (the laser pages: skin and hair). */
+function delhi_faqs(string $heading, array $faqs, int $visible, string $about = 'scalp, health or budget'): string
 {
     ob_start(); ?>
 <section class="section ht-sec section--canvas" id="faqs">
@@ -362,7 +369,7 @@ function delhi_faqs(string $heading, array $faqs, int $visible): string
       <div>
         <p class="eyebrow">FAQs</p>
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
-        <p class="body-s mt-3">General patient education. Anything specific to your scalp, health or budget is answered at the consultation.</p>
+        <p class="body-s mt-3">General patient education. Anything specific to your <?= e($about) ?> is answered at the consultation.</p>
         <div class="btn-row mt-4">
           <a class="btn btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
         </div>

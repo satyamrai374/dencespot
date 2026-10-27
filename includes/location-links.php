@@ -106,13 +106,23 @@ const LOCATION_LINKS = [
                     'Hair Transplant' => [
                         // The Delhi area pages, Rohini's included, are linked
                         // from the pillar only (client, 27 Oct 2026).
+                        // Each treatment's Delhi pillar (includes/delhi-treatments.php)
+                        // sits beside its Rohini page; its area pages are linked
+                        // from the pillar only.
                         '/hair-transplant-in-delhi'            => 'Hair Transplant in Delhi',
+                        '/fue-hair-transplant-in-delhi'        => 'FUE Hair Transplant in Delhi',
                         '/fue-hair-transplant-in-rohini'       => 'FUE Hair Transplant in Rohini',
+                        '/dhi-hair-transplant-in-delhi'        => 'DHI Hair Transplant in Delhi',
                         '/dhi-hair-transplant-in-rohini'       => 'DHI Hair Transplant in Rohini',
+                        '/unshaven-hair-transplant-in-delhi'   => 'Unshaven Hair Transplant in Delhi',
                         '/unshaven-hair-transplant-in-rohini'  => 'Unshaven Hair Transplant in Rohini',
+                        '/hairline-transplant-in-delhi'        => 'Hairline Transplant in Delhi',
                         '/hairline-transplant-in-rohini'       => 'Hairline Transplant in Rohini',
+                        '/crown-hair-transplant-in-delhi'      => 'Crown Hair Transplant in Delhi',
                         '/crown-hair-transplant-in-rohini'     => 'Crown Hair Transplant in Rohini',
+                        '/hair-transplant-for-women-in-delhi'  => 'Hair Transplant for Women in Delhi',
                         '/hair-transplant-for-women-in-rohini' => 'Hair Transplant for Women in Rohini',
+                        '/hair-transplant-repair-in-delhi'     => 'Hair Transplant Repair in Delhi',
                         '/hair-transplant-repair-in-rohini'    => 'Hair Transplant Repair in Rohini',
                         '/hair-transplant-cost-in-rohini'      => 'Hair Transplant Cost in Rohini',
                     ],
@@ -122,23 +132,36 @@ const LOCATION_LINKS = [
                         '/dr-nyra'  => 'Dr. Nyra, Hair Transplant Surgeon in Rohini',
                         '/dr-rahul' => 'Dr. Rahul, Hair Transplant Doctor in Rohini',
                     ],
+                    // The Delhi beard area pages are linked from the beard
+                    // pillar only, as the hair transplant ones are.
                     'Beard & Eyebrow Transplant' => [
+                        '/beard-transplant-in-delhi'       => 'Beard Transplant in Delhi',
                         '/beard-transplant-in-rohini'      => 'Beard Transplant in Rohini, Delhi',
                         '/beard-transplant-cost-in-rohini' => 'Beard Transplant Cost in Rohini',
+                        '/eyebrow-transplant-in-delhi'     => 'Eyebrow Transplant in Delhi',
                         '/eyebrow-transplant-in-rohini'    => 'Eyebrow Transplant in Rohini',
                     ],
                     'PRP & Non-Surgical Hair Treatment' => [
+                        '/hair-prp-treatment-in-delhi'       => 'Hair PRP Treatment in Delhi',
                         '/hair-prp-treatment-in-rohini'      => 'Hair PRP Treatment in Rohini, Delhi',
                         '/prp-hair-treatment-cost-in-rohini' => 'PRP Hair Treatment Cost in Rohini',
+                        '/gfc-treatment-in-delhi'            => 'GFC Treatment in Delhi',
                         '/gfc-treatment-in-rohini'           => 'GFC Treatment in Rohini',
+                        '/hair-mesotherapy-in-delhi'         => 'Hair Mesotherapy in Delhi',
                         '/hair-mesotherapy-in-rohini'        => 'Hair Mesotherapy in Rohini',
+                        '/hair-microneedling-in-delhi'       => 'Hair Microneedling in Delhi',
                         '/hair-microneedling-in-rohini'      => 'Hair Microneedling in Rohini',
+                        '/hair-led-therapy-in-delhi'         => 'Hair LED Therapy in Delhi',
                         '/hair-led-therapy-in-rohini'        => 'Hair LED Therapy in Rohini',
                     ],
                     'Hair Fall & Scalp' => [
+                        '/hair-fall-treatment-in-delhi'         => 'Hair Fall Treatment in Delhi',
                         '/hair-fall-treatment-in-rohini'        => 'Hair Fall Treatment in Rohini, Delhi',
+                        '/womens-hair-loss-treatment-in-delhi'  => "Women's Hair Loss Treatment in Delhi",
                         '/womens-hair-loss-treatment-in-rohini' => "Women's Hair Loss Treatment in Rohini",
+                        '/alopecia-areata-treatment-in-delhi'   => 'Alopecia Areata Treatment in Delhi',
                         '/alopecia-areata-treatment-in-rohini'  => 'Alopecia Areata Treatment in Rohini',
+                        '/dandruff-treatment-in-delhi'          => 'Dandruff Treatment in Delhi',
                         '/dandruff-treatment-in-rohini'         => 'Dandruff Treatment in Rohini',
                     ],
                 ],
@@ -146,9 +169,14 @@ const LOCATION_LINKS = [
             'skin' => [
                 'title'  => 'Skin & Laser Treatments in Rohini, Delhi',
                 'groups' => [
+                    // The Delhi laser area pages are linked from the laser
+                    // pillar only, as the hair transplant ones are.
                     'Skin & Laser' => [
+                        '/skin-treatment-in-delhi'      => 'Skin Treatment in Delhi',
                         '/skin-treatment-in-rohini'     => 'Skin Treatment in Rohini, Delhi',
+                        '/laser-hair-removal-in-delhi'  => 'Laser Hair Removal in Delhi',
                         '/laser-hair-removal-in-rohini' => 'Laser Hair Removal in Rohini',
+                        '/face-prp-treatment-in-delhi'  => 'Face PRP Treatment in Delhi',
                         '/face-prp-treatment-in-rohini' => 'Face PRP Treatment in Rohini',
                     ],
                 ],

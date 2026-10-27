@@ -49,12 +49,17 @@ function sitemap_weight(string $slug): array
         return ['1.0', 'weekly'];
     }
     $money = [
-        'hair-transplant-in-gurgaon', 'hair-transplant-in-delhi', 'beard-transplant-gurgaon',
+        'hair-transplant-in-gurgaon', 'hair-transplant-in-delhi', 'beard-transplant-gurgaon', 'beard-transplant-in-delhi',
+        'laser-hair-removal-in-delhi',
         'hair-prp-treatment-in-gurgaon', 'hair-fall-treatment-in-gurgaon',
         'hair-transplant-cost-in-gurgaon',
     ];
     if (in_array($slug, $money, true)) {
         return ['0.9', 'weekly'];
+    }
+    // The other Delhi treatment pillars (includes/delhi-treatments.php).
+    if (str_ends_with($slug, '-in-delhi') && !str_contains($slug, '/')) {
+        return ['0.8', 'weekly'];
     }
     if (str_starts_with($slug, 'blog/')) {
         return ['0.5', 'monthly'];
@@ -117,6 +122,67 @@ function sitemap_pages(): array
             unset($out[$slug]);
         } elseif (isset($out[$slug])) {
             $out[$slug] = max($out[$slug], $areaDate);
+        }
+    }
+
+    // The Delhi beard transplant area pages (beard-transplant-in-pitampura.php
+    // …), the same way. Rohini's beard page is a page of its own.
+    $beardDate = max($areaDate, filemtime($root . '/includes/delhi-beard.php'), filemtime($root . '/includes/delhi-beard-area-page.php'));
+    foreach (DELHI_SERVICE_AREAS as $areaSlug => $a) {
+        if ($areaSlug === 'rohini') {
+            continue;
+        }
+        $slug = ltrim(delhi_beard_url($areaSlug), '/');
+        if (!$a['live']) {
+            unset($out[$slug]);
+        } elseif (isset($out[$slug])) {
+            $out[$slug] = max($out[$slug], $beardDate);
+        }
+    }
+
+    // The Delhi laser hair removal area pages (laser-hair-removal-in-pitampura.php
+    // …), the same way. Rohini's laser page is a page of its own.
+    $laserDate = max(filemtime($root . '/includes/delhi-service-areas.php'), filemtime($root . '/includes/delhi-laser.php'), filemtime($root . '/includes/delhi-laser-area-page.php'));
+    foreach (DELHI_SERVICE_AREAS as $areaSlug => $a) {
+        if ($areaSlug === 'rohini') {
+            continue;
+        }
+        $slug = ltrim(delhi_laser_url($areaSlug), '/');
+        if (!$a['live']) {
+            unset($out[$slug]);
+        } elseif (isset($out[$slug])) {
+            $out[$slug] = max($out[$slug], $laserDate);
+        }
+    }
+
+    // Every other Delhi treatment (includes/delhi-treatments.php): its pillar
+    // and area pages carry the newest of its copy file and the shared layouts.
+    $layoutDate = max(
+        filemtime($root . '/includes/delhi-service-areas.php'),
+        filemtime($root . '/includes/delhi-treatment-sections.php'),
+        filemtime($root . '/includes/delhi-treatment-pillar.php'),
+        filemtime($root . '/includes/delhi-treatment-area-page.php')
+    );
+    foreach (array_keys(DELHI_TREATMENTS) as $key) {
+        $copy = $root . '/includes/delhi-treatments/' . $key . '.php';
+        if (!is_file($copy)) {
+            continue;
+        }
+        $date = max($layoutDate, filemtime($copy));
+        $hub  = ltrim(delhi_treatment_hub($key), '/');
+        if (isset($out[$hub])) {
+            $out[$hub] = max($out[$hub], $date);
+        }
+        foreach (DELHI_SERVICE_AREAS as $areaSlug => $a) {
+            if ($areaSlug === 'rohini') {
+                continue;
+            }
+            $slug = ltrim(delhi_treatment_url($key, $areaSlug), '/');
+            if (!$a['live']) {
+                unset($out[$slug]);
+            } elseif (isset($out[$slug])) {
+                $out[$slug] = max($out[$slug], $date);
+            }
         }
     }
 

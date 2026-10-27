@@ -277,11 +277,11 @@ const LEGACY_DELHI_ALIAS = [
 ];
 
 /**
- * The Delhi area page (includes/delhi-service-areas.php) for an old area slug,
- * or null. A sector or part of an area goes to the area: rohini-sector-8,
+ * The live Delhi area (a key of DELHI_SERVICE_AREAS) for an old area slug, or
+ * null. A sector or part of an area goes to the area: rohini-sector-8,
  * sector-8-rohini, greater-kailash-ii, east-patel-nagar.
  */
-function legacy_delhi_area(string $slug): ?string
+function legacy_delhi_area_slug(string $slug): ?string
 {
     require_once __DIR__ . '/delhi-service-areas.php';
     $names = array_combine(array_keys(DELHI_SERVICE_AREAS), array_keys(DELHI_SERVICE_AREAS)) + LEGACY_DELHI_ALIAS;
@@ -294,7 +294,14 @@ function legacy_delhi_area(string $slug): ?string
             }
         }
     }
-    return $match !== null && DELHI_SERVICE_AREAS[$match]['live'] ? DELHI_SERVICE_AREAS[$match]['url'] : null;
+    return $match !== null && DELHI_SERVICE_AREAS[$match]['live'] ? $match : null;
+}
+
+/** The Delhi hair transplant area page for an old area slug, or null. */
+function legacy_delhi_area(string $slug): ?string
+{
+    $match = legacy_delhi_area_slug($slug);
+    return $match !== null ? DELHI_SERVICE_AREAS[$match]['url'] : null;
 }
 
 /**
@@ -306,6 +313,44 @@ function legacy_delhi_area(string $slug): ?string
 function legacy_delhi_hair_transplant(string $area): ?string
 {
     return legacy_delhi_area($area) ?? (preg_match(LEGACY_DELHI_AREAS, $area) ? DELHI_HT_HUB : null);
+}
+
+/** The same for an old beard transplant URL, to the beard area page or pillar. */
+function legacy_delhi_beard_transplant(string $area): ?string
+{
+    $match = legacy_delhi_area_slug($area);
+    if ($match !== null) {
+        return delhi_beard_url($match);
+    }
+    return preg_match(LEGACY_DELHI_AREAS, $area) ? DELHI_BEARD_HUB : null;
+}
+
+/** The same for an old laser hair removal URL, to the laser area page or pillar. */
+function legacy_delhi_laser_hair_removal(string $area): ?string
+{
+    $match = legacy_delhi_area_slug($area);
+    if ($match !== null) {
+        return delhi_laser_url($match);
+    }
+    return preg_match(LEGACY_DELHI_AREAS, $area) ? DELHI_LASER_HUB : null;
+}
+
+/** Old treatment prefixes for a DELHI_TREATMENTS key. */
+const LEGACY_TREATMENT_ALIAS = [
+    'prp-hair-treatment' => 'hair-prp-treatment',
+];
+
+/**
+ * The same for any treatment in DELHI_TREATMENTS: an old or variant area slug
+ * to that area's page, another Delhi locality to the treatment's pillar.
+ */
+function legacy_delhi_treatment(string $key, string $area): ?string
+{
+    $match = legacy_delhi_area_slug($area);
+    if ($match !== null) {
+        return delhi_treatment_url($key, $match);
+    }
+    return preg_match(LEGACY_DELHI_AREAS, $area) ? delhi_treatment_hub($key) : null;
 }
 
 /** 301 target for an old URL path, or null when it has no counterpart. */
@@ -326,8 +371,22 @@ function legacy_redirect(string $path): ?string
     if ($path === '/hair-transplant-delhi' || str_starts_with($path, '/hair-transplant-delhi/')) {
         return legacy_delhi_area(substr($path, 23)) ?? DELHI_HT_HUB;
     }
+    if (preg_match('#^/([a-z-]+?)-in-([a-z0-9-]+)$#', $path, $m)) {
+        require_once __DIR__ . '/delhi-service-areas.php';
+        $key = LEGACY_TREATMENT_ALIAS[$m[1]] ?? $m[1];
+        if (isset(DELHI_TREATMENTS[$key]) && is_file(dirname(__DIR__) . delhi_treatment_hub($key) . '.php')
+            && ($target = legacy_delhi_treatment($key, $m[2])) !== null) {
+            return $target;
+        }
+    }
     if (preg_match('#^/([a-z-]+?)-in-([a-z0-9-]+)$#', $path, $m) && isset(LEGACY_LOCALITY[$m[1]])) {
         if ($m[1] === 'hair-transplant' && ($target = legacy_delhi_hair_transplant($m[2])) !== null) {
+            return $target;
+        }
+        if ($m[1] === 'beard-transplant' && ($target = legacy_delhi_beard_transplant($m[2])) !== null) {
+            return $target;
+        }
+        if ($m[1] === 'laser-hair-removal' && ($target = legacy_delhi_laser_hair_removal($m[2])) !== null) {
             return $target;
         }
         return LEGACY_LOCALITY[$m[1]][preg_match(LEGACY_DELHI_AREAS, $m[2]) ? 1 : 0];
