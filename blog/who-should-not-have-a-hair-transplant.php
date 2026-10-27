@@ -92,6 +92,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>A decline that ends the conversation is a poor decline. Each of the situations above has a next step, and a clinic that has genuinely assessed you can name yours.</p>
 
+<div class="table-scroll">
 <table class="data">
   <thead>
     <tr><th scope="col">Finding</th><th scope="col">Reasonable next step</th></tr>
@@ -105,6 +106,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Expectation mismatch</td><td>Second consultation, or referral where appropriate</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Medical and in-clinic options overlap here. Platelet-rich plasma helps only where there is still hair to support, which is a different question from whether it substitutes for surgery — <a href="/blog/prp-or-hair-transplant">the comparison between PRP and a transplant</a> covers where each fits. For loss that is still active, <a href="/hair-fall-treatment-in-gurgaon">a structured hair fall assessment</a> is where the useful work happens.</p>
 

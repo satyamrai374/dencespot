@@ -37,6 +37,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Three questions separate the categories. Does it happen to nearly everyone, does it resolve, and can it be corrected if it does not.</p>
 
+<div class="table-scroll">
 <table class="data">
   <thead>
     <tr><th scope="col">Category</th><th scope="col">Examples</th><th scope="col">Where it ends</th></tr>
@@ -47,6 +48,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><th scope="row">Permanent</th><td>Overharvested donor, badly designed hairline, widened scar</td><td>Improved at best, never undone</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Notice that the third row contains no accidents. An overharvested donor area and a hairline placed too low are not complications in the way an infection is. They are decisions, taken by whoever planned the case.</p>
 

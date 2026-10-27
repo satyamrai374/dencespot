@@ -122,6 +122,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>A gallery you can trust tends to be smaller than one you cannot, and it discloses more:</p>
 
+<div class="table-scroll">
 <table class="data">
   <thead>
     <tr><th scope="col">A gallery worth reading</th><th scope="col">A gallery to discount</th></tr>
@@ -135,6 +136,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Consent stated, and results described as varying</td><td>Uniformly excellent cases, no caveats</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Consent is the part patients rarely check. A clinic publishing a recognisable face should be able to say that written permission was given for marketing use, separately from clinical records. If that statement is missing, ask — the answer tells you how your own photographs will be treated.</p>
 

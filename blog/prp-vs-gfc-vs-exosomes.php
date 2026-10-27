@@ -67,6 +67,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Rank the three by depth of evidence and you get, in most clinics, the reverse of the price list.</p>
 
+<div class="table-scroll">
 <table class="data">
   <caption>Source material and evidence, compared</caption>
   <thead>
@@ -78,6 +79,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Exosomes</td><td>Cultured donor or non-human cells</td><td>Thinnest; long-term scalp data absent</td></tr>
   </tbody>
 </table>
+</div>
 
 <h2 id="session-schedules-and-maintenance">Session schedules and maintenance intervals</h2>
 

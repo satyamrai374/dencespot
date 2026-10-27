@@ -151,7 +151,8 @@ require __DIR__ . '/includes/header.php';
       <div class="card">
         <?= icon($c['icon'], 22, 'var(--accent-deep)') ?>
         <h3 class="h4 mt-2"><?= e($c['title']) ?></h3>
-        <p class="body-s mt-2"><?= e($c['body']) ?></p>
+        <?php /* Authored HTML, like the FAQ answers: a body may carry a source link (Telogen effluvium). */ ?>
+        <p class="body-s mt-2"><?= $c['body'] ?></p>
       </div>
       <?php endforeach; ?>
     </div>

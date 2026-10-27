@@ -72,6 +72,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Patients want a single date for the diary, and activity does not work that way. Sweat, straining, direct impact and immersion are four separate problems with four separate timelines.</p>
 
+<div class="table-scroll">
 <table class="data">
   <caption>Typical staging, subject to your surgeon's review</caption>
   <thead>
@@ -86,6 +87,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Contact sport, or sport in a helmet</td><td>Later, and reviewed</td><td>Trauma and pressure together</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Those are bands, not promises, and an examination can move any of them either way. A cricket helmet carries the motorcycle helmet problem with impact added, so anyone whose sport involves headgear should raise it at the consultation, not at the first follow-up.</p>
 

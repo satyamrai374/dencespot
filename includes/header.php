@@ -98,7 +98,9 @@ $schemaHtml  = schema_render($medicalNode === null ? $page['schema'] : array_mer
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/site.css">
+<?php /* ?v= changes whenever site.css does: .htaccess lets browsers keep CSS for a
+         month, and without it returning visitors got new markup with old styles. */ ?>
+<link rel="stylesheet" href="/assets/css/site.css?v=<?= (int) @filemtime(dirname(__DIR__) . '/assets/css/site.css') ?>">
 <?php if ($page['preload_image'] !== ''): ?>
 <link rel="preload" as="image" href="<?= e($page['preload_image']) ?>" fetchpriority="high">
 <?php endif; ?>

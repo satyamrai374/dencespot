@@ -81,6 +81,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>Both share the same recipient-side course: crusting, then shedding, then months of waiting, none of which cares how the grafts were obtained. See <a href="/blog/first-14-days-after-a-hair-transplant">what the first fortnight actually looks like</a> and the full <a href="/hair-transplant-aftercare">aftercare protocol</a>.</p>
 
+<div class="table-scroll">
 <table class="data">
   <tr><th>Consideration</th><th>Strip harvest</th><th>Punch harvest</th></tr>
   <tr><th>Donor scar</th><td>One linear scar</td><td>Many small marks plus diffuse thinning</td></tr>
@@ -90,6 +91,7 @@ require __DIR__ . '/../includes/blog-header.php';
   <tr><th>Very large single sessions</th><td>Generally easier</td><td>Often staged</td></tr>
   <tr><th>Very short hairstyles</th><td>Scar may show</td><td>Usually more forgiving</td></tr>
 </table>
+</div>
 
 <h2 id="when-a-strip-still-makes-sense">When a strip still makes sense</h2>
 

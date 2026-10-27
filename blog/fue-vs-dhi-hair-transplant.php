@@ -89,6 +89,7 @@ require __DIR__ . '/../includes/blog-header.php';
 
 <p>There are cases where the choice is not arbitrary. There are rather more where it barely matters.</p>
 
+<div class="table-scroll">
 <table class="data">
   <thead>
     <tr><th scope="col">Situation</th><th scope="col">What tends to suit it</th><th scope="col">Why</th></tr>
@@ -101,6 +102,7 @@ require __DIR__ . '/../includes/blog-header.php';
     <tr><td>Beard and moustache work</td><td>Implanter pens, usually</td><td>Very flat exit angles, where an error is visible immediately.</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Read those as tendencies, not rules. A surgeon who has spent years placing into pre-made channels will build a better hairline that way than with a tool they use occasionally.</p>
 
