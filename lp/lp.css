@@ -531,10 +531,10 @@ header {
 }
 
 /* LP: the reference's results heading, subtitle and flag row were removed
-   (client, 26 Oct 2026). Six photos, so three columns instead of four. */
+   (client, 26 Oct 2026). Eight photos fill the reference's 4 × 2 grid. */
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   gap: 25px;
   margin-bottom: 50px;
 }
@@ -861,6 +861,30 @@ header {
   color: var(--gray-dark);
   margin-bottom: var(--space-sm);
   font-size: var(--text-sm);
+}
+
+/* LP: call button in the "Before You Decide" box, where the reference had a badge. */
+.highlight-call {
+  margin-top: var(--space-md);
+}
+
+/* LP: the clinic's years, under the "Meet Our Doctors" subtitle. */
+.section-subtitle--tight {
+  margin-bottom: var(--space-md);
+}
+
+.team-badge {
+  margin-top: 0;
+  font-size: 15px;
+  padding: 8px 20px;
+}
+
+@media (max-width: 480px) {
+  .team-badge {
+    font-size: 12.5px;
+    padding: 7px 14px;
+    white-space: nowrap;
+  }
 }
 
 /* Reference: inline style on the third line of each team card */
@@ -1626,8 +1650,11 @@ select.enhanced-input {
     padding: 4px 0;
   }
 
+  /* LP: four across on tablets too (the reference used three), so eight
+     photos make two full rows instead of 3 + 3 + 2. */
   .results-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
 
   .why-choose-content {

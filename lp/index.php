@@ -84,24 +84,28 @@ $stats = [
 ];
 
 /**
- * Before/after composites in lp/img/ (ba-NN-480/640/1080.webp, all square).
- * The first three fill the hero cards, the other six the results grid, so no
- * photo appears twice. No technique, graft count or interval is on record for
- * them, so none is printed.
+ * Before/after composites in lp/img/ (ba-NN-480/640/1080.webp, all square;
+ * ba-10/11 added 27 Oct 2026). The hero takes three whose photo panels fill
+ * the card to the bottom, so the cards line up (client, 27 Oct 2026: ba-02
+ * left white space under its centre card); the other eight fill the 4 × 2
+ * results grid. No photo appears twice. No technique, graft count or interval
+ * is on record for them, so none is printed.
  */
-$beforeAfter = [
+$heroPhotos = [
     'ba-01' => 'Before and after a hair transplant at DenceSpot Clinic: a fully shaved scalp with the new hairline drawn, and the grown-in result',
-    'ba-02' => 'Before and after a hair transplant at DenceSpot Clinic: a bald front and top marked for surgery, and the same patient with the area covered',
-    'ba-03' => 'Before and after a hair transplant at DenceSpot Clinic: thinning across the top of the head, and the result from the front',
     'ba-04' => 'Before and after a hair transplant at DenceSpot Clinic: a receding hairline from the front, and the rebuilt hairline',
+    'ba-03' => 'Before and after a hair transplant at DenceSpot Clinic: thinning across the top of the head, and the result from the front',
+];
+$resultPhotos = [
+    'ba-10' => 'Before and after a hair transplant at DenceSpot Clinic: a receding hairline and thin front, and the result from the front',
+    'ba-02' => 'Before and after a hair transplant at DenceSpot Clinic: a bald front and top marked for surgery, and the same patient with the area covered',
     'ba-05' => 'Before and after a hair transplant at DenceSpot Clinic: the frontal hairline marked out, and the result',
+    'ba-11' => 'Three photos of one DenceSpot Clinic patient: the hairline marked before surgery, the grafted area on the day of the procedure, and the result',
     'ba-06' => 'Before and after a hair transplant at DenceSpot Clinic: thinning front and temples seen from above, and the result',
     'ba-07' => 'Before and after a hair transplant at DenceSpot Clinic: receded temples marked for grafting, and the restored temples',
     'ba-08' => 'Before and after a hair transplant at DenceSpot Clinic: the hairline drawn on curly hair, and the result',
     'ba-09' => 'Four photos of one DenceSpot Clinic patient: before treatment, then at three later stages',
 ];
-$heroPhotos   = array_slice($beforeAfter, 0, 3, true);
-$resultPhotos = array_slice($beforeAfter, 3, null, true);
 
 /** A before/after composite with its WebP sizes. $attrs: loading, fetchpriority, class. */
 function lp_photo(string $slug, string $alt, string $sizes, array $attrs = []): string
@@ -410,7 +414,8 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
         <div class="highlight-content">
           Not everyone needs a transplant straight away. If medicine, PRP or waiting is the better first step for your hair loss, the doctor will tell you, and you leave with a <strong>written graft and cost estimate</strong> and no obligation to book a date.
         </div>
-        <span class="stats-badge"><i class="fas fa-check-circle"></i> Consultations in Gurugram &amp; Rohini</span>
+        <?php /* A call button since 27 Oct 2026 (client review comment: "consult now par call ka button lga do"). */ ?>
+        <a href="<?= e($telHref) ?>" class="btn-call highlight-call" data-track="call"><i class="fa-solid fa-phone"></i> Consult Now: <?= e(LP_PHONE_DISPLAY) ?></a>
       </div>
     </div>
   </section>
@@ -506,7 +511,10 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Meet Our Doctors</h2>
-        <p class="section-subtitle">The doctors who examine, plan and carry out hair treatment at DenceSpot Clinic</p>
+        <p class="section-subtitle section-subtitle--tight">The doctors who examine, plan and carry out hair treatment at DenceSpot Clinic</p>
+        <?php /* The clinic's years (client, 27 Oct 2026), not any one doctor's:
+                 each card keeps that doctor's own figure from DOCTORS. */ ?>
+        <span class="stats-badge team-badge"><i class="fas fa-certificate"></i> DenceSpot Clinic · <?= (int) STAT_CLINIC_YEARS ?>+ Years of Experience</span>
       </div>
       <div class="team-grid">
         <?php foreach ($team as [$key, $img, $role, $facts]): ?>
