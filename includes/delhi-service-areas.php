@@ -630,7 +630,10 @@ function delhi_service_areas_section(string $treatment = 'hair'): string
   <ul class="serving-areas__list" id="serving-areas">
     <?php foreach (DELHI_SERVICE_AREAS as $slug => $a): ?>
       <?php if (!$a['live']) { continue; } ?>
-    <li><a href="<?= e(delhi_area_url($treatment, $slug)) ?>"><?= icon('pin', 16, 'currentColor', 2) ?><span><?= e($anchor) ?> in <?= e($a['name']) ?></span></a></li>
+    <?php /* Absolute URLs (client, 28 Oct 2026): the links read
+             https://dencespot.com/… wherever the page is opened, never the
+             local server's host. */ ?>
+    <li><a href="<?= e(abs_url(delhi_area_url($treatment, $slug))) ?>"><?= icon('pin', 16, 'currentColor', 2) ?><span><?= e($anchor) ?> in <?= e($a['name']) ?></span></a></li>
     <?php endforeach; ?>
   </ul>
   </div>
