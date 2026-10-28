@@ -35,7 +35,7 @@ $faqs = [
     ['q' => 'When will I see results?',
      'a' => 'Transplanted hairs commonly shed within the first weeks while the follicles remain in place. New growth usually begins around three to four months, with a fuller picture at roughly ten to twelve months. Growth is uneven early on and texture improves as the hairs mature.'],
     ['q' => 'Is a beard transplant permanent?',
-     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist, and because they came from the scalp they keep growing and need trimming. Native beard hair around them can still change with age. No clinic can guarantee a specific density or a permanent outcome.'],
+     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist, and because they came from the scalp they keep growing and need trimming. Native beard hair around them can still change with age. No clinic can promise a specific density or a permanent outcome.'],
     ['q' => 'Will it look natural?',
      'a' => 'That is decided by three things: the angle each graft is set at, single-hair grafts along every visible border, and a density target that matches a real beard rather than a scalp. Get those right and the result reads as your own beard. Get the angle wrong and it bristles — which is why the design is agreed before surgery rather than improvised during it.'],
     ['q' => 'How much does a beard transplant cost in Gurgaon?',
@@ -75,7 +75,7 @@ $page = [
             'howPerformed'  => 'Follicular units are extracted from the occipital scalp donor area by FUE and placed into the beard area at the acute angle and direction of facial hair, using single-hair grafts along visible borders. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of facial hair pattern and scalp donor supply, review of medical history and medication, beard design drawn on the patient\'s face and agreed before surgery.',
             'followup'      => 'Written aftercare instructions covering washing, trimming and shaving, with photographic progress reviews through the first twelve months.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/beard-transplant-gurgaon', $faqs),
     ],
@@ -320,7 +320,7 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="grid grid--2 mt-4">
       <div class="note"><p class="h4">When can I shave?</p><p class="body-s mt-2">Trimming with scissors or a guarded trimmer is usually permitted before a razor is, and both are cleared by your doctor at a review rather than by a date on a website. Shaving too early disturbs grafts that are not yet secure.</p></div>
-      <div class="note"><p class="h4">Individual outcomes vary</p><p class="body-s mt-2">Your doctor will give personalized guidance based on your treatment. The timelines here are general patient education, not a promise of results, and no density or growth rate is guaranteed.</p></div>
+      <div class="note"><p class="h4">Individual outcomes vary</p><p class="body-s mt-2">Your doctor will give personalized guidance based on your treatment. The timelines here are general patient education, not a promise of results, and no density or growth rate can be promised.</p></div>
     </div>
   </div>
 </section>

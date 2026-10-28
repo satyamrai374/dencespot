@@ -50,7 +50,7 @@ $faqs = [
     ['q' => 'Are EMI or payment plans available?',
      'a' => 'Payment options are set out on our <a href="/cost-and-emi-options">cost and EMI options</a> page, and what applies to you is confirmed at consultation.'],
     ['q' => 'What is the cheapest sensible starting point?',
-     'a' => 'A consultation. If your hair loss turns out to be driven by iron deficiency or a thyroid problem, treating that is far cheaper than any course of injections and considerably more likely to work. Paying for a diagnosis first is the best value available in this whole category.'],
+     'a' => 'A consultation. If your hair loss turns out to be driven by iron deficiency or a thyroid problem, treating that is far cheaper than any course of injections and considerably more likely to work. Paying for a diagnosis first is the most sensible spend in this whole category.'],
 ];
 
 $crumbs = [
@@ -126,7 +126,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <p class="eyebrow">The main thing to understand</p>
         <h2 class="h2 mt-2">Why Prepaid Session Packages Are the Problem</h2>
-        <p class="body-l mt-3 measure">The standard commercial model for PRP is a discounted block of sessions paid for in advance. It looks like value, and for the clinic it is excellent business, because the revenue is banked before anyone knows whether the treatment is working.</p>
+        <p class="body-l mt-3 measure">The standard commercial model for PRP is a discounted block of sessions paid for upfront. It looks like value, and for the clinic it is very good business, because the revenue is banked before anyone knows whether the treatment is working.</p>
         <p class="body-l mt-3 measure">Here is why that matters more for PRP than for most treatments. A proportion of patients do not respond. That is not a criticism of PRP, it is simply true of it, and any honest clinic will tell you so before you start. The correct response to a non-response is to stop and change the plan.</p>
         <p class="body-l mt-3 measure">A prepaid block makes stopping irrational. You have already paid, so you complete the sessions, and the money is spent on a treatment your own photographs suggest is doing nothing. It also removes the clinic's incentive to raise the subject, because there is no further revenue attached to continuing honestly.</p>
         <p class="body-l mt-3 measure">So the useful question when comparing PRP prices is not what a session costs. It is what happens at review if the images show no change, and whether you are financially free to act on that answer.</p>
@@ -151,7 +151,7 @@ require __DIR__ . '/includes/header.php';
     <p class="eyebrow">Cost drivers</p>
     <h2 class="h2 mt-2">What Actually Moves the Number</h2>
     <div class="grid grid--3 mt-5">
-      <div class="card"><p class="h4">Sessions in the course</p><p class="body-s mt-2">The largest factor by far, and the one that should be planned from your diagnosis and adjusted by your response rather than fixed in advance.</p></div>
+      <div class="card"><p class="h4">Sessions in the course</p><p class="body-s mt-2">The largest factor by far, and the one that should be planned from your diagnosis and adjusted by your response rather than fixed beforehand.</p></div>
       <div class="card"><p class="h4">Area being treated</p><p class="body-s mt-2">A defined thinning patch is a different job from the whole top of the scalp, and the preparation volume differs accordingly.</p></div>
       <div class="card"><p class="h4">Preparation method</p><p class="body-s mt-2">Systems and equipment differ between clinics. It contributes to price, though less than the number of sessions does.</p></div>
       <div class="card"><p class="h4">Who performs it</p><p class="body-s mt-2">Whether you are assessed and treated by a doctor. This is a fair question to ask directly, and the answer should be immediate.</p></div>

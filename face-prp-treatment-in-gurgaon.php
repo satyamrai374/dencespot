@@ -77,7 +77,7 @@ $page = [
             'howPerformed'  => 'A small volume of the patient\'s own blood is drawn and centrifuged to concentrate the platelet fraction. The resulting platelet-rich plasma is injected into the dermis across the treatment areas of the face, or applied topically to skin immediately after microneedling, as a planned course of sessions spaced some weeks apart.',
             'preparation'   => 'Clinical assessment of the skin, review of medical history and medication including anticoagulants and agents affecting platelet function, exclusion of active infection or inflammation in the treatment area, and standardised baseline photography.',
             'followup'      => 'Interval photography against the baseline, review of response over the course of treatment, and maintenance sessions where appropriate.',
-            'expectedPrognosis' => 'Changes in skin texture and quality develop gradually over weeks to months rather than immediately. Facial PRP does not lift sagging skin, restore lost volume or replace surgical treatment, and it is not a treatment for active acne. Results are not permanent and require maintenance. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Changes in skin texture and quality develop gradually over weeks to months rather than immediately. Facial PRP does not lift sagging skin, restore lost volume or replace surgical treatment, and it is not a treatment for active acne. Results are not permanent and require maintenance. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/face-prp-treatment-in-gurgaon', $faqs),
     ],

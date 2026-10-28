@@ -162,7 +162,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--3 mt-5">
       <div class="card"><p class="h4">The evidence is limited</p><p class="body-s mt-2">It is weaker than for the established medical treatments for pattern hair loss, and weaker than for PRP. That is the current position and we state it rather than working around it.</p></div>
       <div class="card"><p class="h4">Formulations are not standardised</p><p class="body-s mt-2">Different clinics inject different mixtures. Evidence about one preparation does not automatically apply to another, which makes general claims about "mesotherapy" close to meaningless.</p></div>
-      <div class="card"><p class="h4">Response is not predictable</p><p class="body-s mt-2">We cannot tell you in advance whether you will respond, and neither can anyone else. What we can do is measure it properly and stop if there is nothing happening.</p></div>
+      <div class="card"><p class="h4">Response is not predictable</p><p class="body-s mt-2">We cannot tell you beforehand whether you will respond, and neither can anyone else. What we can do is measure it properly and stop if there is nothing happening.</p></div>
     </div>
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">What this means for you</p>

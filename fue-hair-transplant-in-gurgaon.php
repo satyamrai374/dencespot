@@ -35,7 +35,7 @@ $faqs = [
     ['q' => 'When will transplanted hair start growing?',
      'a' => 'Transplanted hairs commonly shed within the first weeks while the follicles remain in place. New growth usually begins around three to four months, with a fuller picture at roughly ten to twelve months. Growth is uneven early on, which is normal.'],
     ['q' => 'Is FUE permanent?',
-     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist. Surrounding non-transplanted hair can continue to thin with age, however, which is why a long-term plan and ongoing medical treatment matter. No clinic can guarantee a specific density or a permanent outcome.'],
+     'a' => 'Transplanted follicles keep the characteristics of the donor area and generally persist. Surrounding non-transplanted hair can continue to thin with age, however, which is why a long-term plan and ongoing medical treatment matter. No clinic can promise a specific density or a permanent outcome.'],
     ['q' => 'What is over-harvesting, and why does it matter?',
      'a' => 'Taking more grafts from the donor than it can spare, or taking them from too concentrated an area. The donor thins visibly, extraction dots become obvious, and there is no way to reverse it — you cannot put donor hair back. It is the reason a graft number should never be inflated to win a quote.'],
     ['q' => 'FUE or DHI — which is better?',
@@ -73,7 +73,7 @@ $page = [
             'howPerformed'  => 'Individual follicular units are extracted from the donor area of the scalp with a fine punch, sorted and trimmed under magnification, and placed into recipient sites prepared in the planned direction, angle and density across the thinning zones. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and donor density, review of medication and blood-thinning agents, blood investigations, photographic mapping and a hairline design agreed with the patient before the procedure date.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/fue-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -220,7 +220,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card card--tint"><?= icon('chart', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Donor budget, not a sales figure</h3><p class="body-s mt-2">Your donor is measured and mapped, and the graft number follows from it. If what you want is not supportable by what you have, you are told at the consultation, not on the day.</p></div>
       <div class="card card--tint"><?= icon('hairline', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Hairline drawn on your face</h3><p class="body-s mt-2">Position, shape and deliberate irregularity judged against your features, your forehead and your age — not a template traced onto everyone.</p></div>
       <div class="card card--tint"><?= icon('search', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Extraction judged graft by graft</h3><p class="body-s mt-2">Punch size and depth adapted to your hair calibre and skin as the session goes on, to keep transection down and the donor looking even.</p></div>
-      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Doctor-performed, not delegated</h3><p class="body-s mt-2">The doctor who assessed you does the extraction and site creation. You are told in advance exactly who does what.</p></div>
+      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Doctor-performed, not delegated</h3><p class="body-s mt-2">The doctor who assessed you does the extraction and site creation. You are told beforehand exactly who does what.</p></div>
       <div class="card card--tint"><?= icon('list', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Written, itemised estimate</h3><p class="body-s mt-2">The graft number, the technique, what is included and what is not — in writing, before you book a date. Nothing is added afterwards.</p></div>
       <div class="card card--tint"><?= icon('star', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Reviews that are scheduled</h3><p class="body-s mt-2">Follow-up at fixed points with standardised photographs, so growth is judged against a record rather than memory.</p></div>
     </div>
@@ -295,7 +295,7 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="note mt-5">
       <?= icon('info', 20, 'var(--accent-deep)') ?>
-      <p class="body">Individual recovery and growth vary. Transection, healing, donor characteristics and how closely aftercare is followed all affect the outcome. Timelines here are general patient education, not a promise of results, and no clinic can guarantee a specific density.</p>
+      <p class="body">Individual recovery and growth vary. Transection, healing, donor characteristics and how closely aftercare is followed all affect the outcome. Timelines here are general patient education, not a promise of results, and no clinic can promise a specific density.</p>
     </div>
   </div>
 </section>

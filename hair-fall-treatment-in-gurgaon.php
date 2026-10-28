@@ -52,7 +52,7 @@ $faqs = [
     ['q' => 'Do hair fall shampoos and supplements work?',
      'a' => 'A medicated shampoo genuinely helps a scalp condition such as dandruff or seborrhoeic dermatitis, and correcting a proven deficiency helps. Supplements taken without a deficiency generally do not, and no shampoo treats androgenetic hair loss — the process happens at the follicle, not on the surface.'],
     ['q' => 'Will PRP stop my hair fall?',
-     'a' => 'For the right case it can reduce shedding and support thinning follicles, but it does not stop the underlying process and it does nothing where follicles are already gone. It works best alongside medical therapy rather than instead of it. See <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment</a>.'],
+     'a' => 'For the right case it can reduce shedding and support thinning follicles, but it does not stop the underlying process and it does nothing where follicles are already gone. It is most useful alongside medical therapy rather than instead of it. See <a href="/hair-prp-treatment-in-gurgaon">hair PRP treatment</a>.'],
     ['q' => 'When is a hair transplant the answer instead?',
      'a' => 'When follicles in the affected area are already lost, the pattern has stabilised, and the donor area can supply what the plan needs. Where follicles are still present but shrinking, medical treatment and PRP come first — surgery is not a substitute for them. See <a href="/hair-transplant-in-gurgaon">hair transplant in Gurgaon</a>.'],
     ['q' => 'Do I have to take treatment forever?',
@@ -221,7 +221,7 @@ require __DIR__ . '/includes/header.php';
             <span class="pill">Step 2</span>
             <h3 class="h3 mt-2">Medical therapy</h3>
           </div>
-          <p class="body-s">Prescribed topical or oral treatment for pattern hair loss, taken daily. It has the best-established evidence of anything available and it is the backbone of holding density long-term. It is also the step patients most often want to skip, and the one that most reliably decides how much hair they still have in ten years.</p>
+          <p class="body-s">Prescribed topical or oral treatment for pattern hair loss, taken daily. It has the most firmly established evidence of anything available and it is the backbone of holding density long-term. It is also the step patients most often want to skip, and the one that most reliably decides how much hair they still have in ten years.</p>
         </div>
       </div>
       <div class="card card--pad-lg">

@@ -37,7 +37,7 @@ $faqs = [
     ['q' => 'How often do I need to use it?',
      'a' => 'Regularly and consistently over a long period. The precise schedule depends on the device, and this is the part that decides whether it works for you. Sporadic use is functionally the same as not using it, which is why adherence is discussed honestly before anyone spends money on a device.'],
     ['q' => 'Will it regrow hair on a bald scalp?',
-     'a' => 'No. Where follicles are gone, nothing applied to the surface brings them back. It is a treatment for hair that is thinning and still present, not for established baldness. If your loss is advanced, the honest conversation is about <a href="/hair-transplant-in-gurgaon">surgery</a> rather than light.'],
+     'a' => 'No. Where follicles are gone, nothing applied to the surface brings them back. It is a treatment for hair that is thinning and still present, not for established baldness. If your loss is extensive, the honest conversation is about <a href="/hair-transplant-in-gurgaon">surgery</a> rather than light.'],
     ['q' => 'Is it a substitute for medical treatment?',
      'a' => 'It is generally used alongside rather than instead. Where pattern hair loss is the diagnosis, established medical treatment is the backbone of the plan. Light therapy is a reasonable addition, and it is sometimes chosen by people who cannot or prefer not to take medication — a decision made with the trade-off understood.'],
     ['q' => 'Should I buy a home device?',

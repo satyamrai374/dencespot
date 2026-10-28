@@ -31,7 +31,7 @@ $faqs = [
     ['q' => 'Can I shave my head after FUT?',
      'a' => 'Not to the skin, in most cases. You will need to keep the hair at the back long enough to cover the line — often around a grade two or three, judged individually. This is a lifelong commitment and the most common regret among people who chose a strip without considering it.'],
     ['q' => 'Is FUT outdated?',
-     'a' => 'No, though it is unfashionable. FUE is better for most patients and is what most clinics now do by default. FUT still gives the highest graft yield per session and preserves the surrounding donor area, which makes it the better operation for a specific group — advanced loss, limited donor density, and patients who wear their hair long.'],
+     'a' => 'No, though it is unfashionable. FUE is better for most patients and is what most clinics now do by default. FUT still gives the highest graft yield per session and preserves the surrounding donor area, which makes it the better operation for a specific group — extensive loss, limited donor density, and patients who wear their hair long.'],
     ['q' => 'Which gives more grafts, FUT or FUE?',
      'a' => 'From a single session, FUT generally yields more, because every follicular unit in the strip is recovered and nothing is left behind. Over a lifetime the comparison is more interesting: a strip first, with FUE afterwards from the untouched donor above and below, can produce more total grafts than FUE alone.'],
     ['q' => 'Is FUT more painful than FUE?',
@@ -77,7 +77,7 @@ $page = [
             'howPerformed'  => 'A strip of hair-bearing skin is removed from the back of the scalp under local anaesthetic and the donor edges are closed, using trichophytic closure where appropriate. The strip is dissected under microscopes into individual follicular unit grafts, which are placed into recipient sites prepared across the thinning areas.',
             'preparation'   => 'Clinical assessment of hair-loss pattern, donor density and scalp laxity, review of medication and blood-thinning agents, blood investigations, and an explicit discussion of scar expectations and hair-length requirements before the procedure date.',
             'followup'      => 'Wound review and suture or staple removal at around ten to fourteen days, then scheduled photographic reviews of both growth and donor-line healing.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. A permanent linear donor scar remains. Outcomes and scar width vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. A permanent linear donor scar remains. Outcomes and scar width vary between patients and cannot be promised.',
         ]),
         schema_faq('/fut-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -91,7 +91,7 @@ require __DIR__ . '/includes/header.php';
     <div class="split">
       <div>
         <span class="pill pill--dot">FUT hair transplant in Gurgaon</span>
-        <h1 class="h1 mt-3">FUT Hair Transplant in Gurgaon for Advanced Loss and Limited Donor</h1>
+        <h1 class="h1 mt-3">FUT Hair Transplant in Gurgaon for Extensive Loss and Limited Donor</h1>
         <p class="lead mt-3 measure">FUT removes a strip of skin from the back of the scalp, which is dissected under microscopes into individual grafts. It leaves a linear scar, and it is unfashionable for that reason. It also still produces the highest graft yield per session of any technique, which is why it remains the right answer for a specific group of patients.</p>
 
         <div class="btn-row mt-5">
@@ -140,7 +140,7 @@ require __DIR__ . '/includes/header.php';
         <p class="body-l mt-3 measure">FUT stands for follicular unit transplantation, and it is usually called the strip technique. A narrow band of hair-bearing skin is taken from the back of the scalp — the area where hair is most resistant to pattern loss — and the edges are closed with sutures or staples, leaving a single line.</p>
         <p class="body-l mt-3 measure">That strip is then handed to a team who dissect it under microscopes into individual follicular units. Because every unit in the strip is accounted for and nothing is left behind in the scalp, the yield from a given area of donor skin is high, and transection rates in experienced hands are low. Those grafts are placed into recipient sites exactly as they are in FUE.</p>
         <p class="body-l mt-3 measure">The unavoidable trade-off is the scar. It is a line, not dots, and while modern closure techniques keep it narrow — trichophytic closure encourages hair to grow through the scar rather than beside it — it is permanent. It sits low at the back where surrounding hair covers it, but it needs a certain hair length above it to stay hidden. If you shave your head to the skin, FUT is the wrong operation for you.</p>
-        <p class="body-l mt-3 measure">The reason FUT has not disappeared is arithmetic. FUE harvests across a wide donor area and thins it slightly everywhere; FUT takes from one band and leaves the surrounding donor untouched. For a patient facing advanced loss who will likely need more surgery later, a strip first and FUE afterwards can yield more total grafts across a lifetime than FUE alone.</p>
+        <p class="body-l mt-3 measure">The reason FUT has not disappeared is arithmetic. FUE harvests across a wide donor area and thins it slightly everywhere; FUT takes from one band and leaves the surrounding donor untouched. For a patient facing extensive loss who will likely need more surgery later, a strip first and FUE afterwards can yield more total grafts across a lifetime than FUE alone.</p>
 
         <div class="btn-row mt-5">
           <a class="btn btn--ghost" href="/fue-hair-transplant-in-gurgaon">How FUE differs</a>
@@ -166,7 +166,7 @@ require __DIR__ . '/includes/header.php';
       <p class="body mt-3">FUT is offered here for selected cases rather than as a default. These are the situations where it is genuinely the better operation, and the situations where it is not.</p>
     </div>
     <div class="grid grid--3 mt-6">
-      <div class="card"><?= icon('chart', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Advanced loss needing volume</h3><p class="body-s mt-2">Where a large area needs covering and total graft yield in one session is the deciding factor rather than donor appearance.</p></div>
+      <div class="card"><?= icon('chart', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Extensive loss needing volume</h3><p class="body-s mt-2">Where a large area needs covering and total graft yield in one session is the deciding factor rather than donor appearance.</p></div>
       <div class="card"><?= icon('list', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Limited donor for FUE</h3><p class="body-s mt-2">Where donor density will not support wide FUE harvesting without visible thinning, a strip can yield more without spreading the loss.</p></div>
       <div class="card"><?= icon('user', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">You keep your hair long</h3><p class="body-s mt-2">If the hair at the back of your head is worn long enough to cover a line, the scar is a non-issue in daily life.</p></div>
       <div class="card"><?= icon('doc', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Planning for more than one session</h3><p class="body-s mt-2">Taking a strip first preserves the surrounding donor for FUE later — the reverse order does not work as well.</p></div>
@@ -185,9 +185,9 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="split split--sidebar mt-6">
       <div class="stack-sm">
-        <div class="card"><h3 class="h3">It is permanent</h3><p class="body mt-2">A linear scar cannot be removed. It can be made narrower, revised, or camouflaged later with FUE grafts or scalp micropigmentation, but it does not go away. Anyone describing it as scarless is not describing FUT.</p></div>
+        <div class="card"><h3 class="h3">It is permanent</h3><p class="body mt-2">A linear scar cannot be removed. It can be made narrower, revised, or camouflaged later with FUE grafts or scalp micropigmentation, but it does not go away. Anyone describing it as leaving no visible line is not describing FUT.</p></div>
         <div class="card"><h3 class="h3">Width is not fully predictable</h3><p class="body mt-2">Closure technique matters, but so do scalp laxity, strip width, tension, your healing biology and whether you follow the activity restrictions. A fine line is the aim and the usual outcome; a wider one is a recognised possibility, not a complication that only happens to other people.</p></div>
-        <div class="card"><h3 class="h3">Trichophytic closure helps</h3><p class="body mt-2">The wound edge is trimmed so hair grows up through the scar line rather than stopping at it, which breaks up the appearance considerably. It improves the odds; it does not guarantee an invisible line.</p></div>
+        <div class="card"><h3 class="h3">Trichophytic closure helps</h3><p class="body mt-2">The wound edge is trimmed so hair grows up through the scar line rather than stopping at it, which breaks up the appearance considerably. It improves the odds; it cannot promise an invisible line.</p></div>
         <div class="card"><h3 class="h3">It sets a minimum hair length</h3><p class="body mt-2">You will need to keep the hair at the back long enough to cover it — for most people a grade two or three, but this is judged individually. That is a commitment for life, and it is the single most common regret among people who chose a strip without thinking about it.</p></div>
       </div>
       <div class="card card--ink card--pad-lg">
@@ -196,7 +196,7 @@ require __DIR__ . '/includes/header.php';
           <div><p class="h4">&ldquo;Why not FUE in my case?&rdquo;</p><p class="body-s mt-2">There should be a specific reason based on your donor and your goals — not a preference for the technique.</p></div>
           <div><p class="h4">&ldquo;How wide is the strip going to be?&rdquo;</p><p class="body-s mt-2">Strip width and scalp laxity together drive closure tension, which drives scar width.</p></div>
           <div><p class="h4">&ldquo;What hair length will hide it?&rdquo;</p><p class="body-s mt-2">Get a specific answer before the procedure, not after.</p></div>
-          <div><p class="h4">&ldquo;What if it heals wide?&rdquo;</p><p class="body-s mt-2">Revision, FUE camouflage and micropigmentation are the options. Know them in advance.</p></div>
+          <div><p class="h4">&ldquo;What if it heals wide?&rdquo;</p><p class="body-s mt-2">Revision, FUE camouflage and micropigmentation are the options. Know them beforehand.</p></div>
         </div>
       </div>
     </div>
@@ -213,7 +213,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card card--tint"><?= icon('info', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Offered, not pushed</h3><p class="body-s mt-2">FUT is recommended only where it genuinely beats FUE for your donor and your goals. If FUE serves you better, that is what you are offered — even though a strip is quicker for us.</p></div>
       <div class="card card--tint"><?= icon('scale', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Laxity measured before planning</h3><p class="body-s mt-2">Scalp laxity and strip width are assessed together, because closure tension is the main thing you can control that affects how the scar heals.</p></div>
       <div class="card card--tint"><?= icon('search', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Microscopic dissection</h3><p class="body-s mt-2">Grafts are separated under magnification rather than by eye, which is what keeps transection low and yield high in a strip case.</p></div>
-      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Trichophytic closure</h3><p class="body-s mt-2">The wound edge is prepared so hair grows through the line rather than stopping at it, giving the scar the best chance of disappearing into the surrounding hair.</p></div>
+      <div class="card card--tint"><?= icon('shield', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Trichophytic closure</h3><p class="body-s mt-2">The wound edge is prepared so hair grows through the line rather than stopping at it, giving the scar a better chance of disappearing into the surrounding hair.</p></div>
       <div class="card card--tint"><?= icon('doc', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Lifetime donor planning</h3><p class="body-s mt-2">The strip is placed with future sessions in mind, so FUE territory above and below stays usable as the loss progresses.</p></div>
       <div class="card card--tint"><?= icon('star', 24, 'var(--accent-deep)') ?><h3 class="h4 mt-3">Donor reviewed too</h3><p class="body-s mt-2">Follow-up photographs cover the donor line as well as the recipient area, so scar healing is tracked rather than assumed.</p></div>
     </div>
@@ -287,13 +287,13 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><span class="pill">Months 10–12</span><h3 class="h4 mt-3">Final assessment</h3><p class="body-s mt-2">A fair judgement of both the result and the scar. This is when a decision about camouflage, if any is wanted, is properly made.</p></div>
     </div>
     <div class="note mt-5">
-      <p class="body">Individual recovery, scar width and growth vary. Scalp laxity, closure tension, healing biology and adherence to activity restrictions all affect how the donor line settles. Timelines here are general patient education and not a promise of results; no clinic can guarantee scar width or a specific density.</p>
+      <p class="body">Individual recovery, scar width and growth vary. Scalp laxity, closure tension, healing biology and adherence to activity restrictions all affect how the donor line settles. Timelines here are general patient education and not a promise of results; no clinic can promise scar width or a specific density.</p>
     </div>
   </div>
 </section>
 
 <?= doctor_block(
-    'Why FUT is still on the menu here: FUE is easier to sell, because “no scar” is a simpler promise than a conversation about donor arithmetic. But a patient with advanced loss and a modest donor can be worse served by wide FUE harvesting than by a single strip that leaves the surrounding donor intact. The right question is not which technique sounds more modern — it is which one leaves you with more usable hair in fifteen years.'
+    'Why FUT is still on the menu here: FUE is easier to sell, because “no stitches, no line” is a simpler promise than a conversation about donor arithmetic. But a patient with extensive loss and a modest donor can be worse served by wide FUE harvesting than by a single strip that leaves the surrounding donor intact. The right question is not which technique sounds more modern — it is which one leaves you with more usable hair in fifteen years.'
 ) ?>
 
 <section class="section section--white" id="cost">
@@ -352,7 +352,7 @@ require __DIR__ . '/includes/header.php';
     'Find Out Whether a Strip Is Right for Your Donor',
     'Bring your questions and your medication list. You will get a donor and laxity assessment, an explicit comparison of what FUT and FUE would each give you now and in fifteen years, and a straight account of the scar before you decide anything.',
     'fut-hair-transplant',
-    ['FUT (strip) hair transplant', 'FUT — advanced hair loss', 'FUT or FUE — please advise', 'FUT scar revision or camouflage', 'Not sure — please advise']
+    ['FUT (strip) hair transplant', 'FUT — extensive hair loss', 'FUT or FUE — please advise', 'FUT scar revision or camouflage', 'Not sure — please advise']
 ) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

@@ -27,7 +27,7 @@ $faqs = [
     ['q' => 'Can a bad hair transplant be completely fixed?',
      'a' => 'Usually improved, rarely erased. Repair is limited by one thing above all others: how much donor hair the first procedure left you. A poor result that used a modest number of grafts is far more correctable than one that spent most of a donor area to produce it. We will tell you which of those you are before you commit to anything.'],
     ['q' => 'What are the most common problems you see?',
-     'a' => 'A hairline placed too low or too straight; multi-hair grafts placed at the leading edge producing a tufted, pluggy look; grafts placed at the wrong angle so the hair will not lie down; poor growth from a session where too much was attempted; visible dot scarring or thinning from an over-harvested donor; and a wide linear scar from a strip procedure.'],
+     'a' => 'A hairline placed too low or too straight; multi-hair grafts placed at the front edge producing a tufted, pluggy look; grafts placed at the wrong angle so the hair will not lie down; poor growth from a session where too much was attempted; visible dot scarring or thinning from an over-harvested donor; and a wide linear scar from a strip procedure.'],
     ['q' => 'My hairline is too low. Can it be raised?',
      'a' => 'Not simply. Transplanted grafts are living hair in permanent positions, so raising a line means removing hair rather than moving it. Selected grafts can sometimes be excised, and occasionally the hair removed can be re-implanted elsewhere, but this is slow, partial work. It is a genuine constraint and it is why hairline position gets so much attention before a first procedure.'],
     ['q' => 'Can pluggy or tufted grafts be corrected?',
@@ -72,10 +72,10 @@ $page = [
             'alternateName' => ['Corrective hair transplant surgery', 'Hair transplant revision', 'Bad hair transplant correction'],
             'procedureType' => 'https://schema.org/SurgicalProcedure',
             'bodyLocation'  => 'Scalp',
-            'howPerformed'  => 'The existing result and remaining donor supply are assessed first. Correction may involve excision of misplaced or multi-hair grafts from the leading hairline, redistribution of the excised hair, placement of single-hair grafts to soften a hard transition, grafting into linear or dot donor scarring, and camouflage with scalp pigmentation. Work is frequently staged across more than one session to protect the blood supply of previously operated tissue. Performed as a day case under local anaesthetic.',
+            'howPerformed'  => 'The existing result and remaining donor supply are assessed first. Correction may involve excision of misplaced or multi-hair grafts from the front edge of the hairline, redistribution of the excised hair, placement of single-hair grafts to soften a hard transition, grafting into linear or dot donor scarring, and camouflage with scalp pigmentation. Work is frequently staged across more than one session to protect the blood supply of previously operated tissue. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Review of the previous operative record, graft number and technique where available; examination of the transplanted area, the hairline design and the donor region including any over-harvesting or scarring; measurement of remaining donor density; and a minimum interval of approximately twelve months from the previous procedure so the earlier result has fully matured.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as transplanted hair sheds and regrows, with planning of any further staged session.',
-            'expectedPrognosis' => 'Correction generally improves rather than fully reverses an unsatisfactory result, and the degree of improvement is limited by the donor supply remaining after the previous procedure. Donor hair already harvested cannot be replaced. Staged treatment is often required. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Correction generally improves rather than fully reverses an unsatisfactory result, and the degree of improvement is limited by the donor supply remaining after the previous procedure. Donor hair already harvested cannot be replaced. Staged treatment is often required. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/hair-transplant-repair-in-gurgaon', $faqs),
     ],
@@ -121,7 +121,7 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap">
     <div class="grid grid--5">
       <div class="card"><?= icon('search', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Donor measured, not assumed</p><p class="body-s mt-2">What remains decides what is possible.</p></div>
-      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">A stated ceiling</p><p class="body-s mt-2">You hear the realistic best case, in writing.</p></div>
+      <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">A stated ceiling</p><p class="body-s mt-2">You hear the most that can realistically be achieved, in writing.</p></div>
       <div class="card"><?= icon('list', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Staged deliberately</p><p class="body-s mt-2">Operated tissue is not pushed all at once.</p></div>
       <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Donor-sparing options first</p><p class="body-s mt-2">Pigment can do what grafts cannot afford to.</p></div>
       <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">No blame, no theatre</p><p class="body-s mt-2">A factual account of where you stand.</p></div>
@@ -137,7 +137,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--3 mt-5">
       <div class="card"><p class="h4">A hairline placed too low</p><p class="body-s mt-2">Common, and the hardest to undo. Grafts are permanent hair in permanent positions, so raising a line means removing hair, not repositioning it.</p></div>
       <div class="card"><p class="h4">A hard, straight edge</p><p class="body-s mt-2">No transition zone, no irregularity. Correctable by adding single hairs ahead of and between the existing line to break it up and soften it.</p></div>
-      <div class="card"><p class="h4">Pluggy or tufted grafts</p><p class="body-s mt-2">Multi-hair grafts placed at the leading edge where single hairs belong. Often excised and the hair redistributed. One of the more rewarding repairs.</p></div>
+      <div class="card"><p class="h4">Pluggy or tufted grafts</p><p class="body-s mt-2">Multi-hair grafts placed at the front edge where single hairs belong. Often excised and the hair redistributed. One of the more rewarding repairs.</p></div>
       <div class="card"><p class="h4">Wrong angle or direction</p><p class="body-s mt-2">Hair that stands up or points the wrong way and cannot be styled down. Angle is fixed when the site is made, so correction means removing and re-placing.</p></div>
       <div class="card"><p class="h4">Poor growth</p><p class="body-s mt-2">A session where too much was attempted, or grafts were handled badly. Sometimes correctable by adding density, if the donor can still fund it.</p></div>
       <div class="card"><p class="h4">Donor damage</p><p class="body-s mt-2">A wide strip scar, visible dot scarring, or a donor thinned by over-harvesting. This is the constraint that governs everything else.</p></div>
@@ -187,7 +187,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid grid--2 mt-5">
       <div class="card card--pad-lg">
         <p class="h4">Excision and redistribution</p>
-        <p class="body-s mt-2">Misplaced or multi-hair grafts are removed from where they do damage — typically the leading edge of the hairline. The hair taken out can sometimes be re-implanted elsewhere, so it is not always lost. This is precise, slow work and it is what makes a pluggy hairline correctable.</p>
+        <p class="body-s mt-2">Misplaced or multi-hair grafts are removed from where they do damage — typically the front edge of the hairline. The hair taken out can sometimes be re-implanted elsewhere, so it is not always lost. This is precise, slow work and it is what makes a pluggy hairline correctable.</p>
       </div>
       <div class="card card--pad-lg">
         <p class="h4">Softening with single hairs</p>

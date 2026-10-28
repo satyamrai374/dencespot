@@ -41,7 +41,7 @@ $faqs = [
     ['q' => 'I am in my twenties. Should I have this done now?',
      'a' => 'Often the honest answer is not yet. Early loss that is still actively progressing is usually treated medically first, because a hairline placed while the hair behind it is still receding leaves an island of transplanted hair with a gap opening up behind it. Stabilising the loss first is what protects the long-term result.'],
     ['q' => 'Is the hairline permanent?',
-     'a' => 'The transplanted follicles keep donor characteristics and generally persist. The native hair behind them can carry on thinning with age, which is why the design has to anticipate future loss and why medical treatment usually continues alongside. No clinic can guarantee a specific density or a permanent outcome.'],
+     'a' => 'The transplanted follicles keep donor characteristics and generally persist. The native hair behind them can carry on thinning with age, which is why the design has to anticipate future loss and why medical treatment usually continues alongside. No clinic can promise a specific density or a permanent outcome.'],
     ['q' => 'Will anyone be able to tell?',
      'a' => 'That is what the design is for. Angle, direction, irregularity and restraint at the front are what decide it — far more than the technique used or the number of grafts. Work that is noticed is usually noticed because the line was placed too low, too straight, or too densely at the very edge.'],
     ['q' => 'How long before the hairline looks right?',
@@ -74,10 +74,10 @@ $page = [
             'alternateName' => ['Hairline restoration', 'Frontal hairline hair transplant', 'Hairline lowering by grafting'],
             'procedureType' => 'https://schema.org/SurgicalProcedure',
             'bodyLocation'  => 'Frontal scalp and temporal region',
-            'howPerformed'  => 'A hairline position and shape are designed and agreed with the patient before surgery. Follicular units are extracted from the donor area of the scalp and sorted under magnification. Single-hair grafts are placed irregularly across a transition zone at the leading edge, with multi-hair grafts placed behind them to build density, each at the acute angle and forward direction of natural frontal hair. Performed as a day case under local anaesthetic.',
+            'howPerformed'  => 'A hairline position and shape are designed and agreed with the patient before surgery. Follicular units are extracted from the donor area of the scalp and sorted under magnification. Single-hair grafts are placed irregularly across a transition zone at the front edge, with multi-hair grafts placed behind them to build density, each at the acute angle and forward direction of natural frontal hair. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and likely progression, donor density measurement, review of medication, photographic mapping, and a hairline drawn on the patient and agreed in a mirror before consent.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows, alongside any ongoing medical treatment for the native hair behind the line.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a settled hairline at approximately ten to twelve months. Native hair behind the transplanted line may continue to thin with age. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a settled hairline at approximately ten to twelve months. Native hair behind the transplanted line may continue to thin with age. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/hairline-transplant-in-gurgaon', $faqs),
     ],
@@ -101,7 +101,7 @@ require __DIR__ . '/includes/header.php';
 
         <?= ticks([
             'Line drawn on you and agreed in a mirror',
-            'Single-hair transition zone at the leading edge',
+            'Single-hair transition zone at the front edge',
             'Designed around future loss, not just today',
             NAP_LOCALITY . ' · ' . HOURS_DISPLAY,
         ]) ?>
@@ -172,7 +172,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card card--pad-lg">
         <p class="eyebrow">Decision 03</p>
         <p class="h4 mt-2">How softly it begins</p>
-        <p class="body-s mt-2">The leading edge is built from single hairs, placed irregularly, with sentinel hairs scattered slightly ahead of the line. Behind that, grafts with more hairs build density. This transition is the difference between a hairline and a hedge.</p>
+        <p class="body-s mt-2">The front edge is built from single hairs, placed irregularly, with sentinel hairs scattered slightly ahead of the line. Behind that, grafts with more hairs build density. This transition is the difference between a hairline and a hedge.</p>
       </div>
       <div class="card card--pad-lg">
         <p class="eyebrow">Decision 04</p>
@@ -196,7 +196,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <p class="eyebrow">Suitability</p>
         <h2 class="h2 mt-2">When a Hairline Transplant Makes Sense</h2>
-        <p class="body-l mt-3 measure">The best candidate has a pattern of loss that has settled, a donor area that can support the plan with something left over, and expectations that match what surgery can actually deliver.</p>
+        <p class="body-l mt-3 measure">The most suitable candidate has a pattern of loss that has settled, a donor area that can support the plan with something left over, and expectations that match what surgery can actually deliver.</p>
         <p class="body-l mt-3 measure">Age matters, though not on its own. What matters is whether the loss is still moving. A hairline built while the hair behind it is still receding produces an island: a transplanted front row with a widening gap opening up behind it, and no good options left. Where loss is active, medical treatment comes first and surgery waits.</p>
         <p class="body-l mt-3 measure">Donor supply is the other constraint. The frontal hairline is expensive in grafts and the donor is finite. Spending it all at the front, then needing the crown covered a decade later, is a trade people make without realising they are making it.</p>
       </div>

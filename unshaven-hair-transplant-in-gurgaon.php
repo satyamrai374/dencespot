@@ -38,7 +38,7 @@ $faqs = [
      'a' => 'The grafts behave the same way — the shedding and regrowth timeline is unchanged. What differs is the surgical conditions, not the biology. The relevant question is whether the case can be done well unshaven, not whether unshaven grafts grow differently.'],
     ['q' => 'Is it more expensive?',
      'a' => 'Usually. It takes considerably longer for the same graft count, and time is the main cost in this procedure. Clinics that price it identically to a shaven session are either absorbing that or not really doing it.'],
-    ['q' => 'Who is it best suited to?',
+    ['q' => 'Who is it most suited to?',
      'a' => 'People needing a smaller number of grafts, people who genuinely cannot take visible downtime, and women, who very often will not accept trimming and for whom the sessions tend to be smaller anyway. It also suits touch-up work and refinement of an earlier procedure.'],
     ['q' => 'Who is it not suitable for?',
      'a' => 'Anyone needing a large session to cover extensive loss, and anyone whose donor requires careful, spread-out harvesting across a wide area. It is also less suitable where the hair is very fine or very dense, both of which make working between existing shafts harder.'],
@@ -77,7 +77,7 @@ $page = [
             'howPerformed'  => 'Follicular units are extracted from an untrimmed or partially trimmed donor area, with the punch positioned between existing long hairs, then separated and placed into recipient sites made among the existing hair of the thinning area. Extraction is slower than in a shaven procedure and the practical graft count per session is lower. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and donor density, review of medication, photographic mapping, and a discussion of whether the required graft number can realistically be achieved without trimming or whether a partial-shave or staged plan is more appropriate.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews as the transplanted hair sheds and regrows.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. The growth timeline is the same as for a shaven procedure. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. The growth timeline is the same as for a shaven procedure. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/unshaven-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -125,7 +125,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Discreet from day one</p><p class="body-s mt-2">Existing hair covers the work as it heals.</p></div>
       <div class="card"><?= icon('scale', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Partial shave offered</p><p class="body-s mt-2">A hidden donor window, hair down over it.</p></div>
       <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Longer day, planned for</p><p class="body-s mt-2">Slower extraction is scheduled, not rushed.</p></div>
-      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Realistic graft ceiling</p><p class="body-s mt-2">You are told the practical limit in advance.</p></div>
+      <div class="card"><?= icon('chart', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Realistic graft ceiling</p><p class="body-s mt-2">You are told the practical limit beforehand.</p></div>
       <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Told when to shave</p><p class="body-s mt-2">Large cases are better served trimmed.</p></div>
     </div>
   </div>
@@ -183,7 +183,7 @@ require __DIR__ . '/includes/header.php';
     <div class="card card--pad-lg mt-6">
       <p class="eyebrow">A claim worth treating carefully</p>
       <h3 class="h3 mt-2">No-shave is not a superior technique</h3>
-      <p class="body mt-3 measure">It is marketed that way, with names that suggest an advance on ordinary FUE. It is not. It is the same operation performed under harder conditions, chosen because the patient values discretion. That is a perfectly good reason to choose it. It is not a reason to expect better growth, better density or a better hairline, and any clinic implying otherwise is selling the label rather than the surgery.</p>
+      <p class="body mt-3 measure">It is marketed that way, with names that suggest a step beyond ordinary FUE. It is not. It is the same operation performed under harder conditions, chosen because the patient values discretion. That is a sound reason to choose it. It is not a reason to expect better growth, better density or a better hairline, and any clinic implying otherwise is selling the label rather than the surgery.</p>
     </div>
   </div>
 </section>

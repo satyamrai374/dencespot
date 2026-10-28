@@ -42,9 +42,9 @@ $faqs = [
     ['q' => 'Could I ever have surgery in the future?',
      'a' => 'It is not an absolute lifetime exclusion, but it requires the condition to have been assessed, treated and genuinely stable for a sustained period, and the decision is made cautiously and individually. It is not a promise, and it should never be the reason you delay treating the condition now.'],
     ['q' => 'What treatments are available?',
-     'a' => 'It depends on how extensive the disease is, how long it has been present, and your age and medical history. Options range from topical and locally injected treatments for limited patches through to treatments used under specialist supervision for extensive disease. What is appropriate for you is decided after examination, and some presentations are best managed with onward referral.'],
+     'a' => 'It depends on how extensive the disease is, how long it has been present, and your age and medical history. Options range from topical and locally injected treatments for limited patches through to treatments used under close medical supervision for extensive disease. What is appropriate for you is decided after examination, and some presentations are more suitably managed with onward referral.'],
     ['q' => 'Why does this page not name specific medicines?',
-     'a' => 'Because treatment here is individual, several of the relevant treatments require specialist supervision and monitoring, and publishing them invites self-medication for an autoimmune condition. What is right for you depends on the extent of disease and your medical history, and that is a consultation, not a webpage.'],
+     'a' => 'Because treatment here is individual, several of the relevant treatments require close medical supervision and monitoring, and publishing them invites self-medication for an autoimmune condition. What is right for you depends on the extent of disease and your medical history, and that is a consultation, not a webpage.'],
     ['q' => 'Is it ever right to just wait?',
      'a' => 'Sometimes, yes. Limited patchy disease can regrow on its own, and observation with review is a legitimate approach in some cases rather than a failure to treat. Whether that suits you depends on how extensive it is, how long it has been there and how it is affecting you.'],
     ['q' => 'Will PRP help?',
@@ -78,7 +78,7 @@ $page = [
             'name'          => 'Alopecia Areata Treatment',
             'alternateName' => ['Patchy hair loss treatment', 'Autoimmune hair loss treatment'],
             'bodyLocation'  => 'Scalp, eyebrows, beard and body hair',
-            'howPerformed'  => 'Diagnosis is made on history and clinical examination of the affected areas. Screening for associated autoimmune conditions, including thyroid function, is undertaken where the history or examination indicates it. Management is directed by the extent and duration of disease and the age of the patient, and ranges from observation with review in limited patchy disease through topical and locally administered treatment to therapies requiring specialist supervision in extensive disease. Hair restoration surgery is not undertaken while the condition is active.',
+            'howPerformed'  => 'Diagnosis is made on history and clinical examination of the affected areas. Screening for associated autoimmune conditions, including thyroid function, is undertaken where the history or examination indicates it. Management is directed by the extent and duration of disease and the age of the patient, and ranges from observation with review in limited patchy disease through topical and locally administered treatment to therapies requiring close medical supervision in extensive disease. Hair restoration surgery is not undertaken while the condition is active.',
             'preparation'   => 'Full history including onset, distribution and previous episodes, personal and family history of autoimmune disease, review of medication, examination of the scalp, eyebrows, beard and nails, and baseline photography of affected areas.',
             'followup'      => 'Interval photography against the baseline, monitoring of response and of any treatment requiring surveillance, and reassessment of the management plan over months.',
             'expectedPrognosis' => 'The course is variable and unpredictable. Limited patchy disease has a reasonable likelihood of regrowth and may resolve without treatment, while extensive or long-standing disease, and involvement of eyebrows, eyelashes and body hair, carries a less predictable outlook. Relapse after regrowth is recognised. Hair restoration surgery is contraindicated during active disease because transplanted follicles may be affected by the same autoimmune process.',
@@ -130,7 +130,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><?= icon('user', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Diagnosed properly</p><p class="body-s mt-2">Examined by a dermatologist, not photographed.</p></div>
       <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Screened where indicated</p><p class="body-s mt-2">Associated autoimmune conditions checked.</p></div>
       <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Observation is valid</p><p class="body-s mt-2">Limited disease sometimes regrows on its own.</p></div>
-      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Referred when needed</p><p class="body-s mt-2">Extensive disease may need specialist care.</p></div>
+      <div class="card"><?= icon('info', 22, 'var(--accent-deep)') ?><p class="h4 mt-3">Referred when needed</p><p class="body-s mt-2">Extensive disease may need care under close medical supervision.</p></div>
     </div>
   </div>
 </section>
@@ -218,7 +218,7 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap">
     <p class="eyebrow">Management</p>
     <h2 class="h2 mt-2">How It Is Treated</h2>
-    <p class="body-l mt-3 measure">Treatment is decided by how extensive the disease is, how long it has been present, and your age and medical history. There is no single protocol, and this page describes categories rather than naming medicines, because these are individual prescribing decisions that some of the time require specialist supervision.</p>
+    <p class="body-l mt-3 measure">Treatment is decided by how extensive the disease is, how long it has been present, and your age and medical history. There is no single protocol, and this page describes categories rather than naming medicines, because these are individual prescribing decisions that some of the time require close medical supervision.</p>
     <div class="grid grid--2 mt-5">
       <div class="card card--pad-lg">
         <p class="h4">Observation with review</p>
@@ -230,7 +230,7 @@ require __DIR__ . '/includes/header.php';
       </div>
       <div class="card card--pad-lg">
         <p class="h4">Treatment for extensive disease</p>
-        <p class="body-s mt-2">More extensive presentations may require treatments given under specialist supervision with monitoring. Where that is what your case calls for, it is discussed openly, including onward referral where that is the right route.</p>
+        <p class="body-s mt-2">More extensive presentations may require treatments given under close medical supervision with monitoring. Where that is what your case calls for, it is discussed openly, including onward referral where that is the right route.</p>
       </div>
       <div class="card card--pad-lg">
         <p class="h4">Managing associated conditions</p>

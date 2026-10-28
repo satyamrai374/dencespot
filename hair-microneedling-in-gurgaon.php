@@ -29,7 +29,7 @@ $faqs = [
     ['q' => 'What is microneedling for hair?',
      'a' => 'A technique in which very fine needles create controlled micro-injuries in the scalp. The intent is twofold: to provoke a wound-healing response in the tissue around the follicles, and to create temporary channels that allow topical treatment to reach deeper than it otherwise would.'],
     ['q' => 'Does it work?',
-     'a' => 'The more interesting evidence is for microneedling used together with topical treatment rather than on its own, and that distinction matters. It is best understood as something that may improve how well an existing topical therapy performs, rather than as a treatment that regrows hair by itself.'],
+     'a' => 'The more interesting evidence is for microneedling used together with topical treatment rather than on its own, and that distinction matters. It is more accurately understood as something that may improve how well an existing topical therapy performs, rather than as a treatment that regrows hair by itself.'],
     ['q' => 'So it is not a standalone treatment?',
      'a' => 'That is our position, and it is why we will not sell it as one. If you have not been diagnosed, or you are not on treatment with evidence behind it, adding microneedling to nothing is unlikely to be the intervention that changes your outcome.'],
     ['q' => 'How is it different from mesotherapy?',
@@ -78,7 +78,7 @@ $page = [
             'howPerformed'  => 'Fine needles create controlled micro-injuries in the scalp across the treatment area, provoking a wound-healing response and creating temporary channels through which topical treatment can penetrate more deeply. It is delivered as a course of sessions spaced some weeks apart, generally alongside established topical therapy, and is sometimes combined with application of platelet-rich plasma immediately afterwards.',
             'preparation'   => 'Clinical assessment and scalp examination, establishment of the underlying diagnosis and investigation of reversible causes, exclusion of active scalp infection, inflammation or autoimmune scalp disease, review of any tendency to keloid or abnormal scarring, and review of medication affecting bleeding or healing.',
             'followup'      => 'Baseline and interval photography, review of response over several months, and continuation of the underlying medical treatment alongside.',
-            'expectedPrognosis' => 'Evidence is more supportive of microneedling used in combination with topical treatment than of microneedling alone, and it is best regarded as an adjunct rather than a standalone treatment for hair loss. Where benefit occurs, reduced shedding is commonly the earliest change and density is assessed over months. It does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
+            'expectedPrognosis' => 'Evidence is more supportive of microneedling used in combination with topical treatment than of microneedling alone, and it is more accurately regarded as an adjunct rather than a standalone treatment for hair loss. Where benefit occurs, reduced shedding is commonly the earliest change and density is assessed over months. It does not halt the underlying process of pattern hair loss and results require maintenance. A proportion of patients do not respond.',
         ]),
         schema_faq('/hair-microneedling-in-gurgaon', $faqs),
     ],
@@ -92,7 +92,7 @@ require __DIR__ . '/includes/header.php';
     <div class="split">
       <div>
         <span class="pill pill--dot">Hair microneedling in Gurgaon</span>
-        <h1 class="h1 mt-3">Microneedling Works Best as a Partner, Not a Treatment on Its Own</h1>
+        <h1 class="h1 mt-3">Microneedling Is Most Useful as a Partner, Not a Treatment on Its Own</h1>
         <p class="lead mt-3 measure">The evidence that makes microneedling interesting is about using it alongside topical treatment, not instead of it. That distinction gets flattened in most marketing and it is the whole point. Added to a proper treatment plan it may help. Added to nothing, it is unlikely to be what changes your outcome.</p>
 
         <div class="btn-row mt-5">

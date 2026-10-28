@@ -78,7 +78,7 @@ $page = [
             'howPerformed'  => 'Follicular units are extracted from the occipital donor area of the scalp and separated under magnification into single-hair grafts. Each graft is placed into the brow individually at an acute angle close to the skin surface, following the changing direction of natural brow hair across the head, body and tail of the brow. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of the brow and the cause of hair loss, exclusion of active inflammatory or autoimmune skin disease, review of medication, and a brow shape drawn and agreed with the patient before the procedure date.',
             'followup'      => 'Wash and handling instruction in the first week, then scheduled review as the transplanted hair sheds and regrows, with advice on trimming once growth is established.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; regrowth typically begins around three to four months with the shape settling at approximately eight to twelve months. Transplanted hair retains scalp growth characteristics and requires regular trimming indefinitely. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; regrowth typically begins around three to four months with the shape settling at approximately eight to twelve months. Transplanted hair retains scalp growth characteristics and requires regular trimming indefinitely. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/eyebrow-transplant-in-gurgaon', $faqs),
     ],
@@ -184,7 +184,7 @@ require __DIR__ . '/includes/header.php';
         <p class="eyebrow">Design</p>
         <h2 class="h2 mt-2">The Shape Is Agreed Before Anything Is Taken</h2>
         <p class="body-l mt-3 measure">A brow is a facial feature, not a patch of coverage. Shape, arch position, thickness and where the tail ends all change how a face reads, and they are decided with you, drawn on, and looked at in a mirror before consent — not improvised on the day.</p>
-        <p class="body-l mt-3 measure">Symmetry is discussed honestly at this stage too. Faces are not symmetrical, brows rarely start symmetrical, and chasing perfect mirror-image brows usually produces a result that looks manufactured. The aim is a matched pair that belongs to your face.</p>
+        <p class="body-l mt-3 measure">Symmetry is discussed honestly at this stage too. Faces are not symmetrical, brows rarely start symmetrical, and chasing exact mirror-image brows usually produces a result that looks manufactured. The aim is a matched pair that belongs to your face.</p>
         <p class="body-l mt-3 measure">Restraint is a design decision. It is tempting to ask for the fullest brow possible, and it is the wrong instinct. A natural brow is denser through the body and thins towards the tail, with a soft, slightly irregular edge. Filling that edge in solidly is exactly what makes work identifiable.</p>
       </div>
       <div>

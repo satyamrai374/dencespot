@@ -73,7 +73,7 @@ $page = [
             'howPerformed'  => 'Follicular units are extracted from the donor area as in FUE, then each graft is loaded into a hollow implanter and placed directly into the recipient area in a single action, which creates the site and sets the graft at a controlled depth, angle and direction simultaneously. Performed as a day case under local anaesthetic.',
             'preparation'   => 'Clinical assessment of hair-loss pattern and donor density, review of medication and blood-thinning agents, blood investigations, and a hairline design agreed with the patient before the procedure date.',
             'followup'      => 'Wash instruction and review in the first week, then scheduled photographic reviews through the shedding and regrowth phases.',
-            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and are not guaranteed.',
+            'expectedPrognosis' => 'Transplanted hairs commonly shed within the first weeks; new growth typically begins around three to four months with a fuller result at approximately ten to twelve months. Outcomes vary between patients and cannot be promised.',
         ]),
         schema_faq('/dhi-hair-transplant-in-gurgaon', $faqs),
     ],
@@ -198,7 +198,7 @@ require __DIR__ . '/includes/header.php';
 
     <div class="grid grid--2 mt-5">
       <div class="note"><p class="h4">A note on &ldquo;DHT hair transplant&rdquo;</p><p class="body-s mt-2">Some clinic pages advertise a &ldquo;DHT hair transplant&rdquo;. DHT is dihydrotestosterone — the hormone involved in pattern hair loss, not a surgical technique. The technique meant is DHI, direct hair implantation. If a page selling you surgery cannot keep the two apart, that tells you something.</p></div>
-      <div class="note"><p class="h4">On &ldquo;unshaven DHI&rdquo;</p><p class="body-s mt-2">DHI does make it easier to work without shaving the recipient area, which is why it is often advertised that way. The donor still needs trimming for extraction, though, and unshaven work is slower and practical only for smaller graft numbers. What is realistic in your case is decided at the consultation, not promised in advance.</p></div>
+      <div class="note"><p class="h4">On &ldquo;unshaven DHI&rdquo;</p><p class="body-s mt-2">DHI does make it easier to work without shaving the recipient area, which is why it is often advertised that way. The donor still needs trimming for extraction, though, and unshaven work is slower and practical only for smaller graft numbers. What is realistic in your case is decided at the consultation, not promised beforehand.</p></div>
     </div>
   </div>
 </section>
@@ -262,7 +262,7 @@ require __DIR__ . '/includes/header.php';
           <?= ticks([
               'Bring your full medication list, including supplements.',
               'Stop alcohol and avoid blood thinners as instructed.',
-              'Confirm the shaving plan in advance so there are no surprises.',
+              'Confirm the shaving plan beforehand so there are no surprises.',
               'Eat properly — DHI sessions run long by nature.',
               'Wear a shirt that buttons rather than a pullover.',
           ], false) ?>
@@ -287,7 +287,7 @@ require __DIR__ . '/includes/header.php';
       <div class="card"><span class="pill">Months 10–12</span><h3 class="h4 mt-3">The real result</h3><p class="body-s mt-2">A fair assessment of the hairline and its density. Non-transplanted hair behind it keeps thinning on its own schedule.</p></div>
     </div>
     <div class="note mt-5">
-      <p class="body">Individual recovery and growth vary. DHI does not shorten recovery, guarantee higher graft survival or produce faster growth than well-executed FUE — claims to the contrary are marketing. Timelines here are general patient education, not a promise of results.</p>
+      <p class="body">Individual recovery and growth vary. DHI does not shorten recovery, assure higher graft survival or produce faster growth than well-executed FUE — claims to the contrary are marketing. Timelines here are general patient education, not a promise of results.</p>
     </div>
   </div>
 </section>
