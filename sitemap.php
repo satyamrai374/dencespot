@@ -70,6 +70,16 @@ function sitemap_weight(string $slug): array
     return ['0.7', 'monthly'];
 }
 
+/**
+ * A page file that only 301s elsewhere (an old URL kept as a stub, such as
+ * blog/hair-transplant-guarantees-and-success-rates.php). A redirect has no
+ * place in a sitemap; its target is listed instead.
+ */
+function sitemap_is_redirect(string $file): bool
+{
+    return filesize($file) < 1024 && preg_match("/header\\(\\s*'Location:/", (string) file_get_contents($file)) === 1;
+}
+
 /** Every .php page in the site root and /blog, as URL slugs. */
 function sitemap_pages(): array
 {
@@ -81,13 +91,16 @@ function sitemap_pages(): array
         if ($slug === 'index') {
             $slug = '';
         }
-        if (in_array($slug, SITEMAP_EXCLUDE, true)) {
+        if (in_array($slug, SITEMAP_EXCLUDE, true) || sitemap_is_redirect($file)) {
             continue;
         }
         $out[$slug] = filemtime($file);
     }
 
     foreach (glob($root . '/blog/*.php') ?: [] as $file) {
+        if (sitemap_is_redirect($file)) {
+            continue;
+        }
         $name = basename($file, '.php');
         $slug = $name === 'index' ? 'blog/' : 'blog/' . $name;
         $out[$slug] = filemtime($file);
