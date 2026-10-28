@@ -20,6 +20,12 @@ if ($uri === '/sitemap.xml') {
     require __DIR__ . '/sitemap.php';
     exit;
 }
+// The index's child sitemaps (.htaccess §2).
+if (preg_match('#^/sitemap-(delhi|gurgaon|blog|pages)\.xml$#', $uri, $m)) {
+    $_GET['type'] = $m[1];
+    require __DIR__ . '/sitemap.php';
+    exit;
+}
 
 // 1c. Comparison URLs that 301 to the article covering them.
 //     Mirrors .htaccess §1b. Without this the redirects only exist in

@@ -8,11 +8,16 @@
  * locality doorway pages (strategy §5). This lists real, indexable pages only.
  *
  * Serve at /sitemap.xml via the rewrite in .htaccess.
+ *
+ * Since 28 Oct 2026 (client request) /sitemap.xml is a sitemap index of four
+ * child sitemaps, /sitemap-<section>.xml (SITEMAP_SECTIONS), served by this
+ * file with ?type=<section>: Delhi, Gurgaon, the blog, and every other page.
  */
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/delhi-service-areas.php';
 
 header('Content-Type: application/xml; charset=utf-8');
 
@@ -203,13 +208,70 @@ function sitemap_pages(): array
     return $out;
 }
 
-$pages = sitemap_pages();
+/** The child sitemaps of /sitemap.xml, each at /sitemap-<key>.xml. */
+const SITEMAP_SECTIONS = [
+    'delhi'   => 'Delhi: the Rohini clinic, its treatments and every Delhi area page',
+    'gurgaon' => 'Gurgaon: the Gurugram clinic’s treatment pages',
+    'blog'    => 'Blog posts',
+    'pages'   => 'Everything else: home, clinic, doctors, guides, tools and policies',
+];
+
+/**
+ * Delhi area pages whose URL names neither Delhi nor Rohini
+ * (/fue-hair-transplant-in-pitampura …), as slugs: every area page of every
+ * Delhi cluster.
+ */
+function sitemap_delhi_area_slugs(): array
+{
+    $out = [];
+    foreach (array_keys(DELHI_SERVICE_AREAS) as $area) {
+        foreach (['hair', 'beard', 'laser', ...array_keys(DELHI_TREATMENTS)] as $treatment) {
+            $out[ltrim(delhi_area_url($treatment, $area), '/')] = true;
+        }
+    }
+    return $out;
+}
+
+/** The section of SITEMAP_SECTIONS a slug belongs to. */
+function sitemap_section(string $slug, array $delhiAreas): string
+{
+    if (str_starts_with($slug, 'blog/')) {
+        return 'blog';
+    }
+    if (preg_match('/gurgaon|gurugram/', $slug)) {
+        return 'gurgaon';
+    }
+    if (preg_match('/delhi|rohini/', $slug) || isset($delhiAreas[$slug])) {
+        return 'delhi';
+    }
+    return 'pages';
+}
+
+$type       = (string) ($_GET['type'] ?? '');
+$delhiAreas = sitemap_delhi_area_slugs();
+$sections   = array_fill_keys(array_keys(SITEMAP_SECTIONS), []);
+foreach (sitemap_pages() as $slug => $mtime) {
+    $sections[sitemap_section((string) $slug, $delhiAreas)][(string) $slug] = $mtime;
+}
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+
+if (!isset(SITEMAP_SECTIONS[$type])):
 ?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?php foreach ($sections as $key => $pages): ?>
+<?php if ($pages === []) { continue; } ?>
+  <!-- <?= e(SITEMAP_SECTIONS[$key]) ?>: <?= count($pages) ?> URLs -->
+  <sitemap>
+    <loc><?= e(SITE_ORIGIN . '/sitemap-' . $key . '.xml') ?></loc>
+    <lastmod><?= gmdate('Y-m-d', max($pages)) ?></lastmod>
+  </sitemap>
+<?php endforeach; ?>
+</sitemapindex>
+<?php else: ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<?php foreach ($pages as $slug => $mtime):
-    [$priority, $freq] = sitemap_weight((string) $slug);
+<?php foreach ($sections[$type] as $slug => $mtime):
+    [$priority, $freq] = sitemap_weight($slug);
     $loc = SITE_ORIGIN . '/' . $slug;
     ?>
   <url>
@@ -220,3 +282,4 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
   </url>
 <?php endforeach; ?>
 </urlset>
+<?php endif; ?>

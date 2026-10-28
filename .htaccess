@@ -72,6 +72,8 @@ RewriteCond %{THE_REQUEST} \s/+sitemap(\.php)?[\s?] [NC]
 RewriteRule ^ /sitemap.xml [R=301,L]
 
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
+# /sitemap.xml is a sitemap index of these four (28 Oct 2026).
+RewriteRule ^sitemap-(delhi|gurgaon|blog|pages)\.xml$ sitemap.php?type=$1 [L]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
