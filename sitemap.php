@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/delhi-service-areas.php';
+require_once __DIR__ . '/includes/gurgaon-service-areas.php';
 
 header('Content-Type: application/xml; charset=utf-8');
 
@@ -204,6 +205,30 @@ function sitemap_pages(): array
         }
     }
 
+    // The Gurugram area pages (includes/gurgaon-service-areas.php): the newest
+    // of the treatment's copy file and the layouts; an area switched off is
+    // left out.
+    $gurgaonLayout = max(
+        filemtime($root . '/includes/gurgaon-service-areas.php'),
+        filemtime($root . '/includes/gurgaon-treatment-area-page.php'),
+        filemtime($root . '/includes/delhi-treatment-sections.php'),
+        filemtime($root . '/includes/delhi-localities.php')
+    );
+    foreach (array_keys(GURGAON_TREATMENTS) as $key) {
+        if (!gurgaon_areas_built($key)) {
+            continue;
+        }
+        $date = max($gurgaonLayout, filemtime($root . '/includes/gurgaon-treatments/' . $key . '.php'));
+        foreach (GURGAON_SERVICE_AREAS as $areaSlug => $a) {
+            $slug = ltrim(gurgaon_treatment_url($key, $areaSlug), '/');
+            if (!$a['live']) {
+                unset($out[$slug]);
+            } elseif (isset($out[$slug])) {
+                $out[$slug] = max($out[$slug], $date);
+            }
+        }
+    }
+
     ksort($out);
     return $out;
 }
@@ -211,7 +236,7 @@ function sitemap_pages(): array
 /** The child sitemaps of /sitemap.xml, each at /sitemap-<key>.xml. */
 const SITEMAP_SECTIONS = [
     'delhi'   => 'Delhi: the Rohini clinic, its treatments and every Delhi area page',
-    'gurgaon' => 'Gurgaon: the Gurugram clinic’s treatment pages',
+    'gurgaon' => 'Gurgaon: the Gurugram clinic’s treatment pages and every Gurugram area page',
     'blog'    => 'Blog posts',
     'pages'   => 'Everything else: home, clinic, doctors, guides, tools and policies',
 ];
@@ -232,13 +257,25 @@ function sitemap_delhi_area_slugs(): array
     return $out;
 }
 
+/** Gurugram area pages (/hair-prp-treatment-in-dlf-phase-1 …), as slugs. */
+function sitemap_gurgaon_area_slugs(): array
+{
+    $out = [];
+    foreach (array_keys(GURGAON_TREATMENTS) as $key) {
+        foreach (array_keys(GURGAON_SERVICE_AREAS) as $area) {
+            $out[ltrim(gurgaon_treatment_url($key, $area), '/')] = true;
+        }
+    }
+    return $out;
+}
+
 /** The section of SITEMAP_SECTIONS a slug belongs to. */
-function sitemap_section(string $slug, array $delhiAreas): string
+function sitemap_section(string $slug, array $delhiAreas, array $gurgaonAreas = []): string
 {
     if (str_starts_with($slug, 'blog/')) {
         return 'blog';
     }
-    if (preg_match('/gurgaon|gurugram/', $slug)) {
+    if (preg_match('/gurgaon|gurugram/', $slug) || isset($gurgaonAreas[$slug])) {
         return 'gurgaon';
     }
     if (preg_match('/delhi|rohini/', $slug) || isset($delhiAreas[$slug])) {
@@ -248,10 +285,11 @@ function sitemap_section(string $slug, array $delhiAreas): string
 }
 
 $type       = (string) ($_GET['type'] ?? '');
-$delhiAreas = sitemap_delhi_area_slugs();
-$sections   = array_fill_keys(array_keys(SITEMAP_SECTIONS), []);
+$delhiAreas   = sitemap_delhi_area_slugs();
+$gurgaonAreas = sitemap_gurgaon_area_slugs();
+$sections     = array_fill_keys(array_keys(SITEMAP_SECTIONS), []);
 foreach (sitemap_pages() as $slug => $mtime) {
-    $sections[sitemap_section((string) $slug, $delhiAreas)][(string) $slug] = $mtime;
+    $sections[sitemap_section((string) $slug, $delhiAreas, $gurgaonAreas)][(string) $slug] = $mtime;
 }
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";

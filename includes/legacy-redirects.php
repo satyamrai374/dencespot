@@ -373,7 +373,15 @@ function legacy_redirect(string $path): ?string
     }
     if (preg_match('#^/([a-z-]+?)-in-([a-z0-9-]+)$#', $path, $m)) {
         require_once __DIR__ . '/delhi-service-areas.php';
+        require_once __DIR__ . '/gurgaon-service-areas.php';
         $key = LEGACY_TREATMENT_ALIAS[$m[1]] ?? $m[1];
+        // A Gurugram area under another spelling (sector-14, cyber-city,
+        // dlf-phase-1-gurgaon …) to its area page (28 Oct 2026). First, so a
+        // Gurugram slug never falls to the looser Delhi matching below.
+        if (isset(GURGAON_TREATMENTS[$key]) && gurgaon_areas_built($key)
+            && ($gurgaonArea = gurgaon_area_slug($m[2])) !== null) {
+            return gurgaon_treatment_url($key, $gurgaonArea);
+        }
         if (isset(DELHI_TREATMENTS[$key]) && is_file(dirname(__DIR__) . delhi_treatment_hub($key) . '.php')
             && ($target = legacy_delhi_treatment($key, $m[2])) !== null) {
             return $target;

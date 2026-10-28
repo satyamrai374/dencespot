@@ -40,6 +40,15 @@ if (!empty($page['service_areas'])) {
     $aboveFooter = '';
 } else {
     $aboveFooter = location_links_section();
+    // A Gurgaon treatment page is the parent of its Gurugram area pages
+    // (includes/gurgaon-service-areas.php, 28 Oct 2026): their list sits just
+    // above the footer, below the same-city treatment links, which the
+    // Gurgaon pages keep so no treatment page loses its links.
+    require_once __DIR__ . '/gurgaon-service-areas.php';
+    $gurgaonKey = gurgaon_treatment_for_parent((string) ($page['url'] ?? ''));
+    if ($gurgaonKey !== null) {
+        $aboveFooter .= gurgaon_service_areas_section($gurgaonKey);
+    }
 }
 ?>
 <?= $aboveFooter ?>

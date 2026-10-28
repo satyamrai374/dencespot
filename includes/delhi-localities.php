@@ -21,13 +21,50 @@ declare(strict_types=1);
 require_once __DIR__ . '/delhi-service-areas.php';
 
 /**
+ * The clinic a section speaks for: 'rohini' (every Delhi page) or 'gurgaon'
+ * (the Gurugram area pages, includes/gurgaon-treatment-area-page.php, since
+ * 28 Oct 2026). Each page names only its own clinic (location rule).
+ */
+function locality_clinic(string $clinic = 'rohini'): array
+{
+    if ($clinic === 'gurgaon') {
+        return [
+            'name'     => 'Gurugram clinic',
+            'book'     => 'Gurugram (Sector 39)',
+            'tel'      => PHONE_E164,
+            'phone'    => PHONE_DISPLAY,
+            'wa'       => WHATSAPP_URL,
+            'maps'     => MAPS_URL,
+            'embed'    => MAP_EMBED,
+            'map'      => 'Google Map showing DenceSpot Clinic, Sector 39, Gurugram',
+            'address'  => NAP_STREET . ', ' . NAP_LOCALITY . ', ' . NAP_REGION . ' ' . NAP_POSTCODE,
+            'landmark' => ucfirst(NAP_LANDMARK),
+        ];
+    }
+    return [
+        'name'     => 'Rohini clinic',
+        'book'     => 'Delhi (Rohini)',
+        'tel'      => LOC_DELHI_PHONE_E164,
+        'phone'    => LOC_DELHI_PHONE_DISPLAY,
+        'wa'       => LOC_DELHI_WHATSAPP_URL,
+        'maps'     => LOC_DELHI_MAPS_URL,
+        'embed'    => LOC_DELHI_MAP_EMBED,
+        'map'      => 'Google Map showing DenceSpot Clinic, Rohini, Delhi',
+        'address'  => LOC_DELHI_ADDRESS,
+        'landmark' => LOC_DELHI_LANDMARK,
+    ];
+}
+
+/**
  * The full-width hero of /hair-transplant-in-gurgaon, with the licensed stock
  * photo in place of its AI image. $o: pill, title, lead, feats [[icon, label]],
- * and optionally treatment (the booking form's preset; hair transplant).
+ * and optionally treatment (the booking form's preset; hair transplant) and
+ * clinic (locality_clinic(); Rohini).
  */
 function delhi_hero(array $o): string
 {
-    $o += ['treatment' => 'Hair transplant'];
+    $o += ['treatment' => 'Hair transplant', 'clinic' => 'rohini'];
+    $cl = locality_clinic($o['clinic']);
     ob_start(); ?>
 <section class="hero-x hero-x--page">
   <div class="hero-x__media">
@@ -52,10 +89,10 @@ function delhi_hero(array $o): string
       </ul>
 
       <div class="btn-row hero-x__ctas">
-        <a class="btn btn--lg btn--ink" href="<?= e(book_url()) ?>" data-book data-clinic="Delhi (Rohini)" data-treatment="<?= e($o['treatment']) ?>" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
-        <a class="btn btn--lg btn--outline" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= icon('phone', 18) ?> Call <?= e(LOC_DELHI_PHONE_DISPLAY) ?></a>
+        <a class="btn btn--lg btn--ink" href="<?= e(book_url()) ?>" data-book data-clinic="<?= e($cl['book']) ?>" data-treatment="<?= e($o['treatment']) ?>" data-track="book"><?= icon('calendar', 18) ?> Book a Consultation</a>
+        <a class="btn btn--lg btn--outline" href="tel:<?= e($cl['tel']) ?>" data-track="call"><?= icon('phone', 18) ?> Call <?= e($cl['phone']) ?></a>
       </div>
-      <p class="hero-x__note hero-x__note--copy">Image: representative, not the Rohini clinic</p>
+      <p class="hero-x__note hero-x__note--copy">Image: representative, not the <?= e($cl['name']) ?></p>
     </div>
   </div>
 </section>
@@ -102,11 +139,13 @@ function delhi_glance(array $rows, string $label): string
 /**
  * The "why" band: a row of round icons, and beside it either a photo or the
  * Rohini clinic's map. $o: id, eyebrow, heading, intro, icons [[icon, label]],
- * media 'map' | 'equipment', and optionally checks (the photo's checklist).
+ * media 'map' | 'equipment', and optionally checks (the photo's checklist) and
+ * clinic (whose map; Rohini).
  */
 function delhi_band(array $o): string
 {
-    $o += ['checks' => ['FUE & DHI at the Rohini clinic', 'Consented patient photographs', 'Reviews through the first year']];
+    $o += ['checks' => ['FUE & DHI at the Rohini clinic', 'Consented patient photographs', 'Reviews through the first year'], 'clinic' => 'rohini'];
+    $cl = locality_clinic($o['clinic']);
     ob_start(); ?>
 <section class="section ht-sec ht-why" id="<?= e($o['id']) ?>">
   <div class="wrap">
@@ -124,7 +163,7 @@ function delhi_band(array $o): string
 
   <?php if ($o['media'] === 'map'): ?>
   <div class="ht-why__media ht-why__media--map">
-    <iframe title="Google Map showing DenceSpot Clinic, Rohini, Delhi" src="<?= e(LOC_DELHI_MAP_EMBED) ?>" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe title="<?= e($cl['map']) ?>" src="<?= e($cl['embed']) ?>" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <?php else: ?>
   <figure class="ht-why__media">
@@ -205,13 +244,13 @@ function delhi_results(string $more = '/gallery'): string
     return (string) ob_get_clean();
 }
 
-/** The homepage's three doctor tiles, worded for the Rohini clinic. */
-function delhi_doctors(): string
+/** The homepage's three doctor tiles, worded for the page's clinic (Rohini by default). */
+function delhi_doctors(string $clinic = 'rohini'): string
 {
     return doctors_grid_section(
         'Our doctors',
         'Meet the Doctors at DenceSpot',
-        'Every case starts with an examination by a doctor. The doctor who will treat you at the Rohini clinic is named at your consultation, and you can ask for their qualifications, registration and experience with the technique planned for you.',
+        'Every case starts with an examination by a doctor. The doctor who will treat you at the ' . locality_clinic($clinic)['name'] . ' is named at your consultation, and you can ask for their qualifications, registration and experience with the technique planned for you.',
         'section--canvas ht-sec',
         page_review_signed_off()
     );
@@ -312,8 +351,9 @@ function delhi_cost_brief(): string
  * The closing consultation band, with the Rohini clinic's details and form.
  * $treatments: the form's treatment options; the hair transplant list when empty.
  */
-function delhi_consult(string $heading, string $intro, string $source, array $treatments = []): string
+function delhi_consult(string $heading, string $intro, string $source, array $treatments = [], string $clinic = 'rohini'): string
 {
+    $cl = locality_clinic($clinic);
     $treatments = $treatments ?: [
         'Hair transplant (FUE / DHI)',
         'Hairline transplant',
@@ -332,21 +372,21 @@ function delhi_consult(string $heading, string $intro, string $source, array $tr
         <p class="body-l mt-3 measure"><?= e($intro) ?></p>
 
         <dl class="dl mt-4">
-          <div><dt>Address</dt><dd><?= e(LOC_DELHI_ADDRESS) ?><span class="meta" style="display:block;font-weight:500"><?= e(LOC_DELHI_LANDMARK) ?></span></dd></div>
-          <div><dt>Phone</dt><dd><a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a></dd></div>
+          <div><dt>Address</dt><dd><?= e($cl['address']) ?><span class="meta" style="display:block;font-weight:500"><?= e($cl['landmark']) ?></span></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:<?= e($cl['tel']) ?>" data-track="call"><?= e($cl['phone']) ?></a></dd></div>
           <div><dt>Hours</dt><dd><?= e(HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(HOURS_NOTE) ?></span></dd></div>
         </dl>
 
         <div class="btn-row mt-5">
-          <a class="btn btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> WhatsApp</a>
-          <a class="btn btn--outline" href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= icon('phone', 17) ?> Call the Clinic</a>
-          <a class="btn btn--outline" href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener"><?= icon('pin', 17) ?> Directions<span class="sr-only"> (opens in a new tab)</span></a>
+          <a class="btn btn--accent" href="<?= e($cl['wa']) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> WhatsApp</a>
+          <a class="btn btn--outline" href="tel:<?= e($cl['tel']) ?>" data-track="call"><?= icon('phone', 17) ?> Call the Clinic</a>
+          <a class="btn btn--outline" href="<?= e($cl['maps']) ?>" target="_blank" rel="noopener"><?= icon('pin', 17) ?> Directions<span class="sr-only"> (opens in a new tab)</span></a>
         </div>
       </div>
 
       <div class="consult__form">
         <h3 class="h3">Book Your Consultation</h3>
-        <p class="body-s mt-1">The Rohini clinic replies during opening hours (<?= e(HOURS_DISPLAY) ?>).</p>
+        <p class="body-s mt-1">The <?= e($cl['name']) ?> replies during opening hours (<?= e(HOURS_DISPLAY) ?>).</p>
         <div class="mt-4">
           <?= enquiry_form($source, $treatments, false) ?>
         </div>
@@ -360,8 +400,9 @@ function delhi_consult(string $heading, string $intro, string $source, array $tr
 }
 
 /** The FAQ section in the Gurgaon layout. $about: what the consultation answers (the laser pages: skin and hair). */
-function delhi_faqs(string $heading, array $faqs, int $visible, string $about = 'scalp, health or budget'): string
+function delhi_faqs(string $heading, array $faqs, int $visible, string $about = 'scalp, health or budget', string $clinic = 'rohini'): string
 {
+    $cl = locality_clinic($clinic);
     ob_start(); ?>
 <section class="section ht-sec section--canvas" id="faqs">
   <div class="wrap">
@@ -371,7 +412,7 @@ function delhi_faqs(string $heading, array $faqs, int $visible, string $about = 
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
         <p class="body-s mt-3">General patient education. Anything specific to your <?= e($about) ?> is answered at the consultation.</p>
         <div class="btn-row mt-4">
-          <a class="btn btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
+          <a class="btn btn--accent" href="<?= e($cl['wa']) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> Ask on WhatsApp</a>
         </div>
       </div>
 

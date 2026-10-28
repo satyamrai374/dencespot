@@ -620,20 +620,35 @@ function delhi_service_areas_section(string $treatment = 'hair'): string
 {
     $treatment = delhi_area_anchor($treatment) !== null ? $treatment : 'hair';
     $anchor    = delhi_area_anchor($treatment);
+    $links     = [];
+    foreach (DELHI_SERVICE_AREAS as $slug => $a) {
+        if ($a['live']) {
+            $links[delhi_area_url($treatment, $slug)] = $anchor . ' in ' . $a['name'];
+        }
+    }
+    return serving_areas_block('Serving Patients Across Delhi', $links);
+}
+
+/**
+ * The "Serving Patients Across …" block above the footer, for Delhi
+ * (delhi_service_areas_section()) and Gurugram (gurgaon_service_areas_section()).
+ * $links: [path => anchor].
+ */
+function serving_areas_block(string $heading, array $links): string
+{
     ob_start(); ?>
 <section class="serving-areas" aria-labelledby="serving-areas-title">
   <div class="wrap">
   <div class="serving-areas__head">
-    <h2 class="serving-areas__heading" id="serving-areas-title"><?= icon('pin', 26, 'currentColor', 2) ?> Serving Patients Across Delhi</h2>
+    <h2 class="serving-areas__heading" id="serving-areas-title"><?= icon('pin', 26, 'currentColor', 2) ?> <?= e($heading) ?></h2>
     <button type="button" class="serving-areas__toggle" aria-expanded="true" aria-controls="serving-areas" hidden><span>Hide Locations</span> <?= hp_icon('chevron', 18, 2) ?></button>
   </div>
   <ul class="serving-areas__list" id="serving-areas">
-    <?php foreach (DELHI_SERVICE_AREAS as $slug => $a): ?>
-      <?php if (!$a['live']) { continue; } ?>
+    <?php foreach ($links as $path => $anchor): ?>
     <?php /* Absolute URLs (client, 28 Oct 2026): the links read
              https://dencespot.com/… wherever the page is opened, never the
              local server's host. */ ?>
-    <li><a href="<?= e(abs_url(delhi_area_url($treatment, $slug))) ?>"><?= icon('pin', 16, 'currentColor', 2) ?><span><?= e($anchor) ?> in <?= e($a['name']) ?></span></a></li>
+    <li><a href="<?= e(abs_url($path)) ?>"><?= icon('pin', 16, 'currentColor', 2) ?><span><?= e($anchor) ?></span></a></li>
     <?php endforeach; ?>
   </ul>
   </div>
