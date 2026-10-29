@@ -104,13 +104,36 @@ const MAP_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.32
  * ---------------------------------------------------------------------- */
 
 const LOC_DELHI_NAME          = 'DenceSpot Clinic — Delhi (Rohini)';
-const LOC_DELHI_ADDRESS       = 'Dencespot Clinic, Delhi (Rohini)';
-const LOC_DELHI_LANDMARK      = 'North-West Delhi (Near Outer Ring Road / Rohini)';
+const LOC_DELHI_STREET        = '6, Dividing Road, near DDA Market, Pocket 3, Sector 5';
+const LOC_DELHI_LOCALITY      = 'Rohini';
+const LOC_DELHI_CITY          = 'New Delhi';
+const LOC_DELHI_REGION        = 'Delhi';
+const LOC_DELHI_POSTCODE      = '110085';
+const LOC_DELHI_COUNTRY       = 'IN';
+const LOC_DELHI_ADDRESS       = '6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini, New Delhi, Delhi, 110085';
+const LOC_DELHI_LANDMARK      = 'near DDA Market, Pocket 3, Sector 5, Rohini';
 const LOC_DELHI_PHONE_E164    = '+919540699152';
 const LOC_DELHI_PHONE_DISPLAY = '+91 95406 99152';
 const LOC_DELHI_WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B919540699152&text=Hi%2C%20please%20share%20me%20more%20information%20about%20your%20services';
 const LOC_DELHI_MAP_EMBED     = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.2821792980394!2d77.10703699999999!3d28.7111119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0181b16393d1%3A0x3f3d24fc9fc00d93!2sDencespot%20Clinic!5e0!3m2!1sen!2sin!4v1791815111651!5m2!1sen!2sin';
-const LOC_DELHI_MAPS_URL      = 'https://maps.google.com/?cid=4556839352136011155';
+const LOC_DELHI_GBP_CID       = '4556839065399332243';
+const LOC_DELHI_MAPS_URL      = 'https://www.google.com/maps?cid=' . LOC_DELHI_GBP_CID;
+const LOC_DELHI_GEO_LAT       = 28.711112;
+const LOC_DELHI_GEO_LNG       = 77.107037;
+
+/**
+ * Rohini clinic opening hours: verified against Google Business Profile.
+ * Mon–Sat: 10:00 – 18:00 (10 am – 6 pm)
+ * Sun: 09:00 – 17:00 (9 am – 5 pm)
+ */
+const LOC_DELHI_HOURS_WEEKDAY_DAYS  = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const LOC_DELHI_HOURS_WEEKDAY_OPEN  = '10:00';
+const LOC_DELHI_HOURS_WEEKDAY_CLOSE = '18:00';
+const LOC_DELHI_HOURS_SUNDAY_DAYS   = ['Sunday'];
+const LOC_DELHI_HOURS_SUNDAY_OPEN   = '09:00';
+const LOC_DELHI_HOURS_SUNDAY_CLOSE  = '17:00';
+const LOC_DELHI_HOURS_DISPLAY       = 'Mon–Sat: 10:00 AM – 06:00 PM · Sun: 09:00 AM – 05:00 PM';
+const LOC_DELHI_HOURS_NOTE          = 'Open 7 days a week';
 
 /** Treatment groups, in display order, for the Rohini lists and hub. */
 const ROHINI_GROUPS = [

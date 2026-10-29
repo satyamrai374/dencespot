@@ -2,10 +2,10 @@
 /**
  * /contact — page #13.
  *
- * Distinct from /book-consultation by design: that page's only job is to
- * convert, this one answers "where are you, when are you open, how do I get
- * there". Splitting them keeps the conversion page free of distractions and
- * gives the local-intent queries somewhere sensible to land.
+ * Distinct from /book-consultation by design: answers "where are you,
+ * when are you open, how do I get there" for both clinic locations:
+ * - Delhi (Rohini): 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini, New Delhi, Delhi 110085 (GBP CID 4556839065399332243)
+ * - Gurugram: 1123, Sector 39 Road, Jharsa, Sector 39, Gurugram, Haryana 122003
  */
 
 declare(strict_types=1);
@@ -19,11 +19,12 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Contact DenceSpot Clinic | Sector 39, Gurugram',
-    'description' => 'Visit DenceSpot Clinic in Sector 39, Gurugram. Address, directions, opening hours, phone and WhatsApp. ' . HOURS_DISPLAY . '.',
+    'title'       => 'Contact DenceSpot Clinic | Delhi (Rohini) & Gurugram (Sector 39)',
+    'description' => 'Visit DenceSpot Clinic in Delhi (Rohini) and Sector 39 (Gurugram). Addresses, opening hours, directions, phone and WhatsApp. Doctor-led consultations.',
     'url'         => '/contact',
     'crumbs'      => $crumbs,
     'schema'      => [
+        schema_delhi_clinic(),
         schema_clinic(),
         schema_physician(),
         schema_breadcrumbs($crumbs),
@@ -31,101 +32,227 @@ $page = [
             '@type' => 'ContactPage',
             '@id'   => abs_url('/contact') . '#page',
             'name'  => 'Contact DenceSpot Clinic',
-            'about' => ['@id' => SITE_ORIGIN . '/#clinic'],
+            'about' => [
+                ['@id' => SITE_ORIGIN . '/#delhi-clinic'],
+                ['@id' => SITE_ORIGIN . '/#clinic'],
+            ],
         ],
     ],
 ];
+
+$hasError = isset($_GET['error']);
+$errors   = $hasError ? explode(',', (string) $_GET['error']) : [];
 
 require __DIR__ . '/includes/header.php';
 ?>
 
 <section class="section section--canvas">
   <div class="wrap">
+    <div>
+      <span class="pill pill--dot">Our Locations</span>
+      <h1 class="h1 mt-3">Contact DenceSpot Clinic — Delhi (Rohini) & Gurugram</h1>
+      <p class="lead mt-3 measure" style="max-width:72ch">Two doctor-led clinics across Delhi NCR. Consultations, procedures, and every follow-up review are conducted with the same medical doctors and clinical care standards.</p>
+    </div>
+
+    <?php if ($hasError): ?>
+      <div class="card mt-4" style="border-left:4px solid var(--accent);background:#fff0f1;padding:16px 20px;">
+        <p class="body-s" style="color:var(--accent-dark);font-weight:600;">
+          <?php if (in_array('phone', $errors, true)): ?>
+            Please enter a valid 10-digit mobile number so the clinic can reach you.
+          <?php else: ?>
+            Please review the required fields and submit again.
+          <?php endif; ?>
+        </p>
+      </div>
+    <?php endif; ?>
+
+    <!-- Two Clinics Grid -->
+    <div class="grid grid--2 mt-6" style="gap:28px;align-items:stretch;">
+
+      <!-- Delhi Rohini Clinic (Google Business Profile Verified) -->
+      <div class="card card--pad-lg" style="display:flex;flex-direction:column;justify-content:space-between;border-top:4px solid var(--ink)">
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <span class="pill pill--dot" style="font-size:12px">Delhi Location · GBP Verified</span>
+            <span class="fine" style="color:var(--ink-muted)">CID: <?= e(LOC_DELHI_GBP_CID) ?></span>
+          </div>
+          <h2 class="h3 mt-3">Delhi (Rohini) Clinic</h2>
+          <p class="body-s mt-1" style="color:var(--ink-soft)">Serving patients across North, West, and Central Delhi.</p>
+
+          <dl class="nap mt-4">
+            <div>
+              <dt>Address</dt>
+              <dd>
+                <?= e(LOC_DELHI_ADDRESS) ?><br>
+                <small style="color:var(--ink-muted)"><?= e(LOC_DELHI_LANDMARK) ?></small>
+              </dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>
+                <strong><?= e(LOC_DELHI_HOURS_DISPLAY) ?></strong><br>
+                <small style="color:var(--ink-muted)"><?= e(LOC_DELHI_HOURS_NOTE) ?></small>
+              </dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><strong><?= e(LOC_DELHI_PHONE_DISPLAY) ?></strong></a></dd>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd><a href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" data-wa-trigger data-clinic="Delhi (Rohini)" rel="noopener" data-track="whatsapp">Message on WhatsApp</a></dd>
+            </div>
+          </dl>
+
+          <div class="media ratio-16-10 mt-4" style="border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm)">
+            <iframe title="Google Map showing DenceSpot Clinic at <?= e(LOC_DELHI_ADDRESS) ?>" src="<?= e(LOC_DELHI_MAP_EMBED) ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <div class="btn-row">
+            <a class="btn btn--block btn--accent" href="<?= e(LOC_DELHI_WHATSAPP_URL) ?>" data-wa-trigger data-clinic="Delhi (Rohini)" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> WhatsApp Rohini</a>
+            <a class="btn btn--block btn--outline" href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener"><?= icon('pin', 17) ?> Open in Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gurugram Sector 39 Clinic -->
+      <div class="card card--pad-lg" style="display:flex;flex-direction:column;justify-content:space-between;border-top:4px solid var(--accent)">
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <span class="pill pill--dot" style="font-size:12px">Gurugram Location</span>
+            <span class="fine" style="color:var(--ink-muted)">Sector 39 Jharsa</span>
+          </div>
+          <h2 class="h3 mt-3">Gurugram (Sector 39) Clinic</h2>
+          <p class="body-s mt-1" style="color:var(--ink-soft)">Serving patients across Gurugram, DLF, Sohna Road, and South Delhi.</p>
+
+          <dl class="nap mt-4">
+            <div>
+              <dt>Address</dt>
+              <dd>
+                <?= e(nap_address_line()) ?><br>
+                <small style="color:var(--ink-muted)"><?= e(NAP_LANDMARK) ?></small>
+              </dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>
+                <strong><?= e(HOURS_DISPLAY) ?></strong><br>
+                <small style="color:var(--ink-muted)"><?= e(HOURS_NOTE) ?></small>
+              </dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:<?= e(PHONE_E164) ?>" data-track="call"><strong><?= e(PHONE_DISPLAY) ?></strong></a></dd>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd><a href="<?= e(WHATSAPP_URL) ?>" data-wa-trigger data-clinic="Gurugram (Sector 39)" rel="noopener" data-track="whatsapp">Message on WhatsApp</a></dd>
+            </div>
+          </dl>
+
+          <div class="media ratio-16-10 mt-4" style="border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm)">
+            <iframe title="Google Map showing DenceSpot Clinic at <?= e(nap_address_line()) ?>" src="<?= e(MAP_EMBED) ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <div class="btn-row">
+            <a class="btn btn--block btn--accent" href="<?= e(WHATSAPP_URL) ?>" data-wa-trigger data-clinic="Gurugram (Sector 39)" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> WhatsApp Gurugram</a>
+            <a class="btn btn--block btn--outline" href="<?= e(MAPS_URL) ?>" target="_blank" rel="noopener"><?= icon('pin', 17) ?> Open in Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Direct Contact / Enquiry Form -->
+<section class="section section--white" id="contact-form">
+  <div class="wrap">
     <div class="split split--top">
       <div>
-        <span class="pill pill--dot">Visit the clinic</span>
-        <h1 class="h1 mt-3">Contact DenceSpot Clinic, Sector 39 Gurugram</h1>
-        <p class="lead mt-3 measure">One clinic, in Sector 39, Gurugram. Consultations, procedures and every follow-up review happen here, with the same doctor and the same team.</p>
+        <p class="eyebrow">Direct message</p>
+        <h2 class="h2 mt-2">Send a Message to the Medical Team</h2>
+        <p class="body mt-3 measure">Have a clinical question or want to schedule an in-person assessment? Leave your details below. A doctor or clinical coordinator will contact you during clinic hours.</p>
 
-        <?= nap_block() ?>
-
-        <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> Message on WhatsApp</a>
-          <a class="btn btn--lg btn--outline" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= icon('phone', 18) ?> <?= e(PHONE_DISPLAY) ?></a>
+        <div class="card card--pad-lg mt-5">
+          <p class="h4">What you can expect</p>
+          <ul class="stack-sm mt-3">
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Prompt response from our in-house medical staff</span></li>
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Clear answers regarding procedures, graft estimates, and timings</span></li>
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">No aggressive sales tactics — clinical honesty first</span></li>
+          </ul>
         </div>
 
-        <div class="note mt-5">
-          <p class="body-s"><b>Booking an appointment?</b> Use the <a href="/book-consultation">consultation booking page</a> — it takes your details straight to the clinic and you get a call back during opening hours.</p>
+        <div class="note mt-4">
+          <p class="body-s"><b>Need immediate directions or advice?</b> Call or message on WhatsApp at <a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a> (Delhi) or <a href="tel:<?= e(PHONE_E164) ?>"><?= e(PHONE_DISPLAY) ?></a> (Gurugram).</p>
         </div>
       </div>
 
       <div>
-        <div class="media ratio-16-10">
-          <iframe title="Google Map showing DenceSpot Clinic at 1123, Sector 39 Road, Jharsa, Sector 39, Gurugram, Haryana 122003" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.3229126883884!2d77.0438613!3d28.439680699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5e4f6f45491%3A0x9dc43165216a74e6!2sDencespot%20Clinic!5e0!3m2!1sen!2sus!4v1787587082143!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div class="card card--ink card--pad-lg" style="box-shadow:var(--shadow-lg)">
+          <p class="h3" style="color:#fff">Enquire / Book an Appointment</p>
+          <p class="body-s mt-1" style="color:rgba(255,255,255,.75)">We usually respond within 30 minutes during opening hours.</p>
+          <div class="mt-4">
+            <?= enquiry_form('contact-page', [
+                'Hair transplant (FUE / DHI)',
+                'Beard transplant',
+                'Eyebrow transplant',
+                'Hair PRP / GFC therapy',
+                'Hair fall & scalp check',
+                'Laser hair removal',
+                'Skin treatment',
+                'Not sure — please advise',
+            ], true, 'Either clinic') ?>
+          </div>
         </div>
-        <div class="grid grid--2 mt-3">
-          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-front-board.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
-          <div class="media ratio-4-3 media--sm media--shadow"><img src="/assets/img/clinic-facade.jpg" alt="DenceSpot Clinic shopfront on Sector 39 Road, Jharsa, Gurugram, with hair transplant and PRP signage" width="800" height="600" loading="lazy"></div>
-        </div>
-        <a class="btn btn--outline btn--block mt-3" href="<?= e(MAPS_URL) ?>" rel="noopener"><?= icon('pin', 17) ?> Open in Google Maps</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--white" id="directions">
+<!-- Getting Here & Practical Notes for Both Clinics -->
+<section class="section section--canvas" id="directions">
   <div class="wrap">
-    <div style="max-width:62ch">
-      <p class="eyebrow">Getting here</p>
-      <h2 id="finding-the-clinic" class="h2 mt-2">Finding the Clinic</h2>
-      <p class="body mt-3">We are in Sector 39, <?= e(NAP_LANDMARK) ?>.</p>
+    <div>
+      <p class="eyebrow">Getting to the clinic</p>
+      <h2 class="h2 mt-2">Directions & Practical Information</h2>
+      <p class="body mt-3 measure">Step-by-step guidance for arriving by road, metro, or car at our clinics.</p>
     </div>
-    <?php
-    // Each card renders only when DIRECTIONS holds a real answer. An unknown
-    // one disappears rather than telling a patient we cannot find ourselves.
-    $directionCards = [
-        'road'    => ['icon' => 'pin',      'heading' => 'By road'],
-        'metro'   => ['icon' => 'arrow',    'heading' => 'Nearest metro'],
-        'parking' => ['icon' => 'settings', 'heading' => 'Parking'],
-    ];
-    $known = array_filter($directionCards, fn($k) => DIRECTIONS[$k] !== null, ARRAY_FILTER_USE_KEY);
-    ?>
-    <?php if ($known !== []): ?>
-    <div class="grid grid--3 mt-6">
-      <?php foreach ($known as $key => $card): ?>
-      <div class="card">
-        <?= icon($card['icon'], 22, 'var(--accent-deep)') ?>
-        <h3 class="h4 mt-2"><?= e($card['heading']) ?></h3>
-        <p class="body-s mt-2"><?= e(DIRECTIONS[$key]) ?></p>
-      </div>
-      <?php endforeach; ?>
-    </div>
-    <?php endif; ?>
-    <p class="fine mt-4">If anything here is unclear on the day, call or send a WhatsApp message and someone will guide you in.</p>
-  </div>
-</section>
 
-<section class="section section--canvas">
-  <div class="wrap">
-    <div class="split split--sidebar">
-      <div>
-        <p class="eyebrow">Before you travel</p>
-        <h2 id="practical-notes" class="h2 mt-2">Practical Notes</h2>
+    <div class="grid grid--2 mt-6" style="gap:24px">
+      <!-- Rohini Directions -->
+      <div class="card card--pad-lg">
+        <h3 class="h4" style="color:var(--ink)"><?= icon('pin', 18, 'var(--accent)') ?> Getting to Delhi (Rohini) Clinic</h3>
+        <p class="meta mt-1"><strong>Address:</strong> <?= e(LOC_DELHI_ADDRESS) ?></p>
+        <ul class="stack-sm mt-3">
+          <li class="body-s"><strong>By Metro:</strong> Rithala Metro Station (Red Line) or Rohini West Metro Station. 5 to 7 minutes by e-rickshaw or auto to Sector 5 Dividing Road near DDA Market.</li>
+          <li class="body-s"><strong>By Road:</strong> Conveniently accessible via Outer Ring Road and Bhagwan Mahavir Marg. Landmark: near DDA Market, Pocket 3, Sector 5.</li>
+          <li class="body-s"><strong>Parking:</strong> Dedicated parking space available right in front of the clinic and surrounding market area.</li>
+        </ul>
       </div>
-      <div class="grid grid--2">
-        <div class="card"><?= icon('clock', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Opening hours</h3><p class="body-s mt-2"><?= e(HOURS_DISPLAY) ?>. <?= e(HOURS_NOTE) ?>. Enquiries sent overnight are answered the next working morning.</p></div>
-        <div class="card"><?= icon('doc', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">What to bring</h3><p class="body-s mt-2">Your medical history and a list of any current medicines. If you have had a previous procedure elsewhere, bring whatever records you have.</p></div>
-        <div class="card"><?= icon('chat', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Travelling from outside Gurugram</h3><p class="body-s mt-2">Send photos on WhatsApp first. The clinic will tell you whether a consultation is worth the journey before you make it.</p></div>
-        <div class="card"><?= icon('shield', 22, 'var(--accent-deep)') ?><h3 class="h4 mt-2">Your privacy</h3><p class="body-s mt-2">Details you send are used only to arrange your consultation. Photographs are kept on your clinical record and are never published without your written consent.</p></div>
+
+      <!-- Gurugram Directions -->
+      <div class="card card--pad-lg">
+        <h3 class="h4" style="color:var(--ink)"><?= icon('pin', 18, 'var(--accent)') ?> Getting to Gurugram (Sector 39) Clinic</h3>
+        <p class="meta mt-1"><strong>Address:</strong> <?= e(nap_address_line()) ?></p>
+        <ul class="stack-sm mt-3">
+          <li class="body-s"><strong>By Metro:</strong> Millennium City Centre Metro Station (Yellow Line). Approx 10 minutes by auto or cab via Sector 39 Road.</li>
+          <li class="body-s"><strong>By Road:</strong> Easily accessible from NH-48 / Rajiv Chowk and Subhash Chowk. Landmark: <?= e(NAP_LANDMARK) ?>.</li>
+          <li class="body-s"><strong>Parking:</strong> On-premises patient parking available directly outside the clinic facility.</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <?= cta_band(
-    'Book Your Consultation',
-    'Tell us how to reach you and the clinic will call you back during opening hours to arrange a time.',
-    'contact'
+    'Book Your Clinical Examination',
+    'Select your nearest clinic in Delhi or Gurugram. Written plans, donor area mapping, and honest clinical assessments.',
+    'contact-bottom'
 ) ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

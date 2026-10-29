@@ -13,15 +13,24 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
 
+$rawClinic = (string) ($_GET['clinic'] ?? '');
+$initClinic = 'Either clinic';
+if (stripos($rawClinic, 'delhi') !== false || stripos($rawClinic, 'rohini') !== false) {
+    $initClinic = 'Delhi (Rohini)';
+} elseif (stripos($rawClinic, 'gurgaon') !== false || stripos($rawClinic, 'gurugram') !== false) {
+    $initClinic = 'Gurugram (Sector 39)';
+}
+
 $page = [
-    'title'       => 'Book a Consultation | DenceSpot Clinic, Gurgaon',
-    'description' => 'Book a doctor-led hair or beard consultation at DenceSpot Clinic, Sector 39 Gurugram. Examination, written plan, no pressure to book on the day.',
+    'title'       => 'Book a Consultation | DenceSpot Clinic (Delhi & Gurugram)',
+    'description' => 'Book a doctor-led hair, beard, or skin consultation at DenceSpot Clinic in Delhi (Rohini) or Sector 39 (Gurugram). Examination, written plan, no pressure.',
     'url'         => '/book-consultation',
     'crumbs'      => [
         ['name' => 'Home', 'url' => '/'],
         ['name' => 'Book a consultation'],
     ],
     'schema' => [
+        schema_delhi_clinic(),
         schema_clinic(),
         schema_physician(),
         schema_breadcrumbs([
@@ -32,7 +41,10 @@ $page = [
             '@type' => 'ContactPage',
             '@id'   => abs_url('/book-consultation') . '#page',
             'name'  => 'Book a Consultation',
-            'about' => ['@id' => SITE_ORIGIN . '/#clinic'],
+            'about' => [
+                ['@id' => SITE_ORIGIN . '/#delhi-clinic'],
+                ['@id' => SITE_ORIGIN . '/#clinic'],
+            ],
         ],
     ],
 ];
@@ -49,31 +61,31 @@ $errors   = $hasError ? explode(',', (string) $_GET['error']) : [];
 
       <div>
         <span class="pill pill--dot">Consultation booking</span>
-        <h1 class="h1 mt-3">Book a Hair Transplant Consultation in Gurgaon</h1>
-        <p class="lead mt-3 measure">An examination with the doctor who would perform your procedure. You get an honest view of whether treatment is appropriate for you, and a written plan if it is — with no pressure to book a date on the day.</p>
+        <h1 class="h1 mt-3">Book a Doctor-Led Consultation in Delhi or Gurugram</h1>
+        <p class="lead mt-3 measure">An in-person examination with the medical doctor who would perform your procedure. You get an honest view of whether treatment is appropriate for you, donor mapping, and a written plan — with no pressure to book on the day.</p>
 
         <div class="card card--pad-lg mt-5">
           <h2 id="what-the-consultation-covers" class="h3">What the consultation covers</h2>
           <ul class="stack-sm mt-3">
             <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Medical history and current medication reviewed</span></li>
-            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Scalp, hair and donor area examined under magnification</span></li>
-            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Your pattern staged, and the plan drawn on your own head or face</span></li>
-            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Photographs taken for your record</span></li>
-            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">A written plan: technique, approximate graft number, timeline and cost</span></li>
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Scalp, hair, and donor area examined under magnification</span></li>
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Your pattern staged, and the hairline/plan drawn on your head or face</span></li>
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">Trichoscopy photographs taken for your clinical record</span></li>
+            <li class="tick"><?= icon('check', 18, 'var(--accent)', 2.2) ?><span class="body-s">A transparent written plan: technique, graft count, timeline, and itemised cost</span></li>
           </ul>
           <p class="meta mt-4">Bring your medical history and a list of any medicines you take. If you have had a previous procedure elsewhere, bring whatever records you have.</p>
         </div>
 
-        <div class="grid grid--2 mt-4">
-          <div class="card">
-            <?= icon('clock', 22, 'var(--accent-deep)') ?>
-            <p class="h4 mt-2">Clinic hours</p>
-            <p class="meta mt-1"><?= e(HOURS_DISPLAY) ?><br><?= e(HOURS_NOTE) ?></p>
-          </div>
+        <div class="grid grid--2 mt-4" style="gap:16px">
           <div class="card">
             <?= icon('pin', 22, 'var(--accent-deep)') ?>
-            <p class="h4 mt-2">Where we are</p>
-            <p class="meta mt-1"><?= e(NAP_LOCALITY) ?>, <?= e(NAP_REGION) ?> — <?= e(NAP_LANDMARK) ?>. <a href="/contact">Directions</a></p>
+            <p class="h4 mt-2">Delhi (Rohini) Clinic</p>
+            <p class="meta mt-1"><?= e(LOC_DELHI_HOURS_DISPLAY) ?><br><?= e(LOC_DELHI_ADDRESS) ?>. <a href="/contact">Map & directions &rarr;</a></p>
+          </div>
+          <div class="card">
+            <?= icon('pin', 22, 'var(--ink)') ?>
+            <p class="h4 mt-2">Gurugram Clinic</p>
+            <p class="meta mt-1"><?= e(HOURS_DISPLAY) ?><br><?= e(nap_address_line()) ?>. <a href="/contact">Map & directions &rarr;</a></p>
           </div>
         </div>
 
@@ -103,17 +115,18 @@ $errors   = $hasError ? explode(',', (string) $_GET['error']) : [];
                 'Beard transplant',
                 'Hair PRP / GFC therapy',
                 'Hair fall treatment',
-                'Women’s hair loss',
+                'Laser hair removal',
+                'Skin treatment',
                 'Second opinion on a previous procedure',
                 'Not sure — please advise',
-            ]) ?>
+            ], true, $initClinic) ?>
           </div>
 
           <p class="fine mt-4" style="text-align:center;color:rgba(255,255,255,.45)">or reach the clinic directly</p>
 
           <div class="grid grid--2 mt-3" style="gap:10px">
-            <a class="btn btn--accent" href="<?= e(WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> WhatsApp</a>
-            <a class="btn btn--ghost" href="tel:<?= e(PHONE_E164) ?>" data-track="call"><?= icon('phone', 17) ?> Call</a>
+            <a class="btn btn--accent" href="<?= e($initClinic === 'Delhi (Rohini)' ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL) ?>" data-wa-trigger data-clinic="<?= e($initClinic) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 18) ?> WhatsApp</a>
+            <a class="btn btn--ghost" href="tel:<?= e($initClinic === 'Delhi (Rohini)' ? LOC_DELHI_PHONE_E164 : PHONE_E164) ?>" data-track="call"><?= icon('phone', 17) ?> Call</a>
           </div>
         </div>
       </div>

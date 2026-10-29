@@ -94,7 +94,7 @@ $page  = [
     ],
 ];
 
-$hours = 'Open ' . str_replace(' · ', ', ', HOURS_DISPLAY);
+$hours = 'Open ' . str_replace(' · ', ', ', LOC_DELHI_HOURS_DISPLAY);
 
 require __DIR__ . '/header.php';
 ?>
@@ -130,7 +130,7 @@ require __DIR__ . '/header.php';
           ['pin', 'mint', $place, $where . ($pins !== [] ? ' · PIN ' . implode(', ', $pins) : '')],
           $metro !== [] ? ['list', 'violet', 'Metro nearby', implode(', ', array_map(static fn (array $m): string => $m[0], $metro))] : null,
           ['shield', 'sky', 'Clinic', 'Rohini, North-West Delhi'],
-          ['clock', 'amber', 'Clinic hours', HOURS_DISPLAY . ' · ' . HOURS_NOTE],
+          ['clock', 'amber', 'Clinic hours', LOC_DELHI_HOURS_DISPLAY . ' · ' . LOC_DELHI_HOURS_NOTE],
       ])), $place . ' and the Rohini clinic at a glance') ?>
     </div>
   </div>

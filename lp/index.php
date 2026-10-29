@@ -206,6 +206,7 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
 }
 
 /** One popup: image side with overlay, form side. */
+
 function lp_modal(string $id, string $badge, string $image, string $imageAlt, string $heading, string $text, array $benefits, string $formIcon, string $formTitle, string $formText, string $form): string
 {
     ob_start(); ?>
@@ -568,14 +569,17 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
             <div>
               <p class="footer-subhead">Visit Us:</p>
               <ul class="mt-1">
-                <li class="mt-2"><strong>Gurugram : </strong><?= e(nap_address_line()) ?> (<?= e(NAP_LANDMARK) ?>) · <a href="<?= e(MAPS_URL) ?>" rel="noopener">Map</a></li>
-                <li class="mt-2"><strong>Delhi : </strong><?= e(LOC_DELHI_ADDRESS) ?>, <?= e(LOC_DELHI_LANDMARK) ?> · <a href="<?= e(LOC_DELHI_MAPS_URL) ?>" rel="noopener">Map</a></li>
+                <li class="mt-2"><strong>Gurugram : </strong><?= e(nap_address_line()) ?> (<?= e(NAP_LANDMARK) ?>) · <a href="<?= e(MAPS_URL) ?>" target="_blank" rel="noopener">Map</a></li>
+                <li class="mt-2"><strong>Delhi (Rohini) : </strong><?= e(LOC_DELHI_ADDRESS) ?> · <a href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener">Map</a></li>
               </ul>
             </div>
           </div>
           <div class="footer-contact-item">
             <i class="fas fa-clock"></i>
-            <div><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</div>
+            <div>
+              <div><strong>Delhi (Rohini):</strong> <?= e(LOC_DELHI_HOURS_DISPLAY) ?> (<?= e(LOC_DELHI_HOURS_NOTE) ?>)</div>
+              <div class="mt-1"><strong>Gurugram:</strong> <?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</div>
+            </div>
           </div>
         </div>
 

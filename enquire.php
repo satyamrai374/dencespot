@@ -164,7 +164,29 @@ if (mb_strlen($message) > 2000) {
  */
 $consent = $field('dpdp_consent') === '1';
 
+$isJson = (isset($_SERVER['HTTP_ACCEPT']) && str_contains($_SERVER['HTTP_ACCEPT'], 'application/json'))
+       || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+
 if ($errors !== []) {
+    if ($isJson) {
+        header('Content-Type: application/json; charset=UTF-8', true, 422);
+        echo json_encode(['ok' => false, 'errors' => $errors]);
+        exit;
+    }
+
+    $referrer = $_SERVER['HTTP_REFERER'] ?? '';
+    if ($referrer !== '' && filter_var($referrer, FILTER_VALIDATE_URL)) {
+        $parts = parse_url($referrer);
+        $host = $parts['host'] ?? '';
+        $currentHost = $_SERVER['HTTP_HOST'] ?? '';
+        if ($host === $currentHost || str_ends_with($host, 'dencespot.com') || $host === 'localhost') {
+            $path = $parts['path'] ?? '/book-consultation';
+            $sep = str_contains($path, '?') ? '&' : '?';
+            header('Location: ' . $path . $sep . 'error=' . urlencode(implode(',', $errors)), true, 303);
+            exit;
+        }
+    }
+
     $back = '/book-consultation?error=' . urlencode(implode(',', $errors));
     header('Location: ' . $back, true, 303);
     exit;
@@ -244,6 +266,32 @@ if (defined('OPENWA_API_URL') && OPENWA_API_URL !== '') {
     }
 }
 
-// 3. Redirect so the conversion is measurable and a refresh cannot resubmit.
-header('Location: /thank-you?ref=' . urlencode($source), true, 303);
+// 3. Redirect: WhatsApp redirect if requested (after logging and emailing lead), otherwise /thank-you.
+if ($field('redirect_to') === 'whatsapp') {
+    $waNumber = ($clinic === 'Gurugram (Sector 39)' && !str_contains($source, 'rohini') && !str_contains($source, 'delhi'))
+        ? PHONE_E164
+        : LOC_DELHI_PHONE_E164;
+    $waDigits   = preg_replace('/\D+/', '', $waNumber);
+    $waLocation = $clinic !== '' ? " at {$clinic}" : "";
+    $waText     = "Hi DenceSpot Clinic, my name is " . ($name !== '' ? $name : 'Patient') . ". I would like consultation details about " . ($treatment !== '' ? $treatment : 'hair restoration') . "{$waLocation}.";
+    $waUrl      = 'https://api.whatsapp.com/send/?phone=' . $waDigits . '&text=' . rawurlencode($waText);
+
+    if ($isJson) {
+        header('Content-Type: application/json; charset=UTF-8', true, 200);
+        echo json_encode(['ok' => true, 'redirect' => $waUrl]);
+        exit;
+    }
+
+    header('Location: ' . $waUrl, true, 303);
+    exit;
+}
+
+$thankYouUrl = '/thank-you?ref=' . urlencode($source);
+if ($isJson) {
+    header('Content-Type: application/json; charset=UTF-8', true, 200);
+    echo json_encode(['ok' => true, 'redirect' => $thankYouUrl]);
+    exit;
+}
+
+header('Location: ' . $thankYouUrl, true, 303);
 exit;

@@ -374,7 +374,7 @@ function delhi_consult(string $heading, string $intro, string $source, array $tr
         <dl class="dl mt-4">
           <div><dt>Address</dt><dd><?= e($cl['address']) ?><span class="meta" style="display:block;font-weight:500"><?= e($cl['landmark']) ?></span></dd></div>
           <div><dt>Phone</dt><dd><a href="tel:<?= e($cl['tel']) ?>" data-track="call"><?= e($cl['phone']) ?></a></dd></div>
-          <div><dt>Hours</dt><dd><?= e(HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(HOURS_NOTE) ?></span></dd></div>
+          <div><dt>Hours</dt><dd><?= e(LOC_DELHI_HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(LOC_DELHI_HOURS_NOTE) ?></span></dd></div>
         </dl>
 
         <div class="btn-row mt-5">
@@ -386,7 +386,7 @@ function delhi_consult(string $heading, string $intro, string $source, array $tr
 
       <div class="consult__form">
         <h3 class="h3">Book Your Consultation</h3>
-        <p class="body-s mt-1">The <?= e($cl['name']) ?> replies during opening hours (<?= e(HOURS_DISPLAY) ?>).</p>
+        <p class="body-s mt-1">The <?= e($cl['name']) ?> replies during opening hours (<?= e(LOC_DELHI_HOURS_DISPLAY) ?>).</p>
         <div class="mt-4">
           <?= enquiry_form($source, $treatments, false) ?>
         </div>

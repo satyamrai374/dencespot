@@ -619,47 +619,58 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
     if ($treatments === []) {
         $treatments = [
             'Hair transplant', 'Beard transplant', 'Hair PRP / GFC',
-            'Hair fall treatment', 'Not sure — please advise',
+            'Hair fall treatment', 'Laser hair removal', 'Skin treatment',
+            'Not sure — please advise',
         ];
     }
 
+    if ($clinic === null) {
+        if (function_exists('hp_is_rohini_page') && hp_is_rohini_page()) {
+            $clinic = 'Delhi (Rohini)';
+        } elseif (str_contains($source, 'rohini') || str_contains($source, 'delhi')) {
+            $clinic = 'Delhi (Rohini)';
+        } elseif (str_contains($source, 'gurgaon') || str_contains($source, 'gurugram')) {
+            $clinic = 'Gurugram (Sector 39)';
+        } else {
+            $clinic = 'Either clinic';
+        }
+    }
+
     ob_start(); ?>
-<form class="form<?= $onInk ? ' form--onink' : '' ?>" action="/enquire.php" method="post" novalidate>
+<form class="form<?= $onInk ? ' form--onink' : '' ?>" action="/enquire.php" method="post">
   <input type="hidden" name="source" value="<?= e($source) ?>">
   <p class="sr-only"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
   <div class="stack-sm">
     <div class="field">
       <label for="f-name-<?= e($source) ?>">Full name</label>
-      <input class="input" id="f-name-<?= e($source) ?>" name="name" type="text" autocomplete="name" required>
+      <input class="input" id="f-name-<?= e($source) ?>" name="name" type="text" autocomplete="name" placeholder="Your full name" maxlength="120" required>
     </div>
     <div class="field">
       <label for="f-phone-<?= e($source) ?>">Phone</label>
-      <input class="input" id="f-phone-<?= e($source) ?>" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+      <input class="input" id="f-phone-<?= e($source) ?>" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[\s\(\)+\-]*(?:[0-9][\s\(\)+\-]*){10,15}" placeholder="10-digit mobile number" title="Please enter a valid 10-digit mobile number" required>
     </div>
     <div class="field">
       <label for="f-treatment-<?= e($source) ?>">What are you enquiring about?</label>
       <select class="select" id="f-treatment-<?= e($source) ?>" name="treatment">
         <?php foreach ($treatments as $t): ?>
-          <option><?= e($t) ?></option>
+          <option value="<?= e($t) ?>"><?= e($t) ?></option>
         <?php endforeach; ?>
       </select>
     </div>
-    <?php if ($clinic !== null): ?>
     <div class="field">
       <label for="f-clinic-<?= e($source) ?>">Preferred clinic</label>
       <select class="select" id="f-clinic-<?= e($source) ?>" name="clinic">
         <?php foreach (['Delhi (Rohini)', 'Gurugram (Sector 39)', 'Either clinic'] as $c): ?>
-          <option<?= $c === $clinic ? ' selected' : '' ?>><?= e($c) ?></option>
+          <option value="<?= e($c) ?>"<?= $c === $clinic ? ' selected' : '' ?>><?= e($c) ?></option>
         <?php endforeach; ?>
       </select>
     </div>
-    <?php endif; ?>
     <div class="field">
-      <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know</label>
-      <textarea class="textarea" id="f-message-<?= e($source) ?>" name="message" rows="2"></textarea>
+      <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know <span class="fine" style="font-weight:400;opacity:.75">(optional)</span></label>
+      <textarea class="textarea" id="f-message-<?= e($source) ?>" name="message" rows="2" placeholder="Briefly describe your goals or questions..."></textarea>
     </div>
     <button class="btn btn--block" type="submit" style="background:#fff;color:var(--ink)">Book My Consultation</button>
-    <p class="fine">Your details are used only to arrange your consultation.</p>
+    <p class="fine">🔒 Your details are kept confidential and used only to arrange your consultation.</p>
   </div>
 </form>
 <?php
@@ -672,6 +683,8 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
 
 function cta_band(string $heading, string $body, string $source, array $treatments = []): string
 {
+    $clinic = hp_is_rohini_page() ? 'Delhi (Rohini)' : (str_contains($source, 'gurgaon') ? 'Gurugram (Sector 39)' : null);
+    $waUrl  = hp_is_rohini_page() ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL;
     ob_start(); ?>
 <section class="section section--canvas" id="book">
   <div class="wrap">
@@ -681,14 +694,14 @@ function cta_band(string $heading, string $body, string $source, array $treatmen
         <h2 class="h2 mt-2"><?= e($heading) ?></h2>
         <p class="body-l mt-3" style="color:rgba(255,255,255,.72);max-width:56ch"><?= e($body) ?></p>
         <div class="btn-row mt-5">
-          <a class="btn btn--lg btn--accent" href="<?= e(book_url()) ?>"><?= icon('calendar', 18) ?> Book a Consultation</a>
-          <a class="btn btn--lg btn--ghost" href="<?= e(hp_is_rohini_page() ? LOC_DELHI_WHATSAPP_URL : WHATSAPP_URL) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 19) ?> WhatsApp Us</a>
+          <a class="btn btn--lg btn--accent" href="<?= e(book_url()) ?>" data-book<?= $clinic !== null ? ' data-clinic="' . e($clinic) . '"' : '' ?>><?= icon('calendar', 18) ?> Book a Consultation</a>
+          <a class="btn btn--lg btn--ghost" href="<?= e($waUrl) ?>" rel="noopener" data-track="whatsapp" data-wa-trigger<?= $clinic !== null ? ' data-clinic="' . e($clinic) . '"' : '' ?>><?= icon('whatsapp', 19) ?> WhatsApp Us</a>
         </div>
         <p class="fine mt-4" style="max-width:56ch">Suitability is determined after clinical assessment. This page is patient education and does not constitute medical advice.</p>
       </div>
       <div class="card card--ink card--pad-lg">
         <p class="h4" style="color:#fff">Quick enquiry</p>
-        <div class="mt-3"><?= enquiry_form($source, $treatments) ?></div>
+        <div class="mt-3"><?= enquiry_form($source, $treatments, true, $clinic) ?></div>
       </div>
     </div>
   </div>
@@ -943,7 +956,7 @@ function local_block(string $heading, string $intro): string
         <dl class="dl mt-4">
           <div><dt>Address</dt><dd><?= e(LOC_DELHI_ADDRESS) ?><span class="meta" style="display:block;font-weight:500"><?= e(LOC_DELHI_LANDMARK) ?></span></dd></div>
           <div><dt>Phone</dt><dd><a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a></dd></div>
-          <div><dt>Hours</dt><dd><?= e(HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(HOURS_NOTE) ?></span></dd></div>
+          <div><dt>Hours</dt><dd><?= e(LOC_DELHI_HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(LOC_DELHI_HOURS_NOTE) ?></span></dd></div>
         </dl>
         <div class="btn-row mt-4">
           <a class="btn btn--outline" href="<?= e(LOC_DELHI_MAPS_URL) ?>" target="_blank" rel="noopener"><?= icon('pin', 17) ?> Directions on Google Maps</a>
@@ -1066,7 +1079,7 @@ function hero_review_badge(): string
              . '</div>';
     }
     $loc   = function_exists('hp_page_location') ? hp_page_location() : 'both';
-    $hours = '<p class="meta">' . e(HOURS_DISPLAY) . '<span style="display:block">' . e(HOURS_NOTE) . '</span></p>';
+    $hours = ($loc === 'rohini') ? ('<p class="meta">' . e(LOC_DELHI_HOURS_DISPLAY) . '<span style="display:block">' . e(LOC_DELHI_HOURS_NOTE) . '</span></p>') : ('<p class="meta">' . e(HOURS_DISPLAY) . '<span style="display:block">' . e(HOURS_NOTE) . '</span></p>');
     if ($loc === 'rohini') {
         return '<div class="hero__badge-card">'
              . '<p class="eyebrow">Rohini Clinic</p>'
@@ -1194,7 +1207,7 @@ function lead_strip(): string
     <div class="lead-strip__text">
       <p class="eyebrow">Request a call back</p>
       <h2 class="h3 mt-1" id="lead-strip-title">Talk to <?= e($where) ?> about <?= e($topic) ?></h2>
-      <p class="body-s mt-1">Leave your number and the clinic will call you during opening hours (<?= e(HOURS_DISPLAY) ?>) to arrange a consultation. Prefer to message? <a href="<?= e($wa) ?>" rel="noopener" data-track="whatsapp">WhatsApp the clinic</a>.<?php if ($treatment === 'Hair transplant'): ?> Not ready to talk? <a href="/hair-transplant-graft-calculator">Estimate a graft range</a> first.<?php elseif ($treatment === 'Hair fall treatment'): ?> Not ready to talk? Try the <a href="/hair-loss-assessment">hair-loss self-check</a> first.<?php endif; ?></p>
+      <p class="body-s mt-1">Leave your number and the clinic will call you during opening hours (<?= e($loc === 'rohini' ? LOC_DELHI_HOURS_DISPLAY : HOURS_DISPLAY) ?>) to arrange a consultation. Prefer to message? <a href="<?= e($wa) ?>" rel="noopener" data-track="whatsapp">WhatsApp the clinic</a>.<?php if ($treatment === 'Hair transplant'): ?> Not ready to talk? <a href="/hair-transplant-graft-calculator">Estimate a graft range</a> first.<?php elseif ($treatment === 'Hair fall treatment'): ?> Not ready to talk? Try the <a href="/hair-loss-assessment">hair-loss self-check</a> first.<?php endif; ?></p>
     </div>
     <form class="lead-strip__form" action="/enquire.php" method="post">
       <input type="hidden" name="source" value="<?= e($source) ?>">

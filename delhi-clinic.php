@@ -52,7 +52,7 @@ $faqs = [
     ],
     [
         'q' => 'What are the opening hours of the Rohini clinic?',
-        'a' => 'The clinic is open ' . HOURS_DISPLAY . ' (' . HOURS_NOTE . '). Calls, WhatsApp messages and call-back requests are answered during those hours.'
+        'a' => 'The clinic is open ' . LOC_DELHI_HOURS_DISPLAY . ' (' . LOC_DELHI_HOURS_NOTE . '). Calls, WhatsApp messages and call-back requests are answered during those hours.'
     ],
     [
         'q' => 'How do I book an appointment at the Rohini clinic?',
@@ -147,7 +147,7 @@ require __DIR__ . '/includes/header.php';
             'Consultations and treatments by registered medical practitioners',
             'Trichoscopy and donor-area assessment',
             'Hair transplant, PRP/GFC, laser and skin treatments',
-            'Rohini, Delhi · ' . HOURS_DISPLAY,
+            'Rohini, Delhi · ' . LOC_DELHI_HOURS_DISPLAY,
         ]) ?>
       </div>
 
@@ -159,7 +159,7 @@ require __DIR__ . '/includes/header.php';
         <div class="hero__badge-card">
           <p class="eyebrow">Rohini Clinic</p>
           <p class="h4 mt-1"><a href="tel:<?= e(LOC_DELHI_PHONE_E164) ?>" data-track="call"><?= e(LOC_DELHI_PHONE_DISPLAY) ?></a></p>
-          <p class="meta"><?= e(HOURS_DISPLAY) ?><span style="display:block"><?= e(HOURS_NOTE) ?></span></p>
+          <p class="meta"><?= e(LOC_DELHI_HOURS_DISPLAY) ?><span style="display:block"><?= e(LOC_DELHI_HOURS_NOTE) ?></span></p>
           <p class="meta mt-1"><a href="#directions">Map and directions</a></p>
         </div>
       </div>
@@ -300,7 +300,7 @@ require __DIR__ . '/includes/header.php';
           </div>
           <div>
             <dt>Hours</dt>
-            <dd><?= e(HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(HOURS_NOTE) ?></span></dd>
+            <dd><?= e(LOC_DELHI_HOURS_DISPLAY) ?><span class="meta" style="display:block;font-weight:500"><?= e(LOC_DELHI_HOURS_NOTE) ?></span></dd>
           </div>
         </dl>
 
@@ -336,7 +336,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <div class="cta-band" style="display:block">
           <h3 class="h3">Send an enquiry</h3>
-          <p class="body-s mt-1">We respond during opening hours (<?= e(HOURS_DISPLAY) ?>).</p>
+          <p class="body-s mt-1">We respond during opening hours (<?= e(LOC_DELHI_HOURS_DISPLAY) ?>).</p>
           <div class="mt-4">
             <?= enquiry_form('delhi-clinic', [
                 'FUE hair transplant',

@@ -21,10 +21,12 @@ $footTel    = $footRohini ? LOC_DELHI_PHONE_E164 : PHONE_E164;
 $footClinics = [
     ['name' => 'DenceSpot Clinic — Gurugram',
      'addr' => NAP_STREET . ', ' . NAP_LOCALITY . ', ' . NAP_REGION . ' ' . NAP_POSTCODE, 'landmark' => NAP_LANDMARK,
-     'tel' => PHONE_E164, 'phone' => PHONE_DISPLAY, 'wa' => WHATSAPP_URL, 'maps' => MAPS_URL, 'embed' => MAP_EMBED],
+     'tel' => PHONE_E164, 'phone' => PHONE_DISPLAY, 'wa' => WHATSAPP_URL, 'maps' => MAPS_URL, 'embed' => MAP_EMBED,
+     'hours' => HOURS_DISPLAY, 'hours_note' => HOURS_NOTE],
     ['name' => LOC_DELHI_NAME,
      'addr' => LOC_DELHI_ADDRESS, 'landmark' => LOC_DELHI_LANDMARK,
-     'tel' => LOC_DELHI_PHONE_E164, 'phone' => LOC_DELHI_PHONE_DISPLAY, 'wa' => LOC_DELHI_WHATSAPP_URL, 'maps' => LOC_DELHI_MAPS_URL, 'embed' => LOC_DELHI_MAP_EMBED],
+     'tel' => LOC_DELHI_PHONE_E164, 'phone' => LOC_DELHI_PHONE_DISPLAY, 'wa' => LOC_DELHI_WHATSAPP_URL, 'maps' => LOC_DELHI_MAPS_URL, 'embed' => LOC_DELHI_MAP_EMBED,
+     'hours' => LOC_DELHI_HOURS_DISPLAY, 'hours_note' => LOC_DELHI_HOURS_NOTE],
 ];
 
 // Just above the footer: the same-city treatment links, except on a Delhi
@@ -98,7 +100,7 @@ if (!empty($page['service_areas'])) {
           <div class="site-footer__clinic-body">
             <h3 class="site-footer__clinic-name"><?= e($c['name']) ?></h3>
             <p class="site-footer__clinic-line"><?= icon('pin', 15, 'var(--accent-light)') ?><span><?= e($c['addr']) ?><br><small><?= e($c['landmark']) ?></small></span></p>
-            <p class="site-footer__clinic-line"><?= icon('clock', 15, 'var(--accent-light)') ?><span><?= e(HOURS_DISPLAY) ?> (<?= e(HOURS_NOTE) ?>)</span></p>
+            <p class="site-footer__clinic-line"><?= icon('clock', 15, 'var(--accent-light)') ?><span><?= e($c['hours']) ?> (<?= e($c['hours_note']) ?>)</span></p>
             <p class="site-footer__clinic-links">
               <a href="tel:<?= e($c['tel']) ?>" data-track="call"><?= icon('phone', 14) ?> <?= e($c['phone']) ?></a>
               <a href="<?= e($c['wa']) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 14) ?> WhatsApp</a>
@@ -148,8 +150,94 @@ if (!empty($page['service_areas'])) {
 </div>
 <div class="sticky-cta">
   <a class="btn btn--outline" href="tel:<?= e($footTel) ?>" data-track="call"><?= icon('phone', 17) ?> Call</a>
-  <a class="btn btn--accent" href="<?= e($footWa) ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> WhatsApp</a>
+  <a class="btn btn--accent" href="<?= e($footWa) ?>" data-wa-trigger data-clinic="<?= e($footRohini ? 'Delhi (Rohini)' : 'Gurugram (Sector 39)') ?>" rel="noopener" data-track="whatsapp"><?= icon('whatsapp', 17) ?> WhatsApp</a>
 </div>
+
+<!-- Floating WhatsApp Button -->
+<div class="wa-float" id="waFloatBtn" onclick="openWaModal('<?= e($footRohini ? 'Delhi (Rohini)' : 'Gurugram (Sector 39)') ?>')" role="button" tabindex="0" aria-label="Open WhatsApp Chat with Clinic">
+  <div class="wa-float__btn">
+    <?= icon('whatsapp', 32) ?>
+    <span class="wa-float__pulse"></span>
+  </div>
+  <span class="wa-float__label">Chat on WhatsApp</span>
+</div>
+
+<!-- WhatsApp Lead Collector Modal -->
+<div id="wa-lead-modal" class="wa-modal" style="display:none;" aria-hidden="true">
+  <div class="wa-modal__backdrop" onclick="closeWaModal()"></div>
+  <div class="wa-modal__dialog" role="dialog" aria-labelledby="wa-modal-title" aria-modal="true">
+    <div class="wa-modal__header">
+      <div class="wa-modal__brand">
+        <div class="wa-modal__icon">
+          <?= icon('whatsapp', 24) ?>
+        </div>
+        <div>
+          <h3 id="wa-modal-title" class="wa-modal__title">Chat on WhatsApp</h3>
+          <p class="wa-modal__subtitle">Doctor-led guidance · Direct WhatsApp response</p>
+        </div>
+      </div>
+      <button type="button" class="wa-modal__close" onclick="closeWaModal()" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="wa-modal__body">
+      <p class="wa-modal__desc">Enter your details below to connect directly with the clinic on WhatsApp. You can send daylight photographs and receive an honest clinical view.</p>
+      
+      <form class="wa-modal__form" action="/enquire.php" method="post" id="waLeadForm">
+        <input type="hidden" name="source" value="whatsapp-modal:<?= e($page['url'] ?? '') ?>">
+        <input type="hidden" name="redirect_to" value="whatsapp">
+        <p class="sr-only"><label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        
+        <div class="wa-field">
+          <label for="wa-name">Your Full Name</label>
+          <input class="input" type="text" id="wa-name" name="name" placeholder="e.g. Rahul Sharma" required autocomplete="name" maxlength="120">
+        </div>
+        
+        <div class="wa-field">
+          <label for="wa-phone">Phone / WhatsApp Number</label>
+          <input class="input" type="tel" id="wa-phone" name="phone" placeholder="10-digit mobile number" required inputmode="tel" autocomplete="tel" pattern="[\s\(\)+\-]*(?:[0-9][\s\(\)+\-]*){10,15}" title="Please enter a valid 10-digit phone number">
+        </div>
+        
+        <div class="wa-field">
+          <label for="wa-treatment">Treatment of Interest</label>
+          <select class="select" id="wa-treatment" name="treatment">
+            <option value="Hair transplant">Hair Transplant (FUE / DHI)</option>
+            <option value="Beard transplant">Beard Transplant</option>
+            <option value="Hair PRP / GFC">Hair PRP / GFC Treatment</option>
+            <option value="Hair fall treatment">Hair Fall & Scalp Assessment</option>
+            <option value="Laser hair removal">Laser Hair Removal</option>
+            <option value="Skin care">Skin & Facial Aesthetic Care</option>
+            <option value="Not sure — please advise">Not sure — please advise</option>
+          </select>
+        </div>
+        
+        <div class="wa-field">
+          <label for="wa-clinic">Preferred Clinic</label>
+          <select class="select" id="wa-clinic" name="clinic">
+            <option value="Delhi (Rohini)"<?= $footRohini ? ' selected' : '' ?>>Delhi (Rohini) Clinic</option>
+            <option value="Gurugram (Sector 39)"<?= !$footRohini ? ' selected' : '' ?>>Gurugram (Sector 39) Clinic</option>
+            <option value="Either clinic">Either Clinic (Online Assessment)</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="wa-submit-btn" id="waSubmitBtn">
+          <?= icon('whatsapp', 20) ?> <span>Start WhatsApp Chat &rarr;</span>
+        </button>
+        
+        <div class="wa-modal__footer mt-3">
+          <p class="fine" style="text-align:center;margin:0 0 6px">
+            Prefer direct chat? <a href="<?= e($footWa) ?>" target="_blank" rel="noopener" class="wa-direct-link">Click here to open WhatsApp directly</a>
+          </p>
+          <p class="fine" style="text-align:center;color:var(--ink-muted);font-size:11px;margin:0">
+            🔒 Your details are kept confidential and used only to assist your consultation.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<?php if (function_exists('hp_booking_dialog')): ?>
+<?= hp_booking_dialog('dialog:' . (string) ($page['url'] ?? '')) ?>
+<?php endif; ?>
 
 <script>
 (function () {
@@ -347,6 +435,107 @@ if (!empty($page['service_areas'])) {
     if (iframe) iframe.src = '';
     if (modal) modal.style.display = 'none';
   };
+
+  // WhatsApp Lead Collector Modal handlers
+  window.openWaModal = function (clinic, treatment) {
+    var modal = document.getElementById('wa-lead-modal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (clinic) {
+      var cSel = document.getElementById('wa-clinic');
+      if (cSel) cSel.value = clinic;
+    }
+    if (treatment) {
+      var tSel = document.getElementById('wa-treatment');
+      if (tSel) tSel.value = treatment;
+    }
+    var nInput = document.getElementById('wa-name');
+    if (nInput) setTimeout(function () { nInput.focus(); }, 80);
+  };
+
+  window.closeWaModal = function () {
+    var modal = document.getElementById('wa-lead-modal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      window.closeWaModal();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-wa-trigger]');
+    if (trigger) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      var c = trigger.getAttribute('data-clinic') || '';
+      var t = trigger.getAttribute('data-treatment') || '';
+      window.openWaModal(c, t);
+    }
+  });
+
+  var waForm = document.getElementById('waLeadForm');
+  if (waForm) {
+    waForm.addEventListener('submit', function (e) {
+      var btn = document.getElementById('waSubmitBtn');
+      var nameVal = (document.getElementById('wa-name').value || '').trim();
+      var phoneVal = (document.getElementById('wa-phone').value || '').trim();
+      var clinicVal = document.getElementById('wa-clinic').value;
+      var treatVal = document.getElementById('wa-treatment').value;
+
+      if (!nameVal || phoneVal.replace(/\D/g, '').length < 10) {
+        return;
+      }
+
+      e.preventDefault();
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span>Connecting to WhatsApp...</span>';
+      }
+
+      var waPhone = (clinicVal === 'Gurugram (Sector 39)') ? '918178330800' : '919540699152';
+      var clinicNote = clinicVal ? ' at ' + clinicVal : '';
+      var waMsg = 'Hi DenceSpot Clinic, my name is ' + nameVal + '. I would like consultation details about ' + treatVal + clinicNote + '.';
+      var fallbackUrl = 'https://api.whatsapp.com/send/?phone=' + waPhone + '&text=' + encodeURIComponent(waMsg);
+
+      var formData = new FormData(waForm);
+      var redirected = false;
+      var doRedirect = function (targetUrl) {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = targetUrl || fallbackUrl;
+      };
+
+      var timeout = setTimeout(function () {
+        doRedirect(fallbackUrl);
+      }, 1800);
+
+      fetch('/enquire.php', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        clearTimeout(timeout);
+        if (data && data.redirect) {
+          doRedirect(data.redirect);
+        } else {
+          doRedirect(fallbackUrl);
+        }
+      })
+      .catch(function () {
+        clearTimeout(timeout);
+        doRedirect(fallbackUrl);
+      });
+    });
+  }
 }());
 </script>
 

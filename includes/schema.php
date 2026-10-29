@@ -80,37 +80,52 @@ function schema_clinic(): array
     return $node;
 }
 
-/** Delhi (Rohini) clinic entity. */
+/** Delhi (Rohini) clinic entity. Matches Google Business Profile (CID 4556839065399332243). */
 function schema_delhi_clinic(): array
 {
     return [
-        '@type'     => 'MedicalClinic',
+        '@type'     => ['MedicalClinic', 'HealthAndBeautyBusiness'],
         '@id'       => SITE_ORIGIN . '/delhi-clinic#clinic',
         'name'      => LOC_DELHI_NAME,
+        'alternateName' => 'Dencespot Clinic Rohini',
         'url'       => SITE_ORIGIN . '/delhi-clinic',
         'telephone' => LOC_DELHI_PHONE_E164,
         'email'     => EMAIL,
-        'address'   => array_filter([
+        'image'     => abs_url(CLINIC_IMAGE),
+        'logo'      => abs_url(LOGO_SCHEMA),
+        'priceRange'=> '₹₹',
+        'hasMap'    => LOC_DELHI_MAPS_URL,
+        'sameAs'    => [
+            LOC_DELHI_MAPS_URL,
+        ],
+        'address'   => [
             '@type'           => 'PostalAddress',
-            'streetAddress'   => LOC_DELHI_ADDRESS !== 'Dencespot Clinic, Delhi (Rohini)' ? LOC_DELHI_ADDRESS : null,
-            'addressLocality' => 'Rohini, Delhi',
-            'addressRegion'   => 'Delhi',
-            'postalCode'      => '110085',
-            'addressCountry'  => 'IN',
-        ], static fn ($v): bool => $v !== null),
+            'streetAddress'   => LOC_DELHI_STREET,
+            'addressLocality' => LOC_DELHI_LOCALITY,
+            'addressRegion'   => LOC_DELHI_REGION,
+            'postalCode'      => LOC_DELHI_POSTCODE,
+            'addressCountry'  => LOC_DELHI_COUNTRY,
+        ],
         'medicalSpecialty' => 'Dermatology',
-        'openingHoursSpecification' => [[
-            '@type'     => 'OpeningHoursSpecification',
-            'dayOfWeek' => HOURS_DAYS,
-            'opens'     => HOURS_OPEN,
-            'closes'    => HOURS_CLOSE,
-        ]],
+        'openingHoursSpecification' => [
+            [
+                '@type'     => 'OpeningHoursSpecification',
+                'dayOfWeek' => LOC_DELHI_HOURS_WEEKDAY_DAYS,
+                'opens'     => LOC_DELHI_HOURS_WEEKDAY_OPEN,
+                'closes'    => LOC_DELHI_HOURS_WEEKDAY_CLOSE,
+            ],
+            [
+                '@type'     => 'OpeningHoursSpecification',
+                'dayOfWeek' => LOC_DELHI_HOURS_SUNDAY_DAYS,
+                'opens'     => LOC_DELHI_HOURS_SUNDAY_OPEN,
+                'closes'    => LOC_DELHI_HOURS_SUNDAY_CLOSE,
+            ],
+        ],
         'geo' => [
             '@type'     => 'GeoCoordinates',
-            'latitude'  => 28.7111119,
-            'longitude' => 77.107037,
+            'latitude'  => LOC_DELHI_GEO_LAT,
+            'longitude' => LOC_DELHI_GEO_LNG,
         ],
-        'hasMap'     => LOC_DELHI_MAPS_URL,
         'areaServed' => [
             ['@type' => 'City', 'name' => 'Delhi'],
             ['@type' => 'AdministrativeArea', 'name' => 'North-West Delhi'],
