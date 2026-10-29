@@ -32,9 +32,21 @@
 
   // Close: the X button, or a click on the backdrop.
   document.querySelectorAll('dialog.enhanced-modal').forEach(function (dialog) {
-    dialog.querySelector('[data-close]').addEventListener('click', function () { dialog.close(); });
+    dialog.querySelectorAll('[data-close]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dialog.close();
+      });
+    });
     dialog.addEventListener('click', function (e) {
-      if (e.target === dialog) { dialog.close(); }
+      var rect = dialog.getBoundingClientRect();
+      var isInDialog = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog || e.target === dialog) {
+        dialog.close();
+      }
     });
   });
 

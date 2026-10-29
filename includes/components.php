@@ -672,7 +672,7 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
       <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know <span class="fine" style="font-weight:400;opacity:.75">(optional)</span></label>
       <textarea class="textarea" id="f-message-<?= e($source) ?>" name="message" rows="2" placeholder="Briefly describe your goals or questions..."></textarea>
     </div>
-    <button class="btn btn--block" type="submit" style="background:#fff;color:var(--ink)">Book My Consultation</button>
+    <button class="btn btn--block" type="submit" style="background:#fff;color:var(--ink)">Book Free Consultation</button>
     <p class="fine">🔒 Your details are kept confidential and used only to arrange your consultation.</p>
   </div>
 </form>

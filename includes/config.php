@@ -86,7 +86,7 @@ const PHONE_DISPLAY = '+91 81783 30800';
 /** E.164, byte-identical to every tel: href on the site. */
 const PHONE_SCHEMA  = PHONE_E164;
 const EMAIL         = 'dencespot@gmail.com';
-const WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B918178330800&text=Hi%2C%20please%20share%20me%20more%20information%20about%20your%20services';
+const WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B918178330800&text=Hey%2C%20I%27m%20interested%20in%20Hair%20Transplant%20Treatment.%20Please%20share%20more%20details.';
 /**
  * Canonical listing, addressed by CID. The previous value was a text search,
  * which re-runs a query on every click and can resolve to one of the duplicate
@@ -114,7 +114,7 @@ const LOC_DELHI_ADDRESS       = '6, Dividing Road, near DDA Market, Pocket 3, Se
 const LOC_DELHI_LANDMARK      = 'near DDA Market, Pocket 3, Sector 5, Rohini';
 const LOC_DELHI_PHONE_E164    = '+919540699152';
 const LOC_DELHI_PHONE_DISPLAY = '+91 95406 99152';
-const LOC_DELHI_WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B919540699152&text=Hi%2C%20please%20share%20me%20more%20information%20about%20your%20services';
+const LOC_DELHI_WHATSAPP_URL  = 'https://api.whatsapp.com/send/?phone=%2B919540699152&text=Hey%2C%20I%27m%20interested%20in%20Hair%20Transplant%20Treatment.%20Please%20share%20more%20details.';
 const LOC_DELHI_MAP_EMBED     = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.2821792980394!2d77.10703699999999!3d28.7111119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0181b16393d1%3A0x3f3d24fc9fc00d93!2sDencespot%20Clinic!5e0!3m2!1sen!2sin!4v1791815111651!5m2!1sen!2sin';
 const LOC_DELHI_GBP_CID       = '4556839065399332243';
 const LOC_DELHI_MAPS_URL      = 'https://www.google.com/maps?cid=' . LOC_DELHI_GBP_CID;

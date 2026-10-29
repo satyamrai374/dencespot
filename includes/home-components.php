@@ -870,7 +870,7 @@ function hp_booking_dialog(string $source = 'homepage'): string
 
       <p class="hp-form__notice">We use your name, phone number, chosen treatment, preferred clinic and date, and message only to contact you about this enquiry, and record the date, time, page and your IP address with it. It reaches the clinic by email (Google) and WhatsApp (Meta), whose services may process it outside India, and is kept for 12 months. You can withdraw consent at any time.</p>
 
-      <button class="hp-btn hp-btn--primary hp-btn--block" type="submit">Request a Call Back <?= hp_icon('arrow', 17, 2) ?></button>
+      <button class="hp-btn hp-btn--primary hp-btn--block" type="submit">Book Free Consultation <?= hp_icon('arrow', 17, 2) ?></button>
       <p class="hp-form__fine">For adults 18+. Not for emergencies — call 112. A request is not a confirmed appointment.</p>
     </form>
   </div>

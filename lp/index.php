@@ -300,32 +300,32 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
 
   <!-- Popup 1: shown 4.5 s after load -->
   <?= lp_modal(
-      'welcomeModal', '📅 CONSULTATION', 'doctor-nyra', DOCTORS['dr-nyra']['name'] . ', ' . DOCTORS['dr-nyra']['quals'] . ', at ' . SITE_NAME,
-      'Plan Your Hair Transplant',
-      'A doctor checks your scalp and donor area at our Gurugram or Rohini clinic',
-      ['Scalp examined by a doctor', 'Graft estimate explained', 'No obligation to book a date'],
-      'fa-user-doctor', 'Book a Hair Consultation', 'We call you back during clinic hours',
-      lp_form('welcome', 'Welcome popup', 'fa-calendar-check', 'Request a Call Back')
+      'welcomeModal', '🎁 FREE HAIR ANALYSIS', 'doctor-nyra', DOCTORS['dr-nyra']['name'] . ', ' . DOCTORS['dr-nyra']['quals'] . ', at ' . SITE_NAME,
+      'Free Hair Analysis Available',
+      'Worth at ₹4,999 (1st time Visit). Doctor-led scalp check at our Gurugram or Rohini clinic.',
+      ['Free Hair Analysis (Worth ₹4,999)', 'Doctor-led scalp & donor assessment', 'No obligation to book a date'],
+      'fa-user-doctor', 'Book Free Consultation', 'Free Hair Analysis Available Worth at ₹4,999 (1st time Visit)',
+      lp_form('welcome', 'Welcome popup', 'fa-calendar-check', 'Book Free Consultation')
   ) ?>
 
   <!-- Popup 2: shown 10 s after popup 1 is closed -->
   <?= lp_modal(
       'estimateModal', '🧾 COST ESTIMATE', 'doctor-3', DOCTORS['dr-akash']['name'] . ' at ' . SITE_NAME,
-      'Know the Cost Before You Decide',
-      'An itemised, written estimate after your scalp assessment',
-      ['Grafts and technique explained', 'EMI Available on eligible cards', 'Follow-up reviews included'],
-      'fa-file-invoice', 'Get a Written Estimate', 'Shared at your consultation',
-      lp_form('estimate', 'Estimate popup', 'fa-file-invoice', 'Request My Estimate')
+      'Free Hair Analysis Available',
+      'Worth at ₹4,999 (1st time Visit). An itemised, written estimate after your scalp assessment.',
+      ['Free Hair Analysis (Worth ₹4,999)', 'EMI Available on eligible cards', 'Follow-up reviews included'],
+      'fa-file-invoice', 'Get a Written Estimate', 'Includes Free Hair Analysis Worth at ₹4,999 (1st time Visit)',
+      lp_form('estimate', 'Estimate popup', 'fa-file-invoice', 'Book Free Consultation')
   ) ?>
 
   <!-- Popup 3: every "Book" button -->
   <?= lp_modal(
-      'appointmentModal', '📅 BOOK NOW', 'doctor-rahul', DOCTORS['dr-rahul']['name'] . ' at ' . SITE_NAME,
-      'Book Your Visit',
-      'Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi',
-      ['Call-back to confirm a time', 'Open 7 days a week', 'Two clinics to choose from'],
-      'fa-calendar-check', 'Book Appointment', 'We call you to confirm the time',
-      lp_form('booking', 'Appointment popup', 'fa-calendar-check', 'Book My Appointment')
+      'appointmentModal', '🎁 1ST VISIT OFFER', 'doctor-rahul', DOCTORS['dr-rahul']['name'] . ' at ' . SITE_NAME,
+      'Free Hair Analysis Available',
+      'Worth at ₹4,999 (1st time Visit). Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi.',
+      ['Free Hair Analysis (Worth ₹4,999)', 'Call-back to confirm a time', 'Two clinics to choose from'],
+      'fa-calendar-check', 'Book Free Consultation', 'Free Hair Analysis Available Worth at ₹4,999 (1st time Visit)',
+      lp_form('booking', 'Appointment popup', 'fa-calendar-check', 'Book Free Consultation')
   ) ?>
 
   <div class="top-bar">
