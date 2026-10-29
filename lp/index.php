@@ -167,6 +167,9 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
   <input type="hidden" name="message" value="">
   <input type="hidden" name="form_type" value="<?= e($formType) ?>">
   <div class="hp-field" style="display:none !important;" aria-hidden="true"><label for="<?= e($id) ?>-website">Website</label><input type="text" id="<?= e($id) ?>-website" name="website" tabindex="-1" autocomplete="new-password"></div>
+  <div class="popup-offer-tag">
+    <i class="fas fa-gift"></i> Free Hair Analysis Available Worth at 4999 (1st time Visit)
+  </div>
   <div class="enhanced-form-group">
     <label for="<?= e($id) ?>-name"><i class="fas fa-user"></i> Full Name</label>
     <input type="text" id="<?= e($id) ?>-name" name="name" class="enhanced-input" placeholder="Enter your full name" autocomplete="name" maxlength="120" required>
@@ -302,9 +305,9 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
   <?= lp_modal(
       'welcomeModal', '🎁 FREE HAIR ANALYSIS', 'doctor-nyra', DOCTORS['dr-nyra']['name'] . ', ' . DOCTORS['dr-nyra']['quals'] . ', at ' . SITE_NAME,
       'Free Hair Analysis Available',
-      'Worth at ₹4,999 (1st time Visit). Doctor-led scalp check at our Gurugram or Rohini clinic.',
-      ['Free Hair Analysis (Worth ₹4,999)', 'Doctor-led scalp & donor assessment', 'No obligation to book a date'],
-      'fa-user-doctor', 'Book Free Consultation', 'Free Hair Analysis Available Worth at ₹4,999 (1st time Visit)',
+      'Worth at 4999 (1st time Visit). Doctor-led scalp check at our Gurugram or Rohini clinic.',
+      ['Free Hair Analysis (Worth at 4999)', 'Doctor-led scalp & donor assessment', 'No obligation to book a date'],
+      'fa-user-doctor', 'Book Free Consultation', 'Free Hair Analysis Available Worth at 4999 (1st time Visit)',
       lp_form('welcome', 'Welcome popup', 'fa-calendar-check', 'Book Free Consultation')
   ) ?>
 
@@ -312,9 +315,9 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
   <?= lp_modal(
       'estimateModal', '🧾 COST ESTIMATE', 'doctor-3', DOCTORS['dr-akash']['name'] . ' at ' . SITE_NAME,
       'Free Hair Analysis Available',
-      'Worth at ₹4,999 (1st time Visit). An itemised, written estimate after your scalp assessment.',
-      ['Free Hair Analysis (Worth ₹4,999)', 'EMI Available on eligible cards', 'Follow-up reviews included'],
-      'fa-file-invoice', 'Get a Written Estimate', 'Includes Free Hair Analysis Worth at ₹4,999 (1st time Visit)',
+      'Worth at 4999 (1st time Visit). An itemised, written estimate after your scalp assessment.',
+      ['Free Hair Analysis (Worth at 4999)', 'EMI Available on eligible cards', 'Follow-up reviews included'],
+      'fa-file-invoice', 'Get a Written Estimate', 'Free Hair Analysis Available Worth at 4999 (1st time Visit)',
       lp_form('estimate', 'Estimate popup', 'fa-file-invoice', 'Book Free Consultation')
   ) ?>
 
@@ -322,9 +325,9 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
   <?= lp_modal(
       'appointmentModal', '🎁 1ST VISIT OFFER', 'doctor-rahul', DOCTORS['dr-rahul']['name'] . ' at ' . SITE_NAME,
       'Free Hair Analysis Available',
-      'Worth at ₹4,999 (1st time Visit). Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi.',
-      ['Free Hair Analysis (Worth ₹4,999)', 'Call-back to confirm a time', 'Two clinics to choose from'],
-      'fa-calendar-check', 'Book Free Consultation', 'Free Hair Analysis Available Worth at ₹4,999 (1st time Visit)',
+      'Worth at 4999 (1st time Visit). Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi.',
+      ['Free Hair Analysis (Worth at 4999)', 'Call-back to confirm a time', 'Two clinics to choose from'],
+      'fa-calendar-check', 'Book Free Consultation', 'Free Hair Analysis Available Worth at 4999 (1st time Visit)',
       lp_form('booking', 'Appointment popup', 'fa-calendar-check', 'Book Free Consultation')
   ) ?>
 
