@@ -47,7 +47,7 @@ const LP_PHONE_E164    = LOC_DELHI_PHONE_E164;
 const LP_PHONE_DISPLAY = LOC_DELHI_PHONE_DISPLAY;
 const LP_WHATSAPP_URL  = LOC_DELHI_WHATSAPP_URL;
 
-$title       = 'Hair Transplant in Gurgaon & Delhi | DenceSpot Clinic';
+$title       = 'Best Hair Transplant Clinic in Delhi and Gurgaon | DenceSpot Clinic';
 $description = 'FUE and DHI hair transplant at DenceSpot Clinic, Sector 39 Gurugram and Rohini, Delhi. Doctor-led consultation, itemised written estimate and card EMI.';
 
 /** "Why choose" cards: icon tone, Font Awesome icon, title, text. */
@@ -313,7 +313,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
       'estimateModal', '🧾 COST ESTIMATE', 'doctor-3', DOCTORS['dr-akash']['name'] . ' at ' . SITE_NAME,
       'Know the Cost Before You Decide',
       'An itemised, written estimate after your scalp assessment',
-      ['Grafts and technique explained', 'Card EMI on eligible cards', 'Follow-up reviews included'],
+      ['Grafts and technique explained', 'EMI Available on eligible cards', 'Follow-up reviews included'],
       'fa-file-invoice', 'Get a Written Estimate', 'Shared at your consultation',
       lp_form('estimate', 'Estimate popup', 'fa-file-invoice', 'Request My Estimate')
   ) ?>
@@ -358,9 +358,9 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
     <div class="hero-banner">
       <div class="hb-inner">
         <div class="hb-ribbon">
-          <h1>Hair Transplant in Gurgaon &amp; Delhi</h1>
+          <h1>Best Hair Transplant Clinic in Delhi and Gurgaon</h1>
           <div class="hb-ribbon-row">
-            <span class="hb-mobile-only"><i class="fas fa-credit-card"></i> Card EMI</span>
+            <span class="hb-mobile-only"><i class="fas fa-credit-card"></i> EMI Available</span>
             <span class="hb-badge">Doctor<br>Led</span>
             <span class="hb-mobile-only"><i class="fas fa-file-signature"></i> Written Estimate</span>
           </div>
@@ -375,8 +375,9 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
           </figure>
           <?php endforeach; ?>
           <div class="hb-label">
-            <p class="hb-label__top">Hair Transplant</p>
-            <p class="hb-label__big">FUE &amp; DHI</p>
+            <p class="hb-label__top">Free Hair Analysis Available</p>
+            <p class="hb-label__big">Worth at ₹4,999</p>
+            <p class="hb-label__sub">(1st time Visit)</p>
           </div>
         </div>
       </div>
@@ -384,7 +385,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
       <div class="hb-strip">
         <div class="hb-strip__inner">
           <span class="hb-item">FUE <span class="hb-sep">|</span> DHI</span>
-          <span class="hb-item hb-desktop-only"><i class="fas fa-credit-card"></i> Card EMI Options</span>
+          <span class="hb-item hb-desktop-only"><i class="fas fa-credit-card"></i> EMI Available</span>
           <span class="hb-item hb-desktop-only"><i class="fas fa-file-signature"></i> Written Estimate</span>
           <a class="hb-item" href="<?= e($telHref) ?>" data-track="call"><i class="fas fa-phone"></i> <?= e(preg_replace('/^\+91\s*/', '', LP_PHONE_DISPLAY)) ?></a>
         </div>
@@ -473,16 +474,15 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
         </div>
         <?php endforeach; ?>
       </div>
-      <p class="stats-note">Figures from clinic records, <?= e(STAT_FIGURES_AS_OF) ?>.</p>
     </div>
   </section>
 
   <!-- Results Section -->
   <section class="results">
     <div class="container">
-      <?php /* Visible heading, subtitle and clinic boxes removed (client, 26 Oct
-               2026); the heading stays for screen readers and the outline. */ ?>
-      <h2 class="sr-only">Hair Transplant Before &amp; After Photos</h2>
+      <div class="section-header">
+        <h2 class="section-title">Our Happy Clients</h2>
+      </div>
       <div class="results-grid">
         <?php foreach ($resultPhotos as $slug => $alt): ?>
         <div class="result-card">
@@ -599,7 +599,7 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
             <li>✓ FUE &amp; DHI techniques</li>
             <li>✓ Hairline agreed with you</li>
             <li>✓ Itemised written estimate</li>
-            <li>✓ Card EMI on eligible cards</li>
+            <li>✓ EMI Available on eligible cards</li>
             <li>✓ 12 months of follow-up reviews</li>
             <li>✓ Clinics in Gurugram &amp; Rohini</li>
             <li>✓ Open 7 days a week</li>

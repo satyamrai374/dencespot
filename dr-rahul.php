@@ -5,7 +5,7 @@
  * lists both, Rohini first). Layout and schema: includes/doctor-profile.php.
  *
  * On record (client, 25 and 27 Oct 2026): Senior Resident at ESIC Hospital,
- * 8+ years of experience, sees patients at both clinics. His recognised degree is
+ * 11 years of experience, sees patients at both clinics. His recognised degree is
  * not (DOCTORS['dr-rahul']['quals'] is null; the client declined to add an
  * education line), so under IMC Regulations 2002 r.1.4.2 and r.7.20 the page
  * does not call him a surgeon or a specialist: the title, H1 and schema say
@@ -34,7 +34,7 @@ $crumbs = [
 
 $faqs = [
     ['q' => 'Who is Dr. Rahul at DenceSpot Rohini?',
-     'a' => 'Dr. Rahul is a hair transplant doctor at DenceSpot Clinic, seeing patients at its Rohini clinic in Delhi and its Sector 39 clinic in Gurugram. He has more than eight years of clinical experience and works as a Senior Resident at ESIC Hospital.'],
+     'a' => 'Dr. Rahul is a hair transplant doctor at DenceSpot Clinic, seeing patients at its Rohini clinic in Delhi and its Sector 39 clinic in Gurugram. He has more than 11 years of clinical experience and works as a Senior Resident at ESIC Hospital.'],
     ['q' => 'What does Dr. Rahul see patients for?',
      'a' => 'Hair loss and hair transplant: a receding hairline, thinning at the crown, diffuse thinning and patchy loss, and questions about FUE, DHI, PRP and medical treatment. Each visit starts with an examination, and the plan follows from what is found.'],
     ['q' => 'What should I ask a hair transplant surgeon in Rohini before booking?',
@@ -53,7 +53,7 @@ $title       = fit_title(
     $doc['name'] . ' | ' . doctor_headline($key),
     $doc['name'] . ': ' . doctor_ht_role($doc) . ' in Rohini'
 );
-$description = 'Dr. Rahul is a ' . strtolower(doctor_ht_role($doc)) . ' at DenceSpot Clinic in Rohini, Delhi: Senior Resident at ESIC Hospital, with 8+ years of experience.';
+$description = 'Dr. Rahul is a ' . strtolower(doctor_ht_role($doc)) . ' at DenceSpot Clinic in Rohini, Delhi: Senior Resident at ESIC Hospital, with 11 years of experience.';
 
 $page = [
     'title'       => $title,
@@ -67,14 +67,14 @@ $page = [
     'schema'      => doctor_profile_schema(
         $key,
         $title,
-        'Dr. Rahul is a ' . strtolower(doctor_ht_role($doc)) . ' at DenceSpot Clinic in Rohini, Delhi, with more than eight years of clinical experience, and a Senior Resident at ESIC Hospital.',
+        'Dr. Rahul is a ' . strtolower(doctor_ht_role($doc)) . ' at DenceSpot Clinic in Rohini, Delhi, with more than 11 years of clinical experience, and a Senior Resident at ESIC Hospital.',
         $crumbs,
         $faqs
     ),
 ];
 
 $profile = [
-    'lead'  => 'Dr. Rahul is a ' . strtolower(doctor_ht_role($doc)) . ' at DenceSpot Clinic in Rohini, Delhi, with more than eight years of clinical experience and a post as Senior Resident at ESIC Hospital. He sees patients with hair loss at both DenceSpot clinics, Rohini and Sector 39 in Gurugram, from the first scalp examination to a written treatment plan.',
+    'lead'  => 'Dr. Rahul is a ' . strtolower(doctor_ht_role($doc)) . ' at DenceSpot Clinic in Rohini, Delhi, with more than 11 years of clinical experience and a post as Senior Resident at ESIC Hospital. He sees patients with hair loss at both DenceSpot clinics, Rohini and Sector 39 in Gurugram, from the first scalp examination to a written treatment plan.',
     'chips' => [
         ['clock',    $doc['experience'] . ' of experience'],
         ['user',     $doc['position']],
@@ -84,7 +84,7 @@ $profile = [
 
     'about_h2' => 'About Dr. Rahul, ' . doctor_ht_role($doc) . ' in Rohini',
     'about'    => [
-        'Dr. Rahul has more than eight years of clinical experience and works as a Senior Resident at ESIC Hospital. At DenceSpot he sees patients at both clinics: the <a href="/delhi-clinic">Rohini clinic</a> in Delhi and the <a href="/contact">Sector 39 clinic</a> in Gurugram.',
+        'Dr. Rahul has more than 11 years of clinical experience and works as a Senior Resident at ESIC Hospital. At DenceSpot he sees patients at both clinics: the <a href="/delhi-clinic">Rohini clinic</a> in Delhi and the <a href="/contact">Sector 39 clinic</a> in Gurugram.',
         'A consultation with him follows the clinic’s order of work: why your hair is thinning comes before how many grafts you might need. Your history, medicines and family pattern are reviewed, the scalp and donor area are examined under magnification, and treatable causes such as thyroid problems, low iron, stress or a scalp condition are looked at before surgery is discussed.',
         'If a transplant is the right step, you receive a written plan covering the technique, the areas to be treated, an approximate graft range and an itemised estimate. Nothing is booked on the day, and you are free to take the plan home and think it over.',
         'Ask either clinic which days Dr. Rahul consults there. You can also ask about his registration, training and experience with the procedure planned for you; any clinic should answer those questions plainly.',

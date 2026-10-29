@@ -281,7 +281,7 @@ const DOCTORS = [
         'city'        => 'rohini',
         'same_as'     => [],     // ⚠ add Practo / LinkedIn profile URLs
     ],
-    // Client, 25 Oct 2026: Senior Resident at ESIC Hospital, 8+ years of
+    // Client, 25 Oct 2026: Senior Resident at ESIC Hospital, 11 years of
     // experience (shown as facts on the homepage tile). The degree is still
     // not on record, so quals stays null and the entry stays out of
     // listed_doctors().
@@ -291,7 +291,7 @@ const DOCTORS = [
         'role'        => null,
         'alumni'      => null,
         'position'    => 'Senior Resident, ESIC Hospital',
-        'experience'  => '8+ years',
+        'experience'  => '11 years',
         'url'         => '/dr-rahul',
         'image'       => '/assets/img/home/doctor-rahul-720.webp',
         'photo'       => 'doctor-rahul',
