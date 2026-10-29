@@ -816,7 +816,7 @@ function hp_booking_dialog(string $source = 'homepage'): string
 
     <form class="hp-form" action="/enquire.php" method="post">
       <input type="hidden" name="source" value="<?= e($source) ?>">
-      <p class="hp-sr" aria-hidden="true"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <p class="hp-sr" style="display:none !important;" aria-hidden="true"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="new-password"></label></p>
 
       <div class="hp-form__row">
         <div class="hp-field">

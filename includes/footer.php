@@ -184,7 +184,7 @@ if (!empty($page['service_areas'])) {
       <form class="wa-modal__form" action="/enquire.php" method="post" id="waLeadForm">
         <input type="hidden" name="source" value="whatsapp-modal:<?= e($page['url'] ?? '') ?>">
         <input type="hidden" name="redirect_to" value="whatsapp">
-        <p class="sr-only"><label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <p class="sr-only" style="display:none !important;" aria-hidden="true"><label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="new-password"></label></p>
         
         <div class="wa-field">
           <label for="wa-name">Your Full Name</label>

@@ -639,7 +639,10 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
     ob_start(); ?>
 <form class="form<?= $onInk ? ' form--onink' : '' ?>" action="/enquire.php" method="post">
   <input type="hidden" name="source" value="<?= e($source) ?>">
-  <p class="sr-only"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+  <div style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;" aria-hidden="true">
+    <label for="f-web-<?= e($source) ?>">Leave this field empty</label>
+    <input type="text" id="f-web-<?= e($source) ?>" name="website" tabindex="-1" autocomplete="new-password">
+  </div>
   <div class="stack-sm">
     <div class="field">
       <label for="f-name-<?= e($source) ?>">Full name</label>
@@ -1213,7 +1216,7 @@ function lead_strip(): string
       <input type="hidden" name="source" value="<?= e($source) ?>">
       <input type="hidden" name="treatment" value="<?= e($treatment) ?>">
       <?php if ($clinic !== null): ?><input type="hidden" name="clinic" value="<?= e($clinic) ?>"><?php endif; ?>
-      <p class="sr-only"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div style="display:none !important;" aria-hidden="true"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="new-password"></label></div>
       <div class="lead-strip__fields">
         <label class="lead-strip__field"><span>Name</span><input class="input" name="name" type="text" autocomplete="name" maxlength="120" required></label>
         <label class="lead-strip__field"><span>Phone</span><input class="input" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[\s\(\)+\-]*(?:[0-9][\s\(\)+\-]*){10,15}" title="A phone number with 10 to 15 digits" required></label>

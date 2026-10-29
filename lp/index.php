@@ -166,7 +166,7 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
   <input type="hidden" name="source" value="<?= e(LP_SOURCE . '-' . $id) ?>">
   <input type="hidden" name="message" value="">
   <input type="hidden" name="form_type" value="<?= e($formType) ?>">
-  <div class="hp-field" aria-hidden="true"><label for="<?= e($id) ?>-website">Website</label><input type="text" id="<?= e($id) ?>-website" name="website" tabindex="-1" autocomplete="off"></div>
+  <div class="hp-field" style="display:none !important;" aria-hidden="true"><label for="<?= e($id) ?>-website">Website</label><input type="text" id="<?= e($id) ?>-website" name="website" tabindex="-1" autocomplete="new-password"></div>
   <div class="enhanced-form-group">
     <label for="<?= e($id) ?>-name"><i class="fas fa-user"></i> Full Name</label>
     <input type="text" id="<?= e($id) ?>-name" name="name" class="enhanced-input" placeholder="Enter your full name" autocomplete="name" maxlength="120" required>

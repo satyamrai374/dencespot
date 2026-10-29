@@ -131,10 +131,16 @@ if (!in_array($clinic, ENQUIRY_CLINICS, true)) {
     $clinic = '';
 }
 
-// Honeypot: real people leave this empty. Accept silently so bots learn nothing.
-if ($field('website') !== '') {
-    header('Location: /thank-you', true, 303);
-    exit;
+// Honeypot: real people leave this empty. Discard if no valid phone number.
+$honeypot = $field('website');
+if ($honeypot !== '') {
+    $digitsCheck = preg_replace('/\D+/', '', $phone) ?? '';
+    if (strlen($digitsCheck) < 10) {
+        header('Location: /thank-you', true, 303);
+        exit;
+    }
+    // If phone has >= 10 digits, it was likely browser autofill — proceed and keep note
+    $message .= ($message !== '' ? "\n" : '') . "[Autofill note: website field contained '{$honeypot}']";
 }
 
 $errors = [];
@@ -225,13 +231,19 @@ $body = "New consultation enquiry\n\n"
 
 $subject = 'Consultation enquiry — ' . $name;
 if (!smtp_send(ENQUIRY_RECIPIENTS, $subject, $body, EMAIL)) {
-    // Zoho unreachable or its password not on the server: the host's mail().
-    @mail(
-        implode(', ', ENQUIRY_RECIPIENTS),
-        $subject,
-        $body,
-        "From: " . SMTP_USER . "\r\nReply-To: " . EMAIL . "\r\nContent-Type: text/plain; charset=UTF-8"
-    );
+    // Zoho unreachable or its password not on the server: send individual emails via host mail() with envelope sender
+    foreach (ENQUIRY_RECIPIENTS as $rcpt) {
+        @mail(
+            $rcpt,
+            $subject,
+            $body,
+            "From: " . SMTP_FROM_NAME . " <" . SMTP_USER . ">\r\n" .
+            "Reply-To: " . EMAIL . "\r\n" .
+            "Content-Type: text/plain; charset=UTF-8\r\n" .
+            "X-Mailer: PHP/" . phpversion(),
+            "-f " . SMTP_USER
+        );
+    }
 }
 
 // 2b. Notify the clinic via WhatsApp using OpenWA Gateway.
