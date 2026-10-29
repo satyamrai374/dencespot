@@ -159,13 +159,14 @@ body {
 dialog.enhanced-modal {
   border: none;
   padding: 0;
-  max-width: 760px;
-  width: 90%;
+  max-width: 460px;
+  width: 92%;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   margin: auto;
   color: inherit;
+  background: #ffffff;
 }
 
 dialog.enhanced-modal::backdrop {
@@ -1013,56 +1014,12 @@ footer a:not(.btn-call):not(.btn-primary) {
 }
 
 /* ============================================
-   ENHANCED MODAL STYLES
+   ENHANCED MODAL STYLES (No Dr Image, Clean Card)
    ============================================ */
 .enhanced-modal .modal-body {
-  padding: 0;
-}
-
-.modal-split {
-  display: grid;
-  grid-template-columns: 42% 58%;
-  min-height: 440px;
-}
-
-.modal-image-side {
+  padding: 24px 26px 20px;
+  background: #ffffff;
   position: relative;
-  overflow: hidden;
-}
-
-.modal-image-side img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.modal-image-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(171, 3, 8, 0.95), transparent);
-  padding: 20px 16px;
-  padding-top: 60px;
-  color: white;
-}
-
-/* Reference: .modal-image-overlay h4 */
-.modal-image-overlay .modal-overlay-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 6px;
-  line-height: 1.25;
-  opacity: 1;
-}
-
-.modal-image-overlay p {
-  font-size: 13px;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.3;
-  opacity: 0.95;
 }
 
 .modal-close-btn {
@@ -1099,47 +1056,37 @@ footer a:not(.btn-call):not(.btn-primary) {
   transition: color 0.2s ease;
 }
 
-.modal-form-side {
-  padding: 22px 24px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.modal-badge-inline {
+  display: inline-block;
+  background: var(--brand-navy);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
 }
 
 .modal-form-header {
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.modal-form-header .icon-badge {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #da061a, #e8091d);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 6px;
-  font-size: 20px;
-  color: white;
-  box-shadow: 0 4px 12px rgba(218, 6, 26, 0.25);
-}
-
-/* Reference: .modal-form-header h3 */
 .modal-form-header .modal-form-title {
   font-size: 20px;
   color: #da061a;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 3px;
   line-height: 1.25;
 }
 
-.modal-form-header p {
+.modal-form-header p,
+.modal-form-subtitle {
   font-size: 12.5px;
   color: #555;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .popup-offer-tag {
@@ -1339,31 +1286,8 @@ select.enhanced-input {
 }
 
 @media (max-width: 768px) {
-  .modal-split {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .modal-image-side {
-    height: 110px;
-  }
-
-  .modal-image-overlay {
-    padding: 10px 14px;
-    padding-top: 20px;
-  }
-
-  .modal-image-overlay .modal-overlay-title {
-    font-size: 16px;
-    margin-bottom: 2px;
-  }
-
-  .modal-image-overlay p {
-    font-size: 12px;
-  }
-
-  .modal-image-overlay .form-benefits {
-    display: none;
+  .enhanced-modal .modal-body {
+    padding: 18px 16px 16px;
   }
 
   .modal-close-btn {
@@ -1375,24 +1299,17 @@ select.enhanced-input {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   }
 
-  .modal-form-side {
-    padding: 14px 16px 16px;
-  }
-
   .modal-form-header {
     margin-bottom: 8px;
   }
 
-  .modal-form-header .icon-badge {
-    display: none;
-  }
-
   .modal-form-header .modal-form-title {
-    font-size: 17px;
+    font-size: 18px;
     margin-bottom: 2px;
   }
 
-  .modal-form-header p {
+  .modal-form-header p,
+  .modal-form-subtitle {
     font-size: 12px;
   }
 

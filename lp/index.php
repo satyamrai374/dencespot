@@ -208,37 +208,19 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
     return (string) ob_get_clean();
 }
 
-/** One popup: image side with overlay, form side. */
-
-function lp_modal(string $id, string $badge, string $image, string $imageAlt, string $heading, string $text, array $benefits, string $formIcon, string $formTitle, string $formText, string $form): string
+/** Clean, focused popup modal (no doctor images, client request). */
+function lp_modal(string $id, string $badge, string $title, string $subtitle, string $form): string
 {
     ob_start(); ?>
 <dialog class="enhanced-modal" id="<?= e($id) ?>" aria-labelledby="<?= e($id) ?>-title">
   <button type="button" class="modal-close-btn" data-close aria-label="Close"><i class="fas fa-times"></i></button>
   <div class="modal-body">
-    <div class="modal-split">
-      <div class="modal-image-side">
-        <div class="modal-badge"><?= e($badge) ?></div>
-        <?= hp_img($image, $imageAlt, '(min-width: 769px) 405px, 95vw') ?>
-        <div class="modal-image-overlay">
-          <p class="modal-overlay-title"><?= e($heading) ?></p>
-          <p><?= e($text) ?></p>
-          <div class="form-benefits">
-            <?php foreach ($benefits as $b): ?>
-            <div class="benefit-item"><i class="fas fa-check-circle"></i><span><?= e($b) ?></span></div>
-            <?php endforeach; ?>
-          </div>
-        </div>
-      </div>
-      <div class="modal-form-side">
-        <div class="modal-form-header">
-          <div class="icon-badge"><i class="fas <?= e($formIcon) ?>"></i></div>
-          <p class="modal-form-title" id="<?= e($id) ?>-title"><?= e($formTitle) ?></p>
-          <p><?= e($formText) ?></p>
-        </div>
-        <?= $form ?>
-      </div>
+    <div class="modal-form-header">
+      <div class="modal-badge-inline"><?= e($badge) ?></div>
+      <h3 class="modal-form-title" id="<?= e($id) ?>-title"><?= e($title) ?></h3>
+      <p class="modal-form-subtitle"><?= e($subtitle) ?></p>
     </div>
+    <?= $form ?>
   </div>
 </dialog>
 <?php
@@ -303,31 +285,28 @@ function lp_modal(string $id, string $badge, string $image, string $imageAlt, st
 
   <!-- Popup 1: shown 4.5 s after load -->
   <?= lp_modal(
-      'welcomeModal', '🎁 FREE HAIR ANALYSIS', 'doctor-nyra', DOCTORS['dr-nyra']['name'] . ', ' . DOCTORS['dr-nyra']['quals'] . ', at ' . SITE_NAME,
-      'Free Hair Analysis Available',
-      'Worth at 4999 (1st time Visit). Doctor-led scalp check at our Gurugram or Rohini clinic.',
-      ['Free Hair Analysis (Worth at 4999)', 'Doctor-led scalp & donor assessment', 'No obligation to book a date'],
-      'fa-user-doctor', 'Book Free Consultation', 'Free Hair Analysis Available Worth at 4999 (1st time Visit)',
+      'welcomeModal',
+      'FREE HAIR ANALYSIS',
+      'Book Free Consultation',
+      'Doctor-led scalp check at our Gurugram or Rohini clinic',
       lp_form('welcome', 'Welcome popup', 'fa-calendar-check', 'Book Free Consultation')
   ) ?>
 
   <!-- Popup 2: shown 10 s after popup 1 is closed -->
   <?= lp_modal(
-      'estimateModal', '🧾 COST ESTIMATE', 'doctor-3', DOCTORS['dr-akash']['name'] . ' at ' . SITE_NAME,
-      'Free Hair Analysis Available',
-      'Worth at 4999 (1st time Visit). An itemised, written estimate after your scalp assessment.',
-      ['Free Hair Analysis (Worth at 4999)', 'EMI Available on eligible cards', 'Follow-up reviews included'],
-      'fa-file-invoice', 'Get a Written Estimate', 'Free Hair Analysis Available Worth at 4999 (1st time Visit)',
+      'estimateModal',
+      'WRITTEN ESTIMATE',
+      'Get a Written Estimate',
+      'An itemised written estimate after your scalp assessment',
       lp_form('estimate', 'Estimate popup', 'fa-file-invoice', 'Book Free Consultation')
   ) ?>
 
   <!-- Popup 3: every "Book" button -->
   <?= lp_modal(
-      'appointmentModal', '🎁 1ST VISIT OFFER', 'doctor-rahul', DOCTORS['dr-rahul']['name'] . ' at ' . SITE_NAME,
-      'Free Hair Analysis Available',
-      'Worth at 4999 (1st time Visit). Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi.',
-      ['Free Hair Analysis (Worth at 4999)', 'Call-back to confirm a time', 'Two clinics to choose from'],
-      'fa-calendar-check', 'Book Free Consultation', 'Free Hair Analysis Available Worth at 4999 (1st time Visit)',
+      'appointmentModal',
+      '1ST VISIT OFFER',
+      'Book Free Consultation',
+      'Consultation with a doctor at Sector 39, Gurugram or Rohini, Delhi',
       lp_form('booking', 'Appointment popup', 'fa-calendar-check', 'Book Free Consultation')
   ) ?>
 
