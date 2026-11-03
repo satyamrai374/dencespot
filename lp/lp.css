@@ -1413,15 +1413,17 @@ select.enhanced-input {
 .hb-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+  gap: 18px 50px;
   margin-top: 12px;
 }
 
+/* Square, like every photo in lp/img/, so object-fit: cover crops nothing
+   (client, 3 Nov 2026: no photo cut). It was 23:25, which trimmed the sides. */
 .hb-card {
   grid-row: 1;
   position: relative;
   margin: 0;
-  aspect-ratio: 23 / 25;
+  aspect-ratio: 1 / 1;
   border: 4px solid var(--white);
   border-radius: 18px;
   overflow: hidden;
@@ -1440,7 +1442,7 @@ select.enhanced-input {
   object-fit: cover;
 }
 
-/* "Results vary" on the before/after cards that have no label over them. */
+/* "Results vary" on every before/after card (not on procedure-01). */
 .hb-note {
   position: absolute;
   right: 10px;
@@ -1454,15 +1456,17 @@ select.enhanced-input {
   border-radius: 999px;
 }
 
+/* The offer label sits in its own row after the three photos, on every
+   screen size (client, 3 Nov 2026). It used to cover the bottom of card A. */
 .hb-label {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: end;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-self: start;
   justify-self: center;
   position: relative;
   z-index: 2;
-  width: 86%;
-  margin-bottom: 8px;
+  width: min(100%, 440px);
+  margin: 0;
   background: var(--hb-label);
   color: var(--hb-label-text);
   border-radius: 12px;
@@ -1602,15 +1606,17 @@ select.enhanced-input {
     width: 56%;
   }
 
-  .hb-card--a { grid-column: 1; grid-row: 3; }
-  .hb-card--c { grid-column: 2; grid-row: 3; }
+  /* The label comes after the third photo, below cards A and C
+     (client, 3 Nov 2026; it used to sit between card B and the pair). */
+  .hb-card--a { grid-column: 1; grid-row: 2; }
+  .hb-card--c { grid-column: 2; grid-row: 2; }
 
   .hb-label {
     grid-column: 1 / -1;
-    grid-row: 2;
+    grid-row: 3;
     align-self: start;
     width: 92%;
-    margin: -14px 0 0;
+    margin: 0;
     padding: 8px 12px;
     display: flex;
     flex-direction: column;

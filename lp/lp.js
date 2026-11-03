@@ -76,15 +76,12 @@
     });
   });
 
-  // /enquire.php stores the clinic and consent fields itself; the visit
-  // timing and the popup name travel in the message.
+  // /enquire.php stores the consent field itself; the popup name travels in
+  // the message. (The clinic and visit-timing questions were removed on
+  // 3 Nov 2026, so nothing here may read form.elements.visit.)
   document.querySelectorAll('.popup-form').forEach(function (form) {
     form.addEventListener('submit', function () {
-      var parts = [];
-      var visit = form.elements.visit.value;
-      if (visit) { parts.push('Plans to visit: ' + visit); }
-      parts.push('Form: ' + form.elements.form_type.value + ' (landing page)');
-      form.elements.message.value = parts.join(' | ');
+      form.elements.message.value = 'Form: ' + form.elements.form_type.value + ' (landing page)';
 
       var btn = form.querySelector('.enhanced-submit-btn');
       btn.dataset.label = btn.dataset.label || btn.innerHTML;

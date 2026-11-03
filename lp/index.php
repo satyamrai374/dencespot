@@ -39,13 +39,15 @@ const LP_URL    = '/lp/';
 const LP_SOURCE = 'lp-hair-transplant';
 
 /**
- * One number on the whole page (client, 26 Oct 2026), for calls and WhatsApp.
- * The clinic entities in the JSON-LD keep their own numbers, which must match
- * each clinic's Google Business Profile.
+ * One number on the whole page, for calls and WhatsApp: +91 81783 30800, the
+ * Gurugram clinic number (client, 3 Nov 2026; it was the Rohini number from
+ * 26 Oct). This page only: the rest of the site is unchanged. The clinic
+ * entities in the JSON-LD keep their own numbers, which must match each
+ * clinic's Google Business Profile.
  */
-const LP_PHONE_E164    = LOC_DELHI_PHONE_E164;
-const LP_PHONE_DISPLAY = LOC_DELHI_PHONE_DISPLAY;
-const LP_WHATSAPP_URL  = LOC_DELHI_WHATSAPP_URL;
+const LP_PHONE_E164    = PHONE_E164;
+const LP_PHONE_DISPLAY = PHONE_DISPLAY;
+const LP_WHATSAPP_URL  = WHATSAPP_URL;
 
 $title       = 'Best Hair Transplant Clinic in Delhi and Gurgaon | DenceSpot Clinic';
 $description = 'FUE and DHI hair transplant at DenceSpot Clinic, Sector 39 Gurugram and Rohini, Delhi. Doctor-led consultation, itemised written estimate and card EMI.';
@@ -84,27 +86,39 @@ $stats = [
 ];
 
 /**
- * Before/after composites in lp/img/ (ba-NN-480/640/1080.webp, all square;
- * ba-10/11 added 27 Oct 2026). The hero takes three whose photo panels fill
- * the card to the bottom, so the cards line up (client, 27 Oct 2026: ba-02
- * left white space under its centre card); the other eight fill the 4 × 2
- * results grid. No photo appears twice. No technique, graft count or interval
- * is on record for them, so none is printed.
+ * Photos in lp/img/ (NAME-480/640/1080.webp, all square 1:1, under 100 kB).
+ *
+ * Since 3 Nov 2026 the before/afters are ba-12..ba-20: composites in one
+ * "Before | After" template that the client supplied to replace all the older
+ * ones (ba-01..ba-11, no longer shown). Two are in the hero; the results grid
+ * has two rows of four (the second row added the same day: ba-18, ba-12,
+ * ba-19, ba-20). ba-12 is in the grid as well as the hero because the
+ * client's second-row set included the same file. The hero cards and result
+ * cards are square, like the photos, so no photo is cropped, and nothing is
+ * laid over them except
+ * the small "Results vary" note (client: no photo cut at the top or bottom).
+ * No technique, graft count or interval is on record for them, so none is
+ * printed.
+ *
+ * procedure-01 is a procedure photo, not a before/after (client, 3 Nov 2026),
+ * so it gets no "Results vary" note. It is card B: the centre card on desktop
+ * and the large top card on mobile.
  */
 $heroPhotos = [
-    'ba-01' => 'Before and after a hair transplant at DenceSpot Clinic: a fully shaved scalp with the new hairline drawn, and the grown-in result',
-    'ba-04' => 'Before and after a hair transplant at DenceSpot Clinic: a receding hairline from the front, and the rebuilt hairline',
-    'ba-03' => 'Before and after a hair transplant at DenceSpot Clinic: thinning across the top of the head, and the result from the front',
+    'ba-12' => 'DenceSpot Clinic hair transplant before and after: thin front seen from above, then the front view',
+    'procedure-01' => 'A hair transplant procedure in progress at DenceSpot Clinic',
+    'ba-13' => 'DenceSpot Clinic hair transplant before and after: a receding hairline, then fuller front hair',
 ];
 $resultPhotos = [
-    'ba-10' => 'Before and after a hair transplant at DenceSpot Clinic: a receding hairline and thin front, and the result from the front',
-    'ba-02' => 'Before and after a hair transplant at DenceSpot Clinic: a bald front and top marked for surgery, and the same patient with the area covered',
-    'ba-05' => 'Before and after a hair transplant at DenceSpot Clinic: the frontal hairline marked out, and the result',
-    'ba-11' => 'Three photos of one DenceSpot Clinic patient: the hairline marked before surgery, the grafted area on the day of the procedure, and the result',
-    'ba-06' => 'Before and after a hair transplant at DenceSpot Clinic: thinning front and temples seen from above, and the result',
-    'ba-07' => 'Before and after a hair transplant at DenceSpot Clinic: receded temples marked for grafting, and the restored temples',
-    'ba-08' => 'Before and after a hair transplant at DenceSpot Clinic: the hairline drawn on curly hair, and the result',
-    'ba-09' => 'Four photos of one DenceSpot Clinic patient: before treatment, then at three later stages',
+    'ba-14' => 'DenceSpot Clinic hair transplant before and after: thin on top seen from above, then the front',
+    'ba-15' => 'DenceSpot Clinic hair transplant before and after: receded temples from the side, then the front',
+    'ba-16' => 'DenceSpot Clinic hair transplant before and after: a bald front and top, then the regrown front',
+    'ba-17' => 'DenceSpot Clinic hair transplant before and after: new hairline marked on a bald front, the result',
+    // Second row (client, 3 Nov 2026).
+    'ba-18' => 'DenceSpot Clinic hair transplant before and after: thinning on top from above, then short regrowth',
+    'ba-12' => 'DenceSpot Clinic hair transplant before and after: thin front seen from above, then the front view',
+    'ba-19' => 'DenceSpot Clinic hair transplant before and after: a bare front and top, then fuller front hair',
+    'ba-20' => 'DenceSpot Clinic hair transplant before and after: the area marked on the scalp, then the front view',
 ];
 
 /** A before/after composite with its WebP sizes. $attrs: loading, fetchpriority, class. */
@@ -178,26 +192,7 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
     <label for="<?= e($id) ?>-phone"><i class="fas fa-phone"></i> Phone Number</label>
     <input type="tel" id="<?= e($id) ?>-phone" name="phone" class="enhanced-input" placeholder="Enter your phone number" autocomplete="tel" inputmode="tel" minlength="10" maxlength="16" required>
   </div>
-  <div class="enhanced-form-group">
-    <label for="<?= e($id) ?>-clinic"><i class="fas fa-location-dot"></i> Preferred Clinic</label>
-    <?php /* Values must match ENQUIRY_CLINICS in enquire.php, or the choice is dropped. */ ?>
-    <select id="<?= e($id) ?>-clinic" name="clinic" class="enhanced-input">
-      <option value="">Choose a clinic...</option>
-      <option value="Gurugram (Sector 39)">Gurugram (Sector 39)</option>
-      <option value="Delhi (Rohini)">Delhi (Rohini)</option>
-      <option value="Either clinic">Either clinic</option>
-    </select>
-  </div>
-  <div class="enhanced-form-group">
-    <label for="<?= e($id) ?>-visit"><i class="fas fa-clipboard-list"></i> When do you plan to visit?</label>
-    <select id="<?= e($id) ?>-visit" name="visit" class="enhanced-input">
-      <option value="">Choose an option...</option>
-      <option value="Within a week">Within a week</option>
-      <option value="Within a month">Within a month</option>
-      <option value="Next 2-3 months">Next 2–3 months</option>
-      <option value="Not sure">Not sure</option>
-    </select>
-  </div>
+  <?php /* Name and phone only (client, 3 Nov 2026): the clinic and visit-timing questions were removed. */ ?>
   <label class="form-consent" for="<?= e($id) ?>-consent">
     <input type="checkbox" id="<?= e($id) ?>-consent" name="dpdp_consent" value="1" required>
     <span>I agree that <?= e(SITE_NAME) ?> may use these details to contact me about this enquiry (<a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>). Kept for 12 months; you can withdraw consent at any time.</span>
@@ -353,7 +348,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
           <?php $card = ['a', 'b', 'c'][$i]; ?>
           <figure class="hb-card hb-card--<?= $card ?>">
             <?= lp_photo($slug, $heroPhotos[$slug], $card === 'b' ? '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 52vw' : '(min-width: 1025px) 360px, (min-width: 768px) 30vw, 45vw', ['loading' => 'eager', 'fetchpriority' => $card === 'b' ? 'high' : '', 'class' => 'hb-photo']) ?>
-            <?php if ($card !== 'a'): /* card A carries the label */ ?><figcaption class="hb-note">Results vary</figcaption><?php endif; ?>
+            <?php if (strpos($slug, 'ba-') === 0): /* before/after photos only */ ?><figcaption class="hb-note">Results vary</figcaption><?php endif; ?>
           </figure>
           <?php endforeach; ?>
           <div class="hb-label">
