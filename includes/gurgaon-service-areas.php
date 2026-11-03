@@ -185,6 +185,151 @@ const GURGAON_SERVICE_AREAS = [
         'metro' => [],
         'about' => 'Manesar is an industrial township along NH-48, home to IMT Manesar.',
     ],
+
+    // Added 3 Nov 2026 (client: "many Gurgaon locations have no treatment
+    // pages"). The clinic's own area (Sector 39, Jharsa, Sector 38 and
+    // Medanta) is left out on purpose: its page would say there is no clinic
+    // there.
+    'iffco-chowk' => [
+        'name' => 'IFFCO Chowk', 'prep' => 'at', 'zone' => 'dlf', 'live' => true,
+        'metro' => [['IFFCO Chowk', 'Yellow Line']],
+        'about' => 'IFFCO Chowk is a busy junction where MG Road meets NH-48, with the IFFCO Chowk station of the Yellow Line.',
+    ],
+    'ambience-island' => [
+        'name' => 'Ambience Island', 'prep' => 'on', 'zone' => 'dlf', 'live' => true,
+        'metro' => [],
+        'about' => 'Ambience Island is a residential and shopping complex on NH-48 near the Delhi border, home to Ambience Mall.',
+    ],
+    'sector-42-gurgaon' => [
+        'name' => 'Sector 42', 'full' => 'Sector 42, Gurgaon', 'zone' => 'golf', 'live' => true,
+        'metro' => [['Sector 42-43', 'Rapid Metro']],
+        'about' => 'Sector 42 is a residential sector along Golf Course Road, served by the Rapid Metro.',
+    ],
+    'sector-53-gurgaon' => [
+        'name' => 'Sector 53', 'full' => 'Sector 53, Gurgaon', 'zone' => 'golf', 'live' => true,
+        'metro' => [['Sector 53-54', 'Rapid Metro']],
+        'about' => 'Sector 53 is a residential sector along Golf Course Road, with the Rapid Metro running beside it.',
+    ],
+    'sector-54-gurgaon' => [
+        'name' => 'Sector 54', 'full' => 'Sector 54, Gurgaon', 'zone' => 'golf', 'live' => true,
+        'metro' => [['Sector 53-54', 'Rapid Metro'], ['Sector 54 Chowk', 'Rapid Metro']],
+        'about' => 'Sector 54 is a residential sector on Golf Course Road, around Sector 54 Chowk.',
+    ],
+    'sector-55-gurgaon' => [
+        'name' => 'Sector 55', 'full' => 'Sector 55, Gurgaon', 'zone' => 'golf', 'live' => true,
+        'metro' => [['Sector 55-56', 'Rapid Metro']],
+        'about' => 'Sector 55 is a residential sector at the Golf Course Road end of the Rapid Metro, by its Sector 55-56 terminus.',
+    ],
+    'sector-57-gurgaon' => [
+        'name' => 'Sector 57', 'full' => 'Sector 57, Gurgaon', 'zone' => 'golf', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 57 is a residential sector between Golf Course Road and Golf Course Extension Road.',
+    ],
+    'sector-65-gurgaon' => [
+        'name' => 'Sector 65', 'full' => 'Sector 65, Gurgaon', 'zone' => 'golf', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 65 is on Golf Course Extension Road, among newer high-rise residential and office projects.',
+    ],
+    'huda-city-centre' => [
+        'name' => 'HUDA City Centre', 'prep' => 'at', 'zone' => 'central', 'live' => true,
+        'metro' => [['Millennium City Centre Gurugram', 'Yellow Line']],
+        'about' => 'HUDA City Centre is the area around the southern end of the Yellow Line, whose station is now called Millennium City Centre Gurugram.',
+    ],
+    'rajiv-chowk-gurgaon' => [
+        'name' => 'Rajiv Chowk', 'full' => 'Rajiv Chowk, Gurgaon', 'prep' => 'at', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Rajiv Chowk is a major junction on NH-48, where Sohna Road begins.',
+    ],
+    'sector-4-gurgaon' => [
+        'name' => 'Sector 4', 'full' => 'Sector 4, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 4 is one of the older residential sectors of Old Gurgaon.',
+    ],
+    'sector-7-gurgaon' => [
+        'name' => 'Sector 7', 'full' => 'Sector 7, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 7 is an older residential sector on the Old Gurgaon side of the city.',
+    ],
+    'sector-9-gurgaon' => [
+        'name' => 'Sector 9', 'full' => 'Sector 9, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 9 is an older residential sector of Gurugram, close to Old Gurgaon.',
+    ],
+    'sector-40-gurgaon' => [
+        'name' => 'Sector 40', 'full' => 'Sector 40, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 40 is a residential sector in central Gurugram.',
+    ],
+    'sector-45-gurgaon' => [
+        'name' => 'Sector 45', 'full' => 'Sector 45, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 45 is a residential sector in central Gurugram, close to HUDA City Centre.',
+    ],
+    'sector-46-gurgaon' => [
+        'name' => 'Sector 46', 'full' => 'Sector 46, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 46 is a residential sector in central Gurugram, beside Sector 45.',
+    ],
+    'laxman-vihar' => [
+        'name' => 'Laxman Vihar', 'full' => 'Laxman Vihar, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Laxman Vihar is a residential colony in Old Gurgaon.',
+    ],
+    'shivaji-nagar-gurgaon' => [
+        'name' => 'Shivaji Nagar', 'full' => 'Shivaji Nagar, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Shivaji Nagar is a residential colony in Old Gurgaon.',
+    ],
+    'jacobpura' => [
+        'name' => 'Jacobpura', 'full' => 'Jacobpura, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'Jacobpura is one of the old residential and market areas of Old Gurgaon.',
+    ],
+    'new-colony-gurgaon' => [
+        'name' => 'New Colony', 'full' => 'New Colony, Gurgaon', 'zone' => 'central', 'live' => true,
+        'metro' => [],
+        'about' => 'New Colony is an established residential area of Old Gurgaon.',
+    ],
+    'sector-48-gurgaon' => [
+        'name' => 'Sector 48', 'full' => 'Sector 48, Gurgaon', 'zone' => 'sohna', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 48 is a residential sector along Sohna Road.',
+    ],
+    'sector-49-gurgaon' => [
+        'name' => 'Sector 49', 'full' => 'Sector 49, Gurgaon', 'zone' => 'sohna', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 49 is a residential sector along Sohna Road, home to the Uppal Southend township.',
+    ],
+    'sector-51-gurgaon' => [
+        'name' => 'Sector 51', 'full' => 'Sector 51, Gurgaon', 'zone' => 'sohna', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 51 is a residential sector off Sohna Road, home to the Mayfield Garden colony.',
+    ],
+    'bhondsi' => [
+        'name' => 'Bhondsi', 'zone' => 'sohna', 'live' => true,
+        'metro' => [],
+        'about' => 'Bhondsi is a village on Sohna Road, between Badshahpur and Sohna.',
+    ],
+    'sector-18-gurgaon' => [
+        'name' => 'Sector 18', 'full' => 'Sector 18, Gurgaon', 'zone' => 'new', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 18 is an industrial and office sector along NH-48, beside Udyog Vihar.',
+    ],
+    'sector-22-gurgaon' => [
+        'name' => 'Sector 22', 'full' => 'Sector 22, Gurgaon', 'zone' => 'new', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 22 is a residential sector in north-west Gurugram, near Palam Vihar.',
+    ],
+    'sector-23-gurgaon' => [
+        'name' => 'Sector 23', 'full' => 'Sector 23, Gurgaon', 'zone' => 'new', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 23 is a residential sector in north-west Gurugram, beside Sector 22.',
+    ],
+    'sector-82-gurgaon' => [
+        'name' => 'Sector 82', 'full' => 'Sector 82, Gurgaon', 'zone' => 'new', 'live' => true,
+        'metro' => [],
+        'about' => 'Sector 82 is one of the New Gurgaon sectors, off NH-48 on the way to Manesar.',
+    ],
 ];
 
 /**
@@ -256,6 +401,7 @@ function gurgaon_area_slug(string $slug): ?string
         'cyber-city' => 'dlf-cyber-city', 'cybercity' => 'dlf-cyber-city', 'mg-road' => 'mg-road-gurgaon',
         'golf-course-extension' => 'golf-course-extension-road', 'south-city-i' => 'south-city-1',
         'south-city-ii' => 'south-city-2', 'sushant-lok-1' => 'sushant-lok', 'sushant-lok-phase-1' => 'sushant-lok',
+        'huda-city-center' => 'huda-city-centre', 'millennium-city-centre' => 'huda-city-centre',
     ];
     $base = (string) preg_replace('/-(gurgaon|gurugram)$/', '', $slug);
     foreach ([$slug, $base, $base . '-gurgaon', $aliases[$base] ?? ''] as $candidate) {
