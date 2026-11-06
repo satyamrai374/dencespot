@@ -854,6 +854,16 @@ header {
   object-fit: cover;
 }
 
+/* A doctor without a photo on this page (Dr Rahul, 6 Nov 2026): an icon in
+   the same circle, so the three cards stay level. */
+.team-image--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 80px;
+}
+
 .team-member h3 {
   color: var(--primary-red);
   margin-bottom: 5px;

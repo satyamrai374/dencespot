@@ -137,10 +137,14 @@ function lp_photo(string $slug, string $alt, string $sizes, array $attrs = []): 
          . '>';
 }
 
-/** Team cards: facts from DOCTORS; a missing fact is left out. */
+/**
+ * Team cards: facts from DOCTORS; a missing fact is left out. A null image
+ * shows a doctor icon in the same circle: Dr Rahul's photo was removed from
+ * this page (client, 6 Nov 2026).
+ */
 $team = [
     ['dr-nyra',  'doctor-nyra',  DOCTORS['dr-nyra']['quals'] . ' · Owner & Chief Consultant', [DOCTORS['dr-nyra']['experience'] . ' of experience', DOCTORS['dr-nyra']['abroad']]],
-    ['dr-rahul', 'doctor-rahul', DOCTORS['dr-rahul']['position'],                              [DOCTORS['dr-rahul']['experience'] . ' of experience']],
+    ['dr-rahul', null,           DOCTORS['dr-rahul']['position'],                              [DOCTORS['dr-rahul']['experience'] . ' of experience']],
     ['dr-akash', 'doctor-3',     'Fellowship in hair restoration, D. Y. Patil',                [DOCTORS['dr-akash']['experience'] . ' of experience', 'Trained at UMCH Hamburg']],
 ];
 
@@ -407,7 +411,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
     <div class="container">
       <div class="cta-title">Clear Advice. Clear Costs. Choose DENCESPOT CLINIC.</div>
       <div class="cta-subtitle">Hair transplant consultations at Sector 39, Gurugram and Rohini, Delhi.</div>
-      <button type="button" class="cta-button book-appointment-btn"><i class="fas fa-calendar-check"></i> Book Your Consultation</button>
+      <button type="button" class="cta-button book-appointment-btn"><i class="fas fa-calendar-check"></i> Book Your Free Consultation</button>
     </div>
   </section>
 
@@ -481,7 +485,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
       <h2>Not Sure How Many Grafts You Need?</h2>
       <p>A doctor checks your donor area and gives you a written graft and cost estimate at your consultation.</p>
       <div class="cta-group">
-        <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book Your Consultation</button>
+        <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book Your Free Consultation</button>
         <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Call Now: <?= e(LP_PHONE_DISPLAY) ?></a>
       </div>
     </div>
@@ -500,9 +504,13 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
       <div class="team-grid">
         <?php foreach ($team as [$key, $img, $role, $facts]): ?>
         <div class="team-member">
+          <?php if ($img === null): ?>
+          <div class="team-image team-image--icon" aria-hidden="true"><i class="fas fa-user-doctor"></i></div>
+          <?php else: ?>
           <div class="team-image">
             <?= hp_img($img, DOCTORS[$key]['name'] . ' at ' . SITE_NAME, '200px') ?>
           </div>
+          <?php endif; ?>
           <h3><?= e(DOCTORS[$key]['name']) ?></h3>
           <p class="team-role"><?= e($role) ?></p>
           <p class="team-facts"><?= e(implode(' | ', array_filter($facts))) ?></p>
@@ -561,7 +569,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
         </div>
 
         <div class="footer-section footer-cta">
-          <h2 class="footer-heading">Book Your Consultation</h2>
+          <h2 class="footer-heading">Book Your Free Consultation</h2>
           <p>Take the first step towards treating your hair loss. Our doctors examine your scalp and explain your options.</p>
           <div class="cta-group">
             <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book Consultation</button>
