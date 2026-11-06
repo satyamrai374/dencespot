@@ -4,8 +4,11 @@
  * Same behaviour as the reference page: a popup 4.5 s after load, a second
  * one 10 s after the first is closed, and every .book-appointment-btn opens
  * the booking popup. Added: the timed pair shows once per browser session,
- * never on top of another open popup, and forms submit normally to
- * /enquire.php, which redirects to /thank-you (the conversion URL).
+ * never on top of another open popup. Forms go to /enquire.php in the
+ * background and then open the LP's own thank-you page (the form's
+ * data-thanks, /lp/thank-you/), whose page view is the conversion (client,
+ * 6 Nov 2026: not the website's /thank-you). If the background request
+ * fails, the form is posted the normal way instead, so a lead is never lost.
  */
 (function () {
   'use strict';
@@ -76,11 +79,23 @@
     });
   });
 
-  // /enquire.php stores the consent field itself; the popup name travels in
-  // the message. (The clinic and visit-timing questions were removed on
-  // 3 Nov 2026, so nothing here may read form.elements.visit.)
+  // The popup name travels in the message. The forms ask for name and phone
+  // only (clinic and visit questions removed 3 Nov 2026, consent box 6 Nov).
+  var ERRORS = {
+    name: 'Please enter your name.',
+    phone: 'Please enter a phone number with at least 10 digits.'
+  };
+
+  function resetButton(btn) {
+    btn.classList.remove('btn-loading');
+    btn.disabled = false;
+    if (btn.dataset.label) { btn.innerHTML = btn.dataset.label; }
+  }
+
   document.querySelectorAll('.popup-form').forEach(function (form) {
-    form.addEventListener('submit', function () {
+    var errorBox = form.querySelector('.form-error');
+
+    form.addEventListener('submit', function (e) {
       form.elements.message.value = 'Form: ' + form.elements.form_type.value + ' (landing page)';
 
       var btn = form.querySelector('.enhanced-submit-btn');
@@ -88,21 +103,53 @@
       btn.classList.add('btn-loading');
       btn.textContent = 'Submitting...';
 
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', { form_type: form.elements.form_type.value });
-      }
-      if (typeof window.fbq === 'function') {
-        window.fbq('track', 'Lead');
-      }
+      // No fetch (very old browser): post the normal way.
+      if (typeof window.fetch !== 'function' || typeof window.FormData !== 'function') { return; }
+
+      e.preventDefault();
+      btn.disabled = true;
+      if (errorBox) { errorBox.hidden = true; }
+
+      var thanks = form.getAttribute('data-thanks') || '/lp/thank-you/';
+      window.fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        credentials: 'same-origin',
+        headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+      }).then(function (res) {
+        return res.json().then(function (data) {
+          return { status: res.status, data: data };
+        }, function () {
+          // Not JSON. A 2xx means /enquire.php handled the post another way
+          // (its spam filter answers with a redirect page); anything else is a
+          // server fault, so post the normal way (data: null) to save the lead.
+          return { status: res.status, data: res.ok ? { ok: true } : null };
+        });
+      }).then(function (r) {
+        if (r.data === null) {
+          HTMLFormElement.prototype.submit.call(form);
+          return;
+        }
+        if (r.data.ok) {
+          window.location.href = thanks;
+          return;
+        }
+        // 422: the name or the phone number needs correcting.
+        var list = r.data.errors || [];
+        var text = list.map(function (k) { return ERRORS[k] || ''; }).filter(Boolean).join(' ')
+          || 'Please check your name and phone number and try again.';
+        if (errorBox) { errorBox.textContent = text; errorBox.hidden = false; }
+        resetButton(btn);
+      }).catch(function () {
+        // Network trouble: post the normal way, so the lead still arrives.
+        HTMLFormElement.prototype.submit.call(form);
+      });
     });
   });
 
-  // Back from /thank-you restores the page from cache: re-enable the buttons.
+  // Back from the thank-you page restores this page from cache: re-enable the buttons.
   window.addEventListener('pageshow', function () {
-    document.querySelectorAll('.enhanced-submit-btn.btn-loading').forEach(function (btn) {
-      btn.classList.remove('btn-loading');
-      btn.innerHTML = btn.dataset.label;
-    });
+    document.querySelectorAll('.enhanced-submit-btn.btn-loading').forEach(resetButton);
   });
 
   // Call and WhatsApp clicks, named like the site's own events (footer.php).
