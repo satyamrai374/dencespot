@@ -69,7 +69,7 @@ $telHref = 'tel:' . LP_PHONE_E164;
         <div class="ty-hurry">
           <p><b>In a hurry?</b> Message us on WhatsApp for a quicker reply. You can send photos of your hair at the same time.</p>
           <div class="cta-group">
-            <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
+            <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" target="_blank" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
             <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> <?= e(LP_PHONE_DISPLAY) ?></a>
           </div>
         </div>

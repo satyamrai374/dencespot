@@ -434,7 +434,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
       </div>
       <p class="results-note">Photos of DenceSpot patients. Individual results vary.</p>
       <div class="cta-group">
-        <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Ask About Your Case on WhatsApp</a>
+        <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" target="_blank" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Ask About Your Case on WhatsApp</a>
         <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Talk to Our Team Now</a>
       </div>
     </div>
@@ -491,7 +491,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
       <h2>Ready to Plan Your Hair Transplant?</h2>
       <p>Book a consultation at our Gurugram or Rohini clinic and get a written estimate before you decide.</p>
       <div class="cta-group">
-        <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat With Our Team Now</a>
+        <a href="<?= e(LP_WHATSAPP_URL) ?>" class="btn-primary" target="_blank" rel="noopener" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat With Our Team Now</a>
         <a href="<?= e($telHref) ?>" class="btn-call" data-track="call"><i class="fa-solid fa-phone"></i> Call <?= e(LP_PHONE_DISPLAY) ?></a>
       </div>
     </div>
@@ -562,7 +562,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
 
   <!-- Floating CTA Button -->
   <div class="floating-cta">
-    <a href="<?= e(LP_WHATSAPP_URL) ?>" rel="noopener" aria-label="WhatsApp" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="<?= e(LP_WHATSAPP_URL) ?>" target="_blank" rel="noopener" aria-label="WhatsApp" data-track="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
     <a href="<?= e($telHref) ?>" aria-label="Call Now" data-track="call"><i class="fa-solid fa-phone"></i></a>
   </div>
 

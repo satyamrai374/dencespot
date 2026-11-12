@@ -34,9 +34,10 @@ const LP_THANK_YOU_URL = '/lp/thank-you/';
  * entities in the JSON-LD keep their own numbers, which must match each
  * clinic's Google Business Profile.
  */
-const LP_PHONE_E164    = PHONE_E164;
-const LP_PHONE_DISPLAY = PHONE_DISPLAY;
-const LP_WHATSAPP_URL  = WHATSAPP_URL;
+const LP_PHONE_E164        = PHONE_E164;
+const LP_PHONE_DISPLAY     = PHONE_DISPLAY;
+const LP_WHATSAPP_MESSAGE  = 'Hello, I would like to explore hair transplant treatment. Please share the details and available options.';
+const LP_WHATSAPP_URL      = 'https://api.whatsapp.com/send/?phone=%2B918178330800&text=Hello%2C%20I%20would%20like%20to%20explore%20hair%20transplant%20treatment.%20Please%20share%20the%20details%20and%20available%20options.';
 
 /** A file in /lp/ with a version query, so a changed file is never served stale. */
 function lp_asset(string $file): string
