@@ -95,7 +95,7 @@ $concerns = [
 ];
 
 $page = [
-    'title'       => 'DenceSpot Hair & Skin Care Clinic | Gurugram & Rohini, Delhi',
+    'title'       => 'Hair Transplant & Skin Clinic in Gurgaon & Delhi | DenceSpot',
     'description' => 'Doctor-led hair and skin care in Sector 39, Gurugram and Rohini, Delhi: hair transplant, PRP, hair fall, beard, skin and laser treatment. Book a visit.',
     'url'         => '/',
     'body_class'  => 'page-home',
@@ -137,7 +137,7 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap hero-x__body">
     <div class="hero-x__text">
       <span class="pill pill--dot">Hair &middot; Skin &middot; Laser</span>
-      <h1 class="hero-x__title">DenceSpot Hair &amp; Skin Care Clinic <span class="hero-x__sub">Now in Gurugram &amp; Delhi</span></h1>
+      <h1 class="hero-x__title">Hair Transplant &amp; Skin Care Clinic <span class="hero-x__sub">in Gurugram &amp; Delhi · DenceSpot</span></h1>
       <p class="hero-x__lead">Hair transplant, PRP and hair-fall treatment, beard and eyebrow transplant, and skin and laser care. Every plan starts with a doctor examining you.</p>
 
       <div class="btn-row hero-x__ctas">

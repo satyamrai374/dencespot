@@ -65,7 +65,7 @@ $crumbs = [
 ];
 
 $page = [
-    'title'       => 'Choosing a Hair Transplant Clinic in Gurgaon | DenceSpot',
+    'title'       => 'Best Hair Transplant Clinic in Gurgaon: What to Check | DenceSpot',
     'description' => 'How to judge a hair transplant clinic in Gurgaon on things you can actually verify, and an honest account of what our clinic does and does not offer.',
     'url'         => '/best-hair-transplant-clinic-in-gurgaon',
     'crumbs'      => $crumbs,
@@ -87,7 +87,7 @@ require __DIR__ . '/includes/header.php';
     <div class="split">
       <div>
         <span class="pill pill--dot">Choosing a clinic in Gurgaon</span>
-        <h1 class="h1 mt-3">Every Clinic Claims to Beat the Rest. Here Is What You Can Check.</h1>
+        <h1 class="h1 mt-3">Best Hair Transplant Clinic in Gurgaon: What to Check Before You Choose</h1>
         <p class="lead mt-3 measure">We are not going to tell you we outrank every other hair transplant clinic in Gurgaon, because that claim is unverifiable and every competitor makes it. What we can do is set out the things you can check for yourself, and then describe honestly what this clinic is and is not.</p>
 
         <div class="btn-row mt-5">
