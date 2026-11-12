@@ -66,15 +66,6 @@ $telHref = 'tel:' . LP_PHONE_E164;
         <h1 class="ty-title">Thank You! We Have Your Details</h1>
         <p class="ty-lead">Someone from <?= e(SITE_NAME) ?> will call you on the number you gave us to arrange your consultation.</p>
 
-        <div class="ty-next">
-          <h2 class="ty-next__title">What happens next</h2>
-          <ul class="ty-list">
-            <li><i class="fas fa-phone-volume"></i><span><b>We call you back</b> during clinic hours, <?= e(HOURS_DISPLAY) ?>. Enquiries sent overnight are answered the next morning.</span></li>
-            <li><i class="fas fa-calendar-check"></i><span><b>We agree a time</b> that suits you, and tell you what to bring: your medical history and a list of any current medicines.</span></li>
-            <li><i class="fas fa-user-doctor"></i><span><b>You see the doctor</b> for a scalp examination and a written plan. There is no obligation to book a date on the day.</span></li>
-          </ul>
-        </div>
-
         <div class="ty-hurry">
           <p><b>In a hurry?</b> Message us on WhatsApp for a quicker reply. You can send photos of your hair at the same time.</p>
           <div class="cta-group">

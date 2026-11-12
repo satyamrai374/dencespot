@@ -123,13 +123,10 @@ function lp_photo(string $slug, string $alt, string $sizes, array $attrs = []): 
 }
 
 /**
- * Team cards: facts from DOCTORS; a missing fact is left out. A null image
- * shows a doctor icon in the same circle: Dr Rahul's photo was removed from
- * this page (client, 6 Nov 2026).
+ * Team cards: facts from DOCTORS; a missing fact is left out.
  */
 $team = [
     ['dr-nyra',  'doctor-nyra',  DOCTORS['dr-nyra']['quals'] . ' · Owner & Chief Consultant', [DOCTORS['dr-nyra']['experience'] . ' of experience', DOCTORS['dr-nyra']['abroad']]],
-    ['dr-rahul', null,           DOCTORS['dr-rahul']['position'],                              [DOCTORS['dr-rahul']['experience'] . ' of experience']],
     ['dr-akash', 'doctor-3',     'Fellowship in hair restoration, D. Y. Patil',                [DOCTORS['dr-akash']['experience'] . ' of experience', 'Trained at UMCH Hamburg']],
 ];
 
@@ -536,7 +533,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
           <h2 class="footer-heading">Book Your Free Consultation</h2>
           <p>Take the first step towards treating your hair loss. Our doctors examine your scalp and explain your options.</p>
           <div class="cta-group">
-            <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book Consultation</button>
+            <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book your Free Consultation</button>
             <a href="<?= e($telHref) ?>" class="btn-call btn-call--block" data-track="call"><i class="fa-solid fa-phone"></i> Call Now</a>
           </div>
         </div>
