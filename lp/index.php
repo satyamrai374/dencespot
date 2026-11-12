@@ -126,8 +126,8 @@ function lp_photo(string $slug, string $alt, string $sizes, array $attrs = []): 
  * Team cards: facts from DOCTORS; a missing fact is left out.
  */
 $team = [
-    ['dr-nyra',  'doctor-nyra',  DOCTORS['dr-nyra']['quals'] . ' · Owner & Chief Consultant', [DOCTORS['dr-nyra']['experience'] . ' of experience', DOCTORS['dr-nyra']['abroad']]],
-    ['dr-akash', 'doctor-3',     'Fellowship in hair restoration, D. Y. Patil',                [DOCTORS['dr-akash']['experience'] . ' of experience', 'Trained at UMCH Hamburg']],
+    ['dr-nyra',  'doctor-nyra',          DOCTORS['dr-nyra']['quals'] . ' · Owner & Chief Consultant', [DOCTORS['dr-nyra']['experience'] . ' of experience', DOCTORS['dr-nyra']['abroad']]],
+    ['dr-akash', 'doctor-rahul-chauhan', 'Fellowship in hair restoration, D. Y. Patil',                [DOCTORS['dr-akash']['experience'] . ' of experience', 'Trained at UMCH Hamburg']],
 ];
 
 $schema = [
@@ -394,7 +394,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
           <?php endforeach; ?>
         </div>
         <div class="why-image">
-          <?= hp_img('doctor-3', DOCTORS['dr-akash']['name'] . ', ' . DOCTORS['dr-akash']['fellowship'] . ', at ' . SITE_NAME, '(min-width: 769px) 500px, 90vw', ['class' => 'doctor-image']) ?>
+          <?= hp_img('doctor-rahul-chauhan', DOCTORS['dr-akash']['name'] . ', ' . DOCTORS['dr-akash']['fellowship'] . ', at ' . SITE_NAME, '(min-width: 769px) 500px, 90vw', ['class' => 'doctor-image']) ?>
         </div>
       </div>
       <div class="cta-group">

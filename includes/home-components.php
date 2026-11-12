@@ -221,6 +221,7 @@ const HOME_IMAGES = [
     // Homepage doctor portraits (1:1), from the clinic's photos (25 Oct 2026).
     'doctor-nyra'             => [[480, 480], [720, 720]],
     'doctor-rahul'            => [[480, 480], [720, 720]],
+    'doctor-rahul-chauhan'    => [[480, 480], [720, 720]],
     'doctor-3'                => [[480, 480], [720, 720]],
     // Treatment illustrations (4:5) in assets/img/services/ — AI-generated,
     // no people; used by the service-page heroes and lp_* sections.
@@ -244,7 +245,9 @@ const HOME_IMAGES = [
 function hp_img_url(string $slug, int $width): string
 {
     $dir = str_starts_with($slug, 'svc-') ? '/assets/img/services/' : '/assets/img/home/';
-    return $dir . $slug . '-' . $width . '.webp';
+    $path = $dir . $slug . '-' . $width . '.webp';
+    $v = (int) @filemtime(dirname(__DIR__) . $path);
+    return $path . ($v ? '?v=' . $v : '');
 }
 
 function hp_srcset(string $slug): string
@@ -422,9 +425,9 @@ function hp_placeholder(string $what): string
 function doctors_grid_section(string $eyebrow, string $heading, string $intro, string $bg = 'section--white', bool $reviewNote = true): string
 {
     $tiles = [
-        'dr-nyra'  => ['img' => 'doctor-nyra',  'tone' => 'mint'],
-        'dr-rahul' => ['img' => 'doctor-rahul', 'tone' => 'violet'],
-        'dr-akash' => ['img' => 'doctor-3',     'tone' => 'sky'],
+        'dr-nyra'  => ['img' => 'doctor-nyra',          'tone' => 'mint'],
+        'dr-rahul' => ['img' => 'doctor-rahul',         'tone' => 'violet'],
+        'dr-akash' => ['img' => 'doctor-rahul-chauhan', 'tone' => 'sky'],
     ];
     $loc = hp_page_location();
 
