@@ -309,7 +309,7 @@ const DOCTORS = [
     // on record, so neither shows a qualification line and, with no quals, the
     // entry is skipped by every directory and schema list.
     'dr-akash' => [
-        'name'        => 'Dr. Akash',
+        'name'        => 'Dr. Rahul Chauhan',
         'quals'       => null,   // ⚠ recognised medical qualification
         'role'        => null,
         'alumni'      => 'Universitätsmedizin Neumarkt a. M. Campus Hamburg (UMCH)',

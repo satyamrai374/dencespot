@@ -52,7 +52,7 @@ const LOCATION_LINKS = [
                         '/best-hair-transplant-clinic-in-gurgaon' => 'Choosing a Hair Transplant Clinic in Gurgaon',
                     ],
                     'Hair Transplant Doctors' => [
-                        '/dr-akash' => 'Dr. Akash, Hair Transplant Doctor in Gurgaon',
+                        '/dr-akash' => 'Dr. Rahul Chauhan, Hair Transplant Doctor in Gurgaon',
                     ],
                     'Beard & Eyebrow Transplant' => [
                         '/beard-transplant-gurgaon'      => 'Beard Transplant in Gurgaon',
