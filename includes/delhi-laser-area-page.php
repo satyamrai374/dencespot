@@ -134,9 +134,6 @@ require __DIR__ . '/header.php';
         <p class="eyebrow"><?= e('Coming from ' . $name) ?></p>
         <h2 class="h2 mt-2">Laser Hair Removal for <?= e($name) ?> Residents</h2>
         <p class="body mt-3"><?= e($area['about']) ?> The assessment, the patch test and every session of the course take place at the Rohini clinic.</p>
-        <h3 class="h4 mt-4">Getting to the Rohini Clinic</h3>
-        <p class="body mt-2">DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini. Travel guidance from <?= e($name) ?>:</p>
-        <?= locality_transit_card($transit, 'delhi') ?>
         <h3 class="h4 mt-4">On Session Days</h3>
         <p class="body mt-2">Arrive with the area shaved and free of cream, deodorant or make-up. On the way back to <?= e($name) ?>, keep treated skin covered from the sun, and leave the gym, steam and hot baths for a day or two.</p>
         <?php if ($metro !== []): ?>
@@ -153,6 +150,9 @@ require __DIR__ . '/header.php';
           ['clock', 'amber', 'Clinic hours', LOC_DELHI_HOURS_DISPLAY . ' · ' . LOC_DELHI_HOURS_NOTE],
       ])), $name . ' and the Rohini clinic at a glance') ?>
     </div>
+
+    <?= locality_transit_block($transit, 'delhi', $name) ?>
+  </div>
   </div>
 </section>
 

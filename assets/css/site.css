@@ -1901,63 +1901,115 @@ a.tile:hover { text-decoration: none; color: inherit; }
 .ht-glance b { display: block; font-size: 14.5px; color: var(--ink); }
 .ht-glance .icon-dot { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 12px; }
 
-/* Location Page: Transit, Driving & Parking Cards */
-.loc-directions {
-  display: grid;
-  gap: 12px;
-  margin-top: 18px;
+/* Location Page: Dedicated Transit & Accessibility Block */
+.loc-transit-block {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
-.loc-directions__card {
+.loc-transit-block__head {
+  max-width: 820px;
+  margin-bottom: 20px;
+}
+.loc-transit-block__title {
+  margin: 0;
+  font-size: clamp(20px, 2.3vw, 26px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  line-height: 1.25;
+}
+.loc-transit-block__intro {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.loc-directions-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .loc-directions-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+.loc-directions-grid__card {
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 14px 16px;
+  flex-direction: column;
+  padding: 20px;
   background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   box-shadow: var(--shadow-sm);
-  transition: transform .18s, box-shadow .18s;
+  transition: transform .2s, box-shadow .2s;
+  box-sizing: border-box;
 }
-.loc-directions__card:hover {
+.loc-directions-grid__card:hover {
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
-.loc-directions__card .icon-dot {
+.loc-directions-grid__card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.loc-directions-grid__card-head .icon-dot {
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
 }
-.loc-directions__content {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.loc-directions__title {
+.loc-directions-grid__card-title {
   display: block;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--ink);
   line-height: 1.3;
 }
-.loc-directions__text {
-  margin-top: 4px;
-  font-size: 13.5px;
-  line-height: 1.55;
+.loc-directions-grid__card-text {
+  margin: 0;
+  font-size: 13.8px;
+  line-height: 1.6;
   color: var(--ink-soft);
+  flex-grow: 1;
 }
-.loc-directions__map-btn {
+.loc-transit-block__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 20px;
+}
+.loc-transit-block__map-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
+  min-height: 42px;
+  padding: 8px 20px;
+  background: var(--ink);
+  color: #ffffff !important;
+  border-radius: 999px;
   font-size: 13.5px;
   font-weight: 700;
-  color: var(--accent-deep);
   text-decoration: none;
+  transition: background .18s, transform .18s;
 }
-.loc-directions__map-btn:hover {
-  text-decoration: underline;
-  color: var(--accent);
+.loc-transit-block__map-btn:hover {
+  background: var(--accent-deep);
+  color: #ffffff !important;
+  text-decoration: none;
+  transform: translateY(-1px);
 }
+.loc-transit-block__note {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
 
 /* 2. Why DenceSpot: a light band, one row of round icons, and the clinic
    photo bleeding off the right edge with a checklist on it */

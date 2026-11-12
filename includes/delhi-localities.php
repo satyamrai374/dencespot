@@ -137,44 +137,74 @@ function delhi_glance(array $rows, string $label): string
 }
 
 /**
- * Structured Directions Card: Driving Route & Real Distance, Transit & Metro Details, Parking Advice.
- * $transit: ['driving' => string, 'metro' => string, 'parking' => string]
- * $clinic: 'gurgaon' | 'delhi'
+ * Structured Directions Block: Driving Route & Real Distance, Transit & Metro Details, Parking Advice.
+ * Rendered full-width below the 3-column overview grid for perfect desktop and mobile alignment.
+ *
+ * @param array{driving: string, metro: string, parking: string} $transit
+ * @param string $clinic 'gurgaon' | 'delhi'
+ * @param string $place Area name (e.g. 'DLF Cyber City' or 'Pitampura')
  */
-function locality_transit_card(array $transit, string $clinic = 'gurgaon'): string
+function locality_transit_block(array $transit, string $clinic = 'gurgaon', string $place = ''): string
 {
-    $mapUrl = $clinic === 'delhi' ? LOC_DELHI_MAPS_URL : MAPS_URL;
+    $isDelhi = $clinic === 'delhi';
+    $mapUrl  = $isDelhi ? LOC_DELHI_MAPS_URL : MAPS_URL;
+    $clinicTitle = $isDelhi ? 'Rohini Clinic (Delhi)' : 'Gurugram Clinic';
+    $locationDesc = $isDelhi
+        ? 'DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini.'
+        : 'DenceSpot’s Gurugram clinic is on Sector 39 Road in Jharsa, directly ' . NAP_LANDMARK . '.';
+    $fromTitle = $place !== '' ? ' from ' . $place : '';
+
     ob_start(); ?>
-<div class="loc-directions">
-  <div class="loc-directions__card">
-    <span class="icon-dot tone--sky"><?= icon('car', 20) ?></span>
-    <div class="loc-directions__content">
-      <strong class="loc-directions__title">Driving Route &amp; Real Distance</strong>
-      <p class="loc-directions__text"><?= e($transit['driving']) ?></p>
+<div class="loc-transit-block">
+  <div class="loc-transit-block__head">
+    <h3 class="loc-transit-block__title">Getting to the <?= e($clinicTitle . $fromTitle) ?></h3>
+    <p class="loc-transit-block__intro"><?= e($locationDesc) ?> Travel guidance for your consultation and procedure day:</p>
+  </div>
+
+  <div class="loc-directions-grid">
+    <div class="loc-directions-grid__card">
+      <div class="loc-directions-grid__card-head">
+        <span class="icon-dot tone--sky"><?= icon('car', 20) ?></span>
+        <strong class="loc-directions-grid__card-title">Driving Route &amp; Real Distance</strong>
+      </div>
+      <p class="loc-directions-grid__card-text"><?= e($transit['driving']) ?></p>
+    </div>
+
+    <div class="loc-directions-grid__card">
+      <div class="loc-directions-grid__card-head">
+        <span class="icon-dot tone--violet"><?= icon('metro', 20) ?></span>
+        <strong class="loc-directions-grid__card-title">Transit &amp; Metro Details</strong>
+      </div>
+      <p class="loc-directions-grid__card-text"><?= e($transit['metro']) ?></p>
+    </div>
+
+    <div class="loc-directions-grid__card">
+      <div class="loc-directions-grid__card-head">
+        <span class="icon-dot tone--mint"><?= icon('parking', 20) ?></span>
+        <strong class="loc-directions-grid__card-title">Parking &amp; Accessibility</strong>
+      </div>
+      <p class="loc-directions-grid__card-text"><?= e($transit['parking']) ?></p>
     </div>
   </div>
-  <div class="loc-directions__card">
-    <span class="icon-dot tone--violet"><?= icon('metro', 20) ?></span>
-    <div class="loc-directions__content">
-      <strong class="loc-directions__title">Transit &amp; Metro Details</strong>
-      <p class="loc-directions__text"><?= e($transit['metro']) ?></p>
-    </div>
+
+  <div class="loc-transit-block__actions">
+    <a class="loc-transit-block__map-btn" href="<?= e($mapUrl) ?>" target="_blank" rel="noopener">
+      <?= icon('arrow', 16) ?>
+      <span>Open Clinic on Google Maps for Turn-by-Turn Navigation</span>
+    </a>
+    <span class="loc-transit-block__note">Step-free ground-level access available at the clinic entrance.</span>
   </div>
-  <div class="loc-directions__card">
-    <span class="icon-dot tone--mint"><?= icon('parking', 20) ?></span>
-    <div class="loc-directions__content">
-      <strong class="loc-directions__title">Parking Advice &amp; Ground-Level Accessibility</strong>
-      <p class="loc-directions__text"><?= e($transit['parking']) ?></p>
-    </div>
-  </div>
-  <a class="loc-directions__map-btn" href="<?= e($mapUrl) ?>" target="_blank" rel="noopener">
-    <?= icon('arrow', 16) ?>
-    <span>Open Clinic on Google Maps for Turn-by-Turn Navigation</span>
-  </a>
 </div>
 <?php
     return (string) ob_get_clean();
 }
+
+/** Backward-compatible alias. */
+function locality_transit_card(array $transit, string $clinic = 'gurgaon'): string
+{
+    return locality_transit_block($transit, $clinic);
+}
+
 
 
 /**

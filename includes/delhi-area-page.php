@@ -137,9 +137,6 @@ require __DIR__ . '/header.php';
         <p class="eyebrow"><?= e($isHome ? 'Rohini, North-West Delhi' : 'Coming from ' . $name) ?></p>
         <h2 class="h2 mt-2">Hair Transplant for <?= e($name) ?> Residents</h2>
         <p class="body mt-3"><?= e($area['about']) ?><?php if (!$isHome): ?> The consultation, the procedure and every review take place at the Rohini clinic.<?php endif; ?></p>
-        <h3 class="h4 mt-4"><?= $isHome ? 'Reaching the Rohini Clinic' : 'Getting to the Rohini Clinic' ?></h3>
-        <p class="body mt-2">DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini. Travel guidance from <?= e($name) ?>:</p>
-        <?= locality_transit_card($transit, 'delhi') ?>
         <h3 class="h4 mt-4">On the Procedure Day</h3>
         <p class="body mt-2">Plan a car or cab home<?= $isHome ? '' : ' to ' . e($name) ?> rather than a two-wheeler: helmets usually wait three to four weeks. Sleep with your head raised for a few nights, and keep the first review date in your written plan.</p>
         <?php if (!$isHome && $metro !== []): ?>
@@ -156,6 +153,9 @@ require __DIR__ . '/header.php';
           ['clock', 'amber', 'Clinic hours', LOC_DELHI_HOURS_DISPLAY . ' · ' . LOC_DELHI_HOURS_NOTE],
       ])), $name . ' and the Rohini clinic at a glance') ?>
     </div>
+
+    <?= locality_transit_block($transit, 'delhi', $name) ?>
+  </div>
   </div>
 </section>
 

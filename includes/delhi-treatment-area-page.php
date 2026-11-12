@@ -116,9 +116,6 @@ require __DIR__ . '/header.php';
         <p class="eyebrow"><?= e('Coming from ' . $place) ?></p>
         <h2 class="h2 mt-2"><?= e(dt_fill($a['heading'], $vars)) ?></h2>
         <p class="body mt-3"><?= e($area['about'] . ' ' . dt_fill($a['visits_line'], $vars)) ?></p>
-        <h3 class="h4 mt-4">Getting to the Rohini Clinic</h3>
-        <p class="body mt-2">DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini. Travel guidance from <?= e($place) ?>:</p>
-        <?= locality_transit_card($transit, 'delhi') ?>
         <h3 class="h4 mt-4"><?= e($a['day_heading']) ?></h3>
         <p class="body mt-2"><?= e(dt_fill($a['day'], $vars)) ?></p>
         <?php if ($metro !== []): ?>
@@ -135,6 +132,9 @@ require __DIR__ . '/header.php';
           ['clock', 'amber', 'Clinic hours', LOC_DELHI_HOURS_DISPLAY . ' · ' . LOC_DELHI_HOURS_NOTE],
       ])), $place . ' and the Rohini clinic at a glance') ?>
     </div>
+
+    <?= locality_transit_block($transit, 'delhi', $place) ?>
+  </div>
   </div>
 </section>
 

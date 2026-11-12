@@ -144,9 +144,6 @@ require __DIR__ . '/header.php';
         <p class="eyebrow"><?= e('Coming from ' . $place) ?></p>
         <h2 class="h2 mt-2"><?= e(dt_fill($a['heading'], $vars)) ?></h2>
         <p class="body mt-3"><?= e($area['about'] . ' ' . dt_fill($a['visits_line'], $vars)) ?></p>
-        <h3 class="h4 mt-4">Getting to the Gurugram Clinic</h3>
-        <p class="body mt-2">DenceSpot’s Gurugram clinic is on Sector 39 Road in Jharsa, <?= e(NAP_LANDMARK) ?>. Travel guidance from <?= e($place) ?>:</p>
-        <?= locality_transit_card($transit, 'gurgaon') ?>
         <h3 class="h4 mt-4"><?= e($a['day_heading']) ?></h3>
         <p class="body mt-2"><?= e(dt_fill($a['day'], $vars)) ?></p>
       </div>
@@ -160,6 +157,9 @@ require __DIR__ . '/header.php';
           ['clock', 'amber', 'Clinic hours', HOURS_DISPLAY . ' · ' . HOURS_NOTE],
       ])), $place . ' and the Gurugram clinic at a glance') ?>
     </div>
+
+    <?= locality_transit_block($transit, 'gurgaon', $place) ?>
+  </div>
   </div>
 </section>
 
