@@ -62,8 +62,8 @@ $metro = $area['metro'];
 $where = GURGAON_SERVICE_ZONES[$area['zone']];
 $url   = gurgaon_treatment_url($key, $slug);
 $h1    = $name . ' in ' . $full;
-$route = 'Most people from ' . $place . ' come by car, cab or auto. The clinic is on Sector 39 Road in Jharsa, ' . NAP_LANDMARK
-       . ', so the Medanta gate is the landmark to give a driver.';
+$transit = gurgaon_area_transit_details($slug, $area);
+$route = $transit['driving'];
 $vars  = ['{area}' => $place, '{parent}' => $parent, '{hub}' => $parent, '{name}' => $name, '{route}' => $route];
 
 $crumbs = [
@@ -145,7 +145,8 @@ require __DIR__ . '/header.php';
         <h2 class="h2 mt-2"><?= e(dt_fill($a['heading'], $vars)) ?></h2>
         <p class="body mt-3"><?= e($area['about'] . ' ' . dt_fill($a['visits_line'], $vars)) ?></p>
         <h3 class="h4 mt-4">Getting to the Gurugram Clinic</h3>
-        <p class="body mt-2"><?= e($route) ?> Open the clinic on Google Maps for the route from your door.</p>
+        <p class="body mt-2">DenceSpot’s Gurugram clinic is on Sector 39 Road in Jharsa, <?= e(NAP_LANDMARK) ?>. Travel guidance from <?= e($place) ?>:</p>
+        <?= locality_transit_card($transit, 'gurgaon') ?>
         <h3 class="h4 mt-4"><?= e($a['day_heading']) ?></h3>
         <p class="body mt-2"><?= e(dt_fill($a['day'], $vars)) ?></p>
       </div>

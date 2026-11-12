@@ -1901,6 +1901,64 @@ a.tile:hover { text-decoration: none; color: inherit; }
 .ht-glance b { display: block; font-size: 14.5px; color: var(--ink); }
 .ht-glance .icon-dot { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 12px; }
 
+/* Location Page: Transit, Driving & Parking Cards */
+.loc-directions {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+.loc-directions__card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform .18s, box-shadow .18s;
+}
+.loc-directions__card:hover {
+  box-shadow: var(--shadow-md);
+}
+.loc-directions__card .icon-dot {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+}
+.loc-directions__content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.loc-directions__title {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.loc-directions__text {
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.loc-directions__map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+.loc-directions__map-btn:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
 /* 2. Why DenceSpot: a light band, one row of round icons, and the clinic
    photo bleeding off the right edge with a checklist on it */
 .ht-why { position: relative; overflow: hidden; background: linear-gradient(115deg, var(--tint-sky) 0%, #F3F9FD 48%, #fff 100%); }

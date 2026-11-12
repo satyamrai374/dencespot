@@ -38,6 +38,7 @@ if (!$area['live']) {
 
 $name   = $area['name'];
 $url    = delhi_laser_url($slug);
+$transit = delhi_area_transit_details($slug, $area);
 $metro  = $area['metro'];
 $pins   = $area['pins'];
 $where  = $area['district'] ?? DELHI_SERVICE_ZONES[$area['zone']];
@@ -134,7 +135,8 @@ require __DIR__ . '/header.php';
         <h2 class="h2 mt-2">Laser Hair Removal for <?= e($name) ?> Residents</h2>
         <p class="body mt-3"><?= e($area['about']) ?> The assessment, the patch test and every session of the course take place at the Rohini clinic.</p>
         <h3 class="h4 mt-4">Getting to the Rohini Clinic</h3>
-        <p class="body mt-2"><?= e($area['route']) ?> Open the clinic on Google Maps for the route from your door.</p>
+        <p class="body mt-2">DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini. Travel guidance from <?= e($name) ?>:</p>
+        <?= locality_transit_card($transit, 'delhi') ?>
         <h3 class="h4 mt-4">On Session Days</h3>
         <p class="body mt-2">Arrive with the area shaved and free of cream, deodorant or make-up. On the way back to <?= e($name) ?>, keep treated skin covered from the sun, and leave the gym, steam and hot baths for a day or two.</p>
         <?php if ($metro !== []): ?>

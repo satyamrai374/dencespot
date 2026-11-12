@@ -670,3 +670,372 @@ function serving_areas_block(string $heading, array $links): string
 <?php
     return (string) ob_get_clean();
 }
+
+/**
+ * Hyper-local Driving Route & Real Distance, Transit / Metro Advice, and Parking Advice for Delhi areas.
+ * DenceSpot Delhi (Rohini) Clinic: 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini, New Delhi 110085.
+ *
+ * @return array{driving: string, metro: string, parking: string}
+ */
+function delhi_area_transit_details(string $slug, array $area): array
+{
+    static $transit = [
+        'rohini' => [
+            'driving' => 'From within Rohini: Take Sector 3/5 Dividing Road towards Pocket 3 near DDA Market, ~2-5 mins (0.5 to 2 km) depending on your sector.',
+            'metro'   => 'The clinic is within walking or quick e-rickshaw distance (~4 mins) from Rithala or Dr. Baba Saheb Ambedkar Hospital (Rohini West) Red Line stations.',
+            'parking' => 'Hassle-free ground-level parking is available directly in front of the clinic near DDA Market, Pocket 3, Sector 5, Rohini, with step-free entry.',
+        ],
+        'pitampura' => [
+            'driving' => 'From Pitampura: Take Outer Ring Road and Bhagwan Mahavir Marg towards Sector 5 Rohini, ~12 mins (4.5 km) to our clinic near DDA Market.',
+            'metro'   => 'Board the Red Line directly from Madhuban Chowk (Pitampura), Kohat Enclave, or Netaji Subhash Place to Rithala or Dr. Ambedkar Hospital station (no interchange required), then take a 4-min e-rickshaw.',
+            'parking' => 'Easy ground-level parking right in front of the clinic near DDA Market, Pocket 3, Sector 5, Rohini, offering step-free access.',
+        ],
+        'prashant-vihar' => [
+            'driving' => 'From Prashant Vihar: Take Outer Ring Road or Sector 9/14 Rohini internal road, ~7 mins (2.5 km) to our Sector 5 clinic near DDA Market.',
+            'metro'   => 'Quick 5-minute auto or e-rickshaw ride directly to Pocket 3, Sector 5, or via Rohini Red Line metro stations.',
+            'parking' => 'Dedicated ground-level street and market parking in front of the clinic with step-free entrance.',
+        ],
+        'nsp-delhi' => [
+            'driving' => 'From Netaji Subhash Place: Take Bhagwan Mahavir Marg and Outer Ring Road straight into Rohini, ~15 mins (5.8 km) to our Sector 5 clinic.',
+            'metro'   => 'Direct Red Line ride from Netaji Subhash Place station to Rithala or Dr. Ambedkar Hospital station, then a 4-min e-rickshaw to Pocket 3.',
+            'parking' => 'Ground-level parking directly in front of our Sector 5 clinic premises with step-free accessibility.',
+        ],
+        'shalimar-bagh' => [
+            'driving' => 'From Shalimar Bagh: Take Outer Ring Road past Haiderpur water works towards Sector 5 Rohini, ~14 mins (5.5 km) to our clinic near DDA Market.',
+            'metro'   => 'Take the Pink Line 1 stop to Netaji Subhash Place, interchange to the Red Line to Rithala, then a 4-min e-rickshaw.',
+            'parking' => 'Hassle-free ground-level parking available directly outside the clinic near DDA Market.',
+        ],
+        'paschim-vihar' => [
+            'driving' => 'From Paschim Vihar: Take Outer Ring Road north via Peeragarhi Chowk and Mangolpuri flyover into Sector 5 Rohini, ~18 mins (7.5 km).',
+            'metro'   => 'Take the Green Line to Inderlok, interchange to the Red Line to Rithala or Dr. Ambedkar Hospital, followed by a 4-min auto/e-rickshaw.',
+            'parking' => 'Ground-level parking directly in front of the clinic near DDA Market with step-free access.',
+        ],
+        'punjabi-bagh' => [
+            'driving' => 'From Punjabi Bagh: Take Rohtak Road onto Outer Ring Road via Peeragarhi into Rohini, ~22 mins (10.5 km) to our Sector 5 clinic.',
+            'metro'   => 'Take Pink Line from Punjabi Bagh West to Netaji Subhash Place, switch to Red Line to Rithala station, then a 4-min e-rickshaw.',
+            'parking' => 'Convenient ground-level parking directly outside the clinic with step-free entry.',
+        ],
+        'rajouri-garden' => [
+            'driving' => 'From Rajouri Garden: Take Ring Road / Outer Ring Road north via Peeragarhi Chowk, ~28 mins (13.5 km) to our Sector 5 Rohini clinic.',
+            'metro'   => 'Board Pink Line at Rajouri Garden to Netaji Subhash Place, interchange to Red Line towards Rithala, then a short e-rickshaw ride.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic near DDA Market, Pocket 3.',
+        ],
+        'janakpuri' => [
+            'driving' => 'From Janakpuri: Take Outer Ring Road north past Vikas Puri and Peeragarhi flyover to Sector 5 Rohini, ~30 mins (14.0 km).',
+            'metro'   => 'Take Blue Line to Rajouri Garden, switch to Pink Line to Netaji Subhash Place, then Red Line to Rithala or Dr. Ambedkar Hospital station.',
+            'parking' => 'Step-free ground-level parking available directly in front of the clinic.',
+        ],
+        'dwarka' => [
+            'driving' => 'From Dwarka: Take Urban Extension Road II (UER-II) or Outer Ring Road north to Rohini Sector 5, ~38 mins (22.0 km).',
+            'metro'   => 'Take Blue Line to Rajouri Garden, switch to Pink Line to Netaji Subhash Place, then Red Line to Rithala terminus, followed by a 4-min e-rickshaw.',
+            'parking' => 'Ground-level patient parking directly in front of our Rohini clinic entrance with step-free access.',
+        ],
+        'uttam-nagar' => [
+            'driving' => 'From Uttam Nagar: Take Najafgarh Road to Outer Ring Road via Janakpuri and Peeragarhi, ~32 mins (15.5 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Blue Line to Rajouri Garden, Pink Line to Netaji Subhash Place, and Red Line to Rithala.',
+            'parking' => 'Hassle-free ground-level parking directly in front of the clinic near DDA Market.',
+        ],
+        'vikaspuri' => [
+            'driving' => 'From Vikaspuri: Take Outer Ring Road north via Peeragarhi and Mangolpuri, ~25 mins (12.5 km) to Sector 5 Rohini.',
+            'metro'   => 'Take an auto or feeder to Janakpuri West, then Blue Line to Rajouri Garden, Pink Line to NSP, and Red Line to Rithala.',
+            'parking' => 'Convenient ground-level parking directly outside the clinic with step-free entrance.',
+        ],
+        'tilak-nagar' => [
+            'driving' => 'From Tilak Nagar: Take Najafgarh Road to Outer Ring Road via Peeragarhi, ~28 mins (13.0 km) to our Sector 5 Rohini clinic.',
+            'metro'   => 'Take Blue Line to Rajouri Garden, Pink Line to Netaji Subhash Place, then Red Line to Rithala station.',
+            'parking' => 'Ground-level parking available directly outside the clinic near DDA Market.',
+        ],
+        'kirti-nagar' => [
+            'driving' => 'From Kirti Nagar: Take Ring Road through Punjabi Bagh and Outer Ring Road to Sector 5 Rohini, ~26 mins (12.0 km).',
+            'metro'   => 'Take Green Line connection from Kirti Nagar to Inderlok, interchange to Red Line straight to Rithala station.',
+            'parking' => 'Dedicated ground-level street parking with step-free access.',
+        ],
+        'moti-nagar' => [
+            'driving' => 'From Moti Nagar: Take Rohtak Road / Ring Road north to Outer Ring Road, ~26 mins (12.5 km) to our Sector 5 Rohini clinic.',
+            'metro'   => 'Take Blue Line to Kirti Nagar, Green Line to Inderlok, then Red Line straight to Rithala.',
+            'parking' => 'Hassle-free ground-level parking right in front of the clinic near DDA Market.',
+        ],
+        'subhash-nagar' => [
+            'driving' => 'From Subhash Nagar: Take Najafgarh Road to Outer Ring Road via Peeragarhi, ~28 mins (13.5 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Blue Line to Rajouri Garden, Pink Line to Netaji Subhash Place, then Red Line to Rithala.',
+            'parking' => 'Ground-level parking directly outside the clinic with step-free entry.',
+        ],
+        'model-town' => [
+            'driving' => 'From Model Town: Take Ring Road / GT Karnal Road onto Outer Ring Road towards Rohini, ~20 mins (8.5 km) to Sector 5.',
+            'metro'   => 'Take Yellow Line from Model Town to Kashmere Gate, interchange to Red Line towards Rithala (or direct via auto/cab in ~20 mins).',
+            'parking' => 'Convenient ground-level parking directly in front of the clinic near DDA Market.',
+        ],
+        'ashok-vihar' => [
+            'driving' => 'From Ashok Vihar: Take Satyawati College Road and Outer Ring Road via Pitampura to Sector 5 Rohini, ~18 mins (7.2 km).',
+            'metro'   => 'Take Pink Line from Shalimar Bagh to Netaji Subhash Place, switch to Red Line to Rithala, then a 4-min e-rickshaw.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free access.',
+        ],
+        'adarsh-nagar' => [
+            'driving' => 'From Adarsh Nagar: Take GT Karnal Road and Outer Ring Road via Mukarba Chowk, ~16 mins (7.0 km) to our Sector 5 Rohini clinic.',
+            'metro'   => 'Take Yellow Line from Adarsh Nagar to Kashmere Gate, switch to Red Line to Rithala, or direct 15-min auto/cab.',
+            'parking' => 'Ground-level parking directly outside the clinic near DDA Market.',
+        ],
+        'azadpur' => [
+            'driving' => 'From Azadpur: Take Outer Ring Road west through Mukarba Chowk into Rohini, ~18 mins (7.5 km) to Sector 5.',
+            'metro'   => 'Take Pink Line from Azadpur to Netaji Subhash Place, interchange to Red Line directly to Rithala or Dr. Ambedkar Hospital station.',
+            'parking' => 'Hassle-free ground-level parking right in front of the clinic with step-free entrance.',
+        ],
+        'wazirpur' => [
+            'driving' => 'From Wazirpur: Take Ring Road and Bhagwan Mahavir Marg into Rohini, ~16 mins (6.5 km) to Sector 5 near DDA Market.',
+            'metro'   => 'Board the Red Line at Netaji Subhash Place or Kohat Enclave straight to Rithala station, then take a 4-min e-rickshaw.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic with step-free accessibility.',
+        ],
+        'keshav-puram' => [
+            'driving' => 'From Keshav Puram: Take Lawrence Road and Outer Ring Road via Britannia Chowk, ~16 mins (7.0 km) to Sector 5 Rohini.',
+            'metro'   => 'Board the Red Line directly from Keshav Puram station towards Rithala (no line changes needed!), then a 4-min e-rickshaw from Rithala.',
+            'parking' => 'Convenient ground-level parking directly in front of the clinic near DDA Market.',
+        ],
+        'mukherjee-nagar' => [
+            'driving' => 'From Mukherjee Nagar: Take Banda Bahadur Marg to Ring Road and Outer Ring Road, ~22 mins (10.0 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Yellow Line from GTB Nagar to Kashmere Gate, interchange to Red Line towards Rithala (or direct cab in ~22 mins).',
+            'parking' => 'Ground-level parking directly outside the clinic with step-free access.',
+        ],
+        'civil-lines' => [
+            'driving' => 'From Civil Lines: Take Mahatma Gandhi Marg (Ring Road) and Outer Ring Road via Azadpur, ~28 mins (13.0 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Yellow Line from Civil Lines to Kashmere Gate, switch to Red Line towards Rithala terminus, then a 4-min e-rickshaw.',
+            'parking' => 'Dedicated ground-level patient parking in front of the clinic near DDA Market.',
+        ],
+        'kamla-nagar' => [
+            'driving' => 'From Kamla Nagar: Take Mall Road to Ring Road and Outer Ring Road towards Rohini, ~25 mins (11.5 km) to Sector 5.',
+            'metro'   => 'Take Yellow Line from Vishwavidyalaya to Kashmere Gate, interchange to Red Line directly to Rithala station.',
+            'parking' => 'Hassle-free ground-level parking directly outside the clinic with step-free entry.',
+        ],
+        'burari' => [
+            'driving' => 'From Burari: Take Burari Road to Outer Ring Road via Mukarba Chowk into Rohini, ~28 mins (14.0 km) to our Sector 5 clinic.',
+            'metro'   => 'Direct cab or auto via Outer Ring Road (~25-28 mins); nearest metro connections are Samaypur Badli (Yellow Line) and Jahangirpuri.',
+            'parking' => 'Dedicated ground-level parking available directly in front of the clinic.',
+        ],
+        'narela' => [
+            'driving' => 'From Narela: Take Bawana Road and Urban Extension Road into Rohini Sector 5, ~30 mins (16.5 km) to our clinic near DDA Market.',
+            'metro'   => 'Direct driving route via Bawana Road / UER is fastest; Red Line terminus at Rithala is the closest metro hub.',
+            'parking' => 'Ground-level parking in front of the clinic with step-free accessibility.',
+        ],
+        'bawana' => [
+            'driving' => 'From Bawana: Drive southeast via Bawana Road past Sector 24/25 into Rohini Sector 5, ~22 mins (12.0 km) to our clinic.',
+            'metro'   => 'Direct 20-min cab or auto straight into Sector 5; closest metro station is Rithala on the Red Line.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free access.',
+        ],
+        'nangloi' => [
+            'driving' => 'From Nangloi: Take Rohtak Road and Outer Ring Road / Mangolpuri road into Rohini Sector 5, ~22 mins (10.0 km).',
+            'metro'   => 'Take Green Line from Nangloi to Inderlok, interchange to Red Line towards Rithala station.',
+            'parking' => 'Convenient ground-level parking directly outside the clinic near DDA Market.',
+        ],
+        'sultanpuri' => [
+            'driving' => 'From Sultanpuri: Take Sultanpuri Road and Dividing Road into Sector 4/5 Rohini, ~12 mins (4.8 km) to our clinic near DDA Market.',
+            'metro'   => 'Direct 10-12 min auto or e-rickshaw straight to Pocket 3, Sector 5 Rohini.',
+            'parking' => 'Dedicated ground-level parking right in front of the clinic entrance with step-free entry.',
+        ],
+        'budh-vihar' => [
+            'driving' => 'From Budh Vihar: Take Kanjhawala Road and Dividing Road into Sector 5 Rohini, ~8 mins (3.2 km) to our clinic near DDA Market.',
+            'metro'   => 'Direct 8-min auto or e-rickshaw straight into Pocket 3, Sector 5 Rohini.',
+            'parking' => 'Hassle-free ground-level parking right outside the clinic with step-free accessibility.',
+        ],
+        'greater-kailash' => [
+            'driving' => 'From Greater Kailash: Take Ring Road / Barapullah and Outer Ring Road north to Rohini Sector 5, ~50 mins (26.0 km).',
+            'metro'   => 'Take Magenta Line from GK to Hauz Khas, Yellow Line to Kashmere Gate, then Red Line directly to Rithala station.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic with step-free entrance.',
+        ],
+        'green-park' => [
+            'driving' => 'From Green Park: Take Ring Road and Outer Ring Road via Dhaula Kuan north into Rohini, ~45 mins (22.0 km).',
+            'metro'   => 'Take Yellow Line from Green Park to Kashmere Gate, interchange to Red Line straight to Rithala, then a 4-min e-rickshaw.',
+            'parking' => 'Reserved ground-level patient parking directly in front of the clinic near DDA Market.',
+        ],
+        'hauz-khas' => [
+            'driving' => 'From Hauz Khas: Take Sri Aurobindo Marg to Ring Road / Outer Ring Road north to Rohini, ~48 mins (23.5 km).',
+            'metro'   => 'Take Yellow Line from Hauz Khas to Kashmere Gate, switch to Red Line to Rithala terminus, then take a 4-min e-rickshaw.',
+            'parking' => 'Step-free ground-level parking directly outside the clinic premises.',
+        ],
+        'saket' => [
+            'driving' => 'From Saket: Take Mehrauli-Badarpur Road and Ring Road / Outer Ring Road to Rohini Sector 5, ~55 mins (28.0 km).',
+            'metro'   => 'Take Yellow Line from Saket to Kashmere Gate, switch to Red Line straight to Rithala station.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free entry.',
+        ],
+        'malviya-nagar' => [
+            'driving' => 'From Malviya Nagar: Take Press Enclave Marg to Ring Road / Outer Ring Road north to Rohini, ~50 mins (25.0 km).',
+            'metro'   => 'Take Yellow Line from Malviya Nagar to Kashmere Gate, interchange to Red Line towards Rithala.',
+            'parking' => 'Convenient ground-level parking in front of the clinic near DDA Market.',
+        ],
+        'vasant-kunj' => [
+            'driving' => 'From Vasant Kunj: Take Nelson Mandela Marg and Outer Ring Road / UER-II north to Rohini Sector 5, ~45 mins (24.0 km).',
+            'metro'   => 'Take an auto to Chhatarpur Yellow Line or take Pink Line from Durgabai Deshmukh to Netaji Subhash Place, then Red Line to Rithala.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free access.',
+        ],
+        'vasant-vihar' => [
+            'driving' => 'From Vasant Vihar: Take Rao Tula Ram Marg onto Outer Ring Road north past Peeragarhi into Rohini, ~40 mins (20.0 km).',
+            'metro'   => 'Take Magenta Line from Vasant Vihar to Janakpuri West, switch to Blue Line to Rajouri Garden, Pink Line to NSP, then Red Line to Rithala.',
+            'parking' => 'Reserved ground-level parking directly in front of the clinic entrance.',
+        ],
+        'lajpat-nagar' => [
+            'driving' => 'From Lajpat Nagar: Take Ring Road through Kashmere Gate and Azadpur into Rohini, ~48 mins (24.0 km).',
+            'metro'   => 'Take Pink Line directly from Lajpat Nagar to Netaji Subhash Place (no change!), switch to Red Line to Rithala station, then a 4-min e-rickshaw.',
+            'parking' => 'Hassle-free ground-level parking right in front of the clinic near DDA Market.',
+        ],
+        'south-extension' => [
+            'driving' => 'From South Extension: Take Ring Road north via Dhaula Kuan / Peeragarhi or Kashmere Gate, ~45 mins (22.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Pink Line from South Extension straight to Netaji Subhash Place, interchange to Red Line to Rithala terminus.',
+            'parking' => 'Dedicated ground-level parking directly outside the clinic with step-free accessibility.',
+        ],
+        'defence-colony' => [
+            'driving' => 'From Defence Colony: Take Lala Lajpat Rai Marg and Ring Road to Outer Ring Road, ~48 mins (24.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Pink Line from Lajpat Nagar / South Ext to Netaji Subhash Place, switch to Red Line towards Rithala.',
+            'parking' => 'Ground-level patient parking directly in front of the clinic near DDA Market.',
+        ],
+        'panchsheel-park' => [
+            'driving' => 'From Panchsheel Park: Take Outer Ring Road straight north through Dhaula Kuan & Peeragarhi to Rohini, ~50 mins (24.5 km).',
+            'metro'   => 'Take Magenta Line to Hauz Khas, Yellow Line to Kashmere Gate, then Red Line to Rithala.',
+            'parking' => 'Step-free ground-level parking directly outside the clinic premises.',
+        ],
+        'nehru-place' => [
+            'driving' => 'From Nehru Place: Take Outer Ring Road north past Modi Mill flyover and Ring Road, ~55 mins (28.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Violet Line from Nehru Place to Kashmere Gate, interchange to Red Line directly to Rithala station.',
+            'parking' => 'Dedicated ground-level parking right in front of the clinic near DDA Market.',
+        ],
+        'kalkaji' => [
+            'driving' => 'From Kalkaji: Take Maa Anandmayee Marg to Outer Ring Road / Ring Road north, ~55 mins (28.5 km) to Rohini Sector 5.',
+            'metro'   => 'Take Violet Line from Kalkaji Mandir to Kashmere Gate, switch to Red Line straight to Rithala.',
+            'parking' => 'Convenient ground-level parking in front of the clinic with step-free entry.',
+        ],
+        'chhatarpur' => [
+            'driving' => 'From Chhatarpur: Take Mehrauli-Gurgaon Road and Ring Road / Outer Ring Road north to Rohini, ~58 mins (30.0 km).',
+            'metro'   => 'Take Yellow Line from Chhatarpur straight to Kashmere Gate, switch to Red Line to Rithala terminus.',
+            'parking' => 'Dedicated ground-level patient parking directly outside the clinic with step-free access.',
+        ],
+        'mehrauli' => [
+            'driving' => 'From Mehrauli: Take Sri Aurobindo Marg to Ring Road / Outer Ring Road north, ~55 mins (28.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Yellow Line from Qutab Minar to Kashmere Gate, interchange to Red Line to Rithala station.',
+            'parking' => 'Ground-level parking directly outside the clinic near DDA Market with step-free entry.',
+        ],
+        'munirka' => [
+            'driving' => 'From Munirka: Take Outer Ring Road north past Dhaula Kuan and Peeragarhi into Rohini, ~40 mins (21.0 km).',
+            'metro'   => 'Take Magenta Line to Janakpuri West, then Blue Line to Rajouri Garden, Pink Line to NSP, and Red Line to Rithala.',
+            'parking' => 'Reserved ground-level patient parking right in front of the clinic entrance.',
+        ],
+        'safdarjung-enclave' => [
+            'driving' => 'From Safdarjung Enclave: Take Ring Road past Dhaula Kuan and Outer Ring Road north to Rohini, ~42 mins (21.0 km).',
+            'metro'   => 'Take Pink Line from Bhikaji Cama Place directly to Netaji Subhash Place, then switch to Red Line to Rithala.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic with step-free access.',
+        ],
+        'connaught-place' => [
+            'driving' => 'From Connaught Place: Take Vandemataram Marg or Pusa Road and Ring Road / Outer Ring Road, ~38 mins (18.0 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Yellow Line from Rajiv Chowk to Kashmere Gate (2 stops), switch to Red Line straight to Rithala terminus, then a 4-min e-rickshaw.',
+            'parking' => 'Hassle-free ground-level parking available directly in front of the clinic near DDA Market.',
+        ],
+        'karol-bagh' => [
+            'driving' => 'From Karol Bagh: Take DB Gupta Road onto Rohtak Road and Outer Ring Road, ~30 mins (14.0 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Blue Line from Karol Bagh to Rajouri Garden, Pink Line to Netaji Subhash Place, then Red Line to Rithala.',
+            'parking' => 'Dedicated ground-level patient parking directly outside the clinic with step-free access.',
+        ],
+        'patel-nagar' => [
+            'driving' => 'From Patel Nagar: Take Patel Road to Ring Road / Outer Ring Road north, ~28 mins (13.0 km) to our Sector 5 Rohini clinic.',
+            'metro'   => 'Take Blue Line to Kirti Nagar, switch to Green Line to Inderlok, then Red Line straight to Rithala.',
+            'parking' => 'Convenient ground-level parking directly in front of the clinic near DDA Market.',
+        ],
+        'rajendra-place' => [
+            'driving' => 'From Rajendra Place: Take Pusa Road to Ring Road and Outer Ring Road north to Rohini, ~28 mins (13.5 km) to Sector 5.',
+            'metro'   => 'Take Blue Line to Kirti Nagar, Green Line to Inderlok, then Red Line towards Rithala station.',
+            'parking' => 'Ground-level parking directly outside the clinic with step-free entry.',
+        ],
+        'paharganj' => [
+            'driving' => 'From Paharganj: Take Rani Jhansi Road and Outer Ring Road via Azadpur, ~35 mins (16.5 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Yellow Line from New Delhi to Kashmere Gate, interchange to Red Line directly to Rithala terminus.',
+            'parking' => 'Dedicated ground-level patient parking in front of the clinic with step-free accessibility.',
+        ],
+        'chandni-chowk' => [
+            'driving' => 'From Chandni Chowk: Take Shyama Prasad Mukherjee Marg and Ring Road / GT Karnal Road, ~35 mins (15.5 km) to Rohini Sector 5.',
+            'metro'   => 'Take Yellow Line from Chandni Chowk 1 stop to Kashmere Gate, switch to Red Line straight to Rithala station.',
+            'parking' => 'Ground-level parking directly outside the clinic near DDA Market.',
+        ],
+        'daryaganj' => [
+            'driving' => 'From Daryaganj: Take Ring Road north past Kashmere Gate and Azadpur into Rohini, ~38 mins (17.5 km) to Sector 5.',
+            'metro'   => 'Take Violet Line from Delhi Gate to Kashmere Gate, interchange to Red Line towards Rithala.',
+            'parking' => 'Dedicated ground-level parking directly in front of the clinic with step-free access.',
+        ],
+        'laxmi-nagar' => [
+            'driving' => 'From Laxmi Nagar: Take Vikas Marg onto Ring Road through Kashmere Gate and Azadpur, ~42 mins (22.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Blue Line from Laxmi Nagar to Mandi House, switch to Violet Line to Kashmere Gate, then Red Line to Rithala (or Pink Line via Mayur Vihar to NSP).',
+            'parking' => 'Hassle-free ground-level parking right in front of the clinic near DDA Market.',
+        ],
+        'preet-vihar' => [
+            'driving' => 'From Preet Vihar: Take Vikas Marg and Ring Road / Outer Ring Road north to Rohini, ~45 mins (23.0 km) to Sector 5.',
+            'metro'   => 'Take Blue Line to Karkardooma, switch to Pink Line straight to Netaji Subhash Place, then Red Line to Rithala.',
+            'parking' => 'Dedicated ground-level parking directly outside the clinic with step-free entry.',
+        ],
+        'mayur-vihar' => [
+            'driving' => 'From Mayur Vihar: Take Noida Link Road and Ring Road north through Kashmere Gate, ~50 mins (26.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Pink Line directly from Mayur Vihar Phase-1 to Netaji Subhash Place (no line changes!), switch to Red Line to Rithala.',
+            'parking' => 'Ground-level patient parking in front of the clinic with step-free accessibility.',
+        ],
+        'patparganj' => [
+            'driving' => 'From Patparganj: Take NH-9 to Ring Road north past Kashmere Gate and Outer Ring Road, ~48 mins (25.0 km) to Sector 5 Rohini.',
+            'metro'   => 'Take Pink Line from IP Extension to Netaji Subhash Place, then Red Line directly to Rithala station.',
+            'parking' => 'Dedicated ground-level parking directly outside the clinic near DDA Market.',
+        ],
+        'ip-extension' => [
+            'driving' => 'From IP Extension: Take Vikas Marg / NH-9 to Ring Road north into Rohini, ~48 mins (25.5 km) to Sector 5.',
+            'metro'   => 'Take Pink Line from IP Extension directly to Netaji Subhash Place, switch to Red Line to Rithala, then a 4-min e-rickshaw.',
+            'parking' => 'Convenient ground-level parking directly in front of the clinic with step-free access.',
+        ],
+        'anand-vihar' => [
+            'driving' => 'From Anand Vihar: Take Road No 56 to GT Road and Outer Ring Road via Wazirabad, ~50 mins (26.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Pink Line directly from Anand Vihar ISBT to Netaji Subhash Place, switch to Red Line to Rithala.',
+            'parking' => 'Dedicated ground-level parking right in front of the clinic with step-free access.',
+        ],
+        'karkardooma' => [
+            'driving' => 'From Karkardooma: Take Vikas Marg to Ring Road / Outer Ring Road north into Rohini, ~48 mins (25.0 km) to Sector 5.',
+            'metro'   => 'Take Pink Line from Karkardooma straight to Netaji Subhash Place, switch to Red Line to Rithala station.',
+            'parking' => 'Ground-level patient parking directly in front of the clinic near DDA Market.',
+        ],
+        'shahdara' => [
+            'driving' => 'From Shahdara: Take Grand Trunk Road and Outer Ring Road west via Wazirabad, ~42 mins (21.0 km) to Rohini Sector 5.',
+            'metro'   => 'Board the Red Line directly at Shahdara station straight to Rithala station (no line changes needed!), followed by a 4-min e-rickshaw.',
+            'parking' => 'Hassle-free ground-level parking in front of the clinic with step-free accessibility.',
+        ],
+        'krishna-nagar' => [
+            'driving' => 'From Krishna Nagar: Take Vikas Marg to Ring Road north via Kashmere Gate, ~44 mins (22.5 km) to Rohini Sector 5.',
+            'metro'   => 'Take Pink Line from Krishna Nagar / East Azad Nagar directly to Netaji Subhash Place, switch to Red Line to Rithala.',
+            'parking' => 'Dedicated ground-level parking directly outside the clinic near DDA Market.',
+        ],
+        'dilshad-garden' => [
+            'driving' => 'From Dilshad Garden: Take GT Road and Outer Ring Road via Wazirabad, ~45 mins (24.0 km) to Rohini Sector 5.',
+            'metro'   => 'Board the Red Line directly at Dilshad Garden station straight across the line to Rithala terminus (direct single-train ride!), then a 4-min e-rickshaw.',
+            'parking' => 'Convenient ground-level parking in front of the clinic with step-free access.',
+        ],
+        'vivek-vihar' => [
+            'driving' => 'From Vivek Vihar: Take Surajmal Vihar road to GT Road and Outer Ring Road, ~48 mins (25.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Red Line directly from Jhilmil or Dilshad Garden stations straight to Rithala station.',
+            'parking' => 'Dedicated ground-level patient parking directly outside the clinic with step-free entry.',
+        ],
+        'yamuna-vihar' => [
+            'driving' => 'From Yamuna Vihar: Take Wazirabad Road and Outer Ring Road west through Mukarba Chowk into Rohini, ~40 mins (20.0 km) to Sector 5.',
+            'metro'   => 'Take Pink Line from Gokulpuri / Maujpur to Netaji Subhash Place, interchange to Red Line to Rithala.',
+            'parking' => 'Ground-level parking in front of the clinic with step-free access.',
+        ],
+        'bhajanpura' => [
+            'driving' => 'From Bhajanpura: Take Wazirabad Road to Signature Bridge and Outer Ring Road west into Rohini, ~38 mins (19.0 km) to Sector 5.',
+            'metro'   => 'Take Pink Line from Maujpur-Babarpur to Netaji Subhash Place, switch to Red Line towards Rithala.',
+            'parking' => 'Hassle-free ground-level parking directly outside the clinic near DDA Market.',
+        ],
+        'gandhi-nagar-delhi' => [
+            'driving' => 'From Gandhi Nagar: Take Pushta Road and Ring Road through Kashmere Gate and Azadpur, ~40 mins (20.0 km) to Rohini Sector 5.',
+            'metro'   => 'Take Red Line from Shastri Park or Seelampur directly to Rithala station (no interchanges needed!).',
+            'parking' => 'Dedicated ground-level parking in front of the clinic near DDA Market, Pocket 3, with step-free access.',
+        ],
+    ];
+
+    if (isset($transit[$slug])) {
+        return $transit[$slug];
+    }
+
+    $place = $area['name'] ?? 'your location';
+    return [
+        'driving' => 'From ' . $place . ': Take Outer Ring Road or Bhagwan Mahavir Marg towards Sector 5, Rohini near DDA Market, Pocket 3.',
+        'metro'   => 'The clinic is accessible via Rithala and Dr. Baba Saheb Ambedkar Hospital (Rohini West) Red Line stations, followed by a 4-min e-rickshaw.',
+        'parking' => 'Convenient ground-level parking is available directly in front of the clinic near DDA Market, Pocket 3, Sector 5, Rohini.',
+    ];
+}
+

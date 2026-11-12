@@ -427,3 +427,312 @@ function gurgaon_service_areas_section(string $key): string
     }
     return serving_areas_block('Serving Patients Across Gurugram', $links);
 }
+
+/**
+ * Hyper-local Driving Route & Real Distance, Transit / Metro Advice, and Parking Advice for Gurugram areas.
+ * DenceSpot Gurugram Clinic: 1123, Sector 39 Road, Jharsa, C Block, Sector 39, Gurugram (opposite Medanta - The Medicity).
+ *
+ * @return array{driving: string, metro: string, parking: string}
+ */
+function gurgaon_area_transit_details(string $slug, array $area): array
+{
+    static $transit = [
+        'dlf-phase-1' => [
+            'driving' => 'From DLF Phase 1: Take Golf Course Road or MG Road via IFFCO Chowk onto NH-48, ~15 mins (7.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take Rapid Metro from Phase 1 station or Yellow Line from Sikanderpur to Millennium City Centre Gurugram, then ~7 mins by cab or auto to Sector 39.',
+            'parking' => 'Dedicated ground-level patient parking is available directly in front of the clinic with step-free entry.',
+        ],
+        'dlf-phase-2' => [
+            'driving' => 'From DLF Phase 2: Take NH-48 via IFFCO Chowk and Rajiv Chowk, ~13 mins (6.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Board the Yellow Line at MG Road or Sikanderpur towards Millennium City Centre (HUDA City Centre), then a quick 7-min auto or cab directly to Sector 39.',
+            'parking' => 'Dedicated on-site ground-level parking right in front of the clinic entrance ensures comfortable, step-free access.',
+        ],
+        'dlf-phase-3' => [
+            'driving' => 'From DLF Phase 3: Take NH-48 straight through Shankar Chowk and Rajiv Chowk, ~16 mins (8.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take Rapid Metro to Sikanderpur, interchange to the Yellow Line to Millennium City Centre Gurugram, then ~7 mins by cab or auto.',
+            'parking' => 'Reserved patient parking at ground level directly outside the clinic with step-free entrance.',
+        ],
+        'dlf-phase-4' => [
+            'driving' => 'From DLF Phase 4 (Galleria Market area): Take Hamilton Court Road and Netaji Subhash Marg, ~12 mins (5.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct access via Millennium City Centre (HUDA City Centre) on the Yellow Line, followed by a short 7-minute auto or cab ride to Sector 39.',
+            'parking' => 'Convenient on-site ground-level parking directly in front of the clinic, with step-free access.',
+        ],
+        'dlf-phase-5' => [
+            'driving' => 'From DLF Phase 5: Take Golf Course Road via St. Thomas Marg and Netaji Subhash Marg, ~15 mins (7.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Board the Rapid Metro at Sector 42-43 or 53-54, switch at Sikanderpur to the Yellow Line for Millennium City Centre, then take a 7-min auto.',
+            'parking' => 'Dedicated ground-level parking directly at the clinic doorstep, allowing easy step-free entry.',
+        ],
+        'dlf-cyber-city' => [
+            'driving' => 'From DLF Cyber City: Take NH-48 via Rajiv Chowk, ~12 mins (6.4 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take Rapid Metro to Sikanderpur, interchange to the Yellow Line for Millennium City Centre (HUDA City Centre), then ~7 mins by cab or auto.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free ground-floor access.',
+        ],
+        'mg-road-gurgaon' => [
+            'driving' => 'From MG Road: Take Mehrauli-Gurgaon Road to IFFCO Chowk, then NH-48 to Rajiv Chowk, ~12 mins (6.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take the Yellow Line from MG Road or Sikanderpur straight to Millennium City Centre (HUDA City Centre), then a 7-min auto to Sector 39.',
+            'parking' => 'Dedicated ground-level parking directly in front of the clinic, providing comfortable step-free access.',
+        ],
+        'sikanderpur' => [
+            'driving' => 'From Sikanderpur: Take MG Road to NH-48 via IFFCO Chowk, ~15 mins (7.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct Yellow Line from Sikanderpur to Millennium City Centre Gurugram (3 stops), followed by a 7-minute cab or auto ride.',
+            'parking' => 'Reserved on-site patient parking at ground level with step-free entry.',
+        ],
+        'golf-course-road' => [
+            'driving' => 'From Golf Course Road: Take Golf Course Road onto St Thomas Marg and Netaji Subhash Marg, ~14 mins (6.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Rapid Metro along Golf Course Road to Sikanderpur, then Yellow Line to Millennium City Centre, followed by a short 7-min auto to Sector 39.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free access.',
+        ],
+        'golf-course-extension-road' => [
+            'driving' => 'From Golf Course Extension Road: Take Vikas Marg or Rajesh Pilot Gurjar Road to Netaji Subhash Marg, ~14 mins (6.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take an auto or cab to Sector 55-56 Rapid Metro or direct to Millennium City Centre Yellow Line station (~8 mins).',
+            'parking' => 'Step-free ground-level patient parking located right outside the clinic entrance.',
+        ],
+        'sector-56-gurgaon' => [
+            'driving' => 'From Sector 56: Take Golf Course Extension Road via Vikas Marg or Artemis Hospital road, ~18 mins (8.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Board the Rapid Metro at Sector 55-56 terminus, or take a direct 10-minute auto or cab to Millennium City Centre Yellow Line station.',
+            'parking' => 'Dedicated on-site parking at ground level with step-free entrance for patient comfort.',
+        ],
+        'sushant-lok' => [
+            'driving' => 'From Sushant Lok: Take Netaji Subhash Marg and CH Bakhtawar Singh Road, ~10 mins (4.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Convenient access via Millennium City Centre or IFFCO Chowk Yellow Line stations, then ~6-8 mins by cab or auto.',
+            'parking' => 'Reserved ground-level patient parking right at the clinic doorstep with step-free accessibility.',
+        ],
+        'sohna-road' => [
+            'driving' => 'From Sohna Road: Drive north via Subhash Chowk and take Sector 39 Road, ~8 mins (3.5 km) to our clinic directly opposite Medanta.',
+            'metro'   => 'From Sohna Road, take a quick 7-minute cab or auto to Millennium City Centre Yellow Line, or direct cab to Sector 39.',
+            'parking' => 'Dedicated ground-level parking right in front of the clinic with smooth, step-free access.',
+        ],
+        'south-city-1' => [
+            'driving' => 'From South City 1: Take CH Bakhtawar Singh Road or NH-48 service road, ~8 mins (3.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre (HUDA City Centre) is just 5 mins away, followed by an easy connection to Sector 39.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic entrance with step-free access.',
+        ],
+        'south-city-2' => [
+            'driving' => 'From South City 2: Take Sohna Road via Subhash Chowk onto Sector 39 Road, ~10 mins (4.2 km) to our clinic opposite Medanta.',
+            'metro'   => 'Direct 8-min auto or cab ride to Millennium City Centre Yellow Line or direct to Sector 39.',
+            'parking' => 'Convenient ground-level parking available directly outside the clinic premises.',
+        ],
+        'nirvana-country' => [
+            'driving' => 'From Nirvana Country (Sector 50): Take Mayfield Garden Road and Vikas Marg via Subhash Chowk, ~10 mins (4.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'A short 8-10 minute cab or auto connects you to Millennium City Centre Yellow Line station.',
+            'parking' => 'Dedicated on-site ground-level parking directly in front of the clinic with step-free entrance.',
+        ],
+        'malibu-town' => [
+            'driving' => 'From Malibu Town (Sector 47): Head out to Sohna Road, cross Subhash Chowk into Sector 39 Road, ~7 mins (3.0 km) to our clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre Yellow Line station is only ~7 mins away by cab or auto.',
+            'parking' => 'Reserved ground-level patient parking right in front of the clinic with step-free accessibility.',
+        ],
+        'ardee-city' => [
+            'driving' => 'From Ardee City (Sector 52): Take Netaji Subhash Marg and Sector 39 Road, ~10 mins (4.5 km) to our clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre (HUDA City Centre) Yellow Line station is just 6 mins away.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic with step-free access.',
+        ],
+        'badshahpur' => [
+            'driving' => 'From Badshahpur: Drive north on Sohna Road (NH-248A) via Subhash Chowk, ~16 mins (7.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take a direct cab or auto straight along Sohna Road to Sector 39 (~15-18 mins).',
+            'parking' => 'Ground-level on-site parking directly outside the clinic with step-free entry.',
+        ],
+        'sohna' => [
+            'driving' => 'From Sohna: Take the Sohna Elevated Corridor (NH-248A) straight to Subhash Chowk, ~28 mins (20 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'The Sohna Elevated highway provides a fast, direct driving route; the nearest metro is Millennium City Centre.',
+            'parking' => 'Dedicated ground-level patient parking right outside the clinic with easy step-free entry.',
+        ],
+        'old-gurgaon' => [
+            'driving' => 'From Old Gurgaon: Take Old Railway Road and Jharsa Road via Mor Chowk to Sector 39, ~12 mins (4.5 km) to our clinic opposite Medanta.',
+            'metro'   => 'Take an auto or e-rickshaw via Civil Lines / Rajiv Chowk directly to Sector 39.',
+            'parking' => 'Ground-level on-site parking directly in front of the clinic with step-free access.',
+        ],
+        'sector-14-gurgaon' => [
+            'driving' => 'From Sector 14: Take Old Delhi Road to Atul Kataria Chowk and join NH-48 towards Rajiv Chowk, ~14 mins (5.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'IFFCO Chowk or MG Road Yellow Line stations are ~10 mins away, or take a direct 12-14 min cab/auto to Sector 39.',
+            'parking' => 'Dedicated ground-level parking directly at the clinic doorstep with step-free entry.',
+        ],
+        'sector-15-gurgaon' => [
+            'driving' => 'From Sector 15: Take Jharsa Road or NH-48 service road via Rajiv Chowk, ~9 mins (3.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'A short 7-8 min auto or cab connects you directly to Millennium City Centre or IFFCO Chowk metro stations.',
+            'parking' => 'Reserved ground-level patient parking directly in front of the clinic with step-free access.',
+        ],
+        'sector-29-gurgaon' => [
+            'driving' => 'From Sector 29: Take Leisure Valley Road and join NH-48 or CH Bakhtawar Singh Road, ~9 mins (4.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre (HUDA City Centre) or IFFCO Chowk on the Yellow Line are within 5-7 mins.',
+            'parking' => 'Dedicated on-site ground-level parking directly outside the clinic entrance.',
+        ],
+        'udyog-vihar' => [
+            'driving' => 'From Udyog Vihar: Take NH-48 expressway straight through IFFCO Chowk to Rajiv Chowk, ~15 mins (8.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take Rapid Metro to Sikanderpur, switch to Yellow Line for Millennium City Centre, then a quick auto ride.',
+            'parking' => 'Dedicated ground-level parking directly in front of the clinic with step-free access.',
+        ],
+        'palam-vihar' => [
+            'driving' => 'From Palam Vihar: Take Rezang La Marg to Old Delhi Road, then NH-48 via Rajiv Chowk, ~24 mins (11.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take a direct cab or auto via Atul Kataria Chowk to Sector 39.',
+            'parking' => 'Ground-level patient parking directly outside the clinic with step-free accessibility.',
+        ],
+        'dwarka-expressway' => [
+            'driving' => 'From Dwarka Expressway: Take CPR / Cloverleaf onto NH-48 towards Rajiv Chowk, ~22 mins (12.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'The expressway connects directly to NH-48 for a smooth drive; nearest Yellow Line station is Millennium City Centre.',
+            'parking' => 'Dedicated ground-level on-site parking directly in front of the clinic with step-free entry.',
+        ],
+        'new-gurgaon' => [
+            'driving' => 'From New Gurgaon: Take NH-48 expressway through Kherki Daula toll towards Rajiv Chowk, ~18 mins (13.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct drive via NH-48; nearest metro terminus is Millennium City Centre Gurugram.',
+            'parking' => 'Reserved patient parking at ground level right at the clinic entrance with step-free access.',
+        ],
+        'manesar' => [
+            'driving' => 'From Manesar / IMT: Take NH-48 expressway straight towards Rajiv Chowk, ~25 mins (18.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'NH-48 expressway offers the fastest route; Millennium City Centre is the closest metro hub.',
+            'parking' => 'Dedicated ground-level parking directly in front of the clinic premises with step-free entry.',
+        ],
+        'iffco-chowk' => [
+            'driving' => 'From IFFCO Chowk: Take NH-48 straight south towards Rajiv Chowk, ~9 mins (4.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'IFFCO Chowk Yellow Line station is 2 stops from Millennium City Centre, followed by a short auto ride.',
+            'parking' => 'Dedicated ground-level parking right outside the clinic with step-free access.',
+        ],
+        'ambience-island' => [
+            'driving' => 'From Ambience Island: Take NH-48 expressway south through IFFCO Chowk & Rajiv Chowk, ~16 mins (9.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Take Rapid Metro (Moulsari Avenue / Cyber City) to Sikanderpur, then Yellow Line to Millennium City Centre.',
+            'parking' => 'Dedicated ground-level patient parking right at the clinic entrance with step-free accessibility.',
+        ],
+        'sector-42-gurgaon' => [
+            'driving' => 'From Sector 42: Take Golf Course Road onto Netaji Subhash Marg, ~13 mins (6.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Rapid Metro at Sector 42-43 to Sikanderpur, then Yellow Line to Millennium City Centre Gurugram.',
+            'parking' => 'Reserved ground-level parking directly in front of the clinic with step-free entry.',
+        ],
+        'sector-53-gurgaon' => [
+            'driving' => 'From Sector 53: Take Golf Course Road via St. Thomas Marg and Vikas Marg, ~15 mins (7.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Rapid Metro at Sector 53-54 to Sikanderpur, then Yellow Line to Millennium City Centre.',
+            'parking' => 'Dedicated on-site ground-level parking in front of the clinic with step-free access.',
+        ],
+        'sector-54-gurgaon' => [
+            'driving' => 'From Sector 54: Take Golf Course Road and Vikas Marg to Netaji Subhash Marg, ~17 mins (8.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Rapid Metro at Sector 54 Chowk to Sikanderpur, then Yellow Line to Millennium City Centre.',
+            'parking' => 'Ground-level patient parking directly outside the clinic with step-free access.',
+        ],
+        'sector-55-gurgaon' => [
+            'driving' => 'From Sector 55: Take Golf Course Extension Road via Vikas Marg, ~17 mins (8.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Rapid Metro from Sector 55-56 terminus to Sikanderpur, or a direct 10-min cab to Millennium City Centre.',
+            'parking' => 'Dedicated ground-level parking right in front of the clinic with step-free entrance.',
+        ],
+        'sector-57-gurgaon' => [
+            'driving' => 'From Sector 57: Take Vikas Marg or Artemis Hospital road towards Netaji Subhash Marg, ~15 mins (6.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre (HUDA City Centre) Yellow Line station is ~10 mins away by cab or auto.',
+            'parking' => 'Reserved on-site parking at ground level directly outside the clinic with step-free access.',
+        ],
+        'sector-65-gurgaon' => [
+            'driving' => 'From Sector 65: Take Golf Course Extension Road to Vikas Marg / Netaji Subhash Marg, ~16 mins (7.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Sector 55-56 Rapid Metro or Millennium City Centre Yellow Line are ~10-12 mins away by cab.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free accessibility.',
+        ],
+        'huda-city-centre' => [
+            'driving' => 'From HUDA City Centre (Millennium City Centre): Take CH Bakhtawar Singh Road, ~7 mins (2.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre Gurugram on the Yellow Line is the closest metro hub—just 7 mins by auto or cab.',
+            'parking' => 'Dedicated on-site ground-level parking right at the clinic entrance with step-free access.',
+        ],
+        'rajiv-chowk-gurgaon' => [
+            'driving' => 'From Rajiv Chowk: Take Medanta Hospital Road / Jharsa Road, ~4 mins (1.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Rajiv Chowk junction is just 4 minutes away; Millennium City Centre Yellow Line is ~7 mins away.',
+            'parking' => 'Dedicated ground-level patient parking directly outside the clinic entrance with step-free accessibility.',
+        ],
+        'sector-4-gurgaon' => [
+            'driving' => 'From Sector 4: Take Old Railway Road and Jharsa Road via Mor Chowk, ~15 mins (6.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct 12-15 min auto or cab via Civil Lines to Sector 39.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic with step-free access.',
+        ],
+        'sector-7-gurgaon' => [
+            'driving' => 'From Sector 7: Take Old Railway Road to Mor Chowk, then Jharsa Road, ~14 mins (5.8 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Quick auto or cab via Civil Lines directly to Sector 39 opposite Medanta.',
+            'parking' => 'On-site ground-level patient parking directly outside the clinic with step-free entry.',
+        ],
+        'sector-9-gurgaon' => [
+            'driving' => 'From Sector 9: Take Basai Road to Rajiv Chowk and join Sector 39 Road, ~16 mins (6.5 km) to our clinic opposite Medanta.',
+            'metro'   => 'Direct cab or auto via Rajiv Chowk straight to Sector 39.',
+            'parking' => 'Reserved ground-level patient parking right in front of the clinic with step-free access.',
+        ],
+        'sector-40-gurgaon' => [
+            'driving' => 'From Sector 40: Take Netaji Subhash Marg and Sector 39 Road, ~5 mins (2.2 km) to our clinic directly opposite Medanta.',
+            'metro'   => 'Millennium City Centre (HUDA City Centre) Yellow Line station is just 5 mins away.',
+            'parking' => 'Dedicated ground-level parking in front of the clinic with step-free access.',
+        ],
+        'sector-45-gurgaon' => [
+            'driving' => 'From Sector 45: Take Netaji Subhash Marg into Sector 39 Road, ~8 mins (3.5 km) to our clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre Yellow Line station is only ~6 mins away by auto or cab.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free accessibility.',
+        ],
+        'sector-46-gurgaon' => [
+            'driving' => 'From Sector 46: Take Jalvayu Vihar Road and Sector 39 Road, ~7 mins (3.0 km) to our clinic directly opposite Medanta.',
+            'metro'   => 'Millennium City Centre Yellow Line is ~7 mins away by cab or auto.',
+            'parking' => 'Reserved on-site parking at ground level directly outside the clinic.',
+        ],
+        'laxman-vihar' => [
+            'driving' => 'From Laxman Vihar: Take Railway Station Road through Old Gurgaon to Rajiv Chowk, ~18 mins (7.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct auto or cab via Old Railway Road to Sector 39.',
+            'parking' => 'Dedicated ground-level patient parking in front of the clinic with step-free access.',
+        ],
+        'shivaji-nagar-gurgaon' => [
+            'driving' => 'From Shivaji Nagar: Take Jharsa Road straight towards Medanta, ~9 mins (3.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct auto or e-rickshaw via Jharsa Road (~8-10 mins).',
+            'parking' => 'Dedicated ground-level parking right outside the clinic with step-free entrance.',
+        ],
+        'jacobpura' => [
+            'driving' => 'From Jacobpura: Take Sadar Bazaar Road to Jharsa Road, ~11 mins (4.2 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct auto or cab through Civil Lines to Sector 39.',
+            'parking' => 'On-site ground-level patient parking directly in front of the clinic with step-free access.',
+        ],
+        'new-colony-gurgaon' => [
+            'driving' => 'From New Colony: Take Geeta Bhawan Road to Rajiv Chowk, ~13 mins (5.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct cab or auto via Rajiv Chowk straight to Sector 39.',
+            'parking' => 'Reserved ground-level patient parking right in front of the clinic entrance.',
+        ],
+        'sector-48-gurgaon' => [
+            'driving' => 'From Sector 48: Take Sohna Road north via Subhash Chowk into Sector 39 Road, ~9 mins (3.8 km) to our clinic opposite Medanta.',
+            'metro'   => 'Direct 8-minute cab or auto to Millennium City Centre Yellow Line or direct to Sector 39.',
+            'parking' => 'Dedicated ground-level parking directly in front of the clinic with step-free access.',
+        ],
+        'sector-49-gurgaon' => [
+            'driving' => 'From Sector 49: Take Sohna Road via Subhash Chowk to Sector 39 Road, ~10 mins (4.2 km) to our clinic opposite Medanta.',
+            'metro'   => 'Direct 8-10 min cab or auto to Millennium City Centre Yellow Line or direct to Sector 39.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free entrance.',
+        ],
+        'sector-51-gurgaon' => [
+            'driving' => 'From Sector 51: Take Samaspur Road and Netaji Subhash Marg, ~12 mins (5.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Millennium City Centre (HUDA City Centre) Yellow Line station is ~8 mins away.',
+            'parking' => 'On-site ground-level parking directly in front of the clinic with step-free accessibility.',
+        ],
+        'bhondsi' => [
+            'driving' => 'From Bhondsi: Take Sohna-Gurgaon Road (NH-248A) past Badshahpur and Subhash Chowk, ~22 mins (13.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct cab or auto along Sohna Road; nearest metro hub is Millennium City Centre.',
+            'parking' => 'Dedicated ground-level parking right outside the clinic entrance with step-free entry.',
+        ],
+        'sector-18-gurgaon' => [
+            'driving' => 'From Sector 18: Take NH-48 via IFFCO Chowk towards Rajiv Chowk, ~14 mins (7.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Yellow Line at IFFCO Chowk or MG Road to Millennium City Centre, then a quick auto ride.',
+            'parking' => 'Dedicated ground-level parking directly in front of the clinic with step-free access.',
+        ],
+        'sector-22-gurgaon' => [
+            'driving' => 'From Sector 22: Take Old Delhi Road to Atul Kataria Chowk and join NH-48, ~20 mins (9.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct cab or auto via NH-48 / Rajiv Chowk to Sector 39.',
+            'parking' => 'Reserved ground-level patient parking directly outside the clinic with step-free entry.',
+        ],
+        'sector-23-gurgaon' => [
+            'driving' => 'From Sector 23: Take Old Delhi Road to NH-48 via Rajiv Chowk, ~22 mins (10.0 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Direct cab or auto via NH-48 or Old Delhi Road straight to Sector 39.',
+            'parking' => 'Dedicated on-site ground-level parking right in front of the clinic with step-free access.',
+        ],
+        'sector-82-gurgaon' => [
+            'driving' => 'From Sector 82: Take NH-48 expressway past Kherki Daula toll to Rajiv Chowk, ~18 mins (13.5 km) to our Sector 39 clinic opposite Medanta.',
+            'metro'   => 'Fast highway access via NH-48; nearest metro station is Millennium City Centre Gurugram.',
+            'parking' => 'Dedicated ground-level patient parking directly in front of the clinic with step-free accessibility.',
+        ],
+    ];
+
+    if (isset($transit[$slug])) {
+        return $transit[$slug];
+    }
+
+    $place = $area['name'] ?? 'your location';
+    return [
+        'driving' => 'From ' . $place . ': Take the nearest arterial corridor to NH-48 / Rajiv Chowk and turn onto Sector 39 Road opposite Medanta – The Medicity.',
+        'metro'   => 'The closest metro connection is Millennium City Centre Gurugram (Yellow Line), approximately 7-8 minutes away by cab or auto.',
+        'parking' => 'Dedicated ground-level patient parking is available directly in front of the clinic with step-free access.',
+    ];
+}
+

@@ -55,6 +55,9 @@ function icon(string $name, int $size = 24, string $color = 'currentColor', floa
         'plus'     => '<path d="M12 5v14M5 12h14"/>',
         'camera'   => '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
         'alert'    => '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+        'car'      => '<path d="M5 17h14M6 13h12l-1.5-5h-9zM5 17a2 2 0 1 0 4 0 2 2 0 1 0-4 0zm10 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0zM4 14v3M20 14v3M2 13h20"/>',
+        'metro'    => '<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 7h.01M16 7h.01M6 18l-2 3M18 18l2 3M8 15h8"/>',
+        'parking'  => '<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M9 16V8h4a2.5 2.5 0 0 1 0 5H9"/>',
     ];
 
     $body = $paths[$name] ?? $paths['info'];

@@ -35,6 +35,7 @@ $a     = $c['area'];
 $name  = $meta['name'];
 $place = $area['name'];
 $vars  = ['{area}' => $place, '{hub}' => $hub, '{name}' => $name];
+$transit = delhi_area_transit_details($slug, $area);
 $url   = delhi_treatment_url($key, $slug);
 $metro = $area['metro'];
 $pins  = $area['pins'];
@@ -116,7 +117,8 @@ require __DIR__ . '/header.php';
         <h2 class="h2 mt-2"><?= e(dt_fill($a['heading'], $vars)) ?></h2>
         <p class="body mt-3"><?= e($area['about'] . ' ' . dt_fill($a['visits_line'], $vars)) ?></p>
         <h3 class="h4 mt-4">Getting to the Rohini Clinic</h3>
-        <p class="body mt-2"><?= e($area['route']) ?> Open the clinic on Google Maps for the route from your door.</p>
+        <p class="body mt-2">DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini. Travel guidance from <?= e($place) ?>:</p>
+        <?= locality_transit_card($transit, 'delhi') ?>
         <h3 class="h4 mt-4"><?= e($a['day_heading']) ?></h3>
         <p class="body mt-2"><?= e(dt_fill($a['day'], $vars)) ?></p>
         <?php if ($metro !== []): ?>

@@ -137,6 +137,47 @@ function delhi_glance(array $rows, string $label): string
 }
 
 /**
+ * Structured Directions Card: Driving Route & Real Distance, Transit & Metro Details, Parking Advice.
+ * $transit: ['driving' => string, 'metro' => string, 'parking' => string]
+ * $clinic: 'gurgaon' | 'delhi'
+ */
+function locality_transit_card(array $transit, string $clinic = 'gurgaon'): string
+{
+    $mapUrl = $clinic === 'delhi' ? LOC_DELHI_MAPS_URL : MAPS_URL;
+    ob_start(); ?>
+<div class="loc-directions">
+  <div class="loc-directions__card">
+    <span class="icon-dot tone--sky"><?= icon('car', 20) ?></span>
+    <div class="loc-directions__content">
+      <strong class="loc-directions__title">Driving Route &amp; Real Distance</strong>
+      <p class="loc-directions__text"><?= e($transit['driving']) ?></p>
+    </div>
+  </div>
+  <div class="loc-directions__card">
+    <span class="icon-dot tone--violet"><?= icon('metro', 20) ?></span>
+    <div class="loc-directions__content">
+      <strong class="loc-directions__title">Transit &amp; Metro Details</strong>
+      <p class="loc-directions__text"><?= e($transit['metro']) ?></p>
+    </div>
+  </div>
+  <div class="loc-directions__card">
+    <span class="icon-dot tone--mint"><?= icon('parking', 20) ?></span>
+    <div class="loc-directions__content">
+      <strong class="loc-directions__title">Parking Advice &amp; Ground-Level Accessibility</strong>
+      <p class="loc-directions__text"><?= e($transit['parking']) ?></p>
+    </div>
+  </div>
+  <a class="loc-directions__map-btn" href="<?= e($mapUrl) ?>" target="_blank" rel="noopener">
+    <?= icon('arrow', 16) ?>
+    <span>Open Clinic on Google Maps for Turn-by-Turn Navigation</span>
+  </a>
+</div>
+<?php
+    return (string) ob_get_clean();
+}
+
+
+/**
  * The "why" band: a row of round icons, and beside it either a photo or the
  * Rohini clinic's map. $o: id, eyebrow, heading, intro, icons [[icon, label]],
  * media 'map' | 'equipment', and optionally checks (the photo's checklist) and

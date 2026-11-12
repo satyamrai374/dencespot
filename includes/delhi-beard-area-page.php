@@ -30,6 +30,7 @@ if (!$area['live']) {
 
 $name    = $area['name'];
 $url     = delhi_beard_url($slug);
+$transit = delhi_area_transit_details($slug, $area);
 $metro   = $area['metro'];
 $pins    = $area['pins'];
 $where   = $area['district'] ?? DELHI_SERVICE_ZONES[$area['zone']];
@@ -127,7 +128,8 @@ require __DIR__ . '/header.php';
         <h2 class="h2 mt-2">Beard Transplant for <?= e($name) ?> Residents</h2>
         <p class="body mt-3"><?= e($area['about']) ?> The consultation, the beard design, the procedure and every review take place at the Rohini clinic.</p>
         <h3 class="h4 mt-4">Getting to the Rohini Clinic</h3>
-        <p class="body mt-2"><?= e($area['route']) ?> Open the clinic on Google Maps for the route from your door.</p>
+        <p class="body mt-2">DenceSpot’s Delhi clinic is located at 6, Dividing Road, near DDA Market, Pocket 3, Sector 5, Rohini. Travel guidance from <?= e($name) ?>:</p>
+        <?= locality_transit_card($transit, 'delhi') ?>
         <h3 class="h4 mt-4">On the Procedure Day</h3>
         <p class="body mt-2">Plan a car or cab home to <?= e($name) ?> rather than a two-wheeler: a helmet’s cheek pads and chin strap press on fresh grafts. Expect your face to look treated for about a week, and keep the first review date in your written plan.</p>
         <?php if ($metro !== []): ?>
