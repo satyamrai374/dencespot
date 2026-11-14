@@ -218,6 +218,8 @@ if (!empty($page['service_areas'])) {
           </select>
         </div>
         
+        <?= captcha_field('wa', 'wa') ?>
+
         <button type="submit" class="wa-submit-btn" id="waSubmitBtn">
           <?= icon('whatsapp', 20) ?> <span>Start WhatsApp Chat &rarr;</span>
         </button>
@@ -486,10 +488,18 @@ if (!empty($page['service_areas'])) {
       var btn = document.getElementById('waSubmitBtn');
       var nameVal = (document.getElementById('wa-name').value || '').trim();
       var phoneVal = (document.getElementById('wa-phone').value || '').trim();
+      var captchaInput = document.getElementById('wa-captcha');
+      var captchaVal = captchaInput ? captchaInput.value.trim() : '';
       var clinicVal = document.getElementById('wa-clinic').value;
       var treatVal = document.getElementById('wa-treatment').value;
 
       if (!nameVal || phoneVal.replace(/\D/g, '').length < 10) {
+        return;
+      }
+
+      if (captchaInput && !captchaVal) {
+        e.preventDefault();
+        captchaInput.focus();
         return;
       }
 

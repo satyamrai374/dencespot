@@ -866,6 +866,8 @@ function hp_booking_dialog(string $source = 'homepage'): string
         <textarea id="hp-f-message" name="message" rows="2" maxlength="2000"></textarea>
       </div>
 
+      <?= captcha_field('hp', 'home') ?>
+
       <div class="hp-consent">
         <input id="hp-f-consent" name="dpdp_consent" type="checkbox" value="1" required>
         <label for="hp-f-consent">I agree that <?= e(SITE_NAME) ?> may use these details to contact me about this enquiry, as described in the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.</label>

@@ -57,7 +57,9 @@ require __DIR__ . '/includes/header.php';
     <?php if ($hasError): ?>
       <div class="card mt-4" style="border-left:4px solid var(--accent);background:#fff0f1;padding:16px 20px;">
         <p class="body-s" style="color:var(--accent-dark);font-weight:600;">
-          <?php if (in_array('phone', $errors, true)): ?>
+          <?php if (in_array('captcha', $errors, true)): ?>
+            Please enter the correct answer to the security check (math calculation).
+          <?php elseif (in_array('phone', $errors, true)): ?>
             Please enter a valid 10-digit mobile number so the clinic can reach you.
           <?php else: ?>
             Please review the required fields and submit again.

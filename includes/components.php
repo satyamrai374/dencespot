@@ -675,6 +675,7 @@ function enquiry_form(string $source, array $treatments = [], bool $onInk = true
       <label for="f-message-<?= e($source) ?>">Anything you want the doctor to know <span class="fine" style="font-weight:400;opacity:.75">(optional)</span></label>
       <textarea class="textarea" id="f-message-<?= e($source) ?>" name="message" rows="2" placeholder="Briefly describe your goals or questions..."></textarea>
     </div>
+    <?= captcha_field('f-' . $source, 'standard') ?>
     <button class="btn btn--block" type="submit" style="background:#fff;color:var(--ink)">Book Free Consultation</button>
     <p class="fine">🔒 Your details are kept confidential and used only to arrange your consultation.</p>
   </div>
@@ -1223,6 +1224,7 @@ function lead_strip(): string
       <div class="lead-strip__fields">
         <label class="lead-strip__field"><span>Name</span><input class="input" name="name" type="text" autocomplete="name" maxlength="120" required></label>
         <label class="lead-strip__field"><span>Phone</span><input class="input" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[\s\(\)+\-]*(?:[0-9][\s\(\)+\-]*){10,15}" title="A phone number with 10 to 15 digits" required></label>
+        <?= captcha_field('strip-' . $source, 'strip') ?>
         <button class="btn btn--ink lead-strip__btn" type="submit"><?= icon('phone', 17) ?> Call Me Back</button>
       </div>
       <label class="lead-strip__consent"><input type="checkbox" name="dpdp_consent" value="1" required><span>I agree that <?= e(SITE_NAME) ?> may use these details to contact me about this enquiry (<a href="/privacy-policy">Privacy Policy</a>). Kept for 12 months; you can withdraw consent at any time.</span></label>

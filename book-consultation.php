@@ -101,7 +101,9 @@ $errors   = $hasError ? explode(',', (string) $_GET['error']) : [];
 
           <?php if ($hasError): ?>
             <p class="form-error mt-2" role="alert">
-              <?php if (in_array('phone', $errors, true)): ?>
+              <?php if (in_array('captcha', $errors, true)): ?>
+                Please enter the correct answer to the security check (math calculation).
+              <?php elseif (in_array('phone', $errors, true)): ?>
                 Please enter a valid phone number so the clinic can call you back.
               <?php else: ?>
                 Please check the highlighted fields and try again.

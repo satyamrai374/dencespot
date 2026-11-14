@@ -83,7 +83,8 @@
   // only (clinic and visit questions removed 3 Nov 2026, consent box 6 Nov).
   var ERRORS = {
     name: 'Please enter your name.',
-    phone: 'Please enter a phone number with at least 10 digits.'
+    phone: 'Please enter a phone number with at least 10 digits.',
+    captcha: 'Please enter the correct answer to the security check.'
   };
 
   function resetButton(btn) {
@@ -96,9 +97,21 @@
     var errorBox = form.querySelector('.form-error');
 
     form.addEventListener('submit', function (e) {
+      var captchaInput = form.querySelector('[name="captcha"]');
+      var btn = form.querySelector('.enhanced-submit-btn');
+
+      if (captchaInput && !captchaInput.value.trim()) {
+        e.preventDefault();
+        if (errorBox) {
+          errorBox.textContent = 'Please enter the answer to the security check.';
+          errorBox.hidden = false;
+        }
+        captchaInput.focus();
+        return;
+      }
+
       form.elements.message.value = 'Form: ' + form.elements.form_type.value + ' (landing page)';
 
-      var btn = form.querySelector('.enhanced-submit-btn');
       btn.dataset.label = btn.dataset.label || btn.innerHTML;
       btn.classList.add('btn-loading');
       btn.textContent = 'Submitting...';

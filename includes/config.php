@@ -643,3 +643,6 @@ function fit_title(string ...$candidates): string
     }
     return $candidates[count($candidates) - 1];
 }
+
+require_once __DIR__ . '/captcha.php';
+

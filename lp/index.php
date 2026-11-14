@@ -177,8 +177,8 @@ function lp_form(string $id, string $formType, string $icon, string $submit): st
     <label for="<?= e($id) ?>-phone"><i class="fas fa-phone"></i> Phone Number</label>
     <input type="tel" id="<?= e($id) ?>-phone" name="phone" class="enhanced-input" placeholder="Enter your phone number" autocomplete="tel" inputmode="tel" minlength="10" maxlength="16" required>
   </div>
-  <?php /* Name and phone only: the clinic and visit-timing questions went on
-           3 Nov 2026, the consent tick box on 6 Nov 2026 (client). */ ?>
+  <?= captcha_field($id, 'lp') ?>
+  <?php /* Name and phone with calculation captcha (14 Nov 2026: spam prevention). */ ?>
   <p class="form-error" role="alert" hidden></p>
   <button type="submit" class="enhanced-submit-btn"><i class="fas <?= e($icon) ?>"></i> <?= e($submit) ?></button>
 </form>
