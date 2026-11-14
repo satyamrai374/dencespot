@@ -533,7 +533,7 @@ function lp_modal(string $id, string $badge, string $title, string $subtitle, st
           <h2 class="footer-heading">Book Your Free Consultation</h2>
           <p>Take the first step towards treating your hair loss. Our doctors examine your scalp and explain your options.</p>
           <div class="cta-group">
-            <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book your Free Consultation</button>
+            <button type="button" class="btn-primary book-appointment-btn"><i class="fas fa-calendar-check me-2"></i>Book Your Free Consultation</button>
             <a href="<?= e($telHref) ?>" class="btn-call btn-call--block" data-track="call"><i class="fa-solid fa-phone"></i> Call Now</a>
           </div>
         </div>
