@@ -19,7 +19,7 @@ function captcha_generate(): array
     $num1 = random_int(2, 9);
     $num2 = random_int(1, 9);
     $ans  = $num1 + $num2;
-    $ts   = time();
+    $ts   = (string) time();
     $hash = hash_hmac('sha256', (string) $ans . '|' . $ts, CAPTCHA_SECRET);
 
     return [
@@ -88,7 +88,7 @@ function captcha_field(string $idPrefix = 'f', string $variant = 'standard'): st
             <input type="number" id="<?= e($id) ?>" name="captcha" class="enhanced-input captcha-input" placeholder="Answer" inputmode="numeric" required autocomplete="off" style="max-width:130px;padding:7px 10px;margin:0;font-size:13.5px;">
           </div>
           <input type="hidden" name="captcha_hash" value="<?= e($c['hash']) ?>">
-          <input type="hidden" name="captcha_ts" value="<?= e($c['ts']) ?>">
+          <input type="hidden" name="captcha_ts" value="<?= e((string) $c['ts']) ?>">
         </div>
         <?php
     } elseif ($variant === 'home') {
@@ -102,7 +102,7 @@ function captcha_field(string $idPrefix = 'f', string $variant = 'standard'): st
             <input id="<?= e($id) ?>" name="captcha" type="number" inputmode="numeric" placeholder="Answer" required autocomplete="off" style="max-width:140px;">
           </div>
           <input type="hidden" name="captcha_hash" value="<?= e($c['hash']) ?>">
-          <input type="hidden" name="captcha_ts" value="<?= e($c['ts']) ?>">
+          <input type="hidden" name="captcha_ts" value="<?= e((string) $c['ts']) ?>">
         </div>
         <?php
     } elseif ($variant === 'strip') {
@@ -112,7 +112,7 @@ function captcha_field(string $idPrefix = 'f', string $variant = 'standard'): st
           <input class="input" name="captcha" type="number" inputmode="numeric" placeholder="Answer" required autocomplete="off" style="width:100%;">
         </label>
         <input type="hidden" name="captcha_hash" value="<?= e($c['hash']) ?>">
-        <input type="hidden" name="captcha_ts" value="<?= e($c['ts']) ?>">
+        <input type="hidden" name="captcha_ts" value="<?= e((string) $c['ts']) ?>">
         <?php
     } elseif ($variant === 'wa') {
         ?>
@@ -125,7 +125,7 @@ function captcha_field(string $idPrefix = 'f', string $variant = 'standard'): st
             <input class="input" type="number" id="<?= e($id) ?>" name="captcha" placeholder="Answer" required inputmode="numeric" autocomplete="off" style="max-width:130px;">
           </div>
           <input type="hidden" name="captcha_hash" value="<?= e($c['hash']) ?>">
-          <input type="hidden" name="captcha_ts" value="<?= e($c['ts']) ?>">
+          <input type="hidden" name="captcha_ts" value="<?= e((string) $c['ts']) ?>">
         </div>
         <?php
     } else {
@@ -140,7 +140,7 @@ function captcha_field(string $idPrefix = 'f', string $variant = 'standard'): st
             <input class="input" id="<?= e($id) ?>" name="captcha" type="number" inputmode="numeric" placeholder="Answer" required style="max-width:140px;" autocomplete="off">
           </div>
           <input type="hidden" name="captcha_hash" value="<?= e($c['hash']) ?>">
-          <input type="hidden" name="captcha_ts" value="<?= e($c['ts']) ?>">
+          <input type="hidden" name="captcha_ts" value="<?= e((string) $c['ts']) ?>">
         </div>
         <?php
     }
