@@ -15,6 +15,18 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/schema.php';
 require_once __DIR__ . '/../includes/blog.php';
 
+// Redirect legacy blog pagination (?page=X) and legacy query topics (?topic=Y) to clean /blog/
+if (isset($_GET['page']) || isset($_GET['topic'])) {
+    header('Location: /blog/', true, 301);
+    exit;
+}
+
+$requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '');
+if (preg_match('#^/blog/index(?:\.php)?(?:/|\?|$)#i', $requestUri)) {
+    header('Location: /blog/', true, 301);
+    exit;
+}
+
 // Every post is in the page; the topic buttons filter them in the browser
 // (footer.php). ?topic= links used to do it, and each of those URLs
 // canonicalised back to /blog/ — five duplicate URLs for every crawler.

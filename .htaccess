@@ -77,11 +77,22 @@ RewriteRule ^sitemap-(delhi|gurgaon|blog|pages)\.xml$ sitemap.php?type=$1 [L]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3. index.php → directory root
-#    /index.php → /   and   /blog/index.php → /blog/
+# 3. index / index.php → directory root
+#    /index, /index/, /index.php → /   and   /blog/index, /blog/index.php → /blog/
 # ─────────────────────────────────────────────────────────────────────────────
-RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.php[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
+# Root /index or /index.php -> /
+RewriteCond %{THE_REQUEST} \s/+index(?:\.php)?/?[\s?] [NC]
+RewriteRule ^ index(?:\.php)?/?$ / [R=301,L]
+
+# Subfolder /dir/index or /dir/index.php -> /dir/
+RewriteCond %{THE_REQUEST} \s/+([^?\s]+)/index(?:\.php)?/?[\s?] [NC]
+RewriteRule ^ /%1/ [R=301,L]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3a. Legacy blog pagination (?page=X) and legacy topic queries (?topic=Y) → /blog/
+# ─────────────────────────────────────────────────────────────────────────────
+RewriteCond %{THE_REQUEST} \s/+blog/?\?(?:.*&)?(?:page=\d+|topic=[^&\s]+) [NC]
+RewriteRule ^blog/?$ /blog/? [R=301,L]
 
 
 # ─────────────────────────────────────────────────────────────────────────────

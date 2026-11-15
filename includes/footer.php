@@ -303,7 +303,8 @@ if (!empty($page['service_areas'])) {
       var b = event.target.closest('[data-filter]');
       if (b) { apply(b.getAttribute('data-filter')); }
     });
-    var start = new URLSearchParams(window.location.search).get(nav.getAttribute('data-filter-param') || '');
+    var start = new URLSearchParams(window.location.search).get(nav.getAttribute('data-filter-param') || '')
+             || (window.location.hash ? window.location.hash.substring(1) : '');
     if (start && find(start)) { apply(start); }
     nav.hidden = false;
   });

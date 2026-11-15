@@ -19,6 +19,13 @@
 
 declare(strict_types=1);
 
+// Redirect /index, /index/, /index.php to canonical root /
+$requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '');
+if (preg_match('#^/index(?:\.php)?(?:/|\?|$)#i', $requestUri)) {
+    header('Location: /', true, 301);
+    exit;
+}
+
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/schema.php';
 
