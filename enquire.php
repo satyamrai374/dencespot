@@ -145,12 +145,16 @@ if ($honeypot !== '') {
 
 $errors = [];
 
-// Math calculation CAPTCHA verification (required on all enquiries to block spam bots)
+// Math calculation CAPTCHA verification (required on standard forms to block spam bots,
+// exempted on quick WhatsApp modal which only collects Name + Phone for instant direct chat).
+$redirectTo = $field('redirect_to');
+$isWhatsapp = ($redirectTo === 'whatsapp');
+
 $captchaAns  = $field('captcha');
 $captchaHash = $field('captcha_hash');
 $captchaTs   = $field('captcha_ts');
 
-if (!captcha_validate($captchaAns, $captchaHash, $captchaTs)) {
+if (!$isWhatsapp && !captcha_validate($captchaAns, $captchaHash, $captchaTs)) {
     $errors[] = 'captcha';
 }
 

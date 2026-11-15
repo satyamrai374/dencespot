@@ -159,7 +159,7 @@ if (!empty($page['service_areas'])) {
     <?= icon('whatsapp', 32) ?>
     <span class="wa-float__pulse"></span>
   </div>
-  <span class="wa-float__label">Chat on WhatsApp</span>
+  <span class="wa-float__label">Chat with us</span>
 </div>
 
 <!-- WhatsApp Lead Collector Modal -->
@@ -172,7 +172,7 @@ if (!empty($page['service_areas'])) {
           <?= icon('whatsapp', 24) ?>
         </div>
         <div>
-          <h3 id="wa-modal-title" class="wa-modal__title">Chat on WhatsApp</h3>
+          <h3 id="wa-modal-title" class="wa-modal__title">Chat with us</h3>
           <p class="wa-modal__subtitle">Doctor-led guidance · Direct WhatsApp response</p>
         </div>
       </div>
@@ -184,6 +184,8 @@ if (!empty($page['service_areas'])) {
       <form class="wa-modal__form" action="/enquire.php" method="post" id="waLeadForm">
         <input type="hidden" name="source" value="whatsapp-modal:<?= e($page['url'] ?? '') ?>">
         <input type="hidden" name="redirect_to" value="whatsapp">
+        <input type="hidden" name="treatment" id="wa-treatment" value="Hair transplant">
+        <input type="hidden" name="clinic" id="wa-clinic" value="<?= e($footRohini ? 'Delhi (Rohini)' : 'Gurugram (Sector 39)') ?>">
         <p class="sr-only" style="display:none !important;" aria-hidden="true"><label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="new-password"></label></p>
         
         <div class="wa-field">
@@ -195,30 +197,6 @@ if (!empty($page['service_areas'])) {
           <label for="wa-phone">Phone / WhatsApp Number</label>
           <input class="input" type="tel" id="wa-phone" name="phone" placeholder="10-digit mobile number" required inputmode="tel" autocomplete="tel" pattern="[\s\(\)+\-]*(?:[0-9][\s\(\)+\-]*){10,15}" title="Please enter a valid 10-digit phone number">
         </div>
-        
-        <div class="wa-field">
-          <label for="wa-treatment">Treatment of Interest</label>
-          <select class="select" id="wa-treatment" name="treatment">
-            <option value="Hair transplant">Hair Transplant (FUE / DHI)</option>
-            <option value="Beard transplant">Beard Transplant</option>
-            <option value="Hair PRP / GFC">Hair PRP / GFC Treatment</option>
-            <option value="Hair fall treatment">Hair Fall & Scalp Assessment</option>
-            <option value="Laser hair removal">Laser Hair Removal</option>
-            <option value="Skin care">Skin & Facial Aesthetic Care</option>
-            <option value="Not sure — please advise">Not sure — please advise</option>
-          </select>
-        </div>
-        
-        <div class="wa-field">
-          <label for="wa-clinic">Preferred Clinic</label>
-          <select class="select" id="wa-clinic" name="clinic">
-            <option value="Delhi (Rohini)"<?= $footRohini ? ' selected' : '' ?>>Delhi (Rohini) Clinic</option>
-            <option value="Gurugram (Sector 39)"<?= !$footRohini ? ' selected' : '' ?>>Gurugram (Sector 39) Clinic</option>
-            <option value="Either clinic">Either Clinic (Online Assessment)</option>
-          </select>
-        </div>
-        
-        <?= captcha_field('wa', 'wa') ?>
 
         <button type="submit" class="wa-submit-btn" id="waSubmitBtn">
           <?= icon('whatsapp', 20) ?> <span>Start WhatsApp Chat &rarr;</span>
@@ -439,8 +417,39 @@ if (!empty($page['service_areas'])) {
     if (modal) modal.style.display = 'none';
   };
 
-  // WhatsApp Lead Collector Modal handlers
+  // WhatsApp Lead Collector Modal handlers & Auto-Popup Timers
+  var waTimer = null;
+  var WA_INITIAL_DELAY = 20000; // 20 seconds on page load
+  var WA_REOPEN_DELAY  = 60000; // 60 seconds after closing
+
+  function scheduleWaPopup(delayMs) {
+    if (waTimer) {
+      clearTimeout(waTimer);
+      waTimer = null;
+    }
+    try {
+      if (sessionStorage.getItem('wa_submitted') === 'true') {
+        return;
+      }
+    } catch (e) {}
+
+    waTimer = setTimeout(function () {
+      var modal = document.getElementById('wa-lead-modal');
+      if (modal && modal.style.display !== 'none' && modal.getAttribute('aria-hidden') === 'false') {
+        return;
+      }
+      window.openWaModal();
+    }, delayMs);
+  }
+
+  // Auto popup after 20 seconds on entire website
+  scheduleWaPopup(WA_INITIAL_DELAY);
+
   window.openWaModal = function (clinic, treatment) {
+    if (waTimer) {
+      clearTimeout(waTimer);
+      waTimer = null;
+    }
     var modal = document.getElementById('wa-lead-modal');
     if (!modal) return;
     modal.style.display = 'flex';
@@ -464,6 +473,9 @@ if (!empty($page['service_areas'])) {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    // Auto popup again after 60 seconds
+    scheduleWaPopup(WA_REOPEN_DELAY);
   };
 
   document.addEventListener('keydown', function (e) {
@@ -489,22 +501,25 @@ if (!empty($page['service_areas'])) {
       var btn = document.getElementById('waSubmitBtn');
       var nameVal = (document.getElementById('wa-name').value || '').trim();
       var phoneVal = (document.getElementById('wa-phone').value || '').trim();
-      var captchaInput = document.getElementById('wa-captcha');
-      var captchaVal = captchaInput ? captchaInput.value.trim() : '';
-      var clinicVal = document.getElementById('wa-clinic').value;
-      var treatVal = document.getElementById('wa-treatment').value;
+      var clinicInput = document.getElementById('wa-clinic');
+      var clinicVal = clinicInput ? clinicInput.value : '';
+      var treatInput = document.getElementById('wa-treatment');
+      var treatVal = (treatInput ? treatInput.value : '') || 'Hair restoration';
 
       if (!nameVal || phoneVal.replace(/\D/g, '').length < 10) {
         return;
       }
 
-      if (captchaInput && !captchaVal) {
-        e.preventDefault();
-        captchaInput.focus();
-        return;
+      e.preventDefault();
+
+      try {
+        sessionStorage.setItem('wa_submitted', 'true');
+      } catch (err) {}
+      if (waTimer) {
+        clearTimeout(waTimer);
+        waTimer = null;
       }
 
-      e.preventDefault();
       if (btn) {
         btn.disabled = true;
         btn.innerHTML = '<span>Connecting to WhatsApp...</span>';
