@@ -38,6 +38,7 @@ require_once __DIR__ . '/schema.php';
 require_once __DIR__ . '/gallery-manifest.php';
 require_once __DIR__ . '/delhi-treatment-sections.php';
 require_once __DIR__ . '/gurgaon-service-areas.php';
+require_once __DIR__ . '/gurgaon-hyperlocal-links.php';
 
 $key  = $treatment ?? '';
 $meta = GURGAON_TREATMENTS[$key] ?? null;
@@ -146,6 +147,9 @@ require __DIR__ . '/header.php';
         <p class="body mt-3"><?= e($area['about'] . ' ' . dt_fill($a['visits_line'], $vars)) ?></p>
         <h3 class="h4 mt-4"><?= e($a['day_heading']) ?></h3>
         <p class="body mt-2"><?= e(dt_fill($a['day'], $vars)) ?></p>
+        <?php if ($pillarLink = gurgaon_hyperlocal_pillar_link($key, $slug)): ?>
+          <?= $pillarLink ?>
+        <?php endif; ?>
       </div>
 
       <?= dt_middle($c['middle']) ?>
